@@ -24,112 +24,112 @@ public class F0101 implements Serializable {
 	private double aban8;
 
 	@Column(name="ABAB3")
-	private Object abab3;
+	private String abab3;
 
 	@Column(name="ABAC01")
-	private Object abac01;
+	private String abac01;
 
 	@Column(name="ABAC02")
-	private Object abac02;
+	private String abac02;
 
 	@Column(name="ABAC03")
-	private Object abac03;
+	private String abac03;
 
 	@Column(name="ABAC04")
-	private Object abac04;
+	private String abac04;
 
 	@Column(name="ABAC05")
-	private Object abac05;
+	private String abac05;
 
 	@Column(name="ABAC06")
-	private Object abac06;
+	private String abac06;
 
 	@Column(name="ABAC07")
-	private Object abac07;
+	private String abac07;
 
 	@Column(name="ABAC08")
-	private Object abac08;
+	private String abac08;
 
 	@Column(name="ABAC09")
-	private Object abac09;
+	private String abac09;
 
 	@Column(name="ABAC10")
-	private Object abac10;
+	private String abac10;
 
 	@Column(name="ABAC11")
-	private Object abac11;
+	private String abac11;
 
 	@Column(name="ABAC12")
-	private Object abac12;
+	private String abac12;
 
 	@Column(name="ABAC13")
-	private Object abac13;
+	private String abac13;
 
 	@Column(name="ABAC14")
-	private Object abac14;
+	private String abac14;
 
 	@Column(name="ABAC15")
-	private Object abac15;
+	private String abac15;
 
 	@Column(name="ABAC16")
-	private Object abac16;
+	private String abac16;
 
 	@Column(name="ABAC17")
-	private Object abac17;
+	private String abac17;
 
 	@Column(name="ABAC18")
-	private Object abac18;
+	private String abac18;
 
 	@Column(name="ABAC19")
-	private Object abac19;
+	private String abac19;
 
 	@Column(name="ABAC20")
-	private Object abac20;
+	private String abac20;
 
 	@Column(name="ABAC21")
-	private Object abac21;
+	private String abac21;
 
 	@Column(name="ABAC22")
-	private Object abac22;
+	private String abac22;
 
 	@Column(name="ABAC23")
-	private Object abac23;
+	private String abac23;
 
 	@Column(name="ABAC24")
-	private Object abac24;
+	private String abac24;
 
 	@Column(name="ABAC25")
-	private Object abac25;
+	private String abac25;
 
 	@Column(name="ABAC26")
-	private Object abac26;
+	private String abac26;
 
 	@Column(name="ABAC27")
-	private Object abac27;
+	private String abac27;
 
 	@Column(name="ABAC28")
-	private Object abac28;
+	private String abac28;
 
 	@Column(name="ABAC29")
-	private Object abac29;
+	private String abac29;
 
 	@Column(name="ABAC30")
-	private Object abac30;
+	private String abac30;
 
 	@Column(name="ABACTIN")
-	private Object abactin;
+	private String abactin;
 
 	@Column(name="ABAEMPGP")
-	private Object abaempgp;
+	private String abaempgp;
 
 	@Column(name="ABALKY")
-	private Object abalky;
+	private String abalky;
 
 	@Column(name="ABALP1")
-	private Object abalp1;
+	private String abalp1;
 
 	@Column(name="ABALPH")
-	private Object abalph;
+	private String abalph;
 
 	@Column(name="ABAN81")
 	private double aban81;
@@ -150,82 +150,82 @@ public class F0101 implements Serializable {
 	private double aban86;
 
 	@Column(name="ABAT1")
-	private Object abat1;
+	private String abat1;
 
 	@Column(name="ABAT2")
-	private Object abat2;
+	private String abat2;
 
 	@Column(name="ABAT3")
-	private Object abat3;
+	private String abat3;
 
 	@Column(name="ABAT4")
-	private Object abat4;
+	private String abat4;
 
 	@Column(name="ABAT5")
-	private Object abat5;
+	private String abat5;
 
 	@Column(name="ABATE")
-	private Object abate;
+	private String abate;
 
 	@Column(name="ABATP")
-	private Object abatp;
+	private String abatp;
 
 	@Column(name="ABATPR")
-	private Object abatpr;
+	private String abatpr;
 
 	@Column(name="ABATR")
-	private Object abatr;
+	private String abatr;
 
 	@Column(name="ABCAAD")
 	private double abcaad;
 
 	@Column(name="ABCLASS01")
-	private Object abclass01;
+	private String abclass01;
 
 	@Column(name="ABCLASS02")
-	private Object abclass02;
+	private String abclass02;
 
 	@Column(name="ABCLASS03")
-	private Object abclass03;
+	private String abclass03;
 
 	@Column(name="ABCLASS04")
-	private Object abclass04;
+	private String abclass04;
 
 	@Column(name="ABCLASS05")
-	private Object abclass05;
+	private String abclass05;
 
 	@Column(name="ABCM")
-	private Object abcm;
+	private String abcm;
 
 	@Column(name="ABDC")
-	private Object abdc;
+	private String abdc;
 
 	@Column(name="ABDUNS")
-	private Object abduns;
+	private String abduns;
 
 	@Column(name="ABEFTB")
 	private BigDecimal abeftb;
 
 	@Column(name="ABEXCHG")
-	private Object abexchg;
+	private String abexchg;
 
 	@Column(name="ABGLBA")
-	private Object abglba;
+	private String abglba;
 
 	@Column(name="ABGROWTHR")
 	private double abgrowthr;
 
 	@Column(name="ABJOBN")
-	private Object abjobn;
+	private String abjobn;
 
 	@Column(name="ABLNGP")
-	private Object ablngp;
+	private String ablngp;
 
 	@Column(name="ABMCU")
-	private Object abmcu;
+	private String abmcu;
 
 	@Column(name="ABMSGA")
-	private Object abmsga;
+	private String abmsga;
 
 	@Column(name="ABNOE")
 	private double abnoe;
@@ -237,46 +237,46 @@ public class F0101 implements Serializable {
 	private double abperrs;
 
 	@Column(name="ABPID")
-	private Object abpid;
+	private String abpid;
 
 	@Column(name="ABPRGF")
-	private Object abprgf;
+	private String abprgf;
 
 	@Column(name="ABPTI")
 	private double abpti;
 
 	@Column(name="ABREVRNG")
-	private Object abrevrng;
+	private String abrevrng;
 
 	@Column(name="ABRMK")
-	private Object abrmk;
+	private String abrmk;
 
 	@Column(name="ABSBLI")
-	private Object absbli;
+	private String absbli;
 
 	@Column(name="ABSCCLTP")
-	private Object absccltp;
+	private String absccltp;
 
 	@Column(name="ABSIC")
-	private Object absic;
+	private String absic;
 
 	@Column(name="ABSYNCS")
 	private double absyncs;
 
 	@Column(name="ABTAX")
-	private Object abtax;
+	private String abtax;
 
 	@Column(name="ABTAXC")
-	private Object abtaxc;
+	private String abtaxc;
 
 	@Column(name="ABTICKER")
-	private Object abticker;
+	private String abticker;
 
 	@Column(name="ABTX2")
-	private Object abtx2;
+	private String abtx2;
 
 	@Column(name="ABTXCT")
-	private Object abtxct;
+	private String abtxct;
 
 	@Column(name="ABUPMJ")
 	private BigDecimal abupmj;
@@ -291,19 +291,19 @@ public class F0101 implements Serializable {
 	private double aburat;
 
 	@Column(name="ABURCD")
-	private Object aburcd;
+	private String aburcd;
 
 	@Column(name="ABURDT")
 	private BigDecimal aburdt;
 
 	@Column(name="ABURRF")
-	private Object aburrf;
+	private String aburrf;
 
 	@Column(name="ABUSER")
-	private Object abuser;
+	private String abuser;
 
 	@Column(name="ABYEARSTAR")
-	private Object abyearstar;
+	private String abyearstar;
 
 	public F0101() {
 	}
@@ -316,291 +316,291 @@ public class F0101 implements Serializable {
 		this.aban8 = aban8;
 	}
 
-	public Object getAbab3() {
+	public String getAbab3() {
 		return this.abab3;
 	}
 
-	public void setAbab3(Object abab3) {
+	public void setAbab3(String abab3) {
 		this.abab3 = abab3;
 	}
 
-	public Object getAbac01() {
+	public String getAbac01() {
 		return this.abac01;
 	}
 
-	public void setAbac01(Object abac01) {
+	public void setAbac01(String abac01) {
 		this.abac01 = abac01;
 	}
 
-	public Object getAbac02() {
+	public String getAbac02() {
 		return this.abac02;
 	}
 
-	public void setAbac02(Object abac02) {
+	public void setAbac02(String abac02) {
 		this.abac02 = abac02;
 	}
 
-	public Object getAbac03() {
+	public String getAbac03() {
 		return this.abac03;
 	}
 
-	public void setAbac03(Object abac03) {
+	public void setAbac03(String abac03) {
 		this.abac03 = abac03;
 	}
 
-	public Object getAbac04() {
+	public String getAbac04() {
 		return this.abac04;
 	}
 
-	public void setAbac04(Object abac04) {
+	public void setAbac04(String abac04) {
 		this.abac04 = abac04;
 	}
 
-	public Object getAbac05() {
+	public String getAbac05() {
 		return this.abac05;
 	}
 
-	public void setAbac05(Object abac05) {
+	public void setAbac05(String abac05) {
 		this.abac05 = abac05;
 	}
 
-	public Object getAbac06() {
+	public String getAbac06() {
 		return this.abac06;
 	}
 
-	public void setAbac06(Object abac06) {
+	public void setAbac06(String abac06) {
 		this.abac06 = abac06;
 	}
 
-	public Object getAbac07() {
+	public String getAbac07() {
 		return this.abac07;
 	}
 
-	public void setAbac07(Object abac07) {
+	public void setAbac07(String abac07) {
 		this.abac07 = abac07;
 	}
 
-	public Object getAbac08() {
+	public String getAbac08() {
 		return this.abac08;
 	}
 
-	public void setAbac08(Object abac08) {
+	public void setAbac08(String abac08) {
 		this.abac08 = abac08;
 	}
 
-	public Object getAbac09() {
+	public String getAbac09() {
 		return this.abac09;
 	}
 
-	public void setAbac09(Object abac09) {
+	public void setAbac09(String abac09) {
 		this.abac09 = abac09;
 	}
 
-	public Object getAbac10() {
+	public String getAbac10() {
 		return this.abac10;
 	}
 
-	public void setAbac10(Object abac10) {
+	public void setAbac10(String abac10) {
 		this.abac10 = abac10;
 	}
 
-	public Object getAbac11() {
+	public String getAbac11() {
 		return this.abac11;
 	}
 
-	public void setAbac11(Object abac11) {
+	public void setAbac11(String abac11) {
 		this.abac11 = abac11;
 	}
 
-	public Object getAbac12() {
+	public String getAbac12() {
 		return this.abac12;
 	}
 
-	public void setAbac12(Object abac12) {
+	public void setAbac12(String abac12) {
 		this.abac12 = abac12;
 	}
 
-	public Object getAbac13() {
+	public String getAbac13() {
 		return this.abac13;
 	}
 
-	public void setAbac13(Object abac13) {
+	public void setAbac13(String abac13) {
 		this.abac13 = abac13;
 	}
 
-	public Object getAbac14() {
+	public String getAbac14() {
 		return this.abac14;
 	}
 
-	public void setAbac14(Object abac14) {
+	public void setAbac14(String abac14) {
 		this.abac14 = abac14;
 	}
 
-	public Object getAbac15() {
+	public String getAbac15() {
 		return this.abac15;
 	}
 
-	public void setAbac15(Object abac15) {
+	public void setAbac15(String abac15) {
 		this.abac15 = abac15;
 	}
 
-	public Object getAbac16() {
+	public String getAbac16() {
 		return this.abac16;
 	}
 
-	public void setAbac16(Object abac16) {
+	public void setAbac16(String abac16) {
 		this.abac16 = abac16;
 	}
 
-	public Object getAbac17() {
+	public String getAbac17() {
 		return this.abac17;
 	}
 
-	public void setAbac17(Object abac17) {
+	public void setAbac17(String abac17) {
 		this.abac17 = abac17;
 	}
 
-	public Object getAbac18() {
+	public String getAbac18() {
 		return this.abac18;
 	}
 
-	public void setAbac18(Object abac18) {
+	public void setAbac18(String abac18) {
 		this.abac18 = abac18;
 	}
 
-	public Object getAbac19() {
+	public String getAbac19() {
 		return this.abac19;
 	}
 
-	public void setAbac19(Object abac19) {
+	public void setAbac19(String abac19) {
 		this.abac19 = abac19;
 	}
 
-	public Object getAbac20() {
+	public String getAbac20() {
 		return this.abac20;
 	}
 
-	public void setAbac20(Object abac20) {
+	public void setAbac20(String abac20) {
 		this.abac20 = abac20;
 	}
 
-	public Object getAbac21() {
+	public String getAbac21() {
 		return this.abac21;
 	}
 
-	public void setAbac21(Object abac21) {
+	public void setAbac21(String abac21) {
 		this.abac21 = abac21;
 	}
 
-	public Object getAbac22() {
+	public String getAbac22() {
 		return this.abac22;
 	}
 
-	public void setAbac22(Object abac22) {
+	public void setAbac22(String abac22) {
 		this.abac22 = abac22;
 	}
 
-	public Object getAbac23() {
+	public String getAbac23() {
 		return this.abac23;
 	}
 
-	public void setAbac23(Object abac23) {
+	public void setAbac23(String abac23) {
 		this.abac23 = abac23;
 	}
 
-	public Object getAbac24() {
+	public String getAbac24() {
 		return this.abac24;
 	}
 
-	public void setAbac24(Object abac24) {
+	public void setAbac24(String abac24) {
 		this.abac24 = abac24;
 	}
 
-	public Object getAbac25() {
+	public String getAbac25() {
 		return this.abac25;
 	}
 
-	public void setAbac25(Object abac25) {
+	public void setAbac25(String abac25) {
 		this.abac25 = abac25;
 	}
 
-	public Object getAbac26() {
+	public String getAbac26() {
 		return this.abac26;
 	}
 
-	public void setAbac26(Object abac26) {
+	public void setAbac26(String abac26) {
 		this.abac26 = abac26;
 	}
 
-	public Object getAbac27() {
+	public String getAbac27() {
 		return this.abac27;
 	}
 
-	public void setAbac27(Object abac27) {
+	public void setAbac27(String abac27) {
 		this.abac27 = abac27;
 	}
 
-	public Object getAbac28() {
+	public String getAbac28() {
 		return this.abac28;
 	}
 
-	public void setAbac28(Object abac28) {
+	public void setAbac28(String abac28) {
 		this.abac28 = abac28;
 	}
 
-	public Object getAbac29() {
+	public String getAbac29() {
 		return this.abac29;
 	}
 
-	public void setAbac29(Object abac29) {
+	public void setAbac29(String abac29) {
 		this.abac29 = abac29;
 	}
 
-	public Object getAbac30() {
+	public String getAbac30() {
 		return this.abac30;
 	}
 
-	public void setAbac30(Object abac30) {
+	public void setAbac30(String abac30) {
 		this.abac30 = abac30;
 	}
 
-	public Object getAbactin() {
+	public String getAbactin() {
 		return this.abactin;
 	}
 
-	public void setAbactin(Object abactin) {
+	public void setAbactin(String abactin) {
 		this.abactin = abactin;
 	}
 
-	public Object getAbaempgp() {
+	public String getAbaempgp() {
 		return this.abaempgp;
 	}
 
-	public void setAbaempgp(Object abaempgp) {
+	public void setAbaempgp(String abaempgp) {
 		this.abaempgp = abaempgp;
 	}
 
-	public Object getAbalky() {
+	public String getAbalky() {
 		return this.abalky;
 	}
 
-	public void setAbalky(Object abalky) {
+	public void setAbalky(String abalky) {
 		this.abalky = abalky;
 	}
 
-	public Object getAbalp1() {
+	public String getAbalp1() {
 		return this.abalp1;
 	}
 
-	public void setAbalp1(Object abalp1) {
+	public void setAbalp1(String abalp1) {
 		this.abalp1 = abalp1;
 	}
 
-	public Object getAbalph() {
+	public String getAbalph() {
 		return this.abalph;
 	}
 
-	public void setAbalph(Object abalph) {
+	public void setAbalph(String abalph) {
 		this.abalph = abalph;
 	}
 
@@ -652,75 +652,75 @@ public class F0101 implements Serializable {
 		this.aban86 = aban86;
 	}
 
-	public Object getAbat1() {
+	public String getAbat1() {
 		return this.abat1;
 	}
 
-	public void setAbat1(Object abat1) {
+	public void setAbat1(String abat1) {
 		this.abat1 = abat1;
 	}
 
-	public Object getAbat2() {
+	public String getAbat2() {
 		return this.abat2;
 	}
 
-	public void setAbat2(Object abat2) {
+	public void setAbat2(String abat2) {
 		this.abat2 = abat2;
 	}
 
-	public Object getAbat3() {
+	public String getAbat3() {
 		return this.abat3;
 	}
 
-	public void setAbat3(Object abat3) {
+	public void setAbat3(String abat3) {
 		this.abat3 = abat3;
 	}
 
-	public Object getAbat4() {
+	public String getAbat4() {
 		return this.abat4;
 	}
 
-	public void setAbat4(Object abat4) {
+	public void setAbat4(String abat4) {
 		this.abat4 = abat4;
 	}
 
-	public Object getAbat5() {
+	public String getAbat5() {
 		return this.abat5;
 	}
 
-	public void setAbat5(Object abat5) {
+	public void setAbat5(String abat5) {
 		this.abat5 = abat5;
 	}
 
-	public Object getAbate() {
+	public String getAbate() {
 		return this.abate;
 	}
 
-	public void setAbate(Object abate) {
+	public void setAbate(String abate) {
 		this.abate = abate;
 	}
 
-	public Object getAbatp() {
+	public String getAbatp() {
 		return this.abatp;
 	}
 
-	public void setAbatp(Object abatp) {
+	public void setAbatp(String abatp) {
 		this.abatp = abatp;
 	}
 
-	public Object getAbatpr() {
+	public String getAbatpr() {
 		return this.abatpr;
 	}
 
-	public void setAbatpr(Object abatpr) {
+	public void setAbatpr(String abatpr) {
 		this.abatpr = abatpr;
 	}
 
-	public Object getAbatr() {
+	public String getAbatr() {
 		return this.abatr;
 	}
 
-	public void setAbatr(Object abatr) {
+	public void setAbatr(String abatr) {
 		this.abatr = abatr;
 	}
 
@@ -732,67 +732,67 @@ public class F0101 implements Serializable {
 		this.abcaad = abcaad;
 	}
 
-	public Object getAbclass01() {
+	public String getAbclass01() {
 		return this.abclass01;
 	}
 
-	public void setAbclass01(Object abclass01) {
+	public void setAbclass01(String abclass01) {
 		this.abclass01 = abclass01;
 	}
 
-	public Object getAbclass02() {
+	public String getAbclass02() {
 		return this.abclass02;
 	}
 
-	public void setAbclass02(Object abclass02) {
+	public void setAbclass02(String abclass02) {
 		this.abclass02 = abclass02;
 	}
 
-	public Object getAbclass03() {
+	public String getAbclass03() {
 		return this.abclass03;
 	}
 
-	public void setAbclass03(Object abclass03) {
+	public void setAbclass03(String abclass03) {
 		this.abclass03 = abclass03;
 	}
 
-	public Object getAbclass04() {
+	public String getAbclass04() {
 		return this.abclass04;
 	}
 
-	public void setAbclass04(Object abclass04) {
+	public void setAbclass04(String abclass04) {
 		this.abclass04 = abclass04;
 	}
 
-	public Object getAbclass05() {
+	public String getAbclass05() {
 		return this.abclass05;
 	}
 
-	public void setAbclass05(Object abclass05) {
+	public void setAbclass05(String abclass05) {
 		this.abclass05 = abclass05;
 	}
 
-	public Object getAbcm() {
+	public String getAbcm() {
 		return this.abcm;
 	}
 
-	public void setAbcm(Object abcm) {
+	public void setAbcm(String abcm) {
 		this.abcm = abcm;
 	}
 
-	public Object getAbdc() {
+	public String getAbdc() {
 		return this.abdc;
 	}
 
-	public void setAbdc(Object abdc) {
+	public void setAbdc(String abdc) {
 		this.abdc = abdc;
 	}
 
-	public Object getAbduns() {
+	public String getAbduns() {
 		return this.abduns;
 	}
 
-	public void setAbduns(Object abduns) {
+	public void setAbduns(String abduns) {
 		this.abduns = abduns;
 	}
 
@@ -804,19 +804,19 @@ public class F0101 implements Serializable {
 		this.abeftb = abeftb;
 	}
 
-	public Object getAbexchg() {
+	public String getAbexchg() {
 		return this.abexchg;
 	}
 
-	public void setAbexchg(Object abexchg) {
+	public void setAbexchg(String abexchg) {
 		this.abexchg = abexchg;
 	}
 
-	public Object getAbglba() {
+	public String getAbglba() {
 		return this.abglba;
 	}
 
-	public void setAbglba(Object abglba) {
+	public void setAbglba(String abglba) {
 		this.abglba = abglba;
 	}
 
@@ -828,35 +828,35 @@ public class F0101 implements Serializable {
 		this.abgrowthr = abgrowthr;
 	}
 
-	public Object getAbjobn() {
+	public String getAbjobn() {
 		return this.abjobn;
 	}
 
-	public void setAbjobn(Object abjobn) {
+	public void setAbjobn(String abjobn) {
 		this.abjobn = abjobn;
 	}
 
-	public Object getAblngp() {
+	public String getAblngp() {
 		return this.ablngp;
 	}
 
-	public void setAblngp(Object ablngp) {
+	public void setAblngp(String ablngp) {
 		this.ablngp = ablngp;
 	}
 
-	public Object getAbmcu() {
+	public String getAbmcu() {
 		return this.abmcu;
 	}
 
-	public void setAbmcu(Object abmcu) {
+	public void setAbmcu(String abmcu) {
 		this.abmcu = abmcu;
 	}
 
-	public Object getAbmsga() {
+	public String getAbmsga() {
 		return this.abmsga;
 	}
 
-	public void setAbmsga(Object abmsga) {
+	public void setAbmsga(String abmsga) {
 		this.abmsga = abmsga;
 	}
 
@@ -884,19 +884,19 @@ public class F0101 implements Serializable {
 		this.abperrs = abperrs;
 	}
 
-	public Object getAbpid() {
+	public String getAbpid() {
 		return this.abpid;
 	}
 
-	public void setAbpid(Object abpid) {
+	public void setAbpid(String abpid) {
 		this.abpid = abpid;
 	}
 
-	public Object getAbprgf() {
+	public String getAbprgf() {
 		return this.abprgf;
 	}
 
-	public void setAbprgf(Object abprgf) {
+	public void setAbprgf(String abprgf) {
 		this.abprgf = abprgf;
 	}
 
@@ -908,43 +908,43 @@ public class F0101 implements Serializable {
 		this.abpti = abpti;
 	}
 
-	public Object getAbrevrng() {
+	public String getAbrevrng() {
 		return this.abrevrng;
 	}
 
-	public void setAbrevrng(Object abrevrng) {
+	public void setAbrevrng(String abrevrng) {
 		this.abrevrng = abrevrng;
 	}
 
-	public Object getAbrmk() {
+	public String getAbrmk() {
 		return this.abrmk;
 	}
 
-	public void setAbrmk(Object abrmk) {
+	public void setAbrmk(String abrmk) {
 		this.abrmk = abrmk;
 	}
 
-	public Object getAbsbli() {
+	public String getAbsbli() {
 		return this.absbli;
 	}
 
-	public void setAbsbli(Object absbli) {
+	public void setAbsbli(String absbli) {
 		this.absbli = absbli;
 	}
 
-	public Object getAbsccltp() {
+	public String getAbsccltp() {
 		return this.absccltp;
 	}
 
-	public void setAbsccltp(Object absccltp) {
+	public void setAbsccltp(String absccltp) {
 		this.absccltp = absccltp;
 	}
 
-	public Object getAbsic() {
+	public String getAbsic() {
 		return this.absic;
 	}
 
-	public void setAbsic(Object absic) {
+	public void setAbsic(String absic) {
 		this.absic = absic;
 	}
 
@@ -956,43 +956,43 @@ public class F0101 implements Serializable {
 		this.absyncs = absyncs;
 	}
 
-	public Object getAbtax() {
+	public String getAbtax() {
 		return this.abtax;
 	}
 
-	public void setAbtax(Object abtax) {
+	public void setAbtax(String abtax) {
 		this.abtax = abtax;
 	}
 
-	public Object getAbtaxc() {
+	public String getAbtaxc() {
 		return this.abtaxc;
 	}
 
-	public void setAbtaxc(Object abtaxc) {
+	public void setAbtaxc(String abtaxc) {
 		this.abtaxc = abtaxc;
 	}
 
-	public Object getAbticker() {
+	public String getAbticker() {
 		return this.abticker;
 	}
 
-	public void setAbticker(Object abticker) {
+	public void setAbticker(String abticker) {
 		this.abticker = abticker;
 	}
 
-	public Object getAbtx2() {
+	public String getAbtx2() {
 		return this.abtx2;
 	}
 
-	public void setAbtx2(Object abtx2) {
+	public void setAbtx2(String abtx2) {
 		this.abtx2 = abtx2;
 	}
 
-	public Object getAbtxct() {
+	public String getAbtxct() {
 		return this.abtxct;
 	}
 
-	public void setAbtxct(Object abtxct) {
+	public void setAbtxct(String abtxct) {
 		this.abtxct = abtxct;
 	}
 
@@ -1028,11 +1028,11 @@ public class F0101 implements Serializable {
 		this.aburat = aburat;
 	}
 
-	public Object getAburcd() {
+	public String getAburcd() {
 		return this.aburcd;
 	}
 
-	public void setAburcd(Object aburcd) {
+	public void setAburcd(String aburcd) {
 		this.aburcd = aburcd;
 	}
 
@@ -1044,27 +1044,27 @@ public class F0101 implements Serializable {
 		this.aburdt = aburdt;
 	}
 
-	public Object getAburrf() {
+	public String getAburrf() {
 		return this.aburrf;
 	}
 
-	public void setAburrf(Object aburrf) {
+	public void setAburrf(String aburrf) {
 		this.aburrf = aburrf;
 	}
 
-	public Object getAbuser() {
+	public String getAbuser() {
 		return this.abuser;
 	}
 
-	public void setAbuser(Object abuser) {
+	public void setAbuser(String abuser) {
 		this.abuser = abuser;
 	}
 
-	public Object getAbyearstar() {
+	public String getAbyearstar() {
 		return this.abyearstar;
 	}
 
-	public void setAbyearstar(Object abyearstar) {
+	public void setAbyearstar(String abyearstar) {
 		this.abyearstar = abyearstar;
 	}
 

@@ -24,49 +24,49 @@ public class F4101 implements Serializable {
 	private double imitm;
 
 	@Column(name="IMABCI")
-	private Object imabci;
+	private String imabci;
 
 	@Column(name="IMABCM")
-	private Object imabcm;
+	private String imabcm;
 
 	@Column(name="IMABCS")
-	private Object imabcs;
+	private String imabcs;
 
 	@Column(name="IMACQ")
 	private double imacq;
 
 	@Column(name="IMAING")
-	private Object imaing;
+	private String imaing;
 
 	@Column(name="IMAITM")
-	private Object imaitm;
+	private String imaitm;
 
 	@Column(name="IMALN")
-	private Object imaln;
+	private String imaln;
 
 	@Column(name="IMANPL")
 	private double imanpl;
 
 	@Column(name="IMAPSC")
-	private Object imapsc;
+	private String imapsc;
 
 	@Column(name="IMASHL")
-	private Object imashl;
+	private String imashl;
 
 	@Column(name="IMAUOM")
-	private Object imauom;
+	private String imauom;
 
 	@Column(name="IMAVRT")
 	private double imavrt;
 
 	@Column(name="IMBACK")
-	private Object imback;
+	private String imback;
 
 	@Column(name="IMBBDD")
 	private double imbbdd;
 
 	@Column(name="IMBPFG")
-	private Object imbpfg;
+	private String imbpfg;
 
 	@Column(name="IMBUYR")
 	private double imbuyr;
@@ -78,52 +78,52 @@ public class F4101 implements Serializable {
 	private double imcars;
 
 	@Column(name="IMCDCD")
-	private Object imcdcd;
+	private String imcdcd;
 
 	@Column(name="IMCKAV")
-	private Object imckav;
+	private String imckav;
 
 	@Column(name="IMCLEV")
-	private Object imclev;
+	private String imclev;
 
 	@Column(name="IMCMCG")
-	private Object imcmcg;
+	private String imcmcg;
 
 	@Column(name="IMCMDM")
-	private Object imcmdm;
+	private String imcmdm;
 
 	@Column(name="IMCMETH")
-	private Object imcmeth;
+	private String imcmeth;
 
 	@Column(name="IMCMGL")
-	private Object imcmgl;
+	private String imcmgl;
 
 	@Column(name="IMCOBY")
-	private Object imcoby;
+	private String imcoby;
 
 	@Column(name="IMCOMH")
 	private double imcomh;
 
 	@Column(name="IMCONB")
-	private Object imconb;
+	private String imconb;
 
 	@Column(name="IMCONT")
-	private Object imcont;
+	private String imcont;
 
 	@Column(name="IMCOTY")
-	private Object imcoty;
+	private String imcoty;
 
 	@Column(name="IMCUTH")
 	private double imcuth;
 
 	@Column(name="IMCYCL")
-	private Object imcycl;
+	private String imcycl;
 
 	@Column(name="IMDEFD")
 	private double imdefd;
 
 	@Column(name="IMDFENDITM")
-	private Object imdfenditm;
+	private String imdfenditm;
 
 	@Column(name="IMDFTPCT")
 	private double imdftpct;
@@ -132,106 +132,106 @@ public class F4101 implements Serializable {
 	private double imdltl;
 
 	@Column(name="IMDPPO")
-	private Object imdppo;
+	private String imdppo;
 
 	@Column(name="IMDRAW")
-	private Object imdraw;
+	private String imdraw;
 
 	@Column(name="IMDSC1")
-	private Object imdsc1;
+	private String imdsc1;
 
 	@Column(name="IMDSC2")
-	private Object imdsc2;
+	private String imdsc2;
 
 	@Column(name="IMDSGP")
-	private Object imdsgp;
+	private String imdsgp;
 
 	@Column(name="IMDSZE")
-	private Object imdsze;
+	private String imdsze;
 
 	@Column(name="IMDUAL")
-	private Object imdual;
+	private String imdual;
 
 	@Column(name="IMEQTY")
-	private Object imeqty;
+	private String imeqty;
 
 	@Column(name="IMEXPD")
 	private double imexpd;
 
 	@Column(name="IMEXPI")
-	private Object imexpi;
+	private String imexpi;
 
 	@Column(name="IMFIFO")
-	private Object imfifo;
+	private String imfifo;
 
 	@Column(name="IMFRGD")
-	private Object imfrgd;
+	private String imfrgd;
 
 	@Column(name="IMFRMP")
 	private double imfrmp;
 
 	@Column(name="IMGCMP")
-	private Object imgcmp;
+	private String imgcmp;
 
 	@Column(name="IMGLPT")
-	private Object imglpt;
+	private String imglpt;
 
 	@Column(name="IMIFLA")
-	private Object imifla;
+	private String imifla;
 
 	@Column(name="IMINMG")
-	private Object iminmg;
+	private String iminmg;
 
 	@Column(name="IMITC")
-	private Object imitc;
+	private String imitc;
 
 	@Column(name="IMJOBN")
-	private Object imjobn;
+	private String imjobn;
 
 	@Column(name="IMKANEXLL")
-	private Object imkanexll;
+	private String imkanexll;
 
 	@Column(name="IMKBIT")
-	private Object imkbit;
+	private String imkbit;
 
 	@Column(name="IMLAF")
-	private Object imlaf;
+	private String imlaf;
 
 	@Column(name="IMLECM")
-	private Object imlecm;
+	private String imlecm;
 
 	@Column(name="IMLEDD")
 	private double imledd;
 
 	@Column(name="IMLINE")
-	private Object imline;
+	private String imline;
 
 	@Column(name="IMLITM")
-	private Object imlitm;
+	private String imlitm;
 
 	@Column(name="IMLLX")
 	private double imllx;
 
 	@Column(name="IMLMFG")
-	private Object imlmfg;
+	private String imlmfg;
 
 	@Column(name="IMLNPA")
-	private Object imlnpa;
+	private String imlnpa;
 
 	@Column(name="IMLNTY")
-	private Object imlnty;
+	private String imlnty;
 
 	@Column(name="IMLOTC")
-	private Object imlotc;
+	private String imlotc;
 
 	@Column(name="IMLOTS")
-	private Object imlots;
+	private String imlots;
 
 	@Column(name="IMLTCM")
 	private double imltcm;
 
 	@Column(name="IMLTFM")
-	private Object imltfm;
+	private String imltfm;
 
 	@Column(name="IMLTLV")
 	private double imltlv;
@@ -243,10 +243,10 @@ public class F4101 implements Serializable {
 	private double imltpu;
 
 	@Column(name="IMMAKE")
-	private Object immake;
+	private String immake;
 
 	@Column(name="IMMIC")
-	private Object immic;
+	private String immic;
 
 	@Column(name="IMMLQ")
 	private double immlq;
@@ -255,13 +255,13 @@ public class F4101 implements Serializable {
 	private double immmpc;
 
 	@Column(name="IMMPSP")
-	private Object immpsp;
+	private String immpsp;
 
 	@Column(name="IMMPST")
-	private Object immpst;
+	private String immpst;
 
 	@Column(name="IMMRPP")
-	private Object immrpp;
+	private String immrpp;
 
 	@Column(name="IMMTF1")
 	private double immtf1;
@@ -279,7 +279,7 @@ public class F4101 implements Serializable {
 	private double immtf5;
 
 	@Column(name="IMOPC")
-	private Object imopc;
+	private String imopc;
 
 	@Column(name="IMOPTH")
 	private double imopth;
@@ -288,46 +288,46 @@ public class F4101 implements Serializable {
 	private double imopv;
 
 	@Column(name="IMORDW")
-	private Object imordw;
+	private String imordw;
 
 	@Column(name="IMORPR")
-	private Object imorpr;
+	private String imorpr;
 
 	@Column(name="IMOT1Y")
-	private Object imot1y;
+	private String imot1y;
 
 	@Column(name="IMOT2Y")
-	private Object imot2y;
+	private String imot2y;
 
 	@Column(name="IMOVR")
-	private Object imovr;
+	private String imovr;
 
 	@Column(name="IMPCTM")
 	private double impctm;
 
 	@Column(name="IMPDGR")
-	private Object impdgr;
+	private String impdgr;
 
 	@Column(name="IMPEFD")
 	private double impefd;
 
 	@Column(name="IMPID")
-	private Object impid;
+	private String impid;
 
 	@Column(name="IMPLEV")
-	private Object implev;
+	private String implev;
 
 	@Column(name="IMPMTH")
-	private Object impmth;
+	private String impmth;
 
 	@Column(name="IMPOC")
-	private Object impoc;
+	private String impoc;
 
 	@Column(name="IMPPLV")
-	private Object impplv;
+	private String impplv;
 
 	@Column(name="IMPRGR")
-	private Object imprgr;
+	private String imprgr;
 
 	@Column(name="IMPRI1")
 	private double impri1;
@@ -336,169 +336,169 @@ public class F4101 implements Serializable {
 	private double impri2;
 
 	@Column(name="IMPRP0")
-	private Object imprp0;
+	private String imprp0;
 
 	@Column(name="IMPRP1")
-	private Object imprp1;
+	private String imprp1;
 
 	@Column(name="IMPRP2")
-	private Object imprp2;
+	private String imprp2;
 
 	@Column(name="IMPRP3")
-	private Object imprp3;
+	private String imprp3;
 
 	@Column(name="IMPRP4")
-	private Object imprp4;
+	private String imprp4;
 
 	@Column(name="IMPRP5")
-	private Object imprp5;
+	private String imprp5;
 
 	@Column(name="IMPRP6")
-	private Object imprp6;
+	private String imprp6;
 
 	@Column(name="IMPRP7")
-	private Object imprp7;
+	private String imprp7;
 
 	@Column(name="IMPRP8")
-	private Object imprp8;
+	private String imprp8;
 
 	@Column(name="IMPRP9")
-	private Object imprp9;
+	private String imprp9;
 
 	@Column(name="IMPRPO")
-	private Object imprpo;
+	private String imprpo;
 
 	@Column(name="IMPTSC")
-	private Object imptsc;
+	private String imptsc;
 
 	@Column(name="IMRPRC")
-	private Object imrprc;
+	private String imrprc;
 
 	@Column(name="IMRVNO")
-	private Object imrvno;
+	private String imrvno;
 
 	@Column(name="IMRWLA")
-	private Object imrwla;
+	private String imrwla;
 
 	@Column(name="IMSBDD")
 	private double imsbdd;
 
 	@Column(name="IMSCC0")
-	private Object imscc0;
+	private String imscc0;
 
 	@Column(name="IMSCPSELL")
-	private Object imscpsell;
+	private String imscpsell;
 
 	@Column(name="IMSEG0")
-	private Object imseg0;
+	private String imseg0;
 
 	@Column(name="IMSEG1")
-	private Object imseg1;
+	private String imseg1;
 
 	@Column(name="IMSEG2")
-	private Object imseg2;
+	private String imseg2;
 
 	@Column(name="IMSEG3")
-	private Object imseg3;
+	private String imseg3;
 
 	@Column(name="IMSEG4")
-	private Object imseg4;
+	private String imseg4;
 
 	@Column(name="IMSEG5")
-	private Object imseg5;
+	private String imseg5;
 
 	@Column(name="IMSEG6")
-	private Object imseg6;
+	private String imseg6;
 
 	@Column(name="IMSEG7")
-	private Object imseg7;
+	private String imseg7;
 
 	@Column(name="IMSEG8")
-	private Object imseg8;
+	private String imseg8;
 
 	@Column(name="IMSEG9")
-	private Object imseg9;
+	private String imseg9;
 
 	@Column(name="IMSFLT")
 	private double imsflt;
 
 	@Column(name="IMSHCM")
-	private Object imshcm;
+	private String imshcm;
 
 	@Column(name="IMSHCN")
-	private Object imshcn;
+	private String imshcn;
 
 	@Column(name="IMSLD")
 	private double imsld;
 
 	@Column(name="IMSNS")
-	private Object imsns;
+	private String imsns;
 
 	@Column(name="IMSRCE")
-	private Object imsrce;
+	private String imsrce;
 
 	@Column(name="IMSRNR")
-	private Object imsrnr;
+	private String imsrnr;
 
 	@Column(name="IMSRP0")
-	private Object imsrp0;
+	private String imsrp0;
 
 	@Column(name="IMSRP1")
-	private Object imsrp1;
+	private String imsrp1;
 
 	@Column(name="IMSRP2")
-	private Object imsrp2;
+	private String imsrp2;
 
 	@Column(name="IMSRP3")
-	private Object imsrp3;
+	private String imsrp3;
 
 	@Column(name="IMSRP4")
-	private Object imsrp4;
+	private String imsrp4;
 
 	@Column(name="IMSRP5")
-	private Object imsrp5;
+	private String imsrp5;
 
 	@Column(name="IMSRP6")
-	private Object imsrp6;
+	private String imsrp6;
 
 	@Column(name="IMSRP7")
-	private Object imsrp7;
+	private String imsrp7;
 
 	@Column(name="IMSRP8")
-	private Object imsrp8;
+	private String imsrp8;
 
 	@Column(name="IMSRP9")
-	private Object imsrp9;
+	private String imsrp9;
 
 	@Column(name="IMSRTX")
-	private Object imsrtx;
+	private String imsrtx;
 
 	@Column(name="IMSTDG")
-	private Object imstdg;
+	private String imstdg;
 
 	@Column(name="IMSTDP")
 	private double imstdp;
 
 	@Column(name="IMSTKT")
-	private Object imstkt;
+	private String imstkt;
 
 	@Column(name="IMSUTM")
-	private Object imsutm;
+	private String imsutm;
 
 	@Column(name="IMTDAY")
 	private double imtday;
 
 	@Column(name="IMTFLA")
-	private Object imtfla;
+	private String imtfla;
 
 	@Column(name="IMTHGD")
-	private Object imthgd;
+	private String imthgd;
 
 	@Column(name="IMTHRP")
 	private double imthrp;
 
 	@Column(name="IMTMPL")
-	private Object imtmpl;
+	private String imtmpl;
 
 	@Column(name="IMU1DD")
 	private double imu1dd;
@@ -516,67 +516,67 @@ public class F4101 implements Serializable {
 	private double imu5dd;
 
 	@Column(name="IMUMDF")
-	private Object imumdf;
+	private String imumdf;
 
 	@Column(name="IMUMS0")
-	private Object imums0;
+	private String imums0;
 
 	@Column(name="IMUMS1")
-	private Object imums1;
+	private String imums1;
 
 	@Column(name="IMUMS2")
-	private Object imums2;
+	private String imums2;
 
 	@Column(name="IMUMS3")
-	private Object imums3;
+	private String imums3;
 
 	@Column(name="IMUMS4")
-	private Object imums4;
+	private String imums4;
 
 	@Column(name="IMUMS5")
-	private Object imums5;
+	private String imums5;
 
 	@Column(name="IMUMS6")
-	private Object imums6;
+	private String imums6;
 
 	@Column(name="IMUMS7")
-	private Object imums7;
+	private String imums7;
 
 	@Column(name="IMUMS8")
-	private Object imums8;
+	private String imums8;
 
 	@Column(name="IMUMTH")
-	private Object imumth;
+	private String imumth;
 
 	@Column(name="IMUMUP")
-	private Object imumup;
+	private String imumup;
 
 	@Column(name="IMUMVW")
-	private Object imumvw;
+	private String imumvw;
 
 	@Column(name="IMUOM1")
-	private Object imuom1;
+	private String imuom1;
 
 	@Column(name="IMUOM2")
-	private Object imuom2;
+	private String imuom2;
 
 	@Column(name="IMUOM3")
-	private Object imuom3;
+	private String imuom3;
 
 	@Column(name="IMUOM4")
-	private Object imuom4;
+	private String imuom4;
 
 	@Column(name="IMUOM6")
-	private Object imuom6;
+	private String imuom6;
 
 	@Column(name="IMUOM8")
-	private Object imuom8;
+	private String imuom8;
 
 	@Column(name="IMUOM9")
-	private Object imuom9;
+	private String imuom9;
 
 	@Column(name="IMUPCN")
-	private Object imupcn;
+	private String imupcn;
 
 	@Column(name="IMUPMJ")
 	private BigDecimal imupmj;
@@ -588,37 +588,37 @@ public class F4101 implements Serializable {
 	private double imurat;
 
 	@Column(name="IMURCD")
-	private Object imurcd;
+	private String imurcd;
 
 	@Column(name="IMURDT")
 	private BigDecimal imurdt;
 
 	@Column(name="IMURRF")
-	private Object imurrf;
+	private String imurrf;
 
 	@Column(name="IMUSER")
-	private Object imuser;
+	private String imuser;
 
 	@Column(name="IMUVM1")
-	private Object imuvm1;
+	private String imuvm1;
 
 	@Column(name="IMUWUM")
-	private Object imuwum;
+	private String imuwum;
 
 	@Column(name="IMVCUD")
 	private double imvcud;
 
 	@Column(name="IMVMINV")
-	private Object imvminv;
+	private String imvminv;
 
 	@Column(name="IMWARR")
-	private Object imwarr;
+	private String imwarr;
 
 	@Column(name="IMWTRQ")
-	private Object imwtrq;
+	private String imwtrq;
 
 	@Column(name="IMXDCK")
-	private Object imxdck;
+	private String imxdck;
 
 	public F4101() {
 	}
@@ -631,27 +631,27 @@ public class F4101 implements Serializable {
 		this.imitm = imitm;
 	}
 
-	public Object getImabci() {
+	public String getImabci() {
 		return this.imabci;
 	}
 
-	public void setImabci(Object imabci) {
+	public void setImabci(String imabci) {
 		this.imabci = imabci;
 	}
 
-	public Object getImabcm() {
+	public String getImabcm() {
 		return this.imabcm;
 	}
 
-	public void setImabcm(Object imabcm) {
+	public void setImabcm(String imabcm) {
 		this.imabcm = imabcm;
 	}
 
-	public Object getImabcs() {
+	public String getImabcs() {
 		return this.imabcs;
 	}
 
-	public void setImabcs(Object imabcs) {
+	public void setImabcs(String imabcs) {
 		this.imabcs = imabcs;
 	}
 
@@ -663,27 +663,27 @@ public class F4101 implements Serializable {
 		this.imacq = imacq;
 	}
 
-	public Object getImaing() {
+	public String getImaing() {
 		return this.imaing;
 	}
 
-	public void setImaing(Object imaing) {
+	public void setImaing(String imaing) {
 		this.imaing = imaing;
 	}
 
-	public Object getImaitm() {
+	public String getImaitm() {
 		return this.imaitm;
 	}
 
-	public void setImaitm(Object imaitm) {
+	public void setImaitm(String imaitm) {
 		this.imaitm = imaitm;
 	}
 
-	public Object getImaln() {
+	public String getImaln() {
 		return this.imaln;
 	}
 
-	public void setImaln(Object imaln) {
+	public void setImaln(String imaln) {
 		this.imaln = imaln;
 	}
 
@@ -695,27 +695,27 @@ public class F4101 implements Serializable {
 		this.imanpl = imanpl;
 	}
 
-	public Object getImapsc() {
+	public String getImapsc() {
 		return this.imapsc;
 	}
 
-	public void setImapsc(Object imapsc) {
+	public void setImapsc(String imapsc) {
 		this.imapsc = imapsc;
 	}
 
-	public Object getImashl() {
+	public String getImashl() {
 		return this.imashl;
 	}
 
-	public void setImashl(Object imashl) {
+	public void setImashl(String imashl) {
 		this.imashl = imashl;
 	}
 
-	public Object getImauom() {
+	public String getImauom() {
 		return this.imauom;
 	}
 
-	public void setImauom(Object imauom) {
+	public void setImauom(String imauom) {
 		this.imauom = imauom;
 	}
 
@@ -727,11 +727,11 @@ public class F4101 implements Serializable {
 		this.imavrt = imavrt;
 	}
 
-	public Object getImback() {
+	public String getImback() {
 		return this.imback;
 	}
 
-	public void setImback(Object imback) {
+	public void setImback(String imback) {
 		this.imback = imback;
 	}
 
@@ -743,11 +743,11 @@ public class F4101 implements Serializable {
 		this.imbbdd = imbbdd;
 	}
 
-	public Object getImbpfg() {
+	public String getImbpfg() {
 		return this.imbpfg;
 	}
 
-	public void setImbpfg(Object imbpfg) {
+	public void setImbpfg(String imbpfg) {
 		this.imbpfg = imbpfg;
 	}
 
@@ -775,67 +775,67 @@ public class F4101 implements Serializable {
 		this.imcars = imcars;
 	}
 
-	public Object getImcdcd() {
+	public String getImcdcd() {
 		return this.imcdcd;
 	}
 
-	public void setImcdcd(Object imcdcd) {
+	public void setImcdcd(String imcdcd) {
 		this.imcdcd = imcdcd;
 	}
 
-	public Object getImckav() {
+	public String getImckav() {
 		return this.imckav;
 	}
 
-	public void setImckav(Object imckav) {
+	public void setImckav(String imckav) {
 		this.imckav = imckav;
 	}
 
-	public Object getImclev() {
+	public String getImclev() {
 		return this.imclev;
 	}
 
-	public void setImclev(Object imclev) {
+	public void setImclev(String imclev) {
 		this.imclev = imclev;
 	}
 
-	public Object getImcmcg() {
+	public String getImcmcg() {
 		return this.imcmcg;
 	}
 
-	public void setImcmcg(Object imcmcg) {
+	public void setImcmcg(String imcmcg) {
 		this.imcmcg = imcmcg;
 	}
 
-	public Object getImcmdm() {
+	public String getImcmdm() {
 		return this.imcmdm;
 	}
 
-	public void setImcmdm(Object imcmdm) {
+	public void setImcmdm(String imcmdm) {
 		this.imcmdm = imcmdm;
 	}
 
-	public Object getImcmeth() {
+	public String getImcmeth() {
 		return this.imcmeth;
 	}
 
-	public void setImcmeth(Object imcmeth) {
+	public void setImcmeth(String imcmeth) {
 		this.imcmeth = imcmeth;
 	}
 
-	public Object getImcmgl() {
+	public String getImcmgl() {
 		return this.imcmgl;
 	}
 
-	public void setImcmgl(Object imcmgl) {
+	public void setImcmgl(String imcmgl) {
 		this.imcmgl = imcmgl;
 	}
 
-	public Object getImcoby() {
+	public String getImcoby() {
 		return this.imcoby;
 	}
 
-	public void setImcoby(Object imcoby) {
+	public void setImcoby(String imcoby) {
 		this.imcoby = imcoby;
 	}
 
@@ -847,27 +847,27 @@ public class F4101 implements Serializable {
 		this.imcomh = imcomh;
 	}
 
-	public Object getImconb() {
+	public String getImconb() {
 		return this.imconb;
 	}
 
-	public void setImconb(Object imconb) {
+	public void setImconb(String imconb) {
 		this.imconb = imconb;
 	}
 
-	public Object getImcont() {
+	public String getImcont() {
 		return this.imcont;
 	}
 
-	public void setImcont(Object imcont) {
+	public void setImcont(String imcont) {
 		this.imcont = imcont;
 	}
 
-	public Object getImcoty() {
+	public String getImcoty() {
 		return this.imcoty;
 	}
 
-	public void setImcoty(Object imcoty) {
+	public void setImcoty(String imcoty) {
 		this.imcoty = imcoty;
 	}
 
@@ -879,11 +879,11 @@ public class F4101 implements Serializable {
 		this.imcuth = imcuth;
 	}
 
-	public Object getImcycl() {
+	public String getImcycl() {
 		return this.imcycl;
 	}
 
-	public void setImcycl(Object imcycl) {
+	public void setImcycl(String imcycl) {
 		this.imcycl = imcycl;
 	}
 
@@ -895,11 +895,11 @@ public class F4101 implements Serializable {
 		this.imdefd = imdefd;
 	}
 
-	public Object getImdfenditm() {
+	public String getImdfenditm() {
 		return this.imdfenditm;
 	}
 
-	public void setImdfenditm(Object imdfenditm) {
+	public void setImdfenditm(String imdfenditm) {
 		this.imdfenditm = imdfenditm;
 	}
 
@@ -919,67 +919,67 @@ public class F4101 implements Serializable {
 		this.imdltl = imdltl;
 	}
 
-	public Object getImdppo() {
+	public String getImdppo() {
 		return this.imdppo;
 	}
 
-	public void setImdppo(Object imdppo) {
+	public void setImdppo(String imdppo) {
 		this.imdppo = imdppo;
 	}
 
-	public Object getImdraw() {
+	public String getImdraw() {
 		return this.imdraw;
 	}
 
-	public void setImdraw(Object imdraw) {
+	public void setImdraw(String imdraw) {
 		this.imdraw = imdraw;
 	}
 
-	public Object getImdsc1() {
+	public String getImdsc1() {
 		return this.imdsc1;
 	}
 
-	public void setImdsc1(Object imdsc1) {
+	public void setImdsc1(String imdsc1) {
 		this.imdsc1 = imdsc1;
 	}
 
-	public Object getImdsc2() {
+	public String getImdsc2() {
 		return this.imdsc2;
 	}
 
-	public void setImdsc2(Object imdsc2) {
+	public void setImdsc2(String imdsc2) {
 		this.imdsc2 = imdsc2;
 	}
 
-	public Object getImdsgp() {
+	public String getImdsgp() {
 		return this.imdsgp;
 	}
 
-	public void setImdsgp(Object imdsgp) {
+	public void setImdsgp(String imdsgp) {
 		this.imdsgp = imdsgp;
 	}
 
-	public Object getImdsze() {
+	public String getImdsze() {
 		return this.imdsze;
 	}
 
-	public void setImdsze(Object imdsze) {
+	public void setImdsze(String imdsze) {
 		this.imdsze = imdsze;
 	}
 
-	public Object getImdual() {
+	public String getImdual() {
 		return this.imdual;
 	}
 
-	public void setImdual(Object imdual) {
+	public void setImdual(String imdual) {
 		this.imdual = imdual;
 	}
 
-	public Object getImeqty() {
+	public String getImeqty() {
 		return this.imeqty;
 	}
 
-	public void setImeqty(Object imeqty) {
+	public void setImeqty(String imeqty) {
 		this.imeqty = imeqty;
 	}
 
@@ -991,27 +991,27 @@ public class F4101 implements Serializable {
 		this.imexpd = imexpd;
 	}
 
-	public Object getImexpi() {
+	public String getImexpi() {
 		return this.imexpi;
 	}
 
-	public void setImexpi(Object imexpi) {
+	public void setImexpi(String imexpi) {
 		this.imexpi = imexpi;
 	}
 
-	public Object getImfifo() {
+	public String getImfifo() {
 		return this.imfifo;
 	}
 
-	public void setImfifo(Object imfifo) {
+	public void setImfifo(String imfifo) {
 		this.imfifo = imfifo;
 	}
 
-	public Object getImfrgd() {
+	public String getImfrgd() {
 		return this.imfrgd;
 	}
 
-	public void setImfrgd(Object imfrgd) {
+	public void setImfrgd(String imfrgd) {
 		this.imfrgd = imfrgd;
 	}
 
@@ -1023,83 +1023,83 @@ public class F4101 implements Serializable {
 		this.imfrmp = imfrmp;
 	}
 
-	public Object getImgcmp() {
+	public String getImgcmp() {
 		return this.imgcmp;
 	}
 
-	public void setImgcmp(Object imgcmp) {
+	public void setImgcmp(String imgcmp) {
 		this.imgcmp = imgcmp;
 	}
 
-	public Object getImglpt() {
+	public String getImglpt() {
 		return this.imglpt;
 	}
 
-	public void setImglpt(Object imglpt) {
+	public void setImglpt(String imglpt) {
 		this.imglpt = imglpt;
 	}
 
-	public Object getImifla() {
+	public String getImifla() {
 		return this.imifla;
 	}
 
-	public void setImifla(Object imifla) {
+	public void setImifla(String imifla) {
 		this.imifla = imifla;
 	}
 
-	public Object getIminmg() {
+	public String getIminmg() {
 		return this.iminmg;
 	}
 
-	public void setIminmg(Object iminmg) {
+	public void setIminmg(String iminmg) {
 		this.iminmg = iminmg;
 	}
 
-	public Object getImitc() {
+	public String getImitc() {
 		return this.imitc;
 	}
 
-	public void setImitc(Object imitc) {
+	public void setImitc(String imitc) {
 		this.imitc = imitc;
 	}
 
-	public Object getImjobn() {
+	public String getImjobn() {
 		return this.imjobn;
 	}
 
-	public void setImjobn(Object imjobn) {
+	public void setImjobn(String imjobn) {
 		this.imjobn = imjobn;
 	}
 
-	public Object getImkanexll() {
+	public String getImkanexll() {
 		return this.imkanexll;
 	}
 
-	public void setImkanexll(Object imkanexll) {
+	public void setImkanexll(String imkanexll) {
 		this.imkanexll = imkanexll;
 	}
 
-	public Object getImkbit() {
+	public String getImkbit() {
 		return this.imkbit;
 	}
 
-	public void setImkbit(Object imkbit) {
+	public void setImkbit(String imkbit) {
 		this.imkbit = imkbit;
 	}
 
-	public Object getImlaf() {
+	public String getImlaf() {
 		return this.imlaf;
 	}
 
-	public void setImlaf(Object imlaf) {
+	public void setImlaf(String imlaf) {
 		this.imlaf = imlaf;
 	}
 
-	public Object getImlecm() {
+	public String getImlecm() {
 		return this.imlecm;
 	}
 
-	public void setImlecm(Object imlecm) {
+	public void setImlecm(String imlecm) {
 		this.imlecm = imlecm;
 	}
 
@@ -1111,19 +1111,19 @@ public class F4101 implements Serializable {
 		this.imledd = imledd;
 	}
 
-	public Object getImline() {
+	public String getImline() {
 		return this.imline;
 	}
 
-	public void setImline(Object imline) {
+	public void setImline(String imline) {
 		this.imline = imline;
 	}
 
-	public Object getImlitm() {
+	public String getImlitm() {
 		return this.imlitm;
 	}
 
-	public void setImlitm(Object imlitm) {
+	public void setImlitm(String imlitm) {
 		this.imlitm = imlitm;
 	}
 
@@ -1135,43 +1135,43 @@ public class F4101 implements Serializable {
 		this.imllx = imllx;
 	}
 
-	public Object getImlmfg() {
+	public String getImlmfg() {
 		return this.imlmfg;
 	}
 
-	public void setImlmfg(Object imlmfg) {
+	public void setImlmfg(String imlmfg) {
 		this.imlmfg = imlmfg;
 	}
 
-	public Object getImlnpa() {
+	public String getImlnpa() {
 		return this.imlnpa;
 	}
 
-	public void setImlnpa(Object imlnpa) {
+	public void setImlnpa(String imlnpa) {
 		this.imlnpa = imlnpa;
 	}
 
-	public Object getImlnty() {
+	public String getImlnty() {
 		return this.imlnty;
 	}
 
-	public void setImlnty(Object imlnty) {
+	public void setImlnty(String imlnty) {
 		this.imlnty = imlnty;
 	}
 
-	public Object getImlotc() {
+	public String getImlotc() {
 		return this.imlotc;
 	}
 
-	public void setImlotc(Object imlotc) {
+	public void setImlotc(String imlotc) {
 		this.imlotc = imlotc;
 	}
 
-	public Object getImlots() {
+	public String getImlots() {
 		return this.imlots;
 	}
 
-	public void setImlots(Object imlots) {
+	public void setImlots(String imlots) {
 		this.imlots = imlots;
 	}
 
@@ -1183,11 +1183,11 @@ public class F4101 implements Serializable {
 		this.imltcm = imltcm;
 	}
 
-	public Object getImltfm() {
+	public String getImltfm() {
 		return this.imltfm;
 	}
 
-	public void setImltfm(Object imltfm) {
+	public void setImltfm(String imltfm) {
 		this.imltfm = imltfm;
 	}
 
@@ -1215,19 +1215,19 @@ public class F4101 implements Serializable {
 		this.imltpu = imltpu;
 	}
 
-	public Object getImmake() {
+	public String getImmake() {
 		return this.immake;
 	}
 
-	public void setImmake(Object immake) {
+	public void setImmake(String immake) {
 		this.immake = immake;
 	}
 
-	public Object getImmic() {
+	public String getImmic() {
 		return this.immic;
 	}
 
-	public void setImmic(Object immic) {
+	public void setImmic(String immic) {
 		this.immic = immic;
 	}
 
@@ -1247,27 +1247,27 @@ public class F4101 implements Serializable {
 		this.immmpc = immmpc;
 	}
 
-	public Object getImmpsp() {
+	public String getImmpsp() {
 		return this.immpsp;
 	}
 
-	public void setImmpsp(Object immpsp) {
+	public void setImmpsp(String immpsp) {
 		this.immpsp = immpsp;
 	}
 
-	public Object getImmpst() {
+	public String getImmpst() {
 		return this.immpst;
 	}
 
-	public void setImmpst(Object immpst) {
+	public void setImmpst(String immpst) {
 		this.immpst = immpst;
 	}
 
-	public Object getImmrpp() {
+	public String getImmrpp() {
 		return this.immrpp;
 	}
 
-	public void setImmrpp(Object immrpp) {
+	public void setImmrpp(String immrpp) {
 		this.immrpp = immrpp;
 	}
 
@@ -1311,11 +1311,11 @@ public class F4101 implements Serializable {
 		this.immtf5 = immtf5;
 	}
 
-	public Object getImopc() {
+	public String getImopc() {
 		return this.imopc;
 	}
 
-	public void setImopc(Object imopc) {
+	public void setImopc(String imopc) {
 		this.imopc = imopc;
 	}
 
@@ -1335,43 +1335,43 @@ public class F4101 implements Serializable {
 		this.imopv = imopv;
 	}
 
-	public Object getImordw() {
+	public String getImordw() {
 		return this.imordw;
 	}
 
-	public void setImordw(Object imordw) {
+	public void setImordw(String imordw) {
 		this.imordw = imordw;
 	}
 
-	public Object getImorpr() {
+	public String getImorpr() {
 		return this.imorpr;
 	}
 
-	public void setImorpr(Object imorpr) {
+	public void setImorpr(String imorpr) {
 		this.imorpr = imorpr;
 	}
 
-	public Object getImot1y() {
+	public String getImot1y() {
 		return this.imot1y;
 	}
 
-	public void setImot1y(Object imot1y) {
+	public void setImot1y(String imot1y) {
 		this.imot1y = imot1y;
 	}
 
-	public Object getImot2y() {
+	public String getImot2y() {
 		return this.imot2y;
 	}
 
-	public void setImot2y(Object imot2y) {
+	public void setImot2y(String imot2y) {
 		this.imot2y = imot2y;
 	}
 
-	public Object getImovr() {
+	public String getImovr() {
 		return this.imovr;
 	}
 
-	public void setImovr(Object imovr) {
+	public void setImovr(String imovr) {
 		this.imovr = imovr;
 	}
 
@@ -1383,11 +1383,11 @@ public class F4101 implements Serializable {
 		this.impctm = impctm;
 	}
 
-	public Object getImpdgr() {
+	public String getImpdgr() {
 		return this.impdgr;
 	}
 
-	public void setImpdgr(Object impdgr) {
+	public void setImpdgr(String impdgr) {
 		this.impdgr = impdgr;
 	}
 
@@ -1399,51 +1399,51 @@ public class F4101 implements Serializable {
 		this.impefd = impefd;
 	}
 
-	public Object getImpid() {
+	public String getImpid() {
 		return this.impid;
 	}
 
-	public void setImpid(Object impid) {
+	public void setImpid(String impid) {
 		this.impid = impid;
 	}
 
-	public Object getImplev() {
+	public String getImplev() {
 		return this.implev;
 	}
 
-	public void setImplev(Object implev) {
+	public void setImplev(String implev) {
 		this.implev = implev;
 	}
 
-	public Object getImpmth() {
+	public String getImpmth() {
 		return this.impmth;
 	}
 
-	public void setImpmth(Object impmth) {
+	public void setImpmth(String impmth) {
 		this.impmth = impmth;
 	}
 
-	public Object getImpoc() {
+	public String getImpoc() {
 		return this.impoc;
 	}
 
-	public void setImpoc(Object impoc) {
+	public void setImpoc(String impoc) {
 		this.impoc = impoc;
 	}
 
-	public Object getImpplv() {
+	public String getImpplv() {
 		return this.impplv;
 	}
 
-	public void setImpplv(Object impplv) {
+	public void setImpplv(String impplv) {
 		this.impplv = impplv;
 	}
 
-	public Object getImprgr() {
+	public String getImprgr() {
 		return this.imprgr;
 	}
 
-	public void setImprgr(Object imprgr) {
+	public void setImprgr(String imprgr) {
 		this.imprgr = imprgr;
 	}
 
@@ -1463,123 +1463,123 @@ public class F4101 implements Serializable {
 		this.impri2 = impri2;
 	}
 
-	public Object getImprp0() {
+	public String getImprp0() {
 		return this.imprp0;
 	}
 
-	public void setImprp0(Object imprp0) {
+	public void setImprp0(String imprp0) {
 		this.imprp0 = imprp0;
 	}
 
-	public Object getImprp1() {
+	public String getImprp1() {
 		return this.imprp1;
 	}
 
-	public void setImprp1(Object imprp1) {
+	public void setImprp1(String imprp1) {
 		this.imprp1 = imprp1;
 	}
 
-	public Object getImprp2() {
+	public String getImprp2() {
 		return this.imprp2;
 	}
 
-	public void setImprp2(Object imprp2) {
+	public void setImprp2(String imprp2) {
 		this.imprp2 = imprp2;
 	}
 
-	public Object getImprp3() {
+	public String getImprp3() {
 		return this.imprp3;
 	}
 
-	public void setImprp3(Object imprp3) {
+	public void setImprp3(String imprp3) {
 		this.imprp3 = imprp3;
 	}
 
-	public Object getImprp4() {
+	public String getImprp4() {
 		return this.imprp4;
 	}
 
-	public void setImprp4(Object imprp4) {
+	public void setImprp4(String imprp4) {
 		this.imprp4 = imprp4;
 	}
 
-	public Object getImprp5() {
+	public String getImprp5() {
 		return this.imprp5;
 	}
 
-	public void setImprp5(Object imprp5) {
+	public void setImprp5(String imprp5) {
 		this.imprp5 = imprp5;
 	}
 
-	public Object getImprp6() {
+	public String getImprp6() {
 		return this.imprp6;
 	}
 
-	public void setImprp6(Object imprp6) {
+	public void setImprp6(String imprp6) {
 		this.imprp6 = imprp6;
 	}
 
-	public Object getImprp7() {
+	public String getImprp7() {
 		return this.imprp7;
 	}
 
-	public void setImprp7(Object imprp7) {
+	public void setImprp7(String imprp7) {
 		this.imprp7 = imprp7;
 	}
 
-	public Object getImprp8() {
+	public String getImprp8() {
 		return this.imprp8;
 	}
 
-	public void setImprp8(Object imprp8) {
+	public void setImprp8(String imprp8) {
 		this.imprp8 = imprp8;
 	}
 
-	public Object getImprp9() {
+	public String getImprp9() {
 		return this.imprp9;
 	}
 
-	public void setImprp9(Object imprp9) {
+	public void setImprp9(String imprp9) {
 		this.imprp9 = imprp9;
 	}
 
-	public Object getImprpo() {
+	public String getImprpo() {
 		return this.imprpo;
 	}
 
-	public void setImprpo(Object imprpo) {
+	public void setImprpo(String imprpo) {
 		this.imprpo = imprpo;
 	}
 
-	public Object getImptsc() {
+	public String getImptsc() {
 		return this.imptsc;
 	}
 
-	public void setImptsc(Object imptsc) {
+	public void setImptsc(String imptsc) {
 		this.imptsc = imptsc;
 	}
 
-	public Object getImrprc() {
+	public String getImrprc() {
 		return this.imrprc;
 	}
 
-	public void setImrprc(Object imrprc) {
+	public void setImrprc(String imrprc) {
 		this.imrprc = imrprc;
 	}
 
-	public Object getImrvno() {
+	public String getImrvno() {
 		return this.imrvno;
 	}
 
-	public void setImrvno(Object imrvno) {
+	public void setImrvno(String imrvno) {
 		this.imrvno = imrvno;
 	}
 
-	public Object getImrwla() {
+	public String getImrwla() {
 		return this.imrwla;
 	}
 
-	public void setImrwla(Object imrwla) {
+	public void setImrwla(String imrwla) {
 		this.imrwla = imrwla;
 	}
 
@@ -1591,99 +1591,99 @@ public class F4101 implements Serializable {
 		this.imsbdd = imsbdd;
 	}
 
-	public Object getImscc0() {
+	public String getImscc0() {
 		return this.imscc0;
 	}
 
-	public void setImscc0(Object imscc0) {
+	public void setImscc0(String imscc0) {
 		this.imscc0 = imscc0;
 	}
 
-	public Object getImscpsell() {
+	public String getImscpsell() {
 		return this.imscpsell;
 	}
 
-	public void setImscpsell(Object imscpsell) {
+	public void setImscpsell(String imscpsell) {
 		this.imscpsell = imscpsell;
 	}
 
-	public Object getImseg0() {
+	public String getImseg0() {
 		return this.imseg0;
 	}
 
-	public void setImseg0(Object imseg0) {
+	public void setImseg0(String imseg0) {
 		this.imseg0 = imseg0;
 	}
 
-	public Object getImseg1() {
+	public String getImseg1() {
 		return this.imseg1;
 	}
 
-	public void setImseg1(Object imseg1) {
+	public void setImseg1(String imseg1) {
 		this.imseg1 = imseg1;
 	}
 
-	public Object getImseg2() {
+	public String getImseg2() {
 		return this.imseg2;
 	}
 
-	public void setImseg2(Object imseg2) {
+	public void setImseg2(String imseg2) {
 		this.imseg2 = imseg2;
 	}
 
-	public Object getImseg3() {
+	public String getImseg3() {
 		return this.imseg3;
 	}
 
-	public void setImseg3(Object imseg3) {
+	public void setImseg3(String imseg3) {
 		this.imseg3 = imseg3;
 	}
 
-	public Object getImseg4() {
+	public String getImseg4() {
 		return this.imseg4;
 	}
 
-	public void setImseg4(Object imseg4) {
+	public void setImseg4(String imseg4) {
 		this.imseg4 = imseg4;
 	}
 
-	public Object getImseg5() {
+	public String getImseg5() {
 		return this.imseg5;
 	}
 
-	public void setImseg5(Object imseg5) {
+	public void setImseg5(String imseg5) {
 		this.imseg5 = imseg5;
 	}
 
-	public Object getImseg6() {
+	public String getImseg6() {
 		return this.imseg6;
 	}
 
-	public void setImseg6(Object imseg6) {
+	public void setImseg6(String imseg6) {
 		this.imseg6 = imseg6;
 	}
 
-	public Object getImseg7() {
+	public String getImseg7() {
 		return this.imseg7;
 	}
 
-	public void setImseg7(Object imseg7) {
+	public void setImseg7(String imseg7) {
 		this.imseg7 = imseg7;
 	}
 
-	public Object getImseg8() {
+	public String getImseg8() {
 		return this.imseg8;
 	}
 
-	public void setImseg8(Object imseg8) {
+	public void setImseg8(String imseg8) {
 		this.imseg8 = imseg8;
 	}
 
-	public Object getImseg9() {
+	public String getImseg9() {
 		return this.imseg9;
 	}
 
-	public void setImseg9(Object imseg9) {
+	public void setImseg9(String imseg9) {
 		this.imseg9 = imseg9;
 	}
 
@@ -1695,19 +1695,19 @@ public class F4101 implements Serializable {
 		this.imsflt = imsflt;
 	}
 
-	public Object getImshcm() {
+	public String getImshcm() {
 		return this.imshcm;
 	}
 
-	public void setImshcm(Object imshcm) {
+	public void setImshcm(String imshcm) {
 		this.imshcm = imshcm;
 	}
 
-	public Object getImshcn() {
+	public String getImshcn() {
 		return this.imshcn;
 	}
 
-	public void setImshcn(Object imshcn) {
+	public void setImshcn(String imshcn) {
 		this.imshcn = imshcn;
 	}
 
@@ -1719,123 +1719,123 @@ public class F4101 implements Serializable {
 		this.imsld = imsld;
 	}
 
-	public Object getImsns() {
+	public String getImsns() {
 		return this.imsns;
 	}
 
-	public void setImsns(Object imsns) {
+	public void setImsns(String imsns) {
 		this.imsns = imsns;
 	}
 
-	public Object getImsrce() {
+	public String getImsrce() {
 		return this.imsrce;
 	}
 
-	public void setImsrce(Object imsrce) {
+	public void setImsrce(String imsrce) {
 		this.imsrce = imsrce;
 	}
 
-	public Object getImsrnr() {
+	public String getImsrnr() {
 		return this.imsrnr;
 	}
 
-	public void setImsrnr(Object imsrnr) {
+	public void setImsrnr(String imsrnr) {
 		this.imsrnr = imsrnr;
 	}
 
-	public Object getImsrp0() {
+	public String getImsrp0() {
 		return this.imsrp0;
 	}
 
-	public void setImsrp0(Object imsrp0) {
+	public void setImsrp0(String imsrp0) {
 		this.imsrp0 = imsrp0;
 	}
 
-	public Object getImsrp1() {
+	public String getImsrp1() {
 		return this.imsrp1;
 	}
 
-	public void setImsrp1(Object imsrp1) {
+	public void setImsrp1(String imsrp1) {
 		this.imsrp1 = imsrp1;
 	}
 
-	public Object getImsrp2() {
+	public String getImsrp2() {
 		return this.imsrp2;
 	}
 
-	public void setImsrp2(Object imsrp2) {
+	public void setImsrp2(String imsrp2) {
 		this.imsrp2 = imsrp2;
 	}
 
-	public Object getImsrp3() {
+	public String getImsrp3() {
 		return this.imsrp3;
 	}
 
-	public void setImsrp3(Object imsrp3) {
+	public void setImsrp3(String imsrp3) {
 		this.imsrp3 = imsrp3;
 	}
 
-	public Object getImsrp4() {
+	public String getImsrp4() {
 		return this.imsrp4;
 	}
 
-	public void setImsrp4(Object imsrp4) {
+	public void setImsrp4(String imsrp4) {
 		this.imsrp4 = imsrp4;
 	}
 
-	public Object getImsrp5() {
+	public String getImsrp5() {
 		return this.imsrp5;
 	}
 
-	public void setImsrp5(Object imsrp5) {
+	public void setImsrp5(String imsrp5) {
 		this.imsrp5 = imsrp5;
 	}
 
-	public Object getImsrp6() {
+	public String getImsrp6() {
 		return this.imsrp6;
 	}
 
-	public void setImsrp6(Object imsrp6) {
+	public void setImsrp6(String imsrp6) {
 		this.imsrp6 = imsrp6;
 	}
 
-	public Object getImsrp7() {
+	public String getImsrp7() {
 		return this.imsrp7;
 	}
 
-	public void setImsrp7(Object imsrp7) {
+	public void setImsrp7(String imsrp7) {
 		this.imsrp7 = imsrp7;
 	}
 
-	public Object getImsrp8() {
+	public String getImsrp8() {
 		return this.imsrp8;
 	}
 
-	public void setImsrp8(Object imsrp8) {
+	public void setImsrp8(String imsrp8) {
 		this.imsrp8 = imsrp8;
 	}
 
-	public Object getImsrp9() {
+	public String getImsrp9() {
 		return this.imsrp9;
 	}
 
-	public void setImsrp9(Object imsrp9) {
+	public void setImsrp9(String imsrp9) {
 		this.imsrp9 = imsrp9;
 	}
 
-	public Object getImsrtx() {
+	public String getImsrtx() {
 		return this.imsrtx;
 	}
 
-	public void setImsrtx(Object imsrtx) {
+	public void setImsrtx(String imsrtx) {
 		this.imsrtx = imsrtx;
 	}
 
-	public Object getImstdg() {
+	public String getImstdg() {
 		return this.imstdg;
 	}
 
-	public void setImstdg(Object imstdg) {
+	public void setImstdg(String imstdg) {
 		this.imstdg = imstdg;
 	}
 
@@ -1847,19 +1847,19 @@ public class F4101 implements Serializable {
 		this.imstdp = imstdp;
 	}
 
-	public Object getImstkt() {
+	public String getImstkt() {
 		return this.imstkt;
 	}
 
-	public void setImstkt(Object imstkt) {
+	public void setImstkt(String imstkt) {
 		this.imstkt = imstkt;
 	}
 
-	public Object getImsutm() {
+	public String getImsutm() {
 		return this.imsutm;
 	}
 
-	public void setImsutm(Object imsutm) {
+	public void setImsutm(String imsutm) {
 		this.imsutm = imsutm;
 	}
 
@@ -1871,19 +1871,19 @@ public class F4101 implements Serializable {
 		this.imtday = imtday;
 	}
 
-	public Object getImtfla() {
+	public String getImtfla() {
 		return this.imtfla;
 	}
 
-	public void setImtfla(Object imtfla) {
+	public void setImtfla(String imtfla) {
 		this.imtfla = imtfla;
 	}
 
-	public Object getImthgd() {
+	public String getImthgd() {
 		return this.imthgd;
 	}
 
-	public void setImthgd(Object imthgd) {
+	public void setImthgd(String imthgd) {
 		this.imthgd = imthgd;
 	}
 
@@ -1895,11 +1895,11 @@ public class F4101 implements Serializable {
 		this.imthrp = imthrp;
 	}
 
-	public Object getImtmpl() {
+	public String getImtmpl() {
 		return this.imtmpl;
 	}
 
-	public void setImtmpl(Object imtmpl) {
+	public void setImtmpl(String imtmpl) {
 		this.imtmpl = imtmpl;
 	}
 
@@ -1943,171 +1943,171 @@ public class F4101 implements Serializable {
 		this.imu5dd = imu5dd;
 	}
 
-	public Object getImumdf() {
+	public String getImumdf() {
 		return this.imumdf;
 	}
 
-	public void setImumdf(Object imumdf) {
+	public void setImumdf(String imumdf) {
 		this.imumdf = imumdf;
 	}
 
-	public Object getImums0() {
+	public String getImums0() {
 		return this.imums0;
 	}
 
-	public void setImums0(Object imums0) {
+	public void setImums0(String imums0) {
 		this.imums0 = imums0;
 	}
 
-	public Object getImums1() {
+	public String getImums1() {
 		return this.imums1;
 	}
 
-	public void setImums1(Object imums1) {
+	public void setImums1(String imums1) {
 		this.imums1 = imums1;
 	}
 
-	public Object getImums2() {
+	public String getImums2() {
 		return this.imums2;
 	}
 
-	public void setImums2(Object imums2) {
+	public void setImums2(String imums2) {
 		this.imums2 = imums2;
 	}
 
-	public Object getImums3() {
+	public String getImums3() {
 		return this.imums3;
 	}
 
-	public void setImums3(Object imums3) {
+	public void setImums3(String imums3) {
 		this.imums3 = imums3;
 	}
 
-	public Object getImums4() {
+	public String getImums4() {
 		return this.imums4;
 	}
 
-	public void setImums4(Object imums4) {
+	public void setImums4(String imums4) {
 		this.imums4 = imums4;
 	}
 
-	public Object getImums5() {
+	public String getImums5() {
 		return this.imums5;
 	}
 
-	public void setImums5(Object imums5) {
+	public void setImums5(String imums5) {
 		this.imums5 = imums5;
 	}
 
-	public Object getImums6() {
+	public String getImums6() {
 		return this.imums6;
 	}
 
-	public void setImums6(Object imums6) {
+	public void setImums6(String imums6) {
 		this.imums6 = imums6;
 	}
 
-	public Object getImums7() {
+	public String getImums7() {
 		return this.imums7;
 	}
 
-	public void setImums7(Object imums7) {
+	public void setImums7(String imums7) {
 		this.imums7 = imums7;
 	}
 
-	public Object getImums8() {
+	public String getImums8() {
 		return this.imums8;
 	}
 
-	public void setImums8(Object imums8) {
+	public void setImums8(String imums8) {
 		this.imums8 = imums8;
 	}
 
-	public Object getImumth() {
+	public String getImumth() {
 		return this.imumth;
 	}
 
-	public void setImumth(Object imumth) {
+	public void setImumth(String imumth) {
 		this.imumth = imumth;
 	}
 
-	public Object getImumup() {
+	public String getImumup() {
 		return this.imumup;
 	}
 
-	public void setImumup(Object imumup) {
+	public void setImumup(String imumup) {
 		this.imumup = imumup;
 	}
 
-	public Object getImumvw() {
+	public String getImumvw() {
 		return this.imumvw;
 	}
 
-	public void setImumvw(Object imumvw) {
+	public void setImumvw(String imumvw) {
 		this.imumvw = imumvw;
 	}
 
-	public Object getImuom1() {
+	public String getImuom1() {
 		return this.imuom1;
 	}
 
-	public void setImuom1(Object imuom1) {
+	public void setImuom1(String imuom1) {
 		this.imuom1 = imuom1;
 	}
 
-	public Object getImuom2() {
+	public String getImuom2() {
 		return this.imuom2;
 	}
 
-	public void setImuom2(Object imuom2) {
+	public void setImuom2(String imuom2) {
 		this.imuom2 = imuom2;
 	}
 
-	public Object getImuom3() {
+	public String getImuom3() {
 		return this.imuom3;
 	}
 
-	public void setImuom3(Object imuom3) {
+	public void setImuom3(String imuom3) {
 		this.imuom3 = imuom3;
 	}
 
-	public Object getImuom4() {
+	public String getImuom4() {
 		return this.imuom4;
 	}
 
-	public void setImuom4(Object imuom4) {
+	public void setImuom4(String imuom4) {
 		this.imuom4 = imuom4;
 	}
 
-	public Object getImuom6() {
+	public String getImuom6() {
 		return this.imuom6;
 	}
 
-	public void setImuom6(Object imuom6) {
+	public void setImuom6(String imuom6) {
 		this.imuom6 = imuom6;
 	}
 
-	public Object getImuom8() {
+	public String getImuom8() {
 		return this.imuom8;
 	}
 
-	public void setImuom8(Object imuom8) {
+	public void setImuom8(String imuom8) {
 		this.imuom8 = imuom8;
 	}
 
-	public Object getImuom9() {
+	public String getImuom9() {
 		return this.imuom9;
 	}
 
-	public void setImuom9(Object imuom9) {
+	public void setImuom9(String imuom9) {
 		this.imuom9 = imuom9;
 	}
 
-	public Object getImupcn() {
+	public String getImupcn() {
 		return this.imupcn;
 	}
 
-	public void setImupcn(Object imupcn) {
+	public void setImupcn(String imupcn) {
 		this.imupcn = imupcn;
 	}
 
@@ -2135,11 +2135,11 @@ public class F4101 implements Serializable {
 		this.imurat = imurat;
 	}
 
-	public Object getImurcd() {
+	public String getImurcd() {
 		return this.imurcd;
 	}
 
-	public void setImurcd(Object imurcd) {
+	public void setImurcd(String imurcd) {
 		this.imurcd = imurcd;
 	}
 
@@ -2151,35 +2151,35 @@ public class F4101 implements Serializable {
 		this.imurdt = imurdt;
 	}
 
-	public Object getImurrf() {
+	public String getImurrf() {
 		return this.imurrf;
 	}
 
-	public void setImurrf(Object imurrf) {
+	public void setImurrf(String imurrf) {
 		this.imurrf = imurrf;
 	}
 
-	public Object getImuser() {
+	public String getImuser() {
 		return this.imuser;
 	}
 
-	public void setImuser(Object imuser) {
+	public void setImuser(String imuser) {
 		this.imuser = imuser;
 	}
 
-	public Object getImuvm1() {
+	public String getImuvm1() {
 		return this.imuvm1;
 	}
 
-	public void setImuvm1(Object imuvm1) {
+	public void setImuvm1(String imuvm1) {
 		this.imuvm1 = imuvm1;
 	}
 
-	public Object getImuwum() {
+	public String getImuwum() {
 		return this.imuwum;
 	}
 
-	public void setImuwum(Object imuwum) {
+	public void setImuwum(String imuwum) {
 		this.imuwum = imuwum;
 	}
 
@@ -2191,35 +2191,35 @@ public class F4101 implements Serializable {
 		this.imvcud = imvcud;
 	}
 
-	public Object getImvminv() {
+	public String getImvminv() {
 		return this.imvminv;
 	}
 
-	public void setImvminv(Object imvminv) {
+	public void setImvminv(String imvminv) {
 		this.imvminv = imvminv;
 	}
 
-	public Object getImwarr() {
+	public String getImwarr() {
 		return this.imwarr;
 	}
 
-	public void setImwarr(Object imwarr) {
+	public void setImwarr(String imwarr) {
 		this.imwarr = imwarr;
 	}
 
-	public Object getImwtrq() {
+	public String getImwtrq() {
 		return this.imwtrq;
 	}
 
-	public void setImwtrq(Object imwtrq) {
+	public void setImwtrq(String imwtrq) {
 		this.imwtrq = imwtrq;
 	}
 
-	public Object getImxdck() {
+	public String getImxdck() {
 		return this.imxdck;
 	}
 
-	public void setImxdck(Object imxdck) {
+	public void setImxdck(String imxdck) {
 		this.imxdck = imxdck;
 	}
 

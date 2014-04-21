@@ -24,13 +24,13 @@ public class F0010 implements Serializable {
 	private String ccco;
 
 	@Column(name="CCABIN")
-	private Object ccabin;
+	private String ccabin;
 
 	@Column(name="CCAGE")
-	private Object ccage;
+	private String ccage;
 
 	@Column(name="CCAGEM")
-	private Object ccagem;
+	private String ccagem;
 
 	@Column(name="CCAGR1")
 	private double ccagr1;
@@ -54,10 +54,10 @@ public class F0010 implements Serializable {
 	private double ccagr7;
 
 	@Column(name="CCALGM")
-	private Object ccalgm;
+	private String ccalgm;
 
 	@Column(name="CCALTC")
-	private Object ccaltc;
+	private String ccaltc;
 
 	@Column(name="CCAN8")
 	private double ccan8;
@@ -78,25 +78,25 @@ public class F0010 implements Serializable {
 	private double ccarpn;
 
 	@Column(name="CCATCS")
-	private Object ccatcs;
+	private String ccatcs;
 
 	@Column(name="CCBKTX")
-	private Object ccbktx;
+	private String ccbktx;
 
 	@Column(name="CCCALD")
-	private Object cccald;
+	private String cccald;
 
 	@Column(name="CCCRCD")
-	private Object cccrcd;
+	private String cccrcd;
 
 	@Column(name="CCCRDY")
 	private double cccrdy;
 
 	@Column(name="CCCRYC")
-	private Object cccryc;
+	private String cccryc;
 
 	@Column(name="CCCRYR")
-	private Object cccryr;
+	private String cccryr;
 
 	@Column(name="CCDAG")
 	private BigDecimal ccdag;
@@ -108,19 +108,19 @@ public class F0010 implements Serializable {
 	private BigDecimal ccdfyj;
 
 	@Column(name="CCDNLT")
-	private Object ccdnlt;
+	private String ccdnlt;
 
 	@Column(name="CCDOT1")
-	private Object ccdot1;
+	private String ccdot1;
 
 	@Column(name="CCDOT2")
-	private Object ccdot2;
+	private String ccdot2;
 
 	@Column(name="CCDPRC")
-	private Object ccdprc;
+	private String ccdprc;
 
 	@Column(name="CCDTPN")
-	private Object ccdtpn;
+	private String ccdtpn;
 
 	@Column(name="CCFP")
 	private double ccfp;
@@ -132,25 +132,25 @@ public class F0010 implements Serializable {
 	private double ccfry;
 
 	@Column(name="CCGLIE")
-	private Object ccglie;
+	private String ccglie;
 
 	@Column(name="CCJOBN")
-	private Object ccjobn;
+	private String ccjobn;
 
 	@Column(name="CCMCUA")
-	private Object ccmcua;
+	private String ccmcua;
 
 	@Column(name="CCMCUB")
-	private Object ccmcub;
+	private String ccmcub;
 
 	@Column(name="CCMCUC")
-	private Object ccmcuc;
+	private String ccmcuc;
 
 	@Column(name="CCMCUD")
-	private Object ccmcud;
+	private String ccmcud;
 
 	@Column(name="CCNAME")
-	private Object ccname;
+	private String ccname;
 
 	@Column(name="CCNNP")
 	private double ccnnp;
@@ -159,7 +159,7 @@ public class F0010 implements Serializable {
 	private BigDecimal ccnwxj;
 
 	@Column(name="CCPID")
-	private Object ccpid;
+	private String ccpid;
 
 	@Column(name="CCPNC")
 	private double ccpnc;
@@ -168,28 +168,28 @@ public class F0010 implements Serializable {
 	private double ccpnf;
 
 	@Column(name="CCPTCO")
-	private Object ccptco;
+	private String ccptco;
 
 	@Column(name="CCSGBK")
-	private Object ccsgbk;
+	private String ccsgbk;
 
 	@Column(name="CCSMI")
-	private Object ccsmi;
+	private String ccsmi;
 
 	@Column(name="CCSMS")
-	private Object ccsms;
+	private String ccsms;
 
 	@Column(name="CCSMU")
-	private Object ccsmu;
+	private String ccsmu;
 
 	@Column(name="CCSTMT")
-	private Object ccstmt;
+	private String ccstmt;
 
 	@Column(name="CCTHCO")
-	private Object ccthco;
+	private String ccthco;
 
 	@Column(name="CCTSCO")
-	private Object cctsco;
+	private String cctsco;
 
 	@Column(name="CCTSID")
 	private double cctsid;
@@ -207,13 +207,13 @@ public class F0010 implements Serializable {
 	private double ccupmt;
 
 	@Column(name="CCUSER")
-	private Object ccuser;
+	private String ccuser;
 
 	@Column(name="CCX1")
-	private Object ccx1;
+	private String ccx1;
 
 	@Column(name="CCX2")
-	private Object ccx2;
+	private String ccx2;
 
 	public F0010() {
 	}
@@ -226,27 +226,27 @@ public class F0010 implements Serializable {
 		this.ccco = ccco;
 	}
 
-	public Object getCcabin() {
+	public String getCcabin() {
 		return this.ccabin;
 	}
 
-	public void setCcabin(Object ccabin) {
+	public void setCcabin(String ccabin) {
 		this.ccabin = ccabin;
 	}
 
-	public Object getCcage() {
+	public String getCcage() {
 		return this.ccage;
 	}
 
-	public void setCcage(Object ccage) {
+	public void setCcage(String ccage) {
 		this.ccage = ccage;
 	}
 
-	public Object getCcagem() {
+	public String getCcagem() {
 		return this.ccagem;
 	}
 
-	public void setCcagem(Object ccagem) {
+	public void setCcagem(String ccagem) {
 		this.ccagem = ccagem;
 	}
 
@@ -306,19 +306,19 @@ public class F0010 implements Serializable {
 		this.ccagr7 = ccagr7;
 	}
 
-	public Object getCcalgm() {
+	public String getCcalgm() {
 		return this.ccalgm;
 	}
 
-	public void setCcalgm(Object ccalgm) {
+	public void setCcalgm(String ccalgm) {
 		this.ccalgm = ccalgm;
 	}
 
-	public Object getCcaltc() {
+	public String getCcaltc() {
 		return this.ccaltc;
 	}
 
-	public void setCcaltc(Object ccaltc) {
+	public void setCcaltc(String ccaltc) {
 		this.ccaltc = ccaltc;
 	}
 
@@ -370,35 +370,35 @@ public class F0010 implements Serializable {
 		this.ccarpn = ccarpn;
 	}
 
-	public Object getCcatcs() {
+	public String getCcatcs() {
 		return this.ccatcs;
 	}
 
-	public void setCcatcs(Object ccatcs) {
+	public void setCcatcs(String ccatcs) {
 		this.ccatcs = ccatcs;
 	}
 
-	public Object getCcbktx() {
+	public String getCcbktx() {
 		return this.ccbktx;
 	}
 
-	public void setCcbktx(Object ccbktx) {
+	public void setCcbktx(String ccbktx) {
 		this.ccbktx = ccbktx;
 	}
 
-	public Object getCccald() {
+	public String getCccald() {
 		return this.cccald;
 	}
 
-	public void setCccald(Object cccald) {
+	public void setCccald(String cccald) {
 		this.cccald = cccald;
 	}
 
-	public Object getCccrcd() {
+	public String getCccrcd() {
 		return this.cccrcd;
 	}
 
-	public void setCccrcd(Object cccrcd) {
+	public void setCccrcd(String cccrcd) {
 		this.cccrcd = cccrcd;
 	}
 
@@ -410,19 +410,19 @@ public class F0010 implements Serializable {
 		this.cccrdy = cccrdy;
 	}
 
-	public Object getCccryc() {
+	public String getCccryc() {
 		return this.cccryc;
 	}
 
-	public void setCccryc(Object cccryc) {
+	public void setCccryc(String cccryc) {
 		this.cccryc = cccryc;
 	}
 
-	public Object getCccryr() {
+	public String getCccryr() {
 		return this.cccryr;
 	}
 
-	public void setCccryr(Object cccryr) {
+	public void setCccryr(String cccryr) {
 		this.cccryr = cccryr;
 	}
 
@@ -450,43 +450,43 @@ public class F0010 implements Serializable {
 		this.ccdfyj = ccdfyj;
 	}
 
-	public Object getCcdnlt() {
+	public String getCcdnlt() {
 		return this.ccdnlt;
 	}
 
-	public void setCcdnlt(Object ccdnlt) {
+	public void setCcdnlt(String ccdnlt) {
 		this.ccdnlt = ccdnlt;
 	}
 
-	public Object getCcdot1() {
+	public String getCcdot1() {
 		return this.ccdot1;
 	}
 
-	public void setCcdot1(Object ccdot1) {
+	public void setCcdot1(String ccdot1) {
 		this.ccdot1 = ccdot1;
 	}
 
-	public Object getCcdot2() {
+	public String getCcdot2() {
 		return this.ccdot2;
 	}
 
-	public void setCcdot2(Object ccdot2) {
+	public void setCcdot2(String ccdot2) {
 		this.ccdot2 = ccdot2;
 	}
 
-	public Object getCcdprc() {
+	public String getCcdprc() {
 		return this.ccdprc;
 	}
 
-	public void setCcdprc(Object ccdprc) {
+	public void setCcdprc(String ccdprc) {
 		this.ccdprc = ccdprc;
 	}
 
-	public Object getCcdtpn() {
+	public String getCcdtpn() {
 		return this.ccdtpn;
 	}
 
-	public void setCcdtpn(Object ccdtpn) {
+	public void setCcdtpn(String ccdtpn) {
 		this.ccdtpn = ccdtpn;
 	}
 
@@ -514,59 +514,59 @@ public class F0010 implements Serializable {
 		this.ccfry = ccfry;
 	}
 
-	public Object getCcglie() {
+	public String getCcglie() {
 		return this.ccglie;
 	}
 
-	public void setCcglie(Object ccglie) {
+	public void setCcglie(String ccglie) {
 		this.ccglie = ccglie;
 	}
 
-	public Object getCcjobn() {
+	public String getCcjobn() {
 		return this.ccjobn;
 	}
 
-	public void setCcjobn(Object ccjobn) {
+	public void setCcjobn(String ccjobn) {
 		this.ccjobn = ccjobn;
 	}
 
-	public Object getCcmcua() {
+	public String getCcmcua() {
 		return this.ccmcua;
 	}
 
-	public void setCcmcua(Object ccmcua) {
+	public void setCcmcua(String ccmcua) {
 		this.ccmcua = ccmcua;
 	}
 
-	public Object getCcmcub() {
+	public String getCcmcub() {
 		return this.ccmcub;
 	}
 
-	public void setCcmcub(Object ccmcub) {
+	public void setCcmcub(String ccmcub) {
 		this.ccmcub = ccmcub;
 	}
 
-	public Object getCcmcuc() {
+	public String getCcmcuc() {
 		return this.ccmcuc;
 	}
 
-	public void setCcmcuc(Object ccmcuc) {
+	public void setCcmcuc(String ccmcuc) {
 		this.ccmcuc = ccmcuc;
 	}
 
-	public Object getCcmcud() {
+	public String getCcmcud() {
 		return this.ccmcud;
 	}
 
-	public void setCcmcud(Object ccmcud) {
+	public void setCcmcud(String ccmcud) {
 		this.ccmcud = ccmcud;
 	}
 
-	public Object getCcname() {
+	public String getCcname() {
 		return this.ccname;
 	}
 
-	public void setCcname(Object ccname) {
+	public void setCcname(String ccname) {
 		this.ccname = ccname;
 	}
 
@@ -586,11 +586,11 @@ public class F0010 implements Serializable {
 		this.ccnwxj = ccnwxj;
 	}
 
-	public Object getCcpid() {
+	public String getCcpid() {
 		return this.ccpid;
 	}
 
-	public void setCcpid(Object ccpid) {
+	public void setCcpid(String ccpid) {
 		this.ccpid = ccpid;
 	}
 
@@ -610,67 +610,67 @@ public class F0010 implements Serializable {
 		this.ccpnf = ccpnf;
 	}
 
-	public Object getCcptco() {
+	public String getCcptco() {
 		return this.ccptco;
 	}
 
-	public void setCcptco(Object ccptco) {
+	public void setCcptco(String ccptco) {
 		this.ccptco = ccptco;
 	}
 
-	public Object getCcsgbk() {
+	public String getCcsgbk() {
 		return this.ccsgbk;
 	}
 
-	public void setCcsgbk(Object ccsgbk) {
+	public void setCcsgbk(String ccsgbk) {
 		this.ccsgbk = ccsgbk;
 	}
 
-	public Object getCcsmi() {
+	public String getCcsmi() {
 		return this.ccsmi;
 	}
 
-	public void setCcsmi(Object ccsmi) {
+	public void setCcsmi(String ccsmi) {
 		this.ccsmi = ccsmi;
 	}
 
-	public Object getCcsms() {
+	public String getCcsms() {
 		return this.ccsms;
 	}
 
-	public void setCcsms(Object ccsms) {
+	public void setCcsms(String ccsms) {
 		this.ccsms = ccsms;
 	}
 
-	public Object getCcsmu() {
+	public String getCcsmu() {
 		return this.ccsmu;
 	}
 
-	public void setCcsmu(Object ccsmu) {
+	public void setCcsmu(String ccsmu) {
 		this.ccsmu = ccsmu;
 	}
 
-	public Object getCcstmt() {
+	public String getCcstmt() {
 		return this.ccstmt;
 	}
 
-	public void setCcstmt(Object ccstmt) {
+	public void setCcstmt(String ccstmt) {
 		this.ccstmt = ccstmt;
 	}
 
-	public Object getCcthco() {
+	public String getCcthco() {
 		return this.ccthco;
 	}
 
-	public void setCcthco(Object ccthco) {
+	public void setCcthco(String ccthco) {
 		this.ccthco = ccthco;
 	}
 
-	public Object getCctsco() {
+	public String getCctsco() {
 		return this.cctsco;
 	}
 
-	public void setCctsco(Object cctsco) {
+	public void setCctsco(String cctsco) {
 		this.cctsco = cctsco;
 	}
 
@@ -714,27 +714,27 @@ public class F0010 implements Serializable {
 		this.ccupmt = ccupmt;
 	}
 
-	public Object getCcuser() {
+	public String getCcuser() {
 		return this.ccuser;
 	}
 
-	public void setCcuser(Object ccuser) {
+	public void setCcuser(String ccuser) {
 		this.ccuser = ccuser;
 	}
 
-	public Object getCcx1() {
+	public String getCcx1() {
 		return this.ccx1;
 	}
 
-	public void setCcx1(Object ccx1) {
+	public void setCcx1(String ccx1) {
 		this.ccx1 = ccx1;
 	}
 
-	public Object getCcx2() {
+	public String getCcx2() {
 		return this.ccx2;
 	}
 
-	public void setCcx2(Object ccx2) {
+	public void setCcx2(String ccx2) {
 		this.ccx2 = ccx2;
 	}
 

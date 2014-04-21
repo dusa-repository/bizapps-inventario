@@ -21,40 +21,40 @@ public class F40203 implements Serializable {
 	private F40203PK id;
 
 	@Column(name="FSA1TR")
-	private Object fsa1tr;
+	private String fsa1tr;
 
 	@Column(name="FSA2TR")
-	private Object fsa2tr;
+	private String fsa2tr;
 
 	@Column(name="FSA3TR")
-	private Object fsa3tr;
+	private String fsa3tr;
 
 	@Column(name="FSA4TR")
-	private Object fsa4tr;
+	private String fsa4tr;
 
 	@Column(name="FSA5TR")
-	private Object fsa5tr;
+	private String fsa5tr;
 
 	@Column(name="FSFID")
-	private Object fsfid;
+	private String fsfid;
 
 	@Column(name="FSLND2")
-	private Object fslnd2;
+	private String fslnd2;
 
 	@Column(name="FSLNDS")
-	private Object fslnds;
+	private String fslnds;
 
 	@Column(name="FSNXTR")
-	private Object fsnxtr;
+	private String fsnxtr;
 
 	@Column(name="FSORNN")
 	private double fsornn;
 
 	@Column(name="FSSTDS")
-	private Object fsstds;
+	private String fsstds;
 
 	@Column(name="FSWRTH")
-	private Object fswrth;
+	private String fswrth;
 
 	public F40203() {
 	}
@@ -67,75 +67,75 @@ public class F40203 implements Serializable {
 		this.id = id;
 	}
 
-	public Object getFsa1tr() {
+	public String getFsa1tr() {
 		return this.fsa1tr;
 	}
 
-	public void setFsa1tr(Object fsa1tr) {
+	public void setFsa1tr(String fsa1tr) {
 		this.fsa1tr = fsa1tr;
 	}
 
-	public Object getFsa2tr() {
+	public String getFsa2tr() {
 		return this.fsa2tr;
 	}
 
-	public void setFsa2tr(Object fsa2tr) {
+	public void setFsa2tr(String fsa2tr) {
 		this.fsa2tr = fsa2tr;
 	}
 
-	public Object getFsa3tr() {
+	public String getFsa3tr() {
 		return this.fsa3tr;
 	}
 
-	public void setFsa3tr(Object fsa3tr) {
+	public void setFsa3tr(String fsa3tr) {
 		this.fsa3tr = fsa3tr;
 	}
 
-	public Object getFsa4tr() {
+	public String getFsa4tr() {
 		return this.fsa4tr;
 	}
 
-	public void setFsa4tr(Object fsa4tr) {
+	public void setFsa4tr(String fsa4tr) {
 		this.fsa4tr = fsa4tr;
 	}
 
-	public Object getFsa5tr() {
+	public String getFsa5tr() {
 		return this.fsa5tr;
 	}
 
-	public void setFsa5tr(Object fsa5tr) {
+	public void setFsa5tr(String fsa5tr) {
 		this.fsa5tr = fsa5tr;
 	}
 
-	public Object getFsfid() {
+	public String getFsfid() {
 		return this.fsfid;
 	}
 
-	public void setFsfid(Object fsfid) {
+	public void setFsfid(String fsfid) {
 		this.fsfid = fsfid;
 	}
 
-	public Object getFslnd2() {
+	public String getFslnd2() {
 		return this.fslnd2;
 	}
 
-	public void setFslnd2(Object fslnd2) {
+	public void setFslnd2(String fslnd2) {
 		this.fslnd2 = fslnd2;
 	}
 
-	public Object getFslnds() {
+	public String getFslnds() {
 		return this.fslnds;
 	}
 
-	public void setFslnds(Object fslnds) {
+	public void setFslnds(String fslnds) {
 		this.fslnds = fslnds;
 	}
 
-	public Object getFsnxtr() {
+	public String getFsnxtr() {
 		return this.fsnxtr;
 	}
 
-	public void setFsnxtr(Object fsnxtr) {
+	public void setFsnxtr(String fsnxtr) {
 		this.fsnxtr = fsnxtr;
 	}
 
@@ -147,19 +147,19 @@ public class F40203 implements Serializable {
 		this.fsornn = fsornn;
 	}
 
-	public Object getFsstds() {
+	public String getFsstds() {
 		return this.fsstds;
 	}
 
-	public void setFsstds(Object fsstds) {
+	public void setFsstds(String fsstds) {
 		this.fsstds = fsstds;
 	}
 
-	public Object getFswrth() {
+	public String getFswrth() {
 		return this.fswrth;
 	}
 
-	public void setFswrth(Object fswrth) {
+	public void setFswrth(String fswrth) {
 		this.fswrth = fswrth;
 	}
 

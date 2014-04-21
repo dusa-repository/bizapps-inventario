@@ -24,22 +24,22 @@ public class F0013 implements Serializable {
 	private String cvcrcd;
 
 	@Column(name="CVCDEC")
-	private Object cvcdec;
+	private String cvcdec;
 
 	@Column(name="CVCKR")
-	private Object cvckr;
+	private String cvckr;
 
 	@Column(name="CVDL01")
-	private Object cvdl01;
+	private String cvdl01;
 
 	@Column(name="CVEC")
-	private Object cvec;
+	private String cvec;
 
 	@Column(name="CVJOBN")
-	private Object cvjobn;
+	private String cvjobn;
 
 	@Column(name="CVPID")
-	private Object cvpid;
+	private String cvpid;
 
 	@Column(name="CVUPMJ")
 	private BigDecimal cvupmj;
@@ -48,7 +48,7 @@ public class F0013 implements Serializable {
 	private double cvupmt;
 
 	@Column(name="CVUSER")
-	private Object cvuser;
+	private String cvuser;
 
 	public F0013() {
 	}
@@ -61,51 +61,51 @@ public class F0013 implements Serializable {
 		this.cvcrcd = cvcrcd;
 	}
 
-	public Object getCvcdec() {
+	public String getCvcdec() {
 		return this.cvcdec;
 	}
 
-	public void setCvcdec(Object cvcdec) {
+	public void setCvcdec(String cvcdec) {
 		this.cvcdec = cvcdec;
 	}
 
-	public Object getCvckr() {
+	public String getCvckr() {
 		return this.cvckr;
 	}
 
-	public void setCvckr(Object cvckr) {
+	public void setCvckr(String cvckr) {
 		this.cvckr = cvckr;
 	}
 
-	public Object getCvdl01() {
+	public String getCvdl01() {
 		return this.cvdl01;
 	}
 
-	public void setCvdl01(Object cvdl01) {
+	public void setCvdl01(String cvdl01) {
 		this.cvdl01 = cvdl01;
 	}
 
-	public Object getCvec() {
+	public String getCvec() {
 		return this.cvec;
 	}
 
-	public void setCvec(Object cvec) {
+	public void setCvec(String cvec) {
 		this.cvec = cvec;
 	}
 
-	public Object getCvjobn() {
+	public String getCvjobn() {
 		return this.cvjobn;
 	}
 
-	public void setCvjobn(Object cvjobn) {
+	public void setCvjobn(String cvjobn) {
 		this.cvjobn = cvjobn;
 	}
 
-	public Object getCvpid() {
+	public String getCvpid() {
 		return this.cvpid;
 	}
 
-	public void setCvpid(Object cvpid) {
+	public void setCvpid(String cvpid) {
 		this.cvpid = cvpid;
 	}
 
@@ -125,11 +125,11 @@ public class F0013 implements Serializable {
 		this.cvupmt = cvupmt;
 	}
 
-	public Object getCvuser() {
+	public String getCvuser() {
 		return this.cvuser;
 	}
 
-	public void setCvuser(Object cvuser) {
+	public void setCvuser(String cvuser) {
 		this.cvuser = cvuser;
 	}
 

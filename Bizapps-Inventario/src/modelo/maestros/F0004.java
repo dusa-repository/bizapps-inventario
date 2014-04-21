@@ -25,28 +25,28 @@ public class F0004 implements Serializable {
 	private double dtcdl;
 
 	@Column(name="DTCNUM")
-	private Object dtcnum;
+	private String dtcnum;
 
 	@Column(name="DTDL01")
-	private Object dtdl01;
+	private String dtdl01;
 
 	@Column(name="DTJOBN")
-	private Object dtjobn;
+	private String dtjobn;
 
 	@Column(name="DTLN2")
-	private Object dtln2;
+	private String dtln2;
 
 	@Column(name="DTMRCT")
-	private Object dtmrct;
+	private String dtmrct;
 
 	@Column(name="DTMRTY")
-	private Object dtmrty;
+	private String dtmrty;
 
 	@Column(name="DTPID")
-	private Object dtpid;
+	private String dtpid;
 
 	@Column(name="DTUCD1")
-	private Object dtucd1;
+	private String dtucd1;
 
 	@Column(name="DTUPMJ")
 	private BigDecimal dtupmj;
@@ -58,7 +58,7 @@ public class F0004 implements Serializable {
 	private double dtuseq;
 
 	@Column(name="DTUSER")
-	private Object dtuser;
+	private String dtuser;
 
 	public F0004() {
 	}
@@ -79,67 +79,67 @@ public class F0004 implements Serializable {
 		this.dtcdl = dtcdl;
 	}
 
-	public Object getDtcnum() {
+	public String getDtcnum() {
 		return this.dtcnum;
 	}
 
-	public void setDtcnum(Object dtcnum) {
+	public void setDtcnum(String dtcnum) {
 		this.dtcnum = dtcnum;
 	}
 
-	public Object getDtdl01() {
+	public String getDtdl01() {
 		return this.dtdl01;
 	}
 
-	public void setDtdl01(Object dtdl01) {
+	public void setDtdl01(String dtdl01) {
 		this.dtdl01 = dtdl01;
 	}
 
-	public Object getDtjobn() {
+	public String getDtjobn() {
 		return this.dtjobn;
 	}
 
-	public void setDtjobn(Object dtjobn) {
+	public void setDtjobn(String dtjobn) {
 		this.dtjobn = dtjobn;
 	}
 
-	public Object getDtln2() {
+	public String getDtln2() {
 		return this.dtln2;
 	}
 
-	public void setDtln2(Object dtln2) {
+	public void setDtln2(String dtln2) {
 		this.dtln2 = dtln2;
 	}
 
-	public Object getDtmrct() {
+	public String getDtmrct() {
 		return this.dtmrct;
 	}
 
-	public void setDtmrct(Object dtmrct) {
+	public void setDtmrct(String dtmrct) {
 		this.dtmrct = dtmrct;
 	}
 
-	public Object getDtmrty() {
+	public String getDtmrty() {
 		return this.dtmrty;
 	}
 
-	public void setDtmrty(Object dtmrty) {
+	public void setDtmrty(String dtmrty) {
 		this.dtmrty = dtmrty;
 	}
 
-	public Object getDtpid() {
+	public String getDtpid() {
 		return this.dtpid;
 	}
 
-	public void setDtpid(Object dtpid) {
+	public void setDtpid(String dtpid) {
 		this.dtpid = dtpid;
 	}
 
-	public Object getDtucd1() {
+	public String getDtucd1() {
 		return this.dtucd1;
 	}
 
-	public void setDtucd1(Object dtucd1) {
+	public void setDtucd1(String dtucd1) {
 		this.dtucd1 = dtucd1;
 	}
 
@@ -167,11 +167,11 @@ public class F0004 implements Serializable {
 		this.dtuseq = dtuseq;
 	}
 
-	public Object getDtuser() {
+	public String getDtuser() {
 		return this.dtuser;
 	}
 
-	public void setDtuser(Object dtuser) {
+	public void setDtuser(String dtuser) {
 		this.dtuser = dtuser;
 	}
 
