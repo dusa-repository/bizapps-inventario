@@ -1,0 +1,25 @@
+<zk>
+<style src="../public/Estilo.css" />
+	<div id="divVF0006" apply="controlador.maestros.CF0006">
+		<groupbox width="40em" mold="3d" title="Sistemas">
+		<div id="botoneraF0006" />
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+					<column label="" width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<label class="etiqueta" value="Sistema:" />
+						<textbox id="txtSistema" hflex="1"
+							maxlength="500" tooltiptext="Ingrese el del Sistema"/>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+							<label class="etiqueta" value="AQUI VA LA LISTA" />
+		</groupbox>	
+
+	</div>
+</zk>
