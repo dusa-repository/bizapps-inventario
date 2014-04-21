@@ -39,25 +39,26 @@ public abstract class Botonera extends Hbox {
 		btnReporte.setSrc("/public/imagenes/botones/reporte.png");
 		btnSalir.setSrc("/public/imagenes/botones/salir.png");
 		btnAyuda.setSrc("/public/imagenes/botones/ayuda.png");
+		
 
-		btnSeleccionar.setOrient("vertical");
-		btnSeleccionar.setDir("reverse");
-		btnBuscar.setOrient("vertical");
-		btnBuscar.setDir("reverse");
-		btnAnnadir.setOrient("vertical");
-		btnAnnadir.setDir("reverse");
-		btnGuardar.setOrient("vertical");
-		btnGuardar.setDir("reverse");
-		btnEliminar.setOrient("vertical");
-		btnEliminar.setDir("reverse");
-		btnLimpiar.setOrient("vertical");
-		btnLimpiar.setDir("reverse");
-		btnReporte.setOrient("vertical");
-		btnReporte.setDir("reverse");
-		btnSalir.setOrient("vertical");
-		btnSalir.setDir("reverse");
-		btnAyuda.setOrient("vertical");
-		btnAyuda.setDir("reverse");
+//		btnSeleccionar.setOrient("vertical");
+//		btnSeleccionar.setDir("reverse");
+//		btnBuscar.setOrient("vertical");
+//		btnBuscar.setDir("reverse");
+//		btnAnnadir.setOrient("vertical");
+//		btnAnnadir.setDir("reverse");
+//		btnGuardar.setOrient("vertical");
+//		btnGuardar.setDir("reverse");
+//		btnEliminar.setOrient("vertical");
+//		btnEliminar.setDir("reverse");
+//		btnLimpiar.setOrient("vertical");
+//		btnLimpiar.setDir("reverse");
+//		btnReporte.setOrient("vertical");
+//		btnReporte.setDir("reverse");
+//		btnSalir.setOrient("vertical");
+//		btnSalir.setDir("reverse");
+//		btnAyuda.setOrient("vertical");
+//		btnAyuda.setDir("reverse");
 		
 		btnAyuda.setStyle("font-size: 10px");
 		btnEliminar.setStyle("font-size: 10px");
