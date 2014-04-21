@@ -24,13 +24,13 @@ public class F0006 implements Serializable {
 	private String mcmcu;
 
 	@Column(name="MCADDS")
-	private Object mcadds;
+	private String mcadds;
 
 	@Column(name="MCALCL")
-	private Object mcalcl;
+	private String mcalcl;
 
 	@Column(name="MCALS")
-	private Object mcals;
+	private String mcals;
 
 	@Column(name="MCAN8")
 	private double mcan8;
@@ -42,58 +42,58 @@ public class F0006 implements Serializable {
 	private double mcanpa;
 
 	@Column(name="MCAPSB")
-	private Object mcapsb;
+	private String mcapsb;
 
 	@Column(name="MCBPTP")
-	private Object mcbptp;
+	private String mcbptp;
 
 	@Column(name="MCBTYP")
-	private Object mcbtyp;
+	private String mcbtyp;
 
 	@Column(name="MCCAC")
 	private double mccac;
 
 	@Column(name="MCCC01")
-	private Object mccc01;
+	private String mccc01;
 
 	@Column(name="MCCC02")
-	private Object mccc02;
+	private String mccc02;
 
 	@Column(name="MCCC03")
-	private Object mccc03;
+	private String mccc03;
 
 	@Column(name="MCCC04")
-	private Object mccc04;
+	private String mccc04;
 
 	@Column(name="MCCC05")
-	private Object mccc05;
+	private String mccc05;
 
 	@Column(name="MCCC06")
-	private Object mccc06;
+	private String mccc06;
 
 	@Column(name="MCCC07")
-	private Object mccc07;
+	private String mccc07;
 
 	@Column(name="MCCC08")
-	private Object mccc08;
+	private String mccc08;
 
 	@Column(name="MCCC09")
-	private Object mccc09;
+	private String mccc09;
 
 	@Column(name="MCCC10")
-	private Object mccc10;
+	private String mccc10;
 
 	@Column(name="MCCERT")
-	private Object mccert;
+	private String mccert;
 
 	@Column(name="MCCNTY")
-	private Object mccnty;
+	private String mccnty;
 
 	@Column(name="MCCO")
-	private Object mcco;
+	private String mcco;
 
 	@Column(name="MCCT")
-	private Object mcct;
+	private String mcct;
 
 	@Column(name="MCD1J")
 	private BigDecimal mcd1j;
@@ -114,100 +114,100 @@ public class F0006 implements Serializable {
 	private BigDecimal mcd6j;
 
 	@Column(name="MCDC")
-	private Object mcdc;
+	private String mcdc;
 
 	@Column(name="MCDL01")
-	private Object mcdl01;
+	private String mcdl01;
 
 	@Column(name="MCDL02")
-	private Object mcdl02;
+	private String mcdl02;
 
 	@Column(name="MCDL03")
-	private Object mcdl03;
+	private String mcdl03;
 
 	@Column(name="MCDL04")
-	private Object mcdl04;
+	private String mcdl04;
 
 	@Column(name="MCEEO")
-	private Object mceeo;
+	private String mceeo;
 
 	@Column(name="MCERC")
-	private Object mcerc;
+	private String mcerc;
 
 	@Column(name="MCEXR1")
-	private Object mcexr1;
+	private String mcexr1;
 
 	@Column(name="MCFMOD")
-	private Object mcfmod;
+	private String mcfmod;
 
 	@Column(name="MCFPDJ")
 	private BigDecimal mcfpdj;
 
 	@Column(name="MCGLBA")
-	private Object mcglba;
+	private String mcglba;
 
 	@Column(name="MCINTA")
-	private Object mcinta;
+	private String mcinta;
 
 	@Column(name="MCINTL")
-	private Object mcintl;
+	private String mcintl;
 
 	@Column(name="MCISS")
-	private Object mciss;
+	private String mciss;
 
 	@Column(name="MCJOBN")
-	private Object mcjobn;
+	private String mcjobn;
 
 	@Column(name="MCLDM")
-	private Object mcldm;
+	private String mcldm;
 
 	@Column(name="MCLF")
 	private double mclf;
 
 	@Column(name="MCLMTH")
-	private Object mclmth;
+	private String mclmth;
 
 	@Column(name="MCMCUS")
-	private Object mcmcus;
+	private String mcmcus;
 
 	@Column(name="MCND01")
-	private Object mcnd01;
+	private String mcnd01;
 
 	@Column(name="MCND02")
-	private Object mcnd02;
+	private String mcnd02;
 
 	@Column(name="MCND03")
-	private Object mcnd03;
+	private String mcnd03;
 
 	@Column(name="MCND04")
-	private Object mcnd04;
+	private String mcnd04;
 
 	@Column(name="MCND05")
-	private Object mcnd05;
+	private String mcnd05;
 
 	@Column(name="MCND06")
-	private Object mcnd06;
+	private String mcnd06;
 
 	@Column(name="MCND07")
-	private Object mcnd07;
+	private String mcnd07;
 
 	@Column(name="MCND08")
-	private Object mcnd08;
+	private String mcnd08;
 
 	@Column(name="MCND09")
-	private Object mcnd09;
+	private String mcnd09;
 
 	@Column(name="MCND10")
-	private Object mcnd10;
+	private String mcnd10;
 
 	@Column(name="MCOBJ1")
-	private Object mcobj1;
+	private String mcobj1;
 
 	@Column(name="MCOBJ2")
-	private Object mcobj2;
+	private String mcobj2;
 
 	@Column(name="MCOBJ3")
-	private Object mcobj3;
+	private String mcobj3;
 
 	@Column(name="MCPAC")
 	private double mcpac;
@@ -222,151 +222,151 @@ public class F0006 implements Serializable {
 	private double mcpcc;
 
 	@Column(name="MCPECC")
-	private Object mcpecc;
+	private String mcpecc;
 
 	@Column(name="MCPID")
-	private Object mcpid;
+	private String mcpid;
 
 	@Column(name="MCRP01")
-	private Object mcrp01;
+	private String mcrp01;
 
 	@Column(name="MCRP02")
-	private Object mcrp02;
+	private String mcrp02;
 
 	@Column(name="MCRP03")
-	private Object mcrp03;
+	private String mcrp03;
 
 	@Column(name="MCRP04")
-	private Object mcrp04;
+	private String mcrp04;
 
 	@Column(name="MCRP05")
-	private Object mcrp05;
+	private String mcrp05;
 
 	@Column(name="MCRP06")
-	private Object mcrp06;
+	private String mcrp06;
 
 	@Column(name="MCRP07")
-	private Object mcrp07;
+	private String mcrp07;
 
 	@Column(name="MCRP08")
-	private Object mcrp08;
+	private String mcrp08;
 
 	@Column(name="MCRP09")
-	private Object mcrp09;
+	private String mcrp09;
 
 	@Column(name="MCRP10")
-	private Object mcrp10;
+	private String mcrp10;
 
 	@Column(name="MCRP11")
-	private Object mcrp11;
+	private String mcrp11;
 
 	@Column(name="MCRP12")
-	private Object mcrp12;
+	private String mcrp12;
 
 	@Column(name="MCRP13")
-	private Object mcrp13;
+	private String mcrp13;
 
 	@Column(name="MCRP14")
-	private Object mcrp14;
+	private String mcrp14;
 
 	@Column(name="MCRP15")
-	private Object mcrp15;
+	private String mcrp15;
 
 	@Column(name="MCRP16")
-	private Object mcrp16;
+	private String mcrp16;
 
 	@Column(name="MCRP17")
-	private Object mcrp17;
+	private String mcrp17;
 
 	@Column(name="MCRP18")
-	private Object mcrp18;
+	private String mcrp18;
 
 	@Column(name="MCRP19")
-	private Object mcrp19;
+	private String mcrp19;
 
 	@Column(name="MCRP20")
-	private Object mcrp20;
+	private String mcrp20;
 
 	@Column(name="MCRP21")
-	private Object mcrp21;
+	private String mcrp21;
 
 	@Column(name="MCRP22")
-	private Object mcrp22;
+	private String mcrp22;
 
 	@Column(name="MCRP23")
-	private Object mcrp23;
+	private String mcrp23;
 
 	@Column(name="MCRP24")
-	private Object mcrp24;
+	private String mcrp24;
 
 	@Column(name="MCRP25")
-	private Object mcrp25;
+	private String mcrp25;
 
 	@Column(name="MCRP26")
-	private Object mcrp26;
+	private String mcrp26;
 
 	@Column(name="MCRP27")
-	private Object mcrp27;
+	private String mcrp27;
 
 	@Column(name="MCRP28")
-	private Object mcrp28;
+	private String mcrp28;
 
 	@Column(name="MCRP29")
-	private Object mcrp29;
+	private String mcrp29;
 
 	@Column(name="MCRP30")
-	private Object mcrp30;
+	private String mcrp30;
 
 	@Column(name="MCSBLI")
-	private Object mcsbli;
+	private String mcsbli;
 
 	@Column(name="MCSTYL")
-	private Object mcstyl;
+	private String mcstyl;
 
 	@Column(name="MCSUB1")
-	private Object mcsub1;
+	private String mcsub1;
 
 	@Column(name="MCTA")
-	private Object mcta;
+	private String mcta;
 
 	@Column(name="MCTC01")
-	private Object mctc01;
+	private String mctc01;
 
 	@Column(name="MCTC02")
-	private Object mctc02;
+	private String mctc02;
 
 	@Column(name="MCTC03")
-	private Object mctc03;
+	private String mctc03;
 
 	@Column(name="MCTC04")
-	private Object mctc04;
+	private String mctc04;
 
 	@Column(name="MCTC05")
-	private Object mctc05;
+	private String mctc05;
 
 	@Column(name="MCTC06")
-	private Object mctc06;
+	private String mctc06;
 
 	@Column(name="MCTC07")
-	private Object mctc07;
+	private String mctc07;
 
 	@Column(name="MCTC08")
-	private Object mctc08;
+	private String mctc08;
 
 	@Column(name="MCTC09")
-	private Object mctc09;
+	private String mctc09;
 
 	@Column(name="MCTC10")
-	private Object mctc10;
+	private String mctc10;
 
 	@Column(name="MCTOU")
 	private double mctou;
 
 	@Column(name="MCTSBU")
-	private Object mctsbu;
+	private String mctsbu;
 
 	@Column(name="MCTXA1")
-	private Object mctxa1;
+	private String mctxa1;
 
 	@Column(name="MCTXJS")
 	private double mctxjs;
@@ -378,7 +378,7 @@ public class F0006 implements Serializable {
 	private double mcupmt;
 
 	@Column(name="MCUSER")
-	private Object mcuser;
+	private String mcuser;
 
 	public F0006() {
 	}
@@ -391,27 +391,27 @@ public class F0006 implements Serializable {
 		this.mcmcu = mcmcu;
 	}
 
-	public Object getMcadds() {
+	public String getMcadds() {
 		return this.mcadds;
 	}
 
-	public void setMcadds(Object mcadds) {
+	public void setMcadds(String mcadds) {
 		this.mcadds = mcadds;
 	}
 
-	public Object getMcalcl() {
+	public String getMcalcl() {
 		return this.mcalcl;
 	}
 
-	public void setMcalcl(Object mcalcl) {
+	public void setMcalcl(String mcalcl) {
 		this.mcalcl = mcalcl;
 	}
 
-	public Object getMcals() {
+	public String getMcals() {
 		return this.mcals;
 	}
 
-	public void setMcals(Object mcals) {
+	public void setMcals(String mcals) {
 		this.mcals = mcals;
 	}
 
@@ -439,27 +439,27 @@ public class F0006 implements Serializable {
 		this.mcanpa = mcanpa;
 	}
 
-	public Object getMcapsb() {
+	public String getMcapsb() {
 		return this.mcapsb;
 	}
 
-	public void setMcapsb(Object mcapsb) {
+	public void setMcapsb(String mcapsb) {
 		this.mcapsb = mcapsb;
 	}
 
-	public Object getMcbptp() {
+	public String getMcbptp() {
 		return this.mcbptp;
 	}
 
-	public void setMcbptp(Object mcbptp) {
+	public void setMcbptp(String mcbptp) {
 		this.mcbptp = mcbptp;
 	}
 
-	public Object getMcbtyp() {
+	public String getMcbtyp() {
 		return this.mcbtyp;
 	}
 
-	public void setMcbtyp(Object mcbtyp) {
+	public void setMcbtyp(String mcbtyp) {
 		this.mcbtyp = mcbtyp;
 	}
 
@@ -471,115 +471,115 @@ public class F0006 implements Serializable {
 		this.mccac = mccac;
 	}
 
-	public Object getMccc01() {
+	public String getMccc01() {
 		return this.mccc01;
 	}
 
-	public void setMccc01(Object mccc01) {
+	public void setMccc01(String mccc01) {
 		this.mccc01 = mccc01;
 	}
 
-	public Object getMccc02() {
+	public String getMccc02() {
 		return this.mccc02;
 	}
 
-	public void setMccc02(Object mccc02) {
+	public void setMccc02(String mccc02) {
 		this.mccc02 = mccc02;
 	}
 
-	public Object getMccc03() {
+	public String getMccc03() {
 		return this.mccc03;
 	}
 
-	public void setMccc03(Object mccc03) {
+	public void setMccc03(String mccc03) {
 		this.mccc03 = mccc03;
 	}
 
-	public Object getMccc04() {
+	public String getMccc04() {
 		return this.mccc04;
 	}
 
-	public void setMccc04(Object mccc04) {
+	public void setMccc04(String mccc04) {
 		this.mccc04 = mccc04;
 	}
 
-	public Object getMccc05() {
+	public String getMccc05() {
 		return this.mccc05;
 	}
 
-	public void setMccc05(Object mccc05) {
+	public void setMccc05(String mccc05) {
 		this.mccc05 = mccc05;
 	}
 
-	public Object getMccc06() {
+	public String getMccc06() {
 		return this.mccc06;
 	}
 
-	public void setMccc06(Object mccc06) {
+	public void setMccc06(String mccc06) {
 		this.mccc06 = mccc06;
 	}
 
-	public Object getMccc07() {
+	public String getMccc07() {
 		return this.mccc07;
 	}
 
-	public void setMccc07(Object mccc07) {
+	public void setMccc07(String mccc07) {
 		this.mccc07 = mccc07;
 	}
 
-	public Object getMccc08() {
+	public String getMccc08() {
 		return this.mccc08;
 	}
 
-	public void setMccc08(Object mccc08) {
+	public void setMccc08(String mccc08) {
 		this.mccc08 = mccc08;
 	}
 
-	public Object getMccc09() {
+	public String getMccc09() {
 		return this.mccc09;
 	}
 
-	public void setMccc09(Object mccc09) {
+	public void setMccc09(String mccc09) {
 		this.mccc09 = mccc09;
 	}
 
-	public Object getMccc10() {
+	public String getMccc10() {
 		return this.mccc10;
 	}
 
-	public void setMccc10(Object mccc10) {
+	public void setMccc10(String mccc10) {
 		this.mccc10 = mccc10;
 	}
 
-	public Object getMccert() {
+	public String getMccert() {
 		return this.mccert;
 	}
 
-	public void setMccert(Object mccert) {
+	public void setMccert(String mccert) {
 		this.mccert = mccert;
 	}
 
-	public Object getMccnty() {
+	public String getMccnty() {
 		return this.mccnty;
 	}
 
-	public void setMccnty(Object mccnty) {
+	public void setMccnty(String mccnty) {
 		this.mccnty = mccnty;
 	}
 
-	public Object getMcco() {
+	public String getMcco() {
 		return this.mcco;
 	}
 
-	public void setMcco(Object mcco) {
+	public void setMcco(String mcco) {
 		this.mcco = mcco;
 	}
 
-	public Object getMcct() {
+	public String getMcct() {
 		return this.mcct;
 	}
 
-	public void setMcct(Object mcct) {
+	public void setMcct(String mcct) {
 		this.mcct = mcct;
 	}
 
@@ -631,75 +631,75 @@ public class F0006 implements Serializable {
 		this.mcd6j = mcd6j;
 	}
 
-	public Object getMcdc() {
+	public String getMcdc() {
 		return this.mcdc;
 	}
 
-	public void setMcdc(Object mcdc) {
+	public void setMcdc(String mcdc) {
 		this.mcdc = mcdc;
 	}
 
-	public Object getMcdl01() {
+	public String getMcdl01() {
 		return this.mcdl01;
 	}
 
-	public void setMcdl01(Object mcdl01) {
+	public void setMcdl01(String mcdl01) {
 		this.mcdl01 = mcdl01;
 	}
 
-	public Object getMcdl02() {
+	public String getMcdl02() {
 		return this.mcdl02;
 	}
 
-	public void setMcdl02(Object mcdl02) {
+	public void setMcdl02(String mcdl02) {
 		this.mcdl02 = mcdl02;
 	}
 
-	public Object getMcdl03() {
+	public String getMcdl03() {
 		return this.mcdl03;
 	}
 
-	public void setMcdl03(Object mcdl03) {
+	public void setMcdl03(String mcdl03) {
 		this.mcdl03 = mcdl03;
 	}
 
-	public Object getMcdl04() {
+	public String getMcdl04() {
 		return this.mcdl04;
 	}
 
-	public void setMcdl04(Object mcdl04) {
+	public void setMcdl04(String mcdl04) {
 		this.mcdl04 = mcdl04;
 	}
 
-	public Object getMceeo() {
+	public String getMceeo() {
 		return this.mceeo;
 	}
 
-	public void setMceeo(Object mceeo) {
+	public void setMceeo(String mceeo) {
 		this.mceeo = mceeo;
 	}
 
-	public Object getMcerc() {
+	public String getMcerc() {
 		return this.mcerc;
 	}
 
-	public void setMcerc(Object mcerc) {
+	public void setMcerc(String mcerc) {
 		this.mcerc = mcerc;
 	}
 
-	public Object getMcexr1() {
+	public String getMcexr1() {
 		return this.mcexr1;
 	}
 
-	public void setMcexr1(Object mcexr1) {
+	public void setMcexr1(String mcexr1) {
 		this.mcexr1 = mcexr1;
 	}
 
-	public Object getMcfmod() {
+	public String getMcfmod() {
 		return this.mcfmod;
 	}
 
-	public void setMcfmod(Object mcfmod) {
+	public void setMcfmod(String mcfmod) {
 		this.mcfmod = mcfmod;
 	}
 
@@ -711,51 +711,51 @@ public class F0006 implements Serializable {
 		this.mcfpdj = mcfpdj;
 	}
 
-	public Object getMcglba() {
+	public String getMcglba() {
 		return this.mcglba;
 	}
 
-	public void setMcglba(Object mcglba) {
+	public void setMcglba(String mcglba) {
 		this.mcglba = mcglba;
 	}
 
-	public Object getMcinta() {
+	public String getMcinta() {
 		return this.mcinta;
 	}
 
-	public void setMcinta(Object mcinta) {
+	public void setMcinta(String mcinta) {
 		this.mcinta = mcinta;
 	}
 
-	public Object getMcintl() {
+	public String getMcintl() {
 		return this.mcintl;
 	}
 
-	public void setMcintl(Object mcintl) {
+	public void setMcintl(String mcintl) {
 		this.mcintl = mcintl;
 	}
 
-	public Object getMciss() {
+	public String getMciss() {
 		return this.mciss;
 	}
 
-	public void setMciss(Object mciss) {
+	public void setMciss(String mciss) {
 		this.mciss = mciss;
 	}
 
-	public Object getMcjobn() {
+	public String getMcjobn() {
 		return this.mcjobn;
 	}
 
-	public void setMcjobn(Object mcjobn) {
+	public void setMcjobn(String mcjobn) {
 		this.mcjobn = mcjobn;
 	}
 
-	public Object getMcldm() {
+	public String getMcldm() {
 		return this.mcldm;
 	}
 
-	public void setMcldm(Object mcldm) {
+	public void setMcldm(String mcldm) {
 		this.mcldm = mcldm;
 	}
 
@@ -767,123 +767,123 @@ public class F0006 implements Serializable {
 		this.mclf = mclf;
 	}
 
-	public Object getMclmth() {
+	public String getMclmth() {
 		return this.mclmth;
 	}
 
-	public void setMclmth(Object mclmth) {
+	public void setMclmth(String mclmth) {
 		this.mclmth = mclmth;
 	}
 
-	public Object getMcmcus() {
+	public String getMcmcus() {
 		return this.mcmcus;
 	}
 
-	public void setMcmcus(Object mcmcus) {
+	public void setMcmcus(String mcmcus) {
 		this.mcmcus = mcmcus;
 	}
 
-	public Object getMcnd01() {
+	public String getMcnd01() {
 		return this.mcnd01;
 	}
 
-	public void setMcnd01(Object mcnd01) {
+	public void setMcnd01(String mcnd01) {
 		this.mcnd01 = mcnd01;
 	}
 
-	public Object getMcnd02() {
+	public String getMcnd02() {
 		return this.mcnd02;
 	}
 
-	public void setMcnd02(Object mcnd02) {
+	public void setMcnd02(String mcnd02) {
 		this.mcnd02 = mcnd02;
 	}
 
-	public Object getMcnd03() {
+	public String getMcnd03() {
 		return this.mcnd03;
 	}
 
-	public void setMcnd03(Object mcnd03) {
+	public void setMcnd03(String mcnd03) {
 		this.mcnd03 = mcnd03;
 	}
 
-	public Object getMcnd04() {
+	public String getMcnd04() {
 		return this.mcnd04;
 	}
 
-	public void setMcnd04(Object mcnd04) {
+	public void setMcnd04(String mcnd04) {
 		this.mcnd04 = mcnd04;
 	}
 
-	public Object getMcnd05() {
+	public String getMcnd05() {
 		return this.mcnd05;
 	}
 
-	public void setMcnd05(Object mcnd05) {
+	public void setMcnd05(String mcnd05) {
 		this.mcnd05 = mcnd05;
 	}
 
-	public Object getMcnd06() {
+	public String getMcnd06() {
 		return this.mcnd06;
 	}
 
-	public void setMcnd06(Object mcnd06) {
+	public void setMcnd06(String mcnd06) {
 		this.mcnd06 = mcnd06;
 	}
 
-	public Object getMcnd07() {
+	public String getMcnd07() {
 		return this.mcnd07;
 	}
 
-	public void setMcnd07(Object mcnd07) {
+	public void setMcnd07(String mcnd07) {
 		this.mcnd07 = mcnd07;
 	}
 
-	public Object getMcnd08() {
+	public String getMcnd08() {
 		return this.mcnd08;
 	}
 
-	public void setMcnd08(Object mcnd08) {
+	public void setMcnd08(String mcnd08) {
 		this.mcnd08 = mcnd08;
 	}
 
-	public Object getMcnd09() {
+	public String getMcnd09() {
 		return this.mcnd09;
 	}
 
-	public void setMcnd09(Object mcnd09) {
+	public void setMcnd09(String mcnd09) {
 		this.mcnd09 = mcnd09;
 	}
 
-	public Object getMcnd10() {
+	public String getMcnd10() {
 		return this.mcnd10;
 	}
 
-	public void setMcnd10(Object mcnd10) {
+	public void setMcnd10(String mcnd10) {
 		this.mcnd10 = mcnd10;
 	}
 
-	public Object getMcobj1() {
+	public String getMcobj1() {
 		return this.mcobj1;
 	}
 
-	public void setMcobj1(Object mcobj1) {
+	public void setMcobj1(String mcobj1) {
 		this.mcobj1 = mcobj1;
 	}
 
-	public Object getMcobj2() {
+	public String getMcobj2() {
 		return this.mcobj2;
 	}
 
-	public void setMcobj2(Object mcobj2) {
+	public void setMcobj2(String mcobj2) {
 		this.mcobj2 = mcobj2;
 	}
 
-	public Object getMcobj3() {
+	public String getMcobj3() {
 		return this.mcobj3;
 	}
 
-	public void setMcobj3(Object mcobj3) {
+	public void setMcobj3(String mcobj3) {
 		this.mcobj3 = mcobj3;
 	}
 
@@ -919,371 +919,371 @@ public class F0006 implements Serializable {
 		this.mcpcc = mcpcc;
 	}
 
-	public Object getMcpecc() {
+	public String getMcpecc() {
 		return this.mcpecc;
 	}
 
-	public void setMcpecc(Object mcpecc) {
+	public void setMcpecc(String mcpecc) {
 		this.mcpecc = mcpecc;
 	}
 
-	public Object getMcpid() {
+	public String getMcpid() {
 		return this.mcpid;
 	}
 
-	public void setMcpid(Object mcpid) {
+	public void setMcpid(String mcpid) {
 		this.mcpid = mcpid;
 	}
 
-	public Object getMcrp01() {
+	public String getMcrp01() {
 		return this.mcrp01;
 	}
 
-	public void setMcrp01(Object mcrp01) {
+	public void setMcrp01(String mcrp01) {
 		this.mcrp01 = mcrp01;
 	}
 
-	public Object getMcrp02() {
+	public String getMcrp02() {
 		return this.mcrp02;
 	}
 
-	public void setMcrp02(Object mcrp02) {
+	public void setMcrp02(String mcrp02) {
 		this.mcrp02 = mcrp02;
 	}
 
-	public Object getMcrp03() {
+	public String getMcrp03() {
 		return this.mcrp03;
 	}
 
-	public void setMcrp03(Object mcrp03) {
+	public void setMcrp03(String mcrp03) {
 		this.mcrp03 = mcrp03;
 	}
 
-	public Object getMcrp04() {
+	public String getMcrp04() {
 		return this.mcrp04;
 	}
 
-	public void setMcrp04(Object mcrp04) {
+	public void setMcrp04(String mcrp04) {
 		this.mcrp04 = mcrp04;
 	}
 
-	public Object getMcrp05() {
+	public String getMcrp05() {
 		return this.mcrp05;
 	}
 
-	public void setMcrp05(Object mcrp05) {
+	public void setMcrp05(String mcrp05) {
 		this.mcrp05 = mcrp05;
 	}
 
-	public Object getMcrp06() {
+	public String getMcrp06() {
 		return this.mcrp06;
 	}
 
-	public void setMcrp06(Object mcrp06) {
+	public void setMcrp06(String mcrp06) {
 		this.mcrp06 = mcrp06;
 	}
 
-	public Object getMcrp07() {
+	public String getMcrp07() {
 		return this.mcrp07;
 	}
 
-	public void setMcrp07(Object mcrp07) {
+	public void setMcrp07(String mcrp07) {
 		this.mcrp07 = mcrp07;
 	}
 
-	public Object getMcrp08() {
+	public String getMcrp08() {
 		return this.mcrp08;
 	}
 
-	public void setMcrp08(Object mcrp08) {
+	public void setMcrp08(String mcrp08) {
 		this.mcrp08 = mcrp08;
 	}
 
-	public Object getMcrp09() {
+	public String getMcrp09() {
 		return this.mcrp09;
 	}
 
-	public void setMcrp09(Object mcrp09) {
+	public void setMcrp09(String mcrp09) {
 		this.mcrp09 = mcrp09;
 	}
 
-	public Object getMcrp10() {
+	public String getMcrp10() {
 		return this.mcrp10;
 	}
 
-	public void setMcrp10(Object mcrp10) {
+	public void setMcrp10(String mcrp10) {
 		this.mcrp10 = mcrp10;
 	}
 
-	public Object getMcrp11() {
+	public String getMcrp11() {
 		return this.mcrp11;
 	}
 
-	public void setMcrp11(Object mcrp11) {
+	public void setMcrp11(String mcrp11) {
 		this.mcrp11 = mcrp11;
 	}
 
-	public Object getMcrp12() {
+	public String getMcrp12() {
 		return this.mcrp12;
 	}
 
-	public void setMcrp12(Object mcrp12) {
+	public void setMcrp12(String mcrp12) {
 		this.mcrp12 = mcrp12;
 	}
 
-	public Object getMcrp13() {
+	public String getMcrp13() {
 		return this.mcrp13;
 	}
 
-	public void setMcrp13(Object mcrp13) {
+	public void setMcrp13(String mcrp13) {
 		this.mcrp13 = mcrp13;
 	}
 
-	public Object getMcrp14() {
+	public String getMcrp14() {
 		return this.mcrp14;
 	}
 
-	public void setMcrp14(Object mcrp14) {
+	public void setMcrp14(String mcrp14) {
 		this.mcrp14 = mcrp14;
 	}
 
-	public Object getMcrp15() {
+	public String getMcrp15() {
 		return this.mcrp15;
 	}
 
-	public void setMcrp15(Object mcrp15) {
+	public void setMcrp15(String mcrp15) {
 		this.mcrp15 = mcrp15;
 	}
 
-	public Object getMcrp16() {
+	public String getMcrp16() {
 		return this.mcrp16;
 	}
 
-	public void setMcrp16(Object mcrp16) {
+	public void setMcrp16(String mcrp16) {
 		this.mcrp16 = mcrp16;
 	}
 
-	public Object getMcrp17() {
+	public String getMcrp17() {
 		return this.mcrp17;
 	}
 
-	public void setMcrp17(Object mcrp17) {
+	public void setMcrp17(String mcrp17) {
 		this.mcrp17 = mcrp17;
 	}
 
-	public Object getMcrp18() {
+	public String getMcrp18() {
 		return this.mcrp18;
 	}
 
-	public void setMcrp18(Object mcrp18) {
+	public void setMcrp18(String mcrp18) {
 		this.mcrp18 = mcrp18;
 	}
 
-	public Object getMcrp19() {
+	public String getMcrp19() {
 		return this.mcrp19;
 	}
 
-	public void setMcrp19(Object mcrp19) {
+	public void setMcrp19(String mcrp19) {
 		this.mcrp19 = mcrp19;
 	}
 
-	public Object getMcrp20() {
+	public String getMcrp20() {
 		return this.mcrp20;
 	}
 
-	public void setMcrp20(Object mcrp20) {
+	public void setMcrp20(String mcrp20) {
 		this.mcrp20 = mcrp20;
 	}
 
-	public Object getMcrp21() {
+	public String getMcrp21() {
 		return this.mcrp21;
 	}
 
-	public void setMcrp21(Object mcrp21) {
+	public void setMcrp21(String mcrp21) {
 		this.mcrp21 = mcrp21;
 	}
 
-	public Object getMcrp22() {
+	public String getMcrp22() {
 		return this.mcrp22;
 	}
 
-	public void setMcrp22(Object mcrp22) {
+	public void setMcrp22(String mcrp22) {
 		this.mcrp22 = mcrp22;
 	}
 
-	public Object getMcrp23() {
+	public String getMcrp23() {
 		return this.mcrp23;
 	}
 
-	public void setMcrp23(Object mcrp23) {
+	public void setMcrp23(String mcrp23) {
 		this.mcrp23 = mcrp23;
 	}
 
-	public Object getMcrp24() {
+	public String getMcrp24() {
 		return this.mcrp24;
 	}
 
-	public void setMcrp24(Object mcrp24) {
+	public void setMcrp24(String mcrp24) {
 		this.mcrp24 = mcrp24;
 	}
 
-	public Object getMcrp25() {
+	public String getMcrp25() {
 		return this.mcrp25;
 	}
 
-	public void setMcrp25(Object mcrp25) {
+	public void setMcrp25(String mcrp25) {
 		this.mcrp25 = mcrp25;
 	}
 
-	public Object getMcrp26() {
+	public String getMcrp26() {
 		return this.mcrp26;
 	}
 
-	public void setMcrp26(Object mcrp26) {
+	public void setMcrp26(String mcrp26) {
 		this.mcrp26 = mcrp26;
 	}
 
-	public Object getMcrp27() {
+	public String getMcrp27() {
 		return this.mcrp27;
 	}
 
-	public void setMcrp27(Object mcrp27) {
+	public void setMcrp27(String mcrp27) {
 		this.mcrp27 = mcrp27;
 	}
 
-	public Object getMcrp28() {
+	public String getMcrp28() {
 		return this.mcrp28;
 	}
 
-	public void setMcrp28(Object mcrp28) {
+	public void setMcrp28(String mcrp28) {
 		this.mcrp28 = mcrp28;
 	}
 
-	public Object getMcrp29() {
+	public String getMcrp29() {
 		return this.mcrp29;
 	}
 
-	public void setMcrp29(Object mcrp29) {
+	public void setMcrp29(String mcrp29) {
 		this.mcrp29 = mcrp29;
 	}
 
-	public Object getMcrp30() {
+	public String getMcrp30() {
 		return this.mcrp30;
 	}
 
-	public void setMcrp30(Object mcrp30) {
+	public void setMcrp30(String mcrp30) {
 		this.mcrp30 = mcrp30;
 	}
 
-	public Object getMcsbli() {
+	public String getMcsbli() {
 		return this.mcsbli;
 	}
 
-	public void setMcsbli(Object mcsbli) {
+	public void setMcsbli(String mcsbli) {
 		this.mcsbli = mcsbli;
 	}
 
-	public Object getMcstyl() {
+	public String getMcstyl() {
 		return this.mcstyl;
 	}
 
-	public void setMcstyl(Object mcstyl) {
+	public void setMcstyl(String mcstyl) {
 		this.mcstyl = mcstyl;
 	}
 
-	public Object getMcsub1() {
+	public String getMcsub1() {
 		return this.mcsub1;
 	}
 
-	public void setMcsub1(Object mcsub1) {
+	public void setMcsub1(String mcsub1) {
 		this.mcsub1 = mcsub1;
 	}
 
-	public Object getMcta() {
+	public String getMcta() {
 		return this.mcta;
 	}
 
-	public void setMcta(Object mcta) {
+	public void setMcta(String mcta) {
 		this.mcta = mcta;
 	}
 
-	public Object getMctc01() {
+	public String getMctc01() {
 		return this.mctc01;
 	}
 
-	public void setMctc01(Object mctc01) {
+	public void setMctc01(String mctc01) {
 		this.mctc01 = mctc01;
 	}
 
-	public Object getMctc02() {
+	public String getMctc02() {
 		return this.mctc02;
 	}
 
-	public void setMctc02(Object mctc02) {
+	public void setMctc02(String mctc02) {
 		this.mctc02 = mctc02;
 	}
 
-	public Object getMctc03() {
+	public String getMctc03() {
 		return this.mctc03;
 	}
 
-	public void setMctc03(Object mctc03) {
+	public void setMctc03(String mctc03) {
 		this.mctc03 = mctc03;
 	}
 
-	public Object getMctc04() {
+	public String getMctc04() {
 		return this.mctc04;
 	}
 
-	public void setMctc04(Object mctc04) {
+	public void setMctc04(String mctc04) {
 		this.mctc04 = mctc04;
 	}
 
-	public Object getMctc05() {
+	public String getMctc05() {
 		return this.mctc05;
 	}
 
-	public void setMctc05(Object mctc05) {
+	public void setMctc05(String mctc05) {
 		this.mctc05 = mctc05;
 	}
 
-	public Object getMctc06() {
+	public String getMctc06() {
 		return this.mctc06;
 	}
 
-	public void setMctc06(Object mctc06) {
+	public void setMctc06(String mctc06) {
 		this.mctc06 = mctc06;
 	}
 
-	public Object getMctc07() {
+	public String getMctc07() {
 		return this.mctc07;
 	}
 
-	public void setMctc07(Object mctc07) {
+	public void setMctc07(String mctc07) {
 		this.mctc07 = mctc07;
 	}
 
-	public Object getMctc08() {
+	public String getMctc08() {
 		return this.mctc08;
 	}
 
-	public void setMctc08(Object mctc08) {
+	public void setMctc08(String mctc08) {
 		this.mctc08 = mctc08;
 	}
 
-	public Object getMctc09() {
+	public String getMctc09() {
 		return this.mctc09;
 	}
 
-	public void setMctc09(Object mctc09) {
+	public void setMctc09(String mctc09) {
 		this.mctc09 = mctc09;
 	}
 
-	public Object getMctc10() {
+	public String getMctc10() {
 		return this.mctc10;
 	}
 
-	public void setMctc10(Object mctc10) {
+	public void setMctc10(String mctc10) {
 		this.mctc10 = mctc10;
 	}
 
@@ -1295,19 +1295,19 @@ public class F0006 implements Serializable {
 		this.mctou = mctou;
 	}
 
-	public Object getMctsbu() {
+	public String getMctsbu() {
 		return this.mctsbu;
 	}
 
-	public void setMctsbu(Object mctsbu) {
+	public void setMctsbu(String mctsbu) {
 		this.mctsbu = mctsbu;
 	}
 
-	public Object getMctxa1() {
+	public String getMctxa1() {
 		return this.mctxa1;
 	}
 
-	public void setMctxa1(Object mctxa1) {
+	public void setMctxa1(String mctxa1) {
 		this.mctxa1 = mctxa1;
 	}
 
@@ -1335,11 +1335,11 @@ public class F0006 implements Serializable {
 		this.mcupmt = mcupmt;
 	}
 
-	public Object getMcuser() {
+	public String getMcuser() {
 		return this.mcuser;
 	}
 
-	public void setMcuser(Object mcuser) {
+	public void setMcuser(String mcuser) {
 		this.mcuser = mcuser;
 	}
 

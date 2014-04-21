@@ -22,25 +22,25 @@ public class F0005 implements Serializable {
 	private F0005PK id;
 
 	@Column(name="DRDL01")
-	private Object drdl01;
+	private String drdl01;
 
 	@Column(name="DRDL02")
-	private Object drdl02;
+	private String drdl02;
 
 	@Column(name="DRHRDC")
-	private Object drhrdc;
+	private String drhrdc;
 
 	@Column(name="DRJOBN")
-	private Object drjobn;
+	private String drjobn;
 
 	@Column(name="DRPID")
-	private Object drpid;
+	private String drpid;
 
 	@Column(name="DRSPHD")
-	private Object drsphd;
+	private String drsphd;
 
 	@Column(name="DRUDCO")
-	private Object drudco;
+	private String drudco;
 
 	@Column(name="DRUPMJ")
 	private BigDecimal drupmj;
@@ -49,7 +49,7 @@ public class F0005 implements Serializable {
 	private double drupmt;
 
 	@Column(name="DRUSER")
-	private Object druser;
+	private String druser;
 
 	public F0005() {
 	}
@@ -62,59 +62,59 @@ public class F0005 implements Serializable {
 		this.id = id;
 	}
 
-	public Object getDrdl01() {
+	public String getDrdl01() {
 		return this.drdl01;
 	}
 
-	public void setDrdl01(Object drdl01) {
+	public void setDrdl01(String drdl01) {
 		this.drdl01 = drdl01;
 	}
 
-	public Object getDrdl02() {
+	public String getDrdl02() {
 		return this.drdl02;
 	}
 
-	public void setDrdl02(Object drdl02) {
+	public void setDrdl02(String drdl02) {
 		this.drdl02 = drdl02;
 	}
 
-	public Object getDrhrdc() {
+	public String getDrhrdc() {
 		return this.drhrdc;
 	}
 
-	public void setDrhrdc(Object drhrdc) {
+	public void setDrhrdc(String drhrdc) {
 		this.drhrdc = drhrdc;
 	}
 
-	public Object getDrjobn() {
+	public String getDrjobn() {
 		return this.drjobn;
 	}
 
-	public void setDrjobn(Object drjobn) {
+	public void setDrjobn(String drjobn) {
 		this.drjobn = drjobn;
 	}
 
-	public Object getDrpid() {
+	public String getDrpid() {
 		return this.drpid;
 	}
 
-	public void setDrpid(Object drpid) {
+	public void setDrpid(String drpid) {
 		this.drpid = drpid;
 	}
 
-	public Object getDrsphd() {
+	public String getDrsphd() {
 		return this.drsphd;
 	}
 
-	public void setDrsphd(Object drsphd) {
+	public void setDrsphd(String drsphd) {
 		this.drsphd = drsphd;
 	}
 
-	public Object getDrudco() {
+	public String getDrudco() {
 		return this.drudco;
 	}
 
-	public void setDrudco(Object drudco) {
+	public void setDrudco(String drudco) {
 		this.drudco = drudco;
 	}
 
@@ -134,11 +134,11 @@ public class F0005 implements Serializable {
 		this.drupmt = drupmt;
 	}
 
-	public Object getDruser() {
+	public String getDruser() {
 		return this.druser;
 	}
 
-	public void setDruser(Object druser) {
+	public void setDruser(String druser) {
 		this.druser = druser;
 	}
 

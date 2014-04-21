@@ -22,10 +22,10 @@ public class F0015 implements Serializable {
 	private F0015PK id;
 
 	@Column(name="CXCLMETH")
-	private Object cxclmeth;
+	private String cxclmeth;
 
 	@Column(name="CXCRCM")
-	private Object cxcrcm;
+	private String cxcrcm;
 
 	@Column(name="CXCRR")
 	private double cxcrr;
@@ -34,16 +34,16 @@ public class F0015 implements Serializable {
 	private double cxcrrd;
 
 	@Column(name="CXCSR")
-	private Object cxcsr;
+	private String cxcsr;
 
 	@Column(name="CXJOBN")
-	private Object cxjobn;
+	private String cxjobn;
 
 	@Column(name="CXPID")
-	private Object cxpid;
+	private String cxpid;
 
 	@Column(name="CXTRCR")
-	private Object cxtrcr;
+	private String cxtrcr;
 
 	@Column(name="CXUPMJ")
 	private BigDecimal cxupmj;
@@ -52,7 +52,7 @@ public class F0015 implements Serializable {
 	private double cxupmt;
 
 	@Column(name="CXUSER")
-	private Object cxuser;
+	private String cxuser;
 
 	public F0015() {
 	}
@@ -65,19 +65,19 @@ public class F0015 implements Serializable {
 		this.id = id;
 	}
 
-	public Object getCxclmeth() {
+	public String getCxclmeth() {
 		return this.cxclmeth;
 	}
 
-	public void setCxclmeth(Object cxclmeth) {
+	public void setCxclmeth(String cxclmeth) {
 		this.cxclmeth = cxclmeth;
 	}
 
-	public Object getCxcrcm() {
+	public String getCxcrcm() {
 		return this.cxcrcm;
 	}
 
-	public void setCxcrcm(Object cxcrcm) {
+	public void setCxcrcm(String cxcrcm) {
 		this.cxcrcm = cxcrcm;
 	}
 
@@ -97,35 +97,35 @@ public class F0015 implements Serializable {
 		this.cxcrrd = cxcrrd;
 	}
 
-	public Object getCxcsr() {
+	public String getCxcsr() {
 		return this.cxcsr;
 	}
 
-	public void setCxcsr(Object cxcsr) {
+	public void setCxcsr(String cxcsr) {
 		this.cxcsr = cxcsr;
 	}
 
-	public Object getCxjobn() {
+	public String getCxjobn() {
 		return this.cxjobn;
 	}
 
-	public void setCxjobn(Object cxjobn) {
+	public void setCxjobn(String cxjobn) {
 		this.cxjobn = cxjobn;
 	}
 
-	public Object getCxpid() {
+	public String getCxpid() {
 		return this.cxpid;
 	}
 
-	public void setCxpid(Object cxpid) {
+	public void setCxpid(String cxpid) {
 		this.cxpid = cxpid;
 	}
 
-	public Object getCxtrcr() {
+	public String getCxtrcr() {
 		return this.cxtrcr;
 	}
 
-	public void setCxtrcr(Object cxtrcr) {
+	public void setCxtrcr(String cxtrcr) {
 		this.cxtrcr = cxtrcr;
 	}
 
@@ -145,11 +145,11 @@ public class F0015 implements Serializable {
 		this.cxupmt = cxupmt;
 	}
 
-	public Object getCxuser() {
+	public String getCxuser() {
 		return this.cxuser;
 	}
 
-	public void setCxuser(Object cxuser) {
+	public void setCxuser(String cxuser) {
 		this.cxuser = cxuser;
 	}
 

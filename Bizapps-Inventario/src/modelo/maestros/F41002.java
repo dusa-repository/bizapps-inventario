@@ -28,16 +28,16 @@ public class F41002 implements Serializable {
 	private double umconv;
 
 	@Column(name="UMEXPO")
-	private Object umexpo;
+	private String umexpo;
 
 	@Column(name="UMEXSO")
-	private Object umexso;
+	private String umexso;
 
 	@Column(name="UMJOBN")
-	private Object umjobn;
+	private String umjobn;
 
 	@Column(name="UMPID")
-	private Object umpid;
+	private String umpid;
 
 	@Column(name="UMPUPC")
 	private BigDecimal umpupc;
@@ -52,10 +52,10 @@ public class F41002 implements Serializable {
 	private BigDecimal umupmj;
 
 	@Column(name="UMUSER")
-	private Object umuser;
+	private String umuser;
 
 	@Column(name="UMUSTR")
-	private Object umustr;
+	private String umustr;
 
 	public F41002() {
 	}
@@ -84,35 +84,35 @@ public class F41002 implements Serializable {
 		this.umconv = umconv;
 	}
 
-	public Object getUmexpo() {
+	public String getUmexpo() {
 		return this.umexpo;
 	}
 
-	public void setUmexpo(Object umexpo) {
+	public void setUmexpo(String umexpo) {
 		this.umexpo = umexpo;
 	}
 
-	public Object getUmexso() {
+	public String getUmexso() {
 		return this.umexso;
 	}
 
-	public void setUmexso(Object umexso) {
+	public void setUmexso(String umexso) {
 		this.umexso = umexso;
 	}
 
-	public Object getUmjobn() {
+	public String getUmjobn() {
 		return this.umjobn;
 	}
 
-	public void setUmjobn(Object umjobn) {
+	public void setUmjobn(String umjobn) {
 		this.umjobn = umjobn;
 	}
 
-	public Object getUmpid() {
+	public String getUmpid() {
 		return this.umpid;
 	}
 
-	public void setUmpid(Object umpid) {
+	public void setUmpid(String umpid) {
 		this.umpid = umpid;
 	}
 
@@ -148,19 +148,19 @@ public class F41002 implements Serializable {
 		this.umupmj = umupmj;
 	}
 
-	public Object getUmuser() {
+	public String getUmuser() {
 		return this.umuser;
 	}
 
-	public void setUmuser(Object umuser) {
+	public void setUmuser(String umuser) {
 		this.umuser = umuser;
 	}
 
-	public Object getUmustr() {
+	public String getUmustr() {
 		return this.umustr;
 	}
 
-	public void setUmustr(Object umustr) {
+	public void setUmustr(String umustr) {
 		this.umustr = umustr;
 	}
 

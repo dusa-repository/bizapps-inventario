@@ -70,13 +70,13 @@ public class F0008 implements Serializable {
 	private double cdfy;
 
 	@Column(name="CDJOBN")
-	private Object cdjobn;
+	private String cdjobn;
 
 	@Column(name="CDPID")
-	private Object cdpid;
+	private String cdpid;
 
 	@Column(name="CDPNT")
-	private Object cdpnt;
+	private String cdpnt;
 
 	@Column(name="CDUPMJ")
 	private BigDecimal cdupmj;
@@ -85,7 +85,7 @@ public class F0008 implements Serializable {
 	private double cdupmt;
 
 	@Column(name="CDUSER")
-	private Object cduser;
+	private String cduser;
 
 	public F0008() {
 	}
@@ -226,27 +226,27 @@ public class F0008 implements Serializable {
 		this.cdfy = cdfy;
 	}
 
-	public Object getCdjobn() {
+	public String getCdjobn() {
 		return this.cdjobn;
 	}
 
-	public void setCdjobn(Object cdjobn) {
+	public void setCdjobn(String cdjobn) {
 		this.cdjobn = cdjobn;
 	}
 
-	public Object getCdpid() {
+	public String getCdpid() {
 		return this.cdpid;
 	}
 
-	public void setCdpid(Object cdpid) {
+	public void setCdpid(String cdpid) {
 		this.cdpid = cdpid;
 	}
 
-	public Object getCdpnt() {
+	public String getCdpnt() {
 		return this.cdpnt;
 	}
 
-	public void setCdpnt(Object cdpnt) {
+	public void setCdpnt(String cdpnt) {
 		this.cdpnt = cdpnt;
 	}
 
@@ -266,11 +266,11 @@ public class F0008 implements Serializable {
 		this.cdupmt = cdupmt;
 	}
 
-	public Object getCduser() {
+	public String getCduser() {
 		return this.cduser;
 	}
 
-	public void setCduser(Object cduser) {
+	public void setCduser(String cduser) {
 		this.cduser = cduser;
 	}
 
