@@ -1,8 +1,9 @@
 package servicio.seguridad;
 
+import interfacedao.seguridad.IUsuarioDAO;
+
 import java.util.List;
 
-import interfacedao.seguridad.IUsuarioDAO;
 import modelo.seguridad.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
