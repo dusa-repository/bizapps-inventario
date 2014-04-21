@@ -1,12 +1,19 @@
 package modelo.seguridad;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import org.hibernate.annotations.Type;
-
 import java.sql.Timestamp;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 /**
  * The persistent class for the usuario database table.

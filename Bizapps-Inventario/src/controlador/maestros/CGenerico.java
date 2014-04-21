@@ -1,4 +1,4 @@
-package controlador;
+package controlador.maestros;
 
 import java.io.IOException;
 import java.sql.Timestamp;
