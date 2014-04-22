@@ -26,6 +26,7 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 
+import servicio.maestros.SF0004;
 import servicio.seguridad.SArbol;
 import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
@@ -37,6 +38,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	
 	@WireVariable("SArbol")
 	protected SArbol servicioArbol;
+	@WireVariable("SF0004")
+	protected SF0004 servicioF0004;
 	@WireVariable("SGrupo")
 	protected SGrupo servicioGrupo;
 	@WireVariable("SUsuario")

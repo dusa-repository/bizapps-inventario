@@ -18,7 +18,9 @@
 				</rows>
 			</grid>
 			<separator />
-							<label class="etiqueta" value="AQUI VA LA LISTA" />
+			<div id="catalogoF0004"/>
+			<separator />
+			<separator />
 		</groupbox>	
 
 	</div>
