@@ -1,5 +1,6 @@
 package componentes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.zkoss.zk.ui.Component;
@@ -7,6 +8,9 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.InputEvent;
+import org.zkoss.zk.ui.event.KeyEvent;
+import org.zkoss.zul.Auxhead;
+import org.zkoss.zul.Auxheader;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Label;
@@ -17,6 +21,7 @@ import org.zkoss.zul.Listhead;
 import org.zkoss.zul.Listheader;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Paging;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
@@ -25,13 +30,13 @@ public abstract class Catalogo<Clase> extends Window {
 
 	private static final long serialVersionUID = 1L;
 	Listbox lsbCatalogo;
-
+	
 	public Catalogo(final Component cGenerico, String titulo,
 			List<Clase> lista, String... campos) {
-		super(titulo, "2", true);
-		this.setId("cmpCatalogo");
+		super("", "2", false);
+		this.setId("cmpCatalogo"+titulo);
 		this.setStyle("background-header:#FF7925; background: #f4f2f2");
-		setWidth("60%");
+		setWidth("98%");
 		crearLista(lista, campos);
 		lsbCatalogo.addEventListener(Events.ON_SELECT,
 				new EventListener<Event>() {
@@ -45,31 +50,37 @@ public abstract class Catalogo<Clase> extends Window {
 
 	public void crearLista(List<Clase> lista, String[] campos) {
 		Hbox hbxBusqueda = new Hbox();
-		final Label lblBuscar = new Label();
-		final Textbox txtBuscar = new Textbox();
 		final Separator separador1 = new Separator();
 		final Separator separador2 = new Separator();
-		txtBuscar.setWidth("20em");
-		txtBuscar.setPlaceholder("Introduzca el criterio de busqueda");
-		final Combobox cmbBuscarPor = new Combobox();
-		cmbBuscarPor.setPlaceholder("Seleccione el Campo");
-		txtBuscar.addEventListener(Events.ON_CHANGING,
-				new EventListener<InputEvent>() {
-					@Override
-					public void onEvent(InputEvent e) throws Exception {
-						List<Clase> listaNueva = buscar(e.getValue(), cmbBuscarPor.getValue());
-						lsbCatalogo.setModel(new ListModelList<Clase>(
-								listaNueva));
-					}
-				});
 		lsbCatalogo = new Listbox();
 		lsbCatalogo.setMold("paging");
+		lsbCatalogo.setPagingPosition("top");
 		lsbCatalogo.setPageSize(10);
+		Auxhead cabecera = new Auxhead();
 		Listhead lhdEncabezado = new Listhead();
 		for (int i = 0; i < campos.length; i++) {
+			final Textbox cajaTexto = new Textbox();
+			cajaTexto.setContext(campos[i]);
+			cajaTexto.addEventListener(Events.ON_OK,
+					new EventListener<KeyEvent>() {
+				@Override
+				public void onEvent(KeyEvent e) throws Exception {
+					String valor = cajaTexto.getValue();
+					List<Clase> listaNueva = buscar(valor, cajaTexto.getContext());
+					lsbCatalogo.setModel(new ListModelList<Clase>(
+							listaNueva));
+					cajaTexto.setValue(valor);
+				}
+			});
+			cajaTexto.setPlaceholder("Filtrado");
+			Auxheader cabeceraFila = new Auxheader();
+			cabeceraFila.appendChild(cajaTexto);
+			cabecera.appendChild(cabeceraFila);
 			lhdEncabezado.appendChild(new Listheader(campos[i]));
 		}
+		lsbCatalogo.appendChild(cabecera);
 		lsbCatalogo.appendChild(lhdEncabezado);
+		cabecera.setVisible(true);
 		lhdEncabezado.setVisible(true);
 		lsbCatalogo.setModel(new ListModelList<Clase>(lista));
 		lsbCatalogo.setItemRenderer(new ListitemRenderer<Clase>() {
@@ -88,12 +99,7 @@ public abstract class Catalogo<Clase> extends Window {
 		
 
 		this.appendChild(separador1);
-		this.appendChild(hbxBusqueda);		
-		lblBuscar.setValue("Buscar Por :  ");
-		hbxBusqueda.appendChild(lblBuscar);
-		cmbBuscarPor.setModel(new ListModelList<String>(campos));
-		hbxBusqueda.appendChild(cmbBuscarPor);
-		hbxBusqueda.appendChild(txtBuscar);
+		this.appendChild(hbxBusqueda);
 		this.appendChild(separador2);
 		this.appendChild(lsbCatalogo);
 	}
