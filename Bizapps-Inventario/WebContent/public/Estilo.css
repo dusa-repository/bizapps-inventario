@@ -27,3 +27,25 @@
 .multilineaTab {
 	height: 250px;
 }
+
+.banner {
+	background-color: #004270;
+	color: white;
+	background-image:
+		url("./../imagenes/generales/reflejobanner.png");
+	background-repeat: no-repeat;
+	background-position: top;
+}
+
+
+.banner-head {
+	font-size: 20px;
+	padding-left: 5%;
+	padding-right: 5%;
+	font-style:italic;
+}
+
+.banner .logout {
+	text-decoration: underline;
+	cursor: pointer;
+}

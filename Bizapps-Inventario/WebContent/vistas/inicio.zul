@@ -1,52 +1,69 @@
 <zk>
-	<style src="../public/Estilo.css" />
-
-	<window title="" border="0" height="100%" contentStyle="overflow:auto"
-		apply="arbol.CArbol">
+	<window title="" border="0" height="100%"
+		contentStyle="overflow:auto" apply="arbol.CArbol">
+		<style src="/public/Estilo.css" />
 		<borderlayout height="100%" style="background-color:#fff;">
 			<north height="4,5em">
-				<hbox hflex="1">
+				<div vflex="1" hflex="1" class="banner">
+					<hbox vflex="1" hflex="1" align="center">
+						<div align="left" class="banner-head">
+								<image
+									src="public/imagenes/generales/inventario.PNG" height="4em"
+									width="6em" />
+						</div>
+						<div align="center" hflex="1">
+							<label value="Sistema de Inventario BIZAPPS"
+								class="banner-head" />
+						</div>
+						<div>
+							<image
+								src="public/imagenes/generales/inventario.PNG" height="3em"
+								width="7em" />
+						</div>
+					</hbox>
+				</div>
+				<!-- 				<hbox hflex="1"> 
+					<vbox> 
+					<separator /> 
+					<image src="public/imagenes/generales/LogoDusa.png"
+					height="3em" width="13em" /> 
+					<label value="LOGO BIZAPPS"></label> 
+					</vbox> 
+					<div align="center" width="35em"> 
+					<separator /> 
+					<separator /> 
+					<hbox> 
+					<label style="font-size:24px;color:#0404B4;font-weight: bold" 
+					value="Sistema de Inventario" /> 
+					</hbox> 
+					</div> 
+					<vbox> 
+					<separator /> 
+					<image src="public/imagenes/generales/inventario.PNG" height="3em" 
+					width="7em" /> 
+					</vbox> 
+					<div align="center" width="100%"> -->
+				<!-- <hbox>
 					<vbox>
-						<separator />
-						<!-- <image src="public/imagenes/generales/LogoDusa.png"
-							height="3em" width="13em" /> -->
-							<label value="LOGO BIZAPPS"></label>
+					<separator />
+					<image id="imagenes" width="60px" height="55px" />
 					</vbox>
-					<div align="center" width="35em">
-						<separator />
-						<separator />
-						<hbox>
-							<label style="font-size:24px;color:#0404B4;font-weight: bold"
-								value="Sistema de Inventario" />
-						</hbox>
-					</div>
 					<vbox>
-						<separator />
-						<image src="public/imagenes/generales/inventario.PNG" height="3em"
-							width="7em" />
+					<separator />
+					<label style="color: red"
+					value="Usuario: ${desktop.execution.userPrincipal.name}" />
+					<a href="../j_spring_security_logout" style="color: blue">
+					<space />
+					<label value="Cerrar Sesion" />
+					</a>
+					<a style="color: blue">
+					<space />
+					<label id="lblEditarCuenta" value="Editar Cuenta" />
+					</a>
 					</vbox>
-					<div align="center" width="100%">
-						<!-- <hbox>
-							<vbox>
-								<separator />
-								<image id="imagenes" width="60px" height="55px" />
-							</vbox>
-							<vbox>
-								<separator />
-								<label style="color: red"
-									value="Usuario: ${desktop.execution.userPrincipal.name}" />
-								<a href="../j_spring_security_logout" style="color: blue">
-									<space />
-									<label value="Cerrar Sesion" />
-								</a>
-								<a style="color: blue">
-									<space />
-									<label id="lblEditarCuenta" value="Editar Cuenta" />
-								</a>
-							</vbox>
-						</hbox> -->
-					</div>
-				</hbox>
+					</hbox> -->
+				<!-- 					</div> -->
+				<!-- 				</hbox> -->
 			</north>
 			<west title="Menú" id="west" size="20%" splittable="true"
 				collapsible="true" autoscroll="true">
@@ -61,15 +78,17 @@
 				</tree>
 			</west>
 			<center border="none">
-				<borderlayout style="overflow-y:scroll;" sclass="complex-layout">
-					<center border="none" flex="true" autoscroll="true">
-						<tabbox
-						width="auto" id="tabBox" hflex="1">
+				<borderlayout style="overflow-y:scroll;"
+					sclass="complex-layout">
+					<center border="none" flex="true"
+						autoscroll="true">
+						<tabbox width="auto" id="tabBox" hflex="1">
 							<!-- style="background-image: url('public/imagenes/generales/LogoDusaAgua.png'); background-repeat:no-repeat; " -->
-							
+
 							<tabs>
 								<tab visible="false">Tab A</tab>
-								<tab id="tab" label="+" visible="false">
+								<tab id="tab" label="+"
+									visible="false">
 								</tab>
 							</tabs>
 							<tabpanels>
@@ -88,11 +107,13 @@
 					<!-- <a href="../j_spring_security_logout">
 						<label value="INICIO">
 						</label>
-					</a> -->
+						</a> -->
 					<separator></separator>
+					<div class = "banner" >
 					<label style="padding-center:35%;"
 						value="© 2014 Elaborado por BIZAPP,C.A. All Rights Reserved. Terms Privacy">
 					</label>
+					</div>
 				</div>
 			</south>
 		</borderlayout>
