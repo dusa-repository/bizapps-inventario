@@ -19,14 +19,14 @@ public class CF0004 extends CGenerico {
 
 	@Wire
 	private Div divVF0004;
-	
+
 	@Wire
 	private Div botoneraF0004;
 
 	@Wire
 	private Div catalogoF0004;
 	Catalogo<F0004> catalogo;
-	
+
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
@@ -87,29 +87,29 @@ public class CF0004 extends CGenerico {
 
 			}
 		};
-//		botonera.getChildren().get(3).setVisible(false);
-//		botonera.getChildren().get(5).setVisible(false);
+		// botonera.getChildren().get(3).setVisible(false);
+		// botonera.getChildren().get(5).setVisible(false);
 		botoneraF0004.appendChild(botonera);
 		mostrarCatalogo();
 	}
-	
+
 	public void mostrarCatalogo() {
 		final List<F0004> areas = servicioF0004.buscarTodosContado();
-		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004",
-				areas, "Descripcion", "Codigo") {
-			
+		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004", areas,
+				"Descripcion", "Codigo") {
+
 			@Override
-			protected List<F0004> buscar(String valor, String combo) {
-				
-				switch (combo) {
-				case "Descripcion":{
-					return servicioF0004.filtroDl01(valor);
-					 }
-				case "Codigo":
-					return servicioF0004.filtroCdl(valor);
-				default:
-					return areas;
+			protected List<F0004> buscar(List<String> valores) {
+
+				List<F0004> actividad2 = new ArrayList<F0004>();
+
+				for (F0004 fita : areas) {
+					if (fita.getDtdl01().toLowerCase().startsWith(valores.get(0))
+							&& String.valueOf(fita.getDtcdl()).toLowerCase().startsWith(valores.get(1))) {
+						actividad2.add(fita);
+					}
 				}
+				return actividad2;
 			}
 
 			@Override
@@ -121,7 +121,7 @@ public class CF0004 extends CGenerico {
 			}
 		};
 		catalogo.setParent(catalogoF0004);
-//		catalogo.doModal();
+		// catalogo.doModal();
 	}
 
 	/* Permite la seleccion de un item del catalogo */
