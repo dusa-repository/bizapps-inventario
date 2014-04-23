@@ -8,8 +8,8 @@
 					<hbox vflex="1" hflex="1" align="center">
 						<div align="left" class="banner-head">
 								<image
-									src="public/imagenes/generales/inventario.PNG" height="4em"
-									width="6em" />
+									src="public/imagenes/generales/inventario1.png" height="3em"
+									width="5em" />
 						</div>
 						<div align="center" hflex="1">
 							<label value="Sistema de Inventario BIZAPPS"
@@ -111,7 +111,7 @@
 					<separator></separator>
 					<div class = "banner" >
 					<label style="padding-center:35%;"
-						value="© 2014 Elaborado por BIZAPP,C.A. All Rights Reserved. Terms Privacy">
+						value="© 2014 Elaborado por BIZAPPS,C.A. All Rights Reserved. Terms Privacy">
 					</label>
 					</div>
 				</div>
