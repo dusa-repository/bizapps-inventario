@@ -56,7 +56,7 @@ public abstract class Catalogo<Clase> extends Window {
 		lsbCatalogo.setMold("paging");
 		lsbCatalogo.setPagingPosition("top");
 		lsbCatalogo.setPageSize(10);
-		Auxhead cabecera = new Auxhead();
+		final Auxhead cabecera = new Auxhead();
 		Listhead lhdEncabezado = new Listhead();
 		for (int i = 0; i < campos.length; i++) {
 			final Textbox cajaTexto = new Textbox();
@@ -65,8 +65,14 @@ public abstract class Catalogo<Clase> extends Window {
 					new EventListener<KeyEvent>() {
 				@Override
 				public void onEvent(KeyEvent e) throws Exception {
+					List<String> valores = new ArrayList<>();
+					for(int i=0; i<cabecera.getChildren().size(); i++){
+						Auxheader cabeceraFila = (Auxheader) cabecera.getChildren().get(i);
+						Textbox te =  (Textbox) cabeceraFila.getChildren().get(0);
+						valores.add(te.getValue());
+					};
 					String valor = cajaTexto.getValue();
-					List<Clase> listaNueva = buscar(valor, cajaTexto.getContext());
+					List<Clase> listaNueva = buscar(valores);
 					lsbCatalogo.setModel(new ListModelList<Clase>(
 							listaNueva));
 					cajaTexto.setValue(valor);
@@ -109,7 +115,7 @@ public abstract class Catalogo<Clase> extends Window {
 	 * busque, es decir que haga un filtro dentro del catalogo, ayudando asi al
 	 * usuario a encontrar el registro buscado con mayor facilidad
 	 */
-	protected abstract List<Clase> buscar(String valor, String combo);
+	protected abstract List<Clase> buscar(List<String> valores);
 
 	/**
 	 * Metodo que permite por cada controlador indicar cuales son los registros
