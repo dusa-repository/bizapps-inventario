@@ -30,11 +30,11 @@ public abstract class Catalogo<Clase> extends Window {
 
 	private static final long serialVersionUID = 1L;
 	Listbox lsbCatalogo;
-	
+
 	public Catalogo(final Component cGenerico, String titulo,
 			List<Clase> lista, String... campos) {
 		super("", "2", false);
-		this.setId("cmpCatalogo"+titulo);
+		this.setId("cmpCatalogo" + titulo);
 		this.setStyle("background-header:#FF7925; background: #f4f2f2");
 		setWidth("98%");
 		crearLista(lista, campos);
@@ -63,21 +63,28 @@ public abstract class Catalogo<Clase> extends Window {
 			cajaTexto.setContext(campos[i]);
 			cajaTexto.addEventListener(Events.ON_OK,
 					new EventListener<KeyEvent>() {
-				@Override
-				public void onEvent(KeyEvent e) throws Exception {
-					List<String> valores = new ArrayList<>();
-					for(int i=0; i<cabecera.getChildren().size(); i++){
-						Auxheader cabeceraFila = (Auxheader) cabecera.getChildren().get(i);
-						Textbox te =  (Textbox) cabeceraFila.getChildren().get(0);
-						valores.add(te.getValue());
-					};
-					String valor = cajaTexto.getValue();
-					List<Clase> listaNueva = buscar(valores);
-					lsbCatalogo.setModel(new ListModelList<Clase>(
-							listaNueva));
-					cajaTexto.setValue(valor);
-				}
-			});
+						@Override
+						public void onEvent(KeyEvent e) throws Exception {
+							List<String> valores = new ArrayList<>();
+							for (int i = 0; i < cabecera.getChildren().size(); i++) {
+								Auxheader cabeceraFila = (Auxheader) cabecera
+										.getChildren().get(i);
+								Textbox te = (Textbox) cabeceraFila
+										.getChildren().get(0);
+								valores.add(te.getValue());
+							}
+							;
+							String valor = cajaTexto.getValue();
+							List<Clase> listaNueva = buscar(valores);
+							lsbCatalogo.setModel(new ListModelList<Clase>(
+									listaNueva));
+							lsbCatalogo.setMultiple(false);
+							lsbCatalogo.setCheckmark(false);
+							lsbCatalogo.setMultiple(true);
+							lsbCatalogo.setCheckmark(true);
+							cajaTexto.setValue(valor);
+						}
+					});
 			cajaTexto.setPlaceholder("Filtrado");
 			Auxheader cabeceraFila = new Auxheader();
 			cabeceraFila.appendChild(cajaTexto);
@@ -102,7 +109,10 @@ public abstract class Catalogo<Clase> extends Window {
 				}
 			}
 		});
-		
+		lsbCatalogo.setMultiple(false);
+		lsbCatalogo.setCheckmark(false);
+		lsbCatalogo.setMultiple(true);
+		lsbCatalogo.setCheckmark(true);
 
 		this.appendChild(separador1);
 		this.appendChild(hbxBusqueda);
