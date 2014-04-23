@@ -67,7 +67,7 @@
 			</north>
 			<west title="Menú" id="west" size="20%" splittable="true"
 				collapsible="true" autoscroll="true">
-				<tree id="arbolMenu" width="99%">
+				<tree id="arbolMenu" width="99%"  zclass = "z-vfiletree" >
 					<template name="model">
 						<treeitem context="menupopup">
 							<treerow>
