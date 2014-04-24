@@ -59,16 +59,17 @@ public abstract class Botonera extends Hbox {
 //		btnSalir.setDir("reverse");
 //		btnAyuda.setOrient("vertical");
 //		btnAyuda.setDir("reverse");
+
 		
-		btnAyuda.setStyle("font-size: 10px");
-		btnEliminar.setStyle("font-size: 10px");
-		btnAnnadir.setStyle("font-size: 10px");
-		btnGuardar.setStyle("font-size: 10px");
-		btnBuscar.setStyle("font-size: 10px");
-		btnLimpiar.setStyle("font-size: 10px");
-		btnSalir.setStyle("font-size: 10px");
-		btnReporte.setStyle("font-size: 10px");
-		btnSeleccionar.setStyle("font-size: 10px");
+		btnAyuda.setStyle("font-size: 11px ;width: 87px; height: 25px");
+		btnEliminar.setStyle("font-size: 11px ;width: 87px; height: 25px");
+		btnAnnadir.setStyle("font-size: 11px ;width: 87px; height: 25px");
+		btnGuardar.setStyle("font-size: 11px ;width: 87px; height: 25px");
+		btnBuscar.setStyle("font-size: 11px ;width: 87px; height: 25px");
+		btnLimpiar.setStyle("font-size: 11px ;width: 87px; height: 25px");
+		btnSalir.setStyle("font-size: 11px ;width: 87px; height: 25px");
+		btnReporte.setStyle("font-size: 11px ;width: 87px; height: 25px");
+		btnSeleccionar.setStyle("font-size: 11px ;width: 95px; height: 25px");
 		
 		btnSeleccionar.setLabel("Seleccionar");
 		btnBuscar.setLabel("Buscar");

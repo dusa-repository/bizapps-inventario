@@ -1,53 +1,65 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVF0004" apply="controlador.maestros.CF0004">
-		<groupbox width="40em" mold="3d" title="Sistemas">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con Tipos de Codigos Definidos por el Usuario">
 			<div id="botoneraF0004" />
-			<groupbox id="gpxRegistro" width="40em" mold="3d" title="Registro" open="false">
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="25%" />
-					<column label="" width="45%" />
-					<column label="" width="30%" />
-				</columns>
-				<rows>
-					<row>
-						<label class="etiqueta" value="Sistema (cod RT):" />
-						<textbox id="txtRTF0004" hflex="1" maxlength="100"
-							tooltiptext="Ingrese el del Sistema" />
-					</row>
-					<row>
-						<label class="etiqueta" value="SubSistema (Tipos de cod SY):" />
-						<textbox id="txtSYF0004" hflex="1" maxlength="100"
-							tooltiptext="Ingrese el del Sistema" />
-					</row>
-					<row>
-						<label class="etiqueta" value="Descripcion:" />
-						<textbox id="txtDL01F0004" hflex="1" maxlength="500"
-							tooltiptext="Ingrese el del Sistema" />
-					</row>
-					<row>
-						<label class="etiqueta" value="Codigo?:" />
-						<doublespinner id="dblCDLF0004" value="0.0"
-							constraint="min 0 max 100" tooltiptext="Ingrese Costo por Servicio del Especialista"
-							step="0.1" format="#.##" width="98%" />
-					</row>
-					<row>
-						<label class="etiqueta" value="2da Linea:" />
-						<textbox id="txtLNF0004" hflex="1" maxlength="100"
-							tooltiptext="Ingrese el del Sistema" />
-					</row>
-					<row>
-						<label class="etiqueta" value="Numerico:" />
-						<textbox id="txtNUMF0004" hflex="1" maxlength="100"
-							tooltiptext="Ingrese el del Sistema" />
-					</row>
-				</rows>
-			</grid>
+			<separator />
+			<groupbox id="gpxRegistro" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Tipo de Codigo" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="45%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<label class="etiqueta" value="Sistema (cod RT):" />
+							<textbox id="txtRTF0004" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Codigo Principal del Sistema" />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="SubSistema (Tipos de cod SY):" />
+							<textbox id="txtSYF0004" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Codigo Secundario del Sistema" />
+						</row>
+						<row>
+							<label class="etiqueta" value="Descripcion:" />
+							<textbox id="txtDL01F0004" hflex="1" maxlength="500"
+								tooltiptext="Ingrese la Descripcion del Tipo de Codigo" multiline="true"
+								class="multilinea" />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="Codigo?:" />
+							<doublespinner id="dblCDLF0004" value="0.0"
+								constraint="min 0 max 100" tooltiptext="Ingrese el Codigo del Tipo de Codigo"
+								step="0.1" format="#.##" width="98%" />
+						</row>
+						<row>
+							<label class="etiqueta" value="2da Linea:" />
+							<textbox id="txtLNF0004" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Segunda Linea del Tipo de Codigo" />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="Numerico:" />
+							<textbox id="txtNUMF0004" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el valor Numerico del Tipo de Codigo" />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatos" width="40em" mold="3d" title="Datos">
-			<div id="catalogoF0004" />
+			<groupbox id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los Tipos de Codigos Registrados" />
+				<div id="catalogoF0004" tooltiptext="Seleccione el Tipo de Codigo para Realizar una Accion" />
 			</groupbox>
 			<separator />
 			<separator />

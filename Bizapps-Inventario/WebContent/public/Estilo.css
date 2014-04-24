@@ -14,6 +14,10 @@
 	background: #DDECFD;
 }
 
+.z-groupbox-hr {
+	background: #DDECFD;
+}
+
 .btn {
 	font-size: 10px;
 	cursor: pointer;
@@ -24,6 +28,7 @@
 .multilinea {
 	height: 35px;
 }
+
 .multilineaTab {
 	height: 250px;
 }
@@ -31,18 +36,16 @@
 .banner {
 	background-color: #0070AD;
 	color: white;
-	background-image:
-		url("./../imagenes/generales/reflejobanner.png");
+	background-image: url("./../imagenes/generales/reflejobanner.png");
 	background-repeat: no-repeat;
 	background-position: top;
 }
-
 
 .banner-head {
 	font-size: 25px;
 	padding-left: 5%;
 	padding-right: 5%;
-	font-style:italic;
+	font-style: italic;
 	font-weight: bold;
 }
 
@@ -50,6 +53,7 @@
 	text-decoration: underline;
 	cursor: pointer;
 }
+
 .z-loading {
 	background-color: #0070AD;
 	border: 1px outset #A0A0A0;
