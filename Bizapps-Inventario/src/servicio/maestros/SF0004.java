@@ -40,4 +40,12 @@ public class SF0004 {
 	public void guardar(F0004 fooo4) {
 		f0004DAO.save(fooo4);
 	}
+
+	public void eliminarVarios(List<F0004> eliminar) {
+		f0004DAO.delete(eliminar);
+	}
+
+	public void eliminarUno(F0004PK clave) {
+		f0004DAO.delete(clave);
+	}
 }
