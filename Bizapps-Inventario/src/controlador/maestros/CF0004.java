@@ -322,7 +322,7 @@ public class CF0004 extends CGenerico {
 			gpxRegistro.setOpen(false);
 			limpiarCampos();
 			habilitarTextClave();
-		} else {
+		} else if (gpxRegistro.isOpen()) {
 			System.out.println("llenos");
 			Messagebox.show("¿No ha culminado la edicion, desea continuar?",
 					"Alerta", Messagebox.OK | Messagebox.CANCEL,
