@@ -4,14 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.IdClass;
+
 import modelo.maestros.F0004;
 import modelo.pk.F0004PK;
 
+import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
+import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
@@ -45,6 +49,7 @@ public class CF0004 extends CGenerico {
 	@Wire
 	private Groupbox gpxRegistro;
 	Catalogo<F0004> catalogo;
+	F0004PK clave = new F0004PK();
 
 	@Override
 	public void inicializar() throws IOException {
@@ -54,8 +59,26 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void seleccionar() {
-				// TODO Auto-generated method stub
-
+				if (validarSeleccion()) {
+					if (catalogo.obtenerSeleccionados().size() == 1) {
+						abrirRegistro();
+						F0004 f04 = catalogo.objetoSeleccionadoDelCatalogo();
+						clave = f04.getId();
+						txtRTF0004.setValue(f04.getId().getDtrt());
+						txtRTF0004.setDisabled(true);
+						txtSYF0004.setValue(f04.getId().getDtsy());
+						txtSYF0004.setDisabled(true);
+						txtDL01F0004.setValue(f04.getDtdl01());
+						txtLNF0004.setValue(f04.getDtln2());
+						txtNUMF0004.setValue(f04.getDtcnum());
+						System.out.println("Entro");
+					} else
+						Messagebox
+								.show("Solo puede editar de un Item a la vez, "
+										+ "seleccione un (1) solo item y repita la operacion",
+										"Informacion", Messagebox.OK,
+										Messagebox.INFORMATION);
+				}
 			}
 
 			@Override
@@ -72,8 +95,8 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void limpiar() {
-				// TODO Auto-generated method stub
-
+				limpiarCampos();
+				abrirCatalogo();
 			}
 
 			@Override
@@ -96,15 +119,62 @@ public class CF0004 extends CGenerico {
 					fooo4.setDtcdl(a);
 					fooo4.setDtjobn("5");
 					fooo4.setDtuseq(45);
+					fooo4.setDtuser("Usuario en Session");
+					// fooo4.setDtupmj(dtupmj); //Fecha
+					fooo4.setDtupmt(Double.parseDouble(horaAuditoria)); // Hora
 					servicioF0004.guardar(fooo4);
+					limpiar();
 					abrirCatalogo();
+					habilitarTextClave();
 				}
 			}
 
 			@Override
 			public void eliminar() {
-				// TODO Auto-generated method stub
-
+				if (gpxDatos.isOpen()) {
+					// EliminarVarios
+					if (validarSeleccion()) {
+						final List<F0004> eliminarLista = catalogo.obtenerSeleccionados();
+						System.out.println("A eliminar" + eliminarLista.size());
+						Messagebox
+								.show("¿Desea eliminar los "+eliminarLista.size()+" registros?",
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+											servicioF0004.eliminarVarios(eliminarLista);
+												}
+											}
+										});
+					}
+				} else {
+					// Eliminar solo 1
+					if (clave != null) {
+						Messagebox
+						.show("¿Desea eliminar el registro?",
+								"Alerta",
+								Messagebox.OK | Messagebox.CANCEL,
+								Messagebox.QUESTION,
+								new org.zkoss.zk.ui.event.EventListener<Event>() {
+									public void onEvent(Event evt)
+											throws InterruptedException {
+										if (evt.getName()
+												.equals("onOK")) {
+											servicioF0004.eliminarUno(clave);
+											limpiar();
+											abrirCatalogo();
+											habilitarTextClave();
+											Messagebox.show("Registro eliminado exitosamente", "Informacion",
+													Messagebox.OK, Messagebox.INFORMATION);
+										}
+									}
+								});
+					}
+				}
 			}
 
 			@Override
@@ -130,11 +200,51 @@ public class CF0004 extends CGenerico {
 		mostrarCatalogo();
 	}
 
+	public void limpiarCampos() {
+		clave = null;
+		txtDL01F0004.setValue("");
+		txtLNF0004.setValue("");
+		txtNUMF0004.setValue("");
+		txtRTF0004.setValue("");
+		txtSYF0004.setValue("");
+		dblCDLF0004.setValue(0.0);
+	}
+
+	public void habilitarTextClave() {
+		if (txtRTF0004.isDisabled())
+			txtRTF0004.setDisabled(false);
+		if (txtSYF0004.isDisabled())
+			txtSYF0004.setDisabled(false);
+	}
+
+	public boolean validarSeleccion() {
+		List<F0004> seleccionados = catalogo.obtenerSeleccionados();
+		if (seleccionados == null) {
+			Messagebox.show("La lista esta Vacia", "Informacion",
+					Messagebox.OK, Messagebox.INFORMATION);
+			return false;
+		} else {
+			if (seleccionados.isEmpty()) {
+				Messagebox.show("No ha seleccionado ningun Item",
+						"Informacion", Messagebox.OK, Messagebox.INFORMATION);
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
+
 	protected boolean validar() {
 		if (!buscar() || !buscarA()) {
 			return false;
-		} else
-			return true;
+		} else {
+			if (!camposLLenos()) {
+				Messagebox.show("Debe llenar Todos los campos", "Informacion",
+						Messagebox.OK, Messagebox.INFORMATION);
+				return false;
+			} else
+				return true;
+		}
 	}
 
 	public void mostrarCatalogo() {
@@ -185,7 +295,6 @@ public class CF0004 extends CGenerico {
 	/* Permite la seleccion de un item del catalogo */
 	@Listen("onSeleccion = #catalogoF0004")
 	public void seleccinar() {
-		System.out.println("Me tocaste");
 	}
 
 	@Listen("onClick = #gpxRegistro")
@@ -194,10 +303,36 @@ public class CF0004 extends CGenerico {
 		gpxRegistro.setOpen(true);
 	}
 
+//	Falta Modificar
 	@Listen("onClick = #gpxDatos")
 	public void abrirCatalogo() {
-		gpxDatos.setOpen(true);
-		gpxRegistro.setOpen(false);
+		System.out.println(txtDL01F0004.getValue()+
+		txtLNF0004.getValue()+
+		txtNUMF0004.getValue()+
+		txtRTF0004.getValue()+
+		txtSYF0004.getValue()+
+		dblCDLF0004.getValue());
+//		if (camposLLenos()) {
+			System.out.println("vacios");
+			gpxDatos.setOpen(true);
+			gpxRegistro.setOpen(false);
+			limpiarCampos();
+//		} else {
+//			System.out.println("llenos");
+//			Messagebox.show("¿No ha culminado la edicion, desea continuar?",
+//					"Alerta", Messagebox.OK | Messagebox.CANCEL,
+//					Messagebox.QUESTION,
+//					new org.zkoss.zk.ui.event.EventListener<Event>() {
+//						public void onEvent(Event evt)
+//								throws InterruptedException {
+//							if (evt.getName().equals("onOK")) {
+//								gpxDatos.setOpen(true);
+//								gpxRegistro.setOpen(false);
+//								limpiarCampos();
+//							}
+//						}
+//					});
+//		}
 	}
 
 	@Listen("onChange = #txtSYF0004")
@@ -211,7 +346,7 @@ public class CF0004 extends CGenerico {
 			return true;
 	}
 
-	@Listen("onClick = #txtRTF0004")
+	@Listen("onChange = #txtRTF0004")
 	public boolean buscarA() {
 		if (servicioF0004.buscar(txtSYF0004.getValue(), txtRTF0004.getValue()) != null) {
 			Messagebox.show("Ya existe esta Clave", "Informacion",
@@ -219,6 +354,18 @@ public class CF0004 extends CGenerico {
 			txtRTF0004.setFocus(true);
 			return false;
 		} else
+			return true;
+	}
+
+	public boolean camposLLenos() {
+		if (txtDL01F0004.getText().compareTo("") == 0
+				|| txtLNF0004.getText().compareTo("") == 0
+				|| txtNUMF0004.getText().compareTo("") == 0
+				|| txtRTF0004.getText().compareTo("") == 0
+				|| txtSYF0004.getText().compareTo("") == 0
+				|| dblCDLF0004.getValue() == 0.0)
+			return false;
+		else
 			return true;
 	}
 }

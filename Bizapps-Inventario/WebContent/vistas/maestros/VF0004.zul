@@ -28,7 +28,7 @@
 					</row>
 					<row>
 						<label class="etiqueta" value="Codigo?:" />
-						<doublespinner id="dblCDLF0004" value="0"
+						<doublespinner id="dblCDLF0004" value="0.0"
 							constraint="min 0 max 100" tooltiptext="Ingrese Costo por Servicio del Especialista"
 							step="0.1" format="#.##" width="98%" />
 					</row>

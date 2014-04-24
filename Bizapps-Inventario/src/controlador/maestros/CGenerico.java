@@ -50,11 +50,10 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	public static  List<Tab> tabs = new ArrayList<Tab>();
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public final Calendar calendario = Calendar.getInstance();
+	//Cambio en la hora borrados los :
 	public String horaAuditoria = String.valueOf(calendario
 			.get(Calendar.HOUR_OF_DAY))
-			+ ":"
 			+ String.valueOf(calendario.get(Calendar.MINUTE))
-			+ ":"
 			+ String.valueOf(calendario.get(Calendar.SECOND));
 	public java.util.Date fecha = new Date();
 	public Timestamp fechaHora = new Timestamp(fecha.getTime());

@@ -140,4 +140,25 @@ public abstract class Catalogo<Clase> extends Window {
 	public Listbox getListbox() {
 		return lsbCatalogo;
 	}
+
+	public List<Clase> obtenerSeleccionados() {
+		List<Clase> valores = new ArrayList<Clase>();
+		boolean entro = false;
+		if (lsbCatalogo.getItemCount() != 0) {
+			final List<Listitem> list1 = lsbCatalogo.getItems();
+			for (int i = 0; i < list1.size(); i++) {
+				if (list1.get(i).isSelected()) {
+					Clase clase = list1.get(i).getValue();
+					entro = true;
+					valores.add(clase);
+				}
+			}
+			if (!entro){
+				valores.clear();
+				return valores;
+			}
+			return valores;
+		}
+		else return null;
+	}
 }
