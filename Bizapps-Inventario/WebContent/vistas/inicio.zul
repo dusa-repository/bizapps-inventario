@@ -2,6 +2,7 @@
 	<window title="" border="0" height="100%"
 		contentStyle="overflow:auto" apply="arbol.CArbol">
 		<style src="/public/Estilo.css" />
+			<script src="/public/progress.js" />
 		<borderlayout height="100%" style="background-color:#fff;">
 			<north height="4,5em">
 				<div vflex="1" hflex="1" class="banner">
