@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import modelo.pk.F0005PK;
 
 
+
 /**
  * The persistent class for the F0005 database table.
  * 
