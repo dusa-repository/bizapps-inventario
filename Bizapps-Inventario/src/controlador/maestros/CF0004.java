@@ -97,6 +97,7 @@ public class CF0004 extends CGenerico {
 			public void limpiar() {
 				limpiarCampos();
 				abrirCatalogo();
+				habilitarTextClave();
 			}
 
 			@Override
@@ -119,10 +120,12 @@ public class CF0004 extends CGenerico {
 					fooo4.setDtcdl(a);
 					fooo4.setDtjobn("5");
 					fooo4.setDtuseq(45);
-					fooo4.setDtuser("Usuario en Session");
+					fooo4.setDtuser("jDE");
 					// fooo4.setDtupmj(dtupmj); //Fecha
 					fooo4.setDtupmt(Double.parseDouble(horaAuditoria)); // Hora
 					servicioF0004.guardar(fooo4);
+					Messagebox.show("Registro guardado exitosamente", "Informacion",
+							Messagebox.OK, Messagebox.INFORMATION);
 					limpiar();
 					abrirCatalogo();
 					habilitarTextClave();
@@ -147,6 +150,7 @@ public class CF0004 extends CGenerico {
 												if (evt.getName()
 														.equals("onOK")) {
 											servicioF0004.eliminarVarios(eliminarLista);
+											abrirCatalogo();
 												}
 											}
 										});
