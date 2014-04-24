@@ -103,15 +103,15 @@ public class CF0004 extends CGenerico {
 			@Override
 			public void guardar() {
 				if (validar()) {
-					String rt = txtRTF0004.getValue();
-					String sy = txtSYF0004.getValue();
+					String rt = txtSYF0004.getValue();
+					String sy = txtRTF0004.getValue();
 					String dl = txtDL01F0004.getValue();
 					String ln = txtLNF0004.getValue();
 					double a = dblCDLF0004.getValue();
 					String num = txtNUMF0004.getValue();
 					F0004PK clave = new F0004PK();
-					clave.setDtrt(rt);
-					clave.setDtsy(sy);
+					clave.setDtsy(rt);
+					clave.setDtrt(sy);
 					F0004 fooo4 = new F0004();
 					fooo4.setId(clave);
 					fooo4.setDtdl01(dl);
@@ -316,28 +316,29 @@ public class CF0004 extends CGenerico {
 		txtRTF0004.getValue()+
 		txtSYF0004.getValue()+
 		dblCDLF0004.getValue());
-//		if (camposLLenos()) {
+		if (camposLLenos()) {
 			System.out.println("vacios");
 			gpxDatos.setOpen(true);
 			gpxRegistro.setOpen(false);
 			limpiarCampos();
 			habilitarTextClave();
-//		} else {
-//			System.out.println("llenos");
-//			Messagebox.show("¿No ha culminado la edicion, desea continuar?",
-//					"Alerta", Messagebox.OK | Messagebox.CANCEL,
-//					Messagebox.QUESTION,
-//					new org.zkoss.zk.ui.event.EventListener<Event>() {
-//						public void onEvent(Event evt)
-//								throws InterruptedException {
-//							if (evt.getName().equals("onOK")) {
-//								gpxDatos.setOpen(true);
-//								gpxRegistro.setOpen(false);
-//								limpiarCampos();
-//							}
-//						}
-//					});
-//		}
+		} else {
+			System.out.println("llenos");
+			Messagebox.show("¿No ha culminado la edicion, desea continuar?",
+					"Alerta", Messagebox.OK | Messagebox.CANCEL,
+					Messagebox.QUESTION,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event evt)
+								throws InterruptedException {
+							if (evt.getName().equals("onOK")) {
+								gpxDatos.setOpen(false);
+								gpxRegistro.setOpen(true);
+										
+								}						}
+					});
+				gpxDatos.setOpen(true);
+				gpxRegistro.setOpen(false);			
+		}
 	}
 
 	@Listen("onChange = #txtSYF0004")
@@ -345,6 +346,7 @@ public class CF0004 extends CGenerico {
 		if (servicioF0004.buscar(txtSYF0004.getValue(), txtRTF0004.getValue()) != null) {
 			Messagebox.show("Ya existe esta Clave", "Informacion",
 					Messagebox.OK, Messagebox.INFORMATION);
+			limpiarCampos ();
 			txtSYF0004.setFocus(true);
 			return false;
 		} else
@@ -356,6 +358,7 @@ public class CF0004 extends CGenerico {
 		if (servicioF0004.buscar(txtSYF0004.getValue(), txtRTF0004.getValue()) != null) {
 			Messagebox.show("Ya existe esta Clave", "Informacion",
 					Messagebox.OK, Messagebox.INFORMATION);
+			limpiarCampos ();
 			txtRTF0004.setFocus(true);
 			return false;
 		} else
@@ -368,7 +371,7 @@ public class CF0004 extends CGenerico {
 				|| txtNUMF0004.getText().compareTo("") == 0
 				|| txtRTF0004.getText().compareTo("") == 0
 				|| txtSYF0004.getText().compareTo("") == 0
-				|| dblCDLF0004.getValue() == 0.0)
+				|| dblCDLF0004.getValue() == 0.0 )
 			return false;
 		else
 			return true;
