@@ -1,1 +1,4 @@
-<label>HOLAAA</label>
+<zk>
+	<label>HOLAAA</label>
+	<script src="/public/progress.js" />
+</zk>
