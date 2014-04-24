@@ -321,6 +321,7 @@ public class CF0004 extends CGenerico {
 			gpxDatos.setOpen(true);
 			gpxRegistro.setOpen(false);
 			limpiarCampos();
+			habilitarTextClave();
 //		} else {
 //			System.out.println("llenos");
 //			Messagebox.show("¿No ha culminado la edicion, desea continuar?",
