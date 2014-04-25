@@ -1,8 +1,41 @@
 <zk>
 <style src="../public/Estilo.css" />
 	<div id="divVF0006" apply="controlador.maestros.CF0006">
-		<groupbox width="40em" mold="3d" title="Sistemas">
+		<groupbox width="auto" mold="3d" 
+		title="Trabajo con Unidades de Negocio">
 		<div id="botoneraF0006" />
+		<separator />
+		<groupbox id="gpxRegistro" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar una Nueva Unidad de Negocio" />
+				<separator />
+				<separator />
+				<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+					<column label="" width="30%" />
+				</columns>
+				<rows>
+				<row>
+				<label class="etiqueta" value= "   Unidad Negocio" />
+					<textbox id="txtUDCF0006" hflex="1" maxlength="100" width = "45%"
+						tooltiptext="Ingrese la Unidad de Negocio"/>
+					<hbox />
+				</row>
+				</rows>
+				</grid>
+				<separator />
+			<tabbox id="tbUnidadNegocio">
+			<tabs id="tabs">
+				<tab id="tbModificarUNUnica" label="Modificar UN Única" />
+				<tab id="tbMasDetalles" label="Más Detalles" />
+				<tab id="tbCodigosCategorias110" label="Códigos Categorias 1-10" />
+				<tab id="tbCodigosCategorias1120" label="Códigos Categorias 11-20" />
+				<tab id="tbCodigosCategorias2130" label="Códigos Categorias 21-30" />
+			</tabs>
+			<tabpanels>
+			<tabpanel>
 			<grid width="100%">
 				<columns visible="false">
 					<column label="" width="25%" />
@@ -11,15 +44,322 @@
 				</columns>
 				<rows>
 					<row>
-						<label class="etiqueta" value="Sistema:" />
-						<textbox id="txtSistema" hflex="1"
-							maxlength="500" tooltiptext="Ingrese el del Sistema"/>
+						<label class="etiqueta" value= "Descripción" />
+							<textbox id="txtDL01F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Descripción de la Unidad de Negocio" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Compañia" />
+							<textbox id="txtCOF0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Compañia" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Nivel Detalle" />
+							<textbox id="txtLDMF0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Nivel de Detalle" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Tipo Unidad Negocio" />
+							<textbox id="txtSTYLF0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el tipo Unidad de Negocio" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Cógigo Inactivo LM auxiliar" />
+							<textbox id="txtSBLIF0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Cógigo Inactivo LM auxiliar" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Cuenta Modelo/Consolidada" />
+							<textbox id="txtFMODF0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Cuenta Modelo/Consolidada" />
+							<hbox />
 					</row>
 				</rows>
 			</grid>
+			</tabpanel>
+			<tabpanel>
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+					<column label="" width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<label class="etiqueta" value= "Linea Descripción 2" />
+							<textbox id="txtDL02F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Linea de Descripción 2 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Linea Descripción 3" />
+							<textbox id="txtDL03F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Linea de Descripción 3 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Linea Descripción 2" />
+							<textbox id="txtDL04F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Linea de Descripción 3 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Número Dirección" />
+							<textbox id="txtAN8F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Número Dirección" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Zona/Tipo Fiscal" />
+							<textbox id="txtTXA1F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Zona/Tipo Fiscal" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Nº Proyecto" />
+							<textbox id="txtMCUSF0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Nº Proyecto" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Edición Contabilización" />
+							<textbox id="txtPECCF0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Edición Contabilización" />
+							<hbox />
+					</row>
+				</rows>
+			</grid>
+			</tabpanel>
+			<tabpanel>
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+					<column label="" width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 01" />
+							<textbox id="txtRP01F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 01 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 02" />
+							<textbox id="txtRP02F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 02 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 03" />
+							<textbox id="txtRP03F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 03 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 04" />
+							<textbox id="txtRP04F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 04 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 05" />
+							<textbox id="txtRP05F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 05 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 06" />
+							<textbox id="txtRP06F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 06 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 07" />
+							<textbox id="txtRP07F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 07 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 08" />
+							<textbox id="txtRP08F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 08 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 09" />
+							<textbox id="txtRP09F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 09 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 10" />
+							<textbox id="txtRP10F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 10 " />
+							<hbox />
+					</row>
+				</rows>
+			</grid>
+			</tabpanel>
+			<tabpanel>
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+					<column label="" width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 11" />
+							<textbox id="txtRP11F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 11 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 12" />
+							<textbox id="txtRP12F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 12 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 13" />
+							<textbox id="txtRP13F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 13 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 14" />
+							<textbox id="txtRP14F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 14 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 15" />
+							<textbox id="txtRP15F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 15 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 16" />
+							<textbox id="txtRP16F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 16 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 17" />
+							<textbox id="txtRP17F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 17 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 18" />
+							<textbox id="txtRP18F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 18 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 19" />
+							<textbox id="txtRP19F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 19 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 20" />
+							<textbox id="txtRP20F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 20 " />
+							<hbox />
+					</row>
+				</rows>
+			</grid>
+			</tabpanel>
+			<tabpanel>
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+					<column label="" width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 21" />
+							<textbox id="txtRP21F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 21 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 22" />
+							<textbox id="txtRP22F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 22 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 23" />
+							<textbox id="txtRP23F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 23 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 24" />
+							<textbox id="txtRP24F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 24 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 25" />
+							<textbox id="txtRP25F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 25 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 26" />
+							<textbox id="txtRP26F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 26 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 27" />
+							<textbox id="txtRP27F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 27 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 08" />
+							<textbox id="txtRP28F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 28 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 29" />
+							<textbox id="txtRP29F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 29 " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Código Categoría 30" />
+							<textbox id="txtRP30F0006" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código de Categoría 30 " />
+							<hbox />
+					</row>
+				</rows>
+			</grid>
+			</tabpanel>
+			</tabpanels>
+			</tabbox>
+			</groupbox>	
 			<separator />
-							<label class="etiqueta" value="AQUI VA LA LISTA" />
+			<separator />
+			<groupbox id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las Unidades de Negocio Registradas" />
+				<div id="catalogoF0006" tooltiptext="Seleccione la unidad de negocio para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
 		</groupbox>	
-
 	</div>
 </zk>

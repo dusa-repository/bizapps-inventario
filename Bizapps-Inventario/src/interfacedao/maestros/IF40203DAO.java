@@ -1,0 +1,13 @@
+package interfacedao.maestros;
+
+import java.util.List;
+
+import modelo.maestros.F40203;
+import modelo.pk.F40203PK;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface IF40203DAO extends JpaRepository<F40203, F40203PK> {
+
+}

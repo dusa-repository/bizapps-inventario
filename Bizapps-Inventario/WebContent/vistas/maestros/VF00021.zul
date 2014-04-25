@@ -1,9 +1,15 @@
 <zk>
 <style src="../public/Estilo.css" />
 	<div id="divVF00021" apply="controlador.maestros.CF00021">
-		<groupbox width="40em" mold="3d" title="Sistemas">
+		<groupbox  mold="3d" width="auto"
+		title="Número Siguiente por Compañia/Año Fiscal">
 		<div id="botoneraF00021" />
-			<grid width="100%">
+		<separator />
+			<groupbox id="gpxRegistro" width="auto" title="" open="false">
+				<caption label="Compañia" style="font-weight:bold"
+					tooltiptext="Presione para Ingresar compañia" />
+				<separator />
+				<grid width="100%">
 				<columns visible="false">
 					<column label="" width="25%" />
 					<column label="" width="45%" />
@@ -11,15 +17,20 @@
 				</columns>
 				<rows>
 					<row>
-						<label class="etiqueta" value="Sistema:" />
-						<textbox id="txtSistema" hflex="1"
-							maxlength="500" tooltiptext="Ingrese el del Sistema"/>
+						<label class="etiqueta" value= " Compañia Documento" />
+						<textbox id="txtKCOF00021" hflex="1" maxlength="100" width = "45%"
+						tooltiptext="Ingrese la Compañia Documento"/>
+						<hbox />
 					</row>
 				</rows>
-			</grid>
-			<separator />
-							<label class="etiqueta" value="AQUI VA LA LISTA" />
+				</grid>
 		</groupbox>	
-
+			<separator />
+			<groupbox id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las compañias" />
+				<div id="catalogoF00021" tooltiptext="Seleccione la compañia para Realizar una Accion" />
+			</groupbox>
+		</groupbox>	
 	</div>
 </zk>
