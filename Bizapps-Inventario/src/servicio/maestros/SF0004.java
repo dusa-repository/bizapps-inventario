@@ -18,14 +18,6 @@ public class SF0004 {
 	@Autowired
 	private IF0004DAO f0004DAO;
 
-	public List<F0004> filtroDl01(String valor) {
-		return f0004DAO.findByDtdl01StartingWithAllIgnoreCase(valor);
-	}
-
-	public List<F0004> filtroCdl(String valor) {
-		return f0004DAO.findByDtcdlStartingWithAllIgnoreCase(valor);
-	}
-
 	public List<F0004> buscarTodosOrdenados() {
 		return f0004DAO.findAllOrderByIdDtsy();
 	}
@@ -47,5 +39,9 @@ public class SF0004 {
 
 	public void eliminarUno(F0004PK clave) {
 		f0004DAO.delete(clave);
+	}
+
+	public List<F0004> buscarSY(String value) {
+		return f0004DAO.findByIdDtsy(value);
 	}
 }

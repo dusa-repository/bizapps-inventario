@@ -28,6 +28,7 @@ public class F0005 implements Serializable {
 	@Column(name="DRDL02")
 	private String drdl02;
 
+	//
 	@Column(name="DRHRDC")
 	private String drhrdc;
 
@@ -37,18 +38,21 @@ public class F0005 implements Serializable {
 	@Column(name="DRPID")
 	private String drpid;
 
+	//
 	@Column(name="DRSPHD")
 	private String drsphd;
 
 	@Column(name="DRUDCO")
 	private String drudco;
 
+	//
 	@Column(name="DRUPMJ")
 	private BigDecimal drupmj;
 
 	@Column(name="DRUPMT")
 	private double drupmt;
 
+	//
 	@Column(name="DRUSER")
 	private String druser;
 

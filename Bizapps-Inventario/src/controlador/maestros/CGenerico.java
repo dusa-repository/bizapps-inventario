@@ -30,8 +30,10 @@ import componentes.Mensaje;
 
 import servicio.maestros.SF00021;
 import servicio.maestros.SF0004;
+import servicio.maestros.SF0005;
 import servicio.maestros.SF0006;
 import servicio.maestros.SF40203;
+import servicio.maestros.SF41002;
 import servicio.seguridad.SArbol;
 import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
@@ -45,12 +47,16 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SArbol servicioArbol;
 	@WireVariable("SF0004")
 	protected SF0004 servicioF0004;
+	@WireVariable("SF0005")
+	protected SF0005 servicioF0005;
 	@WireVariable("SF0006")
 	protected SF0006 servicioF0006;
 	@WireVariable("SF00021")
 	protected SF00021 servicioF00021;
 	@WireVariable("SF40203")
 	protected SF40203 servicioF40203;
+	@WireVariable("SF41002")
+	protected SF41002 servicioF41002;
 	@WireVariable("SGrupo")
 	protected SGrupo servicioGrupo;
 	@WireVariable("SUsuario")

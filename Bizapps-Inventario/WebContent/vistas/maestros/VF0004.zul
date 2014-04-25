@@ -17,18 +17,33 @@
 					</columns>
 					<rows>
 						<row>
-							<label class="etiqueta" value="Sistema (Tipos de cod SY):" />
+							<hbox>
+								<label class="etiqueta" value="Sistema (Tipos de cod SY):" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 							<textbox id="txtSYF0004" hflex="1" maxlength="100"
 								tooltiptext="Ingrese el Codigo Principal del Sistema" />
 						</row>
 						<row>
-							<label class="etiqueta" value="SubSistema (cod RT):" />
+							<hbox>
+								<label class="etiqueta" value="SubSistema (cod RT):" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 							<textbox id="txtRTF0004" hflex="1" maxlength="100"
 								tooltiptext="Ingrese el Codigo Secundario del Sistema" />
 							<hbox />
 						</row>
 						<row>
-							<label class="etiqueta" value="Descripcion:" />
+							<hbox>
+								<label class="etiqueta" value="Descripcion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 							<textbox id="txtDL01F0004" hflex="1" maxlength="500"
 								tooltiptext="Ingrese la Descripcion del Tipo de Codigo"
 								multiline="true" class="multilinea" />
