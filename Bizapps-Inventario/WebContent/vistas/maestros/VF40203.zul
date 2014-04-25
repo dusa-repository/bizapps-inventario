@@ -1,8 +1,12 @@
 <zk>
 <style src="../public/Estilo.css" />
 	<div id="divVF40203" apply="controlador.maestros.CF40203">
-		<groupbox width="40em" mold="3d" title="Sistemas">
+		<groupbox width="auto" mold="3d" title="Trabajo con Reglas de Actividad de Órdenes">
 		<div id="botoneraF40203" />
+		<groupbox id="gpxRegistro" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar una Actividad de Orden" />
+				<separator />
 			<grid width="100%">
 				<columns visible="false">
 					<column label="" width="25%" />
@@ -11,15 +15,32 @@
 				</columns>
 				<rows>
 					<row>
-						<label class="etiqueta" value="Sistema:" />
-						<textbox id="txtSistema" hflex="1"
-							maxlength="500" tooltiptext="Ingrese el del Sistema"/>
+						<label class="etiqueta" value= "Tipo de Orden" />
+							<textbox id="txtDCTOF40203" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Tipo de Orden " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Tipo Línea" />
+							<textbox id="txtLNTYF40203" hflex="1" maxlength="100"
+								tooltiptext="Ingrese Código Tipo de Línea " />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Nº Siguiente Tipo Orden" />
+							<textbox id="txtNSF40203" hflex="1" maxlength="100"
+								tooltiptext="Nº Siguiente Tipo Orden" />
+							<hbox />
 					</row>
 				</rows>
 			</grid>
-			<separator />
-							<label class="etiqueta" value="AQUI VA LA LISTA" />
 		</groupbox>	
-
+		<separator />
+			<groupbox id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las Actividades de Órdenes"/>
+				<div id="catalogoF40203" tooltiptext="Seleccione la Actividad de Órdenes para Realizar una Accion" />
+			</groupbox>
+		</groupbox>	
 	</div>
 </zk>
