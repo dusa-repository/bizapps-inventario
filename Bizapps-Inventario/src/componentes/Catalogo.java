@@ -141,6 +141,14 @@ public abstract class Catalogo<Clase> extends Window {
 		return lsbCatalogo;
 	}
 
+	public void actualizarLista(List<Clase> lista) {
+		lsbCatalogo.setModel(new ListModelList<Clase>(lista));
+		lsbCatalogo.setMultiple(false);
+		lsbCatalogo.setCheckmark(false);
+		lsbCatalogo.setMultiple(true);
+		lsbCatalogo.setCheckmark(true);
+	}
+
 	public List<Clase> obtenerSeleccionados() {
 		List<Clase> valores = new ArrayList<Clase>();
 		boolean entro = false;
@@ -153,12 +161,12 @@ public abstract class Catalogo<Clase> extends Window {
 					valores.add(clase);
 				}
 			}
-			if (!entro){
+			if (!entro) {
 				valores.clear();
 				return valores;
 			}
 			return valores;
-		}
-		else return null;
+		} else
+			return null;
 	}
 }
