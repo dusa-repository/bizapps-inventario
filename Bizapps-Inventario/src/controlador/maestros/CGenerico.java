@@ -26,6 +26,8 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 
+import componentes.Mensaje;
+
 import servicio.maestros.SF0004;
 import servicio.seguridad.SArbol;
 import servicio.seguridad.SGrupo;
@@ -45,8 +47,6 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	@WireVariable("SUsuario")
 	protected SUsuario servicioUsuario;
 	
-
-	
 	public static  List<Tab> tabs = new ArrayList<Tab>();
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public final Calendar calendario = Calendar.getInstance();
@@ -57,6 +57,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 			+ String.valueOf(calendario.get(Calendar.SECOND));
 	public java.util.Date fecha = new Date();
 	public Timestamp fechaHora = new Timestamp(fecha.getTime());
+	Mensaje msj = new Mensaje();
 
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {

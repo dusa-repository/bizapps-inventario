@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.IdClass;
-
 import modelo.maestros.F0004;
 import modelo.pk.F0004PK;
 
@@ -15,17 +13,16 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
-import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.Catalogo;
+import componentes.Mensaje;
 
 public class CF0004 extends CGenerico {
 
-	private static final long serialVersionUID = -5111763854219623597L;
-
+	private static final long serialVersionUID = -8680709288839148461L;
 	@Wire
 	private Textbox txtSYF0004;
 	@Wire
@@ -48,19 +45,24 @@ public class CF0004 extends CGenerico {
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
+
+	Botonera botonera;
 	Catalogo<F0004> catalogo;
-	F0004PK clave = new F0004PK();
+	F0004PK clave = null;
 
 	@Override
 	public void inicializar() throws IOException {
-		// TODO Auto-generated method stub
 
-		Botonera botonera = new Botonera() {
+		txtSYF0004.setFocus(true);
+		mostrarCatalogo();
 
+		botonera = new Botonera() {
+			
 			@Override
 			public void seleccionar() {
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
+						mostrarBotones(false);
 						abrirRegistro();
 						F0004 f04 = catalogo.objetoSeleccionadoDelCatalogo();
 						clave = f04.getId();
@@ -71,13 +73,10 @@ public class CF0004 extends CGenerico {
 						txtDL01F0004.setValue(f04.getDtdl01());
 						txtLNF0004.setValue(f04.getDtln2());
 						txtNUMF0004.setValue(f04.getDtcnum());
-						System.out.println("Entro");
+						dblCDLF0004.setValue(f04.getDtcdl());
+						txtDL01F0004.setFocus(true);
 					} else
-						Messagebox
-								.show("Solo puede editar de un Item a la vez, "
-										+ "seleccione un (1) solo item y repita la operacion",
-										"Informacion", Messagebox.OK,
-										Messagebox.INFORMATION);
+						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 			}
 
@@ -89,20 +88,22 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void reporte() {
-				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void limpiar() {
+				mostrarBotones(false);
 				limpiarCampos();
-				abrirCatalogo();
 				habilitarTextClave();
+				clave = null;
 			}
 
 			@Override
 			public void guardar() {
-				if (validar()) {
+				boolean guardar = true;
+				if (clave == null)
+					guardar = validar();
+				if (guardar) {
 					String rt = txtSYF0004.getValue();
 					String sy = txtRTF0004.getValue();
 					String dl = txtDL01F0004.getValue();
@@ -122,25 +123,26 @@ public class CF0004 extends CGenerico {
 					fooo4.setDtuseq(45);
 					fooo4.setDtuser("jDE");
 					// fooo4.setDtupmj(dtupmj); //Fecha
-					fooo4.setDtupmt(Double.parseDouble(horaAuditoria)); // Hora
+					fooo4.setDtupmt(Double.parseDouble(horaAuditoria));
 					servicioF0004.guardar(fooo4);
-					Messagebox.show("Registro guardado exitosamente", "Informacion",
-							Messagebox.OK, Messagebox.INFORMATION);
+					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					abrirCatalogo();
-					habilitarTextClave();
+					catalogo.actualizarLista(servicioF0004
+							.buscarTodosOrdenados());
 				}
+
 			}
 
 			@Override
 			public void eliminar() {
 				if (gpxDatos.isOpen()) {
-					// EliminarVarios
+					/* Elimina Varios Registros */
 					if (validarSeleccion()) {
-						final List<F0004> eliminarLista = catalogo.obtenerSeleccionados();
-						System.out.println("A eliminar" + eliminarLista.size());
+						final List<F0004> eliminarLista = catalogo
+								.obtenerSeleccionados();
 						Messagebox
-								.show("¿Desea eliminar los "+eliminarLista.size()+" registros?",
+								.show("¿Desea Eliminar los "
+										+ eliminarLista.size() + " Registros?",
 										"Alerta",
 										Messagebox.OK | Messagebox.CANCEL,
 										Messagebox.QUESTION,
@@ -149,59 +151,71 @@ public class CF0004 extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-											servicioF0004.eliminarVarios(eliminarLista);
-											abrirCatalogo();
+													servicioF0004
+															.eliminarVarios(eliminarLista);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													catalogo.actualizarLista(servicioF0004
+															.buscarTodosOrdenados());
 												}
 											}
 										});
 					}
 				} else {
-					// Eliminar solo 1
+					/* Elimina un solo registro */
 					if (clave != null) {
 						Messagebox
-						.show("¿Desea eliminar el registro?",
-								"Alerta",
-								Messagebox.OK | Messagebox.CANCEL,
-								Messagebox.QUESTION,
-								new org.zkoss.zk.ui.event.EventListener<Event>() {
-									public void onEvent(Event evt)
-											throws InterruptedException {
-										if (evt.getName()
-												.equals("onOK")) {
-											servicioF0004.eliminarUno(clave);
-											limpiar();
-											abrirCatalogo();
-											habilitarTextClave();
-											Messagebox.show("Registro eliminado exitosamente", "Informacion",
-													Messagebox.OK, Messagebox.INFORMATION);
-										}
-									}
-								});
-					}
+								.show(Mensaje.deseaEliminar,
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF0004
+															.eliminarUno(clave);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													limpiar();
+													catalogo.actualizarLista(servicioF0004
+															.buscarTodosOrdenados());
+												}
+											}
+										});
+					} else
+						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
+
 			}
 
 			@Override
 			public void buscar() {
-				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void ayuda() {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void annadir() {
 				abrirRegistro();
+				mostrarBotones(false);
 			}
 		};
-		// botonera.getChildren().get(3).setVisible(false);
-		// botonera.getChildren().get(5).setVisible(false);
+		botonera.getChildren().get(3).setVisible(false);
+		botonera.getChildren().get(5).setVisible(false);
 		botoneraF0004.appendChild(botonera);
-		mostrarCatalogo();
+
+	}
+
+	public void mostrarBotones(boolean bol) {
+		botonera.getChildren().get(1).setVisible(bol);
+		botonera.getChildren().get(2).setVisible(bol);
+		botonera.getChildren().get(6).setVisible(bol);
+		botonera.getChildren().get(0).setVisible(bol);
+		botonera.getChildren().get(3).setVisible(!bol);
+		botonera.getChildren().get(5).setVisible(!bol);
 	}
 
 	public void limpiarCampos() {
@@ -211,7 +225,8 @@ public class CF0004 extends CGenerico {
 		txtNUMF0004.setValue("");
 		txtRTF0004.setValue("");
 		txtSYF0004.setValue("");
-		dblCDLF0004.setValue(0.0);
+		dblCDLF0004.setValue((double) 0);
+		txtSYF0004.setFocus(true);
 	}
 
 	public void habilitarTextClave() {
@@ -224,13 +239,11 @@ public class CF0004 extends CGenerico {
 	public boolean validarSeleccion() {
 		List<F0004> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
-			Messagebox.show("La lista esta Vacia", "Informacion",
-					Messagebox.OK, Messagebox.INFORMATION);
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
 		} else {
 			if (seleccionados.isEmpty()) {
-				Messagebox.show("No ha seleccionado ningun Item",
-						"Informacion", Messagebox.OK, Messagebox.INFORMATION);
+				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
 				return false;
 			} else {
 				return true;
@@ -239,130 +252,35 @@ public class CF0004 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		if (!buscar() || !buscarA()) {
+		if (claveSYExiste() || claveRTExiste()) {
 			return false;
 		} else {
 			if (!camposLLenos()) {
-				Messagebox.show("Debe llenar Todos los campos", "Informacion",
-						Messagebox.OK, Messagebox.INFORMATION);
+				msj.mensajeAlerta(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
 		}
 	}
 
-	public void mostrarCatalogo() {
-		final List<F0004> areas = servicioF0004.buscarTodosContado();
-		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004", areas, "RT",
-				"SY", "Descripcion", "Codigo", "2 Linea", "Numerico") {
-
-			@Override
-			protected List<F0004> buscar(List<String> valores) {
-
-				List<F0004> actividad2 = new ArrayList<F0004>();
-
-				for (F0004 fita : areas) {
-					if (fita.getId().getDtrt().toLowerCase()
-							.startsWith(valores.get(0))
-							&& fita.getId().getDtsy().toLowerCase()
-									.startsWith(valores.get(1))
-							&& fita.getDtdl01().toLowerCase()
-									.startsWith(valores.get(2))
-							&& String.valueOf(fita.getDtcdl()).toLowerCase()
-									.startsWith(valores.get(3))
-							&& fita.getDtln2().toLowerCase()
-									.startsWith(valores.get(4))
-							&& fita.getDtcnum().toLowerCase()
-									.startsWith(valores.get(5))) {
-						actividad2.add(fita);
-					}
-				}
-				return actividad2;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0004 avion) {
-				String[] registros = new String[6];
-				registros[0] = avion.getId().getDtrt();
-				registros[1] = avion.getId().getDtsy();
-				registros[2] = avion.getDtdl01();
-				registros[3] = String.valueOf(avion.getDtcdl());
-				registros[4] = avion.getDtln2();
-				registros[5] = avion.getDtcnum();
-				return registros;
-			}
-		};
-		catalogo.setParent(catalogoF0004);
-		// catalogo.doModal();
-	}
-
-	/* Permite la seleccion de un item del catalogo */
-	@Listen("onSeleccion = #catalogoF0004")
-	public void seleccinar() {
-	}
-
-	@Listen("onClick = #gpxRegistro")
-	public void abrirRegistro() {
-		gpxDatos.setOpen(false);
-		gpxRegistro.setOpen(true);
-	}
-
-//	Falta Modificar
-	@Listen("onClick = #gpxDatos")
-	public void abrirCatalogo() {
-		System.out.println(txtDL01F0004.getValue()+
-		txtLNF0004.getValue()+
-		txtNUMF0004.getValue()+
-		txtRTF0004.getValue()+
-		txtSYF0004.getValue()+
-		dblCDLF0004.getValue());
-		if (camposLLenos()) {
-			System.out.println("vacios");
-			gpxDatos.setOpen(true);
-			gpxRegistro.setOpen(false);
-			limpiarCampos();
-			habilitarTextClave();
-		} else if (gpxRegistro.isOpen()) {
-			System.out.println("llenos");
-			Messagebox.show("¿No ha culminado la edicion, desea continuar?",
-					"Alerta", Messagebox.OK | Messagebox.CANCEL,
-					Messagebox.QUESTION,
-					new org.zkoss.zk.ui.event.EventListener<Event>() {
-						public void onEvent(Event evt)
-								throws InterruptedException {
-							if (evt.getName().equals("onOK")) {
-								gpxDatos.setOpen(false);
-								gpxRegistro.setOpen(true);
-										
-								}						}
-					});
-				gpxDatos.setOpen(true);
-				gpxRegistro.setOpen(false);			
-		}
-	}
-
 	@Listen("onChange = #txtSYF0004")
-	public boolean buscar() {
+	public boolean claveSYExiste() {
 		if (servicioF0004.buscar(txtSYF0004.getValue(), txtRTF0004.getValue()) != null) {
-			Messagebox.show("Ya existe esta Clave", "Informacion",
-					Messagebox.OK, Messagebox.INFORMATION);
-			limpiarCampos ();
+			msj.mensajeAlerta(Mensaje.claveUsada);
 			txtSYF0004.setFocus(true);
-			return false;
-		} else
 			return true;
+		} else
+			return false;
 	}
 
 	@Listen("onChange = #txtRTF0004")
-	public boolean buscarA() {
+	public boolean claveRTExiste() {
 		if (servicioF0004.buscar(txtSYF0004.getValue(), txtRTF0004.getValue()) != null) {
-			Messagebox.show("Ya existe esta Clave", "Informacion",
-					Messagebox.OK, Messagebox.INFORMATION);
-			limpiarCampos ();
+			msj.mensajeAlerta(Mensaje.claveUsada);
 			txtRTF0004.setFocus(true);
-			return false;
-		} else
 			return true;
+		} else
+			return false;
 	}
 
 	public boolean camposLLenos() {
@@ -371,9 +289,102 @@ public class CF0004 extends CGenerico {
 				|| txtNUMF0004.getText().compareTo("") == 0
 				|| txtRTF0004.getText().compareTo("") == 0
 				|| txtSYF0004.getText().compareTo("") == 0
-				|| dblCDLF0004.getValue() == 0.0 )
+				|| dblCDLF0004.getValue() == 0) {
 			return false;
-		else
+		} else
 			return true;
+	}
+	
+	public boolean camposEditando() {
+		if (txtDL01F0004.getText().compareTo("") != 0
+				|| txtLNF0004.getText().compareTo("") != 0
+				|| txtNUMF0004.getText().compareTo("") != 0
+				|| txtRTF0004.getText().compareTo("") != 0
+				|| txtSYF0004.getText().compareTo("") != 0
+				|| dblCDLF0004.getValue() != 0) {
+			return true;
+		} else
+			return false;
+	}
+
+	@Listen("onClick = #gpxRegistro")
+	public void abrirRegistro() {
+		gpxDatos.setOpen(false);
+		gpxRegistro.setOpen(true);
+		mostrarBotones(false);
+	}
+
+	@Listen("onOpen = #gpxDatos")
+	public void abrirCatalogo() {
+		gpxDatos.setOpen(false);
+		if (camposEditando()) {
+			Messagebox.show(Mensaje.estaEditando, "Alerta", Messagebox.YES
+					| Messagebox.NO, Messagebox.QUESTION,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event evt)
+								throws InterruptedException {
+							if (evt.getName().equals("onYes")) {
+								gpxDatos.setOpen(false);
+								gpxRegistro.setOpen(true);
+							} else {
+								if (evt.getName().equals("onNo")) {
+									gpxDatos.setOpen(true);
+									gpxRegistro.setOpen(false);
+									limpiarCampos();
+									habilitarTextClave();
+									mostrarBotones(true);
+								}
+							}
+						}
+					});
+		} else {
+			gpxDatos.setOpen(true);
+			gpxRegistro.setOpen(false);
+			mostrarBotones(true);
+		}
+	}
+
+	public void mostrarCatalogo() {
+		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
+		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004", listF0004, "SY",
+				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
+
+			@Override
+			protected List<F0004> buscar(List<String> valores) {
+
+				List<F0004> actividad2 = new ArrayList<F0004>();
+
+				for (F0004 f0004 : listF0004) {
+					if (f0004.getId().getDtsy().toLowerCase()
+							.startsWith(valores.get(0))
+							&& f0004.getId().getDtrt().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f0004.getDtdl01().toLowerCase()
+									.startsWith(valores.get(2))
+							&& String.valueOf(f0004.getDtcdl()).toLowerCase()
+									.startsWith(valores.get(3))
+							&& f0004.getDtln2().toLowerCase()
+									.startsWith(valores.get(4))
+							&& f0004.getDtcnum().toLowerCase()
+									.startsWith(valores.get(5))) {
+						actividad2.add(f0004);
+					}
+				}
+				return actividad2;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0004 f0004) {
+				String[] registros = new String[6];
+				registros[0] = f0004.getId().getDtsy();
+				registros[1] = f0004.getId().getDtrt();
+				registros[2] = f0004.getDtdl01();
+				registros[3] = String.valueOf(f0004.getDtcdl());
+				registros[4] = f0004.getDtln2();
+				registros[5] = f0004.getDtcnum();
+				return registros;
+			}
+		};
+		catalogo.setParent(catalogoF0004);
 	}
 }
