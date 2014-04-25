@@ -1,0 +1,201 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF0010" apply="controlador.maestros.CF0010">
+		<groupbox width="auto" mold="3d" title="Trabajo con Compañias">
+			<div id="botoneraF0010" />
+			<separator />
+			<groupbox id="gpxRegistroF0010" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar una Nueva Compañia" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<label class="etiqueta" value="Compañia:" />
+							<textbox id="txtCCCOF0010" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Codigo de la Compañia" />
+							<label class="etiqueta" value="Nombre:" />
+							<textbox id="txtNameF0010" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el nombre de la Compañia" />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<tabbox orient="horizontal">
+					<tabs width="auto">
+						<tab label="Configuracion Compañia" id="tabConfiguracion" />
+						<tab label="Contabilidad 52 Periodos" id="tabContabilidad" />
+						<tab label="Contabilidad 52 Periodos" id="tabMoneda" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<hbox>
+								<groupbox title="Contabilidad General" closable="false">
+									<grid width="100%" style="border:0px">
+										<columns visible="false">
+											<column label="" width="35%" />
+											<column label="" width="65%" />
+										</columns>
+										<rows>
+											<row>
+												<label class="etiqueta" value="Patron Fecha Fiscal:" />
+												<textbox id="txtPatronF0010" hflex="1" maxlength="1"
+													tooltiptext="Ingrese el Patron de la Fecha Fiscal" />
+											</row>
+											<row>
+												<label class="etiqueta" value="Numero de Periodos:" />
+												<doublespinner id="dpnPeriodoGeneralF0010"
+													hflex="1" constraint="no negative" tooltiptext="Ingrese el numero de Periodos" />
+											</row>
+											<row>
+												<label class="etiqueta" value="Periodo Actual:" />
+												<doublespinner id="dpnPeriodoActualGeneralF0010"
+													hflex="1" constraint="no negative" tooltiptext="Ingrese el periodo Actual" />
+											</row>
+											<row>
+												<label class="etiqueta" value="Inicio Año Fiscal:" />
+												<datebox readonly="true" width="100%"
+													id="dtbFechaGeneralF0010" onCreate="self.value = new Date()"
+													tooltiptext="Ingrese el Inicio del año fiscal" />
+											</row>
+											<row>
+												<label class="etiqueta" value="Direccion Compañia:" />
+												<textbox id="txtDireccionF0010" hflex="1" maxlength="100"
+													tooltiptext="Ingrese la direccion de la Compañia" />
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+								<separator />
+								<vbox>
+									<groupbox title="Cuentas por Pagar" closable="false">
+										<grid width="100%" style="border:0px">
+											<columns visible="false">
+												<column label="" width="35%" />
+												<column label="" width="65%" />
+											</columns>
+											<rows>
+												<row>
+													<label class="etiqueta" value="Periodo Actual:" />
+													<doublespinner id="dpnPeriodoPagarF0010"
+														hflex="1" constraint="no negative" tooltiptext="Ingrese el periodo Actual" />
+												</row>
+												<row>
+													<label class="etiqueta" value="Inicio Año Fiscal:" />
+													<datebox readonly="true" width="100%" id="dtbFechaPagarF0010"
+														onCreate="self.value = new Date()" tooltiptext="Ingrese el Inicio del año fiscal" />
+												</row>
+												<row>
+													<label class="etiqueta" value="Usar Cuenta Transitoria:" />
+													<checkbox id="chxTransitoria" hflex="1"
+														tooltiptext="Marque para Usar Cuenta Transitoria" />
+												</row>
+											</rows>
+										</grid>
+									</groupbox>
+									<separator />
+									<groupbox title="Cuentas por Cobrar" closable="false">
+										<grid width="100%" style="border:0px">
+											<columns visible="false">
+												<column label="" width="35%" />
+												<column label="" width="65%" />
+											</columns>
+											<rows>
+												<row>
+													<label class="etiqueta" value="Periodo Actual:" />
+													<doublespinner id="dpnPeriodoCobrarF0010"
+														hflex="1" constraint="no negative" tooltiptext="Ingrese el periodo Actual" />
+												</row>
+												<row>
+													<label class="etiqueta" value="Inicio Año Fiscal:" />
+													<datebox readonly="true" width="100%"
+														id="dtbFechaCobrarF0010" onCreate="self.value = new Date()"
+														tooltiptext="Ingrese el Inicio del año fiscal" />
+												</row>
+											</rows>
+										</grid>
+									</groupbox>
+								</vbox>
+							</hbox>
+							<separator />
+							<groupbox title="Informe Finaciero" closable="false">
+								<grid width="100%" style="border:0px">
+									<columns visible="false">
+										<column label="" width="20%" />
+										<column label="" width="30%" />
+										<column label="" width="20%" />
+										<column label="" width="30%" />
+									</columns>
+									<rows>
+										<row>
+											<label class="etiqueta" value="Periodo Informes:" />
+											<doublespinner id="dpnPeriodoInformeF0010"
+												hflex="1" tooltiptext="Ingrese el numero de Periodos de informes" />
+											<label class="etiqueta" value="Año Informes:" />
+											<doublespinner id="dpnAnnoInformeF0010" hflex="1"
+												tooltiptext="Ingrese los Años de Informe" />
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+						</tabpanel>
+						<tabpanel></tabpanel>
+						<tabpanel>
+							<grid width="100%" style="border:0px">
+								<columns visible="false">
+									<column label="" width="20%" />
+									<column label="" width="50%" />
+									<column label="" width="30%" />
+								</columns>
+								<rows>
+									<row>
+										<label class="etiqueta" value="Moneda Nacional:" />
+										<textbox id="txtCCCRCDF0010" hflex="1" maxlength="100"
+											tooltiptext="Ingrese la Moneda Nacional" />
+										<button id="btnBuscarMoneda" class="btn" label="Buscar"
+											tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+									</row>
+									<row>
+										<label class="etiqueta" value="Calculo redeterminacion:" />
+										<doublespinner id="dpnDDFF0010" hflex="1"
+											constraint="no negative" tooltiptext="Ingrese el Calculo de Redeterminacion" />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Redeterminacion de Monedas:" />
+										<textbox id="txtRMF0010" hflex="1" maxlength="100"
+											tooltiptext="Ingrese la Redeerminacion de las monedas" />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Contabilizar saldos cuenta p/moneda:" />
+										<checkbox id="chxSaldos" hflex="1"
+											tooltiptext="Marque para contabilizar los saldos" />
+										<hbox />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF0010" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las Compañias Registradas" />
+				<div id="catalogoF0010" tooltiptext="Seleccione la Compañia para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+
+			<div id="catalogoMonedaF0010" />
+		</groupbox>
+
+	</div>
+</zk>
