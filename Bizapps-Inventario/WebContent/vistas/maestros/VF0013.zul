@@ -28,8 +28,8 @@
 						</row>
 						<row>
 							<label class="etiqueta" value="Visualizacion decimales:" />
-							<spinner id="spnDECF0013" hflex="1"
-								constraint="no negative" tooltiptext="Ingrese el numero de decimales de la moneda" />
+							<textbox id="txtDECF0013" hflex="1"
+								maxlength="1" tooltiptext="Ingrese el numero de decimales de la moneda" />
 
 						</row>
 						<row>

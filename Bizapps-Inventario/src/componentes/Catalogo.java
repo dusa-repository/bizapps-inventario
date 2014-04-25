@@ -90,10 +90,14 @@ public abstract class Catalogo<Clase> extends Window {
 			Auxheader cabeceraFila = new Auxheader();
 			cabeceraFila.appendChild(cajaTexto);
 			cabecera.appendChild(cabeceraFila);
-			lhdEncabezado.appendChild(new Listheader(campos[i]));
+			Listheader listheader = new Listheader(campos[i]);
+			listheader.setHflex("min");
+			lhdEncabezado.appendChild(listheader);
 		}
 		lsbCatalogo.appendChild(cabecera);
 		lsbCatalogo.appendChild(lhdEncabezado);
+		lsbCatalogo.setSizedByContent(true);
+		lsbCatalogo.setSpan("true");
 		cabecera.setVisible(true);
 		lhdEncabezado.setVisible(true);
 		lsbCatalogo.setModel(new ListModelList<Clase>(lista));
