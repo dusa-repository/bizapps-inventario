@@ -3,6 +3,8 @@ package componentes;
 import org.zkoss.zul.Messagebox;
 
 public class Mensaje {
+	public static String claveSYNoEsta = "El Codigo de Producto no Existe.";
+	public static String claveRTNoEsta = "El Codigo Definido por el Usuario no Existe.";
 	public static String guardado = "Registro Guardado Exitosamente.";
 	public static String claveUsada = "La Clave ha sido Usada por Otro Registro.";
 	public static String camposVacios = "Debe Llenar Todos lo Campos.";

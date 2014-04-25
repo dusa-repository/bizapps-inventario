@@ -1,0 +1,98 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF0005" apply="controlador.maestros.CF0005">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con Codigos Definidos por el Usuario">
+			<div id="botoneraF0005" />
+			<separator />
+			<groupbox id="gpxRegistro" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Codigo" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="45%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Cod producto (cod SY):" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtSYF0005" hflex="1" maxlength="100"
+								tooltiptext="Seleccione del Catalogo el Codigo del Producto" />
+							<button id="btnCatalogo" label=""
+								tooltiptext="Catalogo de Codigos de Producto" image="/public/imagenes/botones/buscar.png" />
+						</row>
+
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Cod defin usuario (cod RT):" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtRTF0005" hflex="1" maxlength="100"
+								tooltiptext="Seleccione del Catalogo el Codigo del Producto" />
+								<label id="lblDescripcionF0004" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Codigo (cod KY):" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtKYF0005" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Codigo" />
+							<hbox />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Descripcion (01):" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtDL01F0005" hflex="1" maxlength="500"
+								tooltiptext="Ingrese la Descripcion Nro. 01 del Codigo"
+								multiline="true" class="multilinea" />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="Descripcion (02):" />
+							<textbox id="txtDL02F0005" hflex="1" maxlength="500"
+								tooltiptext="Ingrese la Descripcion Nro. 02 del Codigo"
+								multiline="true" class="multilinea" />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="Gestion Especial:" />
+							<textbox id="txtSPHDF0005" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Gestion Especial del Codigo" />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="Codificacion Fija:" />
+							<textbox id="txtHRDCF0005" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Codificacion Fija del Codigo" />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los Codigos Registrados" />
+				<div id="catalogoF0005" tooltiptext="Seleccione el Codigo para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+	</div>
+</zk>
