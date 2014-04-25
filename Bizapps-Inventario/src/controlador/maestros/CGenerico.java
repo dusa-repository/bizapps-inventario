@@ -1,8 +1,10 @@
 package controlador.maestros;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +34,9 @@ import servicio.maestros.SF00021;
 import servicio.maestros.SF0004;
 import servicio.maestros.SF0005;
 import servicio.maestros.SF0006;
+import servicio.maestros.SF0010;
+import servicio.maestros.SF0013;
+import servicio.maestros.SF0101;
 import servicio.maestros.SF40203;
 import servicio.maestros.SF41002;
 import servicio.seguridad.SArbol;
@@ -42,7 +47,7 @@ import servicio.seguridad.SUsuario;
 public abstract class CGenerico extends SelectorComposer<Component> {
 
 	private static final long serialVersionUID = -3701148488846104476L;
-	
+
 	@WireVariable("SArbol")
 	protected SArbol servicioArbol;
 	@WireVariable("SF0004")
@@ -51,6 +56,12 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF0005 servicioF0005;
 	@WireVariable("SF0006")
 	protected SF0006 servicioF0006;
+	@WireVariable("SF0010")
+	protected SF0010 servicioF0010;
+	@WireVariable("SF0013")
+	protected SF0013 servicioF0013;
+	@WireVariable("SF0101")
+	protected SF0101 servicioF0101;
 	@WireVariable("SF00021")
 	protected SF00021 servicioF00021;
 	@WireVariable("SF40203")
@@ -61,11 +72,12 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SGrupo servicioGrupo;
 	@WireVariable("SUsuario")
 	protected SUsuario servicioUsuario;
-	
-	public static  List<Tab> tabs = new ArrayList<Tab>();
+
+	public static List<Tab> tabs = new ArrayList<Tab>();
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public final Calendar calendario = Calendar.getInstance();
-	//Cambio en la hora borrados los :
+	// Cambio en la hora borrados los :
+
 	public String horaAuditoria = String.valueOf(calendario
 			.get(Calendar.HOUR_OF_DAY))
 			+ String.valueOf(calendario.get(Calendar.MINUTE))
@@ -80,14 +92,64 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		inicializar();
 	}
 
+	public BigDecimal transformarGregorianoAJulia(Date fecha) {
+		System.out.println(fecha);
+		String valor = "";
+		System.out.println(fecha.getYear()+1900);
+		if ((fecha.getYear()+1900) < 2000)
+			valor = "";
+		else
+			valor = "1";
+		long al = Long.valueOf(valor
+				+ String.valueOf(calendario.get(Calendar.YEAR)).substring(2)
+				+ String.valueOf(calendario.get(Calendar.DAY_OF_YEAR)));
+		System.out.println(al);
+		BigDecimal a = BigDecimal.valueOf(al);
+		return a;
+	}
+
+	public Date transformarJulianaAGregoria(BigDecimal valor){
+		String j = valor.toString();
+		Date date = new Date();
+		String primerValor = "";
+		if (j.length() == 5) {
+			try {
+				date = new SimpleDateFormat("yyD").parse(j);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(date);
+		} else {
+			primerValor = j.substring(0, 1);
+			if (primerValor.equals("1")) {
+				String anno = j.substring(1, 3);
+				date.setYear(Integer.valueOf("20" + anno)-1900);
+				String s = j.substring(3);
+				Date fecha = new Date();
+				try {
+					fecha = new SimpleDateFormat("D").parse(s);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				fecha.setYear(date.getYear());
+				System.out.println(fecha);
+				return fecha;
+			}
+		}
+		return date;
+
+	}
+
 	public abstract void inicializar() throws IOException;
 
 	public void cerrarVentana(Div div, String id) {
 		div.setVisible(false);
-		for(int i =0; i<tabs.size();i++){
-			if(tabs.get(i).getLabel().equals(id)){
-				if(i==(tabs.size()-1)&& tabs.size()>1){
-					tabs.get(i-1).setSelected(true);
+		for (int i = 0; i < tabs.size(); i++) {
+			if (tabs.get(i).getLabel().equals(id)) {
+				if (i == (tabs.size() - 1) && tabs.size() > 1) {
+					tabs.get(i - 1).setSelected(true);
 				}
 				tabs.get(i).onClose();
 				tabs.remove(i);
@@ -100,7 +162,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 				.getAuthentication();
 		return sesion.getName();
 	}
-	
+
 	/* Metodo que permite enviar un correo electronico a cualquier destinatario */
 	public boolean enviarEmailNotificacion(String correo, String mensajes) {
 		try {

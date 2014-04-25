@@ -1,0 +1,55 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF0013" apply="controlador.maestros.CF0013">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con Codigo de Monedas y Tarifas">
+			<div id="botoneraF0013" />
+			<separator />
+			<groupbox id="gpxRegistroF0013" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar una Nueva Moneda" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="30%" />
+						<column label="" width="45%" />
+						<column label="" width="25%" />
+					</columns>
+					<rows>
+						<row>
+							<label class="etiqueta" value="Codigo Moneda:" />
+							<textbox id="txtCRCDF0013" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Codigo de la Moneda" />
+						</row>
+						<row>
+							<label class="etiqueta" value="Descripcion:" />
+							<textbox id="txtDL01F0013" hflex="1" maxlength="100"
+								tooltiptext="Ingrese la Descripcion de la Moneda" />
+						</row>
+						<row>
+							<label class="etiqueta" value="Visualizacion decimales:" />
+							<spinner id="spnDECF0013" hflex="1"
+								constraint="no negative" tooltiptext="Ingrese el numero de decimales de la moneda" />
+
+						</row>
+						<row>
+							<label class="etiqueta" value="Importe traductor Palabras:" />
+							<textbox id="txtCKRF0013" hflex="1" maxlength="100"
+								tooltiptext="Ingrese el Importe del traductor de Palabras" />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF0013" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las Monedas Registradas" />
+				<div id="catalogoF0013" tooltiptext="Seleccione la Moneda para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+
+	</div>
+</zk>
