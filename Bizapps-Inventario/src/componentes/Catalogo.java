@@ -85,7 +85,8 @@ public abstract class Catalogo<Clase> extends Window {
 							cajaTexto.setValue(valor);
 						}
 					});
-			cajaTexto.setPlaceholder("Filtrado");
+			cajaTexto.setPlaceholder("Buscar....");
+			cajaTexto.setTooltiptext("Presione Enter para Filtrar la Informacion");
 			Auxheader cabeceraFila = new Auxheader();
 			cabeceraFila.appendChild(cajaTexto);
 			cabecera.appendChild(cabeceraFila);

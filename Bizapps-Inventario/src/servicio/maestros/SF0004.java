@@ -26,8 +26,8 @@ public class SF0004 {
 		return f0004DAO.findByDtcdlStartingWithAllIgnoreCase(valor);
 	}
 
-	public List<F0004> buscarTodosContado() {
-		return f0004DAO.findAll();
+	public List<F0004> buscarTodosOrdenados() {
+		return f0004DAO.findAllOrderByIdDtsy();
 	}
 
 	public F0004 buscar(String value, String value2) {
