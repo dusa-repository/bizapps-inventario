@@ -9,5 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface IF0006DAO extends JpaRepository<F0006, Long> {
 
+	@Query("Select f from F0006 f order by f.mcmcu asc")
+	List<F0006> findAllOrderByMcmcu();
 
+	List<F0006> findByMcmcu(String value);
 }
