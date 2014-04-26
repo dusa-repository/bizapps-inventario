@@ -6,14 +6,13 @@ import java.util.List;
 
 import modelo.maestros.F0004;
 import modelo.maestros.F0005;
-import modelo.pk.F0004PK;
 import modelo.pk.F0005PK;
 
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
-import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
@@ -25,6 +24,8 @@ import componentes.Mensaje;
 
 public class CF0005 extends CGenerico {
 
+
+	private static final long serialVersionUID = 4858496432716297913L;
 	@Wire
 	private Textbox txtSYF0005;
 	@Wire
@@ -46,14 +47,19 @@ public class CF0005 extends CGenerico {
 	@Wire
 	private Div catalogoF0005;
 	@Wire
+	private Div divCatalogoF0004;
+	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
 	@Wire
 	private Label lblDescripcionF0004;
+	@Wire
+	private Button btnBuscarF0004;
 
 	Botonera botonera;
 	Catalogo<F0005> catalogo;
+	Catalogo<F0004> catalogoF0004;
 	F0005PK clave = null;
 
 	@Override
@@ -67,11 +73,11 @@ public class CF0005 extends CGenerico {
 			@Override
 			public void seleccionar() {
 				if (validarSeleccion()) {
-					if (catalogo.obtenerSeleccionados().size() == 1) {
+					if (catalogo.obtenerSeleccionados().size() == 1) {				
 						mostrarBotones(false);
-						abrirRegistro();
-						F0005 f05 = catalogo.objetoSeleccionadoDelCatalogo();
+						F0005 f05 = catalogo.objetoSeleccionadoDelCatalogo();				
 						clave = f05.getId();
+						abrirRegistro();				
 						F0004 f04 = servicioF0004.buscar(f05.getId().getDrsy(), f05.getId().getDrrt());
 						txtRTF0005.setValue(f05.getId().getDrrt());
 						txtRTF0005.setDisabled(true);
@@ -102,10 +108,11 @@ public class CF0005 extends CGenerico {
 
 			@Override
 			public void limpiar() {
+				clave = null;
 				mostrarBotones(false);
 				limpiarCampos();
 				habilitarTextClave();
-				clave = null;
+			
 			}
 
 			@Override
@@ -239,6 +246,7 @@ public class CF0005 extends CGenerico {
 		txtKYF0005.setValue("");
 		txtSYF0005.setFocus(true);
 		lblDescripcionF0004.setValue("");
+		btnBuscarF0004.setVisible(true);
 	}
 
 	public void habilitarTextClave() {
@@ -358,6 +366,10 @@ public class CF0005 extends CGenerico {
 
 	@Listen("onClick = #gpxRegistro")
 	public void abrirRegistro() {
+		if(clave==null)
+		btnBuscarF0004.setVisible(true);
+		else
+			btnBuscarF0004.setVisible(false);
 		gpxDatos.setOpen(false);
 		gpxRegistro.setOpen(true);
 		mostrarBotones(false);
@@ -439,5 +451,64 @@ public class CF0005 extends CGenerico {
 			}
 		};
 		catalogo.setParent(catalogoF0005);
+	}
+	
+
+	@Listen("onClick = #btnBuscarF0004")
+	public void mostrarCatalogoF0004() {
+		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
+		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "F0004", listF0004, "SY",
+				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
+
+			@Override
+			protected List<F0004> buscar(List<String> valores) {
+
+				List<F0004> lista = new ArrayList<F0004>();
+
+				for (F0004 f0004 : listF0004) {
+					if (f0004.getId().getDtsy().toLowerCase()
+							.startsWith(valores.get(0))
+							&& f0004.getId().getDtrt().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f0004.getDtdl01().toLowerCase()
+									.startsWith(valores.get(2))
+							&& String.valueOf(f0004.getDtcdl()).toLowerCase()
+									.startsWith(valores.get(3))
+							&& f0004.getDtln2().toLowerCase()
+									.startsWith(valores.get(4))
+							&& f0004.getDtcnum().toLowerCase()
+									.startsWith(valores.get(5))) {
+						lista.add(f0004);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0004 f0004) {
+				String[] registros = new String[6];
+				registros[0] = f0004.getId().getDtsy();
+				registros[1] = f0004.getId().getDtrt();
+				registros[2] = f0004.getDtdl01();
+				registros[3] = String.valueOf(f0004.getDtcdl());
+				registros[4] = f0004.getDtln2();
+				registros[5] = f0004.getDtcnum();
+				return registros;
+			}
+		};
+		catalogoF0004.setClosable(true);
+		catalogoF0004.setWidth("80%");
+		catalogoF0004.setTitle("Registros");
+		catalogoF0004.setParent(divCatalogoF0004);
+		catalogoF0004.doModal();
+	}
+
+	@Listen("onSeleccion = #divCatalogoF0004")
+	public void seleccion() {
+		F0004 f0004 = catalogoF0004.objetoSeleccionadoDelCatalogo();
+		txtSYF0005.setValue(f0004.getId().getDtsy());
+		txtRTF0005.setValue(f0004.getId().getDtrt());
+		lblDescripcionF0004.setValue(servicioF0004.buscar(f0004.getId().getDtsy(),f0004.getId().getDtrt()).getDtdl01());
+		catalogoF0004.setParent(null);
 	}
 }
