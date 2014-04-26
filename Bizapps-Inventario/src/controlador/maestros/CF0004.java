@@ -352,7 +352,7 @@ public class CF0004 extends CGenerico {
 			@Override
 			protected List<F0004> buscar(List<String> valores) {
 
-				List<F0004> actividad2 = new ArrayList<F0004>();
+				List<F0004> lista = new ArrayList<F0004>();
 
 				for (F0004 f0004 : listF0004) {
 					if (f0004.getId().getDtsy().toLowerCase()
@@ -367,10 +367,10 @@ public class CF0004 extends CGenerico {
 									.startsWith(valores.get(4))
 							&& f0004.getDtcnum().toLowerCase()
 									.startsWith(valores.get(5))) {
-						actividad2.add(f0004);
+						lista.add(f0004);
 					}
 				}
-				return actividad2;
+				return lista;
 			}
 
 			@Override
