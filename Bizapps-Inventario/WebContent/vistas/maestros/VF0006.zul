@@ -18,7 +18,12 @@
 				</columns>
 				<rows>
 				<row>
-				<label class="etiqueta" value= "   Unidad Negocio" />
+				<hbox>
+					<label class="etiqueta" value= "   Unidad Negocio" /> 
+					<space />
+					<label value="*" style="font-weight:bold;color:red">
+					</label>
+				</hbox>
 					<textbox id="txtUDCF0006" hflex="1" maxlength="100" width = "45%"
 						tooltiptext="Ingrese la Unidad de Negocio"/>
 					<hbox />
@@ -44,15 +49,27 @@
 				</columns>
 				<rows>
 					<row>
-						<label class="etiqueta" value= "Descripción" />
+				<hbox>
+					<label class="etiqueta" value= "Descripción" />					
+					<space />
+					<label value="*" style="font-weight:bold;color:red">
+					</label>
+				</hbox>					
 							<textbox id="txtDL01F0006" hflex="1" maxlength="100"
 								tooltiptext="Ingrese la Descripción de la Unidad de Negocio" />
 							<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Compañia" />
+				<hbox>
+					<label class="etiqueta" value= "Compañia" />					
+					<space />
+					<label value="*" style="font-weight:bold;color:red">
+					</label>
+				</hbox>							
 							<textbox id="txtCOF0006" hflex="1" maxlength="100"
 								tooltiptext="Ingrese la Compañia" />
+								<button id="btnBuscarUnidad" label="" mold="trendy"
+							width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
 							<hbox />
 					</row>
 					<row>
@@ -65,6 +82,8 @@
 						<label class="etiqueta" value= "Tipo Unidad Negocio" />
 							<textbox id="txtSTYLF0006" hflex="1" maxlength="100"
 								tooltiptext="Ingrese el tipo Unidad de Negocio" />
+								<button id="btnBuscarTipoUnidad" label="" mold="trendy"
+								width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
 							<hbox />
 					</row>
 					<row>
