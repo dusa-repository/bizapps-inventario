@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.maestros.F0004;
+import modelo.maestros.F0005;
+import modelo.maestros.F0005;
+import modelo.maestros.F0005;
 import modelo.maestros.F0006;
-import modelo.pk.F0004PK;
+import modelo.pk.F0005PK;
 
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
+import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Button;
@@ -116,6 +120,8 @@ public class CF0006 extends CGenerico {
 	@Wire
 	private Div botoneraF0006;
 	@Wire
+	private Div divCatalogoF0004;
+	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
@@ -123,10 +129,12 @@ public class CF0006 extends CGenerico {
 	private Button btnBuscarUnidad ;
 	@Wire
 	private Button btnBuscarTipoUnidad;
+	@Wire
+	private Label lblDescripcionF0004;
 	Catalogo<F0006> catalogo;
 	Botonera botonera;
 	F0006 clave;
-	
+	Catalogo<F0004> catalogoF0004;
 	
 	@Override
 	public void inicializar() throws IOException {
@@ -663,4 +671,60 @@ public class CF0006 extends CGenerico {
 		// catalogo.doModal();
 	}
 
+	@Listen("onClick = #btnBuscarTipoUnidad")
+	public void mostrarCatalogoF0004() {
+		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
+		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "F0004", listF0004, "SY",
+				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
+
+			@Override
+			protected List<F0004> buscar(List<String> valores) {
+
+				List<F0004> lista = new ArrayList<F0004>();
+
+				for (F0004 f0004 : listF0004) {
+					if (f0004.getId().getDtsy().toLowerCase()
+							.startsWith(valores.get(0))
+							&& f0004.getId().getDtrt().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f0004.getDtdl01().toLowerCase()
+									.startsWith(valores.get(2))
+							&& String.valueOf(f0004.getDtcdl()).toLowerCase()
+									.startsWith(valores.get(3))
+							&& f0004.getDtln2().toLowerCase()
+									.startsWith(valores.get(4))
+							&& f0004.getDtcnum().toLowerCase()
+									.startsWith(valores.get(5))) {
+						lista.add(f0004);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0004 f0004) {
+				String[] registros = new String[6];
+				registros[0] = f0004.getId().getDtsy();
+				registros[1] = f0004.getId().getDtrt();
+				registros[2] = f0004.getDtdl01();
+				registros[3] = String.valueOf(f0004.getDtcdl());
+				registros[4] = f0004.getDtln2();
+				registros[5] = f0004.getDtcnum();
+				return registros;
+			}
+		};
+		catalogoF0004.setClosable(true);
+		catalogoF0004.setWidth("80%");
+		catalogoF0004.setTitle("Registros");
+		catalogoF0004.setParent(divCatalogoF0004);
+		catalogoF0004.doModal();
+	}
+	
+	@Listen("onSeleccion = #divCatalogoF0004")
+		public void seleccion() {
+			F0004 f0004 = catalogoF0004.objetoSeleccionadoDelCatalogo();
+			txtSTYLF0006.setValue(f0004.getId().getDtsy());
+			lblDescripcionF0004.setValue(servicioF0004.buscar(f0004.getId().getDtsy(),f0004.getId().getDtrt()).getDtdl01());
+			catalogoF0004.setParent(null);
+		}
 }

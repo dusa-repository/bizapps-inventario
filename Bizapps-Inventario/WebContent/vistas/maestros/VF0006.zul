@@ -45,7 +45,8 @@
 				<columns visible="false">
 					<column label="" width="25%" />
 					<column label="" width="45%" />
-					<column label="" width="30%" />
+					<column label="" width="10%" />
+					<column label="" width="20%" />
 				</columns>
 				<rows>
 					<row>
@@ -82,8 +83,10 @@
 						<label class="etiqueta" value= "Tipo Unidad Negocio" />
 							<textbox id="txtSTYLF0006" hflex="1" maxlength="100"
 								tooltiptext="Ingrese el tipo Unidad de Negocio" />
+								
 								<button id="btnBuscarTipoUnidad" label="" mold="trendy"
 								width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
+								<label id="lblDescripcionF0004" />
 							<hbox />
 					</row>
 					<row>
@@ -380,5 +383,6 @@
 			<separator />
 			<separator />
 		</groupbox>	
+		<div id="divCatalogoF0004" tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>
