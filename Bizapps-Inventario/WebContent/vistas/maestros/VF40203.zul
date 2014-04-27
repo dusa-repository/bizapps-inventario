@@ -16,13 +16,13 @@
 				<rows>
 					<row>
 						<label class="etiqueta" value= "Tipo de Orden" />
-							<textbox id="txtDCTOF40203" hflex="1" maxlength="100"
+							<textbox id="txtDCTOF40203" hflex="1" maxlength="2"
 								tooltiptext="Ingrese el Tipo de Orden " />
 							<hbox />
 					</row>
 					<row>
 						<label class="etiqueta" value= "Tipo Línea" />
-							<textbox id="txtLNTYF40203" hflex="1" maxlength="100"
+							<textbox id="txtLNTYF40203" hflex="1" maxlength="2"
 								tooltiptext="Ingrese Código Tipo de Línea " />
 							<hbox />
 					</row>
@@ -30,6 +30,60 @@
 						<label class="etiqueta" value= "Nº Siguiente Tipo Orden" />
 							<textbox id="txtNSF40203" hflex="1" maxlength="100"
 								tooltiptext="Nº Siguiente Tipo Orden" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Úlmimo Estado" />
+							<textbox id="txtTRTYF40203" hflex="1" maxlength="3"
+								tooltiptext="Último estado" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Descripción último estado" />
+							<textbox id="txtDSC1F40203" hflex="1" maxlength="30"
+								tooltiptext="Ingrese la descripción del último estado" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Estado siguiente" />
+							<textbox id="txtNXTRF40203" hflex="1" maxlength="3"
+								tooltiptext="Ingrese el estado siguiente" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Otros 1" />
+							<textbox id="txtA1TRF40203" hflex="1" maxlength="3"
+								tooltiptext="Ingrese otros 1" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Otros 2" />
+							<textbox id="txtA2TRF40203" hflex="1" maxlength="3"
+								tooltiptext="Ingrese otros 2" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Otros 3" />
+							<textbox id="txtA3TRF40203" hflex="1" maxlength="3"
+								tooltiptext="Ingrese otros 3" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Otros 4" />
+							<textbox id="txtA4TRF40203" hflex="1" maxlength="3"
+								tooltiptext="Ingrese otros 4" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "Otros 5" />
+							<textbox id="txtA5TRF40203" hflex="1" maxlength="3"
+								tooltiptext="Ingrese otros 5" />
+							<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= "LM (Y/N)" />
+							<textbox id="txtWRTHF40203" hflex="1" maxlength="1"
+								tooltiptext="Ingrese LM (Y/M)" />
 							<hbox />
 					</row>
 				</rows>
