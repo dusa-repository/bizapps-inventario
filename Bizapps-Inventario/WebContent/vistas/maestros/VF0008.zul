@@ -1,0 +1,193 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF0008" apply="controlador.maestros.CF0008">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con patrones de fecha fiscal">
+			<div id="botoneraF0008" />
+			<separator />
+			<groupbox id="gpxRegistroF0008" width="auto" title=""
+				open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Patrón de Fecha Fiscal" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="45%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta"
+									value="Patrón fecha fiscal:" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtDTPNF0008" hflex="1"
+								maxlength="100"
+								tooltiptext="Seleccione del Catalogo el Codigo del Patron de Fecha Fiscal" />
+							<button id="btnBuscarF0008" label=""
+								tooltiptext="Catalogo de Codigos de Patrones de Fechas fiscales"
+								image="/public/imagenes/botones/buscar.png" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta"
+									value="Fecha inicio año fiscal:" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<datebox readonly="true" width="100%"
+								id="dtbDFYJF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha de Inicio del año fiscal" />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<label class="etiqueta" value="Periodo" />
+							<label class="etiqueta" value="Fecha final" />
+							<label class="etiqueta" value="Periodo"
+								style="margin-left:30px" />
+							<label class="etiqueta" value="Fecha final" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="1"
+									style="margin-left:25px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+
+							<datebox readonly="true" width="100%"
+								id="dtbD01JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 1" />
+
+							<label class="etiqueta" value="8"
+								style="margin-left:65px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD08JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 8" />
+						</row>
+						<row>
+							<label class="etiqueta" value="2"
+								style="margin-left:25px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD02JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 2" />
+
+							<label class="etiqueta" value="9"
+								style="margin-left:65px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD09JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 9" />
+						</row>
+						<row>
+							<label class="etiqueta" value="3"
+								style="margin-left:25px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD03JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 3" />
+
+							<label class="etiqueta" value="10"
+								style="margin-left:65px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD10JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 10" />
+						</row>
+						<row>
+							<label class="etiqueta" value="4"
+								style="margin-left:25px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD04JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 4" />
+
+							<label class="etiqueta" value="11"
+								style="margin-left:65px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD11JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 11" />
+						</row>
+						<row>
+							<label class="etiqueta" value="5"
+								style="margin-left:25px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD05JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 5" />
+
+							<label class="etiqueta" value="12"
+								style="margin-left:65px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD12JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 12" />
+						</row>
+						<row>
+							<label class="etiqueta" value="6"
+								style="margin-left:25px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD06JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 6" />
+
+							<label class="etiqueta" value="13"
+								style="margin-left:65px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD13JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 13" />
+						</row>
+						<row>
+							<label class="etiqueta" value="7"
+								style="margin-left:25px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD07JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 7" />
+
+							<label class="etiqueta" value="14"
+								style="margin-left:65px" />
+
+							<datebox readonly="true" width="100%"
+								id="dtbD14JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 14" />
+						</row>
+					</rows>
+				</grid>
+
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF0008" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los Patrones de Fecha Fiscal Registrados" />
+				<div id="catalogoF0008"
+					tooltiptext="Seleccione el Patron de Fecha Fiscal Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+	</div>
+</zk>
