@@ -1,6 +1,6 @@
 <zk>
 	<style src="../public/Estilo.css" />
-	<div id="divVF0015H">
+	<div id="divVF0015H" apply="controlador.maestros.CF0015H">
 		<groupbox width="auto" mold="3d"
 			title="Trabajo con tipos de cambio">
 			<div id="botoneraF0015H" />

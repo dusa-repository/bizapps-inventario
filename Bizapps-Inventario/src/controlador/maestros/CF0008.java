@@ -145,8 +145,6 @@ public class CF0008 extends CGenerico {
 			}
 
 		};
-		botonera.getChildren().get(3).setVisible(false);
-		botonera.getChildren().get(5).setVisible(false);
 		botoneraF0008.appendChild(botonera);
 
 	}
