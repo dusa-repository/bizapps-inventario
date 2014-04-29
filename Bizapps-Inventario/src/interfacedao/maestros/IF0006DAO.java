@@ -7,7 +7,7 @@ import modelo.maestros.F0006;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface IF0006DAO extends JpaRepository<F0006, Long> {
+public interface IF0006DAO extends JpaRepository<F0006, String> {
 
 	@Query("Select f from F0006 f order by f.mcmcu asc")
 	List<F0006> findAllOrderByMcmcu();

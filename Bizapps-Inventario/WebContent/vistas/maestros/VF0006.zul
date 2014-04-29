@@ -69,8 +69,9 @@
 				</hbox>							
 							<textbox id="txtCOF0006" hflex="1" maxlength="5"
 								tooltiptext="Ingrese la Compañia" />
-								<button id="btnBuscarUnidad" label="" mold="trendy"
+								<button id="btnBuscarCompannia" label="" mold="trendy"
 							width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
+							<label id="lblDescripcionF0010" />
 							<hbox />
 					</row>
 					<row>
@@ -383,6 +384,8 @@
 			<separator />
 			<separator />
 		</groupbox>	
-		<div id="divCatalogoF0004" tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0010" tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0005" tooltiptext="Click para Seleccionar un Codigo" />
+		
 	</div>
 </zk>
