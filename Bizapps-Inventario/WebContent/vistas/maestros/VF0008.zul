@@ -73,7 +73,6 @@
 									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-
 							<datebox readonly="true" width="100%"
 								id="dtbD01JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 1" />
@@ -177,7 +176,6 @@
 						</row>
 					</rows>
 				</grid>
-
 			</groupbox>
 			<separator />
 			<groupbox id="gpxDatosF0008" width="auto" title="">
