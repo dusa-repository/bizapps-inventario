@@ -6,6 +6,7 @@ import interfacedao.maestros.IF0006DAO;
 
 import modelo.maestros.F0004;
 import modelo.maestros.F0006;
+import modelo.maestros.F0010;
 import modelo.pk.F0004PK;
 
 
@@ -32,10 +33,14 @@ public class SF0006 {
 		f0006DAO.delete(eliminar);
 	}
 
-	public void eliminarUno(F0006 clave) {
+	public void eliminarUno(String clave) {
 		f0006DAO.delete(clave);
 	}
+	
+	public F0006 buscar(String value) {
+		return f0006DAO.findOne(value);
 
+	}
 	public List<F0006> buscarMcmu(String value) {
 		return f0006DAO.findByMcmcu(value);
 	}

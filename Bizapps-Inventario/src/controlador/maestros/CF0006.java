@@ -8,6 +8,7 @@ import modelo.maestros.F0005;
 import modelo.maestros.F0005;
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
+import modelo.maestros.F0010;
 import modelo.pk.F0005PK;
 
 import org.zkoss.zk.ui.event.Event;
@@ -120,21 +121,26 @@ public class CF0006 extends CGenerico {
 	@Wire
 	private Div botoneraF0006;
 	@Wire
-	private Div divCatalogoF0004;
+	private Div divCatalogoF0005;
+	@Wire
+	private Div divCatalogoF0010;
 	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
 	@Wire
-	private Button btnBuscarUnidad ;
+	private Button btnBuscarCompannia ;
 	@Wire
 	private Button btnBuscarTipoUnidad;
 	@Wire
 	private Label lblDescripcionF0004;
+	@Wire
+	private Label lblDescripcionF0010;
 	Catalogo<F0006> catalogo;
 	Botonera botonera;
-	F0006 clave;
-	Catalogo<F0004> catalogoF0004;
+	String clave = null;
+	Catalogo<F0005> catalogoF0005;
+	Catalogo<F0010> catalogoF0010;
 	
 	@Override
 	public void inicializar() throws IOException {
@@ -227,7 +233,7 @@ public class CF0006 extends CGenerico {
 			@Override
 			public void guardar() {
 				boolean guardar = true;
-//				if (clave == null)
+				if (clave == null)
 					guardar = validar();
 				if (guardar) {
 					System.out.println("entrooooooooooo");
@@ -455,12 +461,26 @@ public class CF0006 extends CGenerico {
 	}
 	
 	protected boolean validar() {
+		if (claveSYExiste()) {
+			return false;
+		} else {
 			if (!camposLLenos()) {
 				msj.mensajeAlerta(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
 		}
+	}
+	
+	@Listen("onChange = #txtUDCF0006")
+	public boolean claveSYExiste() {
+		if (servicioF0006.buscar(txtUDCF0006.getValue()) != null) {
+			msj.mensajeAlerta(Mensaje.claveUsada);
+			txtUDCF0006.setFocus(true);
+			return true;
+		} else
+			return false;
+	}
 
 	public void limpiarCampos() {
 		txtUDCF0006.setValue("");
@@ -507,6 +527,8 @@ public class CF0006 extends CGenerico {
 		txtRP28F0006.setValue("");
 		txtRP29F0006.setValue("");
 		txtRP30F0006.setValue("");
+		lblDescripcionF0004.setValue("");
+		lblDescripcionF0010.setValue("");
 		txtUDCF0006.setFocus(true);
 	}
 
@@ -671,60 +693,138 @@ public class CF0006 extends CGenerico {
 		// catalogo.doModal();
 	}
 
+	
 	@Listen("onClick = #btnBuscarTipoUnidad")
-	public void mostrarCatalogoF0004() {
-		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
-		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "F0004", listF0004, "SY",
-				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
+	public void mostrarCatalogoF0005() {
+	final List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
+	catalogoF0005 = new Catalogo<F0005>(divCatalogoF0005, "F0005", listF0005, "SY",
+			"RT", "KY", "Descripcion 01", "Descripcion 02",
+			"Gestion Especial", "Codificacion Fija") {
 
-			@Override
-			protected List<F0004> buscar(List<String> valores) {
+		@Override
+		protected List<F0005> buscar(List<String> valores) {
 
-				List<F0004> lista = new ArrayList<F0004>();
+			List<F0005> listF0005_2 = new ArrayList<F0005>();
 
-				for (F0004 f0004 : listF0004) {
-					if (f0004.getId().getDtsy().toLowerCase()
-							.startsWith(valores.get(0))
-							&& f0004.getId().getDtrt().toLowerCase()
-									.startsWith(valores.get(1))
-							&& f0004.getDtdl01().toLowerCase()
-									.startsWith(valores.get(2))
-							&& String.valueOf(f0004.getDtcdl()).toLowerCase()
-									.startsWith(valores.get(3))
-							&& f0004.getDtln2().toLowerCase()
-									.startsWith(valores.get(4))
-							&& f0004.getDtcnum().toLowerCase()
-									.startsWith(valores.get(5))) {
-						lista.add(f0004);
-					}
+			for (F0005 f0005 : listF0005) {
+				if (f0005.getId().getDrsy().toLowerCase()
+						.startsWith(valores.get(0))
+						&& f0005.getId().getDrrt().toLowerCase()
+								.startsWith(valores.get(1))
+						&& f0005.getId().getDrky().toLowerCase()
+								.startsWith(valores.get(2))
+						&& f0005.getDrdl01().toLowerCase()
+								.startsWith(valores.get(3))
+						&& f0005.getDrdl02().toLowerCase()
+								.startsWith(valores.get(4))
+						&& f0005.getDrsphd().toLowerCase()
+								.startsWith(valores.get(5))
+						&& f0005.getDrhrdc().toLowerCase()
+								.startsWith(valores.get(6))) {
+					listF0005_2.add(f0005);
 				}
-				return lista;
 			}
+			return listF0005_2;
+		}
 
-			@Override
-			protected String[] crearRegistros(F0004 f0004) {
-				String[] registros = new String[6];
-				registros[0] = f0004.getId().getDtsy();
-				registros[1] = f0004.getId().getDtrt();
-				registros[2] = f0004.getDtdl01();
-				registros[3] = String.valueOf(f0004.getDtcdl());
-				registros[4] = f0004.getDtln2();
-				registros[5] = f0004.getDtcnum();
-				return registros;
-			}
+		@Override
+		protected String[] crearRegistros(F0005 f0005) {
+			String[] registros = new String[7];
+			registros[0] = f0005.getId().getDrsy();
+			registros[1] = f0005.getId().getDrrt();
+			registros[2] = f0005.getId().getDrky();
+			registros[3] = f0005.getDrdl01();
+			registros[4] = f0005.getDrdl02();
+			registros[5] = f0005.getDrsphd();
+			registros[6] = f0005.getDrhrdc();
+			return registros;
+		}
 		};
-		catalogoF0004.setClosable(true);
-		catalogoF0004.setWidth("80%");
-		catalogoF0004.setTitle("Registros");
-		catalogoF0004.setParent(divCatalogoF0004);
-		catalogoF0004.doModal();
+		catalogoF0005.setClosable(true);
+		catalogoF0005.setWidth("80%");
+		catalogoF0005.setTitle("Registros");
+		catalogoF0005.setParent(divCatalogoF0005);
+		catalogoF0005.doModal();
 	}
 	
-	@Listen("onSeleccion = #divCatalogoF0004")
+	@Listen("onSeleccion = #divCatalogoF0005")
 		public void seleccion() {
-			F0004 f0004 = catalogoF0004.objetoSeleccionadoDelCatalogo();
-			txtSTYLF0006.setValue(f0004.getId().getDtsy());
-			lblDescripcionF0004.setValue(servicioF0004.buscar(f0004.getId().getDtsy(),f0004.getId().getDtrt()).getDtdl01());
-			catalogoF0004.setParent(null);
+			F0005 f0005 = catalogoF0005.objetoSeleccionadoDelCatalogo();
+			txtSTYLF0006.setValue(f0005.getId().getDrrt());
+			lblDescripcionF0004.setValue(f0005.getId().getDrky());
+			catalogoF0005.setParent(null);
+		}
+	
+	@Listen("onClick = #btnBuscarCompannia")
+	public void mostrarCatalogoF0010() {
+		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
+		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista, "Codigo",
+				"Nombre", "Nº Periodo", "Patron", "Inicio año Fiscal",
+				"Periodo LM", "Inicio año C/P", "Periodo C/P",
+				"Inicio año C/C", "Periodo C/C") {
+
+			@Override
+			protected List<F0010> buscar(List<String> valores) {
+
+				List<F0010> lista2 = new ArrayList<F0010>();
+
+				for (F0010 f0010 : lista) {
+					if (f0010.getCcco().toLowerCase()
+							.startsWith(valores.get(0))
+							&& f0010.getCcname().toLowerCase()
+									.startsWith(valores.get(1))
+							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
+									.startsWith(valores.get(2))
+							&& f0010.getCcdot1().toLowerCase()
+									.startsWith(valores.get(3))
+							&& f0010.getCcarfj().toString().toLowerCase()
+									.startsWith(valores.get(4))
+							&& String.valueOf(f0010.getCctxbm()).toLowerCase()
+									.startsWith(valores.get(5))
+							&& f0010.getCcapfj().toString().toLowerCase()
+									.startsWith(valores.get(6))
+							&& String.valueOf(f0010.getCctxbo()).toLowerCase()
+									.startsWith(valores.get(7))
+							&& f0010.getCcdfyj().toString().toLowerCase()
+									.startsWith(valores.get(8))
+							&& String.valueOf(f0010.getCcpnf()).toLowerCase()
+									.startsWith(valores.get(9))) {
+						lista2.add(f0010);
+					}
+				}
+				return lista2;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0010 f0010) {
+				String[] registros = new String[10];
+				registros[0] = f0010.getCcco();
+				registros[1] = f0010.getCcname();
+				registros[2] = String.valueOf(f0010.getCcpnc());
+				registros[3] = f0010.getCcdot1();
+				registros[4] = f0010.getCcarfj().toString();
+				registros[5] = String.valueOf(f0010.getCctxbm());
+				registros[6] = f0010.getCcapfj().toString();
+				registros[7] = String.valueOf(f0010.getCctxbo());
+				registros[8] = f0010.getCcdfyj().toString();
+				registros[9] = String.valueOf(f0010.getCcpnf());
+				return registros;
+	
+
+			}
+		};
+		catalogoF0010.setClosable(true);
+		catalogoF0010.setWidth("80%");
+		catalogoF0010.setTitle("Registros");
+		catalogoF0010.setParent(divCatalogoF0010);
+		catalogoF0010.doModal();
+	}
+	
+	@Listen("onSeleccion = #divCatalogoF0010")
+		public void seleccionF0010() {
+			F0010 f0010 = catalogoF0010.objetoSeleccionadoDelCatalogo();
+			txtCOF0006.setValue(f0010.getCcco());
+			lblDescripcionF0010.setValue(servicioF0010.buscar(f0010.getCcco()).getCcname());
+			catalogoF0010.setParent(null);
 		}
 }
