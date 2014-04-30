@@ -1,9 +1,12 @@
 package controlador.maestros;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.maestros.F0004;
 import modelo.maestros.F0008;
 import modelo.pk.F0008PK;
 
@@ -68,6 +71,8 @@ public class CF0008 extends CGenerico {
 	private Groupbox gpxDatosF0008;
 	@Wire
 	private Div catalogoF0008;
+	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
+			"dd-MM-yyyy");
 
 	Botonera botonera;
 	Catalogo<F0008> catalogo;
@@ -78,12 +83,57 @@ public class CF0008 extends CGenerico {
 		// TODO Auto-generated method stub
 
 		txtDTPNF0008.setFocus(true);
+		mostrarCatalogo();
 
 		botonera = new Botonera() {
 
 			@Override
 			public void seleccionar() {
 				// TODO Auto-generated method stub
+				if (validarSeleccion()) {
+					if (catalogo.obtenerSeleccionados().size() == 1) {
+						mostrarBotones(false);
+						abrirRegistro();
+						F0008 f08 = catalogo.objetoSeleccionadoDelCatalogo();
+						clave = f08.getId();
+						txtDTPNF0008.setValue(f08.getId().getCddtpn());
+						txtDTPNF0008.setDisabled(true);
+						dtbDFYJF0008.setValue((transformarJulianaAGregoria(BigDecimal
+										.valueOf(f08.getId().getCddfyj()))));
+						dtbDFYJF0008.setDisabled(true);
+						btnBuscarF0008.setDisabled(true);
+						dtbD01JF0008.setValue(transformarJulianaAGregoria(f08
+											.getCdd01j()));
+						dtbD02JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd02j()));
+						dtbD03JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd03j()));
+						dtbD04JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd04j()));
+						dtbD05JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd05j()));
+						dtbD06JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd06j()));
+						dtbD07JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd07j()));
+						dtbD08JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd08j()));
+						dtbD09JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd09j()));
+						dtbD10JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd10j()));
+						dtbD11JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd11j()));
+						dtbD12JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd12j()));
+						dtbD13JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd13j()));
+						dtbD14JF0008.setValue(transformarJulianaAGregoria(f08
+								.getCdd14j()));
+						dtbD01JF0008.setFocus(true);
+					} else
+						msj.mensajeAlerta(Mensaje.editarSoloUno);
+				}
 
 			}
 
@@ -96,6 +146,8 @@ public class CF0008 extends CGenerico {
 			@Override
 			public void annadir() {
 				// TODO Auto-generated method stub
+				abrirRegistro();
+				mostrarBotones(false);
 
 			}
 
@@ -116,6 +168,7 @@ public class CF0008 extends CGenerico {
 				// TODO Auto-generated method stub
 				mostrarBotones(false);
 				limpiarCampos();
+				habilitarTextClave();
 				clave = null;
 
 			}
@@ -135,6 +188,56 @@ public class CF0008 extends CGenerico {
 			@Override
 			public void eliminar() {
 				// TODO Auto-generated method stub
+				if (gpxDatosF0008.isOpen()) {
+					/* Elimina Varios Registros */
+					if (validarSeleccion()) {
+						final List<F0008> eliminarLista = catalogo
+								.obtenerSeleccionados();
+						Messagebox
+								.show("¿Desea Eliminar los "
+										+ eliminarLista.size() + " Registros?",
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF0008
+															.eliminarVarios(eliminarLista);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													catalogo.actualizarLista(servicioF0008
+															.buscarTodosOrdenados());
+												}
+											}
+										});
+					}
+				} else {
+					/* Elimina un solo registro */
+					if (clave != null) {
+						Messagebox
+								.show(Mensaje.deseaEliminar,
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF0008
+															.eliminarUno(clave);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													limpiar();
+													catalogo.actualizarLista(servicioF0008
+															.buscarTodosOrdenados());
+												}
+											}
+										});
+					} else
+						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+				}
 
 			}
 
@@ -145,6 +248,8 @@ public class CF0008 extends CGenerico {
 			}
 
 		};
+		botonera.getChildren().get(3).setVisible(false);
+		botonera.getChildren().get(5).setVisible(false);
 		botoneraF0008.appendChild(botonera);
 
 	}
@@ -169,6 +274,15 @@ public class CF0008 extends CGenerico {
 		dtbD14JF0008.setValue(null);
 		txtDTPNF0008.setFocus(true);
 	}
+	
+	
+	public void habilitarTextClave() {
+		if (txtDTPNF0008.isDisabled())
+			txtDTPNF0008.setDisabled(false);
+		if (dtbDFYJF0008.isDisabled())
+			dtbDFYJF0008.setDisabled(false);
+	}
+	
 
 	public boolean camposLLenos() {
 		if (txtDTPNF0008.getText().compareTo("") == 0
@@ -209,7 +323,7 @@ public class CF0008 extends CGenerico {
 				|| dtbD12JF0008.getText().compareTo("") != 0
 				|| dtbD13JF0008.getText().compareTo("") != 0
 				|| dtbD14JF0008.getText().compareTo("") != 0) {
-			return false;
+			return true;
 		} else
 			return false;
 	}
@@ -222,6 +336,47 @@ public class CF0008 extends CGenerico {
 		botonera.getChildren().get(5).setVisible(!bol);
 		botonera.getChildren().get(6).setVisible(bol);
 	}
+	
+	
+	@Listen("onClick = #gpxRegistroF0008")
+	public void abrirRegistro() {
+		gpxDatosF0008.setOpen(false);
+		gpxRegistroF0008.setOpen(true);
+		mostrarBotones(false);
+	}
+	
+	
+	@Listen("onOpen = #gpxDatosF0008")
+	public void abrirCatalogo() {
+		gpxDatosF0008.setOpen(false);
+		if (camposEditando()) {
+			Messagebox.show(Mensaje.estaEditando, "Alerta", Messagebox.YES
+					| Messagebox.NO, Messagebox.QUESTION,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event evt)
+								throws InterruptedException {
+							if (evt.getName().equals("onYes")) {
+								gpxDatosF0008.setOpen(false);
+								gpxRegistroF0008.setOpen(true);
+							} else {
+								if (evt.getName().equals("onNo")) {
+									gpxDatosF0008.setOpen(true);
+									gpxRegistroF0008.setOpen(false);
+									limpiarCampos();
+									habilitarTextClave();
+									mostrarBotones(true);
+								}
+							}
+						}
+					});
+		} else {
+			gpxDatosF0008.setOpen(true);
+			gpxRegistroF0008.setOpen(false);
+			mostrarBotones(true);
+		}
+	}
+	
+	
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
@@ -230,5 +385,145 @@ public class CF0008 extends CGenerico {
 		} else
 			return true;
 	}
+	
+	public boolean validarSeleccion() {
+		List<F0008> seleccionados = catalogo.obtenerSeleccionados();
+		if (seleccionados == null) {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			return false;
+		} else {
+			if (seleccionados.isEmpty()) {
+				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
+	
 
+	public void mostrarCatalogo() {
+		final List<F0008> listF0008 = servicioF0008.buscarTodosOrdenados();
+		catalogo = new Catalogo<F0008>(catalogoF0008, "F0008", listF0008,
+				"Patrón fecha", "Fecha inicial", "Fin periodo 01",
+				"Fin periodo 02", "Fin periodo 03", "Fin periodo 04",
+				"Fin periodo 05", "Fin periodo 06", "Fin periodo 07",
+				"Fin periodo 08", "Fin periodo 09", "Fin periodo 10",
+				"Fin periodo 11", "Fin periodo 12", "Fin periodo 13",
+				"Fin periodo 14") {
+
+			@Override
+			protected List<F0008> buscar(List<String> valores) {
+				List<F0008> lista = new ArrayList<F0008>();
+
+				for (F0008 f0008 : listF0008) {
+					if (f0008.getId().getCddtpn().toLowerCase()
+							.startsWith(valores.get(0))
+							&& formatoFecha
+							.format(transformarJulianaAGregoria(BigDecimal
+									.valueOf(f0008.getId().getCddfyj())))
+									.toLowerCase().startsWith(valores.get(1))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd01j())).toLowerCase()
+									.startsWith(valores.get(2))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd02j())).toLowerCase()
+									.startsWith(valores.get(3))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd03j())).toLowerCase()
+									.startsWith(valores.get(4))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd04j())).toLowerCase()
+									.startsWith(valores.get(5))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd05j())).toLowerCase()
+									.startsWith(valores.get(6))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd06j())).toLowerCase()
+									.startsWith(valores.get(7))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd07j())).toLowerCase()
+									.startsWith(valores.get(8))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd08j())).toLowerCase()
+									.startsWith(valores.get(9))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd09j())).toLowerCase()
+									.startsWith(valores.get(10))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd10j())).toLowerCase()
+									.startsWith(valores.get(11))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd11j())).toLowerCase()
+									.startsWith(valores.get(12))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd12j())).toLowerCase()
+									.startsWith(valores.get(13))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd13j())).toLowerCase()
+									.startsWith(valores.get(14))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0008
+											.getCdd14j())).toLowerCase()
+									.startsWith(valores.get(15))) {
+						lista.add(f0008);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0008 f0008) {
+				String[] registros = new String[16];
+				registros[0] = f0008.getId().getCddtpn();
+				registros[1] = formatoFecha
+						.format(transformarJulianaAGregoria(BigDecimal
+								.valueOf(f0008.getId().getCddfyj())));
+				registros[2] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd01j()));
+				registros[3] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd02j()));
+				registros[4] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd03j()));
+				registros[5] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd04j()));
+				registros[6] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd05j()));
+				registros[7] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd06j()));
+				registros[8] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd07j()));
+				registros[9] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd08j()));
+				registros[10] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd09j()));
+				registros[11] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd10j()));
+				registros[12] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd11j()));
+				registros[13] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd12j()));
+				registros[14] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd13j()));
+				registros[15] = formatoFecha
+						.format(transformarJulianaAGregoria(f0008.getCdd14j()));
+
+				return registros;
+			}
+		};
+		catalogo.setParent(catalogoF0008);
+	}
 }
