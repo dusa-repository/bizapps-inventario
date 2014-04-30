@@ -44,9 +44,9 @@ public class CF0010 extends CGenerico {
 	@Wire
 	private Textbox txtRMF0010;
 	@Wire
-	private Doublespinner dpnDDFF0010;
+	private Textbox txtDot2F0010;
 	@Wire
-	private Doublespinner dpnPeriodoGeneralF0010;
+	private Textbox txtCaldF0010;
 	@Wire
 	private Doublespinner dpnPeriodoActualGeneralF0010;
 	@Wire
@@ -103,19 +103,26 @@ public class CF0010 extends CGenerico {
 						txtCCCOF0010.setDisabled(true);
 						txtCCCRCDF0010.setValue(f010.getCccrcd());
 						txtNameF0010.setValue(f010.getCcname());
-						txtDireccionF0010.setValue(f010.getCcaltc());
-						txtPatronF0010.setValue(f010.getCcdot1());
-						txtRMF0010.setValue(f010.getCcsgbk());
-						dpnDDFF0010.setValue(f010.getCcdff());
-						dpnPeriodoGeneralF0010.setValue(f010.getCcpnc());
-						dpnPeriodoActualGeneralF0010.setValue(f010.getCctxbm());
-						dpnPeriodoPagarF0010.setValue(f010.getCctxbo());
-						dpnPeriodoCobrarF0010.setValue(f010.getCcpnf());
-						dpnPeriodoInformeF0010.setValue(f010.getCccrdy());
-						dpnAnnoInformeF0010.setValue(f010.getCcagr1());
-						dtbFechaCobrarF0010.setValue(transformarJulianaAGregoria(f010.getCcdfyj()));
-						dtbFechaGeneralF0010.setValue(transformarJulianaAGregoria(f010.getCcarfj()));
-						dtbFechaPagarF0010.setValue(transformarJulianaAGregoria(f010.getCcapfj()));
+						txtDireccionF0010.setValue(String.valueOf(f010
+								.getCcan8()));
+						txtPatronF0010.setValue(f010.getCcdtpn());
+						txtRMF0010.setValue(f010.getCcbktx());
+						txtDot2F0010.setValue(f010.getCcdot2());
+						txtCaldF0010.setValue(f010.getCccald());
+						dpnPeriodoActualGeneralF0010.setValue(f010.getCcpnc());
+						dpnPeriodoPagarF0010.setValue(f010.getCcappn());
+						dpnPeriodoCobrarF0010.setValue(f010.getCcarpn());
+						dpnPeriodoInformeF0010.setValue(f010.getCcpnf());
+						dpnAnnoInformeF0010.setValue(f010.getCcfry());
+						dtbFechaCobrarF0010
+								.setValue(transformarJulianaAGregoria(f010
+										.getCcarfj()));
+						dtbFechaGeneralF0010
+								.setValue(transformarJulianaAGregoria(f010
+										.getCcdfyj()));
+						dtbFechaPagarF0010
+								.setValue(transformarJulianaAGregoria(f010
+										.getCcapfj()));
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -128,7 +135,7 @@ public class CF0010 extends CGenerico {
 
 			@Override
 			public void reporte() {
-					transformarJulianaAGregoria(BigDecimal.valueOf(114093));
+				transformarJulianaAGregoria(BigDecimal.valueOf(114093));
 			}
 
 			@Override
@@ -147,23 +154,30 @@ public class CF0010 extends CGenerico {
 				if (guardar) {
 
 					F0010 f010 = new F0010();
-					System.out.println("claveeee"+txtCCCOF0010.getValue());
 					f010.setCcco(txtCCCOF0010.getValue());
 					f010.setCccrcd(txtCCCRCDF0010.getValue());
 					f010.setCcname(txtNameF0010.getValue());
-					f010.setCcaltc(txtDireccionF0010.getValue());
-					f010.setCcdot1(txtPatronF0010.getValue());
-					f010.setCcsgbk(txtRMF0010.getValue());
-					f010.setCcdff(dpnDDFF0010.getValue());
-					f010.setCcpnc(dpnPeriodoGeneralF0010.getValue());
-					f010.setCctxbm(dpnPeriodoActualGeneralF0010.getValue());
-					f010.setCctxbo(dpnPeriodoPagarF0010.getValue());
-					f010.setCcpnf(dpnPeriodoCobrarF0010.getValue());
-					f010.setCccrdy(dpnPeriodoInformeF0010.getValue());
-					f010.setCcagr1(dpnAnnoInformeF0010.getValue());
-					f010.setCcdfyj(transformarGregorianoAJulia(dtbFechaCobrarF0010.getValue()));
-					f010.setCcarfj(transformarGregorianoAJulia(dtbFechaGeneralF0010.getValue()));
-					f010.setCcapfj(transformarGregorianoAJulia(dtbFechaPagarF0010.getValue()));
+					f010.setCcan8(Double.parseDouble(txtDireccionF0010
+							.getValue()));
+					f010.setCcdtpn(txtPatronF0010.getValue());
+					f010.setCcbktx(txtRMF0010.getValue());
+					f010.setCcdot2(txtDot2F0010.getValue());
+					f010.setCccald(txtCaldF0010.getValue());
+					f010.setCcpnc(dpnPeriodoActualGeneralF0010.getValue());
+					f010.setCcappn(dpnPeriodoPagarF0010.getValue());
+					f010.setCcarpn(dpnPeriodoCobrarF0010.getValue());
+					f010.setCcpnf(dpnPeriodoInformeF0010.getValue());
+					f010.setCcfry(dpnAnnoInformeF0010.getValue());
+					System.out.println("primera"+dtbFechaCobrarF0010
+							.getValue());
+					System.out.println("segunda"+transformarGregorianoAJulia(dtbFechaCobrarF0010
+							.getValue()));
+					f010.setCcarfj(transformarGregorianoAJulia(dtbFechaCobrarF0010
+							.getValue()));
+					f010.setCcdfyj(transformarGregorianoAJulia(dtbFechaGeneralF0010
+							.getValue()));
+					f010.setCcapfj(transformarGregorianoAJulia(dtbFechaPagarF0010
+							.getValue()));
 					f010.setCcupmj(transformarGregorianoAJulia(fecha));
 					f010.setCcupmt(Double.valueOf(horaAuditoria));
 					f010.setCcuser("JDE");
@@ -269,8 +283,8 @@ public class CF0010 extends CGenerico {
 		txtDireccionF0010.setValue("");
 		txtPatronF0010.setValue("");
 		txtRMF0010.setValue("");
-		dpnDDFF0010.setValue((double) 0);
-		dpnPeriodoGeneralF0010.setValue((double) 0);
+		txtDot2F0010.setValue("");
+		txtCaldF0010.setValue("");
 		dpnPeriodoActualGeneralF0010.setValue((double) 0);
 		dpnPeriodoPagarF0010.setValue((double) 0);
 		dpnPeriodoCobrarF0010.setValue((double) 0);
@@ -332,10 +346,10 @@ public class CF0010 extends CGenerico {
 				|| txtPatronF0010.getText().compareTo("") == 0
 				|| txtRMF0010.getText().compareTo("") == 0
 				|| dpnAnnoInformeF0010.getValue() == 0
-				|| dpnDDFF0010.getValue() == 0
+				|| txtDot2F0010.getText().compareTo("") == 0
 				|| dpnPeriodoActualGeneralF0010.getValue() == 0
 				|| dpnPeriodoCobrarF0010.getValue() == 0
-				|| dpnPeriodoGeneralF0010.getValue() == 0
+				|| txtCaldF0010.getText().compareTo("") == 0
 				|| dpnPeriodoInformeF0010.getValue() == 0
 				|| dpnPeriodoPagarF0010.getValue() == 0
 				|| dtbFechaCobrarF0010.getText().compareTo("") == 0
@@ -354,10 +368,10 @@ public class CF0010 extends CGenerico {
 				|| txtPatronF0010.getText().compareTo("") != 0
 				|| txtRMF0010.getText().compareTo("") != 0
 				|| dpnAnnoInformeF0010.getValue() != 0
-				|| dpnDDFF0010.getValue() != 0
+				|| txtDot2F0010.getText().compareTo("") != 0
 				|| dpnPeriodoActualGeneralF0010.getValue() != 0
 				|| dpnPeriodoCobrarF0010.getValue() != 0
-				|| dpnPeriodoGeneralF0010.getValue() != 0
+				|| txtCaldF0010.getText().compareTo("") != 0
 				|| dpnPeriodoInformeF0010.getValue() != 0
 				|| dpnPeriodoPagarF0010.getValue() != 0
 				|| dtbFechaCobrarF0010.getText().compareTo("") != 0
@@ -408,9 +422,9 @@ public class CF0010 extends CGenerico {
 	public void mostrarCatalogo() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
 		catalogo = new Catalogo<F0010>(catalogoF0010, "F0010", lista, "Codigo",
-				"Nombre", "Nº Periodo", "Patron", "Inicio año Fiscal",
+				"Nombre", "Nº Periodo", "Patron fechas", "Inicio año Fiscal",
 				"Periodo LM", "Inicio año C/P", "Periodo C/P",
-				"Inicio año C/C", "Periodo C/C") {
+				"Inicio año C/C", "Periodo C/C", "Periodo financiero") {
 
 			@Override
 			protected List<F0010> buscar(List<String> valores) {
@@ -422,22 +436,24 @@ public class CF0010 extends CGenerico {
 							.startsWith(valores.get(0))
 							&& f0010.getCcname().toLowerCase()
 									.startsWith(valores.get(1))
-							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
+							&& f0010.getCccald().toLowerCase()
 									.startsWith(valores.get(2))
-							&& f0010.getCcdot1().toLowerCase()
+							&& f0010.getCcdtpn().toLowerCase()
 									.startsWith(valores.get(3))
-							&& f0010.getCcarfj().toString().toLowerCase()
+							&& f0010.getCcdfyj().toString().toLowerCase()
 									.startsWith(valores.get(4))
-							&& String.valueOf(f0010.getCctxbm()).toLowerCase()
+							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
 									.startsWith(valores.get(5))
 							&& f0010.getCcapfj().toString().toLowerCase()
 									.startsWith(valores.get(6))
-							&& String.valueOf(f0010.getCctxbo()).toLowerCase()
+							&& String.valueOf(f0010.getCcappn()).toLowerCase()
 									.startsWith(valores.get(7))
-							&& f0010.getCcdfyj().toString().toLowerCase()
+							&& f0010.getCcarfj().toString().toLowerCase()
 									.startsWith(valores.get(8))
+							&& String.valueOf(f0010.getCcarpn()).toLowerCase()
+									.startsWith(valores.get(9))
 							&& String.valueOf(f0010.getCcpnf()).toLowerCase()
-									.startsWith(valores.get(9))) {
+									.startsWith(valores.get(10))) {
 						lista2.add(f0010);
 					}
 				}
@@ -446,17 +462,18 @@ public class CF0010 extends CGenerico {
 
 			@Override
 			protected String[] crearRegistros(F0010 f0010) {
-				String[] registros = new String[10];
+				String[] registros = new String[11];
 				registros[0] = f0010.getCcco();
 				registros[1] = f0010.getCcname();
-				registros[2] = String.valueOf(f0010.getCcpnc());
-				registros[3] = f0010.getCcdot1();
-				registros[4] = f0010.getCcarfj().toString();
-				registros[5] = String.valueOf(f0010.getCctxbm());
+				registros[2] = f0010.getCccald();
+				registros[3] = f0010.getCcdtpn();
+				registros[4] = f0010.getCcdfyj().toString();
+				registros[5] = String.valueOf(f0010.getCcpnc());
 				registros[6] = f0010.getCcapfj().toString();
-				registros[7] = String.valueOf(f0010.getCctxbo());
-				registros[8] = f0010.getCcdfyj().toString();
-				registros[9] = String.valueOf(f0010.getCcpnf());
+				registros[7] = String.valueOf(f0010.getCcappn());
+				registros[8] = f0010.getCcarfj().toString();
+				registros[9] = String.valueOf(f0010.getCcarpn());
+				registros[10] = String.valueOf(f0010.getCcpnf());
 				return registros;
 			}
 		};
@@ -466,8 +483,8 @@ public class CF0010 extends CGenerico {
 	@Listen("onClick = #btnBuscarMoneda")
 	public void mostrarCatalogoMoneda() throws IOException {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoM = new Catalogo<F0013>(catalogoMonedaF0010, "F0013", listF0013, "Codigo",
-				"Descripcion", "Vlslz", "Rutina Cheques") {
+		catalogoM = new Catalogo<F0013>(catalogoMonedaF0010, "F0013",
+				listF0013, "Codigo", "Descripcion", "Vlslz", "Rutina Cheques") {
 
 			@Override
 			protected List<F0013> buscar(List<String> valores) {
@@ -509,13 +526,13 @@ public class CF0010 extends CGenerico {
 		txtCCCRCDF0010.setValue(f0013.getCvcrcd());
 		catalogoM.setParent(null);
 	}
-	
+
 	@Listen("onChange = #txtCCCRCDF0010")
-	public void buscarNombre(){
+	public void buscarNombre() {
 		F0013 f0013 = servicioF0013.buscar(txtCCCRCDF0010.getValue());
-		if(f0013!=null)
+		if (f0013 != null)
 			txtCCCRCDF0010.setValue(f0013.getCvcrcd());
-		else{
+		else {
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
 			txtCCCRCDF0010.setValue("");
 			txtCCCRCDF0010.setFocus(true);
