@@ -6,20 +6,70 @@
 		<div id="botoneraF00021" />
 		<separator />
 			<groupbox id="gpxRegistro" width="auto" title="" open="false">
-				<caption label="Compañia" style="font-weight:bold"
+				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Ingresar compañia" />
 				<separator />
 				<grid width="100%">
 				<columns visible="false">
 					<column label="" width="25%" />
 					<column label="" width="45%" />
-					<column label="" width="30%" />
+					<column label="" width="10%" />
+					<column label="" width="20%" />
 				</columns>
 				<rows>
 					<row>
+					<hbox>
 						<label class="etiqueta" value= " Compañia Documento" />
-						<textbox id="txtKCOF00021" hflex="1" maxlength="100" width = "45%"
+						<space />
+						<label value="*" style="font-weight:bold;color:red">
+						</label>
+					</hbox>
+						<textbox id="txtKCOF00021" hflex="1" maxlength="5" width = "45%"
 						tooltiptext="Ingrese la Compañia Documento"/>
+						<button id="btnBuscarCompannia" label="" mold="trendy"
+						width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
+						<label id="lblDescripcionF0010" />
+						<hbox />
+					</row>
+					<row>
+					<hbox>
+						<label class="etiqueta" value= " Tipo Documento" />
+						<space />
+						<label value="*" style="font-weight:bold;color:red">
+						</label>
+					</hbox>
+						<textbox id="txtDCTF00021" hflex="1" maxlength="2" width = "45%"
+						tooltiptext="Ingrese el Tipo Documento"/>
+						<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= " Igual a Tipo Doc" />
+						<textbox id="txtSMASF00021" hflex="1" maxlength="2" width = "45%"
+						tooltiptext="Ingrese el Tipo Documento"/>
+						<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= " Descripción" />
+						<textbox id="txtDESF00021" hflex="1" maxlength="100" width = "45%"
+						tooltiptext="Ingrese la descripción"/>
+						<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= " Sigio" />
+						<textbox id="txtCTRYF00021" hflex="1" width = "45%"
+						tooltiptext="Ingrese el Sigio"/>
+						<hbox />
+					</row>
+						<row>
+						<label class="etiqueta" value= " Año Fiscal" />
+						<textbox id="txtFYF00021" hflex="1" width = "45%"
+						tooltiptext="Ingrese el año fiscal"/>
+						<hbox />
+					</row>
+					<row>
+						<label class="etiqueta" value= " Número Siguiente" />
+						<textbox id="txtN001F00021" hflex="1" width = "45%"
+						tooltiptext="Número Siguiente"/>
 						<hbox />
 					</row>
 				</rows>
@@ -32,5 +82,6 @@
 				<div id="catalogoF00021" tooltiptext="Seleccione la compañia para Realizar una Accion" />
 			</groupbox>
 		</groupbox>	
+		<div id="divCatalogoF0010" tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>

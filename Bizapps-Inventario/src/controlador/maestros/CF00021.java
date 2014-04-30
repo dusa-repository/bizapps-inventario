@@ -5,34 +5,88 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.maestros.F00021;
-import modelo.maestros.F0006;
+import modelo.maestros.F0010;
 import modelo.pk.F00021PK;
 
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Groupbox;
+import org.zkoss.zul.Label;
+import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.Catalogo;
+import componentes.Mensaje;
 
 public class CF00021 extends CGenerico {
 
+	@Wire
+	private Textbox txtKCOF00021;
+	@Wire
+	private Textbox txtDCTF00021;
+	@Wire
+	private Textbox txtSMASF00021;
+	@Wire
+	private Textbox txtDESF00021;
+	@Wire
+	private Textbox txtCTRYF00021;
+	@Wire
+	private Textbox txtFYF00021;
+	@Wire
+	private Textbox txtN001F00021;
 	@Wire
 	private Div divVF00021;
 	@Wire
 	private Div catalogoF00021;
 	@Wire
+	private Div divCatalogoF0010;
+	@Wire
+	private Groupbox gpxDatos;
+	@Wire
+	private Groupbox gpxRegistro;
+	@Wire
+	private Button btnBuscarCompannia ;
+	@Wire
 	private Div botoneraF00021;
+	@Wire
+	private Label lblDescripcionF0010;
 	Catalogo<F00021> catalogo;
+	Catalogo<F0010> catalogoF0010;
+	Botonera botonera;
+	F00021PK clave = null;
 
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
 
-		Botonera botonera = new Botonera() {
+		txtKCOF00021.setFocus(true);
+		mostrarCatalogo();
+		botonera = new Botonera() {
 
 			@Override
 			public void seleccionar() {
-				// TODO Auto-generated method stub
+				if (validarSeleccion()) {
+					if (catalogo.obtenerSeleccionados().size() == 1) {
+						mostrarBotones(false);
+						abrirRegistro();
+						F00021 f21 = catalogo.objetoSeleccionadoDelCatalogo();
+						txtKCOF00021.setValue(f21.getId().getNlkco());
+						txtKCOF00021.setDisabled(true);
+						txtDCTF00021.setValue(f21.getId().getNldct());
+						txtDCTF00021.setDisabled(true);
+						txtSMASF00021.setValue(f21.getNlsmas());
+						txtCTRYF00021.setValue(String.valueOf(f21.getId().getNlctry()));
+						txtFYF00021.setValue(String.valueOf(f21.getId().getNlfy()));
+						txtN001F00021.setValue(String.valueOf(f21.getNln001()));
+						txtN001F00021.setDisabled(true);
+						txtDESF00021.setFocus(true);
+					} else
+						msj.mensajeAlerta(Mensaje.editarSoloUno);
+				}
 
 			}
 
@@ -50,19 +104,98 @@ public class CF00021 extends CGenerico {
 
 			@Override
 			public void limpiar() {
-				// TODO Auto-generated method stub
-
+				mostrarBotones(false);
+				limpiarCampos();
+				habilitarCampos();
+				clave = null;
+				buscarSiguiente();
 			}
 
 			@Override
 			public void guardar() {
-				// TODO Auto-generated method stub
+				boolean guardar = true;
+				if (clave == null)
+					guardar = validar();
+				if (guardar) {
+					String kco = txtKCOF00021.getValue();
+					String dct = txtDCTF00021.getValue();
+					String smas = txtSMASF00021.getValue();
+					String des = txtDESF00021.getValue();
+					double ctry = Double.parseDouble(txtCTRYF00021.getValue());
+					double fy = Double.parseDouble(txtFYF00021.getValue());
+					double n001 = Double.parseDouble(txtN001F00021.getValue());
+					F00021PK clave = new F00021PK();
+					clave.setNlkco(kco);
+					clave.setNldct(dct);
+					clave.setNlctry(ctry);
+					clave.setNlfy(fy);
+					F00021 f00021 = new F00021();
+					f00021.setId(clave);
+					f00021.setNlsmas(smas);
+					f00021.setNln001(n001);
+					servicioF00021.guardar(f00021);
+					msj.mensajeInformacion(Mensaje.guardado);
+					limpiar();
+					catalogo.actualizarLista(servicioF00021
+							.buscarTodosOrdenados());
+				}
 
 			}
 
 			@Override
 			public void eliminar() {
-				// TODO Auto-generated method stub
+				if (gpxDatos.isOpen()) {
+					/* Elimina Varios Registros */
+					if (validarSeleccion()) {
+						final List<F00021> eliminarLista = catalogo
+								.obtenerSeleccionados();
+						Messagebox
+								.show("¿Desea Eliminar los "
+										+ eliminarLista.size() + " Registros?",
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF00021
+															.eliminarVarios(eliminarLista);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													catalogo.actualizarLista(servicioF00021
+															.buscarTodosOrdenados());
+												}
+											}
+										});
+					}
+				} else {
+					/* Elimina un solo registro */
+					if (clave != null) {
+						Messagebox
+								.show(Mensaje.deseaEliminar,
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF00021
+															.eliminarUno(clave);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													limpiar();
+													catalogo.actualizarLista(servicioF00021
+															.buscarTodosOrdenados());
+												}
+											}
+										});
+					} else
+						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+				}
+
+
 
 			}
 
@@ -80,19 +213,146 @@ public class CF00021 extends CGenerico {
 
 			@Override
 			public void annadir() {
-				// TODO Auto-generated method stub
-
+				abrirRegistro();
+				mostrarBotones(false);
 			}
 		};
-//		botonera.getChildren().get(3).setVisible(false);
-//		botonera.getChildren().get(5).setVisible(false);
+		botonera.getChildren().get(3).setVisible(false);
+		botonera.getChildren().get(5).setVisible(false);
 		botoneraF00021.appendChild(botonera);
-		mostrarCatalogo ();
 
 	}
 	
+	public void mostrarBotones(boolean bol) {
+		botonera.getChildren().get(1).setVisible(bol);
+		botonera.getChildren().get(2).setVisible(bol);
+		botonera.getChildren().get(6).setVisible(bol);
+		botonera.getChildren().get(0).setVisible(bol);
+		botonera.getChildren().get(3).setVisible(!bol);
+		botonera.getChildren().get(5).setVisible(!bol);
+	}
+	
+	
+	@Listen("onClick = #gpxRegistro")
+	public void abrirRegistro() {
+		gpxDatos.setOpen(false);
+		gpxRegistro.setOpen(true);
+		mostrarBotones(false);
+	}
+	
+	public boolean validarSeleccion() {
+		List<F00021> seleccionados = catalogo.obtenerSeleccionados();
+		if (seleccionados == null) {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			return false;
+		} else {
+			if (seleccionados.isEmpty()) {
+				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
+	
+	public boolean camposLLenos() {
+		if (txtKCOF00021.getText().compareTo("") == 0
+				|| txtDCTF00021.getText().compareTo("") == 0
+				|| txtDESF00021.getText().compareTo("") == 0) {
+			return false;
+		} else
+			return true;
+		
+	}
+	
+	protected boolean validar() {
+			if (!camposLLenos()) {
+				msj.mensajeAlerta(Mensaje.camposVacios);
+				return false;
+			} else
+				return true;
+		}
+
+
+	@Listen("onClick = #txtDESF00021")
+	public void buscarSiguiente() {	
+			String a =txtKCOF00021.getValue();
+			String b = txtDCTF00021.getValue() ;
+			System.out.println(a);
+			System.out.println(b);
+			double numero =  servicioF00021.Numero(a, b);
+			System.out.println(numero);
+			txtN001F00021.setValue(String.valueOf(numero + 1));
+
+	}
+	
+	public void limpiarCampos() {
+		txtKCOF00021.setValue("");
+		txtDCTF00021.setValue("");
+		txtSMASF00021.setValue("");
+		txtDESF00021.setValue("");
+		txtCTRYF00021.setValue("");
+		txtFYF00021.setValue("");
+		txtN001F00021.setValue("");
+		lblDescripcionF0010.setValue("");
+		txtKCOF00021.setFocus(true);
+	}
+
+	public void habilitarCampos() {
+		if (txtKCOF00021.isDisabled())
+			txtKCOF00021.setDisabled(false);
+		if (txtDCTF00021.isDisabled())
+			txtDCTF00021.setDisabled(false);
+		if (txtN001F00021.isDisabled())
+			txtN001F00021.setDisabled(false);
+	}
+
+	public boolean camposEditando() {
+		if (txtKCOF00021.getText().compareTo("") != 0
+				|| txtDCTF00021.getText().compareTo("") != 0
+				|| txtSMASF00021.getText().compareTo("") != 0
+				|| txtDESF00021.getText().compareTo("") != 0
+				|| txtCTRYF00021.getText().compareTo("") != 0
+				|| txtFYF00021.getText().compareTo("") != 0
+				|| txtN001F00021.getText().compareTo("") != 0) {
+			return true;
+		} else
+			return false;
+	}
+
+
+	@Listen("onOpen = #gpxDatos")
+	public void abrirCatalogo() {
+		gpxDatos.setOpen(false);
+		if (camposEditando()) {
+			Messagebox.show(Mensaje.estaEditando, "Alerta", Messagebox.YES
+					| Messagebox.NO, Messagebox.QUESTION,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event evt)
+								throws InterruptedException {
+							if (evt.getName().equals("onYes")) {
+								gpxDatos.setOpen(false);
+								gpxRegistro.setOpen(true);
+							} else {
+								if (evt.getName().equals("onNo")) {
+									gpxDatos.setOpen(true);
+									gpxRegistro.setOpen(false);
+									limpiarCampos();
+									habilitarCampos();
+									mostrarBotones(true);
+								}
+							}
+						}
+					});
+		} else {
+			gpxDatos.setOpen(true);
+			gpxRegistro.setOpen(false);
+			mostrarBotones(true);
+		}
+	}
+	
 	public void mostrarCatalogo() {
-		final List<F00021> compannias = servicioF00021.buscarTodosContado();
+		final List<F00021> compannias = servicioF00021.buscarTodosOrdenados();
 		catalogo = new Catalogo<F00021>(catalogoF00021, "F00021", compannias, 
 				"Compañia Documento", "Tipo Documento", "Igual aTipo Doc", 
 				"Digito Incrus", "Digito Verif", "Número Siguiente", 
@@ -141,4 +401,76 @@ public class CF00021 extends CGenerico {
 		// catalogo.doModal();
 	}
 
+	@Listen("onClick = #btnBuscarCompannia")
+	public void mostrarCatalogoF0010() {
+		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
+		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista, "Codigo",
+				"Nombre", "Nº Periodo", "Patron", "Inicio año Fiscal",
+				"Periodo LM", "Inicio año C/P", "Periodo C/P",
+				"Inicio año C/C", "Periodo C/C") {
+
+			@Override
+			protected List<F0010> buscar(List<String> valores) {
+
+				List<F0010> lista2 = new ArrayList<F0010>();
+
+				for (F0010 f0010 : lista) {
+					if (f0010.getCcco().toLowerCase()
+							.startsWith(valores.get(0))
+							&& f0010.getCcname().toLowerCase()
+									.startsWith(valores.get(1))
+							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
+									.startsWith(valores.get(2))
+							&& f0010.getCcdot1().toLowerCase()
+									.startsWith(valores.get(3))
+							&& f0010.getCcarfj().toString().toLowerCase()
+									.startsWith(valores.get(4))
+							&& String.valueOf(f0010.getCctxbm()).toLowerCase()
+									.startsWith(valores.get(5))
+							&& f0010.getCcapfj().toString().toLowerCase()
+									.startsWith(valores.get(6))
+							&& String.valueOf(f0010.getCctxbo()).toLowerCase()
+									.startsWith(valores.get(7))
+							&& f0010.getCcdfyj().toString().toLowerCase()
+									.startsWith(valores.get(8))
+							&& String.valueOf(f0010.getCcpnf()).toLowerCase()
+									.startsWith(valores.get(9))) {
+						lista2.add(f0010);
+					}
+				}
+				return lista2;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0010 f0010) {
+				String[] registros = new String[10];
+				registros[0] = f0010.getCcco();
+				registros[1] = f0010.getCcname();
+				registros[2] = String.valueOf(f0010.getCcpnc());
+				registros[3] = f0010.getCcdot1();
+				registros[4] = f0010.getCcarfj().toString();
+				registros[5] = String.valueOf(f0010.getCctxbm());
+				registros[6] = f0010.getCcapfj().toString();
+				registros[7] = String.valueOf(f0010.getCctxbo());
+				registros[8] = f0010.getCcdfyj().toString();
+				registros[9] = String.valueOf(f0010.getCcpnf());
+				return registros;
+	
+
+			}
+		};
+		catalogoF0010.setClosable(true);
+		catalogoF0010.setWidth("80%");
+		catalogoF0010.setTitle("Registros");
+		catalogoF0010.setParent(divCatalogoF0010);
+		catalogoF0010.doModal();
+	}
+	
+	@Listen("onSeleccion = #divCatalogoF0010")
+		public void seleccionF0010() {
+			F0010 f0010 = catalogoF0010.objetoSeleccionadoDelCatalogo();
+			txtKCOF00021.setValue(f0010.getCcco());
+			lblDescripcionF0010.setValue(servicioF0010.buscar(f0010.getCcco()).getCcname());
+			catalogoF0010.setParent(null);
+		}
 }
