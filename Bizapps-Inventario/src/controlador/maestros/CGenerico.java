@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Properties;
 
@@ -75,7 +76,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 
 	public static List<Tab> tabs = new ArrayList<Tab>();
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
-	public final Calendar calendario = Calendar.getInstance();
+	public Calendar calendario = Calendar.getInstance();
 	// Cambio en la hora borrados los :
 
 	public String horaAuditoria = String.valueOf(calendario
@@ -93,22 +94,30 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	}
 
 	public BigDecimal transformarGregorianoAJulia(Date fecha) {
-		System.out.println(fecha);
 		String valor = "";
-		System.out.println(fecha.getYear()+1900);
-		if ((fecha.getYear()+1900) < 2000)
+
+		calendario = new GregorianCalendar();
+		calendario.setTime(fecha);
+		String dia = "";
+		if (calendario.get(Calendar.DAY_OF_YEAR) < 10)
+			dia = "00";
+		else {
+			if (calendario.get(Calendar.DAY_OF_YEAR) >= 10
+					&& calendario.get(Calendar.DAY_OF_YEAR) < 100)
+				dia = "0";
+		}
+		if ((fecha.getYear() + 1900) < 2000)
 			valor = "";
 		else
 			valor = "1";
 		long al = Long.valueOf(valor
 				+ String.valueOf(calendario.get(Calendar.YEAR)).substring(2)
-				+ String.valueOf(calendario.get(Calendar.DAY_OF_YEAR)));
-		System.out.println(al);
+				+ dia+String.valueOf(calendario.get(Calendar.DAY_OF_YEAR)));
 		BigDecimal a = BigDecimal.valueOf(al);
 		return a;
 	}
 
-	public Date transformarJulianaAGregoria(BigDecimal valor){
+	public Date transformarJulianaAGregoria(BigDecimal valor) {
 		String j = valor.toString();
 		Date date = new Date();
 		String primerValor = "";
@@ -119,12 +128,11 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(date);
 		} else {
 			primerValor = j.substring(0, 1);
 			if (primerValor.equals("1")) {
 				String anno = j.substring(1, 3);
-				date.setYear(Integer.valueOf("20" + anno)-1900);
+				date.setYear(Integer.valueOf("20" + anno) - 1900);
 				String s = j.substring(3);
 				Date fecha = new Date();
 				try {
@@ -134,7 +142,6 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 					e.printStackTrace();
 				}
 				fecha.setYear(date.getYear());
-				System.out.println(fecha);
 				return fecha;
 			}
 		}

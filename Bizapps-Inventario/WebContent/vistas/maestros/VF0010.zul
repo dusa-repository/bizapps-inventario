@@ -31,7 +31,7 @@
 					<tabs width="auto">
 						<tab label="Configuracion Compañia" id="tabConfiguracion" />
 						<tab label="Contabilidad 52 Periodos" id="tabContabilidad" />
-						<tab label="Contabilidad 52 Periodos" id="tabMoneda" />
+						<tab label="Moneda" id="tabMoneda" />
 					</tabs>
 					<tabpanels>
 						<tabpanel>
@@ -50,8 +50,8 @@
 											</row>
 											<row>
 												<label class="etiqueta" value="Numero de Periodos:" />
-												<doublespinner id="dpnPeriodoGeneralF0010"
-													hflex="1" constraint="no negative" tooltiptext="Ingrese el numero de Periodos" />
+												<textbox id="txtCaldF0010" hflex="1" maxlength="100"
+													tooltiptext="Ingrese el numero de Periodos" />
 											</row>
 											<row>
 												<label class="etiqueta" value="Periodo Actual:" />
@@ -163,8 +163,8 @@
 									</row>
 									<row>
 										<label class="etiqueta" value="Calculo redeterminacion:" />
-										<doublespinner id="dpnDDFF0010" hflex="1"
-											constraint="no negative" tooltiptext="Ingrese el Calculo de Redeterminacion" />
+										<textbox id="txtDot2F0010" hflex="1" maxlength="100"
+											tooltiptext="Ingrese el Calculo de Redeterminacion" />
 										<hbox />
 									</row>
 									<row>
