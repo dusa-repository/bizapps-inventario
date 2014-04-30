@@ -35,8 +35,10 @@ import servicio.maestros.SF00021;
 import servicio.maestros.SF0004;
 import servicio.maestros.SF0005;
 import servicio.maestros.SF0006;
+import servicio.maestros.SF0008;
 import servicio.maestros.SF0010;
 import servicio.maestros.SF0013;
+import servicio.maestros.SF0015;
 import servicio.maestros.SF0101;
 import servicio.maestros.SF40203;
 import servicio.maestros.SF41002;
@@ -57,10 +59,14 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF0005 servicioF0005;
 	@WireVariable("SF0006")
 	protected SF0006 servicioF0006;
+	@WireVariable("SF0008")
+	protected SF0008 servicioF0008;
 	@WireVariable("SF0010")
 	protected SF0010 servicioF0010;
 	@WireVariable("SF0013")
 	protected SF0013 servicioF0013;
+	@WireVariable("SF0015")
+	protected SF0015 servicioF0015;
 	@WireVariable("SF0101")
 	protected SF0101 servicioF0101;
 	@WireVariable("SF00021")
@@ -145,6 +151,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 				return fecha;
 			}
 		}
+		
 		return date;
 
 	}

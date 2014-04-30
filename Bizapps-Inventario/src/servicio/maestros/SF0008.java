@@ -3,6 +3,7 @@ package servicio.maestros;
 import java.util.List;
 
 import interfacedao.maestros.IF0008DAO;
+import modelo.maestros.F0004;
 import modelo.maestros.F0008;
 import modelo.pk.F0008PK;
 
@@ -32,6 +33,10 @@ public class SF0008 {
 
 	public List<F0008> buscarDTPN(String value) {
 		return f0008DAO.findByIdCddtpn(value);
+	}
+	
+	public List<F0008> buscarTodosOrdenados() {
+		return f0008DAO.findAllOrderByIdCddtpn();
 	}
 	
 	
