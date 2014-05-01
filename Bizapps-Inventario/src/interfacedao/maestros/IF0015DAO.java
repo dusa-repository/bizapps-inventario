@@ -11,6 +11,10 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface IF0015DAO extends JpaRepository<F0015, F0015PK> {
 
+	@Query("Select f from F0015 f order by f.id.cxcrcd asc")
+	List<F0015> findAllOrderByIdCxcrcd();
+	
 	List<F0015> findByIdCxcrcd(String value);
+
 
 }
