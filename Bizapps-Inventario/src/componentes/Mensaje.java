@@ -20,11 +20,16 @@ public class Mensaje {
 	
 	public void mensajeInformacion(String msj) {
 	      Messagebox.show(msj, "Informacion",
+					Messagebox.OK, Messagebox.INFORMATION);
+		}
+	
+	public void mensajeAlerta(String msj) {
+	      Messagebox.show(msj, "Alerta",
 					Messagebox.OK, Messagebox.EXCLAMATION);
 		}
 
-		public void mensajeAlerta(String msj) {
-	      Messagebox.show(msj, "Alerta",
+		public void mensajeError(String msj) {
+	      Messagebox.show(msj, "Error",
 					Messagebox.OK, Messagebox.ERROR);
 		}
 }
