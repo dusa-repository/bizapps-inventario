@@ -73,8 +73,8 @@
 								<row>
 									<label class="etiqueta"
 										value="Contrato (dirección):" />
-									<textbox id="txtAN8F0015H"
-										hflex="1" maxlength="100"
+									<doublespinner id="dblAN8F0015H"
+										format="#.##" hflex="1" maxlength="100"
 										tooltiptext="Ingrese el Contrato(direccion)" />
 									<button id="btnBuscarAN8F0015H"
 										label="" tooltiptext="Catalogo de Contratos(direcciones)"

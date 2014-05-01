@@ -5,6 +5,7 @@ import java.util.List;
 import interfacedao.maestros.IF0008DAO;
 import modelo.maestros.F0004;
 import modelo.maestros.F0008;
+import modelo.pk.F0004PK;
 import modelo.pk.F0008PK;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,14 @@ public class SF0008 {
 	public List<F0008> buscarTodosOrdenados() {
 		return f0008DAO.findAllOrderByIdCddtpn();
 	}
+	
+	public F0008 buscar(String value, long value2) {
+		F0008PK clave = new F0008PK();
+		clave.setCddtpn(value);
+		clave.setCddfyj(value2) ;
+		return f0008DAO.findOne(clave);
+	}
+	
 	
 	
 }
