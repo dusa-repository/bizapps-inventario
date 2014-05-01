@@ -5,7 +5,10 @@
 			title="Modificacion de tipos de cambio">
 			<div id="botoneraF0015D" />
 			<separator />
-			<groupbox id="gpxRegistroF0015D" width="auto" title="">
+			<groupbox id="gpxRegistroF0015D" width="auto" title=""
+				open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Modificar un Tipo de Cambio" />
 				<separator />
 				<hbox>
 					<groupbox title="" closable="false">
@@ -68,8 +71,8 @@
 								<row>
 									<label class="etiqueta"
 										value="Contrato (dirección):" />
-									<textbox id="txtAN8F0015D"
-										disabled="true" hflex="1" maxlength="100"/>
+									<doublespinner id="dblAN8F0015D"
+										disabled="true" hflex="1" maxlength="100" />
 								</row>
 							</rows>
 						</grid>
@@ -153,15 +156,17 @@
 								<row>
 									<label class="etiqueta"
 										value="Tipo multiplicador:" />
-									<intbox id="txtCRRF0015D" hflex="1"
-										maxlength="100"
+									<doublespinner id="dblCRRF0015D"
+										hflex="1" maxlength="100"
 										tooltiptext="Ingrese el Tipo de Multiplicador" />
 								</row>
 								<row>
 									<label class="etiqueta"
 										value="Tipo divisor:" />
-									<intbox id="txtCRRDF0015D" hflex="1"
-										maxlength="100" tooltiptext="Ingrese el Tipo de Divisor" />
+									<doublespinner id="dblCRRDF0015D"
+										hflex="1" maxlength="100"
+										tooltiptext="Ingrese el Tipo de Divisor" />
+
 								</row>
 							</rows>
 						</grid>
@@ -173,7 +178,7 @@
 			<groupbox id="gpxDatosF0015D" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar los Tipos de Cambio Registrados" />
-				<div id="catalogoF0015H"
+				<div id="catalogoF0015D"
 					tooltiptext="Seleccione el Tipo de Cambio Para Realizar una Accion" />
 			</groupbox>
 			<separator />

@@ -453,12 +453,29 @@ public class CF0008 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+		if (claveDTPNExiste()) {
 			return false;
-		} else
-			return true;
+		} else {
+			if (!camposLLenos()) {
+				msj.mensajeAlerta(Mensaje.camposVacios);
+				return false;
+			} else
+				return true;
+		}
 	}
+	
+	
+	@Listen("onChange = #txtDTPNF0008")
+	public boolean claveDTPNExiste() {
+		if (servicioF0008.buscarDTPN(txtDTPNF0008.getValue()).isEmpty()) {
+			msj.mensajeAlerta(Mensaje.claveRTNoEsta);
+			txtDTPNF0008.setFocus(true);
+			return true;
+		} else
+			return false;
+	}
+	
+	
 
 	public void mostrarCatalogo() {
 		final List<F0008> listF0008 = servicioF0008.buscarTodosOrdenados();
