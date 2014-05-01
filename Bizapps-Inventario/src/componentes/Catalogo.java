@@ -32,7 +32,7 @@ public abstract class Catalogo<Clase> extends Window {
 		super("", "2", false);
 		this.setId("cmpCatalogo" + titulo);
 		this.setStyle("background-header:#FF7925; background: #f4f2f2");
-		setWidth("auto");
+		this.setWidth("auto");
 		crearLista(lista, campos);
 		lsbCatalogo.addEventListener(Events.ON_SELECT,
 				new EventListener<Event>() {
@@ -58,6 +58,8 @@ public abstract class Catalogo<Clase> extends Window {
 		for (int i = 0; i < campos.length; i++) {
 			final Textbox cajaTexto = new Textbox();
 			cajaTexto.setContext(campos[i]);
+			cajaTexto.setHflex("1");
+			cajaTexto.setWidth("auto");
 			cajaTexto.addEventListener(Events.ON_OK,
 					new EventListener<KeyEvent>() {
 						@Override
@@ -88,7 +90,6 @@ public abstract class Catalogo<Clase> extends Window {
 			cabeceraFila.appendChild(cajaTexto);
 			cabecera.appendChild(cabeceraFila);
 			Listheader listheader = new Listheader(campos[i]);
-			listheader.setHflex("min");
 			lhdEncabezado.appendChild(listheader);
 		}
 		lsbCatalogo.appendChild(cabecera);

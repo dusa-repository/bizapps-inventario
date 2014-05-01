@@ -37,7 +37,7 @@ public class SF0005 {
 		
 	}
 
-	public Object buscar(String value, String value2, String value3) {
+	public F0005 buscar(String value, String value2, String value3) {
 		F0005PK clave = new F0005PK();
 		clave.setDrsy(value);
 		clave.setDrrt(value2);

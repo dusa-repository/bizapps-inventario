@@ -17,24 +17,34 @@
 					</columns>
 					<rows>
 						<row>
-							<label class="etiqueta" value="Codigo Moneda:" />
-							<textbox id="txtCRCDF0013" hflex="1" maxlength="100"
+							<hbox>
+								<label class="etiqueta" value="Codigo Moneda:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtCRCDF0013" hflex="1" maxlength="3"
 								tooltiptext="Ingrese el Codigo de la Moneda" />
 						</row>
 						<row>
-							<label class="etiqueta" value="Descripcion:" />
-							<textbox id="txtDL01F0013" hflex="1" maxlength="100"
+							<hbox>
+								<label class="etiqueta" value="Descripcion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtDL01F0013" hflex="1" maxlength="30"
 								tooltiptext="Ingrese la Descripcion de la Moneda" />
 						</row>
 						<row>
 							<label class="etiqueta" value="Visualizacion decimales:" />
-							<textbox id="txtDECF0013" hflex="1"
-								maxlength="1" tooltiptext="Ingrese el numero de decimales de la moneda" />
+							<textbox id="txtDECF0013" hflex="1" maxlength="1"
+								tooltiptext="Ingrese el numero de decimales de la moneda" />
 
 						</row>
 						<row>
 							<label class="etiqueta" value="Importe traductor Palabras:" />
-							<textbox id="txtCKRF0013" hflex="1" maxlength="100"
+							<textbox id="txtCKRF0013" hflex="1" maxlength="10"
 								tooltiptext="Ingrese el Importe del traductor de Palabras" />
 							<hbox />
 						</row>

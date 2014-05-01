@@ -2,7 +2,7 @@
 	<div apply="controlador.maestros.CF0101">
 		<grid width="100%">
 			<columns visible="false">
-				<column label="" width="30%" />
+				<column label="" width="40%" />
 				<column label="" width="70%" />
 			</columns>
 			<rows>

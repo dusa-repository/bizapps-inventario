@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.maestros.F0004;
+import modelo.maestros.F0005;
 import modelo.maestros.F0010;
 import modelo.maestros.F0013;
 import modelo.pk.F0004PK;
@@ -24,6 +25,7 @@ import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
+import componentes.BuscadorUDC;
 import componentes.Catalogo;
 import componentes.Mensaje;
 
@@ -35,18 +37,24 @@ public class CF0010 extends CGenerico {
 	private Textbox txtCCCOF0010;
 	@Wire
 	private Textbox txtNameF0010;
-	@Wire
-	private Textbox txtPatronF0010;
-	@Wire
-	private Textbox txtDireccionF0010;
+	// @Wire
+	// private Textbox txtPatronF0010;
+	// @Wire
+	// private Textbox txtDireccionF0010;
 	@Wire
 	private Textbox txtCCCRCDF0010;
 	@Wire
 	private Textbox txtRMF0010;
 	@Wire
 	private Textbox txtDot2F0010;
+	// @Wire
+	// private Textbox txtCaldF0010;
 	@Wire
-	private Textbox txtCaldF0010;
+	private Div divbuscadorDPNT;
+	@Wire
+	private Div divbuscadorCALD;
+	@Wire
+	private Div divbuscadorAN8;
 	@Wire
 	private Doublespinner dpnPeriodoActualGeneralF0010;
 	@Wire
@@ -85,10 +93,41 @@ public class CF0010 extends CGenerico {
 	Catalogo<F0013> catalogoM;
 	String clave = null;
 
+	BuscadorUDC buscadorDPNT;
+	BuscadorUDC buscadorCALD;
+	BuscadorUDC buscadorAN8;
+
 	@Override
 	public void inicializar() throws IOException {
 		txtCCCOF0010.setFocus(true);
 		mostrarCatalogo();
+		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
+		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listF0005,
+				true) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "00",
+						buscadorDPNT.obtenerCaja());
+			}
+		};
+		buscadorCALD = new BuscadorUDC("Numero periodos", 2, listF0005, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "01",
+						buscadorCALD.obtenerCaja());
+			}
+		};
+		buscadorAN8 = new BuscadorUDC("Nº direccion compañia", 17, listF0005,
+				false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "01",
+						buscadorAN8.obtenerCaja());
+			}
+		};
+		divbuscadorDPNT.appendChild(buscadorDPNT);
+		divbuscadorCALD.appendChild(buscadorCALD);
+		divbuscadorAN8.appendChild(buscadorAN8);
 		botonera = new Botonera() {
 
 			@Override
@@ -103,12 +142,21 @@ public class CF0010 extends CGenerico {
 						txtCCCOF0010.setDisabled(true);
 						txtCCCRCDF0010.setValue(f010.getCccrcd());
 						txtNameF0010.setValue(f010.getCcname());
-						txtDireccionF0010.setValue(String.valueOf(f010
-								.getCcan8()));
-						txtPatronF0010.setValue(f010.getCcdtpn());
+						// Se supone que aqui se pasaran los parametros que
+						// definiremos luego sy, rt, ky
+						Double a = f010.getCcan8();
+						buscadorAN8.settearCampo(servicioF0005.buscar("00",
+								"01", String.valueOf((a.intValue()))));
+						// Se supone que aqui se pasaran los parametros que
+						// definiremos luego sy, rt, ky
+						buscadorDPNT.settearCampo(servicioF0005.buscar("00",
+								"00", f010.getCcdtpn()));
 						txtRMF0010.setValue(f010.getCcbktx());
 						txtDot2F0010.setValue(f010.getCcdot2());
-						txtCaldF0010.setValue(f010.getCccald());
+						// Se supone que aqui se pasaran los parametros que
+						// definiremos luego sy, rt, ky
+						buscadorCALD.settearCampo(servicioF0005.buscar("00",
+								"00", f010.getCccald()));
 						dpnPeriodoActualGeneralF0010.setValue(f010.getCcpnc());
 						dpnPeriodoPagarF0010.setValue(f010.getCcappn());
 						dpnPeriodoCobrarF0010.setValue(f010.getCcarpn());
@@ -123,6 +171,15 @@ public class CF0010 extends CGenerico {
 						dtbFechaPagarF0010
 								.setValue(transformarJulianaAGregoria(f010
 										.getCcapfj()));
+						if (f010.getCcdprc().equals("1"))
+							chxTransitoria.setChecked(true);
+						else
+							chxTransitoria.setChecked(false);
+						if (f010.getCcabin().equals("1"))
+							chxSaldos.setChecked(true);
+						else
+							chxSaldos.setChecked(false);
+
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -157,21 +214,18 @@ public class CF0010 extends CGenerico {
 					f010.setCcco(txtCCCOF0010.getValue());
 					f010.setCccrcd(txtCCCRCDF0010.getValue());
 					f010.setCcname(txtNameF0010.getValue());
-					f010.setCcan8(Double.parseDouble(txtDireccionF0010
-							.getValue()));
-					f010.setCcdtpn(txtPatronF0010.getValue());
+					if (!buscadorAN8.obtenerCaja().equals(""))
+						f010.setCcan8(Double.parseDouble(buscadorAN8
+								.obtenerCaja()));
+					f010.setCcdtpn(buscadorDPNT.obtenerCaja());
 					f010.setCcbktx(txtRMF0010.getValue());
 					f010.setCcdot2(txtDot2F0010.getValue());
-					f010.setCccald(txtCaldF0010.getValue());
+					f010.setCccald(buscadorCALD.obtenerCaja());
 					f010.setCcpnc(dpnPeriodoActualGeneralF0010.getValue());
 					f010.setCcappn(dpnPeriodoPagarF0010.getValue());
 					f010.setCcarpn(dpnPeriodoCobrarF0010.getValue());
 					f010.setCcpnf(dpnPeriodoInformeF0010.getValue());
 					f010.setCcfry(dpnAnnoInformeF0010.getValue());
-					System.out.println("primera"+dtbFechaCobrarF0010
-							.getValue());
-					System.out.println("segunda"+transformarGregorianoAJulia(dtbFechaCobrarF0010
-							.getValue()));
 					f010.setCcarfj(transformarGregorianoAJulia(dtbFechaCobrarF0010
 							.getValue()));
 					f010.setCcdfyj(transformarGregorianoAJulia(dtbFechaGeneralF0010
@@ -181,11 +235,20 @@ public class CF0010 extends CGenerico {
 					f010.setCcupmj(transformarGregorianoAJulia(fecha));
 					f010.setCcupmt(Double.valueOf(horaAuditoria));
 					f010.setCcuser("JDE");
+					if (chxTransitoria.isChecked())
+						f010.setCcdprc("1");
+					else
+						f010.setCcdprc("0");
+					if (chxSaldos.isChecked())
+						f010.setCcabin("1");
+					else
+						f010.setCcabin("0");
 					servicioF0010.guardar(f010);
-					msj.mensajeInformacion(Mensaje.guardado);
-					limpiar();
 					catalogo.actualizarLista(servicioF0010
 							.buscarTodosOrdenados());
+					msj.mensajeInformacion(Mensaje.guardado);
+					limpiar();
+
 				}
 			}
 
@@ -277,14 +340,18 @@ public class CF0010 extends CGenerico {
 
 	public void limpiarCampos() {
 		clave = null;
+		if (chxTransitoria.isChecked())
+			chxTransitoria.setChecked(false);
+		if (chxSaldos.isChecked())
+			chxSaldos.setChecked(false);
 		txtCCCOF0010.setValue("");
 		txtCCCRCDF0010.setValue("");
 		txtNameF0010.setValue("");
-		txtDireccionF0010.setValue("");
-		txtPatronF0010.setValue("");
+		buscadorAN8.settearCampo(null);
+		buscadorDPNT.settearCampo(null);
 		txtRMF0010.setValue("");
 		txtDot2F0010.setValue("");
-		txtCaldF0010.setValue("");
+		buscadorCALD.settearCampo(null);
 		dpnPeriodoActualGeneralF0010.setValue((double) 0);
 		dpnPeriodoPagarF0010.setValue((double) 0);
 		dpnPeriodoCobrarF0010.setValue((double) 0);
@@ -340,21 +407,9 @@ public class CF0010 extends CGenerico {
 
 	public boolean camposLLenos() {
 		if (txtCCCOF0010.getText().compareTo("") == 0
-				|| txtCCCRCDF0010.getText().compareTo("") == 0
-				|| txtDireccionF0010.getText().compareTo("") == 0
+				|| buscadorDPNT.obtenerCaja().compareTo("") == 0
 				|| txtNameF0010.getText().compareTo("") == 0
-				|| txtPatronF0010.getText().compareTo("") == 0
-				|| txtRMF0010.getText().compareTo("") == 0
-				|| dpnAnnoInformeF0010.getValue() == 0
-				|| txtDot2F0010.getText().compareTo("") == 0
-				|| dpnPeriodoActualGeneralF0010.getValue() == 0
-				|| dpnPeriodoCobrarF0010.getValue() == 0
-				|| txtCaldF0010.getText().compareTo("") == 0
-				|| dpnPeriodoInformeF0010.getValue() == 0
-				|| dpnPeriodoPagarF0010.getValue() == 0
-				|| dtbFechaCobrarF0010.getText().compareTo("") == 0
-				|| dtbFechaGeneralF0010.getText().compareTo("") == 0
-				|| dtbFechaPagarF0010.getText().compareTo("") == 0) {
+				|| dtbFechaGeneralF0010.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
@@ -363,15 +418,15 @@ public class CF0010 extends CGenerico {
 	public boolean camposEditando() {
 		if (txtCCCOF0010.getText().compareTo("") != 0
 				|| txtCCCRCDF0010.getText().compareTo("") != 0
-				|| txtDireccionF0010.getText().compareTo("") != 0
+				|| buscadorAN8.obtenerCaja().compareTo("") != 0
 				|| txtNameF0010.getText().compareTo("") != 0
-				|| txtPatronF0010.getText().compareTo("") != 0
+				|| buscadorDPNT.obtenerCaja().compareTo("") != 0
 				|| txtRMF0010.getText().compareTo("") != 0
 				|| dpnAnnoInformeF0010.getValue() != 0
 				|| txtDot2F0010.getText().compareTo("") != 0
 				|| dpnPeriodoActualGeneralF0010.getValue() != 0
 				|| dpnPeriodoCobrarF0010.getValue() != 0
-				|| txtCaldF0010.getText().compareTo("") != 0
+				|| buscadorCALD.obtenerCaja().compareTo("") != 0
 				|| dpnPeriodoInformeF0010.getValue() != 0
 				|| dpnPeriodoPagarF0010.getValue() != 0
 				|| dtbFechaCobrarF0010.getText().compareTo("") != 0

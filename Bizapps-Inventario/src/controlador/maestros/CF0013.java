@@ -252,9 +252,7 @@ public class CF0013 extends CGenerico {
 	}
 	
 	public boolean camposLLenos() {
-		if (txtCKRF0013.getText().compareTo("") == 0
-				|| txtCRCDF0013.getText().compareTo("") == 0
-				|| txtDECF0013.getText().compareTo("") == 0
+		if (txtCRCDF0013.getText().compareTo("") == 0
 				|| txtDL01F0013.getText().compareTo("") == 0) {
 			return false;
 		} else
