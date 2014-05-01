@@ -26,9 +26,21 @@ public class CF0101 extends CGenerico {
 	@Override
 	public void inicializar() throws IOException {
 		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		buscadorUDC = new BuscadorUDC("valor",10,listF0005) {
+		buscadorUDC = new BuscadorUDC("Patron fecha fiscal",10,listF0005, true) {
+
+			@Override
+			protected F0005 buscar() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
-		buscadorUDC2 = new BuscadorUDC("valor",10,listF0005) {
+		buscadorUDC2 = new BuscadorUDC("valor",10,listF0005, false) {
+
+			@Override
+			protected F0005 buscar() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		buscador.appendChild(buscadorUDC);
 		buscador2.appendChild(buscadorUDC2);
@@ -36,6 +48,6 @@ public class CF0101 extends CGenerico {
 
 	@Listen("onClick = #b")
 	public void dato(){
-		System.out.println(buscadorUDC.seleccionarItem().getId().getDrky());
+		System.out.println(buscadorUDC.obtenerCaja());
 	}
 }

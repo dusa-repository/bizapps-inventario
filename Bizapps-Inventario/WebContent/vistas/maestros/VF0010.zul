@@ -17,11 +17,21 @@
 					</columns>
 					<rows>
 						<row>
-							<label class="etiqueta" value="Compañia:" />
-							<textbox id="txtCCCOF0010" hflex="1" maxlength="100"
+							<hbox>
+								<label class="etiqueta" value="Compañia:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtCCCOF0010" hflex="1" maxlength="5"
 								tooltiptext="Ingrese el Codigo de la Compañia" />
-							<label class="etiqueta" value="Nombre:" />
-							<textbox id="txtNameF0010" hflex="1" maxlength="100"
+							<hbox>
+								<label class="etiqueta" value="Nombre:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtNameF0010" hflex="1" maxlength="30"
 								tooltiptext="Ingrese el nombre de la Compañia" />
 						</row>
 					</rows>
@@ -44,30 +54,45 @@
 										</columns>
 										<rows>
 											<row>
-												<label class="etiqueta" value="Patron Fecha Fiscal:" />
-												<textbox id="txtPatronF0010" hflex="1" maxlength="1"
-													tooltiptext="Ingrese el Patron de la Fecha Fiscal" />
+												<!-- <label class="etiqueta" value="Patron Fecha Fiscal:" /> 
+													<textbox id="txtPatronF0010" hflex="1" maxlength="1" tooltiptext="Ingrese 
+													el Patron de la Fecha Fiscal" /> -->
+												<cell colspan="2">
+													<div id="divbuscadorDPNT" hflex="1" />
+												</cell>
 											</row>
 											<row>
-												<label class="etiqueta" value="Numero de Periodos:" />
-												<textbox id="txtCaldF0010" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el numero de Periodos" />
+												<!-- <label class="etiqueta" value="Numero de Periodos:" /> <textbox 
+													id="txtCaldF0010" hflex="1" maxlength="100" tooltiptext="Ingrese el numero 
+													de Periodos" /> -->
+												<cell colspan="2">
+													<div id="divbuscadorCALD" hflex="1" />
+												</cell>
 											</row>
 											<row>
 												<label class="etiqueta" value="Periodo Actual:" />
 												<doublespinner id="dpnPeriodoActualGeneralF0010"
-													hflex="1" constraint="no negative" tooltiptext="Ingrese el periodo Actual" />
+													hflex="1" constraint="max 999999" value="0"
+													tooltiptext="Ingrese el periodo Actual" />
 											</row>
 											<row>
-												<label class="etiqueta" value="Inicio Año Fiscal:" />
+												<hbox>
+													<label class="etiqueta" value="Inicio Año Fiscal:" />
+													<space />
+													<label value="*" style="font-weight:bold;color:red">
+													</label>
+												</hbox>
 												<datebox readonly="true" width="100%"
 													id="dtbFechaGeneralF0010" onCreate="self.value = new Date()"
 													tooltiptext="Ingrese el Inicio del año fiscal" />
 											</row>
 											<row>
-												<label class="etiqueta" value="Direccion Compañia:" />
-												<textbox id="txtDireccionF0010" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la direccion de la Compañia" />
+												<!-- <label class="etiqueta" value="Direccion Compañia:" /> <textbox 
+													id="txtDireccionF0010" hflex="1" maxlength="100" tooltiptext="Ingrese la 
+													direccion de la Compañia" /> -->
+												<cell colspan="2">
+													<div id="divbuscadorAN8" hflex="1" />
+												</cell>
 											</row>
 										</rows>
 									</grid>
@@ -84,7 +109,7 @@
 												<row>
 													<label class="etiqueta" value="Periodo Actual:" />
 													<doublespinner id="dpnPeriodoPagarF0010"
-														hflex="1" constraint="no negative" tooltiptext="Ingrese el periodo Actual" />
+														hflex="1" value="0" constraint="max 999999" tooltiptext="Ingrese el periodo Actual" />
 												</row>
 												<row>
 													<label class="etiqueta" value="Inicio Año Fiscal:" />
@@ -110,7 +135,7 @@
 												<row>
 													<label class="etiqueta" value="Periodo Actual:" />
 													<doublespinner id="dpnPeriodoCobrarF0010"
-														hflex="1" constraint="no negative" tooltiptext="Ingrese el periodo Actual" />
+														value="0" hflex="1" constraint="max 999999" tooltiptext="Ingrese el periodo Actual" />
 												</row>
 												<row>
 													<label class="etiqueta" value="Inicio Año Fiscal:" />
@@ -136,10 +161,11 @@
 										<row>
 											<label class="etiqueta" value="Periodo Informes:" />
 											<doublespinner id="dpnPeriodoInformeF0010"
-												hflex="1" tooltiptext="Ingrese el numero de Periodos de informes" />
+												value="0" hflex="1" constraint="max 999999"
+												tooltiptext="Ingrese el numero de Periodos de informes" />
 											<label class="etiqueta" value="Año Informes:" />
 											<doublespinner id="dpnAnnoInformeF0010" hflex="1"
-												tooltiptext="Ingrese los Años de Informe" />
+												value="0" constraint="max 999999" tooltiptext="Ingrese los Años de Informe" />
 										</row>
 									</rows>
 								</grid>
@@ -156,20 +182,20 @@
 								<rows>
 									<row>
 										<label class="etiqueta" value="Moneda Nacional:" />
-										<textbox id="txtCCCRCDF0010" hflex="1" maxlength="100"
+										<textbox id="txtCCCRCDF0010" hflex="1" maxlength="3"
 											tooltiptext="Ingrese la Moneda Nacional" />
 										<button id="btnBuscarMoneda" class="btn" label="Buscar"
 											tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 									</row>
 									<row>
 										<label class="etiqueta" value="Calculo redeterminacion:" />
-										<textbox id="txtDot2F0010" hflex="1" maxlength="100"
+										<textbox id="txtDot2F0010" hflex="1" maxlength="1"
 											tooltiptext="Ingrese el Calculo de Redeterminacion" />
 										<hbox />
 									</row>
 									<row>
 										<label class="etiqueta" value="Redeterminacion de Monedas:" />
-										<textbox id="txtRMF0010" hflex="1" maxlength="100"
+										<textbox id="txtRMF0010" hflex="1" maxlength="1"
 											tooltiptext="Ingrese la Redeerminacion de las monedas" />
 										<hbox />
 									</row>
