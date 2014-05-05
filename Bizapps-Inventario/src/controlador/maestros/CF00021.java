@@ -274,17 +274,35 @@ public class CF00021 extends CGenerico {
 		}
 
 
-	@Listen("onClick = #txtDESF00021")
-	public void buscarSiguiente() {	
+	@Listen("onClick = #txtCOF00021")
+	public boolean buscarSiguiente() {	
 			String a =txtKCOF00021.getValue();
 			String b = txtDCTF00021.getValue() ;
-			System.out.println(a);
-			System.out.println(b);
+			if (servicioF00021.Numero(a, b) != 0){
 			double numero =  servicioF00021.Numero(a, b);
 			System.out.println(numero);
+			if (numero != 0)
 			txtN001F00021.setValue(String.valueOf(numero + 1));
+			return true;
+	} else
+		return false;
+	
 
 	}
+
+	@Listen("onClick = #txtDCTF00021")
+	public boolean buscarSiguiente1() {	
+			String a =txtKCOF00021.getValue();
+			String b = txtDCTF00021.getValue() ;
+			if (servicioF00021.Numero(a, b) != 0){
+			double numero =  servicioF00021.Numero(a, b);
+			System.out.println(numero);
+			if (numero != 0)
+			txtN001F00021.setValue(String.valueOf(numero + 1));
+			return true;
+			} else
+				return false;
+	}	
 	
 	public void limpiarCampos() {
 		txtKCOF00021.setValue("");

@@ -33,9 +33,12 @@ public class SF00021 {
 	}
 	
 	public double Numero(String value, String value2) {
+		try  {
 			return f00021DAO.Numero(value, value2);
+	} catch (Exception e) {
+		return 0;
 	}
-
+	}
 
 	public void guardar(F00021 f00021) {
 		f00021DAO.save(f00021);
