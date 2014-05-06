@@ -10,6 +10,8 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.KeyEvent;
 import org.zkoss.zul.Auxhead;
 import org.zkoss.zul.Auxheader;
+import org.zkoss.zul.Button;
+import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
@@ -18,7 +20,9 @@ import org.zkoss.zul.Listhead;
 import org.zkoss.zul.Listheader;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Separator;
+import org.zkoss.zul.Space;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
@@ -26,7 +30,9 @@ public abstract class Catalogo<Clase> extends Window {
 
 	private static final long serialVersionUID = 1L;
 	Listbox lsbCatalogo;
-
+	Button exportador;
+	Mensaje msj = new Mensaje();
+	
 	public Catalogo(final Component cGenerico, String titulo,
 			List<Clase> lista, String... campos) {
 		super("", "2", false);
@@ -45,7 +51,28 @@ public abstract class Catalogo<Clase> extends Window {
 	}
 
 	public void crearLista(List<Clase> lista, String[] campos) {
-		Hbox hbxBusqueda = new Hbox();
+		exportador = new Button();
+		exportador.setTooltiptext("Exportar");
+		exportador
+				.setStyle("font-size: 11px ;width: 10px; height: 10px");
+//		; float: right
+		exportador.addEventListener(Events.ON_CLICK,
+				new EventListener<Event>() {
+					@Override
+					public void onEvent(Event arg0) throws Exception {
+						exportar();
+					}
+				});
+		Hbox box = new Hbox();
+		Space espacio = new Space();
+		espacio.setHeight("10px");
+		box.appendChild(espacio);
+		box.appendChild(exportador);
+		box.setWidth("100%");
+		box.setAlign("end");
+		box.setHeight("12px");
+		box.setWidths("98%,2%");
+		
 		final Separator separador1 = new Separator();
 		final Separator separador2 = new Separator();
 		lsbCatalogo = new Listbox();
@@ -85,7 +112,8 @@ public abstract class Catalogo<Clase> extends Window {
 						}
 					});
 			cajaTexto.setPlaceholder("Buscar....");
-			cajaTexto.setTooltiptext("Presione Enter para Filtrar la Informacion");
+			cajaTexto
+					.setTooltiptext("Presione Enter para Filtrar la Informacion");
 			Auxheader cabeceraFila = new Auxheader();
 			cabeceraFila.appendChild(cajaTexto);
 			cabecera.appendChild(cabeceraFila);
@@ -118,9 +146,45 @@ public abstract class Catalogo<Clase> extends Window {
 		lsbCatalogo.setCheckmark(true);
 
 		this.appendChild(separador1);
-		this.appendChild(hbxBusqueda);
+		this.appendChild(box);
 		this.appendChild(separador2);
 		this.appendChild(lsbCatalogo);
+	}
+
+	protected void exportar() {
+		String s = ";";
+		final StringBuffer sb = new StringBuffer();
+
+		for (Object head : lsbCatalogo.getHeads()) {
+			String h = "";
+			if (head instanceof Listhead) {
+				for (Object header : ((Listhead) head).getChildren()) {
+					h += ((Listheader) header).getLabel() + s;
+				}
+				sb.append(h + "\n");
+			}
+		}
+		for (Object item : lsbCatalogo.getItems()) {
+			String i = "";
+			for (Object cell : ((Listitem) item).getChildren()) {
+				i += ((Listcell) cell).getLabel() + s;
+			}
+			sb.append(i + "\n");
+		}
+		Messagebox
+		.show(Mensaje.exportar,
+				"Alerta",
+				Messagebox.OK | Messagebox.CANCEL,
+				Messagebox.QUESTION,
+				new org.zkoss.zk.ui.event.EventListener<Event>() {
+					public void onEvent(Event evt)
+							throws InterruptedException {
+						if (evt.getName()
+								.equals("onOK")) {
+							Filedownload.save(sb.toString().getBytes(), "text/plain", "datos.csv");
+						}
+					}
+				});
 	}
 
 	/**
