@@ -1,19 +1,542 @@
 <zk>
-	<div apply="controlador.maestros.CF0101">
-		<grid width="100%">
-			<columns visible="false">
-				<column label="" width="40%" />
-				<column label="" width="70%" />
-			</columns>
-			<rows>
-				<row>
-					<div id="buscador"/>
-				</row>
-				<row>
-					<div id="buscador2"/>
-				</row>
-			</rows>
-		</grid>
-		<button id ="b"></button>
+	<style src="../public/Estilo.css" />
+	<div id="divVF0101" apply="controlador.maestros.CF0101">
+		<groupbox width="auto" mold="3d" title="Trabajo con Direcciones">
+			<div id="botoneraF0101" />
+			<separator />
+			<groupbox id="gpxRegistroF0101" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar una Nueva Direccion" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+						<column label="" width="50%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Nº direccion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtAN8F0101" disabled="true" hflex="1" maxlength="18"
+								tooltiptext="Ingrese Numero de la direccion" />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<tabbox orient="horizontal">
+					<tabs width="auto">
+						<tab label="Libro de direcciones" />
+						<tab label="Correo" />
+						<tab label="Info adicional 1" />
+						<tab label="Info adicional 2" />
+						<tab label="Direccion relacionada" />
+						<tab label="Codigo categoria del 1 - 10" />
+						<tab label="Codigo categoria del 11 - 30" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<grid width="100%" style="border:0px">
+								<columns visible="false">
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+								</columns>
+								<rows>
+									<row>
+										<hbox>
+											<label class="etiqueta" value="Nombre alfa:" />
+											<space />
+											<label value="*" style="font-weight:bold;color:red">
+											</label>
+										</hbox>
+										<textbox id="txtALPHF0101" hflex="1" maxlength="40"
+											tooltiptext="Ingrese Nombre alfa de la direccion" />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Nº direccion larga:" />
+										<textbox id="txtALKYF0101" hflex="1" maxlength="20"
+											tooltiptext="Ingrese el numero de la direccion larga" />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="ID fiscal:" />
+										<textbox id="txtTAXF0101" hflex="1" maxlength="20"
+											tooltiptext="Ingrese el identificador fiscal de la direccion" />
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="3">
+											<div id="divBuscadorAT1" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<label class="etiqueta" value="UN:" />
+										<textbox id="txtMCUF0101" hflex="1" maxlength="12"
+											tooltiptext="Ingrese el UN" />
+										<button id="btnBuscarUnidades" class="btn" label="Buscar"
+											tooltiptext="Catalogo Unidades" image="/public/imagenes/botones/buscar.png" />
+										<label id="lblMCUF0101" />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100 %
+								" style="border:0px">
+								<columns visible="false">
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+								</columns>
+								<rows>
+									<row>
+										<label class="etiqueta" value="Destinatario:" />
+										<textbox id="txtDCF0101" hflex="1" maxlength="40"
+											tooltiptext="Ingrese el destinatario de la direccion" />
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Lin 1 direccion" />
+										<textbox id="txtADD1F0101" hflex="1" maxlength="40"
+											tooltiptext="Ingrese la primera linea de la direccion" />
+										<label class="etiqueta" value="Ciudad: " />
+										<textbox id="txtALP1F0101" hflex="1" maxlength="40"
+											tooltiptext="Ingrese la ciudad de la direccion" />
+									</row>
+									<row>
+										<label class="etiqueta" value="Lin 2 direccion:" />
+										<textbox id="txtADD2F0101" hflex="1" maxlength="20"
+											tooltiptext="Ingrese la segunda linea de la direccion" />
+										<cell colspan="2">
+											<div id="divBuscadorADDS" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<label class="etiqueta" value="Lin 3 direccion" />
+										<textbox id="txtADD3F0101" hflex="1" maxlength="40"
+											tooltiptext="Ingrese la tercera linea de la direccion" />
+										<label class="etiqueta" value="Cd postal: " />
+										<textbox id="txtADDZF0101" hflex="1" maxlength="40"
+											tooltiptext="Ingrese el codigo postal de la direccion" />
+									</row>
+									<row>
+										<label class="etiqueta" value="Lin 4 direccion:" />
+										<textbox id="txtADD4F0101" hflex="1" maxlength="20"
+											tooltiptext="IIngrese la cuarta linea de la direccion" />
+										<cell colspan="2">
+											<div id="divBuscadorCTR" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<hbox />
+										<hbox />
+										<cell colspan="2">
+											<div id="divBuscadorCOUN" hflex="1" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100 %
+								" style="border:0px">
+								<columns visible="false">
+									<column label="" width="30%" />
+									<column label="" width="35%" />
+									<column label="" width="5%" />
+									<column label="" width="30%" />
+								</columns>
+								<rows>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorATP" hflex="1" />
+										</cell>
+										<checkbox id="chxATRF0101" hflex="1"
+											tooltiptext="Marque para indicar cuentas por cobrar" />
+										<label class="etiqueta" value="Cuentas por cobrar Y/N:" />
+
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorMPGP" hflex="1" />
+										</cell>
+										<checkbox style="float: right;" id="chxATPRF0101" hflex="1"
+											tooltiptext="Marque para indicar codigo de usuario" />
+										<label class="etiqueta" value="Codigo usuario:" />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAT2" hflex="1" />
+										</cell>
+										<checkbox id="chxSBLIF0101" hflex="1"
+											tooltiptext="Marque para indicar codigo inactivo de LN auxiliar" />
+										<label class="etiqueta" value="Codigo Inactivo de LN auxiliar:" />
+									</row>
+									<row>
+										<label class="etiqueta" value="ID fiscal adicional" />
+										<textbox id="txtTX2F0101" hflex="1" maxlength="40"
+											tooltiptext="Ingrese la tercera linea de la direccion" />
+										<checkbox id="chxATEF0101" hflex="1"
+											tooltiptext="Marque para indicar si es un empleado" />
+										<label class="etiqueta" value="Empleado Y/N:" />
+									</row>
+									<row>
+										<label class="etiqueta" value="Certificado exencion impuestos" />
+										<textbox id="txtTXCTF0101" hflex="1" maxlength="40"
+											tooltiptext="Ingrese la tercera linea de la direccion" />
+										<checkbox id="chx654F0101" hflex="1"
+											tooltiptext="Marque para indicar si existen registros HRM" />
+										<label class="etiqueta" value="Existen registros HRM:" />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorTAXC" hflex="1" />
+										</cell>
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorCM" hflex="1" />
+										</cell>
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorLNGP" hflex="1" />
+										</cell>
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorSIC" hflex="1" />
+										</cell>
+										<hbox />
+										<hbox />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<hbox>
+								<groupbox title="Clasificacion" closable="false">
+									<grid width="100%" style="border:0px">
+										<columns visible="false">
+											<column label="" width="30%" />
+											<column label="" width="30%" />
+											<column label="" width="40%" />
+										</columns>
+										<rows>
+											<row>
+												<cell colspan="3">
+													<div id="divBuscadorCLASS01" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<cell colspan="3">
+													<div id="divBuscadorCLASS02" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<cell colspan="3">
+													<div id="divBuscadorCLASS03" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<cell colspan="3">
+													<div id="divBuscadorCLASS04" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<cell colspan="3">
+													<div id="divBuscadorCLASS05" hflex="1" />
+												</cell>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+								<groupbox title="Informacion estadistica" closable="false">
+									<grid width="100%" style="border:0px">
+										<columns visible="false">
+											<column label="" width="40%" />
+											<column label="" width="60%" />
+										</columns>
+										<rows>
+											<row>
+												<label class="etiqueta" value="Año inicio:" />
+												<datebox readonly="true" width="100%" id="dtbURDTF0101"
+													onCreate="self.value = new Date()" tooltiptext="Ingrese el Inicio del año" />
+											</row>
+											<row>
+												<label class="etiqueta" value="Rango Ingresos" />
+												<textbox />
+											</row>
+											<row>
+												<label class="etiqueta" value="Tasa crmto:" />
+												<doublespinner hflex="1" value="0" constraint="max 999999"
+													tooltiptext="Ingrese el periodo Actual" />
+											</row>
+											<row>
+												<label class="etiqueta" value="Nº empleado:" />
+												<doublespinner hflex="1" value="0" constraint="max 999999"
+													tooltiptext="Ingrese el periodo Actual" />
+											</row>
+											<row>
+												<label class="etiqueta" value="Numero DUNS:" />
+												<hbox hflex="2">
+													<textbox id="txtDUNS1F0101" hflex="1" maxlength="20"
+														tooltiptext="IIngrese la cuarta linea de la direccion" />
+													<label class="etiqueta" value="-" />
+													<textbox id="txtDUNS2F0101" hflex="1" maxlength="20"
+														tooltiptext="IIngrese la cuarta linea de la direccion" />
+													<label class="etiqueta" value="-" />
+													<textbox id="txtDUNS3F0101" hflex="1" maxlength="20"
+														tooltiptext="IIngrese la cuarta linea de la direccion" />
+												</hbox>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+							</hbox>
+							<hbox>
+								<groupbox title="Informacion valores" closable="false">
+									<grid width="100%" style="border:0px">
+										<columns visible="false">
+											<column label="" width="30%" />
+											<column label="" width="30%" />
+											<column label="" width="40%" />
+										</columns>
+										<rows>
+											<row>
+												<label class="etiqueta" value="Ticker" />
+												<textbox />
+												<hbox />
+											</row>
+											<row>
+												<label class="etiqueta" value="Mercado valores" />
+												<textbox />
+												<hbox />
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+							</hbox>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100%" style="border:0px">
+								<columns visible="false">
+									<column label="" width="30%" />
+									<column label="" width="30%" />
+									<column label="" width="40%" />
+								</columns>
+								<rows>
+									<row>
+										<cell colspan="3">
+											<div id="divBuscadorUPMT" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="3">
+											<div id="divBuscadorAN81" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="3">
+											<div id="divBuscadorAN82" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="3">
+											<div id="divBuscadorAN83" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="3">
+											<div id="divBuscadorAN84" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="3">
+											<div id="divBuscadorAN85" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="3">
+											<div id="divBuscadorAN86" hflex="1" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100%" style="border:0px">
+								<columns visible="false">
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+								</columns>
+								<rows>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC01" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC06" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC02" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC07" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC03" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC08" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC04" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC09" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC05" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC10" hflex="1" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100%" style="border:0px">
+								<columns visible="false">
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+								</columns>
+								<rows>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC11" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC21" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC12" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC22" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC13" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC23" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC14" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC24" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC15" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC25" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC16" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC26" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC17" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC27" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC18" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC28" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC19" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC29" hflex="1" />
+										</cell>
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divBuscadorAC20" hflex="1" />
+										</cell>
+										<cell colspan="2">
+											<div id="divBuscadorAC30" hflex="1" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF0101" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las Direcciones Registradas" />
+				<div id="catalogoF0101" tooltiptext="Seleccione la Direccion para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+
+		</groupbox>
+
 	</div>
 </zk>

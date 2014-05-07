@@ -21,7 +21,7 @@ public class F0101 implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ABAN8")
-	private double aban8;
+	private long aban8;
 
 	@Column(name="ABAB3")
 	private String abab3;
@@ -132,22 +132,22 @@ public class F0101 implements Serializable {
 	private String abalph;
 
 	@Column(name="ABAN81")
-	private double aban81;
+	private Double aban81;
 
 	@Column(name="ABAN82")
-	private double aban82;
+	private Double aban82;
 
 	@Column(name="ABAN83")
-	private double aban83;
+	private Double aban83;
 
 	@Column(name="ABAN84")
-	private double aban84;
+	private Double aban84;
 
 	@Column(name="ABAN85")
-	private double aban85;
+	private Double aban85;
 
 	@Column(name="ABAN86")
-	private double aban86;
+	private Double aban86;
 
 	@Column(name="ABAT1")
 	private String abat1;
@@ -177,7 +177,7 @@ public class F0101 implements Serializable {
 	private String abatr;
 
 	@Column(name="ABCAAD")
-	private double abcaad;
+	private Double abcaad;
 
 	@Column(name="ABCLASS01")
 	private String abclass01;
@@ -213,7 +213,7 @@ public class F0101 implements Serializable {
 	private String abglba;
 
 	@Column(name="ABGROWTHR")
-	private double abgrowthr;
+	private Double abgrowthr;
 
 	@Column(name="ABJOBN")
 	private String abjobn;
@@ -228,13 +228,13 @@ public class F0101 implements Serializable {
 	private String abmsga;
 
 	@Column(name="ABNOE")
-	private double abnoe;
+	private Double abnoe;
 
 	@Column(name="ABPDI")
 	private BigDecimal abpdi;
 
 	@Column(name="ABPERRS")
-	private double abperrs;
+	private Double abperrs;
 
 	@Column(name="ABPID")
 	private String abpid;
@@ -243,7 +243,7 @@ public class F0101 implements Serializable {
 	private String abprgf;
 
 	@Column(name="ABPTI")
-	private double abpti;
+	private Double abpti;
 
 	@Column(name="ABREVRNG")
 	private String abrevrng;
@@ -261,7 +261,7 @@ public class F0101 implements Serializable {
 	private String absic;
 
 	@Column(name="ABSYNCS")
-	private double absyncs;
+	private Double absyncs;
 
 	@Column(name="ABTAX")
 	private String abtax;
@@ -282,13 +282,13 @@ public class F0101 implements Serializable {
 	private BigDecimal abupmj;
 
 	@Column(name="ABUPMT")
-	private double abupmt;
+	private Double abupmt;
 
 	@Column(name="ABURAB")
-	private double aburab;
+	private Double aburab;
 
 	@Column(name="ABURAT")
-	private double aburat;
+	private Double aburat;
 
 	@Column(name="ABURCD")
 	private String aburcd;
@@ -308,13 +308,14 @@ public class F0101 implements Serializable {
 	public F0101() {
 	}
 
-	public double getAban8() {
-		return this.aban8;
+	public long getAban8() {
+		return aban8;
 	}
-
-	public void setAban8(double aban8) {
+	
+	public void setAban8(long aban8) {
 		this.aban8 = aban8;
 	}
+
 
 	public String getAbab3() {
 		return this.abab3;
@@ -604,51 +605,51 @@ public class F0101 implements Serializable {
 		this.abalph = abalph;
 	}
 
-	public double getAban81() {
+	public Double getAban81() {
 		return this.aban81;
 	}
 
-	public void setAban81(double aban81) {
+	public void setAban81(Double aban81) {
 		this.aban81 = aban81;
 	}
 
-	public double getAban82() {
+	public Double getAban82() {
 		return this.aban82;
 	}
 
-	public void setAban82(double aban82) {
+	public void setAban82(Double aban82) {
 		this.aban82 = aban82;
 	}
 
-	public double getAban83() {
+	public Double getAban83() {
 		return this.aban83;
 	}
 
-	public void setAban83(double aban83) {
+	public void setAban83(Double aban83) {
 		this.aban83 = aban83;
 	}
 
-	public double getAban84() {
+	public Double getAban84() {
 		return this.aban84;
 	}
 
-	public void setAban84(double aban84) {
+	public void setAban84(Double aban84) {
 		this.aban84 = aban84;
 	}
 
-	public double getAban85() {
+	public Double getAban85() {
 		return this.aban85;
 	}
 
-	public void setAban85(double aban85) {
+	public void setAban85(Double aban85) {
 		this.aban85 = aban85;
 	}
 
-	public double getAban86() {
+	public Double getAban86() {
 		return this.aban86;
 	}
 
-	public void setAban86(double aban86) {
+	public void setAban86(Double aban86) {
 		this.aban86 = aban86;
 	}
 
@@ -724,11 +725,11 @@ public class F0101 implements Serializable {
 		this.abatr = abatr;
 	}
 
-	public double getAbcaad() {
+	public Double getAbcaad() {
 		return this.abcaad;
 	}
 
-	public void setAbcaad(double abcaad) {
+	public void setAbcaad(Double abcaad) {
 		this.abcaad = abcaad;
 	}
 
@@ -820,11 +821,11 @@ public class F0101 implements Serializable {
 		this.abglba = abglba;
 	}
 
-	public double getAbgrowthr() {
+	public Double getAbgrowthr() {
 		return this.abgrowthr;
 	}
 
-	public void setAbgrowthr(double abgrowthr) {
+	public void setAbgrowthr(Double abgrowthr) {
 		this.abgrowthr = abgrowthr;
 	}
 
@@ -860,11 +861,11 @@ public class F0101 implements Serializable {
 		this.abmsga = abmsga;
 	}
 
-	public double getAbnoe() {
+	public Double getAbnoe() {
 		return this.abnoe;
 	}
 
-	public void setAbnoe(double abnoe) {
+	public void setAbnoe(Double abnoe) {
 		this.abnoe = abnoe;
 	}
 
@@ -876,11 +877,11 @@ public class F0101 implements Serializable {
 		this.abpdi = abpdi;
 	}
 
-	public double getAbperrs() {
+	public Double getAbperrs() {
 		return this.abperrs;
 	}
 
-	public void setAbperrs(double abperrs) {
+	public void setAbperrs(Double abperrs) {
 		this.abperrs = abperrs;
 	}
 
@@ -900,11 +901,11 @@ public class F0101 implements Serializable {
 		this.abprgf = abprgf;
 	}
 
-	public double getAbpti() {
+	public Double getAbpti() {
 		return this.abpti;
 	}
 
-	public void setAbpti(double abpti) {
+	public void setAbpti(Double abpti) {
 		this.abpti = abpti;
 	}
 
@@ -948,11 +949,11 @@ public class F0101 implements Serializable {
 		this.absic = absic;
 	}
 
-	public double getAbsyncs() {
+	public Double getAbsyncs() {
 		return this.absyncs;
 	}
 
-	public void setAbsyncs(double absyncs) {
+	public void setAbsyncs(Double absyncs) {
 		this.absyncs = absyncs;
 	}
 
@@ -1004,27 +1005,27 @@ public class F0101 implements Serializable {
 		this.abupmj = abupmj;
 	}
 
-	public double getAbupmt() {
+	public Double getAbupmt() {
 		return this.abupmt;
 	}
 
-	public void setAbupmt(double abupmt) {
+	public void setAbupmt(Double abupmt) {
 		this.abupmt = abupmt;
 	}
 
-	public double getAburab() {
+	public Double getAburab() {
 		return this.aburab;
 	}
 
-	public void setAburab(double aburab) {
+	public void setAburab(Double aburab) {
 		this.aburab = aburab;
 	}
 
-	public double getAburat() {
+	public Double getAburat() {
 		return this.aburat;
 	}
 
-	public void setAburat(double aburat) {
+	public void setAburat(Double aburat) {
 		this.aburat = aburat;
 	}
 
