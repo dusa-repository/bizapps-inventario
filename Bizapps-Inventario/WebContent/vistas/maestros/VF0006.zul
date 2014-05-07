@@ -167,10 +167,13 @@
 				</columns>
 				<rows>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 01" />
-							<textbox id="txtRP01F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 01 " />
-							<hbox />
+<!-- 						<label class="etiqueta" value= "Código Categoría 01" /> -->
+<!-- 							<textbox id="txtRP01F0006" hflex="1" maxlength="3" -->
+<!-- 								tooltiptext="Ingrese Código de Categoría 01 " /> -->
+<!-- 							<hbox /> -->
+						<cell colspan="2">
+							<div id="divbuscadorCategoria1" hflex="1" />
+						</cell>
 					</row>
 					<row>
 						<label class="etiqueta" value= "Código Categoría 02" />
