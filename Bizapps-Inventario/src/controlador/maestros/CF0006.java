@@ -21,6 +21,7 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Button;
 import componentes.Botonera;
+import componentes.BuscadorUDC;
 import componentes.Catalogo;
 import componentes.Mensaje;
 
@@ -125,6 +126,8 @@ public class CF0006 extends CGenerico {
 	@Wire
 	private Div divCatalogoF0010;
 	@Wire
+	private Div divbuscadorCategoria1;
+	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
@@ -142,12 +145,23 @@ public class CF0006 extends CGenerico {
 	Catalogo<F0005> catalogoF0005;
 	Catalogo<F0010> catalogoF0010;
 	
+	BuscadorUDC buscadorCategoria1;
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
 
 		txtUDCF0006.setFocus(true);
 		mostrarCatalogo();
+		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
+		buscadorCategoria1 = new BuscadorUDC("Código Categoría 01", 10, listF0005,
+				true) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "00",
+						buscadorCategoria1.obtenerCaja());
+			}
+		};
+		divbuscadorCategoria1.appendChild(buscadorCategoria1);
 		botonera = new Botonera() {
 
 			@Override
