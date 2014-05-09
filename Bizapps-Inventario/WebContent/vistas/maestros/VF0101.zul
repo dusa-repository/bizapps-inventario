@@ -22,8 +22,8 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtAN8F0101" disabled="true" hflex="1" maxlength="18"
-								tooltiptext="Ingrese Numero de la direccion" />
+							<textbox id="txtAN8F0101" disabled="true" hflex="1"
+								maxlength="18" tooltiptext="Ingrese Numero de la direccion" />
 							<hbox />
 						</row>
 					</rows>
@@ -170,8 +170,8 @@
 										<cell colspan="2">
 											<div id="divBuscadorMPGP" hflex="1" />
 										</cell>
-										<checkbox style="float: right;" id="chxATPRF0101" hflex="1"
-											tooltiptext="Marque para indicar codigo de usuario" />
+										<checkbox style="float: right;" id="chxATPRF0101"
+											hflex="1" tooltiptext="Marque para indicar codigo de usuario" />
 										<label class="etiqueta" value="Codigo usuario:" />
 									</row>
 									<row>
@@ -296,13 +296,13 @@
 											<row>
 												<label class="etiqueta" value="Numero DUNS:" />
 												<hbox hflex="2">
-													<textbox id="txtDUNS1F0101" hflex="1" maxlength="20"
+													<textbox id="txtDUNS1F0101" hflex="1" maxlength="3"
 														tooltiptext="IIngrese la cuarta linea de la direccion" />
 													<label class="etiqueta" value="-" />
-													<textbox id="txtDUNS2F0101" hflex="1" maxlength="20"
+													<textbox id="txtDUNS2F0101" hflex="1" maxlength="4"
 														tooltiptext="IIngrese la cuarta linea de la direccion" />
 													<label class="etiqueta" value="-" />
-													<textbox id="txtDUNS3F0101" hflex="1" maxlength="20"
+													<textbox id="txtDUNS3F0101" hflex="1" maxlength="6"
 														tooltiptext="IIngrese la cuarta linea de la direccion" />
 												</hbox>
 											</row>
@@ -536,7 +536,7 @@
 			<separator />
 			<separator />
 
+			<div id="catalogoF0006F0101" tooltiptext="Seleccione la Direccion para Realizar una Accion" />
 		</groupbox>
-
 	</div>
 </zk>
