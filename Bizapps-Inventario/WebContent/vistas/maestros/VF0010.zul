@@ -184,8 +184,11 @@
 										<label class="etiqueta" value="Moneda Nacional:" />
 										<textbox id="txtCCCRCDF0010" hflex="1" maxlength="3"
 											tooltiptext="Ingrese la Moneda Nacional" />
+											<hbox>
 										<button id="btnBuscarMoneda" class="btn" label="Buscar"
 											tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+											<label id ="lblMonedaF0010" />
+											</hbox>
 									</row>
 									<row>
 										<label class="etiqueta" value="Calculo redeterminacion:" />

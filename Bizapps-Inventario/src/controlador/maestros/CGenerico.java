@@ -79,7 +79,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SGrupo servicioGrupo;
 	@WireVariable("SUsuario")
 	protected SUsuario servicioUsuario;
-
+	protected static SimpleDateFormat formatoFecha = new SimpleDateFormat(
+			"dd-MM-yyyy");
 	public static List<Tab> tabs = new ArrayList<Tab>();
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public Calendar calendario = Calendar.getInstance();

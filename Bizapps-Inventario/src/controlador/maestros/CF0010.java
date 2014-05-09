@@ -20,6 +20,7 @@ import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
+import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Textbox;
@@ -37,6 +38,8 @@ public class CF0010 extends CGenerico {
 	private Textbox txtCCCOF0010;
 	@Wire
 	private Textbox txtNameF0010;
+	@Wire
+	private Label lblMonedaF0010;
 	// @Wire
 	// private Textbox txtPatronF0010;
 	// @Wire
@@ -141,6 +144,9 @@ public class CF0010 extends CGenerico {
 						txtCCCOF0010.setValue(f010.getCcco());
 						txtCCCOF0010.setDisabled(true);
 						txtCCCRCDF0010.setValue(f010.getCccrcd());
+						if (!f010.getCccrcd().equals(""))
+							lblMonedaF0010.setValue(servicioF0013.buscar(
+									f010.getCccrcd()).getCvdl01());
 						txtNameF0010.setValue(f010.getCcname());
 						// Se supone que aqui se pasaran los parametros que
 						// definiremos luego sy, rt, ky
@@ -361,6 +367,7 @@ public class CF0010 extends CGenerico {
 		dtbFechaGeneralF0010.setValue(fecha);
 		dtbFechaPagarF0010.setValue(fecha);
 		txtCCCOF0010.setFocus(true);
+		lblMonedaF0010.setValue("");
 	}
 
 	public void habilitarTextClave() {
@@ -495,16 +502,22 @@ public class CF0010 extends CGenerico {
 									.startsWith(valores.get(2))
 							&& f0010.getCcdtpn().toLowerCase()
 									.startsWith(valores.get(3))
-							&& f0010.getCcdfyj().toString().toLowerCase()
-									.startsWith(valores.get(4))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0010
+											.getCcdfyj())).toString()
+									.toLowerCase().startsWith(valores.get(4))
 							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
 									.startsWith(valores.get(5))
-							&& f0010.getCcapfj().toString().toLowerCase()
-									.startsWith(valores.get(6))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0010
+											.getCcapfj())).toString()
+									.toLowerCase().startsWith(valores.get(6))
 							&& String.valueOf(f0010.getCcappn()).toLowerCase()
 									.startsWith(valores.get(7))
-							&& f0010.getCcarfj().toString().toLowerCase()
-									.startsWith(valores.get(8))
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(f0010
+											.getCcarfj())).toString()
+									.toLowerCase().startsWith(valores.get(8))
 							&& String.valueOf(f0010.getCcarpn()).toLowerCase()
 									.startsWith(valores.get(9))
 							&& String.valueOf(f0010.getCcpnf()).toLowerCase()
@@ -522,11 +535,14 @@ public class CF0010 extends CGenerico {
 				registros[1] = f0010.getCcname();
 				registros[2] = f0010.getCccald();
 				registros[3] = f0010.getCcdtpn();
-				registros[4] = f0010.getCcdfyj().toString();
+				registros[4] = formatoFecha
+						.format(transformarJulianaAGregoria(f0010.getCcdfyj()));
 				registros[5] = String.valueOf(f0010.getCcpnc());
-				registros[6] = f0010.getCcapfj().toString();
+				registros[6] = formatoFecha
+						.format(transformarJulianaAGregoria(f0010.getCcapfj()));
 				registros[7] = String.valueOf(f0010.getCcappn());
-				registros[8] = f0010.getCcarfj().toString();
+				registros[8] = formatoFecha
+						.format(transformarJulianaAGregoria(f0010.getCcarfj()));
 				registros[9] = String.valueOf(f0010.getCcarpn());
 				registros[10] = String.valueOf(f0010.getCcpnf());
 				return registros;
@@ -571,6 +587,9 @@ public class CF0010 extends CGenerico {
 				return registros;
 			}
 		};
+		catalogoM.setClosable(true);
+		catalogoM.setWidth("80%");
+		catalogoM.setTitle("Registros");
 		catalogoM.setParent(catalogoMonedaF0010);
 		catalogoM.doModal();
 	}
@@ -579,15 +598,17 @@ public class CF0010 extends CGenerico {
 	public void seleccion() {
 		F0013 f0013 = catalogoM.objetoSeleccionadoDelCatalogo();
 		txtCCCRCDF0010.setValue(f0013.getCvcrcd());
+		lblMonedaF0010.setValue(f0013.getCvdl01());
 		catalogoM.setParent(null);
 	}
 
 	@Listen("onChange = #txtCCCRCDF0010")
 	public void buscarNombre() {
 		F0013 f0013 = servicioF0013.buscar(txtCCCRCDF0010.getValue());
-		if (f0013 != null)
+		if (f0013 != null) {
 			txtCCCRCDF0010.setValue(f0013.getCvcrcd());
-		else {
+			lblMonedaF0010.setValue(f0013.getCvdl01());
+		} else {
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
 			txtCCCRCDF0010.setValue("");
 			txtCCCRCDF0010.setFocus(true);
