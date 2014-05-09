@@ -31,6 +31,7 @@ public abstract class Catalogo<Clase> extends Window {
 	private static final long serialVersionUID = 1L;
 	Listbox lsbCatalogo;
 	Button exportador;
+	Button pagineo;
 	Mensaje msj = new Mensaje();
 	
 	public Catalogo(final Component cGenerico, String titulo,
@@ -48,6 +49,11 @@ public abstract class Catalogo<Clase> extends Window {
 						Events.postEvent(cGenerico, new Event("onSeleccion"));
 					}
 				});
+//		En caso de que sea un catalogo
+//		this.setClosable(true);
+//		this.setWidth("80%");
+//		this.setTitle("Registros");
+//		this.doModal();
 	}
 
 	public void crearLista(List<Clase> lista, String[] campos) {
@@ -63,15 +69,27 @@ public abstract class Catalogo<Clase> extends Window {
 						exportar();
 					}
 				});
+		pagineo = new Button();
+		pagineo.setTooltiptext("Presione para mostrar todos los registros en una sola lista, sin pagineo");
+		pagineo
+				.setStyle("font-size: 11px ;width: 10px; height: 10px");
+		pagineo.addEventListener(Events.ON_CLICK,
+				new EventListener<Event>() {
+					@Override
+					public void onEvent(Event arg0) throws Exception {
+						pagineo();
+					}
+				});
 		Hbox box = new Hbox();
 		Space espacio = new Space();
 		espacio.setHeight("10px");
 		box.appendChild(espacio);
 		box.appendChild(exportador);
+		box.appendChild(pagineo);
 		box.setWidth("100%");
 		box.setAlign("end");
 		box.setHeight("12px");
-		box.setWidths("98%,2%");
+		box.setWidths("96%,2%,2%");
 		
 		final Separator separador1 = new Separator();
 		final Separator separador2 = new Separator();
@@ -149,6 +167,20 @@ public abstract class Catalogo<Clase> extends Window {
 		this.appendChild(box);
 		this.appendChild(separador2);
 		this.appendChild(lsbCatalogo);
+		
+	}
+
+	protected void pagineo() {
+		if(lsbCatalogo.getPagingPosition().equals("top")){
+			lsbCatalogo.setMold("default");
+			lsbCatalogo.setPagingPosition("both");
+			pagineo.setTooltiptext("Presione para mostrar la lista con pagineo");
+		}else{
+		lsbCatalogo.setMold("paging");
+		lsbCatalogo.setPagingPosition("top");
+		lsbCatalogo.setPageSize(10);
+		pagineo.setTooltiptext("Presione para mostrar todos los registros en una sola lista, sin pagineo");
+		}
 	}
 
 	protected void exportar() {
