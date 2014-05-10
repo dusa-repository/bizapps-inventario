@@ -33,13 +33,13 @@ public abstract class Catalogo<Clase> extends Window {
 	Button exportador;
 	Button pagineo;
 	Mensaje msj = new Mensaje();
-	
+
 	public Catalogo(final Component cGenerico, String titulo,
 			List<Clase> lista, String... campos) {
 		super("", "2", false);
 		this.setId("cmpCatalogo" + titulo);
 		this.setStyle("background-header:#FF7925; background: #f4f2f2");
-		this.setWidth("auto");
+		// this.setWidth("auto");
 		crearLista(lista, campos);
 		lsbCatalogo.addEventListener(Events.ON_SELECT,
 				new EventListener<Event>() {
@@ -49,19 +49,13 @@ public abstract class Catalogo<Clase> extends Window {
 						Events.postEvent(cGenerico, new Event("onSeleccion"));
 					}
 				});
-//		En caso de que sea un catalogo
-//		this.setClosable(true);
-//		this.setWidth("80%");
-//		this.setTitle("Registros");
-//		this.doModal();
 	}
 
 	public void crearLista(List<Clase> lista, String[] campos) {
 		exportador = new Button();
 		exportador.setTooltiptext("Exportar");
-		exportador
-				.setStyle("font-size: 11px ;width: 10px; height: 10px");
-//		; float: right
+		exportador.setStyle("font-size: 11px ;width: 10px; height: 10px");
+		// ; float: right
 		exportador.addEventListener(Events.ON_CLICK,
 				new EventListener<Event>() {
 					@Override
@@ -71,15 +65,13 @@ public abstract class Catalogo<Clase> extends Window {
 				});
 		pagineo = new Button();
 		pagineo.setTooltiptext("Presione para mostrar todos los registros en una sola lista, sin pagineo");
-		pagineo
-				.setStyle("font-size: 11px ;width: 10px; height: 10px");
-		pagineo.addEventListener(Events.ON_CLICK,
-				new EventListener<Event>() {
-					@Override
-					public void onEvent(Event arg0) throws Exception {
-						pagineo();
-					}
-				});
+		pagineo.setStyle("font-size: 11px ;width: 10px; height: 10px");
+		pagineo.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
+			@Override
+			public void onEvent(Event arg0) throws Exception {
+				pagineo();
+			}
+		});
 		Hbox box = new Hbox();
 		Space espacio = new Space();
 		espacio.setHeight("10px");
@@ -90,7 +82,7 @@ public abstract class Catalogo<Clase> extends Window {
 		box.setAlign("end");
 		box.setHeight("12px");
 		box.setWidths("96%,2%,2%");
-		
+
 		final Separator separador1 = new Separator();
 		final Separator separador2 = new Separator();
 		lsbCatalogo = new Listbox();
@@ -163,23 +155,32 @@ public abstract class Catalogo<Clase> extends Window {
 		lsbCatalogo.setMultiple(true);
 		lsbCatalogo.setCheckmark(true);
 
-		this.appendChild(separador1);
-		this.appendChild(box);
-		this.appendChild(separador2);
-		this.appendChild(lsbCatalogo);
-		
+//		if (catalogo) {
+//			this.setClosable(true);
+//			this.setWidth("80%");
+//			this.setTitle("Registros");
+//			this.appendChild(separador2);
+//			this.appendChild(lsbCatalogo);
+//		} else {
+			this.setWidth("auto");
+			this.setClosable(false);
+			this.appendChild(separador1);
+			this.appendChild(box);
+			this.appendChild(separador2);
+			this.appendChild(lsbCatalogo);
+//		}
 	}
 
 	protected void pagineo() {
-		if(lsbCatalogo.getPagingPosition().equals("top")){
+		if (lsbCatalogo.getPagingPosition().equals("top")) {
 			lsbCatalogo.setMold("default");
 			lsbCatalogo.setPagingPosition("both");
 			pagineo.setTooltiptext("Presione para mostrar la lista con pagineo");
-		}else{
-		lsbCatalogo.setMold("paging");
-		lsbCatalogo.setPagingPosition("top");
-		lsbCatalogo.setPageSize(10);
-		pagineo.setTooltiptext("Presione para mostrar todos los registros en una sola lista, sin pagineo");
+		} else {
+			lsbCatalogo.setMold("paging");
+			lsbCatalogo.setPagingPosition("top");
+			lsbCatalogo.setPageSize(10);
+			pagineo.setTooltiptext("Presione para mostrar todos los registros en una sola lista, sin pagineo");
 		}
 	}
 
@@ -203,17 +204,13 @@ public abstract class Catalogo<Clase> extends Window {
 			}
 			sb.append(i + "\n");
 		}
-		Messagebox
-		.show(Mensaje.exportar,
-				"Alerta",
-				Messagebox.OK | Messagebox.CANCEL,
-				Messagebox.QUESTION,
+		Messagebox.show(Mensaje.exportar, "Alerta", Messagebox.OK
+				| Messagebox.CANCEL, Messagebox.QUESTION,
 				new org.zkoss.zk.ui.event.EventListener<Event>() {
-					public void onEvent(Event evt)
-							throws InterruptedException {
-						if (evt.getName()
-								.equals("onOK")) {
-							Filedownload.save(sb.toString().getBytes(), "text/plain", "datos.csv");
+					public void onEvent(Event evt) throws InterruptedException {
+						if (evt.getName().equals("onOK")) {
+							Filedownload.save(sb.toString().getBytes(),
+									"text/plain", "datos.csv");
 						}
 					}
 				});
