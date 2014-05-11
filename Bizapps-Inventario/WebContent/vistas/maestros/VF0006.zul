@@ -81,26 +81,28 @@
 							<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Tipo Unidad Negocio" />
-							<textbox id="txtSTYLF0006" hflex="1" maxlength="2"
-								tooltiptext="Ingrese el tipo Unidad de Negocio" />
-								
-								<button id="btnBuscarTipoUnidad" label="" mold="trendy"
-								width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
-								<label id="lblDescripcionF0004" />
+						<cell colspan="2">
+							<div id="divbuscadorSTYL" hflex="1" />
+						</cell>
+						<hbox />
+					</row>
+					<row>
+<!-- 						<label class="etiqueta" value= "Cógigo Inactivo LM auxiliar" /> 
+ 							<textbox id="txtSBLIF0006" hflex="1" maxlength="1" 
+ 								tooltiptext="Ingrese el Cógigo Inactivo LM auxiliar" /> -->
+						<cell colspan="2">
+							<div id="divbuscadorSBLI" hflex="1" />
+						</cell>
 							<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Cógigo Inactivo LM auxiliar" />
-							<textbox id="txtSBLIF0006" hflex="1" maxlength="1"
-								tooltiptext="Ingrese el Cógigo Inactivo LM auxiliar" />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Cuenta Modelo/Consolidada" />
+<!-- 					<label class="etiqueta" value= "Cuenta Modelo/Consolidada" />
 							<textbox id="txtFMODF0006" hflex="1" maxlength="1"
-								tooltiptext="Ingrese la Cuenta Modelo/Consolidada" />
-							<hbox />
+								tooltiptext="Ingrese la Cuenta Modelo/Consolidada" />  -->	
+						<cell colspan="2">
+							<div id="divbuscadorFMOD" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 				</rows>
 			</grid>
@@ -150,9 +152,12 @@
 							<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Edición Contabilización" />
+			<!--  		<label class="etiqueta" value= "Edición Contabilización" />
 							<textbox id="txtPECCF0006" hflex="1" maxlength="1"
-								tooltiptext="Ingrese la Edición Contabilización" />
+								tooltiptext="Ingrese la Edición Contabilización" /> -->	
+						<cell colspan="2">
+							<div id="divbuscadorPECC" hflex="1" />
+						</cell>
 							<hbox />
 					</row>
 				</rows>
@@ -167,138 +172,64 @@
 				</columns>
 				<rows>
 					<row>
-<!-- 						<label class="etiqueta" value= "Código Categoría 01" /> -->
-<!-- 							<textbox id="txtRP01F0006" hflex="1" maxlength="3" -->
-<!-- 								tooltiptext="Ingrese Código de Categoría 01 " /> -->
-<!-- 							<hbox /> -->
 						<cell colspan="2">
 							<div id="divbuscadorCategoria1" hflex="1" />
 						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 02" />
-							<textbox id="txtRP02F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 02 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria2" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 03" />
-							<textbox id="txtRP03F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 03 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria3" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 04" />
-							<textbox id="txtRP04F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 04 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria4" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 05" />
-							<textbox id="txtRP05F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 05 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria5" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 06" />
-							<textbox id="txtRP06F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 06 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria6" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 07" />
-							<textbox id="txtRP07F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 07 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria7" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 08" />
-							<textbox id="txtRP08F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 08 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria8" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 09" />
-							<textbox id="txtRP09F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 09 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria9" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 10" />
-							<textbox id="txtRP10F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 10 " />
-							<hbox />
-					</row>
-				</rows>
-			</grid>
-			</tabpanel>
-			<tabpanel>
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="25%" />
-					<column label="" width="45%" />
-					<column label="" width="30%" />
-				</columns>
-				<rows>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 11" />
-							<textbox id="txtRP11F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 11 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 12" />
-							<textbox id="txtRP12F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 12 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 13" />
-							<textbox id="txtRP13F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 13 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 14" />
-							<textbox id="txtRP14F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 14 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 15" />
-							<textbox id="txtRP15F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 15 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 16" />
-							<textbox id="txtRP16F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 16 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 17" />
-							<textbox id="txtRP17F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 17 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 18" />
-							<textbox id="txtRP18F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 18 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 19" />
-							<textbox id="txtRP19F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 19 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Código Categoría 20" />
-							<textbox id="txtRP20F0006" hflex="1" maxlength="3"
-								tooltiptext="Ingrese Código de Categoría 20 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria10" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 				</rows>
 			</grid>
@@ -312,64 +243,135 @@
 				</columns>
 				<rows>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 21" />
-							<textbox id="txtRP21F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 21 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria11" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 22" />
-							<textbox id="txtRP22F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 22 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria12" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 23" />
-							<textbox id="txtRP23F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 23 " />
-							<hbox />
+					<cell colspan="2">
+							<div id="divbuscadorCategoria13" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 24" />
-							<textbox id="txtRP24F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 24 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria14" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 25" />
-							<textbox id="txtRP25F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 25 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria15" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 26" />
-							<textbox id="txtRP26F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 26 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria16" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 27" />
-							<textbox id="txtRP27F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 27 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria17" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 08" />
-							<textbox id="txtRP28F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 28 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria18" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 29" />
-							<textbox id="txtRP29F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 29 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria19" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 					<row>
-						<label class="etiqueta" value= "Código Categoría 30" />
-							<textbox id="txtRP30F0006" hflex="1" maxlength="10"
-								tooltiptext="Ingrese Código de Categoría 30 " />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorCategoria20" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+				</rows>
+			</grid>
+			</tabpanel>
+			<tabpanel>
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+					<column label="" width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria21" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria22" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria23" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria24" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria25" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria26" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria27" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria28" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria29" hflex="1" />
+						</cell>
+						<hbox/>
+					</row>
+					<row>
+						<cell colspan="2">
+							<div id="divbuscadorCategoria30" hflex="1" />
+						</cell>
+						<hbox/>
 					</row>
 				</rows>
 			</grid>
