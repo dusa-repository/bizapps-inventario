@@ -1,0 +1,1046 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF4101">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con examinador de maestro de artículos">
+			<div id="botoneraF4101" />
+			<separator />
+			<groupbox id="gpxRegistroF4101" width="auto" title=""
+				open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Artículo" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="45%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<label class="etiqueta"
+								value="N° artículo (corto)" />
+							<textbox id="txtDTPNF4101" hflex="1"
+								maxlength="100" disabled="true" />
+						</row>
+						<row>
+							<label class="etiqueta"
+								value="N° artículo:" />
+							<textbox id="txtDTPN5F4101" hflex="1"
+								maxlength="100"
+								tooltiptext="Seleccione del Catalogo el N° del Articulo" />
+							<button id="btnBuscarF4101" label=""
+								tooltiptext="Catalogo de N° de Articulos"
+								image="/public/imagenes/botones/buscar.png" />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<tabbox id="tbArticuloF4101">
+					<tabs id="tabsF4101">
+						<tab id="tbDatosBasicosF4101"
+							label="Datos básicos artículo" />
+						<tab id="tbInformacionAdicionalF4101"
+							label="Información adicional" />
+						<tab id="tbPesosyMedidasF4101"
+							label="Pesos y medidas" />
+						<tab id="tbProcesoLotesF4101"
+							label="Proceso lotes" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<groupbox title="" closable="false">
+								<grid width="100%" style="border:0px">
+									<columns visible="false">
+										<column label="" width="20%" />
+										<column label="" width="40%" />
+										<column label="" width="15%" />
+										<column label="" width="30%" />
+									</columns>
+									<rows>
+										<row>
+											<label class="etiqueta"
+												value="Número cátalogo:" />
+											<textbox id="txtPatronF4101"
+												hflex="1" maxlength="100"
+												tooltiptext="Ingrese el Numero del catalogo" />
+										</row>
+										<row>
+											<hbox>
+												<label class="etiqueta"
+													value="Descripción:" />
+												<space />
+												<label value="*"
+													style="font-weight:bold;color:red">
+												</label>
+											</hbox>
+											<textbox
+												id="txtPatron2F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese la Descripcion" />
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Descripción:" />
+											<textbox
+												id="txtPatron3F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese la Descripcion" />
+											<label class="etiqueta"
+												style="margin-left:20px" value="Texto búsqueda:" />
+											<textbox
+												id="txtPatron4F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese el Texto de Busqueda" />
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+							<separator />
+							<hbox>
+								<vbox>
+									<groupbox title=""
+										closable="false">
+										<grid width="100%"
+											style="border:0px">
+											<columns visible="false">
+												<column label=""
+													width="25%" />
+												<column label=""
+													width="30%" />
+												<column label=""
+													width="45%" />
+											</columns>
+											<rows>
+												<row>
+													<hbox>
+														<label
+															class="etiqueta" value="Tipo alm:" />
+														<space />
+														<label value="*"
+															style="font-weight:bold;color:red">
+														</label>
+													</hbox>
+
+													<textbox
+														id="txtPatron5F4101" hflex="1" maxlength="100"
+														tooltiptext="Seleccione del Catalogo el Tipo de Almacenamiento" />
+													<hbox>
+														<button
+															id="btnBuscarTipoAlmF4101" label=""
+															tooltiptext="Catalogo de Tipos de Almacenamiento"
+															image="/public/imagenes/botones/buscar.png" />
+														<label
+															class="etiqueta" id="lblTipoAlmF4101"
+															style="margin-left:10px;font-style:italic;" />
+													</hbox>
+												</row>
+												<row>
+													<label
+														class="etiqueta" value="Clasif libro mayor:" />
+
+													<textbox
+														id="txtPatron7F4101" hflex="1" maxlength="100"
+														tooltiptext="Seleccione del Catalogo la Clasificacion" />
+
+													<hbox>
+														<button
+															id="btnBuscarClasifLibroF4101" label=""
+															tooltiptext="Catalogo de Clasificaciones"
+															image="/public/imagenes/botones/buscar.png" />
+														<label
+															class="etiqueta" id="lblClasifLibroF4101"
+															style="margin-left:10px;font-style:italic;" />
+													</hbox>
+												</row>
+												<row>
+													<hbox>
+														<label
+															class="etiqueta" value="Unidad Medida:" />
+														<space />
+														<label value="*"
+															style="font-weight:bold;color:red">
+														</label>
+													</hbox>
+
+													<textbox
+														id="txtPatron8F4101" hflex="1" maxlength="100"
+														tooltiptext="Seleccione del Catalogo la Unidad de Medida" />
+
+													<hbox>
+														<button
+															id="btnBuscarUnidadMedidaF4101" label=""
+															tooltiptext="Catalogo de Unidades de Medida"
+															image="/public/imagenes/botones/buscar.png" />
+														<label
+															class="etiqueta" id="lblUnidadMedidaF4101"
+															style="margin-left:10px;font-style:italic;" />
+													</hbox>
+												</row>
+												<row>
+													<label
+														class="etiqueta" value="Tipo línea:" />
+
+													<textbox
+														id="txtPatron9F4101" hflex="1" maxlength="100"
+														tooltiptext="Seleccione del Catalogo el Tipo de Linea" />
+
+													<hbox>
+														<button
+															id="btnBuscarTipoLineaF4101" label=""
+															tooltiptext="Catalogo de Tipos de Lineas"
+															image="/public/imagenes/botones/buscar.png" />
+														<label
+															class="etiqueta" id="lblTipoLineaF4101"
+															style="margin-left:10px;font-style:italic;" />
+													</hbox>
+												</row>
+												<row>
+													<label
+														class="etiqueta" value="Prod granel/emb:" />
+
+													<textbox
+														id="txtPatron10F4101" hflex="1" maxlength="100"
+														tooltiptext="Seleccione del Catalogo el Tipo de Linea" />
+
+													<hbox>
+														<button
+															id="btnBuscar2TipoLineaF4101" label=""
+															tooltiptext="Catalogo de Tipos de Lineas"
+															image="/public/imagenes/botones/buscar.png" />
+														<label
+															class="etiqueta" id="lblProdGranelF4101"
+															style="margin-left:10px;font-style:italic;" />
+													</hbox>
+												</row>
+												<row>
+													<label
+														class="etiqueta" value="Número planificador:" />
+
+													<textbox
+														id="txtPatron11F4101" hflex="1" maxlength="100"
+														tooltiptext="Seleccione del Catalogo el Numero Planificador" />
+
+													<hbox>
+														<button
+															id="btnBuscarNumeroPlanificadorF4101" label=""
+															tooltiptext="Catalogo de Numeros Planificadores"
+															image="/public/imagenes/botones/buscar.png" />
+														<label
+															class="etiqueta" id="lblNumeroPlanificadorF4101"
+															style="margin-left:10px;font-style:italic;" />
+													</hbox>
+												</row>
+												<row>
+													<label
+														class="etiqueta" value="Número comprador:" />
+
+													<textbox
+														id="txtPatron12F4101" hflex="1" maxlength="100"
+														tooltiptext="Seleccione del Catalogo el Numero del Comprador" />
+
+													<hbox>
+														<button
+															id="btnBuscarNumeroCompradorF4101" label=""
+															tooltiptext="Catalogo de Numeros de Compradores"
+															image="/public/imagenes/botones/buscar.png" />
+														<label
+															class="etiqueta" id="lblNumeroCompradorF4101"
+															style="margin-left:10px;font-style:italic;" />
+													</hbox>
+												</row>
+											</rows>
+										</grid>
+									</groupbox>
+									<groupbox title=""
+										closable="false">
+										<grid width="100%"
+											style="border:0px">
+											<columns visible="false">
+												<column label=""
+													width="100%" />
+											</columns>
+											<rows>
+												<row>
+													<checkbox
+														label="Permitir órdenes atrasadas"
+														id="chxOrdenesAtrasadasF4101" hflex="1"
+														tooltiptext="Marque Para Permitir Ordenes Atrasadas " />
+												</row>
+												<row>
+													<checkbox
+														label="Verificar Disponibilidad"
+														id="chxVerificarDisponibilidadF4101" hflex="1"
+														tooltiptext="Marque Para Verificar la Disponibilidad " />
+												</row>
+											</rows>
+										</grid>
+										<separator />
+										<separator />
+									</groupbox>
+								</vbox>
+								<groupbox title="" closable="false"
+									height="367px">
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="45%" />
+											<column label=""
+												width="15%" />
+											<column label=""
+												width="40%" />
+										</columns>
+										<rows>
+											<row>
+												<label class="etiqueta"
+													value="Nivel costo inventario" />
+												<textbox
+													id="txtPatron6F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Nivel Costo Inventario" />
+												<hbox>
+													<button
+														id="btnBuscarNivelInventarioF4101" label=""
+														tooltiptext="Catalogo de Niveles de inventarios"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblNivelInventarioF4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Nivel precio venta" />
+												<textbox
+													id="txtPatron15F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Nivel Precio Venta" />
+												<hbox>
+													<button
+														id="btnBuscarNivelVentaF4101" label=""
+														tooltiptext="Catalogo de Niveles de Precios de Venta"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblNivelVentaF4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Nivel precio compra" />
+												<textbox
+													id="txtPatron16F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Nivel Precio Compra" />
+												<hbox>
+													<button
+														id="btnBuscarNivelCompraF4101" label=""
+														tooltiptext="Catalogo de Niveles de Precios de Venta"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblNivelCompraF4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Mét fijación precios juegos/config" />
+												<textbox
+													id="txtPatron17F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Metodo de Fijacion de Precio" />
+												<hbox>
+													<button
+														id="btnBuscarMetodoFijacion4101" label=""
+														tooltiptext="Catalogo de Metodos de Fijacion de Precio"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblMetodoFijacion4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Método configurador cálculos costos" />
+												<textbox
+													id="txtPatron18F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Metodo de Configuracion de Costos" />
+												<hbox>
+													<button
+														id="btnBuscarMetodoConfigurador4101" label=""
+														tooltiptext="Catalogo de Metodos de Configurador de Costos"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblMetodoConfigurador4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Método compromiso" />
+												<textbox
+													id="txtPatron19F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Metodo de Compromiso" />
+												<hbox>
+													<button
+														id="btnBuscarMetodoCompromiso4101" label=""
+														tooltiptext="Catalogo de Metodos de Compromiso"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblMetodoCCompromiso4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Mensaje impr" />
+												<hbox>
+													<textbox
+														id="txtPatron20F4101" hflex="1" maxlength="100"
+														tooltiptext="Ingrese el Mensaje" />
+													<label
+														class="etiqueta" id="lblMensajeImpr4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Mensaje intermitente artículo" />
+												<hbox>
+													<textbox
+														id="txtPatron21F4101" hflex="1" maxlength="100"
+														tooltiptext="Ingrese el Mensaje" />
+													<label
+														class="etiqueta" id="lblMensajeIntermitente4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Conversión UM estándar" />
+												<textbox
+													id="txtPatron22F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo La Conversión UM" />
+												<hbox>
+													<button
+														id="btnBuscarMetodoConversion4101" label=""
+														tooltiptext="Catalogo de Conversiones UM"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblMetodoConversion4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+							</hbox>
+						</tabpanel>
+						<tabpanel>
+							<hbox>
+								<groupbox title="" closable="false">
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="30%" />
+											<column label=""
+												width="25%" />
+											<column label=""
+												width="45%" />
+										</columns>
+										<rows>
+											<row>
+												<label class="etiqueta"
+													value="Gp precios art" />
+												<textbox
+													id="txtPatron25F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Grupo de Precio del Articulo" />
+												<hbox>
+													<button
+														id="btnBuscarGrupoPrecioF4101" label=""
+														tooltiptext="Catalogo de Grupos de Precios de los Articulos"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblGrupoPrecioF4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Retarif precios gp" />
+												<textbox
+													id="txtPatron26F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Retarif del Precio de las Ordenes" />
+												<hbox>
+													<button
+														id="btnBuscarRetarifPrecioF4101" label=""
+														tooltiptext="Catalogo de Retarif de Precios de Ordenes"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblRetarifPrecioF4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Retarif precio órdenes" />
+												<textbox
+													id="txtPatron27F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Retarif del Precio de las Ordenes" />
+												<hbox>
+													<button
+														id="btnBuscarRetarifOrdenesF4101" label=""
+														tooltiptext="Catalogo de Retarif de Precios de Ordenes"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblRetarifOrdenesF4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Grupo despacho" />
+												<textbox
+													id="txtPatron28F4101" hflex="1" maxlength="100"
+													tooltiptext="Seleccione del Catalogo el Grupo de Despacho" />
+												<hbox>
+													<button
+														id="btnBuscarGrupoDespachoF4101" label=""
+														tooltiptext="Catalogo de Grupos de Despacho"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														class="etiqueta" id="lblGrupoDespachoF4101"
+														style="margin-left:10px;font-style:italic;" />
+												</hbox>
+											</row>
+											<row>
+												<checkbox
+													label="Reexpedición" id="chxReexpediccion2F4101" hflex="1"
+													tooltiptext="Marque Para Permitir Reexpedicion" />
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+								<groupbox title="" closable="false">
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="35%" />
+											<column label=""
+												width="30%" />
+										</columns>
+										<rows>
+											<row>
+												<checkbox
+													label="Artículo con UM doble" id="chxArticuloDobleF4101"
+													hflex="1"
+													tooltiptext="Marque Para Permitir Articulo con UM Doble" />
+											</row>
+											<row>
+												<checkbox
+													label="Proceso acoplo doble" id="chxProcesoAcoploF4101"
+													hflex="1" disabled="true"
+													tooltiptext="Marque Para Permitir Proceso Acoplo Doble" />
+											</row>
+											<row>
+												<checkbox
+													label="Tolerancia UM doble" id="chxToleranciaDobleF4101"
+													hflex="1" disabled="true"
+													tooltiptext="Marque Para Permitir Tolerancia UM Doble" />
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Porcentaje tolerancia dual" />
+												<textbox
+													id="txtPatron29F4101" hflex="1" maxlength="100"
+													tooltiptext="Ingrese el Porcentaje de Tolerancia Dual" />
+
+											</row>
+										</rows>
+									</grid>
+									<separator />
+									<separator />
+									<separator />
+									<separator />
+									<separator />
+									<separator />
+									<separator />
+								</groupbox>
+							</hbox>
+							<separator />
+							<groupbox title="" closable="false">
+								<grid width="100%" style="border:0px">
+									<columns visible="false">
+										<column label="" width="20%" />
+										<column label="" width="30%" />
+										<column label="" width="20%" />
+										<column label="" width="30%" />
+									</columns>
+									<rows>
+										<row>
+											<label class="etiqueta"
+												value="Cd mercancía:" />
+											<textbox
+												id="txtPatron30F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese el Codigo de la Mercancia" />
+											<label class="etiqueta"
+												value="Código UNSPSC:" />
+											<textbox
+												id="txtPatron31F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese el Codigo UNSPSC" />
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+							<separator />
+							<hbox>
+								<groupbox title="Ventas Inventario"
+									closable="false">
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="100%" />
+										</columns>
+										<rows>
+											<row>
+												<radiogroup
+													id="rdgVentasInventarioF4101">
+													<vlayout>
+														<radio
+															id="rdoVentasClasificacionAF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion A"
+															label="Clasificación A" />
+														<radio
+															id="rdoVentasClasificacionBF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion B"
+															label="Clasificación B" />
+														<radio
+															id="rdoVentasClasificacionCF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion C"
+															label="Clasificación C" />
+														<radio
+															id="rdoVentasSinClasificacionF4101"
+															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
+															label="Sin Clasificación D" />
+													</vlayout>
+												</radiogroup>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+								<groupbox title="Margen Inventario"
+									closable="false">
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="100%" />
+										</columns>
+										<rows>
+											<row>
+												<radiogroup
+													id="rdgMargenInventarioF4101">
+													<vlayout>
+														<radio
+															id="rdoMargenClasificacionAF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion A"
+															label="Clasificación A" />
+														<radio
+															id="rdoMargenClasificacionBF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion B"
+															label="Clasificación B" />
+														<radio
+															id="rdoMargenClasificacionCF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion C"
+															label="Clasificación C" />
+														<radio
+															id="rdoMargenSinClasificacionF4101"
+															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
+															label="Sin Clasificación D" />
+													</vlayout>
+												</radiogroup>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+								<groupbox title="Inversión Inventario"
+									closable="false">
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="100%" />
+										</columns>
+										<rows>
+											<row>
+												<radiogroup
+													id="rdgInversionInventarioF4101">
+													<vlayout>
+														<radio
+															id="rdoInversionClasificacionAF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion A"
+															label="Clasificación A" />
+														<radio
+															id="rdoInversionClasificacionBF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion B"
+															label="Clasificación B" />
+														<radio
+															id="rdoInversionClasificacionCF4101"
+															tooltiptext="Marque para Seleccionar la Clasificacion C"
+															label="Clasificación C" />
+														<radio
+															id="rdoInversionSinClasificacionF4101"
+															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
+															label="Sin Clasificación D" />
+													</vlayout>
+												</radiogroup>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+							</hbox>
+						</tabpanel>
+						<tabpanel>
+							<groupbox title="Unidades medida"
+								closable="false">
+								<grid width="100%" style="border:0px">
+									<columns visible="false">
+										<column label="" width="20%" />
+										<column label="" width="10%" />
+										<column label="" width="30%" />
+									</columns>
+									<rows>
+										<row>
+											<label class="etiqueta"
+												value="Principal" />
+											<textbox
+												id="txtPatron40F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida Principal" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadPrincipalF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadPrincipalF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Secundario" />
+											<textbox
+												id="txtPatron41F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida Secundaria" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadSecundariaF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadSecundariaF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Compras" />
+											<textbox
+												id="txtPatron42F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Compras" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadComprasF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadComprasF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Tarificación" />
+											<textbox
+												id="txtPatron43F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Tarificaciones" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadTarificacionF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadTarificacionF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Envio" />
+											<textbox
+												id="txtPatron44F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Envio" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadEnvioF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadEnvioF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Producción" />
+											<textbox
+												id="txtPatron45F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Produccion" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadProduccionF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadProduccionF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Componente" />
+											<textbox
+												id="txtPatron46F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Componente" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadComponenteF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadComponenteF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Peso" />
+											<textbox
+												id="txtPatron47F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Peso" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadPesoF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadPesoF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Volumen" />
+											<textbox
+												id="txtPatron48F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Volumen" />
+											<hbox>
+												<button
+													id="btnBuscarUnidadVolumenF4101" label=""
+													tooltiptext="Catalogo de Unidades de Medida"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblUnidadVolumenF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+						</tabpanel>
+						<tabpanel>
+							<groupbox title="" closable="false">
+								<grid width="100%" style="border:0px">
+									<columns visible="false">
+										<column label="" width="20%" />
+										<column label="" width="10%" />
+										<column label="" width="30%" />
+									</columns>
+									<rows>
+										<row>
+											<label class="etiqueta"
+												value="N° serie obligatorio" />
+											<textbox
+												id="txtPatron60F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo El Numero de Serie" />
+											<hbox>
+												<button
+													id="btnBuscarNumeroSerieF4101" label=""
+													tooltiptext="Catalogo de Numeros de Serie"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblNumeroSerieF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Código estado lote" />
+											<textbox
+												id="txtPatron61F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo El Codigo Estado Lote" />
+											<hbox>
+												<button
+													id="btnBuscarCodigoLoteF4101" label=""
+													tooltiptext="Catalogo de Codigos de Estados de Lote"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblCodigoLoteF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Tipo proceso lote" />
+											<textbox
+												id="txtPatron62F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo El Tipo Proceso Lote" />
+											<hbox>
+												<button
+													id="btnBuscarTipoLoteF4101" label=""
+													tooltiptext="Catalogo de Tipos de Procesos Lote"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblTipoLoteF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Método fecha compromiso" />
+											<textbox
+												id="txtPatron63F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo la Fecha de Compromiso" />
+											<hbox>
+												<button
+													id="btnBuscarMetodoCompromisoF4101" label=""
+													tooltiptext="Catalogo de Metodos de Fechas de compromiso"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblMetodoCompromisoF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Método fecha caducidad lote" />
+											<textbox
+												id="txtPatron64F4101" hflex="1" maxlength="100"
+												tooltiptext="Seleccione del Catalogo la Fecha de Caducidad" />
+											<hbox>
+												<button
+													id="btnBuscarMetodoCaducidadF4101" label=""
+													tooltiptext="Catalogo de Metodos de Fechas de Caducidad"
+													image="/public/imagenes/botones/buscar.png" />
+												<label class="etiqueta"
+													id="lblMetodoCaducidadF4101"
+													style="margin-left:10px;font-style:italic;" />
+											</hbox>
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+							<separator />
+							<groupbox title="" closable="false">
+								<grid width="100%" style="border:0px">
+									<columns visible="false">
+										<column label="" width="20%" />
+										<column label="" width="20%" />
+										<column label="" width="25%" />
+										<column label="" width="20%" />
+									</columns>
+									<rows>
+										<row>
+											<label class="etiqueta"
+												value="Días caducidad:" />
+											<textbox
+												id="txtPatron65F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias de Caducidad" />
+											<label class="etiqueta"
+												style="margin-left:30px"
+												value="Días fecha lote usuario 1 p/def" />
+											<textbox
+												id="txtPatron66F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 1 p/def" />
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Días p/def consumo pref:" />
+											<textbox
+												id="txtPatron666F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias p/def Consumo" />
+											<label class="etiqueta"
+												style="margin-left:30px"
+												value="Días fecha lote usuario 2 p/def" />
+											<textbox
+												id="txtPatron67F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 2 p/def" />
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Venta según días p/defecto:" />
+											<textbox
+												id="txtPatron686F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese las Ventas Segun Dias p/defecto" />
+											<label class="etiqueta"
+												style="margin-left:30px"
+												value="Días fecha lote usuario 3 p/def" />
+											<textbox
+												id="txtPatron69F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 3 p/def" />
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Días efectivos fabricación" />
+											<textbox
+												id="txtPatron687F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias Efectivos de Fabricacion" />
+											<label class="etiqueta"
+												style="margin-left:30px"
+												value="Días fecha lote usuario 4 p/def" />
+											<textbox
+												id="txtPatron70F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 4 p/def" />
+										</row>
+										<row>
+											<label class="etiqueta"
+												value="Días efectivos compra" />
+											<textbox
+												id="txtPatron697F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias Efectivos de Compra" />
+											<label class="etiqueta"
+												style="margin-left:30px"
+												value="Días fecha lote usuario 5 p/def" />
+											<textbox
+												id="txtPatron71F4101" hflex="1" maxlength="100"
+												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 5 p/def" />
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+
+
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF4101" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los Articulos Registrados" />
+				<div id="catalogoF4101"
+					tooltiptext="Seleccione el Articulo Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+	</div>
+</zk>
