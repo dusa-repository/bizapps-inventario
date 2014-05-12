@@ -122,6 +122,19 @@ public abstract class BuscadorUDC extends Hbox {
 			nombre.setValue(f0005.getDrdl01());
 			catalogo.setParent(null);
 	}
+	
+	public void inhabilitarCampo (){
+		 cajaTexto.setDisabled(true);
+	}
+	
+	public void focus () {
+		cajaTexto.setFocus(true);
+	}
+	public void habilitarCampos (){
+		if (cajaTexto.isDisabled()){
+			cajaTexto.setDisabled(false);
+		}
+	}
 
 	public String obtenerCaja(){
 		return cajaTexto.getValue();

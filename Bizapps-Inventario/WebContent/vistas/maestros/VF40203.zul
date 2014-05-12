@@ -15,16 +15,22 @@
 				</columns>
 				<rows>
 					<row>
-						<label class="etiqueta" value= "Tipo de Orden" />
+				<!--  		<label class="etiqueta" value= "Tipo de Orden" />
 							<textbox id="txtDCTOF40203" hflex="1" maxlength="2"
-								tooltiptext="Ingrese el Tipo de Orden " />
-							<hbox />
+								tooltiptext="Ingrese el Tipo de Orden " /> -->
+						<cell colspan="2">
+							<div id="divbuscadorDCTO" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Tipo Línea" />
+				<!-- 	<label class="etiqueta" value= "Tipo Línea" />
 							<textbox id="txtLNTYF40203" hflex="1" maxlength="2"
-								tooltiptext="Ingrese Código Tipo de Línea " />
-							<hbox />
+								tooltiptext="Ingrese Código Tipo de Línea " />  -->	
+						<cell colspan="2">
+							<div id="divbuscadorNTYF" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
 						<label class="etiqueta" value= "Nº Siguiente Tipo Orden" />
