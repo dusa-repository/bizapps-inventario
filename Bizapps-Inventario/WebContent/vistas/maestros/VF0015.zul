@@ -1,0 +1,225 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF0015" apply="controlador.maestros.CF0015">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con tipos de cambio">
+			<div id="botoneraF0015" />
+			<separator />
+			<groupbox id="gpxRegistroF0015" width="auto" title=""
+				open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Tipo de Cambio" />
+				<separator />
+				<hbox>
+					<groupbox title="" closable="false">
+						<grid width="100%" style="border:0px">
+							<columns visible="false">
+								<column label="" width="40%" />
+								<column label="" width="40%" />
+								<column label="" width="20%" />
+							</columns>
+							<rows>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Código Moneda:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtCRCDF0015" hflex="1"
+										maxlength="100" tooltiptext="Ingrese el Codigo Moneda" />
+									<button id="btnBuscarCRCDF0015"
+										label="" tooltiptext="Catalogo de Codigos de Moneda"
+										image="/public/imagenes/botones/buscar.png" />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Código Moneda destino:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtCRDCF0015" hflex="1"
+										maxlength="100"
+										tooltiptext="Ingrese el Codigo Moneda Destino" />
+									<button id="btnBuscarCRDCF0015"
+										label="" tooltiptext="Catalogo de Codigos de Moneda Destino"
+										image="/public/imagenes/botones/buscar.png" />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Ir a fecha efectiva:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<datebox readonly="true"
+										width="100%" id="dtbEFTF0015" format="dd-MM-yyyy"
+										tooltiptext="Ingrese la Fecha Efectiva" />
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+					<groupbox title="" closable="false"
+						height="118px">
+						<grid width="100%" style="border:0px">
+							<columns visible="false">
+								<column label="" width="40%" />
+								<column label="" width="40%" />
+								<column label="" width="20%" />
+							</columns>
+							<rows>
+								<row>
+									<label class="etiqueta"
+										value="Contrato (dirección):" />
+									<doublespinner id="dblAN8F0015"
+										format="#.##" hflex="1" maxlength="100"
+										tooltiptext="Ingrese el Contrato(direccion)" />
+									<button id="btnBuscarAN8F0015"
+										label="" tooltiptext="Catalogo de Contratos(direcciones)"
+										image="/public/imagenes/botones/buscar.png" />
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+				</hbox>
+				<separator />
+				<separator />
+
+				<tabbox id="tbTipoCambioF0015" visible="false">
+					<tabs id="tabsF0015">
+						<tab id="tbMetodoCalculoF0015"
+							label="Metodo calculo" />
+						<tab id="tbRevisionTipoCambioF0015"
+							label="Revision de Tipos de Cambio" />
+
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<hbox>
+								<groupbox title="" closable="false">
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="100%" />
+										</columns>
+										<rows>
+											<row>
+												<radiogroup
+													id="rdgMetodoCalculoF0015">
+													<vlayout>
+														<radio
+															id="rdoMetodoInversionF0015"
+															tooltiptext="Marque para Seleccionar el Metodo Inversion"
+															label="Método Inversión" />
+														<radio
+															id="rdoSinMetodoF0015"
+															tooltiptext="Marque para Seleccionar Sin Metodo de Inversion"
+															label="Sin Método de Inversión" />
+														<radio
+															id="rdoMetodoTriangulacionF0015"
+															tooltiptext="Marque para Seleccionar el Método Triangulación"
+															label="Método Triangulación" />
+													</vlayout>
+												</radiogroup>
+											</row>
+											<row>
+												<space />
+											</row>
+											<row>
+												<checkbox
+													label="Permitir cambio al contado"
+													id="chxCambioContadoF0015" hflex="1"
+													tooltiptext="Marque Para Permitir Cambio al Contado" />
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+								<groupbox title="" closable="false"
+									height="155px">
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="40%" />
+											<column label=""
+												width="10%" />
+											<column label=""
+												width="50%" />
+										</columns>
+										<rows>
+											<row>
+												<label class="etiqueta"
+													value="Método conversión (Y/Z):" />
+												<textbox
+													id="txtCRCMF0015" hflex="1" maxlength="1"
+													tooltiptext="Ingrese el Metodo de Conversion" />
+												<label
+													id="lblMetodoConversionF0015">
+												</label>
+											</row>
+										</rows>
+									</grid>
+									<separator />
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="40%" />
+											<column label=""
+												width="40%" />
+											<column label=""
+												width="20%" />
+										</columns>
+										<rows>
+											<row>
+												<space />
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Tipo multiplicador:" />
+												<doublespinner
+													id="dblCRRF0015" hflex="1" maxlength="100"
+													tooltiptext="Ingrese el Tipo de Multiplicador" />
+											</row>
+											<row>
+												<label class="etiqueta"
+													value="Tipo divisor:" />
+												<doublespinner
+													id="dblCRRDF0015" hflex="1" maxlength="100"
+													tooltiptext="Ingrese el Tipo de Divisor" />
+
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+							</hbox>
+							<separator />
+						</tabpanel>
+						<tabpanel>
+							<div id="catalogoF0015D"
+								tooltiptext="Seleccione el Tipo de Cambio Para Realizar una Accion" />
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+				<separator />
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF0015" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los Tipos de Cambio Registrados" />
+				<div id="catalogoF0015H"
+					tooltiptext="Seleccione el Tipo de Cambio Para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+	</div>
+</zk>
