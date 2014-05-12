@@ -350,20 +350,7 @@ public class CF0008 extends CGenerico {
 	public boolean camposLLenos() {
 		if (txtDTPNF0008.getText().compareTo("") == 0
 				|| dtbDFYJF0008.getText().compareTo("") == 0
-				|| dtbD01JF0008.getText().compareTo("") == 0
-				|| dtbD02JF0008.getText().compareTo("") == 0
-				|| dtbD03JF0008.getText().compareTo("") == 0
-				|| dtbD04JF0008.getText().compareTo("") == 0
-				|| dtbD05JF0008.getText().compareTo("") == 0
-				|| dtbD06JF0008.getText().compareTo("") == 0
-				|| dtbD07JF0008.getText().compareTo("") == 0
-				|| dtbD08JF0008.getText().compareTo("") == 0
-				|| dtbD09JF0008.getText().compareTo("") == 0
-				|| dtbD10JF0008.getText().compareTo("") == 0
-				|| dtbD11JF0008.getText().compareTo("") == 0
-				|| dtbD12JF0008.getText().compareTo("") == 0
-				|| dtbD13JF0008.getText().compareTo("") == 0
-				|| dtbD14JF0008.getText().compareTo("") == 0) {
+				|| dtbD01JF0008.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
