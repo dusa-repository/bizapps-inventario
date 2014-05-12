@@ -155,20 +155,20 @@ public abstract class Catalogo<Clase> extends Window {
 		lsbCatalogo.setMultiple(true);
 		lsbCatalogo.setCheckmark(true);
 
-//		if (catalogo) {
-//			this.setClosable(true);
-//			this.setWidth("80%");
-//			this.setTitle("Registros");
-//			this.appendChild(separador2);
-//			this.appendChild(lsbCatalogo);
-//		} else {
-			this.setWidth("auto");
-			this.setClosable(false);
-			this.appendChild(separador1);
-			this.appendChild(box);
-			this.appendChild(separador2);
-			this.appendChild(lsbCatalogo);
-//		}
+		// if (catalogo) {
+		// this.setClosable(true);
+		// this.setWidth("80%");
+		// this.setTitle("Registros");
+		// this.appendChild(separador2);
+		// this.appendChild(lsbCatalogo);
+		// } else {
+		this.setWidth("auto");
+		this.setClosable(false);
+		this.appendChild(separador1);
+		this.appendChild(box);
+		this.appendChild(separador2);
+		this.appendChild(lsbCatalogo);
+		// }
 	}
 
 	protected void pagineo() {
@@ -265,4 +265,14 @@ public abstract class Catalogo<Clase> extends Window {
 		} else
 			return null;
 	}
+
+	/**
+	 * Metodo que permite limpiar los items seleccionados en el catalogo
+	 */
+	public void limpiarSeleccion() {
+
+		lsbCatalogo.clearSelection();
+
+	}
+
 }

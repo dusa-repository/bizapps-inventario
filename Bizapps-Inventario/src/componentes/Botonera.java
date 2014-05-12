@@ -69,7 +69,7 @@ public abstract class Botonera extends Hbox {
 		btnLimpiar.setStyle("font-size: 11px ;width: 87px; height: 25px");
 		btnSalir.setStyle("font-size: 11px ;width: 87px; height: 25px");
 		btnReporte.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnSeleccionar.setStyle("font-size: 11px ;width: 95px; height: 25px");
+		btnSeleccionar.setStyle("font-size: 11px ;width: 105px; height: 25px");
 		
 		btnSeleccionar.setLabel("Seleccionar");
 		btnBuscar.setLabel("Buscar");
