@@ -42,6 +42,7 @@ import servicio.maestros.SF0015;
 import servicio.maestros.SF0101;
 import servicio.maestros.SF40203;
 import servicio.maestros.SF41002;
+import servicio.maestros.SF4101;
 import servicio.seguridad.SArbol;
 import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
@@ -73,6 +74,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF00021 servicioF00021;
 	@WireVariable("SF40203")
 	protected SF40203 servicioF40203;
+	@WireVariable("SF4101")
+	protected SF4101 servicioF4101;
 	@WireVariable("SF41002")
 	protected SF41002 servicioF41002;
 	@WireVariable("SGrupo")
@@ -119,7 +122,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 			valor = "1";
 		long al = Long.valueOf(valor
 				+ String.valueOf(calendario.get(Calendar.YEAR)).substring(2)
-				+ dia+String.valueOf(calendario.get(Calendar.DAY_OF_YEAR)));
+				+ dia + String.valueOf(calendario.get(Calendar.DAY_OF_YEAR)));
 		BigDecimal a = BigDecimal.valueOf(al);
 		return a;
 	}
@@ -152,7 +155,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 				return fecha;
 			}
 		}
-		
+
 		return date;
 
 	}
