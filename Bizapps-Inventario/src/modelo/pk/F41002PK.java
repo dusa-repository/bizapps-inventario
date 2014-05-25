@@ -14,15 +14,19 @@ public class F41002PK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
+	//CODIGO
 	@Column(name="UMMCU")
 	private String ummcu;
 
+	//F4101
 	@Column(name="UMITM")
 	private double umitm;
 
+	//
 	@Column(name="UMUM")
 	private String umum;
 
+	//
 	@Column(name="UMRUM")
 	private String umrum;
 

@@ -256,7 +256,7 @@ public class CF0004 extends CGenerico {
 			return false;
 		} else {
 			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
+				msj.mensajeError(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
@@ -285,11 +285,8 @@ public class CF0004 extends CGenerico {
 
 	public boolean camposLLenos() {
 		if (txtDL01F0004.getText().compareTo("") == 0
-				|| txtLNF0004.getText().compareTo("") == 0
-				|| txtNUMF0004.getText().compareTo("") == 0
 				|| txtRTF0004.getText().compareTo("") == 0
-				|| txtSYF0004.getText().compareTo("") == 0
-				|| dblCDLF0004.getValue() == 0) {
+				|| txtSYF0004.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;

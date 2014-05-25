@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 /**
  * The persistent class for the F4101 database table.
  * 
@@ -19,605 +18,606 @@ public class F4101 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="IMITM")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "IMITM")
 	private double imitm;
 
-	@Column(name="IMABCI")
+	@Column(name = "IMABCI")
 	private String imabci;
 
-	@Column(name="IMABCM")
+	@Column(name = "IMABCM")
 	private String imabcm;
 
-	@Column(name="IMABCS")
+	@Column(name = "IMABCS")
 	private String imabcs;
 
-	@Column(name="IMACQ")
+	@Column(name = "IMACQ")
 	private double imacq;
 
-	@Column(name="IMAING")
+	@Column(name = "IMAING")
 	private String imaing;
 
-	@Column(name="IMAITM")
+	@Column(name = "IMAITM")
 	private String imaitm;
 
-	@Column(name="IMALN")
+	@Column(name = "IMALN")
 	private String imaln;
 
-	@Column(name="IMANPL")
+	@Column(name = "IMANPL")
 	private double imanpl;
 
-	@Column(name="IMAPSC")
+	@Column(name = "IMAPSC")
 	private String imapsc;
 
-	@Column(name="IMASHL")
+	@Column(name = "IMASHL")
 	private String imashl;
 
-	@Column(name="IMAUOM")
+	//
+	@Column(name = "IMAUOM")
 	private String imauom;
 
-	@Column(name="IMAVRT")
+	@Column(name = "IMAVRT")
 	private double imavrt;
 
-	@Column(name="IMBACK")
+	@Column(name = "IMBACK")
 	private String imback;
 
-	@Column(name="IMBBDD")
+	@Column(name = "IMBBDD")
 	private double imbbdd;
 
-	@Column(name="IMBPFG")
+	@Column(name = "IMBPFG")
 	private String imbpfg;
 
-	@Column(name="IMBUYR")
+	@Column(name = "IMBUYR")
 	private double imbuyr;
 
-	@Column(name="IMCARP")
+	@Column(name = "IMCARP")
 	private double imcarp;
 
-	@Column(name="IMCARS")
+	@Column(name = "IMCARS")
 	private double imcars;
 
-	@Column(name="IMCDCD")
+	@Column(name = "IMCDCD")
 	private String imcdcd;
 
-	@Column(name="IMCKAV")
+	@Column(name = "IMCKAV")
 	private String imckav;
 
-	@Column(name="IMCLEV")
+	@Column(name = "IMCLEV")
 	private String imclev;
 
-	@Column(name="IMCMCG")
+	@Column(name = "IMCMCG")
 	private String imcmcg;
 
-	@Column(name="IMCMDM")
+	@Column(name = "IMCMDM")
 	private String imcmdm;
 
-	@Column(name="IMCMETH")
+	@Column(name = "IMCMETH")
 	private String imcmeth;
 
-	@Column(name="IMCMGL")
+	@Column(name = "IMCMGL")
 	private String imcmgl;
 
-	@Column(name="IMCOBY")
+	@Column(name = "IMCOBY")
 	private String imcoby;
 
-	@Column(name="IMCOMH")
+	@Column(name = "IMCOMH")
 	private double imcomh;
 
-	@Column(name="IMCONB")
+	@Column(name = "IMCONB")
 	private String imconb;
 
-	@Column(name="IMCONT")
+	@Column(name = "IMCONT")
 	private String imcont;
 
-	@Column(name="IMCOTY")
+	@Column(name = "IMCOTY")
 	private String imcoty;
 
-	@Column(name="IMCUTH")
+	@Column(name = "IMCUTH")
 	private double imcuth;
 
-	@Column(name="IMCYCL")
+	@Column(name = "IMCYCL")
 	private String imcycl;
 
-	@Column(name="IMDEFD")
+	@Column(name = "IMDEFD")
 	private double imdefd;
 
-	@Column(name="IMDFENDITM")
+	@Column(name = "IMDFENDITM")
 	private String imdfenditm;
 
-	@Column(name="IMDFTPCT")
+	@Column(name = "IMDFTPCT")
 	private double imdftpct;
 
-	@Column(name="IMDLTL")
+	@Column(name = "IMDLTL")
 	private double imdltl;
 
-	@Column(name="IMDPPO")
+	@Column(name = "IMDPPO")
 	private String imdppo;
 
-	@Column(name="IMDRAW")
+	@Column(name = "IMDRAW")
 	private String imdraw;
 
-	@Column(name="IMDSC1")
+	@Column(name = "IMDSC1")
 	private String imdsc1;
 
-	@Column(name="IMDSC2")
+	@Column(name = "IMDSC2")
 	private String imdsc2;
 
-	@Column(name="IMDSGP")
+	@Column(name = "IMDSGP")
 	private String imdsgp;
 
-	@Column(name="IMDSZE")
+	@Column(name = "IMDSZE")
 	private String imdsze;
 
-	@Column(name="IMDUAL")
+	@Column(name = "IMDUAL")
 	private String imdual;
 
-	@Column(name="IMEQTY")
+	@Column(name = "IMEQTY")
 	private String imeqty;
 
-	@Column(name="IMEXPD")
+	@Column(name = "IMEXPD")
 	private double imexpd;
 
-	@Column(name="IMEXPI")
+	@Column(name = "IMEXPI")
 	private String imexpi;
 
-	@Column(name="IMFIFO")
+	@Column(name = "IMFIFO")
 	private String imfifo;
 
-	@Column(name="IMFRGD")
+	@Column(name = "IMFRGD")
 	private String imfrgd;
 
-	@Column(name="IMFRMP")
+	@Column(name = "IMFRMP")
 	private double imfrmp;
 
-	@Column(name="IMGCMP")
+	@Column(name = "IMGCMP")
 	private String imgcmp;
 
-	@Column(name="IMGLPT")
+	@Column(name = "IMGLPT")
 	private String imglpt;
 
-	@Column(name="IMIFLA")
+	@Column(name = "IMIFLA")
 	private String imifla;
 
-	@Column(name="IMINMG")
+	@Column(name = "IMINMG")
 	private String iminmg;
 
-	@Column(name="IMITC")
+	@Column(name = "IMITC")
 	private String imitc;
 
-	@Column(name="IMJOBN")
+	@Column(name = "IMJOBN")
 	private String imjobn;
 
-	@Column(name="IMKANEXLL")
+	@Column(name = "IMKANEXLL")
 	private String imkanexll;
 
-	@Column(name="IMKBIT")
+	@Column(name = "IMKBIT")
 	private String imkbit;
 
-	@Column(name="IMLAF")
+	@Column(name = "IMLAF")
 	private String imlaf;
 
-	@Column(name="IMLECM")
+	@Column(name = "IMLECM")
 	private String imlecm;
 
-	@Column(name="IMLEDD")
+	@Column(name = "IMLEDD")
 	private double imledd;
 
-	@Column(name="IMLINE")
+	@Column(name = "IMLINE")
 	private String imline;
 
-	@Column(name="IMLITM")
+	@Column(name = "IMLITM")
 	private String imlitm;
 
-	@Column(name="IMLLX")
+	@Column(name = "IMLLX")
 	private double imllx;
 
-	@Column(name="IMLMFG")
+	@Column(name = "IMLMFG")
 	private String imlmfg;
 
-	@Column(name="IMLNPA")
+	@Column(name = "IMLNPA")
 	private String imlnpa;
 
-	@Column(name="IMLNTY")
+	@Column(name = "IMLNTY")
 	private String imlnty;
 
-	@Column(name="IMLOTC")
+	@Column(name = "IMLOTC")
 	private String imlotc;
 
-	@Column(name="IMLOTS")
+	@Column(name = "IMLOTS")
 	private String imlots;
 
-	@Column(name="IMLTCM")
+	@Column(name = "IMLTCM")
 	private double imltcm;
 
-	@Column(name="IMLTFM")
+	@Column(name = "IMLTFM")
 	private String imltfm;
 
-	@Column(name="IMLTLV")
+	@Column(name = "IMLTLV")
 	private double imltlv;
 
-	@Column(name="IMLTMF")
+	@Column(name = "IMLTMF")
 	private double imltmf;
 
-	@Column(name="IMLTPU")
+	@Column(name = "IMLTPU")
 	private double imltpu;
 
-	@Column(name="IMMAKE")
+	@Column(name = "IMMAKE")
 	private String immake;
 
-	@Column(name="IMMIC")
+	@Column(name = "IMMIC")
 	private String immic;
 
-	@Column(name="IMMLQ")
+	@Column(name = "IMMLQ")
 	private double immlq;
 
-	@Column(name="IMMMPC")
+	@Column(name = "IMMMPC")
 	private double immmpc;
 
-	@Column(name="IMMPSP")
+	@Column(name = "IMMPSP")
 	private String immpsp;
 
-	@Column(name="IMMPST")
+	@Column(name = "IMMPST")
 	private String immpst;
 
-	@Column(name="IMMRPP")
+	@Column(name = "IMMRPP")
 	private String immrpp;
 
-	@Column(name="IMMTF1")
+	@Column(name = "IMMTF1")
 	private double immtf1;
 
-	@Column(name="IMMTF2")
+	@Column(name = "IMMTF2")
 	private double immtf2;
 
-	@Column(name="IMMTF3")
+	@Column(name = "IMMTF3")
 	private double immtf3;
 
-	@Column(name="IMMTF4")
+	@Column(name = "IMMTF4")
 	private double immtf4;
 
-	@Column(name="IMMTF5")
+	@Column(name = "IMMTF5")
 	private double immtf5;
 
-	@Column(name="IMOPC")
+	@Column(name = "IMOPC")
 	private String imopc;
 
-	@Column(name="IMOPTH")
+	@Column(name = "IMOPTH")
 	private double imopth;
 
-	@Column(name="IMOPV")
+	@Column(name = "IMOPV")
 	private double imopv;
 
-	@Column(name="IMORDW")
+	@Column(name = "IMORDW")
 	private String imordw;
 
-	@Column(name="IMORPR")
+	@Column(name = "IMORPR")
 	private String imorpr;
 
-	@Column(name="IMOT1Y")
+	@Column(name = "IMOT1Y")
 	private String imot1y;
 
-	@Column(name="IMOT2Y")
+	@Column(name = "IMOT2Y")
 	private String imot2y;
 
-	@Column(name="IMOVR")
+	@Column(name = "IMOVR")
 	private String imovr;
 
-	@Column(name="IMPCTM")
+	@Column(name = "IMPCTM")
 	private double impctm;
 
-	@Column(name="IMPDGR")
+	@Column(name = "IMPDGR")
 	private String impdgr;
 
-	@Column(name="IMPEFD")
+	@Column(name = "IMPEFD")
 	private double impefd;
 
-	@Column(name="IMPID")
+	@Column(name = "IMPID")
 	private String impid;
 
-	@Column(name="IMPLEV")
+	@Column(name = "IMPLEV")
 	private String implev;
 
-	@Column(name="IMPMTH")
+	@Column(name = "IMPMTH")
 	private String impmth;
 
-	@Column(name="IMPOC")
+	@Column(name = "IMPOC")
 	private String impoc;
 
-	@Column(name="IMPPLV")
+	@Column(name = "IMPPLV")
 	private String impplv;
 
-	@Column(name="IMPRGR")
+	@Column(name = "IMPRGR")
 	private String imprgr;
 
-	@Column(name="IMPRI1")
+	@Column(name = "IMPRI1")
 	private double impri1;
 
-	@Column(name="IMPRI2")
+	@Column(name = "IMPRI2")
 	private double impri2;
 
-	@Column(name="IMPRP0")
+	@Column(name = "IMPRP0")
 	private String imprp0;
 
-	@Column(name="IMPRP1")
+	@Column(name = "IMPRP1")
 	private String imprp1;
 
-	@Column(name="IMPRP2")
+	@Column(name = "IMPRP2")
 	private String imprp2;
 
-	@Column(name="IMPRP3")
+	@Column(name = "IMPRP3")
 	private String imprp3;
 
-	@Column(name="IMPRP4")
+	@Column(name = "IMPRP4")
 	private String imprp4;
 
-	@Column(name="IMPRP5")
+	@Column(name = "IMPRP5")
 	private String imprp5;
 
-	@Column(name="IMPRP6")
+	@Column(name = "IMPRP6")
 	private String imprp6;
 
-	@Column(name="IMPRP7")
+	@Column(name = "IMPRP7")
 	private String imprp7;
 
-	@Column(name="IMPRP8")
+	@Column(name = "IMPRP8")
 	private String imprp8;
 
-	@Column(name="IMPRP9")
+	@Column(name = "IMPRP9")
 	private String imprp9;
 
-	@Column(name="IMPRPO")
+	@Column(name = "IMPRPO")
 	private String imprpo;
 
-	@Column(name="IMPTSC")
+	@Column(name = "IMPTSC")
 	private String imptsc;
 
-	@Column(name="IMRPRC")
+	@Column(name = "IMRPRC")
 	private String imrprc;
 
-	@Column(name="IMRVNO")
+	@Column(name = "IMRVNO")
 	private String imrvno;
 
-	@Column(name="IMRWLA")
+	@Column(name = "IMRWLA")
 	private String imrwla;
 
-	@Column(name="IMSBDD")
+	@Column(name = "IMSBDD")
 	private double imsbdd;
 
-	@Column(name="IMSCC0")
+	@Column(name = "IMSCC0")
 	private String imscc0;
 
-	@Column(name="IMSCPSELL")
+	@Column(name = "IMSCPSELL")
 	private String imscpsell;
 
-	@Column(name="IMSEG0")
+	@Column(name = "IMSEG0")
 	private String imseg0;
 
-	@Column(name="IMSEG1")
+	@Column(name = "IMSEG1")
 	private String imseg1;
 
-	@Column(name="IMSEG2")
+	@Column(name = "IMSEG2")
 	private String imseg2;
 
-	@Column(name="IMSEG3")
+	@Column(name = "IMSEG3")
 	private String imseg3;
 
-	@Column(name="IMSEG4")
+	@Column(name = "IMSEG4")
 	private String imseg4;
 
-	@Column(name="IMSEG5")
+	@Column(name = "IMSEG5")
 	private String imseg5;
 
-	@Column(name="IMSEG6")
+	@Column(name = "IMSEG6")
 	private String imseg6;
 
-	@Column(name="IMSEG7")
+	@Column(name = "IMSEG7")
 	private String imseg7;
 
-	@Column(name="IMSEG8")
+	@Column(name = "IMSEG8")
 	private String imseg8;
 
-	@Column(name="IMSEG9")
+	@Column(name = "IMSEG9")
 	private String imseg9;
 
-	@Column(name="IMSFLT")
+	@Column(name = "IMSFLT")
 	private double imsflt;
 
-	@Column(name="IMSHCM")
+	@Column(name = "IMSHCM")
 	private String imshcm;
 
-	@Column(name="IMSHCN")
+	@Column(name = "IMSHCN")
 	private String imshcn;
 
-	@Column(name="IMSLD")
+	@Column(name = "IMSLD")
 	private double imsld;
 
-	@Column(name="IMSNS")
+	@Column(name = "IMSNS")
 	private String imsns;
 
-	@Column(name="IMSRCE")
+	@Column(name = "IMSRCE")
 	private String imsrce;
 
-	@Column(name="IMSRNR")
+	@Column(name = "IMSRNR")
 	private String imsrnr;
 
-	@Column(name="IMSRP0")
+	@Column(name = "IMSRP0")
 	private String imsrp0;
 
-	@Column(name="IMSRP1")
+	@Column(name = "IMSRP1")
 	private String imsrp1;
 
-	@Column(name="IMSRP2")
+	@Column(name = "IMSRP2")
 	private String imsrp2;
 
-	@Column(name="IMSRP3")
+	@Column(name = "IMSRP3")
 	private String imsrp3;
 
-	@Column(name="IMSRP4")
+	@Column(name = "IMSRP4")
 	private String imsrp4;
 
-	@Column(name="IMSRP5")
+	@Column(name = "IMSRP5")
 	private String imsrp5;
 
-	@Column(name="IMSRP6")
+	@Column(name = "IMSRP6")
 	private String imsrp6;
 
-	@Column(name="IMSRP7")
+	@Column(name = "IMSRP7")
 	private String imsrp7;
 
-	@Column(name="IMSRP8")
+	@Column(name = "IMSRP8")
 	private String imsrp8;
 
-	@Column(name="IMSRP9")
+	@Column(name = "IMSRP9")
 	private String imsrp9;
 
-	@Column(name="IMSRTX")
+	@Column(name = "IMSRTX")
 	private String imsrtx;
 
-	@Column(name="IMSTDG")
+	@Column(name = "IMSTDG")
 	private String imstdg;
 
-	@Column(name="IMSTDP")
+	@Column(name = "IMSTDP")
 	private double imstdp;
 
-	@Column(name="IMSTKT")
+	@Column(name = "IMSTKT")
 	private String imstkt;
 
-	@Column(name="IMSUTM")
+	@Column(name = "IMSUTM")
 	private String imsutm;
 
-	@Column(name="IMTDAY")
+	@Column(name = "IMTDAY")
 	private double imtday;
 
-	@Column(name="IMTFLA")
+	@Column(name = "IMTFLA")
 	private String imtfla;
 
-	@Column(name="IMTHGD")
+	@Column(name = "IMTHGD")
 	private String imthgd;
 
-	@Column(name="IMTHRP")
+	@Column(name = "IMTHRP")
 	private double imthrp;
 
-	@Column(name="IMTMPL")
+	@Column(name = "IMTMPL")
 	private String imtmpl;
 
-	@Column(name="IMU1DD")
+	@Column(name = "IMU1DD")
 	private double imu1dd;
 
-	@Column(name="IMU2DD")
+	@Column(name = "IMU2DD")
 	private double imu2dd;
 
-	@Column(name="IMU3DD")
+	@Column(name = "IMU3DD")
 	private double imu3dd;
 
-	@Column(name="IMU4DD")
+	@Column(name = "IMU4DD")
 	private double imu4dd;
 
-	@Column(name="IMU5DD")
+	@Column(name = "IMU5DD")
 	private double imu5dd;
 
-	@Column(name="IMUMDF")
+	@Column(name = "IMUMDF")
 	private String imumdf;
 
-	@Column(name="IMUMS0")
+	@Column(name = "IMUMS0")
 	private String imums0;
 
-	@Column(name="IMUMS1")
+	@Column(name = "IMUMS1")
 	private String imums1;
 
-	@Column(name="IMUMS2")
+	@Column(name = "IMUMS2")
 	private String imums2;
 
-	@Column(name="IMUMS3")
+	@Column(name = "IMUMS3")
 	private String imums3;
 
-	@Column(name="IMUMS4")
+	@Column(name = "IMUMS4")
 	private String imums4;
 
-	@Column(name="IMUMS5")
+	@Column(name = "IMUMS5")
 	private String imums5;
 
-	@Column(name="IMUMS6")
+	@Column(name = "IMUMS6")
 	private String imums6;
 
-	@Column(name="IMUMS7")
+	@Column(name = "IMUMS7")
 	private String imums7;
 
-	@Column(name="IMUMS8")
+	@Column(name = "IMUMS8")
 	private String imums8;
 
-	@Column(name="IMUMTH")
+	@Column(name = "IMUMTH")
 	private String imumth;
 
-	@Column(name="IMUMUP")
+	@Column(name = "IMUMUP")
 	private String imumup;
 
-	@Column(name="IMUMVW")
+	@Column(name = "IMUMVW")
 	private String imumvw;
 
-	@Column(name="IMUOM1")
+	@Column(name = "IMUOM1")
 	private String imuom1;
 
-	@Column(name="IMUOM2")
+	@Column(name = "IMUOM2")
 	private String imuom2;
 
-	@Column(name="IMUOM3")
+	@Column(name = "IMUOM3")
 	private String imuom3;
 
-	@Column(name="IMUOM4")
+	@Column(name = "IMUOM4")
 	private String imuom4;
 
-	@Column(name="IMUOM6")
+	@Column(name = "IMUOM6")
 	private String imuom6;
 
-	@Column(name="IMUOM8")
+	@Column(name = "IMUOM8")
 	private String imuom8;
 
-	@Column(name="IMUOM9")
+	@Column(name = "IMUOM9")
 	private String imuom9;
 
-	@Column(name="IMUPCN")
+	@Column(name = "IMUPCN")
 	private String imupcn;
 
-	@Column(name="IMUPMJ")
+	@Column(name = "IMUPMJ")
 	private BigDecimal imupmj;
 
-	@Column(name="IMURAB")
+	@Column(name = "IMURAB")
 	private double imurab;
 
-	@Column(name="IMURAT")
+	@Column(name = "IMURAT")
 	private double imurat;
 
-	@Column(name="IMURCD")
+	@Column(name = "IMURCD")
 	private String imurcd;
 
-	@Column(name="IMURDT")
+	@Column(name = "IMURDT")
 	private BigDecimal imurdt;
 
-	@Column(name="IMURRF")
+	@Column(name = "IMURRF")
 	private String imurrf;
 
-	@Column(name="IMUSER")
+	@Column(name = "IMUSER")
 	private String imuser;
 
-	@Column(name="IMUVM1")
+	@Column(name = "IMUVM1")
 	private String imuvm1;
 
-	@Column(name="IMUWUM")
+	@Column(name = "IMUWUM")
 	private String imuwum;
 
-	@Column(name="IMVCUD")
+	@Column(name = "IMVCUD")
 	private double imvcud;
 
-	@Column(name="IMVMINV")
+	@Column(name = "IMVMINV")
 	private String imvminv;
 
-	@Column(name="IMWARR")
+	@Column(name = "IMWARR")
 	private String imwarr;
 
-	@Column(name="IMWTRQ")
+	@Column(name = "IMWTRQ")
 	private String imwtrq;
 
-	@Column(name="IMXDCK")
+	@Column(name = "IMXDCK")
 	private String imxdck;
 
 	public F4101() {
