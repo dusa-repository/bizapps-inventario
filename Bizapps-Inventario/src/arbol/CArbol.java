@@ -8,6 +8,7 @@ import modelo.seguridad.Arbol;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -21,6 +22,7 @@ import org.zkoss.zul.TreeModel;
 import org.zkoss.zul.West;
 
 import controlador.maestros.CGenerico;
+import componentes.Mensaje;
 
 public class CArbol extends CGenerico {
 
@@ -43,10 +45,11 @@ public class CArbol extends CGenerico {
 	@Wire
 	private West west;
 
-
+	private static boolean numeroSgt = false;
 	private  static Tabbox tabBox2;
 	private static Include contenido2;
 	private static Tab tab2;
+	Mensaje msj = new Mensaje();
 
 	@Override
 	public void inicializar() throws IOException {
@@ -197,6 +200,10 @@ public class CArbol extends CGenerico {
 		return root;
 	}
 
+	
+	public void booleanoApg (){
+		numeroSgt = false;
+	}
 	/*
 	 * Permite seleccionar un elemento del arbol, mostrandolo en forma de
 	 * pestaña y su contenido es cargado en un div
@@ -210,6 +217,7 @@ public class CArbol extends CGenerico {
 		Tab taba = new Tab();
 		if (arbolMenu.getSelectedItem().getLevel() > 0) {
 			Arbol arbolItem = servicioArbol.buscarPorNombreArbol(item);
+				
 			if (!arbolItem.getUrl().equals("inicio")) {
 				
 				if (String.valueOf(arbolMenu.getSelectedItem().getValue()).equals("Consulta")) 
@@ -221,6 +229,18 @@ public class CArbol extends CGenerico {
 					}
 				}
 				if (abrir) {
+				if (arbolItem.getUrl().equals("maestros/VF00021")){
+					if (numeroSgt ==false){
+						String ruta = "/vistas/" + arbolItem.getUrl() + ".zul";
+						contenido.setSrc(null);
+						contenido.setSrc(ruta);
+						numeroSgt = true;
+				}
+					else {
+						msj.mensajeError(Mensaje.enUso);
+					}
+				}
+				else {
 					String ruta = "/vistas/" + arbolItem.getUrl() + ".zul";
 					contenido = new Include();
 					contenido.setSrc(null);
@@ -233,17 +253,19 @@ public class CArbol extends CGenerico {
 					tabBox.getTabs().insertBefore(newTab, tab);
 					newTabpanel.setParent(tabBox.getTabpanels());
 					tabs.add(newTab);
+					}
+				}
 				} else {
 					taba.setSelected(true);
 				}
 			}
 		}
-		}
+		
+		
 		tabBox2 = tabBox;
 		contenido2 = contenido;
 		tab2 = tab;
 	}
-
 
 	public void abrirVentanas(Arbol arbolItem) {
 		boolean abrir = true;
