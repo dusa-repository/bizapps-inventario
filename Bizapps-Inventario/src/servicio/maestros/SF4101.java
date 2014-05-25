@@ -13,6 +13,15 @@ public class SF4101 {
 
 	@Autowired
 	private IF4101DAO f4101DAO;
+
+	public F4101 buscar(double umitm) {
+		return f4101DAO.findOne(umitm);
+	}
+
+	public List<F4101> buscarTodosOrdenados() {
+
+		return f4101DAO.findAllAndOrderByIMDSC1();
+	}
 	
 	
 	

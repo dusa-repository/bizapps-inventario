@@ -24,12 +24,15 @@ public class F41002 implements Serializable {
 	@Column(name="UMCNV1")
 	private double umcnv1;
 
+	//
 	@Column(name="UMCONV")
 	private double umconv;
 
+	//
 	@Column(name="UMEXPO")
 	private String umexpo;
 
+	//
 	@Column(name="UMEXSO")
 	private String umexso;
 
@@ -39,21 +42,26 @@ public class F41002 implements Serializable {
 	@Column(name="UMPID")
 	private String umpid;
 
+	//
 	@Column(name="UMPUPC")
 	private BigDecimal umpupc;
 
+	//
 	@Column(name="UMSEPC")
 	private BigDecimal umsepc;
 
 	@Column(name="UMTDAY")
 	private double umtday;
 
+	//
 	@Column(name="UMUPMJ")
 	private BigDecimal umupmj;
 
+	//
 	@Column(name="UMUSER")
 	private String umuser;
 
+	//
 	@Column(name="UMUSTR")
 	private String umustr;
 
