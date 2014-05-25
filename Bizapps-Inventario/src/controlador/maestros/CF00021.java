@@ -17,6 +17,7 @@ import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
+import arbol.CArbol;
 
 import componentes.Botonera;
 import componentes.Catalogo;
@@ -58,11 +59,11 @@ public class CF00021 extends CGenerico {
 	Catalogo<F0010> catalogoF0010;
 	Botonera botonera;
 	F00021PK clave = null;
-
+	CArbol arbol = new CArbol();
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
-
+		arbol.booleanoApg ();
 		txtKCOF00021.setFocus(true);
 		mostrarCatalogo();
 		botonera = new Botonera() {
@@ -93,7 +94,8 @@ public class CF00021 extends CGenerico {
 			@Override
 			public void salir() {
 				cerrarVentana(divVF00021, "Sistema");
-
+				arbol.booleanoApg ();
+				
 			}
 
 			@Override
