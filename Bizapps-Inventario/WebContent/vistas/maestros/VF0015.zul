@@ -30,7 +30,7 @@
 									</hbox>
 									<textbox id="txtCRCDF0015" hflex="1"
 										maxlength="100" tooltiptext="Ingrese el Codigo Moneda" />
-									<button id="btnBuscarCRCDF0015"
+									<button id="btnBuscarF0013"
 										label="" tooltiptext="Catalogo de Codigos de Moneda"
 										image="/public/imagenes/botones/buscar.png" />
 								</row>
@@ -221,5 +221,6 @@
 			<separator />
 			<separator />
 		</groupbox>
+		<div id="divCatalogoF0013" tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>
