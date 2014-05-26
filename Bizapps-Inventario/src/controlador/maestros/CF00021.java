@@ -93,7 +93,7 @@ public class CF00021 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF00021, "Sistema");
+				cerrarVentana(divVF00021, "Numeros Siguientes");
 				arbol.booleanoApg ();
 				
 			}
