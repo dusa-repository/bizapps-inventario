@@ -7,11 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import modelo.maestros.F0004;
-import modelo.maestros.F0008;
 import modelo.maestros.F0015;
 import modelo.maestros.F0013;
-import modelo.pk.F0008PK;
 import modelo.pk.F0015PK;
 
 import org.zkoss.zk.ui.event.Event;
@@ -46,11 +43,11 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Textbox txtCRCDF0015;
 	@Wire
-	private Button btnBuscarCRCDF0015;
+	private Button btnBuscarCRDCF0015;
 	@Wire
 	private Textbox txtCRDCF0015;
 	@Wire
-	private Button btnBuscarCRDCF0015;
+	private Button btnBuscarF0013;
 	@Wire
 	private Datebox dtbEFTF0015;
 	@Wire
@@ -87,6 +84,8 @@ public class CF0015 extends CGenerico {
 	private Div catalogoF0015H;
 	@Wire
 	private Div catalogoF0015D;
+	@Wire
+	private Div divCatalogoF0013;
 	private static F0013 F0013;
 	private static boolean agregarMetodoCalculo = false;
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
@@ -95,6 +94,7 @@ public class CF0015 extends CGenerico {
 	Botonera botonera;
 	Catalogo<F0015> catalogoEncabezado;
 	Catalogo<F0015> catalogoDetalle;
+	Catalogo<F0013> catalogoF0013;
 	F0015PK clave = null;
 
 	@Override
@@ -102,6 +102,7 @@ public class CF0015 extends CGenerico {
 		// TODO Auto-generated method stub
 
 		txtCRCDF0015.setFocus(true);
+		agregarMetodoCalculo = false;
 		mostrarCatalogoEncabezado();
 		mostrarCatalogoDetalle();
 
@@ -113,8 +114,6 @@ public class CF0015 extends CGenerico {
 
 				if (!agregarMetodoCalculo) {
 
-					botonera.getChildren().get(0).setVisible(false);
-
 					if (validarSeleccionEncabezado()) {
 						if (catalogoEncabezado.obtenerSeleccionados().size() == 1) {
 							mostrarBotones(false);
@@ -125,10 +124,10 @@ public class CF0015 extends CGenerico {
 							clave = f015.getId();
 							txtCRCDF0015.setValue(f015.getId().getCxcrcd());
 							txtCRCDF0015.setDisabled(true);
-							btnBuscarCRCDF0015.setDisabled(true);
+							btnBuscarCRDCF0015.setDisabled(true);
 							txtCRDCF0015.setValue(f015.getId().getCxcrdc());
 							txtCRDCF0015.setDisabled(true);
-							btnBuscarCRDCF0015.setDisabled(true);
+							btnBuscarF0013.setDisabled(true);
 							dtbEFTF0015
 									.setValue((transformarJulianaAGregoria(BigDecimal
 											.valueOf(f015.getId().getCxeft()))));
@@ -138,6 +137,7 @@ public class CF0015 extends CGenerico {
 							txtCRCMF0015.setValue(f015.getCxcrcm());
 							dblCRRF0015.setValue(f015.getCxcrr());
 							dblCRRDF0015.setValue(f015.getCxcrrd());
+							botonera.getChildren().get(0).setVisible(false);
 							dtbEFTF0015.setFocus(true);
 
 						} else
@@ -153,10 +153,10 @@ public class CF0015 extends CGenerico {
 							clave = f015.getId();
 							txtCRCDF0015.setValue(f015.getId().getCxcrcd());
 							txtCRCDF0015.setDisabled(true);
-							btnBuscarCRCDF0015.setDisabled(true);
+							btnBuscarCRDCF0015.setDisabled(true);
 							txtCRDCF0015.setValue(f015.getId().getCxcrdc());
 							txtCRDCF0015.setDisabled(true);
-							btnBuscarCRDCF0015.setDisabled(true);
+							btnBuscarF0013.setDisabled(true);
 							dtbEFTF0015
 									.setValue((transformarJulianaAGregoria(BigDecimal
 											.valueOf(f015.getId().getCxeft()))));
@@ -429,6 +429,7 @@ public class CF0015 extends CGenerico {
 		botonera.getChildren().get(0).setVisible(false);
 		agregarMetodoCalculo = false;
 		catalogoEncabezado.limpiarSeleccion();
+
 	}
 
 	public boolean validarSeleccionEncabezado() {
@@ -465,6 +466,13 @@ public class CF0015 extends CGenerico {
 	public void abrirRegistro() {
 
 		gpxDatosF0015.setOpen(false);
+
+		if (!agregarMetodoCalculo) {
+			botonera.getChildren().get(0).setVisible(false);
+		} else {
+			botonera.getChildren().get(0).setVisible(true);
+		}
+
 		gpxRegistroF0015.setOpen(true);
 		mostrarBotones(false);
 
@@ -513,10 +521,10 @@ public class CF0015 extends CGenerico {
 			dtbEFTF0015.setDisabled(false);
 		if (dblAN8F0015.isDisabled())
 			dblAN8F0015.setDisabled(false);
-		if (btnBuscarCRCDF0015.isDisabled())
-			btnBuscarCRCDF0015.setDisabled(false);
 		if (btnBuscarCRDCF0015.isDisabled())
 			btnBuscarCRDCF0015.setDisabled(false);
+		if (btnBuscarF0013.isDisabled())
+			btnBuscarF0013.setDisabled(false);
 		if (btnBuscarAN8F0015.isDisabled())
 			btnBuscarAN8F0015.setDisabled(false);
 
@@ -664,6 +672,57 @@ public class CF0015 extends CGenerico {
 			}
 		};
 		catalogoDetalle.setParent(catalogoF0015D);
+	}
+
+	@Listen("onClick = #btnBuscarF0013")
+	public void mostrarCatalogo() {
+		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
+		catalogoF0013 = new Catalogo<F0013>(divCatalogoF0013, "F0013",
+				listF0013, "Codigo moneda", "Descripcion", "Vlslz",
+				"Rutina cheques") {
+
+			@Override
+			protected List<F0013> buscar(List<String> valores) {
+
+				List<F0013> lista = new ArrayList<F0013>();
+
+				for (F0013 f0013 : listF0013) {
+					if (f0013.getCvcrcd().toLowerCase()
+							.startsWith(valores.get(0))
+							&& f0013.getCvdl01().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f0013.getCvcdec().toLowerCase()
+									.startsWith(valores.get(2))
+							&& f0013.getCvckr().toLowerCase()
+									.startsWith(valores.get(4))) {
+						lista.add(f0013);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0013 f013) {
+				String[] registros = new String[4];
+				registros[0] = f013.getCvcrcd();
+				registros[1] = f013.getCvdl01();
+				registros[2] = f013.getCvcdec();
+				registros[3] = f013.getCvckr();
+				return registros;
+			}
+		};
+		catalogoF0013.setClosable(true);
+		catalogoF0013.setWidth("80%");
+		catalogoF0013.setTitle("Registros");
+		catalogoF0013.setParent(divCatalogoF0013);
+		catalogoF0013.doModal();
+	}
+
+	@Listen("onSeleccion = #divCatalogoF0013")
+	public void seleccion() {
+		F0013 f0013 = catalogoF0013.objetoSeleccionadoDelCatalogo();
+		txtCRCDF0015.setValue(f0013.getCvcrcd());
+		catalogoF0013.setParent(null);
 	}
 
 }
