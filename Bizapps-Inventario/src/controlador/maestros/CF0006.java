@@ -634,7 +634,7 @@ public class CF0006 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0006, "Sistema");
+				cerrarVentana(divVF0006, "Unidad de Negocio");
 
 			}
 

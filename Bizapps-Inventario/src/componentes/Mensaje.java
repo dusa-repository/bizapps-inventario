@@ -17,7 +17,7 @@ public class Mensaje {
 	public static String estaEditando = "No ha culminado la Edicion, ¿Desea Continuar Editando?";
 	public static String noSeleccionoRegistro = "No ha seleccionado ningun Registro";
 	public static String exportar = "¿Desea exportar los datos de la lista a formato CSV?";
-	public static String enUso = "La interfaz esta sindo usada";
+	public static String enUso = "La interfaz esta siendo usada";
 	public static String articuloNoExiste = "El Codigo del Articulo no Existe.";
 	
 	

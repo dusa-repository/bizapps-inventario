@@ -8,7 +8,6 @@ import modelo.seguridad.Arbol;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -232,9 +231,17 @@ public class CArbol extends CGenerico {
 				if (arbolItem.getUrl().equals("maestros/VF00021")){
 					if (numeroSgt ==false){
 						String ruta = "/vistas/" + arbolItem.getUrl() + ".zul";
+						contenido = new Include();
 						contenido.setSrc(null);
 						contenido.setSrc(ruta);
 						numeroSgt = true;
+						Tab newTab = new Tab(arbolItem.getNombre());
+						newTab.setSelected(true);
+						Tabpanel newTabpanel = new Tabpanel();
+						newTabpanel.appendChild(contenido);
+						tabBox.getTabs().insertBefore(newTab, tab);
+						newTabpanel.setParent(tabBox.getTabpanels());
+						tabs.add(newTab);
 				}
 					else {
 						msj.mensajeError(Mensaje.enUso);

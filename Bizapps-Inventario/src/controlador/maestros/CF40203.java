@@ -129,7 +129,7 @@ public class CF40203 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF40203, "Sistema");
+				cerrarVentana(divVF40203, "Reglas de Actividad");
 
 			}
 
