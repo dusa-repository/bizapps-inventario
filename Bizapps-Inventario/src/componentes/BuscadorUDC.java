@@ -27,7 +27,7 @@ public abstract class BuscadorUDC extends Hbox {
 	Label nombre;
 
 	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
-			boolean requerido) {
+			boolean requerido,boolean param1,boolean param2) {
 		super();
 		this.setWidth("100%");
 
@@ -153,7 +153,7 @@ public abstract class BuscadorUDC extends Hbox {
 	private void mostrarCatalogo() {
 
 		final List<F0005> listF0005 = lista;
-		catalogo = new Catalogo<F0005>(divCatalogo, "CatF0005", listF0005,
+		catalogo = new Catalogo<F0005>(divCatalogo, "CatF0005", listF0005,true,true,true,
 				"SY", "RT", "KY", "Descripcion 01", "Descripcion 02",
 				"Gestion Especial", "Codificacion Fija") {
 
@@ -196,9 +196,6 @@ public abstract class BuscadorUDC extends Hbox {
 				return registros;
 			}
 		};
-		catalogo.setClosable(true);
-		catalogo.setWidth("80%");
-		catalogo.setTitle("Registros");
 		catalogo.setParent(divCatalogo);
 		catalogo.doModal();
 	}

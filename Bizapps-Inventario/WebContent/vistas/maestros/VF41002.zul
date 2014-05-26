@@ -39,9 +39,10 @@
 							<label id="lblDescripcionUnidad" />
 						</row> 
 						<row>
-							<cell colspan="3">
+							<cell colspan="2">
 								<div id="divBuscadorUMF41002" hflex="1" />
 							</cell>
+									<hbox />
 						</row>
 						<row>
 							<hbox>

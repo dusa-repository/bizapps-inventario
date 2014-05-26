@@ -35,12 +35,13 @@ public abstract class Catalogo<Clase> extends Window {
 	Mensaje msj = new Mensaje();
 
 	public Catalogo(final Component cGenerico, String titulo,
-			List<Clase> lista, String... campos) {
+			List<Clase> lista, boolean emergente, boolean udc,
+			boolean param2, String... campos) {
 		super("", "2", false);
 		this.setId("cmpCatalogo" + titulo);
 		this.setStyle("background-header:#FF7925; background: #f4f2f2");
 		// this.setWidth("auto");
-		crearLista(lista, campos);
+		crearLista(lista, campos, emergente);
 		lsbCatalogo.addEventListener(Events.ON_SELECT,
 				new EventListener<Event>() {
 
@@ -51,10 +52,11 @@ public abstract class Catalogo<Clase> extends Window {
 				});
 	}
 
-	public void crearLista(List<Clase> lista, String[] campos) {
+	public void crearLista(List<Clase> lista, String[] campos, boolean emergente) {
 		exportador = new Button();
-		exportador.setTooltiptext("Exportar");
-		exportador.setStyle("font-size: 11px ;width: 10px; height: 10px");
+		exportador.setTooltiptext("Exportar los Datos como un Archivo");
+		exportador.setStyle("font-size: 11px ;width: 25px; height: 25px");
+		exportador.setSrc("/public/imagenes/botones/exportar.png");
 		// ; float: right
 		exportador.addEventListener(Events.ON_CLICK,
 				new EventListener<Event>() {
@@ -65,7 +67,8 @@ public abstract class Catalogo<Clase> extends Window {
 				});
 		pagineo = new Button();
 		pagineo.setTooltiptext("Presione para mostrar todos los registros en una sola lista, sin pagineo");
-		pagineo.setStyle("font-size: 11px ;width: 10px; height: 10px");
+		pagineo.setStyle("font-size: 11px ;width: 25px; height: 25px");
+		pagineo.setSrc("/public/imagenes/botones/pagineo.png");
 		pagineo.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 			@Override
 			public void onEvent(Event arg0) throws Exception {
@@ -150,25 +153,31 @@ public abstract class Catalogo<Clase> extends Window {
 				}
 			}
 		});
-		lsbCatalogo.setMultiple(false);
-		lsbCatalogo.setCheckmark(false);
-		lsbCatalogo.setMultiple(true);
-		lsbCatalogo.setCheckmark(true);
 
-		// if (catalogo) {
-		// this.setClosable(true);
-		// this.setWidth("80%");
-		// this.setTitle("Registros");
-		// this.appendChild(separador2);
-		// this.appendChild(lsbCatalogo);
-		// } else {
-		this.setWidth("auto");
-		this.setClosable(false);
-		this.appendChild(separador1);
-		this.appendChild(box);
-		this.appendChild(separador2);
-		this.appendChild(lsbCatalogo);
-		// }
+		if (emergente) {
+			this.setClosable(true);
+			this.setWidth("80%");
+			this.setTitle("Registros");
+			this.appendChild(separador2);
+			this.appendChild(lsbCatalogo);
+			this.exportador.setVisible(false);
+			this.pagineo.setVisible(false);
+			lsbCatalogo.setMultiple(true);
+			lsbCatalogo.setCheckmark(true);
+			lsbCatalogo.setMultiple(false);
+			lsbCatalogo.setCheckmark(false);
+		} else {
+			this.setWidth("auto");
+			this.setClosable(false);
+			this.appendChild(separador1);
+			this.appendChild(box);
+			this.appendChild(separador2);
+			this.appendChild(lsbCatalogo);
+			lsbCatalogo.setMultiple(false);
+			lsbCatalogo.setCheckmark(false);
+			lsbCatalogo.setMultiple(true);
+			lsbCatalogo.setCheckmark(true);
+		}
 	}
 
 	protected void pagineo() {
@@ -185,6 +194,8 @@ public abstract class Catalogo<Clase> extends Window {
 	}
 
 	protected void exportar() {
+		if(lsbCatalogo.getItemCount() !=0)
+		{
 		String s = ";";
 		final StringBuffer sb = new StringBuffer();
 
@@ -214,6 +225,9 @@ public abstract class Catalogo<Clase> extends Window {
 						}
 					}
 				});
+		}
+		else
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
 	}
 
 	/**

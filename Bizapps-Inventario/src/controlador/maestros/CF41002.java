@@ -82,7 +82,7 @@ public class CF41002 extends CGenerico {
 		mostrarCatalogo();
 
 		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		buscadorUMF41002 = new BuscadorUDC("De UM:", 2, listF0005, true) {
+		buscadorUMF41002 = new BuscadorUDC("De UM", 2, listF0005, true,true,true) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "01",
@@ -90,7 +90,7 @@ public class CF41002 extends CGenerico {
 			}
 		};
 
-		buscadorRUMF41002 = new BuscadorUDC("A UM:", 2, listF0005, true) {
+		buscadorRUMF41002 = new BuscadorUDC("A UM", 2, listF0005,true,true,true) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "01",
@@ -444,7 +444,7 @@ public class CF41002 extends CGenerico {
 	public void mostrarCatalogo() {
 		final List<F41002> listF41002 = servicioF41002.buscarTodosOrdenados();
 		catalogoF41002 = new Catalogo<F41002>(divCatalogoF41002, "F41002",
-				listF41002, "Numero articulo", "Descripcion", "De UM",
+				listF41002,false,true,true, "Numero articulo", "Descripcion", "De UM",
 				"Cantidad", "A UM", "Codigo estructura", "Excluir de OV",
 				"Excluir de OC", "Sec UM ventas", "Sec UM compras") {
 
@@ -506,8 +506,8 @@ public class CF41002 extends CGenerico {
 	@Listen("onClick = #btnBuscarF4101")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101, "F4101",
-				listF4101, "Codigo", "Descripcion") {
+		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101,"F4101",
+				listF4101, true,true,true, "Codigo", "Descripcion") {
 
 			@Override
 			protected List<F4101> buscar(List<String> valores) {
@@ -533,9 +533,6 @@ public class CF41002 extends CGenerico {
 				return registros;
 			}
 		};
-		catalogoF4101.setClosable(true);
-		catalogoF4101.setWidth("80%");
-		catalogoF4101.setTitle("Registros");
 		catalogoF4101.setParent(divCatalogoF4101);
 		catalogoF4101.doModal();
 	}
