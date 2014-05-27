@@ -252,7 +252,6 @@ public class CArbol extends CGenerico {
 					contenido = new Include();
 					contenido.setSrc(null);
 					contenido.setSrc(ruta);
-
 					Tab newTab = new Tab(arbolItem.getNombre());
 					newTab.setSelected(true);
 					Tabpanel newTabpanel = new Tabpanel();
@@ -262,18 +261,18 @@ public class CArbol extends CGenerico {
 					tabs.add(newTab);
 					}
 				}
-				} else {
+				 else {
 					taba.setSelected(true);
 				}
 			}
 		}
 		
-		
+		}
 		tabBox2 = tabBox;
 		contenido2 = contenido;
 		tab2 = tab;
 	}
-
+	
 	public void abrirVentanas(Arbol arbolItem) {
 		boolean abrir = true;
 		Tab taba = new Tab();
