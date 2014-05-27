@@ -1,7 +1,7 @@
 <zk>
 <style src="../public/Estilo.css" />
 	<div id="divVF40203" apply="controlador.maestros.CF40203">
-		<groupbox width="auto" mold="3d" title="Trabajo con Reglas de Actividad de Órdenes">
+		<groupbox width="auto" mold="3d" title="Trabajo con Reglas de Actividad de Órdenes (VF40203)">
 		<div id="botoneraF40203" />
 		<groupbox id="gpxRegistro" width="auto" title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"

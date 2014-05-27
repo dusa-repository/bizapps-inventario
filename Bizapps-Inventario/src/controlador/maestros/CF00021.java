@@ -93,7 +93,7 @@ public class CF00021 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF00021, "Numeros Siguientes");
+				cerrarVentana(divVF00021, "Número Siguiente por Compañia/Año Fiscal");
 				arbol.booleanoApg ();
 				
 			}
@@ -373,7 +373,7 @@ public class CF00021 extends CGenerico {
 	
 	public void mostrarCatalogo() {
 		final List<F00021> compannias = servicioF00021.buscarTodosOrdenados();
-		catalogo = new Catalogo<F00021>(catalogoF00021, "F00021", compannias, 
+		catalogo = new Catalogo<F00021>(catalogoF00021, "F00021", compannias,false,true,true,
 				"Compañia Documento", "Tipo Documento", "Igual aTipo Doc", 
 				"Digito Incrus", "Digito Verif", "Número Siguiente", 
 				"Reinicio Automático") {
@@ -424,7 +424,7 @@ public class CF00021 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista, "Codigo",
+		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista ,false,true,true, "Codigo",
 				"Nombre", "Nº Periodo", "Patron", "Inicio año Fiscal",
 				"Periodo LM", "Inicio año C/P", "Periodo C/P",
 				"Inicio año C/C", "Periodo C/C") {
@@ -479,9 +479,6 @@ public class CF00021 extends CGenerico {
 
 			}
 		};
-		catalogoF0010.setClosable(true);
-		catalogoF0010.setWidth("80%");
-		catalogoF0010.setTitle("Registros");
 		catalogoF0010.setParent(divCatalogoF0010);
 		catalogoF0010.doModal();
 	}
