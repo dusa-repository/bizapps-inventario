@@ -3,7 +3,7 @@
 		contentStyle="overflow:auto" apply="arbol.CArbol">
 		<style src="/public/Estilo.css" />
 		<script src="/public/progress.js" />
-		<borderlayout height="115%" width="115%"
+		<borderlayout height="100%" width="100%"
 			style="background-color:#fff;">
 			<north height="5em">
 				<div vflex="1" hflex="1" class="banner">
