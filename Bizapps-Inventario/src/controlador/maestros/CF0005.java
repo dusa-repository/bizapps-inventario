@@ -404,7 +404,7 @@ public class CF0005 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0005>(catalogoF0005, "F0005", listF0005, "SY",
+		catalogo = new Catalogo<F0005>(catalogoF0005, "F0005", listF0005,false, false, false, "SY",
 				"RT", "KY", "Descripcion 01", "Descripcion 02",
 				"Gestion Especial", "Codificacion Fija") {
 
@@ -454,7 +454,7 @@ public class CF0005 extends CGenerico {
 	@Listen("onClick = #btnBuscarF0004")
 	public void mostrarCatalogoF0004() {
 		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
-		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "F0004", listF0004, "SY",
+		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "F0004", listF0004, true, false, false,"SY",
 				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
 
 			@Override

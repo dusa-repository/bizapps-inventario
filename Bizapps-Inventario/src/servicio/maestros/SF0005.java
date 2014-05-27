@@ -45,4 +45,8 @@ public class SF0005 {
 		return f0005DAO.findOne(clave);
 	}
 
+	public List<F0005> buscarParaUDCOrdenados(String string, String string2) {
+		return f0005DAO.findByIdDrsyAndIdDrrtOrderByIdDrsyAscIdDrrtAsc(string, string2);
+	}
+
 }

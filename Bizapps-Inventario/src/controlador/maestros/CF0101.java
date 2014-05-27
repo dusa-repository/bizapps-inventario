@@ -628,7 +628,7 @@ public class CF0101 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0101>(catalogoF0101, "F0013", listF0101,
+		catalogo = new Catalogo<F0101>(catalogoF0101, "F0013", listF0101, false, false, false,
 				"Nº direccion", "Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
 
@@ -675,7 +675,7 @@ public class CF0101 extends CGenerico {
 	public void mostrarCatalogoF0004() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
 		catalogoF0006 = new Catalogo<F0006>(catalogoF0006F0101, "F0006",
-				unidades, "Unidad Negocio", "Descripcion", "Nivel det", "Cta",
+				unidades, true, false, false, "Unidad Negocio", "Descripcion", "Nivel det", "Cta",
 				"Tipo UN", "LM Auxiliar Inactivo", "Mto Cons", "CAT 01",
 				"CAT 02", "CAT 03", "CAT 04", "CAT 05", "CAT 06") {
 
@@ -755,7 +755,7 @@ public class CF0101 extends CGenerico {
 	private void cargarBuscadores() {
 
 		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		buscadorAT1 = new BuscadorUDC("Tipo busqueda", 10, listF0005, true) {
+		buscadorAT1 = new BuscadorUDC("Tipo busqueda", 10, listF0005, true,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -764,7 +764,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAT1.appendChild(buscadorAT1);
 
-		buscadorAT2 = new BuscadorUDC("Compen c/c y c/p", 1, listF0005, false) {
+		buscadorAT2 = new BuscadorUDC("Compen c/c y c/p", 1, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -774,7 +774,7 @@ public class CF0101 extends CGenerico {
 		divBuscadorAT2.appendChild(buscadorAT2);
 
 		buscadorATP = new BuscadorUDC("Cuentas por Pagar Y/N/M", 1, listF0005,
-				false) {
+				false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -783,7 +783,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorATP.appendChild(buscadorATP);
 
-		buscadorCM = new BuscadorUDC("Mensaje credito", 2, listF0005, false) {
+		buscadorCM = new BuscadorUDC("Mensaje credito", 2, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -792,7 +792,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorCM.appendChild(buscadorCM);
 
-		buscadorLNGP = new BuscadorUDC("Idioma", 2, listF0005, false) {
+		buscadorLNGP = new BuscadorUDC("Idioma", 2, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -802,7 +802,7 @@ public class CF0101 extends CGenerico {
 		divBuscadorLNGP.appendChild(buscadorLNGP);
 
 		buscadorMPGP = new BuscadorUDC("Aprobaciones Grupo Empl", 5, listF0005,
-				false) {
+				false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -812,7 +812,7 @@ public class CF0101 extends CGenerico {
 		divBuscadorMPGP.appendChild(buscadorMPGP);
 
 		buscadorSIC = new BuscadorUDC("Clasificacion industrial", 10,
-				listF0005, false) {
+				listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -822,7 +822,7 @@ public class CF0101 extends CGenerico {
 		divBuscadorSIC.appendChild(buscadorSIC);
 
 		buscadorTAXC = new BuscadorUDC("Cd persona/compañia", 1, listF0005,
-				false) {
+				false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -831,7 +831,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorTAXC.appendChild(buscadorTAXC);
 
-		buscadorAC01 = new BuscadorUDC("Cd Categoria 1", 3, listF0005, false) {
+		buscadorAC01 = new BuscadorUDC("Cd Categoria 1", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -840,7 +840,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC01.appendChild(buscadorAC01);
 
-		buscadorAC02 = new BuscadorUDC("Cd Categoria 02", 3, listF0005, false) {
+		buscadorAC02 = new BuscadorUDC("Cd Categoria 02", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -849,7 +849,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC02.appendChild(buscadorAC02);
 
-		buscadorAC03 = new BuscadorUDC("Cd Categoria 03", 3, listF0005, false) {
+		buscadorAC03 = new BuscadorUDC("Cd Categoria 03", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -858,7 +858,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC03.appendChild(buscadorAC03);
 
-		buscadorAC04 = new BuscadorUDC("Cd Categoria 04", 3, listF0005, false) {
+		buscadorAC04 = new BuscadorUDC("Cd Categoria 04", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -867,7 +867,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC04.appendChild(buscadorAC04);
 
-		buscadorAC05 = new BuscadorUDC("Cd Categoria 05", 3, listF0005, false) {
+		buscadorAC05 = new BuscadorUDC("Cd Categoria 05", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -876,7 +876,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC05.appendChild(buscadorAC05);
 
-		buscadorAC06 = new BuscadorUDC("Cd Categoria 06", 3, listF0005, false) {
+		buscadorAC06 = new BuscadorUDC("Cd Categoria 06", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -885,7 +885,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC06.appendChild(buscadorAC06);
 
-		buscadorAC07 = new BuscadorUDC("Cd Categoria 07", 3, listF0005, false) {
+		buscadorAC07 = new BuscadorUDC("Cd Categoria 07", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -894,7 +894,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC07.appendChild(buscadorAC07);
 
-		buscadorAC08 = new BuscadorUDC("Cd Categoria 08", 3, listF0005, false) {
+		buscadorAC08 = new BuscadorUDC("Cd Categoria 08", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -903,7 +903,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC08.appendChild(buscadorAC08);
 
-		buscadorAC09 = new BuscadorUDC("Cd Categoria 09", 3, listF0005, false) {
+		buscadorAC09 = new BuscadorUDC("Cd Categoria 09", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -912,7 +912,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC09.appendChild(buscadorAC09);
 
-		buscadorAC10 = new BuscadorUDC("Cd Categoria 10", 3, listF0005, false) {
+		buscadorAC10 = new BuscadorUDC("Cd Categoria 10", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -921,7 +921,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC10.appendChild(buscadorAC10);
 
-		buscadorAC11 = new BuscadorUDC("Cd Categoria 11", 3, listF0005, false) {
+		buscadorAC11 = new BuscadorUDC("Cd Categoria 11", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -930,7 +930,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC11.appendChild(buscadorAC11);
 
-		buscadorAC12 = new BuscadorUDC("Cd Categoria 12", 3, listF0005, false) {
+		buscadorAC12 = new BuscadorUDC("Cd Categoria 12", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -939,7 +939,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC12.appendChild(buscadorAC12);
 
-		buscadorAC13 = new BuscadorUDC("Cd Categoria 13", 3, listF0005, false) {
+		buscadorAC13 = new BuscadorUDC("Cd Categoria 13", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -948,7 +948,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC13.appendChild(buscadorAC13);
 
-		buscadorAC14 = new BuscadorUDC("Cd Categoria 14", 3, listF0005, false) {
+		buscadorAC14 = new BuscadorUDC("Cd Categoria 14", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -957,7 +957,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC14.appendChild(buscadorAC14);
 
-		buscadorAC15 = new BuscadorUDC("Cd Categoria 15", 3, listF0005, false) {
+		buscadorAC15 = new BuscadorUDC("Cd Categoria 15", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -966,7 +966,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC15.appendChild(buscadorAC15);
 
-		buscadorAC16 = new BuscadorUDC("Cd Categoria 16", 3, listF0005, false) {
+		buscadorAC16 = new BuscadorUDC("Cd Categoria 16", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -975,7 +975,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC16.appendChild(buscadorAC16);
 
-		buscadorAC17 = new BuscadorUDC("Cd Categoria 17", 3, listF0005, false) {
+		buscadorAC17 = new BuscadorUDC("Cd Categoria 17", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -984,7 +984,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC17.appendChild(buscadorAC17);
 
-		buscadorAC18 = new BuscadorUDC("Cd Categoria 18", 3, listF0005, false) {
+		buscadorAC18 = new BuscadorUDC("Cd Categoria 18", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -993,7 +993,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC18.appendChild(buscadorAC18);
 
-		buscadorAC19 = new BuscadorUDC("Cd Categoria 19", 3, listF0005, false) {
+		buscadorAC19 = new BuscadorUDC("Cd Categoria 19", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1002,7 +1002,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC19.appendChild(buscadorAC19);
 
-		buscadorAC20 = new BuscadorUDC("Cd Categoria 20", 3, listF0005, false) {
+		buscadorAC20 = new BuscadorUDC("Cd Categoria 20", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1011,7 +1011,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC20.appendChild(buscadorAC20);
 
-		buscadorAC21 = new BuscadorUDC("Cd Categoria 21", 3, listF0005, false) {
+		buscadorAC21 = new BuscadorUDC("Cd Categoria 21", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1020,7 +1020,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC21.appendChild(buscadorAC21);
 
-		buscadorAC22 = new BuscadorUDC("Cd Categoria 22", 3, listF0005, false) {
+		buscadorAC22 = new BuscadorUDC("Cd Categoria 22", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1029,7 +1029,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC22.appendChild(buscadorAC22);
 
-		buscadorAC23 = new BuscadorUDC("Cd Categoria 23", 3, listF0005, false) {
+		buscadorAC23 = new BuscadorUDC("Cd Categoria 23", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1038,7 +1038,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC23.appendChild(buscadorAC23);
 
-		buscadorAC24 = new BuscadorUDC("Cd Categoria 24", 3, listF0005, false) {
+		buscadorAC24 = new BuscadorUDC("Cd Categoria 24", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1047,7 +1047,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC24.appendChild(buscadorAC24);
 
-		buscadorAC25 = new BuscadorUDC("Cd Categoria 25", 3, listF0005, false) {
+		buscadorAC25 = new BuscadorUDC("Cd Categoria 25", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1056,7 +1056,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC25.appendChild(buscadorAC25);
 
-		buscadorAC26 = new BuscadorUDC("Cd Categoria 26", 3, listF0005, false) {
+		buscadorAC26 = new BuscadorUDC("Cd Categoria 26", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1065,7 +1065,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC26.appendChild(buscadorAC26);
 
-		buscadorAC27 = new BuscadorUDC("Cd Categoria 27", 3, listF0005, false) {
+		buscadorAC27 = new BuscadorUDC("Cd Categoria 27", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1074,7 +1074,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC27.appendChild(buscadorAC27);
 
-		buscadorAC28 = new BuscadorUDC("Cd Categoria 28", 3, listF0005, false) {
+		buscadorAC28 = new BuscadorUDC("Cd Categoria 28", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1083,7 +1083,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC28.appendChild(buscadorAC28);
 
-		buscadorAC29 = new BuscadorUDC("Cd Categoria 29", 3, listF0005, false) {
+		buscadorAC29 = new BuscadorUDC("Cd Categoria 29", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -1092,7 +1092,7 @@ public class CF0101 extends CGenerico {
 		};
 		divBuscadorAC29.appendChild(buscadorAC29);
 
-		buscadorAC30 = new BuscadorUDC("Cd Categoria 30", 3, listF0005, false) {
+		buscadorAC30 = new BuscadorUDC("Cd Categoria 30", 3, listF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",

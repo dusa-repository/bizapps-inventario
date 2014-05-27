@@ -105,15 +105,17 @@ public class CF0010 extends CGenerico {
 		txtCCCOF0010.setFocus(true);
 		mostrarCatalogo();
 		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listF0005,
-				true) {
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listaF0005,
+				true, false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
 						buscadorDPNT.obtenerCaja());
 			}
 		};
-		buscadorCALD = new BuscadorUDC("Numero periodos", 2, listF0005, false) {
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","01");
+		buscadorCALD = new BuscadorUDC("Numero periodos", 2, listaF0005, false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "01",
@@ -121,7 +123,7 @@ public class CF0010 extends CGenerico {
 			}
 		};
 		buscadorAN8 = new BuscadorUDC("Nº direccion compañia", 17, listF0005,
-				false) {
+				false,false,false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "01",
@@ -483,7 +485,7 @@ public class CF0010 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0010>(catalogoF0010, "F0010", lista, "Codigo",
+		catalogo = new Catalogo<F0010>(catalogoF0010, "F0010", lista, false, false, false, "Codigo",
 				"Nombre", "Nº Periodo", "Patron fechas", "Inicio año Fiscal",
 				"Periodo LM", "Inicio año C/P", "Periodo C/P",
 				"Inicio año C/C", "Periodo C/C", "Periodo financiero") {
@@ -555,7 +557,7 @@ public class CF0010 extends CGenerico {
 	public void mostrarCatalogoMoneda() throws IOException {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
 		catalogoM = new Catalogo<F0013>(catalogoMonedaF0010, "F0013",
-				listF0013, "Codigo", "Descripcion", "Vlslz", "Rutina Cheques") {
+				listF0013, true, false, false,"Codigo", "Descripcion", "Vlslz", "Rutina Cheques") {
 
 			@Override
 			protected List<F0013> buscar(List<String> valores) {
