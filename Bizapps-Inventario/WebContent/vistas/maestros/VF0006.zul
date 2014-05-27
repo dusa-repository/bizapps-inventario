@@ -12,9 +12,9 @@
 				<separator />
 				<grid width="100%">
 				<columns visible="false">
-					<column label="" width="25%" />
+					<column label="" width="19%" />
 					<column label="" width="45%" />
-					<column label="" width="30%" />
+					<column label="" width="37%" />
 				</columns>
 				<rows>
 				<row>
@@ -43,10 +43,10 @@
 			<tabpanel>
 			<grid width="100%">
 				<columns visible="false">
-					<column label="" width="25%" />
+					<column label="" width="19%" />
 					<column label="" width="45%" />
 					<column label="" width="10%" />
-					<column label="" width="20%" />
+					<column label="" width="27%" />
 				</columns>
 				<rows>
 					<row>
@@ -91,7 +91,7 @@
  							<textbox id="txtSBLIF0006" hflex="1" maxlength="1" 
  								tooltiptext="Ingrese el Cógigo Inactivo LM auxiliar" /> -->
 						<cell colspan="2">
-							<div id="divbuscadorSBLI" hflex="1" />
+							<div id="divbuscadorSBLI" hflex="1"/>
 						</cell>
 							<hbox />
 					</row>
@@ -110,9 +110,9 @@
 			<tabpanel>
 			<grid width="100%">
 				<columns visible="false">
-					<column label="" width="25%" />
+					<column label="" width="19%" />
 					<column label="" width="45%" />
-					<column label="" width="30%" />
+					<column label="" width="37%" />
 				</columns>
 				<rows>
 					<row>
@@ -166,7 +166,7 @@
 			<tabpanel>
 			<grid width="100%">
 				<columns visible="false">
-					<column label="" width="25%" />
+					<column label="" width="20%" />
 					<column label="" width="45%" />
 					<column label="" width="30%" />
 				</columns>
@@ -237,7 +237,7 @@
 			<tabpanel>
 			<grid width="100%">
 				<columns visible="false">
-					<column label="" width="25%" />
+					<column label="" width="20%" />
 					<column label="" width="45%" />
 					<column label="" width="30%" />
 				</columns>
@@ -308,7 +308,7 @@
 			<tabpanel>
 			<grid width="100%">
 				<columns visible="false">
-					<column label="" width="25%" />
+					<column label="" width="20%" />
 					<column label="" width="45%" />
 					<column label="" width="30%" />
 				</columns>
