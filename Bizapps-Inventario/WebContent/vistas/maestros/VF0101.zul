@@ -1,7 +1,7 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVF0101" apply="controlador.maestros.CF0101">
-		<groupbox width="auto" mold="3d" title="Trabajo con Direcciones">
+		<groupbox width="auto" mold="3d" title="Trabajo con Direcciones (VF0101)">
 			<div id="botoneraF0101" />
 			<separator />
 			<groupbox id="gpxRegistroF0101" width="auto" title="" open="false">

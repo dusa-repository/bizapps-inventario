@@ -195,7 +195,7 @@ public class CF0010 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0010, "Empresa");
+				cerrarVentana(divVF0010, "Trabajo con Compañias");
 			}
 
 			@Override

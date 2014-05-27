@@ -73,7 +73,7 @@ public class CF0013 extends CGenerico {
 			
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0013, "Moneda");
+				cerrarVentana(divVF0013, "Trabajo con Codigo de Monedas y Tarifas");
 
 			}
 			

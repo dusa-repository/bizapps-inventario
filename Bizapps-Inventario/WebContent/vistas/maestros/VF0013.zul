@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVF0013" apply="controlador.maestros.CF0013">
 		<groupbox width="auto" mold="3d"
-			title="Trabajo con Codigo de Monedas y Tarifas">
+			title="Trabajo con Codigo de Monedas y Tarifas (VF0013)">
 			<div id="botoneraF0013" />
 			<separator />
 			<groupbox id="gpxRegistroF0013" width="auto" title="" open="false">
