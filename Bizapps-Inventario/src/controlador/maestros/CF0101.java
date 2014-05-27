@@ -344,7 +344,7 @@ public class CF0101 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0101, "Direccion");
+				cerrarVentana(divVF0101, "Trabajo con Direcciones");
 
 			}
 
