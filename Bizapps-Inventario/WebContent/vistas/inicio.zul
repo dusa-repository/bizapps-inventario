@@ -1,27 +1,46 @@
 <zk>
-	<window title="" border="0" height="100%"
+	<window title="" border="0" height="100%" width="100%"
 		contentStyle="overflow:auto" apply="arbol.CArbol">
 		<style src="/public/Estilo.css" />
-			<script src="/public/progress.js" />
-		<borderlayout height="100%" style="background-color:#fff;">
-			<north height="4,5em">
+		<script src="/public/progress.js" />
+		<borderlayout height="115%" width="115%"
+			style="background-color:#fff;">
+			<north height="5em">
 				<div vflex="1" hflex="1" class="banner">
-					<hbox vflex="1" hflex="1" align="center">
+					<hbox vflex="1" hflex="1" align="rigth">
 						<div align="left" class="banner-head">
-								<image
-									src="public/imagenes/generales/inventario1.png" height="3em"
-									width="5em" />
+							<image
+								src="public/imagenes/generales/informatica.png" height="3em"
+								width="5em" />
 						</div>
 						<div align="center" hflex="1">
 							<label value="Sistema de Inventario BIZAPPS"
 								class="banner-head" />
 						</div>
-						<div>
-							<image
-								src="public/imagenes/generales/inventario.PNG" height="3em"
-								width="7em" />
+						<div align="rigth" hflex="1">
+							<hbox>
+								<image width="60px" height="60px"
+									style="max-height:70px;max-width:70px;margin-right:10px;"
+									src="public/imagenes/generales/user.png">
+								</image>
+								<vbox>
+									<image id="imagenes" width="30px"
+										height="30px" />
+								</vbox>
+								<vbox>
+									<label style="color: white"
+										value="Usuario: Administrador" />
+									<a style="color: white">
+										<label value="Cerrar Sesion" />
+									</a>
+									<a style="color: white">
+										<label value="Editar Cuenta" />
+									</a>
+								</vbox>
+							</hbox>
 						</div>
 					</hbox>
+
 				</div>
 				<!-- 				<hbox hflex="1"> 
 					<vbox> 
@@ -68,7 +87,7 @@
 			</north>
 			<west title="Menú" id="west" size="20%" splittable="true"
 				collapsible="true" autoscroll="true">
-				<tree id="arbolMenu" width="99%"  zclass = "z-vfiletree" >
+				<tree id="arbolMenu" width="99%" zclass="z-vfiletree">
 					<template name="model">
 						<treeitem context="menupopup">
 							<treerow>
@@ -110,10 +129,10 @@
 						</label>
 						</a> -->
 					<separator></separator>
-					<div class = "banner" >
-					<label style="padding-center:35%;"
-						value="© 2014 Elaborado por BIZAPPS,C.A. All Rights Reserved. Terms Privacy">
-					</label>
+					<div class="banner">
+						<label style="padding-center:35%;"
+							value="© 2014 Elaborado por BIZAPPS,C.A. All Rights Reserved. Terms Privacy">
+						</label>
 					</div>
 				</div>
 			</south>
