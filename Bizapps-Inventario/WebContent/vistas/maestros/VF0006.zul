@@ -2,7 +2,7 @@
 <style src="../public/Estilo.css" />
 	<div id="divVF0006" apply="controlador.maestros.CF0006">
 		<groupbox width="auto" mold="3d" 
-		title="Trabajo con Unidades de Negocio">
+		title="Trabajo con Unidades de Negocio (VF0006)">
 		<div id="botoneraF0006" />
 		<separator />
 		<groupbox id="gpxRegistro" width="auto" title="" open="false">

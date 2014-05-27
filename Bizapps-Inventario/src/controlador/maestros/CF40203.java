@@ -75,7 +75,7 @@ public class CF40203 extends CGenerico {
 		mostrarCatalogo();
 		List<F0005> listF0005DCTO = servicioF0005.buscarTodosOrdenados();
 		buscadorDCTO = new BuscadorUDC("Tipo Orden", 10,
-				listF0005DCTO, true) {
+				listF0005DCTO, true, true, true) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -84,7 +84,7 @@ public class CF40203 extends CGenerico {
 		};
 		List<F0005> listF0005NTYF = servicioF0005.buscarTodosOrdenados();
 		buscadorNTYF = new BuscadorUDC("Tipo Línea", 10,
-				listF0005NTYF, true) {
+				listF0005NTYF, true, true, true) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -129,7 +129,7 @@ public class CF40203 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF40203, "Reglas de Actividad");
+				cerrarVentana(divVF40203, "Trabajo con Reglas de Actividad de Órdenes");
 
 			}
 
@@ -418,7 +418,7 @@ public class CF40203 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F40203> actividades = servicioF40203.buscarTodosOrdenados();
-		catalogo = new Catalogo<F40203>(catalogoF40203, "F40203", actividades, 
+		catalogo = new Catalogo<F40203>(catalogoF40203, "F40203", actividades,false,true,true,
 				"Tipo Orden", "Tipo Línea", "Último estado", "Descripción", 
 				"Est sig", "Otros 1", "Otros 2", "Otros 3", "Otros 4" , "Otros 5", "LM (Y/M)") {
 

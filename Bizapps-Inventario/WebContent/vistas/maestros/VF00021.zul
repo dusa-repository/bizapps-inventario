@@ -2,7 +2,7 @@
 <style src="../public/Estilo.css" />
 	<div id="divVF00021" apply="controlador.maestros.CF00021">
 		<groupbox  mold="3d" width="auto"
-		title="Número Siguiente por Compañia/Año Fiscal">
+		title="Número Siguiente por Compañia/Año Fiscal (VF00021)">
 		<div id="botoneraF00021" />
 		<separator />
 			<groupbox id="gpxRegistro" width="auto" title="" open="false">
