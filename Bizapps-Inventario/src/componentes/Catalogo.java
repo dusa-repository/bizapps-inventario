@@ -3,6 +3,8 @@ package componentes;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.maestros.F0004;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -11,8 +13,10 @@ import org.zkoss.zk.ui.event.KeyEvent;
 import org.zkoss.zul.Auxhead;
 import org.zkoss.zul.Auxheader;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Div;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Hbox;
+import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
@@ -24,6 +28,7 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Vbox;
 import org.zkoss.zul.Window;
 
 public abstract class Catalogo<Clase> extends Window {
@@ -33,15 +38,20 @@ public abstract class Catalogo<Clase> extends Window {
 	Button exportador;
 	Button pagineo;
 	Mensaje msj = new Mensaje();
+	Textbox txtSY;
+	Label labelSYNombre;
+	Textbox txtRT;
+	Label labelRTNombre;
+	Label labelBuscado;
 
 	public Catalogo(final Component cGenerico, String titulo,
-			List<Clase> lista, boolean emergente, boolean udc,
-			boolean param2, String... campos) {
+			List<Clase> lista, boolean emergente, boolean udc, boolean param2,
+			String... campos) {
 		super("", "2", false);
 		this.setId("cmpCatalogo" + titulo);
 		this.setStyle("background-header:#FF7925; background: #f4f2f2");
 		// this.setWidth("auto");
-		crearLista(lista, campos, emergente);
+		crearLista(lista, campos, emergente, udc);
 		lsbCatalogo.addEventListener(Events.ON_SELECT,
 				new EventListener<Event>() {
 
@@ -52,7 +62,8 @@ public abstract class Catalogo<Clase> extends Window {
 				});
 	}
 
-	public void crearLista(List<Clase> lista, String[] campos, boolean emergente) {
+	public void crearLista(List<Clase> lista, String[] campos,
+			boolean emergente, boolean udc) {
 		exportador = new Button();
 		exportador.setTooltiptext("Exportar los Datos como un Archivo");
 		exportador.setStyle("font-size: 11px ;width: 25px; height: 25px");
@@ -76,16 +87,6 @@ public abstract class Catalogo<Clase> extends Window {
 			}
 		});
 		Hbox box = new Hbox();
-		Space espacio = new Space();
-		espacio.setHeight("10px");
-		box.appendChild(espacio);
-		box.appendChild(exportador);
-		box.appendChild(pagineo);
-		box.setWidth("100%");
-		box.setAlign("end");
-		box.setHeight("12px");
-		box.setWidths("96%,2%,2%");
-
 		final Separator separador1 = new Separator();
 		final Separator separador2 = new Separator();
 		lsbCatalogo = new Listbox();
@@ -158,15 +159,65 @@ public abstract class Catalogo<Clase> extends Window {
 			this.setClosable(true);
 			this.setWidth("80%");
 			this.setTitle("Registros");
+			if (udc) {
+				Div div = new Div();
+				Hbox vbox1 = new Hbox();
+				vbox1.setWidth("100%");
+				vbox1.setHeight("12px");
+				vbox1.setAlign("start");
+				vbox1.setPack("start");
+				labelSYNombre = new Label("Cd producto: ");
+				labelSYNombre.setClass("etiqueta");
+				vbox1.appendChild(labelSYNombre);
+				txtSY = new Textbox();
+				txtSY.setDisabled(true);
+				Space space = new Space();
+				space.setWidth("9px");
+				vbox1.appendChild(space);
+				vbox1.appendChild(txtSY);
+				vbox1.appendChild(new Label());
+				Hbox vbox2 = new Hbox();
+				vbox2.setWidth("100%");
+				vbox2.setHeight("12px");
+				labelRTNombre = new Label("Cd def Usuario: ");
+				labelRTNombre.setClass("etiqueta");
+				vbox2.appendChild(labelRTNombre);
+				txtRT = new Textbox();
+				txtRT.setDisabled(true);
+				vbox2.appendChild(txtRT);
+				labelBuscado = new Label();
+				vbox2.appendChild(labelBuscado);
+				vbox2.setAlign("center");
+				vbox2.setPack("center");
+				Vbox cajaVertical = new Vbox();
+				cajaVertical.setWidth("100%");
+				cajaVertical.setAlign("center");
+				cajaVertical.setPack("center");
+				cajaVertical.appendChild(vbox1);
+				cajaVertical.appendChild(vbox2);
+				div.appendChild(cajaVertical);
+								
+				this.appendChild(div);
+			}
+
 			this.appendChild(separador2);
 			this.appendChild(lsbCatalogo);
-			this.exportador.setVisible(false);
-			this.pagineo.setVisible(false);
+//			this.exportador.setVisible(false);
+//			this.pagineo.setVisible(false);
 			lsbCatalogo.setMultiple(true);
 			lsbCatalogo.setCheckmark(true);
 			lsbCatalogo.setMultiple(false);
 			lsbCatalogo.setCheckmark(false);
 		} else {
+			Space espacio = new Space();
+			espacio.setHeight("10px");
+			box.appendChild(espacio);
+			box.appendChild(exportador);
+			box.appendChild(pagineo);
+			box.setWidth("100%");
+			box.setAlign("end");
+			box.setHeight("12px");
+			box.setWidths("96%,2%,2%");
 			this.setWidth("auto");
 			this.setClosable(false);
 			this.appendChild(separador1);
@@ -180,6 +231,12 @@ public abstract class Catalogo<Clase> extends Window {
 		}
 	}
 
+	public void settearCamposUdc(F0004 f004){
+		txtSY.setValue(f004.getId().getDtsy());
+		labelBuscado.setValue(f004.getDtdl01());
+		txtRT.setValue(f004.getId().getDtrt());
+	}
+	
 	protected void pagineo() {
 		if (lsbCatalogo.getPagingPosition().equals("top")) {
 			lsbCatalogo.setMold("default");
@@ -194,39 +251,38 @@ public abstract class Catalogo<Clase> extends Window {
 	}
 
 	protected void exportar() {
-		if(lsbCatalogo.getItemCount() !=0)
-		{
-		String s = ";";
-		final StringBuffer sb = new StringBuffer();
+		if (lsbCatalogo.getItemCount() != 0) {
+			String s = ";";
+			final StringBuffer sb = new StringBuffer();
 
-		for (Object head : lsbCatalogo.getHeads()) {
-			String h = "";
-			if (head instanceof Listhead) {
-				for (Object header : ((Listhead) head).getChildren()) {
-					h += ((Listheader) header).getLabel() + s;
-				}
-				sb.append(h + "\n");
-			}
-		}
-		for (Object item : lsbCatalogo.getItems()) {
-			String i = "";
-			for (Object cell : ((Listitem) item).getChildren()) {
-				i += ((Listcell) cell).getLabel() + s;
-			}
-			sb.append(i + "\n");
-		}
-		Messagebox.show(Mensaje.exportar, "Alerta", Messagebox.OK
-				| Messagebox.CANCEL, Messagebox.QUESTION,
-				new org.zkoss.zk.ui.event.EventListener<Event>() {
-					public void onEvent(Event evt) throws InterruptedException {
-						if (evt.getName().equals("onOK")) {
-							Filedownload.save(sb.toString().getBytes(),
-									"text/plain", "datos.csv");
-						}
+			for (Object head : lsbCatalogo.getHeads()) {
+				String h = "";
+				if (head instanceof Listhead) {
+					for (Object header : ((Listhead) head).getChildren()) {
+						h += ((Listheader) header).getLabel() + s;
 					}
-				});
-		}
-		else
+					sb.append(h + "\n");
+				}
+			}
+			for (Object item : lsbCatalogo.getItems()) {
+				String i = "";
+				for (Object cell : ((Listitem) item).getChildren()) {
+					i += ((Listcell) cell).getLabel() + s;
+				}
+				sb.append(i + "\n");
+			}
+			Messagebox.show(Mensaje.exportar, "Alerta", Messagebox.OK
+					| Messagebox.CANCEL, Messagebox.QUESTION,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event evt)
+								throws InterruptedException {
+							if (evt.getName().equals("onOK")) {
+								Filedownload.save(sb.toString().getBytes(),
+										"text/plain", "datos.csv");
+							}
+						}
+					});
+		} else
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
 	}
 

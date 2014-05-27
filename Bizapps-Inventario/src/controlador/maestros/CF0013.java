@@ -308,7 +308,7 @@ public class CF0013 extends CGenerico {
 	
 	public void mostrarCatalogo() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0013>(catalogoF0013, "F0013", listF0013, "Codigo moneda",
+		catalogo = new Catalogo<F0013>(catalogoF0013, "F0013", listF0013, false, false, false, "Codigo moneda",
 				"Descripcion", "Vlslz", "Rutina cheques") {
 
 			@Override
