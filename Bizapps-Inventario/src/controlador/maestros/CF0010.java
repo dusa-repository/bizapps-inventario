@@ -589,9 +589,6 @@ public class CF0010 extends CGenerico {
 				return registros;
 			}
 		};
-		catalogoM.setClosable(true);
-		catalogoM.setWidth("80%");
-		catalogoM.setTitle("Registros");
 		catalogoM.setParent(catalogoMonedaF0010);
 		catalogoM.doModal();
 	}
