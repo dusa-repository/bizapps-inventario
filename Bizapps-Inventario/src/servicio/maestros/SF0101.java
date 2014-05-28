@@ -30,4 +30,8 @@ public class SF0101 {
 	public void eliminarUno(long clave) {
 		f0101DAO.delete(clave);
 	}
+
+	public F0101 buscar(long parseLong) {
+		return f0101DAO.findOne(parseLong);
+	}
 }
