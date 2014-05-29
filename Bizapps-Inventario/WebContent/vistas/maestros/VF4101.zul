@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVF4101">
 		<groupbox width="auto" mold="3d"
-			title="Trabajo con examinador de maestro de artículos">
+			title="Trabajo con examinador de maestro de artículos (VF4101)">
 			<div id="botoneraF4101" />
 			<separator />
 			<groupbox id="gpxRegistroF4101" width="auto" title=""

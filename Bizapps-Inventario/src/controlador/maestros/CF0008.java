@@ -168,32 +168,73 @@ public class CF0008 extends CGenerico {
 					String cdfq = "";
 					BigDecimal d01j = transformarGregorianoAJulia(dtbD01JF0008
 							.getValue());
-					BigDecimal d02j = transformarGregorianoAJulia(dtbD02JF0008
-							.getValue());
-					BigDecimal d03j = transformarGregorianoAJulia(dtbD03JF0008
-							.getValue());
-					BigDecimal d04j = transformarGregorianoAJulia(dtbD04JF0008
-							.getValue());
-					BigDecimal d05j = transformarGregorianoAJulia(dtbD05JF0008
-							.getValue());
-					BigDecimal d06j = transformarGregorianoAJulia(dtbD06JF0008
-							.getValue());
-					BigDecimal d07j = transformarGregorianoAJulia(dtbD07JF0008
-							.getValue());
-					BigDecimal d08j = transformarGregorianoAJulia(dtbD08JF0008
-							.getValue());
-					BigDecimal d09j = transformarGregorianoAJulia(dtbD09JF0008
-							.getValue());
-					BigDecimal d10j = transformarGregorianoAJulia(dtbD10JF0008
-							.getValue());
-					BigDecimal d11j = transformarGregorianoAJulia(dtbD11JF0008
-							.getValue());
-					BigDecimal d12j = transformarGregorianoAJulia(dtbD12JF0008
-							.getValue());
-					BigDecimal d13j = transformarGregorianoAJulia(dtbD13JF0008
-							.getValue());
-					BigDecimal d14j = transformarGregorianoAJulia(dtbD14JF0008
-							.getValue());
+					BigDecimal d02j = null;
+					BigDecimal d03j = null;
+					BigDecimal d04j = null;
+					BigDecimal d05j = null;
+					BigDecimal d06j = null;
+					BigDecimal d07j = null;
+					BigDecimal d08j = null;
+					BigDecimal d09j = null;
+					BigDecimal d10j = null;
+					BigDecimal d11j = null;
+					BigDecimal d12j = null;
+					BigDecimal d13j = null;
+					BigDecimal d14j = null;
+
+					if (dtbD02JF0008.getText().compareTo("") != 0) {
+						d02j = transformarGregorianoAJulia(dtbD02JF0008
+								.getValue());
+					}
+					if (dtbD03JF0008.getText().compareTo("") != 0) {
+						d03j = transformarGregorianoAJulia(dtbD03JF0008
+								.getValue());
+					}
+					if (dtbD04JF0008.getText().compareTo("") != 0) {
+						d04j = transformarGregorianoAJulia(dtbD04JF0008
+								.getValue());
+					}
+					if (dtbD05JF0008.getText().compareTo("") != 0) {
+						d05j = transformarGregorianoAJulia(dtbD05JF0008
+								.getValue());
+					}
+					if (dtbD06JF0008.getText().compareTo("") != 0) {
+						d06j = transformarGregorianoAJulia(dtbD06JF0008
+								.getValue());
+					}
+					if (dtbD07JF0008.getText().compareTo("") != 0) {
+						d07j = transformarGregorianoAJulia(dtbD07JF0008
+								.getValue());
+					}
+					if (dtbD08JF0008.getText().compareTo("") != 0) {
+						d08j = transformarGregorianoAJulia(dtbD08JF0008
+								.getValue());
+					}
+					if (dtbD09JF0008.getText().compareTo("") != 0) {
+						d09j = transformarGregorianoAJulia(dtbD09JF0008
+								.getValue());
+					}
+					if (dtbD10JF0008.getText().compareTo("") != 0) {
+						d10j = transformarGregorianoAJulia(dtbD10JF0008
+								.getValue());
+					}
+					if (dtbD11JF0008.getText().compareTo("") != 0) {
+						d11j = transformarGregorianoAJulia(dtbD11JF0008
+								.getValue());
+					}
+					if (dtbD12JF0008.getText().compareTo("") != 0) {
+						d12j = transformarGregorianoAJulia(dtbD12JF0008
+								.getValue());
+					}
+					if (dtbD13JF0008.getText().compareTo("") != 0) {
+						d13j = transformarGregorianoAJulia(dtbD13JF0008
+								.getValue());
+					}
+					if (dtbD14JF0008.getText().compareTo("") != 0) {
+						d14j = transformarGregorianoAJulia(dtbD14JF0008
+								.getValue());
+					}
+
 					F0008PK clave = new F0008PK();
 					clave.setCddtpn(dtpn);
 					clave.setCddfyj(dfyj);
@@ -392,6 +433,7 @@ public class CF0008 extends CGenerico {
 		gpxDatosF0008.setOpen(false);
 		gpxRegistroF0008.setOpen(true);
 		mostrarBotones(false);
+		txtDTPNF0008.setFocus(true);
 	}
 
 	@Listen("onOpen = #gpxDatosF0008")
@@ -450,29 +492,34 @@ public class CF0008 extends CGenerico {
 				return true;
 		}
 	}
-	
-	
+
+	/*ojo ya el UDC realiza esta validacion*/
 	@Listen("onChange = #txtDTPNF0008")
 	public boolean claveDTPNExiste() {
-		if (servicioF0008.buscarDTPN(txtDTPNF0008.getValue()).isEmpty()) {
-			msj.mensajeAlerta(Mensaje.claveRTNoEsta);
-			txtDTPNF0008.setFocus(true);
-			return true;
-		} else
+		if (servicioF0008.buscarDTPN(txtDTPNF0008.getValue()).size() != 0) {
 			return false;
+
+		} else {
+			if (txtDTPNF0008.getText().compareTo("") != 0) {
+				msj.mensajeAlerta(Mensaje.claveRTNoEsta);
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.camposVacios);
+				return true;
+			}
+		}
 	}
-	
-	
 
 	public void mostrarCatalogo() {
+
 		final List<F0008> listF0008 = servicioF0008.buscarTodosOrdenados();
 		catalogo = new Catalogo<F0008>(catalogoF0008, "F0008", listF0008,
-				"Patrón fecha", "Fecha inicial", "Fin periodo 01",
-				"Fin periodo 02", "Fin periodo 03", "Fin periodo 04",
-				"Fin periodo 05", "Fin periodo 06", "Fin periodo 07",
-				"Fin periodo 08", "Fin periodo 09", "Fin periodo 10",
-				"Fin periodo 11", "Fin periodo 12", "Fin periodo 13",
-				"Fin periodo 14") {
+				false, true, true, "Patrón fecha", "Fecha inicial",
+				"Fin periodo 01", "Fin periodo 02", "Fin periodo 03",
+				"Fin periodo 04", "Fin periodo 05", "Fin periodo 06",
+				"Fin periodo 07", "Fin periodo 08", "Fin periodo 09",
+				"Fin periodo 10", "Fin periodo 11", "Fin periodo 12",
+				"Fin periodo 13", "Fin periodo 14") {
 
 			@Override
 			protected List<F0008> buscar(List<String> valores) {
@@ -545,6 +592,7 @@ public class CF0008 extends CGenerico {
 					}
 				}
 				return lista;
+
 			}
 
 			@Override
@@ -587,5 +635,6 @@ public class CF0008 extends CGenerico {
 			}
 		};
 		catalogo.setParent(catalogoF0008);
+
 	}
 }

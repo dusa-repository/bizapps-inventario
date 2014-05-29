@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVF0008" apply="controlador.maestros.CF0008">
 		<groupbox width="auto" mold="3d"
-			title="Trabajo con patrones de fecha fiscal">
+			title="Trabajo con patrones de fecha fiscal (VF0008)">
 			<div id="botoneraF0008" />
 			<separator />
 			<groupbox id="gpxRegistroF0008" width="auto" title=""
@@ -27,9 +27,10 @@
 								</label>
 							</hbox>
 							<textbox id="txtDTPNF0008" hflex="1"
-								maxlength="100"
+								tabindex="1" maxlength="100"
 								tooltiptext="Seleccione del Catalogo el Codigo del Patron de Fecha Fiscal" />
 							<button id="btnBuscarF0008" label=""
+								tabindex="2"
 								tooltiptext="Catalogo de Codigos de Patrones de Fechas fiscales"
 								image="/public/imagenes/botones/buscar.png" />
 						</row>
@@ -43,7 +44,7 @@
 								</label>
 							</hbox>
 							<datebox readonly="true" width="100%"
-								id="dtbDFYJF0008" format="dd-MM-yyyy"
+								tabindex="3" id="dtbDFYJF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha de Inicio del año fiscal" />
 						</row>
 					</rows>
@@ -74,14 +75,14 @@
 								</label>
 							</hbox>
 							<datebox readonly="true" width="100%"
-								id="dtbD01JF0008" format="dd-MM-yyyy"
+								tabindex="4" id="dtbD01JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 1" />
 
 							<label class="etiqueta" value="8"
 								style="margin-left:65px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD08JF0008" format="dd-MM-yyyy"
+								tabindex="11" id="dtbD08JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 8" />
 						</row>
 						<row>
@@ -89,14 +90,14 @@
 								style="margin-left:25px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD02JF0008" format="dd-MM-yyyy"
+								tabindex="5" id="dtbD02JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 2" />
 
 							<label class="etiqueta" value="9"
 								style="margin-left:65px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD09JF0008" format="dd-MM-yyyy"
+								tabindex="12" id="dtbD09JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 9" />
 						</row>
 						<row>
@@ -104,14 +105,14 @@
 								style="margin-left:25px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD03JF0008" format="dd-MM-yyyy"
+								tabindex="6" id="dtbD03JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 3" />
 
 							<label class="etiqueta" value="10"
 								style="margin-left:65px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD10JF0008" format="dd-MM-yyyy"
+								tabindex="13" id="dtbD10JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 10" />
 						</row>
 						<row>
@@ -119,14 +120,14 @@
 								style="margin-left:25px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD04JF0008" format="dd-MM-yyyy"
+								tabindex="7" id="dtbD04JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 4" />
 
 							<label class="etiqueta" value="11"
 								style="margin-left:65px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD11JF0008" format="dd-MM-yyyy"
+								tabindex="14" id="dtbD11JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 11" />
 						</row>
 						<row>
@@ -134,14 +135,14 @@
 								style="margin-left:25px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD05JF0008" format="dd-MM-yyyy"
+								tabindex="8" id="dtbD05JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 5" />
 
 							<label class="etiqueta" value="12"
 								style="margin-left:65px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD12JF0008" format="dd-MM-yyyy"
+								tabindex="15" id="dtbD12JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 12" />
 						</row>
 						<row>
@@ -149,14 +150,14 @@
 								style="margin-left:25px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD06JF0008" format="dd-MM-yyyy"
+								tabindex="9" id="dtbD06JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 6" />
 
 							<label class="etiqueta" value="13"
 								style="margin-left:65px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD13JF0008" format="dd-MM-yyyy"
+								tabindex="16" id="dtbD13JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 13" />
 						</row>
 						<row>
@@ -164,14 +165,14 @@
 								style="margin-left:25px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD07JF0008" format="dd-MM-yyyy"
+								tabindex="10" id="dtbD07JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 7" />
 
 							<label class="etiqueta" value="14"
 								style="margin-left:65px" />
 
 							<datebox readonly="true" width="100%"
-								id="dtbD14JF0008" format="dd-MM-yyyy"
+								tabindex="17" id="dtbD14JF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha Final del Periodo 14" />
 						</row>
 					</rows>

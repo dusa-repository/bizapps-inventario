@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import modelo.maestros.F0006;
 import modelo.maestros.F0015;
 import modelo.maestros.F0013;
+import modelo.maestros.F0101;
 import modelo.pk.F0015PK;
 
 import org.zkoss.zk.ui.event.Event;
@@ -43,11 +45,15 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Textbox txtCRCDF0015;
 	@Wire
-	private Button btnBuscarCRDCF0015;
+	private Button btnBuscarMonedaDestinoF0013;
+	@Wire
+	private Label lblMonedaDestinoF0013;
 	@Wire
 	private Textbox txtCRDCF0015;
 	@Wire
-	private Button btnBuscarF0013;
+	private Button btnBuscarMonedaF0013;
+	@Wire
+	private Label lblMonedaF0013;
 	@Wire
 	private Datebox dtbEFTF0015;
 	@Wire
@@ -77,7 +83,9 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Tab tbRevisionTipoCambioF0015;
 	@Wire
-	private Button btnBuscarAN8F0015;
+	private Button btnBuscarF0101;
+	@Wire
+	private Label lblDireccionF0101;
 	@Wire
 	private Groupbox gpxDatosF0015;
 	@Wire
@@ -86,6 +94,10 @@ public class CF0015 extends CGenerico {
 	private Div catalogoF0015D;
 	@Wire
 	private Div divCatalogoF0013;
+	@Wire
+	private Div divCatalogoMonedaDestino;
+	@Wire
+	private Div divCatalogoF0101;
 	private static F0013 F0013;
 	private static boolean agregarMetodoCalculo = false;
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
@@ -95,6 +107,8 @@ public class CF0015 extends CGenerico {
 	Catalogo<F0015> catalogoEncabezado;
 	Catalogo<F0015> catalogoDetalle;
 	Catalogo<F0013> catalogoF0013;
+	Catalogo<F0013> catalogoMonedaDestino;
+	Catalogo<F0101> catalogoF0101;
 	F0015PK clave = null;
 
 	@Override
@@ -124,16 +138,16 @@ public class CF0015 extends CGenerico {
 							clave = f015.getId();
 							txtCRCDF0015.setValue(f015.getId().getCxcrcd());
 							txtCRCDF0015.setDisabled(true);
-							btnBuscarCRDCF0015.setDisabled(true);
+							btnBuscarMonedaDestinoF0013.setDisabled(true);
 							txtCRDCF0015.setValue(f015.getId().getCxcrdc());
 							txtCRDCF0015.setDisabled(true);
-							btnBuscarF0013.setDisabled(true);
+							btnBuscarMonedaF0013.setDisabled(true);
 							dtbEFTF0015
 									.setValue((transformarJulianaAGregoria(BigDecimal
 											.valueOf(f015.getId().getCxeft()))));
 							dblAN8F0015.setValue(f015.getId().getCxan8());
 							dblAN8F0015.setDisabled(true);
-							btnBuscarAN8F0015.setDisabled(true);
+							btnBuscarF0101.setDisabled(true);
 							txtCRCMF0015.setValue(f015.getCxcrcm());
 							dblCRRF0015.setValue(f015.getCxcrr());
 							dblCRRDF0015.setValue(f015.getCxcrrd());
@@ -153,16 +167,16 @@ public class CF0015 extends CGenerico {
 							clave = f015.getId();
 							txtCRCDF0015.setValue(f015.getId().getCxcrcd());
 							txtCRCDF0015.setDisabled(true);
-							btnBuscarCRDCF0015.setDisabled(true);
+							btnBuscarMonedaDestinoF0013.setDisabled(true);
 							txtCRDCF0015.setValue(f015.getId().getCxcrdc());
 							txtCRDCF0015.setDisabled(true);
-							btnBuscarF0013.setDisabled(true);
+							btnBuscarMonedaF0013.setDisabled(true);
 							dtbEFTF0015
 									.setValue((transformarJulianaAGregoria(BigDecimal
 											.valueOf(f015.getId().getCxeft()))));
 							dblAN8F0015.setValue(f015.getId().getCxan8());
 							dblAN8F0015.setDisabled(true);
-							btnBuscarAN8F0015.setDisabled(true);
+							btnBuscarF0101.setDisabled(true);
 							txtCRCMF0015.setValue(f015.getCxcrcm());
 							dblCRRF0015.setValue(f015.getCxcrr());
 							dblCRRDF0015.setValue(f015.getCxcrrd());
@@ -424,6 +438,9 @@ public class CF0015 extends CGenerico {
 		lblMetodoConversionF0015.setValue("");
 		dblCRRF0015.setValue(null);
 		dblCRRDF0015.setValue(null);
+		lblMonedaF0013.setValue("");
+		lblMonedaDestinoF0013.setValue("");
+		lblDireccionF0101.setValue("");
 		tbTipoCambioF0015.setVisible(false);
 		botonera.getChildren().get(2).setVisible(false);
 		botonera.getChildren().get(0).setVisible(false);
@@ -521,12 +538,12 @@ public class CF0015 extends CGenerico {
 			dtbEFTF0015.setDisabled(false);
 		if (dblAN8F0015.isDisabled())
 			dblAN8F0015.setDisabled(false);
-		if (btnBuscarCRDCF0015.isDisabled())
-			btnBuscarCRDCF0015.setDisabled(false);
-		if (btnBuscarF0013.isDisabled())
-			btnBuscarF0013.setDisabled(false);
-		if (btnBuscarAN8F0015.isDisabled())
-			btnBuscarAN8F0015.setDisabled(false);
+		if (btnBuscarMonedaDestinoF0013.isDisabled())
+			btnBuscarMonedaDestinoF0013.setDisabled(false);
+		if (btnBuscarMonedaF0013.isDisabled())
+			btnBuscarMonedaF0013.setDisabled(false);
+		if (btnBuscarF0101.isDisabled())
+			btnBuscarF0101.setDisabled(false);
 
 	}
 
@@ -567,7 +584,7 @@ public class CF0015 extends CGenerico {
 	public void mostrarCatalogoEncabezado() {
 		final List<F0015> listF0015 = servicioF0015.buscarTodosOrdenados();
 		catalogoEncabezado = new Catalogo<F0015>(catalogoF0015H, "F0015",
-				listF0015, "Moneda origen", "Descripción moneda origen",
+				listF0015, false,true,true, "Moneda origen", "Descripción moneda origen",
 				"Moneda destino", "Descripción moneda destino",
 				"Contrato (dirección)", "Descripción contrato (dirección)") {
 
@@ -617,10 +634,9 @@ public class CF0015 extends CGenerico {
 	public void mostrarCatalogoDetalle() {
 		final List<F0015> listF0015 = servicioF0015.buscarTodosOrdenados();
 		catalogoDetalle = new Catalogo<F0015>(catalogoF0015D, "F0015D",
-				listF0015, "Fecha efectiva", "Método cálculo", "Método conv",
-				"Tipo multiplicador", "Tipo divisor", "Mon Trian",
-				"Tipo tringulación paso1", "Tipo triangulación paso2",
-				"Cambio al contado") {
+				listF0015, false, true, true, "Fecha efectiva",
+				"Método cálculo", "Método conv", "Tipo multiplicador",
+				"Tipo divisor", "Mon Trian","Cambio al contado") {
 
 			@Override
 			protected List<F0015> buscar(List<String> valores) {
@@ -632,7 +648,7 @@ public class CF0015 extends CGenerico {
 							.format(transformarJulianaAGregoria(BigDecimal
 									.valueOf(f0015.getId().getCxeft())))
 							.toLowerCase().startsWith(valores.get(0))
-							&& f0015.getCxcsr().toLowerCase()
+							&& f0015.getCxclmeth().toLowerCase()
 									.startsWith(valores.get(1))
 							&& f0015.getCxcrcm().toLowerCase()
 									.startsWith(valores.get(2))
@@ -642,12 +658,8 @@ public class CF0015 extends CGenerico {
 									.startsWith(valores.get(4))
 							&& f0015.getCxtrcr().toLowerCase()
 									.startsWith(valores.get(5))
-							&& f0015.getCxtrcr().toLowerCase()
-									.startsWith(valores.get(6))
-							&& f0015.getCxtrcr().toLowerCase()
-									.startsWith(valores.get(7))
 							&& f0015.getCxcsr().toLowerCase()
-									.startsWith(valores.get(8))) {
+									.startsWith(valores.get(6))) {
 						lista.add(f0015);
 					}
 				}
@@ -656,30 +668,28 @@ public class CF0015 extends CGenerico {
 
 			@Override
 			protected String[] crearRegistros(F0015 f0015) {
-				String[] registros = new String[9];
+				String[] registros = new String[7];
 				registros[0] = formatoFecha
 						.format(transformarJulianaAGregoria(BigDecimal
 								.valueOf(f0015.getId().getCxeft())));
-				registros[1] = f0015.getCxcsr();
+				registros[1] = f0015.getCxclmeth();
 				registros[2] = f0015.getCxcrcm();
 				registros[3] = String.valueOf(f0015.getCxcrr());
 				registros[4] = String.valueOf(f0015.getCxcrrd());
 				registros[5] = f0015.getCxtrcr();
-				registros[6] = f0015.getCxtrcr();
-				registros[7] = f0015.getCxtrcr();
-				registros[8] = f0015.getCxcsr();
+				registros[6] = f0015.getCxcsr();
 				return registros;
 			}
 		};
 		catalogoDetalle.setParent(catalogoF0015D);
 	}
 
-	@Listen("onClick = #btnBuscarF0013")
+	@Listen("onClick = #btnBuscarMonedaF0013")
 	public void mostrarCatalogo() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoF0013 = new Catalogo<F0013>(divCatalogoF0013, "F0013",
-				listF0013, "Codigo moneda", "Descripcion", "Vlslz",
-				"Rutina cheques") {
+		catalogoF0013 = new Catalogo<F0013>(divCatalogoF0101, "F0101",
+				listF0013, true, false, false, "Codigo moneda", "Descripcion",
+				"Vlslz", "Rutina cheques") {
 
 			@Override
 			protected List<F0013> buscar(List<String> valores) {
@@ -711,9 +721,7 @@ public class CF0015 extends CGenerico {
 				return registros;
 			}
 		};
-		catalogoF0013.setClosable(true);
-		catalogoF0013.setWidth("80%");
-		catalogoF0013.setTitle("Registros");
+		
 		catalogoF0013.setParent(divCatalogoF0013);
 		catalogoF0013.doModal();
 	}
@@ -722,7 +730,114 @@ public class CF0015 extends CGenerico {
 	public void seleccion() {
 		F0013 f0013 = catalogoF0013.objetoSeleccionadoDelCatalogo();
 		txtCRCDF0015.setValue(f0013.getCvcrcd());
+		lblMonedaF0013.setValue(f0013.getCvdl01());
 		catalogoF0013.setParent(null);
 	}
+	
+	
+	@Listen("onClick = #btnBuscarMonedaDestinoF0013")
+	public void mostrarCatalogoMonedaDestino() {
+		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
+		catalogoMonedaDestino = new Catalogo<F0013>(divCatalogoMonedaDestino, "F0013",
+				listF0013, true, false, false, "Codigo moneda", "Descripcion",
+				"Vlslz", "Rutina cheques") {
+
+			@Override
+			protected List<F0013> buscar(List<String> valores) {
+
+				List<F0013> lista = new ArrayList<F0013>();
+
+				for (F0013 f0013 : listF0013) {
+					if (f0013.getCvcrcd().toLowerCase()
+							.startsWith(valores.get(0))
+							&& f0013.getCvdl01().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f0013.getCvcdec().toLowerCase()
+									.startsWith(valores.get(2))
+							&& f0013.getCvckr().toLowerCase()
+									.startsWith(valores.get(4))) {
+						lista.add(f0013);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0013 f013) {
+				String[] registros = new String[4];
+				registros[0] = f013.getCvcrcd();
+				registros[1] = f013.getCvdl01();
+				registros[2] = f013.getCvcdec();
+				registros[3] = f013.getCvckr();
+				return registros;
+			}
+		};
+		
+		catalogoMonedaDestino.setParent(divCatalogoMonedaDestino);
+		catalogoMonedaDestino.doModal();
+	}
+
+	@Listen("onSeleccion = #divCatalogoMonedaDestino")
+	public void seleccionMonedaDestino() {
+		F0013 f0013 = catalogoMonedaDestino.objetoSeleccionadoDelCatalogo();
+		txtCRDCF0015.setValue(f0013.getCvcrcd());
+		lblMonedaDestinoF0013.setValue(f0013.getCvdl01());
+		catalogoMonedaDestino.setParent(null);
+	}
+	
+	
+	@Listen("onClick = #btnBuscarF0101")
+	public void mostrarCatalogoDirecciones() {
+		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
+		catalogoF0101 = new Catalogo<F0101>(catalogoF0101, "F0013", listF0101,
+				false, false, false, "Nº direccion", "Nombre alfabetico",
+				"Direccion larga", "Clasificacion industria", "Tipo bus",
+				"ID fiscal") {
+
+			@Override
+			protected List<F0101> buscar(List<String> valores) {
+
+				List<F0101> lista = new ArrayList<F0101>();
+
+				for (F0101 f01 : listF0101) {
+					if (String.valueOf(f01.getAban8()).toLowerCase()
+							.startsWith(valores.get(0))
+							&& f01.getAbalph().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f01.getAbalky().toLowerCase()
+									.startsWith(valores.get(2))
+							&& f01.getAbsic().toLowerCase()
+									.startsWith(valores.get(4))
+							&& f01.getAbat1().toLowerCase()
+									.startsWith(valores.get(5))
+							&& f01.getAbtax().toLowerCase()
+									.startsWith(valores.get(6))) {
+						lista.add(f01);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0101 f013) {
+				String[] registros = new String[6];
+				registros[0] = String.valueOf(f013.getAban8());
+				registros[1] = f013.getAbalph();
+				registros[2] = f013.getAbalky();
+				registros[3] = f013.getAbsic();
+				registros[4] = f013.getAbat1();
+				registros[5] = f013.getAbtax();
+				return registros;
+			}
+		};
+		catalogoF0101.setParent(divCatalogoF0013);
+		catalogoF0101.doModal();
+	}
+	
+	
+	
+	
+	
+	
 
 }
