@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVF0015" apply="controlador.maestros.CF0015">
 		<groupbox width="auto" mold="3d"
-			title="Trabajo con tipos de cambio">
+			title="Trabajo con tipos de cambio (VF0015)">
 			<div id="botoneraF0015" />
 			<separator />
 			<groupbox id="gpxRegistroF0015" width="auto" title=""
@@ -14,9 +14,10 @@
 					<groupbox title="" closable="false">
 						<grid width="100%" style="border:0px">
 							<columns visible="false">
-								<column label="" width="40%" />
-								<column label="" width="40%" />
-								<column label="" width="20%" />
+								<column label="" width="35%" />
+								<column label="" width="25%" />
+								<column label="" width="10%" />
+								<column label="" width="30%" />
 							</columns>
 							<rows>
 								<row>
@@ -30,9 +31,10 @@
 									</hbox>
 									<textbox id="txtCRCDF0015" hflex="1"
 										maxlength="100" tooltiptext="Ingrese el Codigo Moneda" />
-									<button id="btnBuscarF0013"
+									<button id="btnBuscarMonedaF0013"
 										label="" tooltiptext="Catalogo de Codigos de Moneda"
 										image="/public/imagenes/botones/buscar.png" />
+									<label id="lblMonedaF0013" />
 								</row>
 								<row>
 									<hbox>
@@ -44,11 +46,12 @@
 										</label>
 									</hbox>
 									<textbox id="txtCRDCF0015" hflex="1"
-										maxlength="100"
-										tooltiptext="Ingrese el Codigo Moneda Destino" />
-									<button id="btnBuscarCRDCF0015"
-										label="" tooltiptext="Catalogo de Codigos de Moneda Destino"
+										maxlength="100" tooltiptext="Ingrese el Codigo Moneda" />
+									<button
+										id="btnBuscarMonedaDestinoF0013" label=""
+										tooltiptext="Catalogo de Codigos de Moneda"
 										image="/public/imagenes/botones/buscar.png" />
+									<label id="lblMonedaDestinoF0013" />
 								</row>
 								<row>
 									<hbox>
@@ -70,9 +73,10 @@
 						height="118px">
 						<grid width="100%" style="border:0px">
 							<columns visible="false">
-								<column label="" width="40%" />
-								<column label="" width="40%" />
-								<column label="" width="20%" />
+								<column label="" width="35%" />
+								<column label="" width="25%" />
+								<column label="" width="10%" />
+								<column label="" width="30%" />
 							</columns>
 							<rows>
 								<row>
@@ -81,9 +85,10 @@
 									<doublespinner id="dblAN8F0015"
 										format="#.##" hflex="1" maxlength="100"
 										tooltiptext="Ingrese el Contrato(direccion)" />
-									<button id="btnBuscarAN8F0015"
+									<button id="btnBuscarF0101"
 										label="" tooltiptext="Catalogo de Contratos(direcciones)"
 										image="/public/imagenes/botones/buscar.png" />
+										<label id="lblDireccionF0101" />
 								</row>
 							</rows>
 						</grid>
@@ -221,6 +226,11 @@
 			<separator />
 			<separator />
 		</groupbox>
-		<div id="divCatalogoF0013" tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0013"
+			tooltiptext="Click para Seleccionar un Codigo" />
+			<div id="divCatalogoMonedaDestino"
+			tooltiptext="Click para Seleccionar un Codigo" />
+			<div id="divCatalogoF0101"
+			tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>
