@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVF0008" apply="controlador.maestros.CF0008">
 		<groupbox width="auto" mold="3d"
-			title="Trabajo con patrones de fecha fiscal (VF0008)">
+			title="Trabajo con Patrones de Fecha Fiscal (VF0008)">
 			<div id="botoneraF0008" />
 			<separator />
 			<groupbox id="gpxRegistroF0008" width="auto" title=""
@@ -12,27 +12,15 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="25%" />
+						<column label="" width="21%" />
 						<column label="" width="45%" />
 						<column label="" width="30%" />
 					</columns>
 					<rows>
 						<row>
-							<hbox>
-								<label class="etiqueta"
-									value="Patrón fecha fiscal:" />
-								<space />
-								<label value="*"
-									style="font-weight:bold;color:red">
-								</label>
-							</hbox>
-							<textbox id="txtDTPNF0008" hflex="1"
-								tabindex="1" maxlength="100"
-								tooltiptext="Seleccione del Catalogo el Codigo del Patron de Fecha Fiscal" />
-							<button id="btnBuscarF0008" label=""
-								tabindex="2"
-								tooltiptext="Catalogo de Codigos de Patrones de Fechas fiscales"
-								image="/public/imagenes/botones/buscar.png" />
+							<cell colspan="2">
+								<div id="divbuscadorDPNT" hflex="1" />
+							</cell>
 						</row>
 						<row>
 							<hbox>

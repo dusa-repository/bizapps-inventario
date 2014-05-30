@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import modelo.maestros.F0004;
+import modelo.maestros.F0005;
 import modelo.maestros.F0008;
 import modelo.pk.F0004PK;
 import modelo.pk.F0008PK;
@@ -24,6 +25,7 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
+import componentes.BuscadorUDC;
 import componentes.Catalogo;
 import componentes.Mensaje;
 
@@ -36,9 +38,7 @@ public class CF0008 extends CGenerico {
 	@Wire
 	private Groupbox gpxRegistroF0008;
 	@Wire
-	private Textbox txtDTPNF0008;
-	@Wire
-	private Button btnBuscarF0008;
+	private Div divbuscadorDPNT;
 	@Wire
 	private Datebox dtbDFYJF0008;
 	@Wire
@@ -80,13 +80,27 @@ public class CF0008 extends CGenerico {
 	Catalogo<F0008> catalogo;
 	F0008PK clave = null;
 
+	BuscadorUDC buscadorDPNT;
+
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
 
-		txtDTPNF0008.setFocus(true);
 		mostrarCatalogo();
+		
 
+		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
+				"00");
+		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listaF0005,
+				true, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "00",
+						buscadorDPNT.obtenerCaja());
+			}
+		};
+		divbuscadorDPNT.appendChild(buscadorDPNT);
 		botonera = new Botonera() {
 
 			@Override
@@ -98,9 +112,10 @@ public class CF0008 extends CGenerico {
 						abrirRegistro();
 						F0008 f08 = catalogo.objetoSeleccionadoDelCatalogo();
 						clave = f08.getId();
-						txtDTPNF0008.setValue(f08.getId().getCddtpn());
-						txtDTPNF0008.setDisabled(true);
-						btnBuscarF0008.setDisabled(true);
+						// Se supone que aqui se pasaran los parametros que
+						// definiremos luego sy, rt, ky
+						buscadorDPNT.settearCampo(servicioF0005.buscar("00",
+								"00", f08.getId().getCddtpn()));
 						dtbDFYJF0008
 								.setValue((transformarJulianaAGregoria(BigDecimal
 										.valueOf(f08.getId().getCddfyj()))));
@@ -161,82 +176,41 @@ public class CF0008 extends CGenerico {
 				if (clave == null)
 					guardar = validar();
 				if (guardar) {
-					String dtpn = txtDTPNF0008.getValue();
 					long dfyj = Long.valueOf((String
 							.valueOf(transformarGregorianoAJulia(dtbDFYJF0008
 									.getValue()))));
 					String cdfq = "";
 					BigDecimal d01j = transformarGregorianoAJulia(dtbD01JF0008
 							.getValue());
-					BigDecimal d02j = null;
-					BigDecimal d03j = null;
-					BigDecimal d04j = null;
-					BigDecimal d05j = null;
-					BigDecimal d06j = null;
-					BigDecimal d07j = null;
-					BigDecimal d08j = null;
-					BigDecimal d09j = null;
-					BigDecimal d10j = null;
-					BigDecimal d11j = null;
-					BigDecimal d12j = null;
-					BigDecimal d13j = null;
-					BigDecimal d14j = null;
-
-					if (dtbD02JF0008.getText().compareTo("") != 0) {
-						d02j = transformarGregorianoAJulia(dtbD02JF0008
-								.getValue());
-					}
-					if (dtbD03JF0008.getText().compareTo("") != 0) {
-						d03j = transformarGregorianoAJulia(dtbD03JF0008
-								.getValue());
-					}
-					if (dtbD04JF0008.getText().compareTo("") != 0) {
-						d04j = transformarGregorianoAJulia(dtbD04JF0008
-								.getValue());
-					}
-					if (dtbD05JF0008.getText().compareTo("") != 0) {
-						d05j = transformarGregorianoAJulia(dtbD05JF0008
-								.getValue());
-					}
-					if (dtbD06JF0008.getText().compareTo("") != 0) {
-						d06j = transformarGregorianoAJulia(dtbD06JF0008
-								.getValue());
-					}
-					if (dtbD07JF0008.getText().compareTo("") != 0) {
-						d07j = transformarGregorianoAJulia(dtbD07JF0008
-								.getValue());
-					}
-					if (dtbD08JF0008.getText().compareTo("") != 0) {
-						d08j = transformarGregorianoAJulia(dtbD08JF0008
-								.getValue());
-					}
-					if (dtbD09JF0008.getText().compareTo("") != 0) {
-						d09j = transformarGregorianoAJulia(dtbD09JF0008
-								.getValue());
-					}
-					if (dtbD10JF0008.getText().compareTo("") != 0) {
-						d10j = transformarGregorianoAJulia(dtbD10JF0008
-								.getValue());
-					}
-					if (dtbD11JF0008.getText().compareTo("") != 0) {
-						d11j = transformarGregorianoAJulia(dtbD11JF0008
-								.getValue());
-					}
-					if (dtbD12JF0008.getText().compareTo("") != 0) {
-						d12j = transformarGregorianoAJulia(dtbD12JF0008
-								.getValue());
-					}
-					if (dtbD13JF0008.getText().compareTo("") != 0) {
-						d13j = transformarGregorianoAJulia(dtbD13JF0008
-								.getValue());
-					}
-					if (dtbD14JF0008.getText().compareTo("") != 0) {
-						d14j = transformarGregorianoAJulia(dtbD14JF0008
-								.getValue());
-					}
+					BigDecimal d02j = transformarGregorianoAJulia(dtbD02JF0008
+							.getValue());
+					BigDecimal d03j = transformarGregorianoAJulia(dtbD03JF0008
+							.getValue());
+					BigDecimal d04j = transformarGregorianoAJulia(dtbD04JF0008
+							.getValue());
+					BigDecimal d05j = transformarGregorianoAJulia(dtbD05JF0008
+							.getValue());
+					BigDecimal d06j = transformarGregorianoAJulia(dtbD06JF0008
+							.getValue());
+					BigDecimal d07j = transformarGregorianoAJulia(dtbD07JF0008
+							.getValue());
+					BigDecimal d08j = transformarGregorianoAJulia(dtbD08JF0008
+							.getValue());
+					BigDecimal d09j = transformarGregorianoAJulia(dtbD09JF0008
+							.getValue());
+					BigDecimal d10j = transformarGregorianoAJulia(dtbD10JF0008
+							.getValue());
+					BigDecimal d11j = transformarGregorianoAJulia(dtbD11JF0008
+							.getValue());
+					BigDecimal d12j = transformarGregorianoAJulia(dtbD12JF0008
+							.getValue());
+					BigDecimal d13j = transformarGregorianoAJulia(dtbD13JF0008
+							.getValue());
+					BigDecimal d14j = transformarGregorianoAJulia(dtbD14JF0008
+							.getValue());
 
 					F0008PK clave = new F0008PK();
-					clave.setCddtpn(dtpn);
+					clave.setCddtpn(buscadorDPNT.obtenerCaja());
 					clave.setCddfyj(dfyj);
 					clave.setCdfq(cdfq);
 					F0008 fooo8 = new F0008();
@@ -286,7 +260,7 @@ public class CF0008 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF0008, "Sistema");
+				cerrarVentana(divVF0008, "Trabajo con Patrones de Fecha Fiscal");
 			}
 
 			@Override
@@ -360,7 +334,7 @@ public class CF0008 extends CGenerico {
 
 	public void limpiarCampos() {
 		clave = null;
-		txtDTPNF0008.setValue("");
+
 		dtbDFYJF0008.setValue(null);
 		dtbD01JF0008.setValue(null);
 		dtbD02JF0008.setValue(null);
@@ -376,20 +350,19 @@ public class CF0008 extends CGenerico {
 		dtbD12JF0008.setValue(null);
 		dtbD13JF0008.setValue(null);
 		dtbD14JF0008.setValue(null);
-		txtDTPNF0008.setFocus(true);
+		buscadorDPNT.settearCampo(null);
+		catalogo.limpiarSeleccion();
+		
+
 	}
 
 	public void habilitarTextClave() {
-		if (txtDTPNF0008.isDisabled())
-			txtDTPNF0008.setDisabled(false);
 		if (dtbDFYJF0008.isDisabled())
 			dtbDFYJF0008.setDisabled(false);
-		if (btnBuscarF0008.isDisabled())
-			btnBuscarF0008.setDisabled(false);
 	}
 
 	public boolean camposLLenos() {
-		if (txtDTPNF0008.getText().compareTo("") == 0
+		if (buscadorDPNT.obtenerCaja().compareTo("") == 0
 				|| dtbDFYJF0008.getText().compareTo("") == 0
 				|| dtbD01JF0008.getText().compareTo("") == 0) {
 			return false;
@@ -398,7 +371,7 @@ public class CF0008 extends CGenerico {
 	}
 
 	public boolean camposEditando() {
-		if (txtDTPNF0008.getText().compareTo("") != 0
+		if (buscadorDPNT.obtenerCaja().compareTo("") != 0
 				|| dtbDFYJF0008.getText().compareTo("") != 0
 				|| dtbD01JF0008.getText().compareTo("") != 0
 				|| dtbD02JF0008.getText().compareTo("") != 0
@@ -433,7 +406,7 @@ public class CF0008 extends CGenerico {
 		gpxDatosF0008.setOpen(false);
 		gpxRegistroF0008.setOpen(true);
 		mostrarBotones(false);
-		txtDTPNF0008.setFocus(true);
+
 	}
 
 	@Listen("onOpen = #gpxDatosF0008")
@@ -482,32 +455,13 @@ public class CF0008 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		if (claveDTPNExiste()) {
-			return false;
-		} else {
-			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
-				return false;
-			} else
-				return true;
-		}
-	}
 
-	/*ojo ya el UDC realiza esta validacion*/
-	@Listen("onChange = #txtDTPNF0008")
-	public boolean claveDTPNExiste() {
-		if (servicioF0008.buscarDTPN(txtDTPNF0008.getValue()).size() != 0) {
+		if (!camposLLenos()) {
+			msj.mensajeAlerta(Mensaje.camposVacios);
 			return false;
+		} else
+			return true;
 
-		} else {
-			if (txtDTPNF0008.getText().compareTo("") != 0) {
-				msj.mensajeAlerta(Mensaje.claveRTNoEsta);
-				return true;
-			} else {
-				msj.mensajeAlerta(Mensaje.camposVacios);
-				return true;
-			}
-		}
 	}
 
 	public void mostrarCatalogo() {
