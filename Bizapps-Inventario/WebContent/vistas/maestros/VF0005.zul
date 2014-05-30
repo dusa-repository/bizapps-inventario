@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVF0005" apply="controlador.maestros.CF0005">
 		<groupbox width="auto" mold="3d"
-			title="Trabajo con Codigos Definidos por el Usuario">
+			title="Trabajo con Codigos Definidos por Usuario (VF0005)">
 			<div id="botoneraF0005" />
 			<separator />
 			<groupbox id="gpxRegistro" width="auto" title="" open="false">

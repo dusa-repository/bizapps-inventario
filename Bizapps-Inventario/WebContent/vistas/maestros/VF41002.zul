@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVF41002" apply="controlador.maestros.CF41002">
 		<groupbox width="auto" mold="3d"
-			title="Conversiones de Unidades de Medida de Articulos">
+			title="Conversiones de Unidades de Medida de Articulos (VF41002)">
 			<div id="botoneraF41002" />
 			<separator />
 			<groupbox id="gpxRegistro" width="auto" title="" open="false">

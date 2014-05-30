@@ -98,7 +98,7 @@ public class CF0005 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0005, "SubSistema");
+				cerrarVentana(divVF0005, "Trabajo con Codigos Definidos por Usuario");
 
 			}
 
