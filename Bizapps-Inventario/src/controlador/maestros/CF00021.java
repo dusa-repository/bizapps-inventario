@@ -422,7 +422,7 @@ public class CF00021 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista ,false,true,true, "Codigo",
+		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista ,true,false,true, "Codigo",
 				"Nombre", "Nº Periodo", "Patron", "Inicio año Fiscal",
 				"Periodo LM", "Inicio año C/P", "Periodo C/P",
 				"Inicio año C/C", "Periodo C/C") {
