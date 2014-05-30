@@ -14,7 +14,7 @@ public interface IF00021DAO extends JpaRepository<F00021, F00021PK> {
 	@Query("Select f from F00021 f order by f.id.nlkco asc, f.id.nldct asc, f.id.nlctry asc, f.id.nlfy asc")
 	List<F00021> findAllOrderByIdNlkco();
 
-	@Query("Select f.nln001 from F00021 f where f.id.nlkco =:value and f.id.nldct =:value2 ")
+	@Query("Select max(f.nln001) from F00021 f where f.id.nlkco =:value and f.id.nldct =:value2 ")
 	public double Numero(
 	@Param("value") String a,
 	@Param("value2") String b);

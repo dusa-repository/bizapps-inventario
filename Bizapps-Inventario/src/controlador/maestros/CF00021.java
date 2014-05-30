@@ -260,7 +260,9 @@ public class CF00021 extends CGenerico {
 	public boolean camposLLenos() {
 		if (txtKCOF00021.getText().compareTo("") == 0
 				|| txtDCTF00021.getText().compareTo("") == 0
-				|| txtDESF00021.getText().compareTo("") == 0) {
+				|| txtDESF00021.getText().compareTo("") == 0
+				|| txtCTRYF00021.getText().compareTo("") == 0
+				|| txtFYF00021.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
@@ -280,25 +282,21 @@ public class CF00021 extends CGenerico {
 	public boolean buscarSiguiente() {	
 			String a =txtKCOF00021.getValue();
 			String b = txtDCTF00021.getValue() ;
-			if (servicioF00021.Numero(a, b) != 0){
-			double numero =  servicioF00021.Numero(a, b);
-			System.out.println(numero);
-			if (numero != 0)
-			txtN001F00021.setValue(String.valueOf(numero + 1));
-			return true;
-	} else
-		return false;
-	
-
-	}
+			if (servicioF00021.Numero(a, b) >= 0){
+				double numero =  servicioF00021.Numero(a, b);
+				if (numero != 0)
+				txtN001F00021.setValue(String.valueOf(numero + 1));
+				return true;
+				} else
+					return false;
+		}	
 
 	@Listen("onClick = #txtDCTF00021")
 	public boolean buscarSiguiente1() {	
 			String a =txtKCOF00021.getValue();
 			String b = txtDCTF00021.getValue() ;
-			if (servicioF00021.Numero(a, b) != 0){
+			if (servicioF00021.Numero(a, b) >= 0){
 			double numero =  servicioF00021.Numero(a, b);
-			System.out.println(numero);
 			if (numero != 0)
 			txtN001F00021.setValue(String.valueOf(numero + 1));
 			return true;
