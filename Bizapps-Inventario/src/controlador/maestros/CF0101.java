@@ -264,7 +264,7 @@ public class CF0101 extends CGenerico {
 	Catalogo<F0101> catalogo;
 	Catalogo<F0101> catalogoDivF0101;
 	Catalogo<F0006> catalogoF0006;
-	long clave = 0;
+	double clave = 0;
 	String idBoton = "";
 
 	private static final long serialVersionUID = -423722886120387655L;
@@ -307,10 +307,12 @@ public class CF0101 extends CGenerico {
 										.substring(7));
 							}
 						}
-						if(!f01.getAbmcu().equals("")){
-						txtMCUF0101.setValue(f01.getAbmcu());
-						System.out.println(servicioF0006.buscar(f01.getAbmcu()));
-						lblMCUF0101.setValue(servicioF0006.buscar(f01.getAbmcu()).getMcdl01());
+						if (!f01.getAbmcu().equals("")) {
+							txtMCUF0101.setValue(f01.getAbmcu());
+							System.out.println(servicioF0006.buscar(f01
+									.getAbmcu()));
+							lblMCUF0101.setValue(servicioF0006.buscar(
+									f01.getAbmcu()).getMcdl01());
 						}
 						txtTAXF0101.setValue(f01.getAbtax());
 						txtTX2F0101.setValue(f01.getAbtx2());
@@ -323,38 +325,42 @@ public class CF0101 extends CGenerico {
 						Double doble = f01.getAban81();
 						if (doble != null) {
 							lblDireccion1F0101.setValue(servicioF0101.buscar(
-									doble.longValue()).getAbalph());
+									doble).getAbalph());
 							txtAN81F0101.setValue(doble.longValue());
 						}
 						Double doble1 = f01.getAban82();
 						if (doble1 != null) {
 							lblDireccion2F0101.setValue(servicioF0101.buscar(
-									doble1.longValue()).getAbalph());
+									doble1).getAbalph());
 							txtAN82F0101.setValue(doble1.longValue());
 						}
 						Double doble2 = f01.getAban83();
-						if (doble2 != null){
-							lblDireccion3F0101.setValue(servicioF0101.buscar(doble2.longValue()).getAbalph());
+						if (doble2 != null) {
+							lblDireccion3F0101.setValue(servicioF0101.buscar(
+									doble2).getAbalph());
 							txtAN83F0101.setValue(doble2.longValue());
 						}
 						Double doble3 = f01.getAban84();
-						if (doble3 != null){
-							lblDireccion4F0101.setValue(servicioF0101.buscar(doble3.longValue()).getAbalph());
+						if (doble3 != null) {
+							lblDireccion4F0101.setValue(servicioF0101.buscar(
+									doble3).getAbalph());
 							txtAN84F0101.setValue(doble3.longValue());
 						}
 						Double doble4 = f01.getAban85();
-						if (doble4 != null){
-							lblDireccion5F0101.setValue(servicioF0101.buscar(doble4.longValue()).getAbalph());
+						if (doble4 != null) {
+							lblDireccion5F0101.setValue(servicioF0101.buscar(
+									doble4).getAbalph());
 							txtAN85F0101.setValue(doble4.longValue());
 						}
 						Double doble5 = f01.getAban86();
-						if (doble5 != null){
-							lblFactorF0101.setValue(servicioF0101.buscar(doble5.longValue()).getAbalph());
+						if (doble5 != null) {
+							lblFactorF0101.setValue(servicioF0101
+									.buscar(doble5).getAbalph());
 							txtFactorF0101.setValue(doble5.longValue());
 						}
 						// FALTA ESTE
 						buscadorAT1.settearCampo(servicioF0005.buscar("00",
-								"01", f01.getAbat1()));
+								"00", f01.getAbat1()));
 						buscadorAT2.settearCampo(servicioF0005.buscar("H01",
 								"AV", f01.getAbat2()));
 						buscadorATP.settearCampo(servicioF0005.buscar("H01",
@@ -488,6 +494,13 @@ public class CF0101 extends CGenerico {
 					guardar = validar();
 				if (guardar) {
 					F0101 f01 = new F0101();
+					if (clave != 0) {
+						double numero = servicioF00021.Numero("5", "JE");
+						if (numero != 0)
+							clave = numero + 1;
+						else
+							clave = 1;
+					}
 					f01.setAban8(clave);
 					f01.setAbalky(txtALKYF0101.getValue());
 					f01.setAbalph(txtALPHF0101.getValue());
@@ -961,7 +974,8 @@ public class CF0101 extends CGenerico {
 	}
 
 	public void setearValores(F0101 f0101, Longbox txt, Label label) {
-		txt.setValue(f0101.getAban8());
+		Double doble = f0101.getAban8();
+		txt.setValue(doble.longValue());
 		label.setValue(f0101.getAbalph());
 	}
 

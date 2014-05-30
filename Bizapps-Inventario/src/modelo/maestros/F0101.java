@@ -19,9 +19,9 @@ public class F0101 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ABAN8")
-	private long aban8;
+	private double aban8;
 
 	@Column(name="ABAB3")
 	private String abab3;
@@ -308,11 +308,11 @@ public class F0101 implements Serializable {
 	public F0101() {
 	}
 
-	public long getAban8() {
+	public double getAban8() {
 		return aban8;
 	}
 	
-	public void setAban8(long aban8) {
+	public void setAban8(double aban8) {
 		this.aban8 = aban8;
 	}
 
