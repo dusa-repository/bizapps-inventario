@@ -72,19 +72,20 @@ public class CF40203 extends CGenerico {
 	BuscadorUDC buscadorDCTO, buscadorNTYF;
 	@Override
 	public void inicializar() throws IOException {
+		
 		mostrarCatalogo();
-		List<F0005> listF0005DCTO = servicioF0005.buscarTodosOrdenados();
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
 		buscadorDCTO = new BuscadorUDC("Tipo Orden", 10,
-				listF0005DCTO, true, true, true) {
+				listaF0005, true, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
 						buscadorDCTO.obtenerCaja());
 			}
 		};
-		List<F0005> listF0005NTYF = servicioF0005.buscarTodosOrdenados();
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
 		buscadorNTYF = new BuscadorUDC("Tipo Línea", 10,
-				listF0005NTYF, true, true, true) {
+				listaF0005, true, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -418,7 +419,7 @@ public class CF40203 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F40203> actividades = servicioF40203.buscarTodosOrdenados();
-		catalogo = new Catalogo<F40203>(catalogoF40203, "F40203", actividades,false,true,true,
+		catalogo = new Catalogo<F40203>(catalogoF40203, "F40203", actividades,false,false,true,
 				"Tipo Orden", "Tipo Línea", "Último estado", "Descripción", 
 				"Est sig", "Otros 1", "Otros 2", "Otros 3", "Otros 4" , "Otros 5", "LM (Y/M)") {
 
