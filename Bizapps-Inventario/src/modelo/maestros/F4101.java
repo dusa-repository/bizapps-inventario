@@ -554,6 +554,7 @@ public class F4101 implements Serializable {
 	@Column(name = "IMUMVW")
 	private String imumvw;
 
+	//Esteeee
 	@Column(name = "IMUOM1")
 	private String imuom1;
 

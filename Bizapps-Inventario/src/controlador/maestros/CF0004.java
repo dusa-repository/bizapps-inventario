@@ -82,7 +82,7 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0004, "Sistema");
+				cerrarVentana(divVF0004, "Trabajo con Tipos de Codigos Definidos por el Usuario");
 
 			}
 
@@ -343,7 +343,7 @@ public class CF0004 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004", listF0004, "SY",
+		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004", listF0004,false,false,true, "SY",
 				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
 
 			@Override

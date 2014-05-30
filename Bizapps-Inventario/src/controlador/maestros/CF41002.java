@@ -147,7 +147,7 @@ public class CF41002 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF41002, "F41002");
+				cerrarVentana(divVF41002, "Conversiones de Unidades de Medida de Articulos");
 
 			}
 
@@ -444,7 +444,7 @@ public class CF41002 extends CGenerico {
 	public void mostrarCatalogo() {
 		final List<F41002> listF41002 = servicioF41002.buscarTodosOrdenados();
 		catalogoF41002 = new Catalogo<F41002>(divCatalogoF41002, "F41002",
-				listF41002,false,true,true, "Numero articulo", "Descripcion", "De UM",
+				listF41002,false,false,true, "Numero articulo", "Descripcion", "De UM",
 				"Cantidad", "A UM", "Codigo estructura", "Excluir de OV",
 				"Excluir de OC", "Sec UM ventas", "Sec UM compras") {
 
@@ -507,7 +507,7 @@ public class CF41002 extends CGenerico {
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
 		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101,"F4101",
-				listF4101, true,true,true, "Codigo", "Descripcion") {
+				listF4101, true,false,true, "Codigo", "Descripcion") {
 
 			@Override
 			protected List<F4101> buscar(List<String> valores) {
@@ -542,9 +542,8 @@ public class CF41002 extends CGenerico {
 		F4101 f4101 = catalogoF4101.objetoSeleccionadoDelCatalogo();
 		txtUMITMF41002.setValue(String.valueOf(f4101.getImitm()));
 		lblDescripcionF4101.setValue(f4101.getImdsc1());
-		// Setear UM Principal
-		// lblDescripcionUnidad.setValue("falta");
-		// txtDescripcionUnidad.setValue("falta");
+		// lblDescripcionUnidad.setValue(f4101.getImuom1());
+		// txtDescripcionUnidad.setValue(f4101);
 		catalogoF4101.setParent(null);
 	}
 
