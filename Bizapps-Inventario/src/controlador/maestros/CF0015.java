@@ -63,10 +63,6 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Radio rdoMetodoInversionF0015;
 	@Wire
-	private Radio rdoSinMetodoF0015;
-	@Wire
-	private Radio rdoMetodoTriangulacionF0015;
-	@Wire
 	private Checkbox chxCambioContadoF0015;
 	@Wire
 	private Textbox txtCRCMF0015;
@@ -98,6 +94,7 @@ public class CF0015 extends CGenerico {
 	private Div divCatalogoMonedaDestino;
 	@Wire
 	private Div divCatalogoF0101;
+	
 	private static F0013 F0013;
 	private static boolean agregarMetodoCalculo = false;
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
@@ -117,6 +114,7 @@ public class CF0015 extends CGenerico {
 
 		txtCRCDF0015.setFocus(true);
 		agregarMetodoCalculo = false;
+		rdoMetodoInversionF0015.isSelected();
 		mostrarCatalogoEncabezado();
 		mostrarCatalogoDetalle();
 
@@ -277,7 +275,7 @@ public class CF0015 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF0015, "Sistema");
+				cerrarVentana(divVF0015, "Trabajo con Tipos de Cambio");
 			}
 
 			@Override
@@ -685,9 +683,9 @@ public class CF0015 extends CGenerico {
 	}
 
 	@Listen("onClick = #btnBuscarMonedaF0013")
-	public void mostrarCatalogo() {
+	public void mostrarCatalogoMoneda() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoF0013 = new Catalogo<F0013>(divCatalogoF0101, "F0101",
+		catalogoF0013 = new Catalogo<F0013>(divCatalogoF0013, "F0013",
 				listF0013, true, false, false, "Codigo moneda", "Descripcion",
 				"Vlslz", "Rutina cheques") {
 
@@ -727,12 +725,15 @@ public class CF0015 extends CGenerico {
 	}
 
 	@Listen("onSeleccion = #divCatalogoF0013")
-	public void seleccion() {
+	public void seleccionMoneda() {
 		F0013 f0013 = catalogoF0013.objetoSeleccionadoDelCatalogo();
 		txtCRCDF0015.setValue(f0013.getCvcrcd());
 		lblMonedaF0013.setValue(f0013.getCvdl01());
 		catalogoF0013.setParent(null);
 	}
+	
+	
+
 	
 	
 	@Listen("onClick = #btnBuscarMonedaDestinoF0013")
@@ -785,12 +786,11 @@ public class CF0015 extends CGenerico {
 		catalogoMonedaDestino.setParent(null);
 	}
 	
-	
 	@Listen("onClick = #btnBuscarF0101")
-	public void mostrarCatalogoDirecciones() {
+	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new Catalogo<F0101>(catalogoF0101, "F0013", listF0101,
-				false, false, false, "Nº direccion", "Nombre alfabetico",
+		catalogoF0101 = new Catalogo<F0101>(divCatalogoF0101, "F0101", listF0101,
+				true, false, false, "Nº direccion", "Nombre alfabetico",
 				"Direccion larga", "Clasificacion industria", "Tipo bus",
 				"ID fiscal") {
 
@@ -830,8 +830,34 @@ public class CF0015 extends CGenerico {
 				return registros;
 			}
 		};
-		catalogoF0101.setParent(divCatalogoF0013);
+		catalogoF0101.setParent(divCatalogoF0101);
 		catalogoF0101.doModal();
+	}
+	
+
+	@Listen("onSeleccion = #divCatalogoF0101")
+	public void seleccionCatalogoF0101() {
+		F0101 f0101 = catalogoF0101.objetoSeleccionadoDelCatalogo();
+		dblAN8F0015.setValue(f0101.getAban8());
+		lblDireccionF0101.setValue(f0101.getAbac02());
+		catalogoF0101.setParent(null);
+	}
+	
+	
+	@Listen("onChange = #txtCRCMF0015")
+	public void metodoConversion(){
+		
+		if(txtCRCMF0015.getValue().equals("Y")){
+			lblMetodoConversionF0015.setValue("Metodo Multiplicador");
+		}
+		
+		if(txtCRCMF0015.getValue().equals("Z")){
+			
+			lblMetodoConversionF0015.setValue("Metodo Divisor");	
+		}
+		
+		
+		
 	}
 	
 	
