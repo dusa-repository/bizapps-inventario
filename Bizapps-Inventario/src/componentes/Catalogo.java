@@ -63,7 +63,7 @@ public abstract class Catalogo<Clase> extends Window {
 	}
 
 	public void crearLista(List<Clase> lista, String[] campos,
-			boolean emergente, boolean udc) {
+			final boolean emergente, boolean udc) {
 		exportador = new Button();
 		exportador.setTooltiptext("Exportar los Datos como un Archivo");
 		exportador.setStyle("width: 28px; height: 28px");
@@ -118,10 +118,12 @@ public abstract class Catalogo<Clase> extends Window {
 							List<Clase> listaNueva = buscar(valores);
 							lsbCatalogo.setModel(new ListModelList<Clase>(
 									listaNueva));
-							lsbCatalogo.setMultiple(false);
-							lsbCatalogo.setCheckmark(false);
-							lsbCatalogo.setMultiple(true);
-							lsbCatalogo.setCheckmark(true);
+							if (!emergente) {
+								lsbCatalogo.setMultiple(false);
+								lsbCatalogo.setCheckmark(false);
+								lsbCatalogo.setMultiple(true);
+								lsbCatalogo.setCheckmark(true);
+							}
 							cajaTexto.setValue(valor);
 						}
 					});
@@ -196,14 +198,14 @@ public abstract class Catalogo<Clase> extends Window {
 				cajaVertical.appendChild(vbox1);
 				cajaVertical.appendChild(vbox2);
 				div.appendChild(cajaVertical);
-								
+
 				this.appendChild(div);
 			}
 
 			this.appendChild(separador2);
 			this.appendChild(lsbCatalogo);
-//			this.exportador.setVisible(false);
-//			this.pagineo.setVisible(false);
+			// this.exportador.setVisible(false);
+			// this.pagineo.setVisible(false);
 			lsbCatalogo.setMultiple(true);
 			lsbCatalogo.setCheckmark(true);
 			lsbCatalogo.setMultiple(false);
@@ -231,12 +233,12 @@ public abstract class Catalogo<Clase> extends Window {
 		}
 	}
 
-	public void settearCamposUdc(F0004 f004){
+	public void settearCamposUdc(F0004 f004) {
 		txtSY.setValue(f004.getId().getDtsy());
 		labelBuscado.setValue(f004.getDtdl01());
 		txtRT.setValue(f004.getId().getDtrt());
 	}
-	
+
 	protected void pagineo() {
 		if (lsbCatalogo.getPagingPosition().equals("top")) {
 			lsbCatalogo.setMold("default");

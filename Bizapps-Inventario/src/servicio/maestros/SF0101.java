@@ -27,11 +27,11 @@ public class SF0101 {
 		f0101DAO.delete(eliminarLista);
 	}
 
-	public void eliminarUno(long clave) {
+	public void eliminarUno(double clave) {
 		f0101DAO.delete(clave);
 	}
 
-	public F0101 buscar(long parseLong) {
+	public F0101 buscar(double parseLong) {
 		return f0101DAO.findOne(parseLong);
 	}
 }
