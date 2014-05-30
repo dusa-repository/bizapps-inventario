@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVF0015" apply="controlador.maestros.CF0015">
 		<groupbox width="auto" mold="3d"
-			title="Trabajo con tipos de cambio (VF0015)">
+			title="Trabajo con Tipos de Cambio (VF0015)">
 			<div id="botoneraF0015" />
 			<separator />
 			<groupbox id="gpxRegistroF0015" width="auto" title=""
@@ -124,14 +124,6 @@
 															id="rdoMetodoInversionF0015"
 															tooltiptext="Marque para Seleccionar el Metodo Inversion"
 															label="Método Inversión" />
-														<radio
-															id="rdoSinMetodoF0015"
-															tooltiptext="Marque para Seleccionar Sin Metodo de Inversion"
-															label="Sin Método de Inversión" />
-														<radio
-															id="rdoMetodoTriangulacionF0015"
-															tooltiptext="Marque para Seleccionar el Método Triangulación"
-															label="Método Triangulación" />
 													</vlayout>
 												</radiogroup>
 											</row>
