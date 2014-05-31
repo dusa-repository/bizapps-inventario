@@ -32,13 +32,13 @@ public class F0006 implements Serializable {
 	private String mcals;
 
 	@Column(name="MCAN8")
-	private double mcan8;
+	private Double mcan8;
 
 	@Column(name="MCAN8O")
-	private double mcan8o;
+	private Double mcan8o;
 
 	@Column(name="MCANPA")
-	private double mcanpa;
+	private Double mcanpa;
 
 	@Column(name="MCAPSB")
 	private String mcapsb;
@@ -50,7 +50,7 @@ public class F0006 implements Serializable {
 	private String mcbtyp;
 
 	@Column(name="MCCAC")
-	private double mccac;
+	private Double mccac;
 
 	@Column(name="MCCC01")
 	private String mccc01;
@@ -161,7 +161,7 @@ public class F0006 implements Serializable {
 	private String mcldm;
 
 	@Column(name="MCLF")
-	private double mclf;
+	private Double mclf;
 
 	@Column(name="MCLMTH")
 	private String mclmth;
@@ -209,16 +209,16 @@ public class F0006 implements Serializable {
 	private String mcobj3;
 
 	@Column(name="MCPAC")
-	private double mcpac;
+	private Double mcpac;
 
 	@Column(name="MCPC")
-	private double mcpc;
+	private Double mcpc;
 
 	@Column(name="MCPCA")
-	private double mcpca;
+	private Double mcpca;
 
 	@Column(name="MCPCC")
-	private double mcpcc;
+	private Double mcpcc;
 
 	@Column(name="MCPECC")
 	private String mcpecc;
@@ -359,7 +359,7 @@ public class F0006 implements Serializable {
 	private String mctc10;
 
 	@Column(name="MCTOU")
-	private double mctou;
+	private Double mctou;
 
 	@Column(name="MCTSBU")
 	private String mctsbu;
@@ -368,13 +368,13 @@ public class F0006 implements Serializable {
 	private String mctxa1;
 
 	@Column(name="MCTXJS")
-	private double mctxjs;
+	private Double mctxjs;
 
 	@Column(name="MCUPMJ")
 	private BigDecimal mcupmj;
 
 	@Column(name="MCUPMT")
-	private double mcupmt;
+	private Double mcupmt;
 
 	@Column(name="MCUSER")
 	private String mcuser;
@@ -414,27 +414,27 @@ public class F0006 implements Serializable {
 		this.mcals = mcals;
 	}
 
-	public double getMcan8() {
+	public Double getMcan8() {
 		return this.mcan8;
 	}
 
-	public void setMcan8(double mcan8) {
+	public void setMcan8(Double mcan8) {
 		this.mcan8 = mcan8;
 	}
 
-	public double getMcan8o() {
+	public Double getMcan8o() {
 		return this.mcan8o;
 	}
 
-	public void setMcan8o(double mcan8o) {
+	public void setMcan8o(Double mcan8o) {
 		this.mcan8o = mcan8o;
 	}
 
-	public double getMcanpa() {
+	public Double getMcanpa() {
 		return this.mcanpa;
 	}
 
-	public void setMcanpa(double mcanpa) {
+	public void setMcanpa(Double mcanpa) {
 		this.mcanpa = mcanpa;
 	}
 
@@ -462,11 +462,11 @@ public class F0006 implements Serializable {
 		this.mcbtyp = mcbtyp;
 	}
 
-	public double getMccac() {
+	public Double getMccac() {
 		return this.mccac;
 	}
 
-	public void setMccac(double mccac) {
+	public void setMccac(Double mccac) {
 		this.mccac = mccac;
 	}
 
@@ -758,11 +758,11 @@ public class F0006 implements Serializable {
 		this.mcldm = mcldm;
 	}
 
-	public double getMclf() {
+	public Double getMclf() {
 		return this.mclf;
 	}
 
-	public void setMclf(double mclf) {
+	public void setMclf(Double mclf) {
 		this.mclf = mclf;
 	}
 
@@ -886,35 +886,35 @@ public class F0006 implements Serializable {
 		this.mcobj3 = mcobj3;
 	}
 
-	public double getMcpac() {
+	public Double getMcpac() {
 		return this.mcpac;
 	}
 
-	public void setMcpac(double mcpac) {
+	public void setMcpac(Double mcpac) {
 		this.mcpac = mcpac;
 	}
 
-	public double getMcpc() {
+	public Double getMcpc() {
 		return this.mcpc;
 	}
 
-	public void setMcpc(double mcpc) {
+	public void setMcpc(Double mcpc) {
 		this.mcpc = mcpc;
 	}
 
-	public double getMcpca() {
+	public Double getMcpca() {
 		return this.mcpca;
 	}
 
-	public void setMcpca(double mcpca) {
+	public void setMcpca(Double mcpca) {
 		this.mcpca = mcpca;
 	}
 
-	public double getMcpcc() {
+	public Double getMcpcc() {
 		return this.mcpcc;
 	}
 
-	public void setMcpcc(double mcpcc) {
+	public void setMcpcc(Double mcpcc) {
 		this.mcpcc = mcpcc;
 	}
 
@@ -1286,11 +1286,11 @@ public class F0006 implements Serializable {
 		this.mctc10 = mctc10;
 	}
 
-	public double getMctou() {
+	public Double getMctou() {
 		return this.mctou;
 	}
 
-	public void setMctou(double mctou) {
+	public void setMctou(Double mctou) {
 		this.mctou = mctou;
 	}
 
@@ -1310,11 +1310,11 @@ public class F0006 implements Serializable {
 		this.mctxa1 = mctxa1;
 	}
 
-	public double getMctxjs() {
+	public Double getMctxjs() {
 		return this.mctxjs;
 	}
 
-	public void setMctxjs(double mctxjs) {
+	public void setMctxjs(Double mctxjs) {
 		this.mctxjs = mctxjs;
 	}
 
@@ -1326,11 +1326,11 @@ public class F0006 implements Serializable {
 		this.mcupmj = mcupmj;
 	}
 
-	public double getMcupmt() {
+	public Double getMcupmt() {
 		return this.mcupmt;
 	}
 
-	public void setMcupmt(double mcupmt) {
+	public void setMcupmt(Double mcupmt) {
 		this.mcupmt = mcupmt;
 	}
 

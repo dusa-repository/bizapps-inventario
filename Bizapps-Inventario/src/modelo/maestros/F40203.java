@@ -48,7 +48,7 @@ public class F40203 implements Serializable {
 	private String fsnxtr;
 
 	@Column(name="FSORNN")
-	private double fsornn;
+	private Double fsornn;
 
 	@Column(name="FSSTDS")
 	private String fsstds;
@@ -139,11 +139,11 @@ public class F40203 implements Serializable {
 		this.fsnxtr = fsnxtr;
 	}
 
-	public double getFsornn() {
+	public Double getFsornn() {
 		return this.fsornn;
 	}
 
-	public void setFsornn(double fsornn) {
+	public void setFsornn(Double fsornn) {
 		this.fsornn = fsornn;
 	}
 

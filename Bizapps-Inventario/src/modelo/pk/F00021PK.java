@@ -21,10 +21,10 @@ public class F00021PK implements Serializable {
 	private String nldct;
 
 	@Column(name="NLCTRY")
-	private double nlctry;
+	private Double nlctry;
 
 	@Column(name="NLFY")
-	private double nlfy;
+	private Double nlfy;
 
 	public F00021PK() {
 	}
@@ -40,16 +40,16 @@ public class F00021PK implements Serializable {
 	public void setNldct(String nldct) {
 		this.nldct = nldct;
 	}
-	public double getNlctry() {
+	public Double getNlctry() {
 		return this.nlctry;
 	}
-	public void setNlctry(double nlctry) {
+	public void setNlctry(Double nlctry) {
 		this.nlctry = nlctry;
 	}
-	public double getNlfy() {
+	public Double getNlfy() {
 		return this.nlfy;
 	}
-	public void setNlfy(double nlfy) {
+	public void setNlfy(Double nlfy) {
 		this.nlfy = nlfy;
 	}
 
