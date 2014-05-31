@@ -494,13 +494,16 @@ public class CF0101 extends CGenerico {
 					guardar = validar();
 				if (guardar) {
 					F0101 f01 = new F0101();
-					if (clave != 0) {
+					double claveLong = 0;
+					if (clave == claveLong) {
 						double numero = servicioF00021.Numero("5", "JE");
+						System.out.println("numero"+numero);
 						if (numero != 0)
 							clave = numero + 1;
 						else
 							clave = 1;
 					}
+					System.out.println(clave);
 					f01.setAban8(clave);
 					f01.setAbalky(txtALKYF0101.getValue());
 					f01.setAbalph(txtALPHF0101.getValue());

@@ -23,7 +23,7 @@ public class F00021 implements Serializable {
 	private F00021PK id;
 
 	@Column(name="NLAUR")
-	private double nlaur;
+	private Double nlaur;
 
 	@Column(name="NLCK01")
 	private String nlck01;
@@ -32,10 +32,10 @@ public class F00021 implements Serializable {
 	private String nlimb;
 
 	@Column(name="NLN001")
-	private double nln001;
+	private Double nln001;
 
 	@Column(name="NLSEQ")
-	private double nlseq;
+	private Double nlseq;
 
 	@Column(name="NLSMAS")
 	private String nlsmas;
@@ -51,11 +51,11 @@ public class F00021 implements Serializable {
 		this.id = id;
 	}
 
-	public double getNlaur() {
+	public Double getNlaur() {
 		return this.nlaur;
 	}
 
-	public void setNlaur(double nlaur) {
+	public void setNlaur(Double nlaur) {
 		this.nlaur = nlaur;
 	}
 
@@ -75,19 +75,19 @@ public class F00021 implements Serializable {
 		this.nlimb = nlimb;
 	}
 
-	public double getNln001() {
+	public Double getNln001() {
 		return this.nln001;
 	}
 
-	public void setNln001(double nln001) {
+	public void setNln001(Double nln001) {
 		this.nln001 = nln001;
 	}
 
-	public double getNlseq() {
+	public Double getNlseq() {
 		return this.nlseq;
 	}
 
-	public void setNlseq(double nlseq) {
+	public void setNlseq(Double nlseq) {
 		this.nlseq = nlseq;
 	}
 
