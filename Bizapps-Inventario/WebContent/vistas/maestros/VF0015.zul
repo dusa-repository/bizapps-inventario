@@ -11,13 +11,13 @@
 					tooltiptext="Presione para Registrar un Nuevo Tipo de Cambio" />
 				<separator />
 				<hbox>
-					<groupbox title="" closable="false">
+					<groupbox title="" closable="false" height="125px">
 						<grid width="100%" style="border:0px">
 							<columns visible="false">
 								<column label="" width="35%" />
 								<column label="" width="25%" />
-								<column label="" width="10%" />
-								<column label="" width="30%" />
+								<column label="" width="11%" />
+								<column label="" width="29%" />
 							</columns>
 							<rows>
 								<row>
@@ -56,7 +56,7 @@
 								<row>
 									<hbox>
 										<label class="etiqueta"
-											value="Ir a fecha efectiva:" />
+											value="Fecha efectiva:" />
 										<space />
 										<label value="*"
 											style="font-weight:bold;color:red">
@@ -70,13 +70,13 @@
 						</grid>
 					</groupbox>
 					<groupbox title="" closable="false"
-						height="118px">
+						height="125px">
 						<grid width="100%" style="border:0px">
 							<columns visible="false">
 								<column label="" width="35%" />
 								<column label="" width="25%" />
-								<column label="" width="10%" />
-								<column label="" width="30%" />
+								<column label="" width="11%" />
+								<column label="" width="29%" />
 							</columns>
 							<rows>
 								<row>
@@ -85,10 +85,10 @@
 									<doublespinner id="dblAN8F0015"
 										format="#.##" hflex="1" maxlength="100"
 										tooltiptext="Ingrese el Contrato(direccion)" />
-									<button id="btnBuscarF0101"
-										label="" tooltiptext="Catalogo de Contratos(direcciones)"
+									<button id="btnBuscarF0101" label=""
+										tooltiptext="Catalogo de Contratos(direcciones)"
 										image="/public/imagenes/botones/buscar.png" />
-										<label id="lblDireccionF0101" />
+									<label id="lblDireccionF0101" />
 								</row>
 							</rows>
 						</grid>
@@ -100,7 +100,7 @@
 				<tabbox id="tbTipoCambioF0015" visible="false">
 					<tabs id="tabsF0015">
 						<tab id="tbMetodoCalculoF0015"
-							label="Metodo calculo" />
+							label="Metodo cálculo" />
 						<tab id="tbRevisionTipoCambioF0015"
 							label="Revision de Tipos de Cambio" />
 
@@ -108,7 +108,7 @@
 					<tabpanels>
 						<tabpanel>
 							<hbox>
-								<groupbox title="" closable="false">
+								<groupbox title="" closable="false" height="160px">
 									<grid width="100%"
 										style="border:0px">
 										<columns visible="false">
@@ -127,20 +127,11 @@
 													</vlayout>
 												</radiogroup>
 											</row>
-											<row>
-												<space />
-											</row>
-											<row>
-												<checkbox
-													label="Permitir cambio al contado"
-													id="chxCambioContadoF0015" hflex="1"
-													tooltiptext="Marque Para Permitir Cambio al Contado" />
-											</row>
 										</rows>
 									</grid>
 								</groupbox>
 								<groupbox title="" closable="false"
-									height="155px">
+									height="160px">
 									<grid width="100%"
 										style="border:0px">
 										<columns visible="false">
@@ -220,9 +211,9 @@
 		</groupbox>
 		<div id="divCatalogoF0013"
 			tooltiptext="Click para Seleccionar un Codigo" />
-			<div id="divCatalogoMonedaDestino"
+		<div id="divCatalogoMonedaDestino"
 			tooltiptext="Click para Seleccionar un Codigo" />
-			<div id="divCatalogoF0101"
+		<div id="divCatalogoF0101"
 			tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>
