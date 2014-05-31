@@ -48,7 +48,7 @@ public class Usuario implements Serializable {
 	private Timestamp fechaAuditoria;
 
 	@Column(name = "hora_auditoria", length = 10)
-	private String horaAuditoria;
+	private Timestamp horaAuditoria;
 
 	@Column(name = "usuario_auditoria", length = 50)
 	private String usuarioAuditoria;
@@ -56,6 +56,27 @@ public class Usuario implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "grupo_usuario", joinColumns = { @JoinColumn(name = "id_usuario", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_grupo", nullable = false) })
 	private Set<Grupo> grupos;
+	
+	@Column(name="primer_apellido", length=100)
+	private String primerApellido;
+
+	@Column(name="primer_nombre", length=100)
+	private String primerNombre;
+	
+	@Column(name="segundo_apellido", length=100)
+	private String segundoApellido;
+
+	@Column(name="segundo_nombre", length=100)
+	private String segundoNombre;
+	
+	@Column(length=1)
+	private String sexo;
+
+	@Column(length=50)
+	private String telefono;
+	
+	@Column(length=500)
+	private String direccion;
 
 	public Usuario() {
 		super();
@@ -63,8 +84,10 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(String cedula, String email, String login, String password,
-			byte[] imagen, boolean estado, Timestamp fechaAuditoria,
-			String horaAuditoria, String usuarioAuditoria, Set<Grupo> grupos) {
+			byte[] imagen, boolean estado, 
+			Timestamp horaAuditoria, Set<Grupo> grupos, 
+			String nombre, String apellido,String segundoNombre, String segundoApellido,
+			String sexo, String telefono, String direccion) {
 		super();
 		this.cedula = cedula;
 		this.email = email;
@@ -72,10 +95,15 @@ public class Usuario implements Serializable {
 		this.password = password;
 		this.imagen = imagen;
 		this.estado = estado;
-		this.fechaAuditoria = fechaAuditoria;
 		this.horaAuditoria = horaAuditoria;
-		this.usuarioAuditoria = usuarioAuditoria;
 		this.grupos = grupos;
+		this.primerNombre = nombre;
+		this.primerApellido = apellido;
+		this.segundoNombre = segundoNombre;
+		this.segundoApellido = segundoApellido;
+		this.sexo = sexo;
+		this.telefono = telefono;
+		this.direccion = direccion;
 	}
 
 	public String getCedula() {
@@ -134,11 +162,11 @@ public class Usuario implements Serializable {
 		this.fechaAuditoria = fechaAuditoria;
 	}
 
-	public String getHoraAuditoria() {
+	public Timestamp getHoraAuditoria() {
 		return horaAuditoria;
 	}
 
-	public void setHoraAuditoria(String horaAuditoria) {
+	public void setHoraAuditoria(Timestamp horaAuditoria) {
 		this.horaAuditoria = horaAuditoria;
 	}
 
@@ -158,6 +186,57 @@ public class Usuario implements Serializable {
 		this.grupos = grupos;
 	}
 	
-	
+	public String getPrimerApellido() {
+		return primerApellido;
+	}
 
+	public void setPrimerApellido(String primerApellido) {
+		this.primerApellido = primerApellido;
+	}
+
+	public String getPrimerNombre() {
+		return primerNombre;
+	}
+
+	public void setPrimerNombre(String primerNombre) {
+		this.primerNombre = primerNombre;
+	}
+
+	public String getSegundoApellido() {
+		return segundoApellido;
+	}
+
+	public void setSegundoApellido(String segundoApellido) {
+		this.segundoApellido = segundoApellido;
+	}
+
+	public String getSegundoNombre() {
+		return segundoNombre;
+	}
+
+	public void setSegundoNombre(String segundoNombre) {
+		this.segundoNombre = segundoNombre;
+	}
+	public String getSexo() {
+		return this.sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public String getDireccion() {
+		return this.direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 }
