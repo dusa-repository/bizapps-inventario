@@ -44,7 +44,7 @@ public class F0013 implements Serializable {
 	private BigDecimal cvupmj;
 
 	@Column(name="CVUPMT")
-	private double cvupmt;
+	private Double cvupmt;
 
 	@Column(name="CVUSER")
 	private String cvuser;
@@ -120,7 +120,7 @@ public class F0013 implements Serializable {
 		return this.cvupmt;
 	}
 
-	public void setCvupmt(double cvupmt) {
+	public void setCvupmt(Double cvupmt) {
 		this.cvupmt = cvupmt;
 	}
 
