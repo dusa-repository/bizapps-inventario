@@ -63,8 +63,6 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Radio rdoMetodoInversionF0015;
 	@Wire
-	private Checkbox chxCambioContadoF0015;
-	@Wire
 	private Textbox txtCRCMF0015;
 	@Wire
 	private Label lblMetodoConversionF0015;
@@ -114,7 +112,7 @@ public class CF0015 extends CGenerico {
 
 		txtCRCDF0015.setFocus(true);
 		agregarMetodoCalculo = false;
-		rdoMetodoInversionF0015.isSelected();
+		rdoMetodoInversionF0015.setSelected(true);
 		mostrarCatalogoEncabezado();
 		mostrarCatalogoDetalle();
 
@@ -201,12 +199,13 @@ public class CF0015 extends CGenerico {
 				dtbEFTF0015.setDisabled(true);
 				tbMetodoCalculoF0015.setSelected(true);
 				tbTipoCambioF0015.setVisible(true);
+				rdoMetodoInversionF0015.setSelected(true);
 				agregarMetodoCalculo = true;
 				mostrarBotones(false);
 				botonera.getChildren().get(0).setVisible(true);
 				botonera.getChildren().get(2).setVisible(false);
 				txtCRCMF0015.setFocus(true);
-
+				
 			}
 
 			@Override
@@ -223,9 +222,6 @@ public class CF0015 extends CGenerico {
 							.valueOf(transformarGregorianoAJulia(dtbEFTF0015
 									.getValue()))));
 					double an8 = dblAN8F0015.getValue();
-					String crcm = txtCRCMF0015.getValue();
-					double crr = dblCRRF0015.getValue();
-					double crrd = dblCRRDF0015.getValue();
 					F0015PK clave = new F0015PK();
 					clave.setCxcrcd(crcd);
 					clave.setCxcrdc(crdc);
@@ -237,9 +233,9 @@ public class CF0015 extends CGenerico {
 
 					if (agregarMetodoCalculo) {
 						System.out.println("Metodo calculo");
-						foo15.setCxcrcm(crcm);
-						foo15.setCxcrr(crr);
-						foo15.setCxcrrd(crrd);
+						foo15.setCxcrcm(txtCRCMF0015.getValue());
+						foo15.setCxcrr(dblCRRF0015.getValue());
+						foo15.setCxcrrd(dblCRRDF0015.getValue());
 					}
 
 					foo15.setCxuser("JDE");
@@ -431,7 +427,6 @@ public class CF0015 extends CGenerico {
 		dblAN8F0015.setValue(null);
 		txtCRCDF0015.setFocus(true);
 		rdgMetodoCalculoF0015.setSelectedItem(null);
-		chxCambioContadoF0015.setChecked(false);
 		txtCRCMF0015.setValue("");
 		lblMetodoConversionF0015.setValue("");
 		dblCRRF0015.setValue(null);
