@@ -18,7 +18,7 @@ public class F0008PK implements Serializable {
 	private String cddtpn;
 
 	@Column(name="CDDFYJ")
-	private long cddfyj;
+	private Long cddfyj;
 
 	@Column(name="CDFQ")
 	private String cdfq;
@@ -31,10 +31,10 @@ public class F0008PK implements Serializable {
 	public void setCddtpn(String cddtpn) {
 		this.cddtpn = cddtpn;
 	}
-	public long getCddfyj() {
+	public Long getCddfyj() {
 		return this.cddfyj;
 	}
-	public void setCddfyj(long cddfyj) {
+	public void setCddfyj(Long cddfyj) {
 		this.cddfyj = cddfyj;
 	}
 	public String getCdfq() {
