@@ -21,13 +21,13 @@ public class F0015PK implements Serializable {
 	private String cxcrdc;
 
 	@Column(name="CXAN8")
-	private double cxan8;
+	private Double cxan8;
 
 	@Column(name="CXRTTYP")
 	private String cxrttyp;
 
 	@Column(name="CXEFT")
-	private long cxeft;
+	private Long cxeft;
 
 	public F0015PK() {
 	}
@@ -43,10 +43,10 @@ public class F0015PK implements Serializable {
 	public void setCxcrdc(String cxcrdc) {
 		this.cxcrdc = cxcrdc;
 	}
-	public double getCxan8() {
+	public Double getCxan8() {
 		return this.cxan8;
 	}
-	public void setCxan8(double cxan8) {
+	public void setCxan8(Double cxan8) {
 		this.cxan8 = cxan8;
 	}
 	public String getCxrttyp() {
@@ -55,10 +55,10 @@ public class F0015PK implements Serializable {
 	public void setCxrttyp(String cxrttyp) {
 		this.cxrttyp = cxrttyp;
 	}
-	public long getCxeft() {
+	public Long getCxeft() {
 		return this.cxeft;
 	}
-	public void setCxeft(long cxeft) {
+	public void setCxeft(Long cxeft) {
 		this.cxeft = cxeft;
 	}
 

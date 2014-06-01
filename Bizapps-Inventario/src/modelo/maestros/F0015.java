@@ -28,10 +28,10 @@ public class F0015 implements Serializable {
 	private String cxcrcm;
 
 	@Column(name="CXCRR")
-	private double cxcrr;
+	private Double cxcrr;
 
 	@Column(name="CXCRRD")
-	private double cxcrrd;
+	private Double cxcrrd;
 
 	@Column(name="CXCSR")
 	private String cxcsr;
@@ -49,7 +49,7 @@ public class F0015 implements Serializable {
 	private BigDecimal cxupmj;
 
 	@Column(name="CXUPMT")
-	private double cxupmt;
+	private Double cxupmt;
 
 	@Column(name="CXUSER")
 	private String cxuser;
@@ -81,19 +81,19 @@ public class F0015 implements Serializable {
 		this.cxcrcm = cxcrcm;
 	}
 
-	public double getCxcrr() {
+	public Double getCxcrr() {
 		return this.cxcrr;
 	}
 
-	public void setCxcrr(double cxcrr) {
+	public void setCxcrr(Double cxcrr) {
 		this.cxcrr = cxcrr;
 	}
 
-	public double getCxcrrd() {
+	public Double getCxcrrd() {
 		return this.cxcrrd;
 	}
 
-	public void setCxcrrd(double cxcrrd) {
+	public void setCxcrrd(Double cxcrrd) {
 		this.cxcrrd = cxcrrd;
 	}
 
@@ -137,11 +137,11 @@ public class F0015 implements Serializable {
 		this.cxupmj = cxupmj;
 	}
 
-	public double getCxupmt() {
+	public Double getCxupmt() {
 		return this.cxupmt;
 	}
 
-	public void setCxupmt(double cxupmt) {
+	public void setCxupmt(Double cxupmt) {
 		this.cxupmt = cxupmt;
 	}
 

@@ -20,7 +20,7 @@ public class F4101 implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IMITM")
-	private double imitm;
+	private Double imitm;
 
 	@Column(name = "IMABCI")
 	private String imabci;
@@ -32,7 +32,7 @@ public class F4101 implements Serializable {
 	private String imabcs;
 
 	@Column(name = "IMACQ")
-	private double imacq;
+	private Double imacq;
 
 	@Column(name = "IMAING")
 	private String imaing;
@@ -44,7 +44,7 @@ public class F4101 implements Serializable {
 	private String imaln;
 
 	@Column(name = "IMANPL")
-	private double imanpl;
+	private Double imanpl;
 
 	@Column(name = "IMAPSC")
 	private String imapsc;
@@ -57,25 +57,25 @@ public class F4101 implements Serializable {
 	private String imauom;
 
 	@Column(name = "IMAVRT")
-	private double imavrt;
+	private Double imavrt;
 
 	@Column(name = "IMBACK")
 	private String imback;
 
 	@Column(name = "IMBBDD")
-	private double imbbdd;
+	private Double imbbdd;
 
 	@Column(name = "IMBPFG")
 	private String imbpfg;
 
 	@Column(name = "IMBUYR")
-	private double imbuyr;
+	private Double imbuyr;
 
 	@Column(name = "IMCARP")
-	private double imcarp;
+	private Double imcarp;
 
 	@Column(name = "IMCARS")
-	private double imcars;
+	private Double imcars;
 
 	@Column(name = "IMCDCD")
 	private String imcdcd;
@@ -102,7 +102,7 @@ public class F4101 implements Serializable {
 	private String imcoby;
 
 	@Column(name = "IMCOMH")
-	private double imcomh;
+	private Double imcomh;
 
 	@Column(name = "IMCONB")
 	private String imconb;
@@ -114,22 +114,22 @@ public class F4101 implements Serializable {
 	private String imcoty;
 
 	@Column(name = "IMCUTH")
-	private double imcuth;
+	private Double imcuth;
 
 	@Column(name = "IMCYCL")
 	private String imcycl;
 
 	@Column(name = "IMDEFD")
-	private double imdefd;
+	private Double imdefd;
 
 	@Column(name = "IMDFENDITM")
 	private String imdfenditm;
 
 	@Column(name = "IMDFTPCT")
-	private double imdftpct;
+	private Double imdftpct;
 
 	@Column(name = "IMDLTL")
-	private double imdltl;
+	private Double imdltl;
 
 	@Column(name = "IMDPPO")
 	private String imdppo;
@@ -156,7 +156,7 @@ public class F4101 implements Serializable {
 	private String imeqty;
 
 	@Column(name = "IMEXPD")
-	private double imexpd;
+	private Double imexpd;
 
 	@Column(name = "IMEXPI")
 	private String imexpi;
@@ -168,7 +168,7 @@ public class F4101 implements Serializable {
 	private String imfrgd;
 
 	@Column(name = "IMFRMP")
-	private double imfrmp;
+	private Double imfrmp;
 
 	@Column(name = "IMGCMP")
 	private String imgcmp;
@@ -201,7 +201,7 @@ public class F4101 implements Serializable {
 	private String imlecm;
 
 	@Column(name = "IMLEDD")
-	private double imledd;
+	private Double imledd;
 
 	@Column(name = "IMLINE")
 	private String imline;
@@ -210,7 +210,7 @@ public class F4101 implements Serializable {
 	private String imlitm;
 
 	@Column(name = "IMLLX")
-	private double imllx;
+	private Double imllx;
 
 	@Column(name = "IMLMFG")
 	private String imlmfg;
@@ -228,19 +228,19 @@ public class F4101 implements Serializable {
 	private String imlots;
 
 	@Column(name = "IMLTCM")
-	private double imltcm;
+	private Double imltcm;
 
 	@Column(name = "IMLTFM")
 	private String imltfm;
 
 	@Column(name = "IMLTLV")
-	private double imltlv;
+	private Double imltlv;
 
 	@Column(name = "IMLTMF")
-	private double imltmf;
+	private Double imltmf;
 
 	@Column(name = "IMLTPU")
-	private double imltpu;
+	private Double imltpu;
 
 	@Column(name = "IMMAKE")
 	private String immake;
@@ -249,10 +249,10 @@ public class F4101 implements Serializable {
 	private String immic;
 
 	@Column(name = "IMMLQ")
-	private double immlq;
+	private Double immlq;
 
 	@Column(name = "IMMMPC")
-	private double immmpc;
+	private Double immmpc;
 
 	@Column(name = "IMMPSP")
 	private String immpsp;
@@ -264,28 +264,28 @@ public class F4101 implements Serializable {
 	private String immrpp;
 
 	@Column(name = "IMMTF1")
-	private double immtf1;
+	private Double immtf1;
 
 	@Column(name = "IMMTF2")
-	private double immtf2;
+	private Double immtf2;
 
 	@Column(name = "IMMTF3")
-	private double immtf3;
+	private Double immtf3;
 
 	@Column(name = "IMMTF4")
-	private double immtf4;
+	private Double immtf4;
 
 	@Column(name = "IMMTF5")
-	private double immtf5;
+	private Double immtf5;
 
 	@Column(name = "IMOPC")
 	private String imopc;
 
 	@Column(name = "IMOPTH")
-	private double imopth;
+	private Double imopth;
 
 	@Column(name = "IMOPV")
-	private double imopv;
+	private Double imopv;
 
 	@Column(name = "IMORDW")
 	private String imordw;
@@ -303,13 +303,13 @@ public class F4101 implements Serializable {
 	private String imovr;
 
 	@Column(name = "IMPCTM")
-	private double impctm;
+	private Double impctm;
 
 	@Column(name = "IMPDGR")
 	private String impdgr;
 
 	@Column(name = "IMPEFD")
-	private double impefd;
+	private Double impefd;
 
 	@Column(name = "IMPID")
 	private String impid;
@@ -330,10 +330,10 @@ public class F4101 implements Serializable {
 	private String imprgr;
 
 	@Column(name = "IMPRI1")
-	private double impri1;
+	private Double impri1;
 
 	@Column(name = "IMPRI2")
-	private double impri2;
+	private Double impri2;
 
 	@Column(name = "IMPRP0")
 	private String imprp0;
@@ -381,7 +381,7 @@ public class F4101 implements Serializable {
 	private String imrwla;
 
 	@Column(name = "IMSBDD")
-	private double imsbdd;
+	private Double imsbdd;
 
 	@Column(name = "IMSCC0")
 	private String imscc0;
@@ -420,7 +420,7 @@ public class F4101 implements Serializable {
 	private String imseg9;
 
 	@Column(name = "IMSFLT")
-	private double imsflt;
+	private Double imsflt;
 
 	@Column(name = "IMSHCM")
 	private String imshcm;
@@ -429,7 +429,7 @@ public class F4101 implements Serializable {
 	private String imshcn;
 
 	@Column(name = "IMSLD")
-	private double imsld;
+	private Double imsld;
 
 	@Column(name = "IMSNS")
 	private String imsns;
@@ -477,7 +477,7 @@ public class F4101 implements Serializable {
 	private String imstdg;
 
 	@Column(name = "IMSTDP")
-	private double imstdp;
+	private Double imstdp;
 
 	@Column(name = "IMSTKT")
 	private String imstkt;
@@ -486,7 +486,7 @@ public class F4101 implements Serializable {
 	private String imsutm;
 
 	@Column(name = "IMTDAY")
-	private double imtday;
+	private Double imtday;
 
 	@Column(name = "IMTFLA")
 	private String imtfla;
@@ -495,25 +495,25 @@ public class F4101 implements Serializable {
 	private String imthgd;
 
 	@Column(name = "IMTHRP")
-	private double imthrp;
+	private Double imthrp;
 
 	@Column(name = "IMTMPL")
 	private String imtmpl;
 
 	@Column(name = "IMU1DD")
-	private double imu1dd;
+	private Double imu1dd;
 
 	@Column(name = "IMU2DD")
-	private double imu2dd;
+	private Double imu2dd;
 
 	@Column(name = "IMU3DD")
-	private double imu3dd;
+	private Double imu3dd;
 
 	@Column(name = "IMU4DD")
-	private double imu4dd;
+	private Double imu4dd;
 
 	@Column(name = "IMU5DD")
-	private double imu5dd;
+	private Double imu5dd;
 
 	@Column(name = "IMUMDF")
 	private String imumdf;
@@ -583,10 +583,10 @@ public class F4101 implements Serializable {
 	private BigDecimal imupmj;
 
 	@Column(name = "IMURAB")
-	private double imurab;
+	private Double imurab;
 
 	@Column(name = "IMURAT")
-	private double imurat;
+	private Double imurat;
 
 	@Column(name = "IMURCD")
 	private String imurcd;
@@ -607,7 +607,7 @@ public class F4101 implements Serializable {
 	private String imuwum;
 
 	@Column(name = "IMVCUD")
-	private double imvcud;
+	private Double imvcud;
 
 	@Column(name = "IMVMINV")
 	private String imvminv;
@@ -624,11 +624,11 @@ public class F4101 implements Serializable {
 	public F4101() {
 	}
 
-	public double getImitm() {
+	public Double getImitm() {
 		return this.imitm;
 	}
 
-	public void setImitm(double imitm) {
+	public void setImitm(Double imitm) {
 		this.imitm = imitm;
 	}
 
@@ -656,11 +656,11 @@ public class F4101 implements Serializable {
 		this.imabcs = imabcs;
 	}
 
-	public double getImacq() {
+	public Double getImacq() {
 		return this.imacq;
 	}
 
-	public void setImacq(double imacq) {
+	public void setImacq(Double imacq) {
 		this.imacq = imacq;
 	}
 
@@ -688,11 +688,11 @@ public class F4101 implements Serializable {
 		this.imaln = imaln;
 	}
 
-	public double getImanpl() {
+	public Double getImanpl() {
 		return this.imanpl;
 	}
 
-	public void setImanpl(double imanpl) {
+	public void setImanpl(Double imanpl) {
 		this.imanpl = imanpl;
 	}
 
@@ -720,11 +720,11 @@ public class F4101 implements Serializable {
 		this.imauom = imauom;
 	}
 
-	public double getImavrt() {
+	public Double getImavrt() {
 		return this.imavrt;
 	}
 
-	public void setImavrt(double imavrt) {
+	public void setImavrt(Double imavrt) {
 		this.imavrt = imavrt;
 	}
 
@@ -736,11 +736,11 @@ public class F4101 implements Serializable {
 		this.imback = imback;
 	}
 
-	public double getImbbdd() {
+	public Double getImbbdd() {
 		return this.imbbdd;
 	}
 
-	public void setImbbdd(double imbbdd) {
+	public void setImbbdd(Double imbbdd) {
 		this.imbbdd = imbbdd;
 	}
 
@@ -752,27 +752,27 @@ public class F4101 implements Serializable {
 		this.imbpfg = imbpfg;
 	}
 
-	public double getImbuyr() {
+	public Double getImbuyr() {
 		return this.imbuyr;
 	}
 
-	public void setImbuyr(double imbuyr) {
+	public void setImbuyr(Double imbuyr) {
 		this.imbuyr = imbuyr;
 	}
 
-	public double getImcarp() {
+	public Double getImcarp() {
 		return this.imcarp;
 	}
 
-	public void setImcarp(double imcarp) {
+	public void setImcarp(Double imcarp) {
 		this.imcarp = imcarp;
 	}
 
-	public double getImcars() {
+	public Double getImcars() {
 		return this.imcars;
 	}
 
-	public void setImcars(double imcars) {
+	public void setImcars(Double imcars) {
 		this.imcars = imcars;
 	}
 
@@ -840,11 +840,11 @@ public class F4101 implements Serializable {
 		this.imcoby = imcoby;
 	}
 
-	public double getImcomh() {
+	public Double getImcomh() {
 		return this.imcomh;
 	}
 
-	public void setImcomh(double imcomh) {
+	public void setImcomh(Double imcomh) {
 		this.imcomh = imcomh;
 	}
 
@@ -872,11 +872,11 @@ public class F4101 implements Serializable {
 		this.imcoty = imcoty;
 	}
 
-	public double getImcuth() {
+	public Double getImcuth() {
 		return this.imcuth;
 	}
 
-	public void setImcuth(double imcuth) {
+	public void setImcuth(Double imcuth) {
 		this.imcuth = imcuth;
 	}
 
@@ -888,11 +888,11 @@ public class F4101 implements Serializable {
 		this.imcycl = imcycl;
 	}
 
-	public double getImdefd() {
+	public Double getImdefd() {
 		return this.imdefd;
 	}
 
-	public void setImdefd(double imdefd) {
+	public void setImdefd(Double imdefd) {
 		this.imdefd = imdefd;
 	}
 
@@ -904,19 +904,19 @@ public class F4101 implements Serializable {
 		this.imdfenditm = imdfenditm;
 	}
 
-	public double getImdftpct() {
+	public Double getImdftpct() {
 		return this.imdftpct;
 	}
 
-	public void setImdftpct(double imdftpct) {
+	public void setImdftpct(Double imdftpct) {
 		this.imdftpct = imdftpct;
 	}
 
-	public double getImdltl() {
+	public Double getImdltl() {
 		return this.imdltl;
 	}
 
-	public void setImdltl(double imdltl) {
+	public void setImdltl(Double imdltl) {
 		this.imdltl = imdltl;
 	}
 
@@ -984,11 +984,11 @@ public class F4101 implements Serializable {
 		this.imeqty = imeqty;
 	}
 
-	public double getImexpd() {
+	public Double getImexpd() {
 		return this.imexpd;
 	}
 
-	public void setImexpd(double imexpd) {
+	public void setImexpd(Double imexpd) {
 		this.imexpd = imexpd;
 	}
 
@@ -1016,11 +1016,11 @@ public class F4101 implements Serializable {
 		this.imfrgd = imfrgd;
 	}
 
-	public double getImfrmp() {
+	public Double getImfrmp() {
 		return this.imfrmp;
 	}
 
-	public void setImfrmp(double imfrmp) {
+	public void setImfrmp(Double imfrmp) {
 		this.imfrmp = imfrmp;
 	}
 
@@ -1104,11 +1104,11 @@ public class F4101 implements Serializable {
 		this.imlecm = imlecm;
 	}
 
-	public double getImledd() {
+	public Double getImledd() {
 		return this.imledd;
 	}
 
-	public void setImledd(double imledd) {
+	public void setImledd(Double imledd) {
 		this.imledd = imledd;
 	}
 
@@ -1128,11 +1128,11 @@ public class F4101 implements Serializable {
 		this.imlitm = imlitm;
 	}
 
-	public double getImllx() {
+	public Double getImllx() {
 		return this.imllx;
 	}
 
-	public void setImllx(double imllx) {
+	public void setImllx(Double imllx) {
 		this.imllx = imllx;
 	}
 
@@ -1176,11 +1176,11 @@ public class F4101 implements Serializable {
 		this.imlots = imlots;
 	}
 
-	public double getImltcm() {
+	public Double getImltcm() {
 		return this.imltcm;
 	}
 
-	public void setImltcm(double imltcm) {
+	public void setImltcm(Double imltcm) {
 		this.imltcm = imltcm;
 	}
 
@@ -1192,27 +1192,27 @@ public class F4101 implements Serializable {
 		this.imltfm = imltfm;
 	}
 
-	public double getImltlv() {
+	public Double getImltlv() {
 		return this.imltlv;
 	}
 
-	public void setImltlv(double imltlv) {
+	public void setImltlv(Double imltlv) {
 		this.imltlv = imltlv;
 	}
 
-	public double getImltmf() {
+	public Double getImltmf() {
 		return this.imltmf;
 	}
 
-	public void setImltmf(double imltmf) {
+	public void setImltmf(Double imltmf) {
 		this.imltmf = imltmf;
 	}
 
-	public double getImltpu() {
+	public Double getImltpu() {
 		return this.imltpu;
 	}
 
-	public void setImltpu(double imltpu) {
+	public void setImltpu(Double imltpu) {
 		this.imltpu = imltpu;
 	}
 
@@ -1232,19 +1232,19 @@ public class F4101 implements Serializable {
 		this.immic = immic;
 	}
 
-	public double getImmlq() {
+	public Double getImmlq() {
 		return this.immlq;
 	}
 
-	public void setImmlq(double immlq) {
+	public void setImmlq(Double immlq) {
 		this.immlq = immlq;
 	}
 
-	public double getImmmpc() {
+	public Double getImmmpc() {
 		return this.immmpc;
 	}
 
-	public void setImmmpc(double immmpc) {
+	public void setImmmpc(Double immmpc) {
 		this.immmpc = immmpc;
 	}
 
@@ -1272,43 +1272,43 @@ public class F4101 implements Serializable {
 		this.immrpp = immrpp;
 	}
 
-	public double getImmtf1() {
+	public Double getImmtf1() {
 		return this.immtf1;
 	}
 
-	public void setImmtf1(double immtf1) {
+	public void setImmtf1(Double immtf1) {
 		this.immtf1 = immtf1;
 	}
 
-	public double getImmtf2() {
+	public Double getImmtf2() {
 		return this.immtf2;
 	}
 
-	public void setImmtf2(double immtf2) {
+	public void setImmtf2(Double immtf2) {
 		this.immtf2 = immtf2;
 	}
 
-	public double getImmtf3() {
+	public Double getImmtf3() {
 		return this.immtf3;
 	}
 
-	public void setImmtf3(double immtf3) {
+	public void setImmtf3(Double immtf3) {
 		this.immtf3 = immtf3;
 	}
 
-	public double getImmtf4() {
+	public Double getImmtf4() {
 		return this.immtf4;
 	}
 
-	public void setImmtf4(double immtf4) {
+	public void setImmtf4(Double immtf4) {
 		this.immtf4 = immtf4;
 	}
 
-	public double getImmtf5() {
+	public Double getImmtf5() {
 		return this.immtf5;
 	}
 
-	public void setImmtf5(double immtf5) {
+	public void setImmtf5(Double immtf5) {
 		this.immtf5 = immtf5;
 	}
 
@@ -1320,19 +1320,19 @@ public class F4101 implements Serializable {
 		this.imopc = imopc;
 	}
 
-	public double getImopth() {
+	public Double getImopth() {
 		return this.imopth;
 	}
 
-	public void setImopth(double imopth) {
+	public void setImopth(Double imopth) {
 		this.imopth = imopth;
 	}
 
-	public double getImopv() {
+	public Double getImopv() {
 		return this.imopv;
 	}
 
-	public void setImopv(double imopv) {
+	public void setImopv(Double imopv) {
 		this.imopv = imopv;
 	}
 
@@ -1376,11 +1376,11 @@ public class F4101 implements Serializable {
 		this.imovr = imovr;
 	}
 
-	public double getImpctm() {
+	public Double getImpctm() {
 		return this.impctm;
 	}
 
-	public void setImpctm(double impctm) {
+	public void setImpctm(Double impctm) {
 		this.impctm = impctm;
 	}
 
@@ -1392,11 +1392,11 @@ public class F4101 implements Serializable {
 		this.impdgr = impdgr;
 	}
 
-	public double getImpefd() {
+	public Double getImpefd() {
 		return this.impefd;
 	}
 
-	public void setImpefd(double impefd) {
+	public void setImpefd(Double impefd) {
 		this.impefd = impefd;
 	}
 
@@ -1448,19 +1448,19 @@ public class F4101 implements Serializable {
 		this.imprgr = imprgr;
 	}
 
-	public double getImpri1() {
+	public Double getImpri1() {
 		return this.impri1;
 	}
 
-	public void setImpri1(double impri1) {
+	public void setImpri1(Double impri1) {
 		this.impri1 = impri1;
 	}
 
-	public double getImpri2() {
+	public Double getImpri2() {
 		return this.impri2;
 	}
 
-	public void setImpri2(double impri2) {
+	public void setImpri2(Double impri2) {
 		this.impri2 = impri2;
 	}
 
@@ -1584,11 +1584,11 @@ public class F4101 implements Serializable {
 		this.imrwla = imrwla;
 	}
 
-	public double getImsbdd() {
+	public Double getImsbdd() {
 		return this.imsbdd;
 	}
 
-	public void setImsbdd(double imsbdd) {
+	public void setImsbdd(Double imsbdd) {
 		this.imsbdd = imsbdd;
 	}
 
@@ -1688,11 +1688,11 @@ public class F4101 implements Serializable {
 		this.imseg9 = imseg9;
 	}
 
-	public double getImsflt() {
+	public Double getImsflt() {
 		return this.imsflt;
 	}
 
-	public void setImsflt(double imsflt) {
+	public void setImsflt(Double imsflt) {
 		this.imsflt = imsflt;
 	}
 
@@ -1712,11 +1712,11 @@ public class F4101 implements Serializable {
 		this.imshcn = imshcn;
 	}
 
-	public double getImsld() {
+	public Double getImsld() {
 		return this.imsld;
 	}
 
-	public void setImsld(double imsld) {
+	public void setImsld(Double imsld) {
 		this.imsld = imsld;
 	}
 
@@ -1840,11 +1840,11 @@ public class F4101 implements Serializable {
 		this.imstdg = imstdg;
 	}
 
-	public double getImstdp() {
+	public Double getImstdp() {
 		return this.imstdp;
 	}
 
-	public void setImstdp(double imstdp) {
+	public void setImstdp(Double imstdp) {
 		this.imstdp = imstdp;
 	}
 
@@ -1864,11 +1864,11 @@ public class F4101 implements Serializable {
 		this.imsutm = imsutm;
 	}
 
-	public double getImtday() {
+	public Double getImtday() {
 		return this.imtday;
 	}
 
-	public void setImtday(double imtday) {
+	public void setImtday(Double imtday) {
 		this.imtday = imtday;
 	}
 
@@ -1888,11 +1888,11 @@ public class F4101 implements Serializable {
 		this.imthgd = imthgd;
 	}
 
-	public double getImthrp() {
+	public Double getImthrp() {
 		return this.imthrp;
 	}
 
-	public void setImthrp(double imthrp) {
+	public void setImthrp(Double imthrp) {
 		this.imthrp = imthrp;
 	}
 
@@ -1904,43 +1904,43 @@ public class F4101 implements Serializable {
 		this.imtmpl = imtmpl;
 	}
 
-	public double getImu1dd() {
+	public Double getImu1dd() {
 		return this.imu1dd;
 	}
 
-	public void setImu1dd(double imu1dd) {
+	public void setImu1dd(Double imu1dd) {
 		this.imu1dd = imu1dd;
 	}
 
-	public double getImu2dd() {
+	public Double getImu2dd() {
 		return this.imu2dd;
 	}
 
-	public void setImu2dd(double imu2dd) {
+	public void setImu2dd(Double imu2dd) {
 		this.imu2dd = imu2dd;
 	}
 
-	public double getImu3dd() {
+	public Double getImu3dd() {
 		return this.imu3dd;
 	}
 
-	public void setImu3dd(double imu3dd) {
+	public void setImu3dd(Double imu3dd) {
 		this.imu3dd = imu3dd;
 	}
 
-	public double getImu4dd() {
+	public Double getImu4dd() {
 		return this.imu4dd;
 	}
 
-	public void setImu4dd(double imu4dd) {
+	public void setImu4dd(Double imu4dd) {
 		this.imu4dd = imu4dd;
 	}
 
-	public double getImu5dd() {
+	public Double getImu5dd() {
 		return this.imu5dd;
 	}
 
-	public void setImu5dd(double imu5dd) {
+	public void setImu5dd(Double imu5dd) {
 		this.imu5dd = imu5dd;
 	}
 
@@ -2120,19 +2120,19 @@ public class F4101 implements Serializable {
 		this.imupmj = imupmj;
 	}
 
-	public double getImurab() {
+	public Double getImurab() {
 		return this.imurab;
 	}
 
-	public void setImurab(double imurab) {
+	public void setImurab(Double imurab) {
 		this.imurab = imurab;
 	}
 
-	public double getImurat() {
+	public Double getImurat() {
 		return this.imurat;
 	}
 
-	public void setImurat(double imurat) {
+	public void setImurat(Double imurat) {
 		this.imurat = imurat;
 	}
 
@@ -2184,11 +2184,11 @@ public class F4101 implements Serializable {
 		this.imuwum = imuwum;
 	}
 
-	public double getImvcud() {
+	public Double getImvcud() {
 		return this.imvcud;
 	}
 
-	public void setImvcud(double imvcud) {
+	public void setImvcud(Double imvcud) {
 		this.imvcud = imvcud;
 	}
 
