@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import modelo.maestros.F0005;
+import modelo.maestros.F0008;
 import modelo.maestros.F4101;
 
 import org.zkoss.zk.ui.event.Event;
@@ -185,6 +186,14 @@ public class CF4101 extends CGenerico {
 	@Wire
 	private Textbox txtIMPEFDF4101;
 	@Wire
+	private Checkbox chxIMDUALF4101;
+	@Wire
+	private Checkbox chxIMDPPOF4101;
+	@Wire
+	private Textbox txtCMDCDEF4101;
+	@Wire
+	private Textbox txtUNSPSCF4101;
+	@Wire
 	private Groupbox gpxDatosF4101;
 	@Wire
 	private Div catalogoF4101;
@@ -197,29 +206,27 @@ public class CF4101 extends CGenerico {
 	double clave = 0;
 	Catalogo<F0005> catalogoF0005;
 	Catalogo<F4101> catalogo;
-	
 
-	BuscadorUDC buscadorIMSTKT, buscadorIMGLPT, buscadorIMUOM1,
-	buscadorIMBPFG, buscadorIMCLEV, buscadorIMPLEV,
-	buscadorIMPPLV, buscadorIMPMTH, buscadorIMCMETH,
-	buscadorIMCMGL, buscadorIMINMG, buscadorIMIFLA,
-	buscadorIMTFLA, buscadorIMPRGR, buscadorIMRPRC,
-	buscadorIMORPR, buscadorIMDSGP, buscadorPrincipalIMUOM1,
-	buscadorIMUOM2, buscadorIMUOM3, buscadorIMUOM4,
-	buscadorIMUOM6, buscadorIMUOM8, buscadorIMUOM9,
-	buscadorIMUWUM, buscadorIMUVM1, buscadorIMSRNR,
-	buscadorIMLOTS, buscadorIMSRCE, buscadorIMCMDM,
-	buscadorIMLECM;
+	BuscadorUDC buscadorIMSTKT, buscadorIMGLPT, buscadorIMUOM1, buscadorIMBPFG,
+			buscadorIMCLEV, buscadorIMPLEV, buscadorIMPPLV, buscadorIMPMTH,
+			buscadorIMCMETH, buscadorIMCMGL, buscadorIMINMG, buscadorIMIFLA,
+			buscadorIMTFLA, buscadorIMPRGR, buscadorIMRPRC, buscadorIMORPR,
+			buscadorIMDSGP, buscadorPrincipalIMUOM1, buscadorIMUOM2,
+			buscadorIMUOM3, buscadorIMUOM4, buscadorIMUOM6, buscadorIMUOM8,
+			buscadorIMUOM9, buscadorIMUWUM, buscadorIMUVM1, buscadorIMSRNR,
+			buscadorIMLOTS, buscadorIMSRCE, buscadorIMCMDM, buscadorIMLECM;
 
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
 
-		/*UDC IMSTKT (41,I)*/
+		txtArticuloF4101.setFocus(true);
+
+		/* UDC IMSTKT (41,I) */
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
 				"00");
-		buscadorIMSTKT = new BuscadorUDC("Tipo alm", 10, listaF0005,
-				true, false, false) {
+		buscadorIMSTKT = new BuscadorUDC("Tipo alm", 10, listaF0005, true,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -227,10 +234,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMSTKT.appendChild(buscadorIMSTKT);
-		
-		/*UDC IMGLPT (41,9)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMGLPT (41,9) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMGLPT = new BuscadorUDC("Clasif libro mayor", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -240,12 +246,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMGLPT.appendChild(buscadorIMGLPT);
-		
-		/*UDC IMUOM1 (00,UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUOM1 = new BuscadorUDC("Unidad medida", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUOM1 (00,UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUOM1 = new BuscadorUDC("Unidad medida", 10, listaF0005, true,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -253,11 +258,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUOM1.appendChild(buscadorIMUOM1);
-		
-		
-		/*UDC IMBPFG (41B,BF)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMBPFG (41B,BF) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMBPFG = new BuscadorUDC("Prod granel/emb", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -267,12 +270,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMBPFG.appendChild(buscadorIMBPFG);
-		
-		/*UDC IMCLEV (H40, CL)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMCLEV = new BuscadorUDC("Nivel costo inventario", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMCLEV (H40, CL) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMCLEV = new BuscadorUDC("Nivel costo inventario", 10,
+				listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -280,10 +282,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMCLEV.appendChild(buscadorIMCLEV);
-		
-		/*UDC IMPLEV (H40, PL)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMPLEV (H40, PL) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMPLEV = new BuscadorUDC("Nivel precio venta", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -293,11 +294,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMPLEV.appendChild(buscadorIMPLEV);
-		
-		
-		/*UDC IMPPLV (H40, PP)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMPPLV (H40, PP) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMPPLV = new BuscadorUDC("Nivel precio compra", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -307,13 +306,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMPPLV.appendChild(buscadorIMPPLV);
-		
-		
-		/*UDC IMPMTH (H41, PM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMPMTH = new BuscadorUDC("Mét fijación precios juegos/config", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMPMTH (H41, PM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMPMTH = new BuscadorUDC("Mét fijación precios juegos/config",
+				10, listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -321,13 +318,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMPMTH.appendChild(buscadorIMPMTH);
-		
-		
-		/*UDC IMCMETH (41, CM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMCMETH = new BuscadorUDC("Método configurador cálculo costos", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMCMETH (41, CM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMCMETH = new BuscadorUDC("Método configurador cálculo costos",
+				10, listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -335,11 +330,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMCMETH.appendChild(buscadorIMCMETH);
-		
-		
-		/*UDC IMCMGL (H40, CM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMCMGL (H40, CM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMCMGL = new BuscadorUDC("Método compromiso", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -349,13 +342,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMCMGL.appendChild(buscadorIMCMGL);
-		
-		
-		/*UDC IMINMG (40, PM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMINMG = new BuscadorUDC("Mensaje impr", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMINMG (40, PM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMINMG = new BuscadorUDC("Mensaje impr", 10, listaF0005, false,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -363,13 +354,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMINMG.appendChild(buscadorIMINMG);
-		
-		
-		/*UDC IMIFLA (40, FL)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMIFLA = new BuscadorUDC("Mensaje intermitente artículo", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMIFLA (40, FL) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMIFLA = new BuscadorUDC("Mensaje intermitente artículo", 10,
+				listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -377,13 +366,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMIFLA.appendChild(buscadorIMIFLA);
-		
-		
-		/*UDC IMTFLA (H40, ST)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMTFLA = new BuscadorUDC("Conversión UM estándar", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMTFLA (H40, ST) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMTFLA = new BuscadorUDC("Conversión UM estándar", 10,
+				listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -391,10 +378,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMTFLA.appendChild(buscadorIMTFLA);
-		
-		/*UDC IMPRGR (40, PI)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMPRGR (40, PI) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMPRGR = new BuscadorUDC("Gp precios art", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -404,10 +390,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMPRGR.appendChild(buscadorIMPRGR);
-		
-		/*UDC IMRPRC (40, PI)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMRPRC (40, PI) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMRPRC = new BuscadorUDC("Retarif precios gp", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -417,12 +402,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMRPRC.appendChild(buscadorIMRPRC);
-		
-		/*UDC IMORPR (40, PI)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMORPR = new BuscadorUDC("Retarif precio órdenes", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMORPR (40, PI) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMORPR = new BuscadorUDC("Retarif precio órdenes", 10,
+				listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -430,10 +414,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMORPR.appendChild(buscadorIMORPR);
-		
-		/*UDC IMPRGR (40, PI)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMPRGR (40, PI) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMDSGP = new BuscadorUDC("Grupo despacho", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -443,10 +426,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMDSGP.appendChild(buscadorIMDSGP);
-		
-		/*UDC IMUOM1 (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMUOM1 (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorPrincipalIMUOM1 = new BuscadorUDC("Principal", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -456,12 +438,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorPrincipalIMUOM1.appendChild(buscadorPrincipalIMUOM1);
-		
-		/*UDC IMUOM2 (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUOM2 = new BuscadorUDC("Secundario", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUOM2 (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUOM2 = new BuscadorUDC("Secundario", 10, listaF0005, false,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -469,12 +450,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUOM2.appendChild(buscadorIMUOM2);
-		
-		/*UDC IMUOM3 (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUOM3 = new BuscadorUDC("Compras", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUOM3 (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUOM3 = new BuscadorUDC("Compras", 10, listaF0005, false,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -482,12 +462,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUOM3.appendChild(buscadorIMUOM3);
-		
-		/*UDC IMUOM4 (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUOM4 = new BuscadorUDC("Tarificación", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUOM4 (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUOM4 = new BuscadorUDC("Tarificación", 10, listaF0005, false,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -495,12 +474,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUOM4.appendChild(buscadorIMUOM4);
-		
-		/*UDC IMUOM6 (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUOM6 = new BuscadorUDC("Envío", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUOM6 (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUOM6 = new BuscadorUDC("Envío", 10, listaF0005, false, false,
+				false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -508,12 +486,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUOM6.appendChild(buscadorIMUOM6);
-		
-		/*UDC IMUOM8 (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUOM8 = new BuscadorUDC("Producción", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUOM8 (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUOM8 = new BuscadorUDC("Producción", 10, listaF0005, false,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -521,12 +498,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUOM8.appendChild(buscadorIMUOM8);
-		
-		/*UDC IMUOM9 (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUOM9 = new BuscadorUDC("Componente", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUOM9 (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUOM9 = new BuscadorUDC("Componente", 10, listaF0005, false,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -534,13 +510,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUOM9.appendChild(buscadorIMUOM9);
-		
-		
-		/*UDC IMUWUM (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUWUM = new BuscadorUDC("Peso", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUWUM (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUWUM = new BuscadorUDC("Peso", 10, listaF0005, false, false,
+				false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -548,12 +522,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUWUM.appendChild(buscadorIMUWUM);
-		
-		/*UDC IMUWUM (00, UM)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMUVM1 = new BuscadorUDC("Volúmen", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMUWUM (00, UM) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMUVM1 = new BuscadorUDC("Volúmen", 10, listaF0005, false,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -561,13 +534,11 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMUVM1.appendChild(buscadorIMUVM1);
-		
-		
-		/*UDC IMSRNR (H41, NR)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMSRNR = new BuscadorUDC("N° serie obligatorio", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMSRNR (H41, NR) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMSRNR = new BuscadorUDC("N° serie obligatorio", 10,
+				listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -575,11 +546,9 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMSRNR.appendChild(buscadorIMSRNR);
-		
-		
-		/*UDC IMLOTS (41, L)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
+
+		/* UDC IMLOTS (41, L) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
 		buscadorIMLOTS = new BuscadorUDC("Código estado lote", 10, listaF0005,
 				false, false, false) {
 			@Override
@@ -589,41 +558,35 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMLOTS.appendChild(buscadorIMLOTS);
-		
-		
-		/*UDC IMSRCE (H41, SR)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		 buscadorIMSRCE = new BuscadorUDC("Tipo proceso lote", 10, listaF0005,
+
+		/* UDC IMSRCE (H41, SR) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMSRCE = new BuscadorUDC("Tipo proceso lote", 10, listaF0005,
 				false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
-						 buscadorIMSRCE.obtenerCaja());
+						buscadorIMSRCE.obtenerCaja());
 			}
 		};
 		divBuscadorIMSRCE.appendChild(buscadorIMSRCE);
-		
-		
-		/*UDC IMCMDM (H40, CD)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		 buscadorIMCMDM = new BuscadorUDC("Método fecha compromiso", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMCMDM (H40, CD) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMCMDM = new BuscadorUDC("Método fecha compromiso", 10,
+				listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
-						 buscadorIMCMDM.obtenerCaja());
+						buscadorIMCMDM.obtenerCaja());
 			}
 		};
 		divBuscadorIMCMDM.appendChild(buscadorIMCMDM);
-		
-		
-		/*UDC IMLECM (H41, EC)*/
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorIMLECM = new BuscadorUDC("Método fecha caducidad lote", 10, listaF0005,
-				false, false, false) {
+
+		/* UDC IMLECM (H41, EC) */
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorIMLECM = new BuscadorUDC("Método fecha caducidad lote", 10,
+				listaF0005, false, false, false) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -631,8 +594,7 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		divBuscadorIMLECM.appendChild(buscadorIMLECM);
-		
-				
+
 		botonera = new Botonera() {
 
 			@Override
@@ -650,6 +612,8 @@ public class CF4101 extends CGenerico {
 			@Override
 			public void annadir() {
 				// TODO Auto-generated method stub
+				abrirRegistro();
+				mostrarBotones(false);
 
 			}
 
@@ -662,6 +626,9 @@ public class CF4101 extends CGenerico {
 			@Override
 			public void limpiar() {
 				// TODO Auto-generated method stub
+				mostrarBotones(false);
+				limpiarCampos();
+				clave = 0;
 
 			}
 
@@ -681,6 +648,56 @@ public class CF4101 extends CGenerico {
 			@Override
 			public void eliminar() {
 				// TODO Auto-generated method stub
+				if (gpxDatosF4101.isOpen()) {
+					/* Elimina Varios Registros */
+					if (validarSeleccion()) {
+						final List<F4101> eliminarLista = catalogo
+								.obtenerSeleccionados();
+						Messagebox
+								.show("¿Desea Eliminar los "
+										+ eliminarLista.size() + " Registros?",
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF4101
+															.eliminarVarios(eliminarLista);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													catalogo.actualizarLista(servicioF4101
+															.buscarTodosOrdenados());
+												}
+											}
+										});
+					}
+				} else {
+					/* Elimina un solo registro */
+					if (clave != 0) {
+						Messagebox
+								.show(Mensaje.deseaEliminar,
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF4101
+															.eliminarUno(clave);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													limpiar();
+													catalogo.actualizarLista(servicioF4101
+															.buscarTodosOrdenados());
+												}
+											}
+										});
+					} else
+						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+				}
 
 			}
 
@@ -698,11 +715,141 @@ public class CF4101 extends CGenerico {
 	}
 
 	public void limpiarCampos() {
+		clave = 0;
+		buscadorIMSTKT.settearCampo(null);
+		buscadorIMGLPT.settearCampo(null);
+		buscadorIMUOM1.settearCampo(null);
+		buscadorIMBPFG.settearCampo(null);
+		buscadorIMCLEV.settearCampo(null);
+		buscadorIMPLEV.settearCampo(null);
+		buscadorIMPPLV.settearCampo(null);
+		buscadorIMPMTH.settearCampo(null);
+		buscadorIMCMETH.settearCampo(null);
+		buscadorIMCMGL.settearCampo(null);
+		buscadorIMINMG.settearCampo(null);
+		buscadorIMIFLA.settearCampo(null);
+		buscadorIMTFLA.settearCampo(null);
+		buscadorIMPRGR.settearCampo(null);
+		buscadorIMRPRC.settearCampo(null);
+		buscadorIMORPR.settearCampo(null);
+		buscadorIMDSGP.settearCampo(null);
+		buscadorPrincipalIMUOM1.settearCampo(null);
+		buscadorIMUOM2.settearCampo(null);
+		buscadorIMUOM3.settearCampo(null);
+		buscadorIMUOM4.settearCampo(null);
+		buscadorIMUOM6.settearCampo(null);
+		buscadorIMUOM8.settearCampo(null);
+		buscadorIMUOM9.settearCampo(null);
+		buscadorIMUWUM.settearCampo(null);
+		buscadorIMUVM1.settearCampo(null);
+		buscadorIMSRNR.settearCampo(null);
+		buscadorIMLOTS.settearCampo(null);
+		buscadorIMSRCE.settearCampo(null);
+		buscadorIMCMDM.settearCampo(null);
+		buscadorIMLECM.settearCampo(null);
+		txtArticuloF4101.setValue("");
+		txIMLITMF4101.setValue("");
+		txtIMDSC1F4101.setValue("");
+		txtIMDSC2F4101.setValue("");
+		txtIMSRTXF4101.setValue("");
+		txtIMLNTYF4101.setValue("");
+		lblIMLNTYF4101.setValue("");
+		txtIMALKYF4101.setValue("");
+		lblIMALKYF4101.setValue("");
+		chxIMBACKF4101.setChecked(false);
+		chxIMCKAVF4101.setChecked(false);
+		chxIMXDCKF4101.setChecked(false);
+		chxIMDUALF4101.setChecked(false);
+		chxIMDPPOF4101.setChecked(false);
+		txtDLTLF4101.setValue("");
+		txtCMDCDEF4101.setValue("");
+		txtUNSPSCF4101.setValue("");
+		rdgIMABCSF4101.setSelectedItem(null);
+		rdgIMABCMF4101.setSelectedItem(null);
+		rdgIMABCIF4101.setSelectedItem(null);
+		txtIMSLDF4101.setValue("");
+		txtIMU1DDF4101.setValue("");
+		txtIMBBDDF4101.setValue("");
+		txtIMU2DDF4101.setValue("");
+		txtIMSBDDF4101.setValue("");
+		txtIMU3DDF4101.setValue("");
+		txtIMLEDDF4101.setValue("");
+		txtIMU4DDF4101.setValue("");
+		txtIMPEFDF4101.setValue("");
+		txtIMU5DDF4101.setValue("");
+		txtArticuloF4101.setFocus(true);
 
 	}
 
-	public void habilitarTextClave() {
-
+	public boolean camposEditando() {
+		if (buscadorIMSTKT.obtenerCaja().compareTo("") != 0
+				|| buscadorIMGLPT.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUOM1.obtenerCaja().compareTo("") != 0
+				|| buscadorIMBPFG.obtenerCaja().compareTo("") != 0
+				|| buscadorIMCLEV.obtenerCaja().compareTo("") != 0
+				|| buscadorIMPLEV.obtenerCaja().compareTo("") != 0
+				|| buscadorIMPPLV.obtenerCaja().compareTo("") != 0
+				|| buscadorIMPMTH.obtenerCaja().compareTo("") != 0
+				|| buscadorIMCMETH.obtenerCaja().compareTo("") != 0
+				|| buscadorIMCMGL.obtenerCaja().compareTo("") != 0
+				|| buscadorIMINMG.obtenerCaja().compareTo("") != 0
+				|| buscadorIMIFLA.obtenerCaja().compareTo("") != 0
+				|| buscadorIMTFLA.obtenerCaja().compareTo("") != 0
+				|| buscadorIMPRGR.obtenerCaja().compareTo("") != 0
+				|| buscadorIMRPRC.obtenerCaja().compareTo("") != 0
+				|| buscadorIMORPR.obtenerCaja().compareTo("") != 0
+				|| buscadorIMDSGP.obtenerCaja().compareTo("") != 0
+				|| buscadorPrincipalIMUOM1.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUOM2.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUOM3.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUOM4.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUOM6.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUOM8.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUOM9.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUWUM.obtenerCaja().compareTo("") != 0
+				|| buscadorIMUVM1.obtenerCaja().compareTo("") != 0
+				|| buscadorIMSRNR.obtenerCaja().compareTo("") != 0
+				|| buscadorIMLOTS.obtenerCaja().compareTo("") != 0
+				|| buscadorIMSRCE.obtenerCaja().compareTo("") != 0
+				|| buscadorIMCMDM.obtenerCaja().compareTo("") != 0
+				|| buscadorIMLECM.obtenerCaja().compareTo("") != 0
+				|| txtArticuloF4101.getText().compareTo("") != 0
+				|| txIMLITMF4101.getText().compareTo("") != 0
+				|| txtIMDSC1F4101.getText().compareTo("") != 0
+				|| txtIMDSC2F4101.getText().compareTo("") != 0
+				|| txtIMSRTXF4101.getText().compareTo("") != 0
+				|| txtIMLNTYF4101.getText().compareTo("") != 0
+				|| txtIMALKYF4101.getText().compareTo("") != 0
+				|| chxIMBACKF4101.isChecked() || chxIMCKAVF4101.isChecked()
+				|| chxIMXDCKF4101.isChecked() || chxIMDUALF4101.isChecked()
+				|| chxIMDPPOF4101.isChecked()
+				|| txtDLTLF4101.getText().compareTo("") != 0
+				|| txtCMDCDEF4101.getText().compareTo("") != 0
+				|| txtUNSPSCF4101.getText().compareTo("") != 0
+				|| rdoIMABCSClasificacionAF4101.isChecked()
+				|| rdoIMABCSClasificacionBF4101.isChecked()
+				|| rdoIMABCMClasificacionCF4101.isChecked()
+				|| rdoIMABCSSinClasificacionF4101.isChecked()
+				|| rdoIMABCMClasificacionAF4101.isChecked()
+				|| rdoIMABCMClasificacionBF4101.isChecked()
+				|| rdoIMABCMClasificacionCF4101.isChecked()
+				|| rdoIMABCMSinClasificacionF4101.isChecked()
+				|| rdoIMABCIClasificacionAF4101.isChecked()
+				|| rdoIMABCIClasificacionBF4101.isChecked()
+				|| rdoIMABCIClasificacionCF4101.isChecked()
+				|| rdoIMABCISinClasificacionF4101.isChecked()
+				|| txtIMSLDF4101.getText().compareTo("") != 0
+				|| txtIMU1DDF4101.getText().compareTo("") != 0
+				|| txtIMBBDDF4101.getText().compareTo("") != 0
+				|| txtIMU2DDF4101.getText().compareTo("") != 0
+				|| txtIMSBDDF4101.getText().compareTo("") != 0
+				|| txtIMU3DDF4101.getText().compareTo("") != 0
+				|| txtIMLEDDF4101.getText().compareTo("") != 0
+				|| txtIMPEFDF4101.getText().compareTo("") != 0
+				|| txtIMU5DDF4101.getText().compareTo("") != 0) {
+			return true;
+		} else
+			return false;
 	}
 
 	public void mostrarBotones(boolean bol) {
@@ -712,6 +859,59 @@ public class CF4101 extends CGenerico {
 		botonera.getChildren().get(3).setVisible(!bol);
 		botonera.getChildren().get(5).setVisible(!bol);
 		botonera.getChildren().get(6).setVisible(bol);
+	}
+
+	@Listen("onClick = #gpxRegistroF4101")
+	public void abrirRegistro() {
+		gpxDatosF4101.setOpen(false);
+		gpxRegistroF4101.setOpen(true);
+		mostrarBotones(false);
+
+	}
+	
+	
+	@Listen("onOpen = #gpxDatosF4101")
+	public void abrirCatalogo() {
+		gpxDatosF4101.setOpen(false);
+		if (camposEditando()) {
+			Messagebox.show(Mensaje.estaEditando, "Alerta", Messagebox.YES
+					| Messagebox.NO, Messagebox.QUESTION,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event evt)
+								throws InterruptedException {
+							if (evt.getName().equals("onYes")) {
+								gpxDatosF4101.setOpen(false);
+								gpxRegistroF4101.setOpen(true);
+							} else {
+								if (evt.getName().equals("onNo")) {
+									gpxDatosF4101.setOpen(true);
+									gpxRegistroF4101.setOpen(false);
+									limpiarCampos();
+									mostrarBotones(true);
+								}
+							}
+						}
+					});
+		} else {
+			gpxDatosF4101.setOpen(true);
+			gpxRegistroF4101.setOpen(false);
+			mostrarBotones(true);
+		}
+	}
+
+	public boolean validarSeleccion() {
+		List<F4101> seleccionados = catalogo.obtenerSeleccionados();
+		if (seleccionados == null) {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			return false;
+		} else {
+			if (seleccionados.isEmpty()) {
+				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				return false;
+			} else {
+				return true;
+			}
+		}
 	}
 
 }
