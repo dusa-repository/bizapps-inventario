@@ -52,9 +52,9 @@
 							<groupbox title="" closable="false">
 								<grid width="100%" style="border:0px">
 									<columns visible="false">
+										<column label="" width="16%" />
+										<column label="" width="28%" />
 										<column label="" width="15%" />
-										<column label="" width="40%" />
-										<column label="" width="10%" />
 										<column label="" width="30%" />
 									</columns>
 									<rows>
@@ -84,7 +84,8 @@
 											<textbox id="txtIMDSC2F4101"
 												hflex="1" maxlength="30"
 												tooltiptext="Ingrese la Descripcion" />
-											<label class="etiqueta" value="Texto búsqueda:" />
+											<label class="etiqueta"
+												value="Texto búsqueda:" />
 											<textbox id="txtIMSRTXF4101"
 												hflex="1" maxlength="30"
 												tooltiptext="Ingrese el Texto de Busqueda" />
@@ -95,13 +96,13 @@
 							<separator />
 							<hbox>
 								<vbox>
-									<groupbox title=""
+									<groupbox title="" height="220px"
 										closable="false">
 										<grid width="100%"
 											style="border:0px">
 											<columns visible="false">
 												<column label=""
-													width="32%" />
+													width="30%" />
 												<column label=""
 													width="34%" />
 												<column label=""
@@ -134,6 +135,7 @@
 
 													<textbox
 														id="txtIMLNTYF4101" hflex="1" maxlength="2"
+														style="margin-left:0px"
 														tooltiptext="Seleccione del Catalogo el Tipo de Linea" />
 
 													<button
@@ -168,8 +170,8 @@
 											</rows>
 										</grid>
 									</groupbox>
-									<groupbox title=""
-										closable="false">
+									<groupbox title="" closable="false"
+										height="142px">
 										<grid width="100%"
 											style="border:0px">
 											<columns visible="false">
@@ -243,7 +245,7 @@
 											<row>
 												<cell colspan="4">
 													<div
-														id="divBuscadorIMCMG" hflex="1" />
+														id="divBuscadorIMCMGL" hflex="1" />
 												</cell>
 											</row>
 											<row>
@@ -271,91 +273,54 @@
 						</tabpanel>
 						<tabpanel>
 							<hbox>
-								<groupbox title="" closable="false">
+								<groupbox title="" closable="false"
+									height="200px">
 									<grid width="100%"
 										style="border:0px">
 										<columns visible="false">
 											<column label=""
-												width="30%" />
+												width="35%" />
 											<column label=""
-												width="25%" />
+												width="20%" />
 											<column label=""
-												width="45%" />
+												width="35%" />
+											
 										</columns>
 										<rows>
 											<row>
-												<label class="etiqueta"
-													value="Gp precios art" />
-												<textbox
-													id="txtPatron25F4101" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Grupo de Precio del Articulo" />
-												<hbox>
-													<button
-														id="btnBuscarGrupoPrecioF4101" label=""
-														tooltiptext="Catalogo de Grupos de Precios de los Articulos"
-														image="/public/imagenes/botones/buscar.png" />
-													<label
-														class="etiqueta" id="lblGrupoPrecioF4101"
-														style="margin-left:10px;font-style:italic;" />
-												</hbox>
+												<cell colspan="3">
+													<div
+														id="divBuscadorIMPRGR" hflex="1" />
+												</cell>
 											</row>
 											<row>
-												<label class="etiqueta"
-													value="Retarif precios gp" />
-												<textbox
-													id="txtPatron26F4101" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Retarif del Precio de las Ordenes" />
-												<hbox>
-													<button
-														id="btnBuscarRetarifPrecioF4101" label=""
-														tooltiptext="Catalogo de Retarif de Precios de Ordenes"
-														image="/public/imagenes/botones/buscar.png" />
-													<label
-														class="etiqueta" id="lblRetarifPrecioF4101"
-														style="margin-left:10px;font-style:italic;" />
-												</hbox>
+												<cell colspan="3">
+													<div
+														id="divBuscadorIMRPRC" hflex="1" />
+												</cell>
 											</row>
 											<row>
-												<label class="etiqueta"
-													value="Retarif precio órdenes" />
-												<textbox
-													id="txtPatron27F4101" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Retarif del Precio de las Ordenes" />
-												<hbox>
-													<button
-														id="btnBuscarRetarifOrdenesF4101" label=""
-														tooltiptext="Catalogo de Retarif de Precios de Ordenes"
-														image="/public/imagenes/botones/buscar.png" />
-													<label
-														class="etiqueta" id="lblRetarifOrdenesF4101"
-														style="margin-left:10px;font-style:italic;" />
-												</hbox>
+												<cell colspan="3">
+													<div
+														id="divBuscadorIMORPR" hflex="1" />
+												</cell>
 											</row>
 											<row>
-												<label class="etiqueta"
-													value="Grupo despacho" />
-												<textbox
-													id="txtPatron28F4101" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Grupo de Despacho" />
-												<hbox>
-													<button
-														id="btnBuscarGrupoDespachoF4101" label=""
-														tooltiptext="Catalogo de Grupos de Despacho"
-														image="/public/imagenes/botones/buscar.png" />
-													<label
-														class="etiqueta" id="lblGrupoDespachoF4101"
-														style="margin-left:10px;font-style:italic;" />
-												</hbox>
+												<cell colspan="3">
+													<div
+														id="divBuscadorIMDSGP" hflex="1" />
+												</cell>
 											</row>
 											<row>
 												<checkbox
-													label="Reexpedición" id="chxReexpediccion2F4101" hflex="1"
+													label="Reexpedición" id="chxIMXDCKF4101" hflex="1"
 													tooltiptext="Marque Para Permitir Reexpedicion" />
 											</row>
 										</rows>
 									</grid>
 								</groupbox>
-								<groupbox title="" closable="false">
+								<groupbox title="" closable="false"
+									height="200px">
 									<grid width="100%"
 										style="border:0px">
 										<columns visible="false">
@@ -367,39 +332,25 @@
 										<rows>
 											<row>
 												<checkbox
-													label="Artículo con UM doble" id="chxArticuloDobleF4101"
-													hflex="1"
+													label="Artículo con UM doble" id="chxIMDUALF4101" hflex="1"
 													tooltiptext="Marque Para Permitir Articulo con UM Doble" />
 											</row>
 											<row>
 												<checkbox
-													label="Proceso acoplo doble" id="chxProcesoAcoploF4101"
-													hflex="1" disabled="true"
+													label="Proceso acoplo doble" id="chxIMDPPOF4101" hflex="1"
 													tooltiptext="Marque Para Permitir Proceso Acoplo Doble" />
 											</row>
-											<row>
-												<checkbox
-													label="Tolerancia UM doble" id="chxToleranciaDobleF4101"
-													hflex="1" disabled="true"
-													tooltiptext="Marque Para Permitir Tolerancia UM Doble" />
-											</row>
+
 											<row>
 												<label class="etiqueta"
 													value="Porcentaje tolerancia dual" />
 												<textbox
-													id="txtPatron29F4101" hflex="1" maxlength="100"
+													id="txtDLTLF4101" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Porcentaje de Tolerancia Dual" />
 
 											</row>
 										</rows>
 									</grid>
-									<separator />
-									<separator />
-									<separator />
-									<separator />
-									<separator />
-									<separator />
-									<separator />
 								</groupbox>
 							</hbox>
 							<separator />
@@ -440,22 +391,22 @@
 										<rows>
 											<row>
 												<radiogroup
-													id="rdgVentasInventarioF4101">
+													id="rdgIMABCSF4101">
 													<vlayout>
 														<radio
-															id="rdoVentasClasificacionAF4101"
+															id="rdoIMABCSClasificacionAF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion A"
 															label="Clasificación A" />
 														<radio
-															id="rdoVentasClasificacionBF4101"
+															id="rdoIMABCSClasificacionBF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion B"
 															label="Clasificación B" />
 														<radio
-															id="rdoVentasClasificacionCF4101"
+															id="rdoIMABCSClasificacionCF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion C"
 															label="Clasificación C" />
 														<radio
-															id="rdoVentasSinClasificacionF4101"
+															id="rdoIMABCSSinClasificacionF4101"
 															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
 															label="Sin Clasificación D" />
 													</vlayout>
@@ -475,22 +426,22 @@
 										<rows>
 											<row>
 												<radiogroup
-													id="rdgMargenInventarioF4101">
+													id="rdgIMABCMF4101">
 													<vlayout>
 														<radio
-															id="rdoMargenClasificacionAF4101"
+															id="rdoIMABCMClasificacionAF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion A"
 															label="Clasificación A" />
 														<radio
-															id="rdoMargenClasificacionBF4101"
+															id="rdoIMABCMClasificacionBF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion B"
 															label="Clasificación B" />
 														<radio
-															id="rdoMargenClasificacionCF4101"
+															id="rdoIMABCMClasificacionCF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion C"
 															label="Clasificación C" />
 														<radio
-															id="rdoMargenSinClasificacionF4101"
+															id="rdoIMABCMSinClasificacionF4101"
 															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
 															label="Sin Clasificación D" />
 													</vlayout>
@@ -510,22 +461,22 @@
 										<rows>
 											<row>
 												<radiogroup
-													id="rdgInversionInventarioF4101">
+													id="rdgIMABCIF4101">
 													<vlayout>
 														<radio
-															id="rdoInversionClasificacionAF4101"
+															id="rdoIMABCIClasificacionAF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion A"
 															label="Clasificación A" />
 														<radio
-															id="rdoInversionClasificacionBF4101"
+															id="rdoIMABCIClasificacionBF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion B"
 															label="Clasificación B" />
 														<radio
-															id="rdoInversionClasificacionCF4101"
+															id="rdoIMABCIClasificacionCF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion C"
 															label="Clasificación C" />
 														<radio
-															id="rdoInversionSinClasificacionF4101"
+															id="rdoIMABCISinClasificacionF4101"
 															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
 															label="Sin Clasificación D" />
 													</vlayout>
@@ -541,154 +492,64 @@
 								closable="false">
 								<grid width="100%" style="border:0px">
 									<columns visible="false">
-										<column label="" width="20%" />
-										<column label="" width="10%" />
+										<column label="" width="16%" />
+										<column label="" width="5%" />
 										<column label="" width="30%" />
 									</columns>
 									<rows>
 										<row>
-											<label class="etiqueta"
-												value="Principal" />
-											<textbox
-												id="txtPatron40F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida Principal" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadPrincipalF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadPrincipalF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorPrincipalIMUOM1" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Secundario" />
-											<textbox
-												id="txtPatron41F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida Secundaria" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadSecundariaF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadSecundariaF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMUOM2" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Compras" />
-											<textbox
-												id="txtPatron42F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Compras" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadComprasF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadComprasF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMUOM3" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Tarificación" />
-											<textbox
-												id="txtPatron43F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Tarificaciones" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadTarificacionF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadTarificacionF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMUOM4" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Envio" />
-											<textbox
-												id="txtPatron44F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Envio" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadEnvioF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadEnvioF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMUOM6" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Producción" />
-											<textbox
-												id="txtPatron45F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Produccion" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadProduccionF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadProduccionF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMUOM8" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Componente" />
-											<textbox
-												id="txtPatron46F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Componente" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadComponenteF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadComponenteF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMUOM9" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Peso" />
-											<textbox
-												id="txtPatron47F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Peso" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadPesoF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadPesoF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMUWUM" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Volumen" />
-											<textbox
-												id="txtPatron48F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo La Unidad de Medida de Volumen" />
-											<hbox>
-												<button
-													id="btnBuscarUnidadVolumenF4101" label=""
-													tooltiptext="Catalogo de Unidades de Medida"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblUnidadVolumenF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMUVM1" hflex="1" />
+											</cell>
 										</row>
 									</rows>
 								</grid>
@@ -700,88 +561,38 @@
 									<columns visible="false">
 										<column label="" width="20%" />
 										<column label="" width="10%" />
-										<column label="" width="30%" />
+										<column label="" width="50%" />
 									</columns>
 									<rows>
 										<row>
-											<label class="etiqueta"
-												value="N° serie obligatorio" />
-											<textbox
-												id="txtPatron60F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo El Numero de Serie" />
-											<hbox>
-												<button
-													id="btnBuscarNumeroSerieF4101" label=""
-													tooltiptext="Catalogo de Numeros de Serie"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblNumeroSerieF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMSRNR" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Código estado lote" />
-											<textbox
-												id="txtPatron61F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo El Codigo Estado Lote" />
-											<hbox>
-												<button
-													id="btnBuscarCodigoLoteF4101" label=""
-													tooltiptext="Catalogo de Codigos de Estados de Lote"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblCodigoLoteF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMLOTS" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Tipo proceso lote" />
-											<textbox
-												id="txtPatron62F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo El Tipo Proceso Lote" />
-											<hbox>
-												<button
-													id="btnBuscarTipoLoteF4101" label=""
-													tooltiptext="Catalogo de Tipos de Procesos Lote"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblTipoLoteF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMSRCE" hflex="1" />
+											</cell>
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Método fecha compromiso" />
-											<textbox
-												id="txtPatron63F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo la Fecha de Compromiso" />
-											<hbox>
-												<button
-													id="btnBuscarMetodoCompromisoF4101" label=""
-													tooltiptext="Catalogo de Metodos de Fechas de compromiso"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblMetodoCompromisoF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMCMDM" hflex="1" />
+											</cell>
 										</row>
-										<row>
-											<label class="etiqueta"
-												value="Método fecha caducidad lote" />
-											<textbox
-												id="txtPatron64F4101" hflex="1" maxlength="100"
-												tooltiptext="Seleccione del Catalogo la Fecha de Caducidad" />
-											<hbox>
-												<button
-													id="btnBuscarMetodoCaducidadF4101" label=""
-													tooltiptext="Catalogo de Metodos de Fechas de Caducidad"
-													image="/public/imagenes/botones/buscar.png" />
-												<label class="etiqueta"
-													id="lblMetodoCaducidadF4101"
-													style="margin-left:10px;font-style:italic;" />
-											</hbox>
+											<row>
+											<cell colspan="3">
+												<div
+													id="divBuscadorIMLECM" hflex="1" />
+											</cell>
 										</row>
 									</rows>
 								</grid>
@@ -800,65 +611,65 @@
 											<label class="etiqueta"
 												value="Días caducidad:" />
 											<textbox
-												id="txtPatron65F4101" hflex="1" maxlength="100"
+												id="txtIMSLDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Caducidad" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 1 p/def" />
 											<textbox
-												id="txtPatron66F4101" hflex="1" maxlength="100"
+												id="txtIMU1DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 1 p/def" />
 										</row>
 										<row>
 											<label class="etiqueta"
 												value="Días p/def consumo pref:" />
 											<textbox
-												id="txtPatron666F4101" hflex="1" maxlength="100"
+												id="txtIMBBDDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias p/def Consumo" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 2 p/def" />
 											<textbox
-												id="txtPatron67F4101" hflex="1" maxlength="100"
+												id="txtIMU2DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 2 p/def" />
 										</row>
 										<row>
 											<label class="etiqueta"
 												value="Venta según días p/defecto:" />
 											<textbox
-												id="txtPatron686F4101" hflex="1" maxlength="100"
+												id="txtIMSBDDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese las Ventas Segun Dias p/defecto" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 3 p/def" />
 											<textbox
-												id="txtPatron69F4101" hflex="1" maxlength="100"
+												id="txtIMU3DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 3 p/def" />
 										</row>
 										<row>
 											<label class="etiqueta"
 												value="Días efectivos fabricación" />
 											<textbox
-												id="txtPatron687F4101" hflex="1" maxlength="100"
+												id="txtIMLEDDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias Efectivos de Fabricacion" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 4 p/def" />
 											<textbox
-												id="txtPatron70F4101" hflex="1" maxlength="100"
+												id="txtIMU4DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 4 p/def" />
 										</row>
 										<row>
 											<label class="etiqueta"
 												value="Días efectivos compra" />
 											<textbox
-												id="txtPatron697F4101" hflex="1" maxlength="100"
+												id="txtIMPEFDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias Efectivos de Compra" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 5 p/def" />
 											<textbox
-												id="txtPatron71F4101" hflex="1" maxlength="100"
+												id="txtIMU5DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 5 p/def" />
 										</row>
 									</rows>
