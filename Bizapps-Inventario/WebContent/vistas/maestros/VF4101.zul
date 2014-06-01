@@ -29,9 +29,6 @@
 							<textbox id="txtIMLITMF4101" hflex="1"
 								maxlength="25"
 								tooltiptext="Seleccione del Catalogo el N° del Articulo" />
-							<button id="btnBuscarIMLITMF4101" label=""
-								tooltiptext="Catalogo de N° de Articulos"
-								image="/public/imagenes/botones/buscar.png" />
 						</row>
 					</rows>
 				</grid>
@@ -367,12 +364,12 @@
 											<label class="etiqueta"
 												value="Cd mercancía:" />
 											<textbox
-												id="txtPatron30F4101" hflex="1" maxlength="100"
+												id="txtCMDCDEF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese el Codigo de la Mercancia" />
 											<label class="etiqueta"
 												value="Código UNSPSC:" />
 											<textbox
-												id="txtPatron31F4101" hflex="1" maxlength="100"
+												id="txtUNSPSCF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese el Codigo UNSPSC" />
 										</row>
 									</rows>
