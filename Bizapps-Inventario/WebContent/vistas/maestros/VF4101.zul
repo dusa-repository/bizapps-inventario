@@ -10,28 +10,33 @@
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar un Nuevo Articulo" />
 				<separator />
-				<grid width="100%">
-					<columns visible="false">
-						<column label="" width="15%" />
-						<column label="" width="40%" />
-						<column label="" width="45%" />
-					</columns>
-					<rows>
-						<row>
-							<label class="etiqueta"
-								value="N° artículo (corto)" />
-							<textbox id="txtArticuloF4101" hflex="1"
-								maxlength="100" />
-						</row>
-						<row>
-							<label class="etiqueta"
-								value="N° artículo:" />
-							<textbox id="txtIMLITMF4101" hflex="1"
-								maxlength="25"
-								tooltiptext="Seleccione del Catalogo el N° del Articulo" />
-						</row>
-					</rows>
-				</grid>
+				<groupbox>
+
+					<div align="right">
+						<label class="etiqueta"
+							value="N° artículo (corto)" />
+						<textbox id="txtArticuloF4101"
+							disabled="true" maxlength="100" />
+					</div>
+
+
+					<grid width="100%" style="border:0px">
+						<columns visible="false">
+							<column label="" width="15%" />
+							<column label="" width="40%" />
+							<column label="" width="45%" />
+						</columns>
+						<rows>
+							<row>
+								<label class="etiqueta"
+									value="N° artículo:" />
+								<textbox id="txtArticuloIMLITMF4101"
+									hflex="1" maxlength="25"
+									tooltiptext="Seleccione del Catalogo el N° del Articulo" />
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
 				<separator />
 				<tabbox id="tbArticuloF4101">
 					<tabs id="tabsF4101">
@@ -58,7 +63,7 @@
 										<row>
 											<label class="etiqueta"
 												value="Número cátalogo:" />
-											<textbox id="txIMLITMF4101"
+											<textbox id="txtIMLITMF4101"
 												hflex="1" maxlength="25"
 												tooltiptext="Ingrese el Numero del catalogo" />
 										</row>
@@ -93,7 +98,7 @@
 							<separator />
 							<hbox>
 								<vbox>
-									<groupbox title="" height="220px"
+									<groupbox title="" height="240px"
 										closable="false">
 										<grid width="100%"
 											style="border:0px">
@@ -168,7 +173,7 @@
 										</grid>
 									</groupbox>
 									<groupbox title="" closable="false"
-										height="142px">
+										height="122px">
 										<grid width="100%"
 											style="border:0px">
 											<columns visible="false">
@@ -281,7 +286,7 @@
 												width="20%" />
 											<column label=""
 												width="35%" />
-											
+
 										</columns>
 										<rows>
 											<row>
@@ -363,13 +368,13 @@
 										<row>
 											<label class="etiqueta"
 												value="Cd mercancía:" />
-											<textbox
-												id="txtCMDCDEF4101" hflex="1" maxlength="100"
+											<textbox id="txtCMDCDEF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese el Codigo de la Mercancia" />
 											<label class="etiqueta"
 												value="Código UNSPSC:" />
-											<textbox
-												id="txtUNSPSCF4101" hflex="1" maxlength="100"
+											<textbox id="txtUNSPSCF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese el Codigo UNSPSC" />
 										</row>
 									</rows>
@@ -585,7 +590,7 @@
 													id="divBuscadorIMCMDM" hflex="1" />
 											</cell>
 										</row>
-											<row>
+										<row>
 											<cell colspan="3">
 												<div
 													id="divBuscadorIMLECM" hflex="1" />
@@ -607,66 +612,66 @@
 										<row>
 											<label class="etiqueta"
 												value="Días caducidad:" />
-											<textbox
-												id="txtIMSLDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMSLDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Caducidad" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 1 p/def" />
-											<textbox
-												id="txtIMU1DDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMU1DDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 1 p/def" />
 										</row>
 										<row>
 											<label class="etiqueta"
 												value="Días p/def consumo pref:" />
-											<textbox
-												id="txtIMBBDDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMBBDDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias p/def Consumo" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 2 p/def" />
-											<textbox
-												id="txtIMU2DDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMU2DDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 2 p/def" />
 										</row>
 										<row>
 											<label class="etiqueta"
 												value="Venta según días p/defecto:" />
-											<textbox
-												id="txtIMSBDDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMSBDDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese las Ventas Segun Dias p/defecto" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 3 p/def" />
-											<textbox
-												id="txtIMU3DDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMU3DDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 3 p/def" />
 										</row>
 										<row>
 											<label class="etiqueta"
 												value="Días efectivos fabricación" />
-											<textbox
-												id="txtIMLEDDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMLEDDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias Efectivos de Fabricacion" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 4 p/def" />
-											<textbox
-												id="txtIMU4DDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMU4DDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 4 p/def" />
 										</row>
 										<row>
 											<label class="etiqueta"
 												value="Días efectivos compra" />
-											<textbox
-												id="txtIMPEFDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMPEFDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias Efectivos de Compra" />
 											<label class="etiqueta"
 												style="margin-left:30px"
 												value="Días fecha lote usuario 5 p/def" />
-											<textbox
-												id="txtIMU5DDF4101" hflex="1" maxlength="100"
+											<textbox id="txtIMU5DDF4101"
+												hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 5 p/def" />
 										</row>
 									</rows>

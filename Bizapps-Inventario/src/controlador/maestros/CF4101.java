@@ -9,6 +9,7 @@ import java.util.List;
 
 import modelo.maestros.F0005;
 import modelo.maestros.F0008;
+import modelo.maestros.F0015;
 import modelo.maestros.F4101;
 
 import org.zkoss.zk.ui.event.Event;
@@ -42,11 +43,11 @@ public class CF4101 extends CGenerico {
 	@Wire
 	private Textbox txtArticuloF4101;
 	@Wire
-	private Textbox txtIMLITMF4101;
+	private Textbox txtArticuloIMLITMF4101;
 	@Wire
 	private Button btnBuscarIMLITMF4101;
 	@Wire
-	private Textbox txIMLITMF4101;
+	private Textbox txtIMLITMF4101;
 	@Wire
 	private Textbox txtIMDSC1F4101;
 	@Wire
@@ -595,11 +596,163 @@ public class CF4101 extends CGenerico {
 		};
 		divBuscadorIMLECM.appendChild(buscadorIMLECM);
 
+		mostrarCatalogoF4101();
 		botonera = new Botonera() {
 
 			@Override
 			public void seleccionar() {
 				// TODO Auto-generated method stub
+				if (validarSeleccion()) {
+					if (catalogo.obtenerSeleccionados().size() == 1) {
+						mostrarBotones(false);
+						abrirRegistro();
+						F4101 f4101 = catalogo.objetoSeleccionadoDelCatalogo();
+						clave = f4101.getImitm();
+						txtArticuloF4101.setValue(String.valueOf(f4101
+								.getImitm()));
+						txtArticuloF4101.setDisabled(true);
+						txtArticuloIMLITMF4101.setValue(f4101.getImlitm());
+						txtIMLITMF4101.setValue(f4101.getImlitm());
+						txtIMDSC1F4101.setValue(f4101.getImdsc1());
+						txtIMDSC2F4101.setValue(f4101.getImdsc2());
+						txtIMSRTXF4101.setValue(f4101.getImsrtx());
+						buscadorIMSTKT.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImstkt()));
+						buscadorIMGLPT.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImglpt()));
+						buscadorIMUOM1.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuom1()));
+						buscadorIMBPFG.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImbpfg()));
+						buscadorIMCLEV.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImclev()));
+						buscadorIMPLEV.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImplev()));
+						buscadorIMPPLV.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImpplv()));
+						buscadorIMPMTH.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImpmth()));
+						buscadorIMCMETH.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImcmeth()));
+						buscadorIMCMGL.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImcmgl()));
+						buscadorIMINMG.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getIminmg()));
+						buscadorIMIFLA.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImifla()));
+						buscadorIMTFLA.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImtfla()));
+						buscadorIMPRGR.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImprgr()));
+						buscadorIMRPRC.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImrprc()));
+						buscadorIMORPR.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImorpr()));
+						buscadorIMDSGP.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImdsgp()));
+						buscadorPrincipalIMUOM1.settearCampo(servicioF0005
+								.buscar("00", "00", f4101.getImuom1()));
+						buscadorIMUOM2.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuom2()));
+						buscadorIMUOM3.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuom3()));
+						buscadorIMUOM4.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuom4()));
+						buscadorIMUOM6.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuom6()));
+						buscadorIMUOM8.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuom8()));
+						buscadorIMUOM9.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuom9()));
+						buscadorIMUWUM.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuwum()));
+						buscadorIMUVM1.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImuvm1()));
+						buscadorIMSRNR.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImsrnr()));
+						buscadorIMLOTS.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImlots()));
+						buscadorIMSRCE.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImsrce()));
+						buscadorIMCMDM.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImcmdm()));
+						buscadorIMLECM.settearCampo(servicioF0005.buscar("00",
+								"00", f4101.getImlecm()));
+
+						txtIMLNTYF4101.setValue(f4101.getImlnty());
+
+						if (f4101.getImback().equals("Y"))
+							chxIMBACKF4101.setChecked(true);
+						
+						if (f4101.getImckav().equals("Y"))
+							chxIMCKAVF4101.setChecked(true);
+					
+						if (f4101.getImckav().equals("Y"))
+							chxIMXDCKF4101.setChecked(true);
+						
+						if (f4101.getImdual().equals("Y"))
+							chxIMDUALF4101.setChecked(true);
+						
+
+						if (f4101.getImdppo().equals("Y"))
+							chxIMDPPOF4101.setChecked(true);
+						
+						txtDLTLF4101
+								.setValue(String.valueOf(f4101.getImdltl()));
+
+						if (f4101.getImabcs().equals("A")) 
+							rdoIMABCSClasificacionAF4101.setSelected(true);
+
+						if (f4101.getImabcs().equals("B"))
+							rdoIMABCSClasificacionBF4101.setSelected(true);
+						
+						
+						if (f4101.getImabcs().equals("C"))
+							rdoIMABCSClasificacionCF4101.setSelected(true);
+
+						if (f4101.getImabcs().equals("S"))
+							rdoIMABCSSinClasificacionF4101.setSelected(true);
+
+						if (f4101.getImabcm().equals("A"))
+							rdoIMABCMClasificacionAF4101.setSelected(true);
+
+						if (f4101.getImabcm().equals("B"))
+							rdoIMABCMClasificacionBF4101.setSelected(true);
+
+						if (f4101.getImabcm().equals("C"))
+							rdoIMABCMClasificacionCF4101.setSelected(true);
+
+						if (f4101.getImabcm().equals("S")) 
+							rdoIMABCMSinClasificacionF4101.setSelected(true);
+
+						if (f4101.getImabci().equals("A"))
+							rdoIMABCMClasificacionAF4101.setSelected(true);
+
+						if (f4101.getImabci().equals("B"))
+							rdoIMABCMClasificacionBF4101.setSelected(true);
+
+						if (f4101.getImabci().equals("C"))
+							rdoIMABCMClasificacionCF4101.setSelected(true);
+
+						if (f4101.getImabci().equals("S"))
+							rdoIMABCMSinClasificacionF4101.setSelected(true);
+
+						txtIMSLDF4101.setValue(String.valueOf(f4101.getImsld()));
+						txtIMU1DDF4101.setValue(String.valueOf(f4101.getImu1dd()));
+						txtIMU2DDF4101.setValue(String.valueOf(f4101.getImu2dd()));
+						txtIMU3DDF4101.setValue(String.valueOf(f4101.getImu3dd()));
+						txtIMU4DDF4101.setValue(String.valueOf(f4101.getImu4dd()));
+						txtIMU5DDF4101.setValue(String.valueOf(f4101.getImu5dd()));
+						txtIMBBDDF4101.setValue(String.valueOf(f4101.getImbbdd()));
+						txtIMSBDDF4101.setValue(String.valueOf(f4101.getImsbdd()));
+						txtIMLEDDF4101.setValue(String.valueOf(f4101.getImledd()));
+						txtIMPEFDF4101.setValue(String.valueOf(f4101.getImpefd()));
+						txtArticuloIMLITMF4101.setFocus(true);
+						
+
+					} else
+						msj.mensajeAlerta(Mensaje.editarSoloUno);
+				}
 
 			}
 
@@ -629,7 +782,6 @@ public class CF4101 extends CGenerico {
 				mostrarBotones(false);
 				limpiarCampos();
 				clave = 0;
-
 			}
 
 			@Override
@@ -713,6 +865,7 @@ public class CF4101 extends CGenerico {
 		botoneraF4101.appendChild(botonera);
 
 	}
+	
 
 	public void limpiarCampos() {
 		clave = 0;
@@ -748,7 +901,8 @@ public class CF4101 extends CGenerico {
 		buscadorIMCMDM.settearCampo(null);
 		buscadorIMLECM.settearCampo(null);
 		txtArticuloF4101.setValue("");
-		txIMLITMF4101.setValue("");
+		txtArticuloIMLITMF4101.setValue("");
+		txtIMLITMF4101.setValue("");
 		txtIMDSC1F4101.setValue("");
 		txtIMDSC2F4101.setValue("");
 		txtIMSRTXF4101.setValue("");
@@ -777,10 +931,23 @@ public class CF4101 extends CGenerico {
 		txtIMU4DDF4101.setValue("");
 		txtIMPEFDF4101.setValue("");
 		txtIMU5DDF4101.setValue("");
+		catalogo.limpiarSeleccion();
 		txtArticuloF4101.setFocus(true);
 
 	}
-
+	
+	
+	public boolean camposLLenos() {
+		if (txtArticuloIMLITMF4101.getText().compareTo("") == 0
+				||buscadorIMSTKT.obtenerCaja().compareTo("") == 0
+				|| txtIMDSC1F4101.getText().compareTo("") == 0
+				|| buscadorIMUOM1.obtenerCaja().compareTo("") == 0) {
+			return false;
+		} else
+			return true;
+	}
+	
+	
 	public boolean camposEditando() {
 		if (buscadorIMSTKT.obtenerCaja().compareTo("") != 0
 				|| buscadorIMGLPT.obtenerCaja().compareTo("") != 0
@@ -814,7 +981,8 @@ public class CF4101 extends CGenerico {
 				|| buscadorIMCMDM.obtenerCaja().compareTo("") != 0
 				|| buscadorIMLECM.obtenerCaja().compareTo("") != 0
 				|| txtArticuloF4101.getText().compareTo("") != 0
-				|| txIMLITMF4101.getText().compareTo("") != 0
+				|| txtArticuloIMLITMF4101.getText().compareTo("") != 0
+				|| txtIMLITMF4101.getText().compareTo("") != 0
 				|| txtIMDSC1F4101.getText().compareTo("") != 0
 				|| txtIMDSC2F4101.getText().compareTo("") != 0
 				|| txtIMSRTXF4101.getText().compareTo("") != 0
@@ -851,7 +1019,19 @@ public class CF4101 extends CGenerico {
 		} else
 			return false;
 	}
+	
+	
+	protected boolean validar() {
 
+		if (!camposLLenos()) {
+			msj.mensajeAlerta(Mensaje.camposVacios);
+			return false;
+		} else
+			return true;
+
+	}
+	
+	
 	public void mostrarBotones(boolean bol) {
 		botonera.getChildren().get(0).setVisible(bol);
 		botonera.getChildren().get(1).setVisible(bol);
@@ -868,8 +1048,7 @@ public class CF4101 extends CGenerico {
 		mostrarBotones(false);
 
 	}
-	
-	
+
 	@Listen("onOpen = #gpxDatosF4101")
 	public void abrirCatalogo() {
 		gpxDatosF4101.setOpen(false);
@@ -912,6 +1091,55 @@ public class CF4101 extends CGenerico {
 				return true;
 			}
 		}
+	}
+
+	public void mostrarCatalogoF4101() {
+		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
+		catalogo = new Catalogo<F4101>(catalogoF4101, "F4101", listF4101,
+				false, true, true, "Número artículo", "Descripción",
+				"Descripción 2", "Texto búsqueda", "Tipo línea", "Tipo alm",
+				"Código vta 1") {
+
+			@Override
+			protected List<F4101> buscar(List<String> valores) {
+
+				List<F4101> lista = new ArrayList<F4101>();
+
+				for (F4101 f4101 : listF4101) {
+					if (f4101.getImlitm().toLowerCase()
+							.startsWith(valores.get(0))
+							&& f4101.getImdsc1().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f4101.getImdsc2().toLowerCase()
+									.startsWith(valores.get(2))
+							&& f4101.getImsrtx().toLowerCase()
+									.startsWith(valores.get(3))
+							&& f4101.getImlnty().toLowerCase()
+									.startsWith(valores.get(4))
+							&& f4101.getImstkt().toLowerCase()
+									.startsWith(valores.get(5))
+							&& f4101.getImsrp1().toLowerCase()
+									.startsWith(valores.get(6))) {
+						lista.add(f4101);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F4101 f4101) {
+				String[] registros = new String[7];
+				registros[0] = f4101.getImlitm();
+				registros[1] = f4101.getImdsc1();
+				registros[2] = f4101.getImdsc2();
+				registros[3] = f4101.getImsrtx();
+				registros[4] = f4101.getImlnty();
+				registros[5] = f4101.getImstkt();
+				registros[6] = f4101.getImsrp1();
+				return registros;
+			}
+		};
+		catalogo.setParent(catalogoF4101);
 	}
 
 }

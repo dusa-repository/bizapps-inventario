@@ -116,10 +116,10 @@ public class CF0008 extends CGenerico {
 						// definiremos luego sy, rt, ky
 						buscadorDPNT.settearCampo(servicioF0005.buscar("00",
 								"00", f08.getId().getCddtpn()));
+						buscadorDPNT.inhabilitarCampo();
 						dtbDFYJF0008
 								.setValue((transformarJulianaAGregoria(BigDecimal
 										.valueOf(f08.getId().getCddfyj()))));
-						dtbDFYJF0008.setDisabled(true);
 						dtbD01JF0008.setValue(transformarJulianaAGregoria(f08
 								.getCdd01j()));
 						dtbD02JF0008.setValue(transformarJulianaAGregoria(f08
@@ -334,7 +334,6 @@ public class CF0008 extends CGenerico {
 
 	public void limpiarCampos() {
 		clave = null;
-
 		dtbDFYJF0008.setValue(null);
 		dtbD01JF0008.setValue(null);
 		dtbD02JF0008.setValue(null);
@@ -357,8 +356,8 @@ public class CF0008 extends CGenerico {
 	}
 
 	public void habilitarTextClave() {
-		if (dtbDFYJF0008.isDisabled())
-			dtbDFYJF0008.setDisabled(false);
+		
+		buscadorDPNT.habilitarCampos();
 	}
 
 	public boolean camposLLenos() {

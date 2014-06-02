@@ -57,7 +57,7 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Datebox dtbEFTF0015;
 	@Wire
-	private Doublespinner dblAN8F0015;
+	private Textbox txtAN8F0015;
 	@Wire
 	private Radiogroup rdgMetodoCalculoF0015;
 	@Wire
@@ -67,9 +67,9 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Label lblMetodoConversionF0015;
 	@Wire
-	private Doublespinner dblCRRF0015;
+	private Textbox txtCRRF0015;
 	@Wire
-	private Doublespinner dblCRRDF0015;
+	private Textbox txtCRRDF0015;
 	@Wire
 	private Tabbox tbTipoCambioF0015;
 	@Wire
@@ -141,12 +141,12 @@ public class CF0015 extends CGenerico {
 							dtbEFTF0015
 									.setValue((transformarJulianaAGregoria(BigDecimal
 											.valueOf(f015.getId().getCxeft()))));
-							dblAN8F0015.setValue(f015.getId().getCxan8());
-							dblAN8F0015.setDisabled(true);
+							txtAN8F0015.setValue(String.valueOf(f015.getId().getCxan8()));
+							txtAN8F0015.setDisabled(true);
 							btnBuscarF0101.setDisabled(true);
 							txtCRCMF0015.setValue(f015.getCxcrcm());
-							dblCRRF0015.setValue(f015.getCxcrr());
-							dblCRRDF0015.setValue(f015.getCxcrrd());
+							txtCRRF0015.setValue(String.valueOf(f015.getCxcrr()));
+							txtCRRDF0015.setValue(String.valueOf(f015.getCxcrrd()));
 							botonera.getChildren().get(0).setVisible(false);
 							dtbEFTF0015.setFocus(true);
 
@@ -170,12 +170,12 @@ public class CF0015 extends CGenerico {
 							dtbEFTF0015
 									.setValue((transformarJulianaAGregoria(BigDecimal
 											.valueOf(f015.getId().getCxeft()))));
-							dblAN8F0015.setValue(f015.getId().getCxan8());
-							dblAN8F0015.setDisabled(true);
+							txtAN8F0015.setValue(String.valueOf(f015.getId().getCxan8()));
+							txtAN8F0015.setDisabled(true);
 							btnBuscarF0101.setDisabled(true);
 							txtCRCMF0015.setValue(f015.getCxcrcm());
-							dblCRRF0015.setValue(f015.getCxcrr());
-							dblCRRDF0015.setValue(f015.getCxcrrd());
+							txtCRRF0015.setValue(String.valueOf(f015.getCxcrr()));
+							txtCRRDF0015.setValue(String.valueOf(f015.getCxcrrd()));
 							tbMetodoCalculoF0015.setSelected(true);
 
 						} else
@@ -221,7 +221,7 @@ public class CF0015 extends CGenerico {
 					long eft = Long.valueOf((String
 							.valueOf(transformarGregorianoAJulia(dtbEFTF0015
 									.getValue()))));
-					double an8 = dblAN8F0015.getValue();
+					double an8 = Double.parseDouble(txtAN8F0015.getValue());
 					F0015PK clave = new F0015PK();
 					clave.setCxcrcd(crcd);
 					clave.setCxcrdc(crdc);
@@ -234,8 +234,8 @@ public class CF0015 extends CGenerico {
 					if (agregarMetodoCalculo) {
 						System.out.println("Metodo calculo");
 						foo15.setCxcrcm(txtCRCMF0015.getValue());
-						foo15.setCxcrr(dblCRRF0015.getValue());
-						foo15.setCxcrrd(dblCRRDF0015.getValue());
+						foo15.setCxcrr(Double.parseDouble(txtCRRF0015.getValue()));
+						foo15.setCxcrrd(Double.parseDouble(txtCRRDF0015.getValue()));
 					}
 
 					foo15.setCxuser("JDE");
@@ -424,13 +424,13 @@ public class CF0015 extends CGenerico {
 		txtCRCDF0015.setValue("");
 		txtCRDCF0015.setValue("");
 		dtbEFTF0015.setValue(null);
-		dblAN8F0015.setValue(null);
+		txtAN8F0015.setValue("");
 		txtCRCDF0015.setFocus(true);
 		rdgMetodoCalculoF0015.setSelectedItem(null);
 		txtCRCMF0015.setValue("");
 		lblMetodoConversionF0015.setValue("");
-		dblCRRF0015.setValue(null);
-		dblCRRDF0015.setValue(null);
+		txtCRRF0015.setValue("");
+		txtCRRDF0015.setValue("");
 		lblMonedaF0013.setValue("");
 		lblMonedaDestinoF0013.setValue("");
 		lblDireccionF0101.setValue("");
@@ -529,8 +529,8 @@ public class CF0015 extends CGenerico {
 			txtCRDCF0015.setDisabled(false);
 		if (dtbEFTF0015.isDisabled())
 			dtbEFTF0015.setDisabled(false);
-		if (dblAN8F0015.isDisabled())
-			dblAN8F0015.setDisabled(false);
+		if (txtAN8F0015.isDisabled())
+			txtAN8F0015.setDisabled(false);
 		if (btnBuscarMonedaDestinoF0013.isDisabled())
 			btnBuscarMonedaDestinoF0013.setDisabled(false);
 		if (btnBuscarMonedaF0013.isDisabled())
@@ -553,7 +553,7 @@ public class CF0015 extends CGenerico {
 		if (txtCRCDF0015.getText().compareTo("") != 0
 				|| txtCRDCF0015.getText().compareTo("") != 0
 				|| dtbEFTF0015.getText().compareTo("") != 0
-				|| dblAN8F0015.getText().compareTo("") != 0) {
+				|| txtAN8F0015.getText().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
@@ -833,7 +833,7 @@ public class CF0015 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF0101")
 	public void seleccionCatalogoF0101() {
 		F0101 f0101 = catalogoF0101.objetoSeleccionadoDelCatalogo();
-		dblAN8F0015.setValue(f0101.getAban8());
+		txtAN8F0015.setValue(String.valueOf(f0101.getAban8()));
 		lblDireccionF0101.setValue(f0101.getAbac02());
 		catalogoF0101.setParent(null);
 	}
