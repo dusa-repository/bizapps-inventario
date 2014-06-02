@@ -82,8 +82,8 @@
 								<row>
 									<label class="etiqueta"
 										value="Contrato (dirección):" />
-									<doublespinner id="dblAN8F0015"
-										format="#.##" hflex="1" maxlength="100"
+									<textbox id="txtAN8F0015"
+										 hflex="1" maxlength="100"
 										tooltiptext="Ingrese el Contrato(direccion)" />
 									<button id="btnBuscarF0101" label=""
 										tooltiptext="Catalogo de Contratos(direcciones)"
@@ -173,15 +173,15 @@
 											<row>
 												<label class="etiqueta"
 													value="Tipo multiplicador:" />
-												<doublespinner
-													id="dblCRRF0015" hflex="1" maxlength="100"
+												<textbox
+													id="txtCRRF0015" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Tipo de Multiplicador" />
 											</row>
 											<row>
 												<label class="etiqueta"
 													value="Tipo divisor:" />
-												<doublespinner
-													id="dblCRRDF0015" hflex="1" maxlength="100"
+												<textbox
+													id="txtCRRDF0015" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Tipo de Divisor" />
 
 											</row>
