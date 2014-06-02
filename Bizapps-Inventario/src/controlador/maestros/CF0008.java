@@ -87,16 +87,15 @@ public class CF0008 extends CGenerico {
 		// TODO Auto-generated method stub
 
 		mostrarCatalogo();
-		
 
 		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-				"00");
-		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listaF0005,
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
+				"DP");
+		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 255, listaF0005,
 				true, false, false) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("H00", "DP",
 						buscadorDPNT.obtenerCaja());
 			}
 		};
@@ -114,8 +113,8 @@ public class CF0008 extends CGenerico {
 						clave = f08.getId();
 						// Se supone que aqui se pasaran los parametros que
 						// definiremos luego sy, rt, ky
-						buscadorDPNT.settearCampo(servicioF0005.buscar("00",
-								"00", f08.getId().getCddtpn()));
+						buscadorDPNT.settearCampo(servicioF0005.buscar("H00",
+								"DP", f08.getId().getCddtpn()));
 						buscadorDPNT.inhabilitarCampo();
 						dtbDFYJF0008
 								.setValue((transformarJulianaAGregoria(BigDecimal
@@ -351,12 +350,11 @@ public class CF0008 extends CGenerico {
 		dtbD14JF0008.setValue(null);
 		buscadorDPNT.settearCampo(null);
 		catalogo.limpiarSeleccion();
-		
 
 	}
 
 	public void habilitarTextClave() {
-		
+
 		buscadorDPNT.habilitarCampos();
 	}
 
