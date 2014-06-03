@@ -213,12 +213,14 @@ public abstract class Catalogo<Clase> extends Window {
 		} else {
 			Space espacio = new Space();
 			espacio.setHeight("10px");
+			espacio.setStyle("background:white");
 			box.appendChild(espacio);
+			box.setStyle("background:white");
 			box.appendChild(exportador);
 			box.appendChild(pagineo);
 			box.setWidth("100%");
 			box.setAlign("end");
-			box.setHeight("12px");
+			box.setHeight("10px");
 			box.setWidths("96%,2%,2%");
 			this.setWidth("auto");
 			this.setClosable(false);

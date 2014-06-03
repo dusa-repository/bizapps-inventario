@@ -50,7 +50,7 @@ public class F0005 implements Serializable {
 	private BigDecimal drupmj;
 
 	@Column(name="DRUPMT")
-	private double drupmt;
+	private Double drupmt;
 
 	//
 	@Column(name="DRUSER")
@@ -131,11 +131,11 @@ public class F0005 implements Serializable {
 		this.drupmj = drupmj;
 	}
 
-	public double getDrupmt() {
+	public Double getDrupmt() {
 		return this.drupmt;
 	}
 
-	public void setDrupmt(double drupmt) {
+	public void setDrupmt(Double drupmt) {
 		this.drupmt = drupmt;
 	}
 

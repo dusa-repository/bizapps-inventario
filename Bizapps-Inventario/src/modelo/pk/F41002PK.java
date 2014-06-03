@@ -20,7 +20,7 @@ public class F41002PK implements Serializable {
 
 	//F4101
 	@Column(name="UMITM")
-	private double umitm;
+	private Double umitm;
 
 	//
 	@Column(name="UMUM")
@@ -38,10 +38,10 @@ public class F41002PK implements Serializable {
 	public void setUmmcu(String ummcu) {
 		this.ummcu = ummcu;
 	}
-	public double getUmitm() {
+	public Double getUmitm() {
 		return this.umitm;
 	}
-	public void setUmitm(double umitm) {
+	public void setUmitm(Double umitm) {
 		this.umitm = umitm;
 	}
 	public String getUmum() {

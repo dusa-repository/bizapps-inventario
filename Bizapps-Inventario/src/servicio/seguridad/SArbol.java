@@ -56,4 +56,15 @@ public class SArbol {
 		arboles = arbolDAO.findByGruposArbol(grupo);
 		return arboles;
 	}
+
+	public void eliminarUno(long clave) {
+		arbolDAO.delete(clave);
+		
+	}
+
+	public void eliminarVarios(List<Arbol> eliminarLista) {
+		arbolDAO.delete(eliminarLista);
+		
+	}
+
 }

@@ -43,7 +43,17 @@ public class SGrupo {
 		return grupoDAO.findByNombreStartingWithAllIgnoreCase(valor);
 	}
 
-	public void eliminar(Grupo grupo) {
-		grupoDAO.delete(grupo);
+	public void eliminarUno(long id) {
+		grupoDAO.delete(id);
 	}
+
+	public List<Grupo> buscarTodosOrdenados() {
+		return grupoDAO.findAllOrderById();
+	}
+
+	public void eliminarVarios(List<Grupo> eliminarLista) {
+		grupoDAO.delete(eliminarLista);
+		
+	}
+
 }
