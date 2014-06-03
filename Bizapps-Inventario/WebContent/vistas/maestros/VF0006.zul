@@ -75,10 +75,10 @@
 							<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Nivel Detalle" />
-							<textbox id="txtLDMF0006" hflex="1" maxlength="1"
-								tooltiptext="Ingrese el Nivel de Detalle" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorLDM" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
 						<cell colspan="2">
@@ -87,18 +87,12 @@
 						<hbox />
 					</row>
 					<row>
-<!-- 						<label class="etiqueta" value= "Cógigo Inactivo LM auxiliar" /> 
- 							<textbox id="txtSBLIF0006" hflex="1" maxlength="1" 
- 								tooltiptext="Ingrese el Cógigo Inactivo LM auxiliar" /> -->
 						<cell colspan="2">
 							<div id="divbuscadorSBLI" hflex="1"/>
 						</cell>
 							<hbox />
 					</row>
 					<row>
-<!-- 					<label class="etiqueta" value= "Cuenta Modelo/Consolidada" />
-							<textbox id="txtFMODF0006" hflex="1" maxlength="1"
-								tooltiptext="Ingrese la Cuenta Modelo/Consolidada" />  -->	
 						<cell colspan="2">
 							<div id="divbuscadorFMOD" hflex="1" />
 						</cell>
@@ -112,7 +106,8 @@
 				<columns visible="false">
 					<column label="" width="19%" />
 					<column label="" width="45%" />
-					<column label="" width="37%" />
+					<column label="" width="10%" />
+					<column label="" width="27%" />
 				</columns>
 				<rows>
 					<row>
@@ -130,13 +125,16 @@
 					<row>
 						<label class="etiqueta" value= "Linea Descripción 2" />
 							<textbox id="txtDL04F0006" hflex="1" maxlength="30"
-								tooltiptext="Ingrese la Linea de Descripción 3 " />
+								tooltiptext="Ingrese la Linea de Descripción 4 " />
 							<hbox />
 					</row>
 					<row>
 						<label class="etiqueta" value= "Número Dirección" />
 							<textbox id="txtAN8F0006" hflex="1" maxlength="100"
 								tooltiptext="Ingrese el Número Dirección" />
+								<button id="btnBuscarDireccion" label="" mold="trendy"
+							width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
+							<label id="lblDescripcionF0101" />
 							<hbox />
 					</row>
 					<row>
@@ -149,12 +147,12 @@
 						<label class="etiqueta" value= "Nº Proyecto" />
 							<textbox id="txtMCUSF0006" hflex="1" maxlength="12"
 								tooltiptext="Ingrese el Nº Proyecto" />
+							<button id="btnBuscarProyecto" label="" mold="trendy"
+							width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
+							<label id="lblDescripcionF0006" />
 							<hbox />
 					</row>
 					<row>
-			<!--  		<label class="etiqueta" value= "Edición Contabilización" />
-							<textbox id="txtPECCF0006" hflex="1" maxlength="1"
-								tooltiptext="Ingrese la Edición Contabilización" /> -->	
 						<cell colspan="2">
 							<div id="divbuscadorPECC" hflex="1" />
 						</cell>
@@ -391,6 +389,6 @@
 		</groupbox>	
 		<div id="divCatalogoF0010" tooltiptext="Click para Seleccionar un Codigo" />
 		<div id="divCatalogoF0005" tooltiptext="Click para Seleccionar un Codigo" />
-		
+		<div id="divCatalogoF0101" tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>

@@ -10,6 +10,7 @@ import modelo.maestros.F0005;
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0010;
+import modelo.maestros.F0101;
 import modelo.pk.F0005PK;
 
 import org.zkoss.zk.ui.event.Event;
@@ -58,6 +59,8 @@ public class CF0006 extends CGenerico {
 	private Div divCatalogoF0005;
 	@Wire
 	private Div divCatalogoF0010;
+	@Wire
+	private Div divCatalogoF0101;
 	@Wire
 	private Div divbuscadorCategoria1;
 	@Wire
@@ -127,22 +130,33 @@ public class CF0006 extends CGenerico {
 	@Wire
 	private Div divbuscadorPECC;
 	@Wire
+	private Div divbuscadorLDM;
+	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
 	@Wire
 	private Button btnBuscarCompannia;
 	@Wire
+	private Button btnBuscarDireccion;
+	@Wire
+	private Button btnBuscarProyecto;
+	@Wire
 	private Button btnBuscarTipoUnidad;
 	@Wire
 	private Label lblDescripcionF0004;
 	@Wire
 	private Label lblDescripcionF0010;
+	@Wire
+	private Label lblDescripcionF0006;
+	@Wire
+	private Label lblDescripcionF0101;
 	Catalogo<F0006> catalogo;
 	Botonera botonera;
 	String clave = null;
 	Catalogo<F0005> catalogoF0005;
 	Catalogo<F0010> catalogoF0010;
+	Catalogo<F0101> catalogoF0101;
 
 	BuscadorUDC buscadorCategoria1, buscadorCategoria2, buscadorCategoria3,
 			buscadorCategoria4, buscadorCategoria5, buscadorCategoria6,
@@ -154,7 +168,7 @@ public class CF0006 extends CGenerico {
 			buscadorCategoria22, buscadorCategoria23, buscadorCategoria24,
 			buscadorCategoria25, buscadorCategoria26, buscadorCategoria27,
 			buscadorCategoria28, buscadorCategoria29, buscadorCategoria30,
-			buscadorSTYL, buscadorSBLI, buscadorFMOD, buscadorPECC;
+			buscadorSTYL, buscadorSBLI, buscadorFMOD, buscadorPECC, buscadorLDM;
 
 	@Override
 	public void inicializar() throws IOException {
@@ -162,345 +176,354 @@ public class CF0006 extends CGenerico {
 
 		txtUDCF0006.setFocus(true);
 		mostrarCatalogo();
-		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","01");
 		buscadorCategoria1 = new BuscadorUDC("Código Categoría 01", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "01",
 						buscadorCategoria1.obtenerCaja());
 			}
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","02");
 		buscadorCategoria2 = new BuscadorUDC("Código Categoría 02", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "02",
 						buscadorCategoria2.obtenerCaja());
 			}
 
 		};
 
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","03");
 		buscadorCategoria3 = new BuscadorUDC("Código Categoría 03", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "03",
 						buscadorCategoria3.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","04");
 		buscadorCategoria4 = new BuscadorUDC("Código Categoría 04", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "04",
 						buscadorCategoria4.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","05");
 		buscadorCategoria5 = new BuscadorUDC("Código Categoría 05", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "05",
 						buscadorCategoria5.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","06");
 		buscadorCategoria6 = new BuscadorUDC("Código Categoría 06", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "06",
 						buscadorCategoria6.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","07");
 		buscadorCategoria7 = new BuscadorUDC("Código Categoría 07", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "07",
 						buscadorCategoria7.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","08");
 		buscadorCategoria8 = new BuscadorUDC("Código Categoría 08", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "08",
 						buscadorCategoria8.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","09");
 		buscadorCategoria9 = new BuscadorUDC("Código Categoría 09", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "09",
 						buscadorCategoria9.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","10");
 		buscadorCategoria10 = new BuscadorUDC("Código Categoría 10", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "10",
 						buscadorCategoria10.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","11");
 		buscadorCategoria11 = new BuscadorUDC("Código Categoría 11", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "11",
 						buscadorCategoria11.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","12");
 		buscadorCategoria12 = new BuscadorUDC("Código Categoría 12", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "12",
 						buscadorCategoria12.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","13");
 		buscadorCategoria13 = new BuscadorUDC("Código Categoría 13", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "13",
 						buscadorCategoria13.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","14");
 		buscadorCategoria14 = new BuscadorUDC("Código Categoría 14", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "14",
 						buscadorCategoria14.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","15");
 		buscadorCategoria15 = new BuscadorUDC("Código Categoría 15", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "15",
 						buscadorCategoria15.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","16");
 		buscadorCategoria16 = new BuscadorUDC("Código Categoría 16", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "16",
 						buscadorCategoria16.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","17");
 		buscadorCategoria17 = new BuscadorUDC("Código Categoría 17", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "17",
 						buscadorCategoria17.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","18");
 		buscadorCategoria18 = new BuscadorUDC("Código Categoría 18", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "18",
 						buscadorCategoria18.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","19");
 		buscadorCategoria19 = new BuscadorUDC("Código Categoría 19", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "19",
 						buscadorCategoria19.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","20");
 		buscadorCategoria20 = new BuscadorUDC("Código Categoría 20", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "20",
 						buscadorCategoria20.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","21");
 		buscadorCategoria21 = new BuscadorUDC("Código Categoría 21", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "21",
 						buscadorCategoria21.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","22");
 		buscadorCategoria22 = new BuscadorUDC("Código Categoría 22", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "22",
 						buscadorCategoria22.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","23");
 		buscadorCategoria23 = new BuscadorUDC("Código Categoría 23", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "23",
 						buscadorCategoria23.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","24");
 		buscadorCategoria24 = new BuscadorUDC("Código Categoría 24", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "24",
 						buscadorCategoria24.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","25");
 		buscadorCategoria25 = new BuscadorUDC("Código Categoría 25", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "25",
 						buscadorCategoria25.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","26");
 		buscadorCategoria26 = new BuscadorUDC("Código Categoría 26", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "26",
 						buscadorCategoria26.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","27");
 		buscadorCategoria27 = new BuscadorUDC("Código Categoría 27", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "27",
 						buscadorCategoria27.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","28");
 		buscadorCategoria28 = new BuscadorUDC("Código Categoría 28", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "28",
 						buscadorCategoria28.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","29");
 		buscadorCategoria29 = new BuscadorUDC("Código Categoría 29", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "29",
 						buscadorCategoria29.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","30");
 		buscadorCategoria30 = new BuscadorUDC("Código Categoría 30", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "30",
 						buscadorCategoria30.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","MC");
 		buscadorSTYL = new BuscadorUDC("Tipo unidad negocio", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "MC",
 						buscadorSTYL.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","SI");
 		buscadorSBLI = new BuscadorUDC("Código inactivo LM auxiliar", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "SI",
 						buscadorSBLI.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H09","MD");
 		buscadorFMOD = new BuscadorUDC("Cuenta modelo/consolidada", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("H09", "MD",
 						buscadorFMOD.obtenerCaja());
 			}
 
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","PF");
 		buscadorPECC = new BuscadorUDC("Edición contabilización", 10,
 				listaF0005, false, true, true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "PF",
 						buscadorPECC.obtenerCaja());
 			}
 
+		};
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00","LD");
+		buscadorLDM = new BuscadorUDC("Nivel Detalle", 10,
+				listaF0005, false, true, true) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("H00", "LD",
+						buscadorLDM.obtenerCaja());
+			}
 		};
 		divbuscadorCategoria1.appendChild(buscadorCategoria1);
 		divbuscadorCategoria2.appendChild(buscadorCategoria2);
@@ -536,6 +559,7 @@ public class CF0006 extends CGenerico {
 		divbuscadorSBLI.appendChild(buscadorSBLI);
 		divbuscadorFMOD.appendChild(buscadorFMOD);
 		divbuscadorPECC.appendChild(buscadorPECC);
+		divbuscadorLDM.appendChild(buscadorLDM);
 		botonera = new Botonera() {
 
 			@Override
@@ -661,7 +685,7 @@ public class CF0006 extends CGenerico {
 					String MCMCU = txtUDCF0006.getValue();
 					String dl01 = txtDL01F0006.getValue();
 					String co = txtCOF0006.getValue();
-					String ldmf = txtLDMF0006.getValue();
+					String ldmf = buscadorLDM.obtenerCaja();
 					String styl = buscadorSTYL.obtenerCaja();
 					String sbli = buscadorSBLI.obtenerCaja();
 					String fmod = buscadorFMOD.obtenerCaja();
@@ -904,7 +928,7 @@ public class CF0006 extends CGenerico {
 		txtUDCF0006.setValue("");
 		txtDL01F0006.setValue("");
 		txtCOF0006.setValue("");
-		txtLDMF0006.setValue("");
+		buscadorLDM.settearCampo(null);
 		buscadorSTYL.settearCampo(null);
 		buscadorSBLI.settearCampo(null);
 		buscadorFMOD.settearCampo(null);
@@ -962,7 +986,7 @@ public class CF0006 extends CGenerico {
 		if (txtUDCF0006.getText().compareTo("") != 0
 				|| txtDL01F0006.getText().compareTo("") != 0
 				|| txtCOF0006.getText().compareTo("") != 0
-				|| txtLDMF0006.getText().compareTo("") != 0
+				|| buscadorLDM.obtenerCaja().compareTo("") != 0
 				|| buscadorSTYL.obtenerCaja().compareTo("") != 0
 				|| buscadorSBLI.obtenerCaja().compareTo("") != 0
 				|| buscadorFMOD.obtenerCaja().compareTo("") != 0
@@ -1174,5 +1198,61 @@ public class CF0006 extends CGenerico {
 		lblDescripcionF0010.setValue(servicioF0010.buscar(f0010.getCcco())
 				.getCcname());
 		catalogoF0010.setParent(null);
+	}
+	
+	@Listen("onClick = #btnBuscarDireccion")
+	public void mostrarCatalogoF0101() {
+		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
+		catalogoF0101 = new Catalogo<F0101>(divCatalogoF0101,
+				"F0101", listF0101, false, true, true, "Nº direccion",
+				"Nombre alfabetico", "Direccion larga",
+				"Clasificacion industria", "Tipo bus", "ID fiscal") {
+
+			@Override
+			protected List<F0101> buscar(List<String> valores) {
+
+				List<F0101> lista = new ArrayList<F0101>();
+
+				for (F0101 f01 : listF0101) {
+					if (String.valueOf(f01.getAban8()).toLowerCase()
+							.startsWith(valores.get(0))
+							&& f01.getAbalph().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f01.getAbalky().toLowerCase()
+									.startsWith(valores.get(2))
+							&& f01.getAbsic().toLowerCase()
+									.startsWith(valores.get(4))
+							&& f01.getAbat1().toLowerCase()
+									.startsWith(valores.get(5))
+							&& f01.getAbtax().toLowerCase()
+									.startsWith(valores.get(6))) {
+						lista.add(f01);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0101 f013) {
+				String[] registros = new String[6];
+				registros[0] = String.valueOf(f013.getAban8());
+				registros[1] = f013.getAbalph();
+				registros[2] = f013.getAbalky();
+				registros[3] = f013.getAbsic();
+				registros[4] = f013.getAbat1();
+				registros[5] = f013.getAbtax();
+				return registros;
+			}
+		};
+		catalogoF0101.setParent(divCatalogoF0101);
+		catalogoF0101.doModal();
+	}
+
+	@Listen("onSeleccion = #divCatalogoF0101")
+	public void seleccionF0101() {
+		F0101 f0101 = catalogoF0101.objetoSeleccionadoDelCatalogo();
+		txtAN8F0006.setValue(String.valueOf(f0101.getAban8()));
+		lblDescripcionF0101.setValue(f0101.getAbalph());
+		catalogoF0101.setParent(null);
 	}
 }
