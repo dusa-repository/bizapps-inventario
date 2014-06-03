@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.maestros.F00021;
+import modelo.maestros.F0005;
 import modelo.maestros.F0010;
 import modelo.pk.F00021PK;
 
@@ -20,6 +21,7 @@ import org.zkoss.zul.Textbox;
 import arbol.CArbol;
 
 import componentes.Botonera;
+import componentes.BuscadorUDC;
 import componentes.Catalogo;
 import componentes.Mensaje;
 
@@ -54,18 +56,55 @@ public class CF00021 extends CGenerico {
 	@Wire
 	private Div botoneraF00021;
 	@Wire
+	private Div divbuscadorDCT;
+	@Wire
+	private Div divbuscadorSMAS;
+	@Wire
+	private Div divbuscadorINCRUS;
+	@Wire
 	private Label lblDescripcionF0010;
 	Catalogo<F00021> catalogo;
 	Catalogo<F0010> catalogoF0010;
 	Botonera botonera;
 	F00021PK clave = null;
 	CArbol arbol = new CArbol();
+	BuscadorUDC buscadorDCT, buscadorSMAS, buscadorINCRUS;
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
 		arbol.booleanoApg ();
 		txtKCOF00021.setFocus(true);
 		mostrarCatalogo();
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","DT");
+		buscadorDCT = new BuscadorUDC("Tipo Documento", 10,
+				listaF0005, true, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "DT",
+						buscadorDCT.obtenerCaja());
+			}
+		};
+		List<F0005> listF0005 = servicioF0005.buscarParaUDCOrdenados("00","DT");
+		buscadorSMAS = new BuscadorUDC("Igual a tipo doc", 10,
+				listF0005, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "DT",
+						buscadorSMAS.obtenerCaja());
+			}
+		};
+		List<F0005> lisF0005 = servicioF0005.buscarParaUDCOrdenados("H00","IM");
+		buscadorINCRUS = new BuscadorUDC("Digito Incrus", 10,
+				lisF0005, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("H00", "IM",
+						buscadorINCRUS.obtenerCaja());
+			}
+		};
+		divbuscadorSMAS.appendChild(buscadorSMAS);
+		divbuscadorDCT.appendChild(buscadorDCT);
+		divbuscadorINCRUS.appendChild(buscadorINCRUS);
 		botonera = new Botonera() {
 
 			@Override
@@ -120,12 +159,14 @@ public class CF00021 extends CGenerico {
 					guardar = validar();
 				if (guardar) {
 					String kco = txtKCOF00021.getValue();
-					String dct = txtDCTF00021.getValue();
-					String smas = txtSMASF00021.getValue();
+					String dct = buscadorDCT.obtenerCaja();
+					String smas = buscadorSMAS.obtenerCaja();
+					// donde se guarda la descripcion
 					String des = txtDESF00021.getValue();
 					double ctry = Double.parseDouble(txtCTRYF00021.getValue());
 					double fy = Double.parseDouble(txtFYF00021.getValue());
 					double n001 = Double.parseDouble(txtN001F00021.getValue());
+					String imb = buscadorINCRUS.obtenerCaja();
 					F00021PK clave = new F00021PK();
 					clave.setNlkco(kco);
 					clave.setNldct(dct);
@@ -135,6 +176,7 @@ public class CF00021 extends CGenerico {
 					f00021.setId(clave);
 					f00021.setNlsmas(smas);
 					f00021.setNln001(n001);
+					f00021.setNlimb(imb);
 					servicioF00021.guardar(f00021);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
@@ -259,7 +301,7 @@ public class CF00021 extends CGenerico {
 	
 	public boolean camposLLenos() {
 		if (txtKCOF00021.getText().compareTo("") == 0
-				|| txtDCTF00021.getText().compareTo("") == 0
+				|| buscadorDCT.obtenerCaja().compareTo("") == 0
 				|| txtDESF00021.getText().compareTo("") == 0
 				|| txtCTRYF00021.getText().compareTo("") == 0
 				|| txtFYF00021.getText().compareTo("") == 0) {
@@ -278,10 +320,10 @@ public class CF00021 extends CGenerico {
 		}
 
 
-	@Listen("onClick = #txtCOF00021")
+	@Listen("onClick = #txtN001F00021")
 	public boolean buscarSiguiente() {	
 			String a =txtKCOF00021.getValue();
-			String b = txtDCTF00021.getValue() ;
+			String b =  buscadorDCT.obtenerCaja() ;
 			if (servicioF00021.Numero(a, b) >= 0){
 				double numero =  servicioF00021.Numero(a, b);
 				if (numero != 0)
@@ -291,10 +333,10 @@ public class CF00021 extends CGenerico {
 					return false;
 		}	
 
-	@Listen("onClick = #txtDCTF00021")
+	@Listen("onClick = #txtN001F00021")
 	public boolean buscarSiguiente1() {	
 			String a =txtKCOF00021.getValue();
-			String b = txtDCTF00021.getValue() ;
+			String b =  buscadorDCT.obtenerCaja();
 			if (servicioF00021.Numero(a, b) >= 0){
 			double numero =  servicioF00021.Numero(a, b);
 			if (numero != 0)
@@ -306,32 +348,34 @@ public class CF00021 extends CGenerico {
 	
 	public void limpiarCampos() {
 		txtKCOF00021.setValue("");
-		txtDCTF00021.setValue("");
-		txtSMASF00021.setValue("");
+		buscadorDCT.settearCampo(null);
+		buscadorSMAS.settearCampo(null);
 		txtDESF00021.setValue("");
 		txtCTRYF00021.setValue("");
 		txtFYF00021.setValue("");
 		txtN001F00021.setValue("");
 		lblDescripcionF0010.setValue("");
+		buscadorINCRUS.settearCampo(null);
 		txtKCOF00021.setFocus(true);
 	}
 
 	public void habilitarCampos() {
 		if (txtKCOF00021.isDisabled())
 			txtKCOF00021.setDisabled(false);
-		if (txtDCTF00021.isDisabled())
-			txtDCTF00021.setDisabled(false);
+//		if (txtDCTF00021.isDisabled())
+//			txtDCTF00021.setDisabled(false);
 		if (txtN001F00021.isDisabled())
 			txtN001F00021.setDisabled(false);
 	}
 
 	public boolean camposEditando() {
 		if (txtKCOF00021.getText().compareTo("") != 0
-				|| txtDCTF00021.getText().compareTo("") != 0
-				|| txtSMASF00021.getText().compareTo("") != 0
+				|| buscadorDCT.obtenerCaja().compareTo("") != 0
+				|| buscadorSMAS.obtenerCaja().compareTo("") != 0
 				|| txtDESF00021.getText().compareTo("") != 0
 				|| txtCTRYF00021.getText().compareTo("") != 0
 				|| txtFYF00021.getText().compareTo("") != 0
+				|| buscadorINCRUS.obtenerCaja().compareTo("") != 0
 				|| txtN001F00021.getText().compareTo("") != 0) {
 			return true;
 		} else
