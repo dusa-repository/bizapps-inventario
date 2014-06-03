@@ -41,30 +41,12 @@
 							<div id="divbuscadorDCT" hflex="1" />
 						</cell>
 						<hbox />
-<!-- 							<hbox> -->
-<!-- 								<label class="etiqueta" -->
-<!-- 									value=" Tipo Documento" /> -->
-<!-- 								<space /> -->
-<!-- 								<label value="*" -->
-<!-- 									style="font-weight:bold;color:red"> -->
-<!-- 								</label> -->
-<!-- 							</hbox> -->
-<!-- 							<textbox id="txtDCTF00021" hflex="1" -->
-<!-- 								maxlength="2" width="45%" -->
-<!-- 								tooltiptext="Ingrese el Tipo Documento" /> -->
-<!-- 							<hbox /> -->
 						</row>
 						<row>
 						<cell colspan="2">
 							<div id="divbuscadorSMAS" hflex="1" />
 						</cell>
 						<hbox />
-<!-- 							<label class="etiqueta" -->
-<!-- 								value=" Igual a Tipo Doc" /> -->
-<!-- 							<textbox id="txtSMASF00021" hflex="1" -->
-<!-- 								maxlength="2" width="45%" -->
-<!-- 								tooltiptext="Ingrese el Tipo Documento" /> -->
-<!-- 							<hbox /> -->
 						</row>
 						<row>
 							<hbox>

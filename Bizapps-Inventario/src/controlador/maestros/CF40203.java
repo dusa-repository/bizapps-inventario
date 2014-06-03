@@ -58,6 +58,21 @@ public class CF40203 extends CGenerico {
 	@Wire
 	private Div divbuscadorNTYF;
 	@Wire
+	private Div divbuscadorTRTY;
+	@Wire
+	private Div divbuscadorNXTR;
+	@Wire
+	private Div divbuscadorA1TR;
+	@Wire
+	private Div divbuscadorA2TR;
+	@Wire
+	private Div divbuscadorA3TR;
+	@Wire
+	private Div divbuscadorA4TR;
+	@Wire
+	private Div divbuscadorA5TR;
+	
+	@Wire
 	private Div divbuscadorCategoria2;
 	@Wire
 	private Div catalogoF40203;
@@ -69,17 +84,18 @@ public class CF40203 extends CGenerico {
 
 	Botonera botonera;
 	F40203PK clave = null;
-	BuscadorUDC buscadorDCTO, buscadorNTYF;
+	BuscadorUDC buscadorDCTO, buscadorNTYF, buscadorTRTY, buscadorNXTR, buscadorA1TR,
+	buscadorA2TR, buscadorA3TR, buscadorA4TR, buscadorA5TR;
 	@Override
 	public void inicializar() throws IOException {
 		
 		mostrarCatalogo();
-		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","DT");
 		buscadorDCTO = new BuscadorUDC("Tipo Orden", 10,
 				listaF0005, true, false, false) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "DT",
 						buscadorDCTO.obtenerCaja());
 			}
 		};
@@ -92,8 +108,78 @@ public class CF40203 extends CGenerico {
 						buscadorNTYF.obtenerCaja());
 			}
 		};
+		List<F0005> listaF0005TRTY = servicioF0005.buscarParaUDCOrdenados("40","AT");
+		buscadorTRTY = new BuscadorUDC("Último Estado", 10,
+				listaF0005TRTY, true, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("40", "AT",
+						buscadorTRTY.obtenerCaja());
+			}
+		};
+		List<F0005> listaF0005NXTR = servicioF0005.buscarParaUDCOrdenados("40","AT");
+		buscadorNXTR = new BuscadorUDC("Estado Siguiente", 10,
+				listaF0005NXTR, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("40", "AT",
+						buscadorNXTR.obtenerCaja());
+			}
+		};
+		List<F0005> listaF0005A1TR = servicioF0005.buscarParaUDCOrdenados("40","AT");
+		buscadorA1TR = new BuscadorUDC("Otros 1", 10,
+				listaF0005A1TR, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("40", "AT",
+						buscadorA1TR.obtenerCaja());
+			}
+		};
+		List<F0005> listaF0005A2TR = servicioF0005.buscarParaUDCOrdenados("A0","AT");
+		buscadorA2TR = new BuscadorUDC("Otros 2", 10,
+				listaF0005A2TR, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("A0", "AT",
+						buscadorA2TR.obtenerCaja());
+			}
+		};
+		List<F0005> listaF0005A3TR = servicioF0005.buscarParaUDCOrdenados("40","AT");
+		buscadorA3TR = new BuscadorUDC("Otros 3", 10,
+				listaF0005A3TR, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("40", "AT",
+						buscadorA3TR.obtenerCaja());
+			}
+		};
+		List<F0005> listaF0005A4TR = servicioF0005.buscarParaUDCOrdenados("40","AT");
+		buscadorA4TR = new BuscadorUDC("Otros 4", 10,
+				listaF0005A4TR, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("40", "AT",
+						buscadorA4TR.obtenerCaja());
+			}
+		};
+		List<F0005> listaF0005A5TR = servicioF0005.buscarParaUDCOrdenados("40","AT");
+		buscadorA5TR = new BuscadorUDC("Otros 1", 10,
+				listaF0005A5TR, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("40", "AT",
+						buscadorA5TR.obtenerCaja());
+			}
+		};
 		divbuscadorNTYF.appendChild(buscadorNTYF);
 		divbuscadorDCTO.appendChild(buscadorDCTO);	
+		divbuscadorTRTY.appendChild(buscadorTRTY);
+		divbuscadorNXTR.appendChild(buscadorNXTR);
+		divbuscadorA1TR.appendChild(buscadorA1TR);
+		divbuscadorA2TR.appendChild(buscadorA2TR);
+		divbuscadorA3TR.appendChild(buscadorA3TR);
+		divbuscadorA4TR.appendChild(buscadorA4TR);
+		divbuscadorA5TR.appendChild(buscadorA5TR);
 		botonera = new Botonera()  {
 
 			@Override
@@ -157,15 +243,16 @@ public class CF40203 extends CGenerico {
 				if (guardar) {
 					String dcto = buscadorDCTO.obtenerCaja();
 					String lnty = buscadorNTYF.obtenerCaja();
-					String trty = txtTRTYF40203.getValue();
+					String trty = buscadorTRTY.obtenerCaja();
+					//donde la guardo
 					String ns = txtNSF40203.getValue();
 					String dsc1 = txtDSC1F40203.getValue();
-					String nxtr = txtNXTRF40203.getValue();
-					String a1tr = txtA1TRF40203.getValue();
-					String a2tr = txtA2TRF40203.getValue();
-					String a3tr = txtA3TRF40203.getValue();
-					String a4tr = txtA4TRF40203.getValue();
-					String a5tr = txtA5TRF40203.getValue();
+					String nxtr = buscadorNXTR.obtenerCaja();
+					String a1tr = buscadorA1TR.obtenerCaja();
+					String a2tr = buscadorA2TR.obtenerCaja();
+					String a3tr = buscadorA3TR.obtenerCaja();
+					String a4tr = buscadorA4TR.obtenerCaja();
+					String a5tr = buscadorA5TR.obtenerCaja();
 					String wrth = txtWRTHF40203.getValue();
 					F40203PK clave = new F40203PK();
 					clave.setFsdcto(dcto);
@@ -286,14 +373,14 @@ public class CF40203 extends CGenerico {
 		buscadorDCTO.settearCampo(null);
 		buscadorNTYF.settearCampo(null);
 		txtNSF40203.setValue("");
-		txtTRTYF40203.setValue("");
+		buscadorTRTY.settearCampo(null);
 		txtDSC1F40203.setValue("");
-		txtNXTRF40203.setValue("");
-		txtA1TRF40203.setValue("");
-		txtA2TRF40203.setValue("");
-		txtA3TRF40203.setValue("");
-		txtA4TRF40203.setValue("");
-		txtA5TRF40203.setValue("");
+		buscadorNXTR.settearCampo(null);
+		buscadorA1TR.settearCampo(null);
+		buscadorA2TR.settearCampo(null);
+		buscadorA3TR.settearCampo(null);
+		buscadorA4TR.settearCampo(null);
+		buscadorA5TR.settearCampo(null);
 		txtWRTHF40203.setValue("");
 		buscadorDCTO.focus();
 	}
@@ -301,8 +388,7 @@ public class CF40203 extends CGenerico {
 	public void habilitarTextClave() {
 		buscadorDCTO.habilitarCampos();
 		buscadorNTYF.habilitarCampos();
-		if (txtTRTYF40203.isDisabled())
-			txtTRTYF40203.setDisabled(false);
+		buscadorTRTY.habilitarCampos();
 	}
 	
 	public boolean validarSeleccion() {
@@ -334,7 +420,7 @@ public class CF40203 extends CGenerico {
 
 	@Listen("onChange = #txtDCTOF40203")
 	public boolean claveDCTOExiste() {
-		if (servicioF40203.buscar(buscadorDCTO.obtenerCaja(), buscadorNTYF.obtenerCaja(), txtTRTYF40203.getValue()) != null) {
+		if (servicioF40203.buscar(buscadorDCTO.obtenerCaja(), buscadorNTYF.obtenerCaja(), buscadorTRTY.obtenerCaja()) != null) {
 			msj.mensajeAlerta(Mensaje.claveUsada);
 			buscadorDCTO.focus();
 			return true;
@@ -347,14 +433,14 @@ public class CF40203 extends CGenerico {
 		if (buscadorDCTO.obtenerCaja().compareTo("") == 0
 				|| buscadorNTYF.obtenerCaja().compareTo("") == 0
 				|| txtNSF40203.getText().compareTo("") == 0
-				|| txtTRTYF40203.getText().compareTo("") == 0
+				|| buscadorTRTY.obtenerCaja().compareTo("") == 0
 				|| txtDSC1F40203.getText().compareTo("") == 0
-				|| txtNXTRF40203.getText().compareTo("") == 0
-				|| txtA1TRF40203.getText().compareTo("") == 0
-				|| txtA2TRF40203.getText().compareTo("") == 0
-				|| txtA3TRF40203.getText().compareTo("") == 0
-				|| txtA4TRF40203.getText().compareTo("") == 0
-				|| txtA5TRF40203.getText().compareTo("") == 0
+				|| buscadorNXTR.obtenerCaja().compareTo("") == 0
+				|| buscadorA1TR.obtenerCaja().compareTo("") == 0
+				|| buscadorA2TR.obtenerCaja().compareTo("") == 0
+				|| buscadorA3TR.obtenerCaja().compareTo("") == 0
+				|| buscadorA4TR.obtenerCaja().compareTo("") == 0
+				|| buscadorA5TR.obtenerCaja().compareTo("") == 0
 				|| txtWRTHF40203.getText().compareTo("") == 0) {
 			return false;
 		} else
@@ -373,14 +459,14 @@ public class CF40203 extends CGenerico {
 		if (buscadorDCTO.obtenerCaja().compareTo("") != 0
 				|| buscadorNTYF.obtenerCaja().compareTo("") != 0
 				|| txtNSF40203.getText().compareTo("") != 0
-				|| txtTRTYF40203.getText().compareTo("") != 0
+				|| buscadorTRTY.obtenerCaja().compareTo("") != 0
 				|| txtDSC1F40203.getText().compareTo("") != 0
-				|| txtNXTRF40203.getText().compareTo("") != 0
-				|| txtA1TRF40203.getText().compareTo("") != 0
-				|| txtA2TRF40203.getText().compareTo("") != 0
-				|| txtA3TRF40203.getText().compareTo("") != 0
-				|| txtA4TRF40203.getText().compareTo("") != 0
-				|| txtA5TRF40203.getText().compareTo("") != 0
+				|| buscadorNXTR.obtenerCaja().compareTo("") != 0
+				|| buscadorA1TR.obtenerCaja().compareTo("") != 0
+				|| buscadorA2TR.obtenerCaja().compareTo("") != 0
+				|| buscadorA3TR.obtenerCaja().compareTo("") != 0
+				|| buscadorA4TR.obtenerCaja().compareTo("") != 0
+				|| buscadorA5TR.obtenerCaja().compareTo("") != 0
 				|| txtWRTHF40203.getText().compareTo("") != 0) {
 			return true;
 		} else
