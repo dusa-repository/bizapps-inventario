@@ -12,9 +12,9 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="25%" />
+						<column label="" width="19%" />
 						<column label="" width="45%" />
-						<column label="" width="10%" />
+						<column label="" width="17%" />
 						<column label="" width="20%" />
 					</columns>
 					<rows>
@@ -37,26 +37,34 @@
 							<hbox />
 						</row>
 						<row>
-							<hbox>
-								<label class="etiqueta"
-									value=" Tipo Documento" />
-								<space />
-								<label value="*"
-									style="font-weight:bold;color:red">
-								</label>
-							</hbox>
-							<textbox id="txtDCTF00021" hflex="1"
-								maxlength="2" width="45%"
-								tooltiptext="Ingrese el Tipo Documento" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorDCT" hflex="1" />
+						</cell>
+						<hbox />
+<!-- 							<hbox> -->
+<!-- 								<label class="etiqueta" -->
+<!-- 									value=" Tipo Documento" /> -->
+<!-- 								<space /> -->
+<!-- 								<label value="*" -->
+<!-- 									style="font-weight:bold;color:red"> -->
+<!-- 								</label> -->
+<!-- 							</hbox> -->
+<!-- 							<textbox id="txtDCTF00021" hflex="1" -->
+<!-- 								maxlength="2" width="45%" -->
+<!-- 								tooltiptext="Ingrese el Tipo Documento" /> -->
+<!-- 							<hbox /> -->
 						</row>
 						<row>
-							<label class="etiqueta"
-								value=" Igual a Tipo Doc" />
-							<textbox id="txtSMASF00021" hflex="1"
-								maxlength="2" width="45%"
-								tooltiptext="Ingrese el Tipo Documento" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorSMAS" hflex="1" />
+						</cell>
+						<hbox />
+<!-- 							<label class="etiqueta" -->
+<!-- 								value=" Igual a Tipo Doc" /> -->
+<!-- 							<textbox id="txtSMASF00021" hflex="1" -->
+<!-- 								maxlength="2" width="45%" -->
+<!-- 								tooltiptext="Ingrese el Tipo Documento" /> -->
+<!-- 							<hbox /> -->
 						</row>
 						<row>
 							<hbox>
@@ -99,10 +107,16 @@
 							<hbox />
 						</row>
 						<row>
+						<cell colspan="2">
+							<div id="divbuscadorINCRUS" hflex="1" />
+						</cell>
+						<hbox />
+						</row>
+						<row>
 							<label class="etiqueta"
 								value=" Número Siguiente" />
 							<textbox id="txtN001F00021" hflex="1"
-								width="45%" tooltiptext="Número Siguiente" readonly= "true"/>
+								width="45%" tooltiptext="Número Siguiente"/>
 							<hbox />
 						</row>
 					</rows>
