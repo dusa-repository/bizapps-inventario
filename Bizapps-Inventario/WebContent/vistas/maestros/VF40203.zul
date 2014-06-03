@@ -9,15 +9,12 @@
 				<separator />
 			<grid width="100%">
 				<columns visible="false">
-					<column label="" width="20%" />
+					<column label="" width="19%" />
 					<column label="" width="45%" />
-					<column label="" width="30%" />
+					<column label="" width="31%" />
 				</columns>
 				<rows>
 					<row>
-				<!--  		<label class="etiqueta" value= "Tipo de Orden" />
-							<textbox id="txtDCTOF40203" hflex="1" maxlength="2"
-								tooltiptext="Ingrese el Tipo de Orden " /> -->
 						<cell colspan="2">
 							<div id="divbuscadorDCTO" hflex="1" />
 						</cell>
@@ -39,10 +36,10 @@
 							<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Úlmimo Estado" />
-							<textbox id="txtTRTYF40203" hflex="1" maxlength="3"
-								tooltiptext="Último estado" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorTRTY" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
 						<label class="etiqueta" value= "Descripción último estado" />
@@ -51,40 +48,40 @@
 							<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Estado siguiente" />
-							<textbox id="txtNXTRF40203" hflex="1" maxlength="3"
-								tooltiptext="Ingrese el estado siguiente" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorNXTR" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Otros 1" />
-							<textbox id="txtA1TRF40203" hflex="1" maxlength="3"
-								tooltiptext="Ingrese otros 1" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorA1TR" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Otros 2" />
-							<textbox id="txtA2TRF40203" hflex="1" maxlength="3"
-								tooltiptext="Ingrese otros 2" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorA2TR" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Otros 3" />
-							<textbox id="txtA3TRF40203" hflex="1" maxlength="3"
-								tooltiptext="Ingrese otros 3" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorA3TR" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Otros 4" />
-							<textbox id="txtA4TRF40203" hflex="1" maxlength="3"
-								tooltiptext="Ingrese otros 4" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorA4TR" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
-						<label class="etiqueta" value= "Otros 5" />
-							<textbox id="txtA5TRF40203" hflex="1" maxlength="3"
-								tooltiptext="Ingrese otros 5" />
-							<hbox />
+						<cell colspan="2">
+							<div id="divbuscadorA5TR" hflex="1" />
+						</cell>
+						<hbox />
 					</row>
 					<row>
 						<label class="etiqueta" value= "LM (Y/N)" />

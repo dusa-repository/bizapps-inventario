@@ -362,8 +362,7 @@ public class CF00021 extends CGenerico {
 	public void habilitarCampos() {
 		if (txtKCOF00021.isDisabled())
 			txtKCOF00021.setDisabled(false);
-//		if (txtDCTF00021.isDisabled())
-//			txtDCTF00021.setDisabled(false);
+		buscadorDCT.habilitarCampos();
 		if (txtN001F00021.isDisabled())
 			txtN001F00021.setDisabled(false);
 	}
