@@ -1,17 +1,15 @@
-package controlador.maestros;
+package controlador.seguridad;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.maestros.F0004;
-import modelo.pk.F0004PK;
+import modelo.seguridad.Arbol;
 
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
-import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
@@ -20,61 +18,51 @@ import componentes.Botonera;
 import componentes.Catalogo;
 import componentes.Mensaje;
 
-public class CF0004 extends CGenerico {
+import controlador.maestros.CGenerico;
 
-	private static final long serialVersionUID = -8680709288839148461L;
+public class CMenuArbol extends CGenerico {
+
 	@Wire
-	private Textbox txtSYF0004;
+	private Textbox txtNombre;
 	@Wire
-	private Textbox txtRTF0004;
+	private Textbox txtPadre;
 	@Wire
-	private Textbox txtLNF0004;
+	private Textbox txtUrl;
 	@Wire
-	private Textbox txtNUMF0004;
+	private Div divVMenuArbol;
 	@Wire
-	private Textbox txtDL01F0004;
+	private Div botoneraMenuArbol;
 	@Wire
-	private Doublespinner dblCDLF0004;
-	@Wire
-	private Div divVF0004;
-	@Wire
-	private Div botoneraF0004;
-	@Wire
-	private Div catalogoF0004;
+	private Div divCatalogoMenuArbol;
 	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
 
 	Botonera botonera;
-	Catalogo<F0004> catalogo;
-	F0004PK clave = null;
+	Catalogo<Arbol> catalogo;
+	long clave = 0;
 
 	@Override
 	public void inicializar() throws IOException {
 
-		txtSYF0004.setFocus(true);
+		txtNombre.setFocus(true);
 		mostrarCatalogo();
 
 		botonera = new Botonera() {
-			
+
 			@Override
 			public void seleccionar() {
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
 						mostrarBotones(false);
 						abrirRegistro();
-						F0004 f04 = catalogo.objetoSeleccionadoDelCatalogo();
-						clave = f04.getId();
-						txtRTF0004.setValue(f04.getId().getDtrt());
-						txtRTF0004.setDisabled(true);
-						txtSYF0004.setValue(f04.getId().getDtsy());
-						txtSYF0004.setDisabled(true);
-						txtDL01F0004.setValue(f04.getDtdl01());
-						txtLNF0004.setValue(f04.getDtln2());
-						txtNUMF0004.setValue(f04.getDtcnum());
-						dblCDLF0004.setValue(f04.getDtcdl());
-						txtDL01F0004.setFocus(true);
+						Arbol arbol = catalogo.objetoSeleccionadoDelCatalogo();
+						clave = arbol.getIdArbol();
+						txtUrl.setValue(arbol.getUrl());
+						txtNombre.setValue(arbol.getNombre());
+						txtPadre.setValue(String.valueOf(arbol.getPadre()));
+						txtNombre.setFocus(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -82,7 +70,7 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0004, "Trabajo con Tipos de Codigos Definidos por el Usuario");
+				cerrarVentana(divVMenuArbol, "Menu Arbol");
 
 			}
 
@@ -94,41 +82,26 @@ public class CF0004 extends CGenerico {
 			public void limpiar() {
 				mostrarBotones(false);
 				limpiarCampos();
-				habilitarTextClave();
-				clave = null;
+				clave = 0;
 			}
 
 			@Override
 			public void guardar() {
 				boolean guardar = true;
-				if (clave == null)
+				if (clave == 0)
 					guardar = validar();
 				if (guardar) {
-					String rt = txtSYF0004.getValue();
-					String sy = txtRTF0004.getValue();
-					String dl = txtDL01F0004.getValue();
-					String ln = txtLNF0004.getValue();
-					double a = dblCDLF0004.getValue();
-					String num = txtNUMF0004.getValue();
-					F0004PK clave = new F0004PK();
-					clave.setDtsy(rt);
-					clave.setDtrt(sy);
-					F0004 fooo4 = new F0004();
-					fooo4.setId(clave);
-					fooo4.setDtdl01(dl);
-					fooo4.setDtln2(ln);
-					fooo4.setDtcnum(num);
-					fooo4.setDtcdl(a);
-					fooo4.setDtjobn("5");
-					fooo4.setDtuseq((double) 45);
-					fooo4.setDtuser("jDE");
-					// fooo4.setDtupmj(dtupmj); //Fecha
-					fooo4.setDtupmt(Double.parseDouble(horaAuditoria));
-					servicioF0004.guardar(fooo4);
+					String url = txtUrl.getValue();
+					String nombre = txtNombre.getValue();
+					String padre = txtPadre.getValue();
+					Arbol arbol = new Arbol();
+					arbol.setNombre(nombre);
+					arbol.setPadre(Long.valueOf(padre));
+					arbol.setUrl(url);
+					servicioArbol.guardar(arbol);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF0004
-							.buscarTodosOrdenados());
+					catalogo.actualizarLista(servicioArbol.listarArbol());
 				}
 
 			}
@@ -138,7 +111,7 @@ public class CF0004 extends CGenerico {
 				if (gpxDatos.isOpen()) {
 					/* Elimina Varios Registros */
 					if (validarSeleccion()) {
-						final List<F0004> eliminarLista = catalogo
+						final List<Arbol> eliminarLista = catalogo
 								.obtenerSeleccionados();
 						Messagebox
 								.show("¿Desea Eliminar los "
@@ -151,18 +124,18 @@ public class CF0004 extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioF0004
+													servicioArbol
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF0004
-															.buscarTodosOrdenados());
+													catalogo.actualizarLista(servicioArbol
+															.listarArbol());
 												}
 											}
 										});
 					}
 				} else {
 					/* Elimina un solo registro */
-					if (clave != null) {
+					if (clave != 0) {
 						Messagebox
 								.show(Mensaje.deseaEliminar,
 										"Alerta",
@@ -173,12 +146,12 @@ public class CF0004 extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioF0004
+													servicioArbol
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF0004
-															.buscarTodosOrdenados());
+													catalogo.actualizarLista(servicioArbol
+															.listarArbol());
 												}
 											}
 										});
@@ -205,7 +178,7 @@ public class CF0004 extends CGenerico {
 		};
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
-		botoneraF0004.appendChild(botonera);
+		botoneraMenuArbol.appendChild(botonera);
 
 	}
 
@@ -219,25 +192,14 @@ public class CF0004 extends CGenerico {
 	}
 
 	public void limpiarCampos() {
-		clave = null;
-		txtDL01F0004.setValue("");
-		txtLNF0004.setValue("");
-		txtNUMF0004.setValue("");
-		txtRTF0004.setValue("");
-		txtSYF0004.setValue("");
-		dblCDLF0004.setValue((double) 0);
-		txtSYF0004.setFocus(true);
-	}
-
-	public void habilitarTextClave() {
-		if (txtRTF0004.isDisabled())
-			txtRTF0004.setDisabled(false);
-		if (txtSYF0004.isDisabled())
-			txtSYF0004.setDisabled(false);
+		clave = 0;
+		txtUrl.setValue("");
+		txtNombre.setValue("");
+		txtPadre.setValue("");
 	}
 
 	public boolean validarSeleccion() {
-		List<F0004> seleccionados = catalogo.obtenerSeleccionados();
+		List<Arbol> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
@@ -252,53 +214,26 @@ public class CF0004 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		if (claveSYExiste() || claveRTExiste()) {
+		if (!camposLLenos()) {
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
-		} else {
-			if (!camposLLenos()) {
-				msj.mensajeError(Mensaje.camposVacios);
-				return false;
-			} else
-				return true;
-		}
-	}
-
-	@Listen("onChange = #txtSYF0004")
-	public boolean claveSYExiste() {
-		if (servicioF0004.buscar(txtSYF0004.getValue(), txtRTF0004.getValue()) != null) {
-			msj.mensajeAlerta(Mensaje.claveUsada);
-			txtSYF0004.setFocus(true);
-			return true;
 		} else
-			return false;
-	}
-
-	@Listen("onChange = #txtRTF0004")
-	public boolean claveRTExiste() {
-		if (servicioF0004.buscar(txtSYF0004.getValue(), txtRTF0004.getValue()) != null) {
-			msj.mensajeAlerta(Mensaje.claveUsada);
-			txtRTF0004.setFocus(true);
 			return true;
-		} else
-			return false;
 	}
 
 	public boolean camposLLenos() {
-		if (txtDL01F0004.getText().compareTo("") == 0
-				|| txtRTF0004.getText().compareTo("") == 0
-				|| txtSYF0004.getText().compareTo("") == 0) {
+		if (txtUrl.getText().compareTo("") == 0
+				|| txtNombre.getText().compareTo("") == 0
+				|| txtPadre.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
 	}
-	
+
 	public boolean camposEditando() {
-		if (txtDL01F0004.getText().compareTo("") != 0
-				|| txtLNF0004.getText().compareTo("") != 0
-				|| txtNUMF0004.getText().compareTo("") != 0
-				|| txtRTF0004.getText().compareTo("") != 0
-				|| txtSYF0004.getText().compareTo("") != 0
-				|| dblCDLF0004.getValue() != 0) {
+		if (txtUrl.getText().compareTo("") != 0
+				|| txtNombre.getText().compareTo("") != 0
+				|| txtPadre.getText().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
@@ -328,7 +263,6 @@ public class CF0004 extends CGenerico {
 									gpxDatos.setOpen(true);
 									gpxRegistro.setOpen(false);
 									limpiarCampos();
-									habilitarTextClave();
 									mostrarBotones(true);
 								}
 							}
@@ -342,46 +276,42 @@ public class CF0004 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004", listF0004,false,false,true, "SY",
-				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
+		final List<Arbol> listArbol = servicioArbol.listarArbol();
+		catalogo = new Catalogo<Arbol>(divCatalogoMenuArbol, "Arbol",
+				listArbol, false, false, true, "Codigo", "Nombre", "Padre",
+				"Url") {
 
 			@Override
-			protected List<F0004> buscar(List<String> valores) {
+			protected List<Arbol> buscar(List<String> valores) {
 
-				List<F0004> lista = new ArrayList<F0004>();
+				List<Arbol> lista = new ArrayList<Arbol>();
 
-				for (F0004 f0004 : listF0004) {
-					if (f0004.getId().getDtsy().toLowerCase()
+				for (Arbol arbol : listArbol) {
+					if (String.valueOf(arbol.getIdArbol()).toLowerCase()
 							.startsWith(valores.get(0))
-							&& f0004.getId().getDtrt().toLowerCase()
+							&& arbol.getNombre().toLowerCase()
 									.startsWith(valores.get(1))
-							&& f0004.getDtdl01().toLowerCase()
+							&& String.valueOf(arbol.getPadre()).toLowerCase()
 									.startsWith(valores.get(2))
-							&& String.valueOf(f0004.getDtcdl()).toLowerCase()
-									.startsWith(valores.get(3))
-							&& f0004.getDtln2().toLowerCase()
-									.startsWith(valores.get(4))
-							&& f0004.getDtcnum().toLowerCase()
-									.startsWith(valores.get(5))) {
-						lista.add(f0004);
+							&& arbol.getUrl().toLowerCase()
+									.startsWith(valores.get(3))) {
+						lista.add(arbol);
 					}
 				}
 				return lista;
 			}
 
 			@Override
-			protected String[] crearRegistros(F0004 f0004) {
+			protected String[] crearRegistros(Arbol arbol) {
 				String[] registros = new String[6];
-				registros[0] = f0004.getId().getDtsy();
-				registros[1] = f0004.getId().getDtrt();
-				registros[2] = f0004.getDtdl01();
-				registros[3] = String.valueOf(f0004.getDtcdl());
-				registros[4] = f0004.getDtln2();
-				registros[5] = f0004.getDtcnum();
+				registros[0] = String.valueOf(arbol.getIdArbol());
+				registros[1] = arbol.getNombre();
+				registros[2] = String.valueOf(arbol.getPadre());
+				registros[3] = arbol.getUrl();
 				return registros;
 			}
 		};
-		catalogo.setParent(catalogoF0004);
+		catalogo.setParent(divCatalogoMenuArbol);
 	}
+
 }

@@ -81,19 +81,20 @@ public class CF41002 extends CGenerico {
 		txtUMITMF41002.setFocus(true);
 		mostrarCatalogo();
 
-		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		buscadorUMF41002 = new BuscadorUDC("De UM", 2, listF0005, true,true,true) {
+		List<F0005> listF0005 =  servicioF0005.buscarParaUDCOrdenados("00","00");
+		
+		buscadorUMF41002 = new BuscadorUDC("De UM", 3, listF0005, true,true,true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "01",
+				return servicioF0005.buscar("00", "00",
 						buscadorUMF41002.obtenerCaja());
 			}
 		};
 
-		buscadorRUMF41002 = new BuscadorUDC("A UM", 2, listF0005,true,true,true) {
+		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, listF0005,true,true,true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "01",
+				return servicioF0005.buscar("00", "00",
 						buscadorRUMF41002.obtenerCaja());
 			}
 		};

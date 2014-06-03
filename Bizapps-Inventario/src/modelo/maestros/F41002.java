@@ -22,11 +22,11 @@ public class F41002 implements Serializable {
 	private F41002PK id;
 
 	@Column(name="UMCNV1")
-	private double umcnv1;
+	private Double umcnv1;
 
 	//
 	@Column(name="UMCONV")
-	private double umconv;
+	private Double umconv;
 
 	//
 	@Column(name="UMEXPO")
@@ -51,7 +51,7 @@ public class F41002 implements Serializable {
 	private BigDecimal umsepc;
 
 	@Column(name="UMTDAY")
-	private double umtday;
+	private Double umtday;
 
 	//
 	@Column(name="UMUPMJ")
@@ -76,19 +76,19 @@ public class F41002 implements Serializable {
 		this.id = id;
 	}
 
-	public double getUmcnv1() {
+	public Double getUmcnv1() {
 		return this.umcnv1;
 	}
 
-	public void setUmcnv1(double umcnv1) {
+	public void setUmcnv1(Double umcnv1) {
 		this.umcnv1 = umcnv1;
 	}
 
-	public double getUmconv() {
+	public Double getUmconv() {
 		return this.umconv;
 	}
 
-	public void setUmconv(double umconv) {
+	public void setUmconv(Double umconv) {
 		this.umconv = umconv;
 	}
 
@@ -140,11 +140,11 @@ public class F41002 implements Serializable {
 		this.umsepc = umsepc;
 	}
 
-	public double getUmtday() {
+	public Double getUmtday() {
 		return this.umtday;
 	}
 
-	public void setUmtday(double umtday) {
+	public void setUmtday(Double umtday) {
 		this.umtday = umtday;
 	}
 

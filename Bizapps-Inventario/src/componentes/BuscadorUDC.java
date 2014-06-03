@@ -59,7 +59,7 @@ public abstract class BuscadorUDC extends Hbox {
 		cajaTexto.setMaxlength(longitud);
 		cajaTexto
 				.setTooltiptext("Seleccione del Catalogo el Codigo del Producto");
-		cajaTexto.setWidth("auto");
+		cajaTexto.setWidth("10px");
 		cajaTexto.setHflex("1");
 
 		Button boton = new Button();
@@ -211,6 +211,7 @@ public abstract class BuscadorUDC extends Hbox {
 		};
 		if(!listF0005.isEmpty()){
 			F0004 f004 = getServicioF4().buscar(listF0005.get(0).getId().getDrsy(), listF0005.get(0).getId().getDrrt());
+			System.out.println(f004);
 			catalogo.settearCamposUdc(f004);
 		}
 		catalogo.setParent(divCatalogo);

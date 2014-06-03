@@ -11,9 +11,10 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
+						<column label="" width="20%" />
+						<column label="" width="10%" />
 						<column label="" width="25%" />
 						<column label="" width="45%" />
-						<column label="" width="30%" />
 					</columns>
 					<rows>
 						<row>
@@ -23,8 +24,10 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtSYF0004" hflex="1" maxlength="4"
+							<textbox id="txtSYF0004" hflex="1" maxlength="4" width="10px"
 								tooltiptext="Ingrese el Codigo Principal del Sistema" />
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<hbox>
@@ -33,8 +36,9 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtRTF0004" hflex="1" maxlength="2"
+							<textbox id="txtRTF0004" hflex="1" maxlength="2" width="10px"
 								tooltiptext="Ingrese el Codigo Secundario del Sistema" />
+							<hbox />
 							<hbox />
 						</row>
 						<row>
@@ -44,21 +48,26 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtDL01F0004" hflex="1" maxlength="30"
-								tooltiptext="Ingrese la Descripcion del Tipo de Codigo"
-								multiline="true" class="multilinea" />
+							<cell colspan="2">
+								<textbox id="txtDL01F0004" hflex="1" maxlength="30"
+									tooltiptext="Ingrese la Descripcion del Tipo de Codigo"
+									multiline="true"/>
+							</cell>
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Long Codigo:" />
-							<doublespinner id="dblCDLF0004" constraint="min 0 max 100"
+							<doublespinner id="dblCDLF0004" constraint="min 0 max 500"
 								tooltiptext="Ingrese el Codigo del Tipo de Codigo" step="0.1"
 								format="#.##" width="98%" value="0" />
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="2da Linea (Y/N):" />
 							<textbox id="txtLNF0004" hflex="1" maxlength="1"
 								tooltiptext="Ingrese la Segunda Linea del Tipo de Codigo" />
+							<hbox />
 							<hbox />
 						</row>
 						<row>
@@ -66,6 +75,8 @@
 							<textbox id="txtNUMF0004" hflex="1" maxlength="1"
 								tooltiptext="Ingrese el valor Numerico del Tipo de Codigo" />
 							<hbox />
+							<hbox />
+
 						</row>
 					</rows>
 				</grid>

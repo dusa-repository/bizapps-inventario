@@ -22,7 +22,7 @@ public class F0004 implements Serializable {
 	private F0004PK id;
 
 	@Column(name="DTCDL")
-	private double dtcdl;
+	private Double dtcdl;
 
 	@Column(name="DTCNUM")
 	private String dtcnum;
@@ -52,10 +52,10 @@ public class F0004 implements Serializable {
 	private BigDecimal dtupmj;
 
 	@Column(name="DTUPMT")
-	private double dtupmt;
+	private Double dtupmt;
 
 	@Column(name="DTUSEQ")
-	private double dtuseq;
+	private Double dtuseq;
 
 	@Column(name="DTUSER")
 	private String dtuser;
@@ -71,11 +71,11 @@ public class F0004 implements Serializable {
 		this.id = id;
 	}
 
-	public double getDtcdl() {
+	public Double getDtcdl() {
 		return this.dtcdl;
 	}
 
-	public void setDtcdl(double dtcdl) {
+	public void setDtcdl(Double dtcdl) {
 		this.dtcdl = dtcdl;
 	}
 
@@ -151,19 +151,19 @@ public class F0004 implements Serializable {
 		this.dtupmj = dtupmj;
 	}
 
-	public double getDtupmt() {
+	public Double getDtupmt() {
 		return this.dtupmt;
 	}
 
-	public void setDtupmt(double dtupmt) {
+	public void setDtupmt(Double dtupmt) {
 		this.dtupmt = dtupmt;
 	}
 
-	public double getDtuseq() {
+	public Double getDtuseq() {
 		return this.dtuseq;
 	}
 
-	public void setDtuseq(double dtuseq) {
+	public void setDtuseq(Double dtuseq) {
 		this.dtuseq = dtuseq;
 	}
 

@@ -95,7 +95,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 			+ String.valueOf(calendario.get(Calendar.SECOND));
 	public java.util.Date fecha = new Date();
 	public Timestamp fechaHora = new Timestamp(fecha.getTime());
-	Mensaje msj = new Mensaje();
+	public Mensaje msj = new Mensaje();
 
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
