@@ -4,6 +4,7 @@ import interfacedao.seguridad.IUsuarioDAO;
 
 import java.util.List;
 
+import modelo.maestros.F00021;
 import modelo.seguridad.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ public class SUsuario {
 
 	@Autowired
 	private IUsuarioDAO usuarioDAO;
+	
+
+	public List<Usuario> buscarTodos() {
+		return usuarioDAO.findAll();
+	}
 	
 	@Transactional
 	public Usuario buscarUsuarioPorId(long codigo) {
@@ -33,10 +39,6 @@ public class SUsuario {
 	@Transactional
 	public Usuario buscarPorCedula(String value) {
 		return usuarioDAO.findByCedula(value);
-	}
-
-	public List<Usuario> buscarTodos() {
-		return usuarioDAO.findAll();
 	}
 
 	public void eliminar(Usuario usuario) {

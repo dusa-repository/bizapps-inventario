@@ -1,7 +1,13 @@
 <zk>
 	<style src="/public/Estilo.css" />
-	<div id="divUsuario" width="80%" apply="controlador.maestros.CUsuario">
-		<groupbox width="100%" mold="3d" title="Usuario">
+	<div id="divUsuario" width="100%" apply="controlador.maestros.CUsuario">
+	<groupbox mold="3d" width="auto"
+        title="Usuario">
+		<div id="botoneraUsuario" />
+		<separator />
+		<groupbox id="gpxRegistro" width="auto" title="">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para ingresar los Usuarios" />
 			<grid width="100%">
 				<columns visible="false">
 					<column label="" width="10%" />
@@ -19,12 +25,6 @@
 						<fileupload image="/public/imagenes/botones/cargar.png"
 							id="fudImagenUsuario" label="Foto">
 						</fileupload>
-
-<!-- 						<label class="etiqueta" value="Ficha:" /> -->
-<!-- 						<textbox id="txtFichaUsuario" hflex="1" maxlength="50" -->
-<!-- 							tooltiptext="Ingrese la Ficha del Usuario" /> -->
-<!-- 						<button id="btnBuscarUsuario" class="btn" label="Buscar" -->
-<!-- 							tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" /> -->
 					</row>
 
 					<row>
@@ -124,10 +124,6 @@
 						<separator />
 						<groupbox width="100%"
 							title="Seleccione los Grupos Correspondientes al Usuario">
-							<vbox>
-								<button id="btnAbrirGrupo" label=""
-									tooltiptext="Crear un Nuevo Grupo" image="/public/imagenes/botones/agregar.png" />
-							</vbox>
 							<hbox>
 								<listbox id="ltbGruposDisponibles" height="160px"
 									emptyMessage="No hay Grupos registrados">
@@ -162,11 +158,18 @@
 							<button label="Anterior" id="btnAnteriorPestanna"
 								image="/public/imagenes/botones/atras.png" />
 						</div>
-						<div width="50%" id="botoneraUsuario" align="left" style="float: left;" />
 					</tabpanel>
 				</tabpanels>
 			</tabbox>
-			<div id="catalogoUsuario" />
+			<separator />
+			</groupbox>
+				<separator />
+					<groupbox id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para ver los Usuarios" />
+				<div id="catalogoUsuario"
+					tooltiptext="Seleccione el usuario para Realizar una Accion" />
+			</groupbox>
 		</groupbox>
 	</div>
 </zk>

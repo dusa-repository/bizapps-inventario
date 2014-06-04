@@ -44,11 +44,11 @@ public class Usuario implements Serializable {
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean estado;
 
-	@Column(name = "fecha_auditoria")
-	private Timestamp fechaAuditoria;
-
-	@Column(name = "hora_auditoria", length = 10)
-	private Timestamp horaAuditoria;
+//	@Column(name = "fecha_auditoria")
+//	private Timestamp fechaAuditoria;
+//
+//	@Column(name = "hora_auditoria", length = 10)
+//	private Timestamp horaAuditoria;
 
 	@Column(name = "usuario_auditoria", length = 50)
 	private String usuarioAuditoria;
@@ -85,7 +85,7 @@ public class Usuario implements Serializable {
 
 	public Usuario(String cedula, String email, String login, String password,
 			byte[] imagen, boolean estado, 
-			Timestamp horaAuditoria, Set<Grupo> grupos, 
+			 Set<Grupo> grupos, 
 			String nombre, String apellido,String segundoNombre, String segundoApellido,
 			String sexo, String telefono, String direccion) {
 		super();
@@ -95,7 +95,7 @@ public class Usuario implements Serializable {
 		this.password = password;
 		this.imagen = imagen;
 		this.estado = estado;
-		this.horaAuditoria = horaAuditoria;
+		//this.horaAuditoria = horaAuditoria;
 		this.grupos = grupos;
 		this.primerNombre = nombre;
 		this.primerApellido = apellido;
@@ -104,6 +104,7 @@ public class Usuario implements Serializable {
 		this.sexo = sexo;
 		this.telefono = telefono;
 		this.direccion = direccion;
+		//this.fechaAuditoria = fechaAuditoria;
 	}
 
 	public String getCedula() {
@@ -154,21 +155,21 @@ public class Usuario implements Serializable {
 		this.estado = estado;
 	}
 
-	public Timestamp getFechaAuditoria() {
-		return fechaAuditoria;
-	}
-
-	public void setFechaAuditoria(Timestamp fechaAuditoria) {
-		this.fechaAuditoria = fechaAuditoria;
-	}
-
-	public Timestamp getHoraAuditoria() {
-		return horaAuditoria;
-	}
-
-	public void setHoraAuditoria(Timestamp horaAuditoria) {
-		this.horaAuditoria = horaAuditoria;
-	}
+//	public Timestamp getFechaAuditoria() {
+//		return fechaAuditoria;
+//	}
+//
+//	public void setFechaAuditoria(Timestamp fechaAuditoria) {
+//		this.fechaAuditoria = fechaAuditoria;
+//	}
+//
+//	public Timestamp getHoraAuditoria() {
+//		return horaAuditoria;
+//	}
+//
+//	public void setHoraAuditoria(Timestamp horaAuditoria) {
+//		this.horaAuditoria = horaAuditoria;
+//	}
 
 	public String getUsuarioAuditoria() {
 		return usuarioAuditoria;
@@ -239,4 +240,5 @@ public class Usuario implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+
 }
