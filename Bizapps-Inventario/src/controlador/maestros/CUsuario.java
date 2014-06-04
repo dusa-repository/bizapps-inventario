@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
+
+import modelo.maestros.F00021;
+import modelo.maestros.F40203;
 import modelo.seguridad.Arbol;
 import modelo.seguridad.Grupo;
 import modelo.seguridad.Usuario;
@@ -25,6 +28,7 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Fileupload;
+import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
@@ -40,6 +44,7 @@ import arbol.CArbol;
 
 import componentes.Botonera;
 import componentes.Catalogo;
+import componentes.Mensaje;
 import componentes.Validador;
 
 public class CUsuario extends CGenerico {
@@ -116,6 +121,10 @@ public class CUsuario extends CGenerico {
 	@Wire
 	private Media media;
 	Botonera botonera;
+	@Wire
+	private Groupbox gpxDatos;
+	@Wire
+	private Groupbox gpxRegistro;
 	private CArbol cArbol = new CArbol();
 	long id = 0;
 	Catalogo<Usuario> catalogo;
@@ -133,8 +142,51 @@ public class CUsuario extends CGenerico {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-	
+		mostrarCatalogo ();
+		gpxRegistro.setOpen(false);
 		botonera = new Botonera (){
+			
+			@Override
+			public void seleccionar() {
+				if (validarSeleccion()) {
+					if (catalogo.obtenerSeleccionados().size() == 1) {
+						mostrarBotones(false);
+						abrirRegistro();
+						Usuario usuario = catalogo.objetoSeleccionadoDelCatalogo();
+						txtCedulaUsuario.setValue(usuario.getCedula());
+						txtCorreoUsuario.setValue(usuario.getEmail());
+						txtDireccionUsuario.setValue(usuario.getDireccion());
+						txtLoginUsuario.setValue(usuario.getLogin());
+						txtPasswordUsuario.setValue(usuario.getPassword());
+						txtPassword2Usuario.setValue(usuario.getPassword());
+						txtNombreUsuario.setValue(usuario.getPrimerNombre());
+						txtNombre2Usuario.setValue(usuario.getSegundoNombre());
+						txtApellidoUsuario.setValue(usuario.getPrimerApellido());
+						txtApellido2Usuario.setValue(usuario.getSegundoApellido());
+						txtTelefonoUsuario.setValue(usuario.getTelefono());
+						String sexo = usuario.getSexo();
+						if (sexo.equals("F"))
+							rdoSexoFUsuario.setChecked(true);
+						else
+							rdoSexoMUsuario.setChecked(true);
+						BufferedImage imag;
+						if (usuario.getImagen() != null) {
+							try {
+								imag = ImageIO.read(new ByteArrayInputStream(usuario
+										.getImagen()));
+								imagen.setContent(imag);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+						txtCedulaUsuario.setDisabled(true);
+						id = Long.valueOf(usuario.getCedula());
+						llenarListas(usuario);
+					} else
+						msj.mensajeAlerta(Mensaje.editarSoloUno);
+				}
+
+			}
 			@Override
 			public void salir() {
 				cerrarVentana(divUsuario, "Usuario");
@@ -142,28 +194,8 @@ public class CUsuario extends CGenerico {
 
 			@Override
 			public void limpiar() {
-				ltbGruposAgregados.getItems().clear();
-				ltbGruposDisponibles.getItems().clear();
-				txtApellidoUsuario.setValue("");
-				txtApellido2Usuario.setValue("");
-				txtCedulaUsuario.setValue("");
-				txtCorreoUsuario.setValue("");
-				txtDireccionUsuario.setValue("");
-				txtLoginUsuario.setValue("");
-				txtPasswordUsuario.setValue("");
-				txtPassword2Usuario.setValue("");
-				txtNombreUsuario.setValue("");
-				txtNombre2Usuario.setValue("");
-				txtTelefonoUsuario.setValue("");
-				rdoSexoFUsuario.setChecked(false);
-				rdoSexoMUsuario.setChecked(false);
-				try {
-					imagen.setContent(new AImage(url));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				id = 0;
-				llenarListas(null);
+				mostrarBotones(false);
+				limpiarCampos();
 			}
 
 			@Override
@@ -185,6 +217,7 @@ public class CUsuario extends CGenerico {
 					String nombre2 = txtNombre2Usuario.getValue();
 					String apellido2 = txtApellido2Usuario.getValue();
 					String telefono = txtTelefonoUsuario.getValue();
+					
 					String sexo = "";
 					if (rdoSexoFUsuario.isChecked())
 						sexo = "F";
@@ -204,7 +237,7 @@ public class CUsuario extends CGenerico {
 					}
 							
 					Usuario usuario = new Usuario (cedula, correo, login, password, imagenUsuario, true, 
-							fechaHora, gruposUsuario, nombre, apellido, nombre2, apellido2, sexo, telefono, direccion);
+							 gruposUsuario, nombre, apellido, nombre2, apellido2, sexo, telefono, direccion);
 
 					servicioUsuario.guardar(usuario);
 					limpiar();
@@ -244,12 +277,6 @@ public class CUsuario extends CGenerico {
 			}
 
 			@Override
-			public void seleccionar() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
 				
@@ -273,12 +300,113 @@ public class CUsuario extends CGenerico {
 				
 			}
 		};
-		botonera.getChildren().get(0).setVisible(false);
-		botonera.getChildren().get(1).setVisible(false);
-		botonera.getChildren().get(2).setVisible(false);
-		botonera.getChildren().get(6).setVisible(false);
-		botonera.getChildren().get(8).setVisible(false);
+		botonera.getChildren().get(3).setVisible(false);
+		botonera.getChildren().get(5).setVisible(false);
 		botoneraUsuario.appendChild(botonera);
+	}
+
+	public void mostrarBotones(boolean bol) {
+		botonera.getChildren().get(1).setVisible(bol);
+		botonera.getChildren().get(2).setVisible(bol);
+		botonera.getChildren().get(6).setVisible(bol);
+		botonera.getChildren().get(0).setVisible(bol);
+		botonera.getChildren().get(3).setVisible(!bol);
+		botonera.getChildren().get(5).setVisible(!bol);
+	}
+	
+	
+	@Listen("onClick = #gpxRegistro")
+	public void abrirRegistro() {
+		gpxDatos.setOpen(false);
+		gpxRegistro.setOpen(true);
+		mostrarBotones(false);
+	}
+	
+
+	public boolean validarSeleccion() {
+		List<Usuario> seleccionados = catalogo.obtenerSeleccionados();
+		if (seleccionados == null) {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			return false;
+		} else {
+			if (seleccionados.isEmpty()) {
+				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
+	
+	public void limpiarCampos() {
+		ltbGruposAgregados.getItems().clear();
+		ltbGruposDisponibles.getItems().clear();
+		txtApellidoUsuario.setValue("");
+		txtApellido2Usuario.setValue("");
+		txtCedulaUsuario.setValue("");
+		txtCorreoUsuario.setValue("");
+		txtDireccionUsuario.setValue("");
+		txtLoginUsuario.setValue("");
+		txtPasswordUsuario.setValue("");
+		txtPassword2Usuario.setValue("");
+		txtNombreUsuario.setValue("");
+		txtNombre2Usuario.setValue("");
+		txtTelefonoUsuario.setValue("");
+		rdoSexoFUsuario.setChecked(false);
+		rdoSexoMUsuario.setChecked(false);
+		try {
+			imagen.setContent(new AImage(url));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		id = 0;
+		llenarListas(null);
+	}
+	
+	
+	public boolean camposEditando() {
+		if (txtApellidoUsuario.getText().compareTo("") != 0
+				|| txtApellido2Usuario.getText().compareTo("") != 0
+				|| txtCedulaUsuario.getText().compareTo("") != 0
+				|| txtCorreoUsuario.getText().compareTo("") != 0
+				|| txtDireccionUsuario.getText().compareTo("") != 0
+				|| txtLoginUsuario.getText().compareTo("") != 0
+				|| txtPasswordUsuario.getText().compareTo("") != 0
+				|| txtPassword2Usuario.getText().compareTo("") != 0
+				|| txtNombreUsuario.getText().compareTo("") != 0
+				|| txtNombre2Usuario.getText().compareTo("") != 0
+				|| txtTelefonoUsuario.getText().compareTo("") != 0) {
+			return true;
+		} else
+			return false;
+	}
+	@Listen("onOpen = #gpxDatos")
+	public void abrirCatalogo() {
+		gpxDatos.setOpen(false);
+		if (camposEditando()) {
+			Messagebox.show(Mensaje.estaEditando, "Alerta", Messagebox.YES
+					| Messagebox.NO, Messagebox.QUESTION,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event evt)
+								throws InterruptedException {
+							if (evt.getName().equals("onYes")) {
+								gpxDatos.setOpen(false);
+								gpxRegistro.setOpen(true);
+							} else {
+								if (evt.getName().equals("onNo")) {
+									gpxDatos.setOpen(true);
+									gpxRegistro.setOpen(false);
+									limpiarCampos();
+									mostrarBotones(true);
+								}
+							}
+						}
+					});
+		} else {
+			gpxDatos.setOpen(true);
+			gpxRegistro.setOpen(false);
+			mostrarBotones(true);
+		}
 	}
 
 	/* Validaciones de pantalla para poder realizar el guardar */
@@ -532,11 +660,61 @@ public class CUsuario extends CGenerico {
 		tabBasicos.setSelected(true);
 	}
 
+	public void mostrarCatalogo() {
+		final List<Usuario> usuario = servicioUsuario.buscarTodos();
+		catalogo = new Catalogo<Usuario>(catalogoUsuario, "Usuario", usuario,false,false,true,
+				"Cedula", "Correo", "Primer Nombre", "Segundo Nombre", 
+				"Primer Apellido", "Segundo Apellido", "Sexo", "Telefono", 
+				"Direccion" ) {
 
-	/* Abre la vista de Grupos */
-	@Listen("onClick = #btnAbrirGrupo")
-	public void abrirGrupo() {
-		Arbol arbolItem = servicioArbol.buscarPorNombreArbol("Grupo");
-		cArbol.abrirVentanas(arbolItem);
+			@Override
+			protected List<Usuario> buscar(List<String> valores) {
+
+				List<Usuario> user = new ArrayList<Usuario>();
+
+				for (Usuario actividadord : usuario) {
+					if (actividadord.getCedula().toLowerCase()
+								.startsWith(valores.get(0))
+							&& actividadord.getEmail().toLowerCase()
+									.startsWith(valores.get(1))
+							&& actividadord.getPrimerNombre().toLowerCase()
+									.startsWith(valores.get(2))
+							&& actividadord.getSegundoNombre().toLowerCase()
+									.startsWith(valores.get(3))
+							&& actividadord.getPrimerApellido().toLowerCase()
+									.startsWith(valores.get(4))
+							&& actividadord.getSegundoApellido().toLowerCase()
+									.startsWith(valores.get(5)) 
+							&& actividadord.getSexo().toLowerCase()
+									.startsWith(valores.get(6))
+							&& actividadord.getTelefono().toLowerCase()
+									.startsWith(valores.get(7))
+							&& actividadord.getDireccion().toLowerCase()
+									.startsWith(valores.get(8)))
+							{
+					
+						user.add(actividadord);
+					}
+				}
+				return user;
+			}
+			
+			@Override
+			protected String[] crearRegistros(Usuario usuarios) {
+				String[] registros = new String[9];
+				registros[0] = usuarios.getCedula();
+				registros[1] = usuarios.getEmail();
+				registros[2] = usuarios.getPrimerNombre();
+				registros[3] = usuarios.getSegundoNombre();
+				registros[4] = usuarios.getPrimerApellido();
+				registros[5] = usuarios.getSegundoApellido();
+				registros[6] = usuarios.getSexo();
+				registros[7] = usuarios.getTelefono();
+				registros[8] = usuarios.getDireccion();
+				return registros;
+			}
+
+		};
+		catalogo.setParent(catalogoUsuario);
 	}
 }
