@@ -9,7 +9,7 @@
 				<separator />
 			<grid width="100%">
 				<columns visible="false">
-					<column label="" width="19%" />
+					<column label="" width="19.5%" />
 					<column label="" width="45%" />
 					<column label="" width="31%" />
 				</columns>
