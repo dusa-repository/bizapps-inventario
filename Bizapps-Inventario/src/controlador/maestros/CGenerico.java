@@ -40,7 +40,14 @@ import servicio.maestros.SF0010;
 import servicio.maestros.SF0013;
 import servicio.maestros.SF0015;
 import servicio.maestros.SF0101;
+import servicio.maestros.SF0111;
+import servicio.maestros.SF0115;
+import servicio.maestros.SF01151;
+import servicio.maestros.SF0116;
+import servicio.maestros.SF4008;
 import servicio.maestros.SF40203;
+import servicio.maestros.SF40205;
+import servicio.maestros.SF4100;
 import servicio.maestros.SF41002;
 import servicio.maestros.SF4101;
 import servicio.seguridad.SArbol;
@@ -70,6 +77,20 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF0015 servicioF0015;
 	@WireVariable("SF0101")
 	protected SF0101 servicioF0101;
+	@WireVariable("SF0111")
+	protected SF0111 servicioF0111;
+	@WireVariable("SF0115")
+	protected SF0115 servicioF0115;
+	@WireVariable("SF01151")
+	protected SF01151 servicioF01151;
+	@WireVariable("SF0116")
+	protected SF0116 servicioF0116;
+	@WireVariable("SF4008")
+	protected SF4008 servicioF4008;
+	@WireVariable("SF40205")
+	protected SF40205 servicioF40205;
+	@WireVariable("SF4100")
+	protected SF4100 servicioF4100;
 	@WireVariable("SF00021")
 	protected SF00021 servicioF00021;
 	@WireVariable("SF40203")

@@ -10,17 +10,20 @@ import modelo.maestros.F0004;
 import modelo.maestros.F0005;
 import modelo.maestros.F0010;
 import modelo.maestros.F0013;
+import modelo.maestros.F0101;
 import modelo.pk.F0004PK;
 
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Textbox;
@@ -50,14 +53,18 @@ public class CF0010 extends CGenerico {
 	private Textbox txtRMF0010;
 	@Wire
 	private Textbox txtDot2F0010;
+	@Wire
+	private Longbox txtAn8F0010;
+	@Wire
+	private Label lblDireccionF0010;
+	@Wire
+	private Div catalogoDireccionF0010;
 	// @Wire
 	// private Textbox txtCaldF0010;
 	@Wire
 	private Div divbuscadorDPNT;
 	@Wire
 	private Div divbuscadorCALD;
-	@Wire
-	private Div divbuscadorAN8;
 	@Wire
 	private Doublespinner dpnPeriodoActualGeneralF0010;
 	@Wire
@@ -94,45 +101,37 @@ public class CF0010 extends CGenerico {
 	Botonera botonera;
 	Catalogo<F0010> catalogo;
 	Catalogo<F0013> catalogoM;
+	Catalogo<F0101> catalogoD;
 	String clave = null;
 
 	BuscadorUDC buscadorDPNT;
 	BuscadorUDC buscadorCALD;
-	BuscadorUDC buscadorAN8;
 
 	@Override
 	public void inicializar() throws IOException {
 		txtCCCOF0010.setFocus(true);
 		mostrarCatalogo();
-		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
+				"DP");
 		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listaF0005,
-				true, false,false) {
+				true, false, false) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("H00", "DP",
 						buscadorDPNT.obtenerCaja());
 			}
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","01");
-		buscadorCALD = new BuscadorUDC("Numero periodos", 2, listaF0005, false,false,false) {
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "DA");
+		buscadorCALD = new BuscadorUDC("Numero periodos", 2, listaF0005, false,
+				false, false) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "01",
+				return servicioF0005.buscar("H00", "DA",
 						buscadorCALD.obtenerCaja());
-			}
-		};
-		buscadorAN8 = new BuscadorUDC("Nº direccion compañia", 17, listF0005,
-				false,false,false) {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "01",
-						buscadorAN8.obtenerCaja());
 			}
 		};
 		divbuscadorDPNT.appendChild(buscadorDPNT);
 		divbuscadorCALD.appendChild(buscadorCALD);
-		divbuscadorAN8.appendChild(buscadorAN8);
 		botonera = new Botonera() {
 
 			@Override
@@ -150,21 +149,20 @@ public class CF0010 extends CGenerico {
 							lblMonedaF0010.setValue(servicioF0013.buscar(
 									f010.getCccrcd()).getCvdl01());
 						txtNameF0010.setValue(f010.getCcname());
-						// Se supone que aqui se pasaran los parametros que
-						// definiremos luego sy, rt, ky
 						Double a = f010.getCcan8();
-						buscadorAN8.settearCampo(servicioF0005.buscar("00",
-								"01", String.valueOf((a.intValue()))));
-						// Se supone que aqui se pasaran los parametros que
-						// definiremos luego sy, rt, ky
-						buscadorDPNT.settearCampo(servicioF0005.buscar("00",
-								"00", f010.getCcdtpn()));
+						if (a != null) {
+							if (a != 0) {
+								txtAn8F0010.setValue(a.longValue());
+								lblDireccionF0010.setValue(servicioF0101
+										.buscar(f010.getCcan8()).getAbalph());
+							}
+						}
+						buscadorDPNT.settearCampo(servicioF0005.buscar("H00",
+								"DP", f010.getCcdtpn()));
 						txtRMF0010.setValue(f010.getCcbktx());
 						txtDot2F0010.setValue(f010.getCcdot2());
-						// Se supone que aqui se pasaran los parametros que
-						// definiremos luego sy, rt, ky
-						buscadorCALD.settearCampo(servicioF0005.buscar("00",
-								"00", f010.getCccald()));
+						buscadorCALD.settearCampo(servicioF0005.buscar("H00",
+								"DA", f010.getCccald()));
 						dpnPeriodoActualGeneralF0010.setValue(f010.getCcpnc());
 						dpnPeriodoPagarF0010.setValue(f010.getCcappn());
 						dpnPeriodoCobrarF0010.setValue(f010.getCcarpn());
@@ -219,12 +217,14 @@ public class CF0010 extends CGenerico {
 				if (guardar) {
 
 					F0010 f010 = new F0010();
+					Long lon;
+					if (txtAn8F0010.getText().compareTo("") != 0) {
+						lon = txtAn8F0010.getValue();
+						f010.setCcan8(lon.doubleValue());
+					}
 					f010.setCcco(txtCCCOF0010.getValue());
 					f010.setCccrcd(txtCCCRCDF0010.getValue());
 					f010.setCcname(txtNameF0010.getValue());
-					if (!buscadorAN8.obtenerCaja().equals(""))
-						f010.setCcan8(Double.parseDouble(buscadorAN8
-								.obtenerCaja()));
 					f010.setCcdtpn(buscadorDPNT.obtenerCaja());
 					f010.setCcbktx(txtRMF0010.getValue());
 					f010.setCcdot2(txtDot2F0010.getValue());
@@ -352,10 +352,11 @@ public class CF0010 extends CGenerico {
 			chxTransitoria.setChecked(false);
 		if (chxSaldos.isChecked())
 			chxSaldos.setChecked(false);
+		txtAn8F0010.setValue(null);
+		lblDireccionF0010.setValue("");
 		txtCCCOF0010.setValue("");
 		txtCCCRCDF0010.setValue("");
 		txtNameF0010.setValue("");
-		buscadorAN8.settearCampo(null);
 		buscadorDPNT.settearCampo(null);
 		txtRMF0010.setValue("");
 		txtDot2F0010.setValue("");
@@ -427,7 +428,6 @@ public class CF0010 extends CGenerico {
 	public boolean camposEditando() {
 		if (txtCCCOF0010.getText().compareTo("") != 0
 				|| txtCCCRCDF0010.getText().compareTo("") != 0
-				|| buscadorAN8.obtenerCaja().compareTo("") != 0
 				|| txtNameF0010.getText().compareTo("") != 0
 				|| buscadorDPNT.obtenerCaja().compareTo("") != 0
 				|| txtRMF0010.getText().compareTo("") != 0
@@ -485,10 +485,11 @@ public class CF0010 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0010>(catalogoF0010, "F0010", lista, false, false, false, "Codigo",
-				"Nombre", "Nº Periodo", "Patron fechas", "Inicio año Fiscal",
-				"Periodo LM", "Inicio año C/P", "Periodo C/P",
-				"Inicio año C/C", "Periodo C/C", "Periodo financiero") {
+		catalogo = new Catalogo<F0010>(catalogoF0010, "F0010", lista, false,
+				false, false, "Codigo", "Nombre", "Nº Periodo",
+				"Patron fechas", "Inicio año Fiscal", "Periodo LM",
+				"Inicio año C/P", "Periodo C/P", "Inicio año C/C",
+				"Periodo C/C", "Periodo financiero") {
 
 			@Override
 			protected List<F0010> buscar(List<String> valores) {
@@ -553,11 +554,89 @@ public class CF0010 extends CGenerico {
 		catalogo.setParent(catalogoF0010);
 	}
 
+	@Listen("onClick = #btnBuscarDireccion")
+	public void mostrarCatalogoDireccion() {
+		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
+		catalogoD = new Catalogo<F0101>(catalogoDireccionF0010,
+				"CatalogoF0013", listF0101, true, false, false, "Nº direccion",
+				"Nombre alfabetico", "Direccion larga",
+				"Clasificacion industria", "Tipo bus", "ID fiscal") {
+
+			@Override
+			protected List<F0101> buscar(List<String> valores) {
+
+				List<F0101> lista = new ArrayList<F0101>();
+
+				for (F0101 f01 : listF0101) {
+					if (String.valueOf(f01.getAban8()).toLowerCase()
+							.startsWith(valores.get(0))
+							&& f01.getAbalph().toLowerCase()
+									.startsWith(valores.get(1))
+							&& f01.getAbalky().toLowerCase()
+									.startsWith(valores.get(2))
+							&& f01.getAbsic().toLowerCase()
+									.startsWith(valores.get(4))
+							&& f01.getAbat1().toLowerCase()
+									.startsWith(valores.get(5))
+							&& f01.getAbtax().toLowerCase()
+									.startsWith(valores.get(6))) {
+						lista.add(f01);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0101 f013) {
+				String[] registros = new String[6];
+				registros[0] = String.valueOf(f013.getAban8());
+				registros[1] = f013.getAbalph();
+				registros[2] = f013.getAbalky();
+				registros[3] = f013.getAbsic();
+				registros[4] = f013.getAbat1();
+				registros[5] = f013.getAbtax();
+				return registros;
+			}
+		};
+		catalogoD.setParent(catalogoDireccionF0010);
+		catalogoD.doModal();
+	}
+
+	@Listen("onChange = #txtAn8F0010")
+	public void buscarDireccion() {
+		if (txtAn8F0010.getValue() != null) {
+			F0101 f0101 = servicioF0101.buscar(txtAn8F0010.getValue());
+			if (f0101 != null) {
+				Double doble = f0101.getAban8();
+				txtAn8F0010.setValue(doble.longValue());
+				lblDireccionF0010.setValue(f0101.getAbalph());
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				lblDireccionF0010.setValue("");
+				txtAn8F0010.setValue(null);
+				txtAn8F0010.setFocus(true);
+			}
+		} else
+			lblDireccionF0010.setValue("");
+	}
+
+	@Listen("onSeleccion = #catalogoDireccionF0010")
+	public void seleccionarCatalogo() {
+		F0101 f0101 = catalogoD.objetoSeleccionadoDelCatalogo();
+		if (f0101 != null) {
+			Double doble = f0101.getAban8();
+			txtAn8F0010.setValue(doble.longValue());
+			lblDireccionF0010.setValue(f0101.getAbalph());
+		}
+		catalogoD.setParent(null);
+	}
+
 	@Listen("onClick = #btnBuscarMoneda")
 	public void mostrarCatalogoMoneda() throws IOException {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
 		catalogoM = new Catalogo<F0013>(catalogoMonedaF0010, "F0013",
-				listF0013, true, false, false,"Codigo", "Descripcion", "Vlslz", "Rutina Cheques") {
+				listF0013, true, false, false, "Codigo", "Descripcion",
+				"Vlslz", "Rutina Cheques") {
 
 			@Override
 			protected List<F0013> buscar(List<String> valores) {
