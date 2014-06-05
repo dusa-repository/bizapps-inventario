@@ -54,6 +54,8 @@ public class CF0006 extends CGenerico {
 	@Wire
 	private Div catalogoF0006;
 	@Wire
+	private Div divCatalogoF0006Emergente;
+	@Wire
 	private Div botoneraF0006;
 	@Wire
 	private Div divCatalogoF0005;
@@ -152,6 +154,7 @@ public class CF0006 extends CGenerico {
 	@Wire
 	private Label lblDescripcionF0101;
 	Catalogo<F0006> catalogo;
+	Catalogo<F0006> catalogoEmergente;
 	Botonera botonera;
 	String clave = null;
 	Catalogo<F0005> catalogoF0005;
@@ -1062,6 +1065,7 @@ public class CF0006 extends CGenerico {
 		}
 	}
 
+
 	public void mostrarCatalogo() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
 		catalogo = new Catalogo<F0006>(catalogoF0006, "F0006", unidades, false,true,true,
@@ -1127,13 +1131,12 @@ public class CF0006 extends CGenerico {
 			}
 		};
 		catalogo.setParent(catalogoF0006);
-		// catalogo.doModal();
 	}
 
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista, false,true,true,
+		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista, true,false,false,
 				"Codigo", "Nombre", "Nº Periodo", "Patron",
 				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {
@@ -1204,7 +1207,7 @@ public class CF0006 extends CGenerico {
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
 		catalogoF0101 = new Catalogo<F0101>(divCatalogoF0101,
-				"F0101", listF0101, false, true, true, "Nº direccion",
+				"F0101", listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
 
@@ -1254,5 +1257,81 @@ public class CF0006 extends CGenerico {
 		txtAN8F0006.setValue(String.valueOf(f0101.getAban8()));
 		lblDescripcionF0101.setValue(f0101.getAbalph());
 		catalogoF0101.setParent(null);
+	}
+	
+	@Listen("onClick = #btnBuscarProyecto")
+	public void mostrarCatalogoProyecto() {
+		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
+		catalogoEmergente = new Catalogo<F0006>(divCatalogoF0006Emergente, "F0006Emergente", unidades, true,false,false,
+				"Unidad Negocio", "Descripcion", "Nivel det", "Cta", "Tipo UN",
+				"LM Auxiliar Inactivo", "Mto Cons", "CAT 01", "CAT 02",
+				"CAT 03", "CAT 04", "CAT 05", "CAT 06") {
+
+			@Override
+			protected List<F0006> buscar(List<String> valores) {
+
+				List<F0006> unidadnegocio = new ArrayList<F0006>();
+
+				for (F0006 unidad : unidades) {
+					if (unidad.getMcmcu().toLowerCase()
+							.startsWith(valores.get(0))
+							&& unidad.getMcdc().toLowerCase()
+									.startsWith(valores.get(1))
+							&& unidad.getMcldm().toLowerCase()
+									.startsWith(valores.get(2))
+							&& unidad.getMcco().toLowerCase()
+									.startsWith(valores.get(3))
+							&& unidad.getMcstyl().toLowerCase()
+									.startsWith(valores.get(4))
+							&& unidad.getMcfmod().toLowerCase()
+									.startsWith(valores.get(5))
+							&& unidad.getMcsbli().toLowerCase()
+									.startsWith(valores.get(6))
+							&& unidad.getMcrp01().toLowerCase()
+									.startsWith(valores.get(7))
+							&& unidad.getMcrp02().toLowerCase()
+									.startsWith(valores.get(8))
+							&& unidad.getMcrp03().toLowerCase()
+									.startsWith(valores.get(9))
+							&& unidad.getMcrp04().toLowerCase()
+									.startsWith(valores.get(10))
+							&& unidad.getMcrp05().toLowerCase()
+									.startsWith(valores.get(11))
+							&& unidad.getMcrp06().toLowerCase()
+									.startsWith(valores.get(12))) {
+						unidadnegocio.add(unidad);
+					}
+				}
+				return unidadnegocio;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0006 negocio) {
+				String[] registros = new String[13];
+				registros[0] = negocio.getMcmcu();
+				registros[1] = negocio.getMcdc();
+				registros[2] = negocio.getMcldm();
+				registros[3] = negocio.getMcco();
+				registros[4] = negocio.getMcstyl();
+				registros[5] = negocio.getMcfmod();
+				registros[6] = negocio.getMcsbli();
+				registros[7] = negocio.getMcrp01();
+				registros[8] = negocio.getMcrp02();
+				registros[9] = negocio.getMcrp03();
+				registros[10] = negocio.getMcrp04();
+				registros[11] = negocio.getMcrp05();
+				registros[12] = negocio.getMcrp06();
+				return registros;
+			}
+		};
+		catalogoEmergente.setParent(divCatalogoF0006Emergente);
+		catalogoEmergente.doModal();
+	}
+	
+	@Listen("onSeleccion = #divCatalogoF0006Emergente")
+	public void seleccionF0006() {
+		F0006 f0006 = catalogoEmergente.objetoSeleccionadoDelCatalogo();
+		txtMCUSF0006.setValue(f0006.getMcmcus());
+		catalogoEmergente.setParent(null);
 	}
 }

@@ -390,5 +390,6 @@
 		<div id="divCatalogoF0010" tooltiptext="Click para Seleccionar un Codigo" />
 		<div id="divCatalogoF0005" tooltiptext="Click para Seleccionar un Codigo" />
 		<div id="divCatalogoF0101" tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0006Emergente" tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>
