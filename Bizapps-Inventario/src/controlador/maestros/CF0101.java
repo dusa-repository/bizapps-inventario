@@ -18,11 +18,17 @@ import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
+import modelo.maestros.F00021;
 import modelo.maestros.F0004;
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0013;
 import modelo.maestros.F0101;
+import modelo.maestros.F0111;
+import modelo.maestros.F0116;
+import modelo.pk.F00021PK;
+import modelo.pk.F0111PK;
+import modelo.pk.F0116PK;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
@@ -149,6 +155,31 @@ public class CF0101 extends CGenerico {
 	private Button btnBuscarFactor;
 	@Wire
 	private Label lblFactorF0101;
+	@Wire
+	private Textbox txtMlnmF0101;
+	@Wire
+	private Textbox txtADD1F0101;
+	@Wire
+	private Textbox txtCTY1F0101;
+	@Wire
+	private Textbox txtADD2F0101;
+	@Wire
+	private Div divBuscadorADDS;
+	BuscadorUDC buscadorADDS;
+	@Wire
+	private Textbox txtADD3F0101;
+	@Wire
+	private Textbox txtADDZF0101;
+	@Wire
+	private Label lblCodigoPostal1F0101;
+	@Wire
+	private Textbox txtADD4F0101;
+	@Wire
+	private Div divBuscadorCTR;
+	BuscadorUDC buscadorCTR;
+	@Wire
+	private Div divBuscadorCOUN;
+	BuscadorUDC buscadorCOUN;
 	@Wire
 	private Div divBuscadorAC01;
 	BuscadorUDC buscadorAC01;
@@ -358,9 +389,36 @@ public class CF0101 extends CGenerico {
 									.buscar(doble5).getAbalph());
 							txtFactorF0101.setValue(doble5.longValue());
 						}
-						// FALTA ESTE
-						buscadorAT1.settearCampo(servicioF0005.buscar("00",
-								"00", f01.getAbat1()));
+						
+						F0111PK clave2 = new F0111PK();
+						Long val2 = (long) 1;
+						clave2.setWwan8(f01.getAban8());
+						clave2.setWwidln(val2.doubleValue());
+						F0111 f0111 = servicioF0111.buscar(clave2);
+						if (f0111 != null)
+							txtMlnmF0101.setValue(f0111.getWwmlnm());
+
+						F0116PK clave = new F0116PK();
+						long val = 1;
+						clave.setAlan8(f01.getAban8());
+						clave.setAleftb(val);
+						F0116 f0116 = servicioF0116.buscar(clave);
+						if (f0116 != null) {
+							buscadorCTR.settearCampo(servicioF0005.buscar("00",
+									"CN", f0116.getAlctr()));
+							buscadorADDS.settearCampo(servicioF0005.buscar(
+									"00", "CT", f0116.getAladds()));
+							buscadorCOUN.settearCampo(servicioF0005.buscar(
+									"00", "S", f0116.getAlcoun()));
+							txtADD1F0101.setValue(f0116.getAladd1());
+							txtADD2F0101.setValue(f0116.getAladd2());
+							txtADD3F0101.setValue(f0116.getAladd3());
+							txtADD4F0101.setValue(f0116.getAladd4());
+							txtCTY1F0101.setValue(f0116.getAlcty1());
+						}
+						
+						buscadorAT1.settearCampo(servicioF0005.buscar("01",
+								"ST", f01.getAbat1()));
 						buscadorAT2.settearCampo(servicioF0005.buscar("H01",
 								"AV", f01.getAbat2()));
 						buscadorATP.settearCampo(servicioF0005.buscar("H01",
@@ -497,11 +555,25 @@ public class CF0101 extends CGenerico {
 					double claveLong = 0;
 					if (clave == claveLong) {
 						double numero = servicioF00021.Numero("5", "JE");
-						System.out.println("numero"+numero);
-						if (numero != 0)
+						System.out.println("numero" + numero);
+						if (numero != 0){							
 							clave = numero + 1;
-						else
+//							F00021 f021 = servicioF00021.buscar("5", "JE");
+//							f021.setNln001(clave);
+//							servicioF00021.guardar(f021);
+							}
+						else{
 							clave = 1;
+//							F00021 f021 = new F00021();
+//							F00021PK clave21 = new F00021PK();
+//							clave21.setNldct("JE");
+//							clave21.setNlkco("5");
+//							clave21.setNlctry((double) 0);
+//							clave21.setNlfy((double) 0);
+//							f021.setId(clave21);
+//							f021.setNln001(clave);
+//							servicioF00021.guardar(f021);
+							}
 					}
 					System.out.println(clave);
 					f01.setAban8(clave);
@@ -598,6 +670,30 @@ public class CF0101 extends CGenerico {
 					else
 						f01.setAbsbli("0");
 					servicioF0101.guardar(f01);
+					
+					F0111 f0111 = new F0111();
+					F0111PK clave01 = new F0111PK();
+					clave01.setWwan8(clave);
+					clave01.setWwidln(1);
+					f0111.setId(clave01);
+					f0111.setWwmlnm(txtMlnmF0101.getValue());
+					servicioF0111.guardar(f0111);
+					
+					F0116 f0116 = new F0116();
+					F0116PK clave16 = new F0116PK();
+					clave16.setAlan8(clave);
+					clave16.setAleftb(1);
+					f0116.setId(clave16);
+					f0116.setAladd1(txtADD1F0101.getValue());
+					f0116.setAladd2(txtADD2F0101.getValue());
+					f0116.setAladd3(txtADD3F0101.getValue());
+					f0116.setAladd4(txtADD4F0101.getValue());
+					f0116.setAlcty1(txtCTY1F0101.getValue());
+					f0116.setAlctr(buscadorCTR.obtenerCaja());
+					f0116.setAlcoun(buscadorCOUN.obtenerCaja());
+					f0116.setAladds(buscadorADDS.obtenerCaja());
+					servicioF0116.guardar(f0116);
+					
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 					catalogo.actualizarLista(servicioF0101
@@ -718,12 +814,12 @@ public class CF0101 extends CGenerico {
 		dspNOE0101.setValue(0.0);
 		txtEXCHF0101.setValue("");
 		txtTICKERF0101.setValue("");
-		txtAN81F0101.setValue((long) 0);
-		txtAN82F0101.setValue((long) 0);
-		txtAN83F0101.setValue((long) 0);
-		txtAN84F0101.setValue((long) 0);
-		txtAN85F0101.setValue((long) 0);
-		txtFactorF0101.setValue((long) 0);
+		txtAN81F0101.setValue(null);
+		txtAN82F0101.setValue(null);
+		txtAN83F0101.setValue(null);
+		txtAN84F0101.setValue(null);
+		txtAN85F0101.setValue(null);
+		txtFactorF0101.setValue(null);
 		lblDireccion0F0101.setValue("");
 		lblDireccion1F0101.setValue("");
 		lblDireccion2F0101.setValue("");
@@ -737,6 +833,15 @@ public class CF0101 extends CGenerico {
 		chxATPRF0101.setChecked(false);
 		chxATRF0101.setChecked(false);
 		chxSBLIF0101.setChecked(false);
+		txtMlnmF0101.setValue("");
+		txtADD1F0101.setValue("");
+		txtADD2F0101.setValue("");
+		txtADD3F0101.setValue("");
+		txtADD4F0101.setValue("");
+		txtCTY1F0101.setValue("");
+		buscadorCTR.settearCampo(null);
+		buscadorADDS.settearCampo(null);
+		buscadorCOUN.settearCampo(null);
 		buscadorAT1.settearCampo(null);
 		buscadorAT2.settearCampo(null);
 		buscadorATP.settearCampo(null);
@@ -1101,16 +1206,49 @@ public class CF0101 extends CGenerico {
 
 	private void cargarBuscadores() {
 
-		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
+		List<F0005> listF0005 = servicioF0005
+				.buscarParaUDCOrdenados("01", "ST");
 		buscadorAT1 = new BuscadorUDC("Tipo busqueda", 10, listF0005, true,
 				false, false) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("01", "ST",
 						buscadorAT1.obtenerCaja());
 			}
 		};
 		divBuscadorAT1.appendChild(buscadorAT1);
+
+		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CN");
+		buscadorCTR = new BuscadorUDC("Pais", 3, listF0005, false, false, false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "CN",
+						buscadorCTR.obtenerCaja());
+			}
+		};
+		divBuscadorCTR.appendChild(buscadorCTR);
+
+		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CT");
+		buscadorCOUN = new BuscadorUDC("Condado", 25, listF0005, false, false,
+				false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "CT",
+						buscadorCOUN.obtenerCaja());
+			}
+		};
+		divBuscadorCOUN.appendChild(buscadorCOUN);
+
+		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "S");
+		buscadorADDS = new BuscadorUDC("Estado", 3, listF0005, false, false,
+				false) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("00", "S",
+						buscadorADDS.obtenerCaja());
+			}
+		};
+		divBuscadorADDS.appendChild(buscadorADDS);
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H01", "AV");
 		buscadorAT2 = new BuscadorUDC("Compen c/c y c/p", 1, listF0005, false,

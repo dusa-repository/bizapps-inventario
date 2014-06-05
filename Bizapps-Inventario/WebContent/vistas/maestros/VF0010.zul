@@ -87,12 +87,14 @@
 													tooltiptext="Ingrese el Inicio del año fiscal" />
 											</row>
 											<row>
-												<!-- <label class="etiqueta" value="Direccion Compañia:" /> <textbox 
-													id="txtDireccionF0010" hflex="1" maxlength="100" tooltiptext="Ingrese la 
-													direccion de la Compañia" /> -->
-												<cell colspan="2">
-													<div id="divbuscadorAN8" hflex="1" />
-												</cell>
+												<label class="etiqueta" value="Nº Direccion Compañia:" />
+												<hbox>
+													<longbox id="txtAn8F0010" hflex="1" maxlength="19"
+														tooltiptext="Ingrese la Moneda Nacional" />
+													<button id="btnBuscarDireccion" class="btn" label="Buscar"
+														tooltiptext="Catalogo Direccion" image="/public/imagenes/botones/buscar.png" />
+													<label id="lblDireccionF0010" />
+												</hbox>
 											</row>
 										</rows>
 									</grid>
@@ -184,11 +186,11 @@
 										<label class="etiqueta" value="Moneda Nacional:" />
 										<textbox id="txtCCCRCDF0010" hflex="1" maxlength="3"
 											tooltiptext="Ingrese la Moneda Nacional" />
-											<hbox>
-										<button id="btnBuscarMoneda" class="btn" label="Buscar"
-											tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
-											<label id ="lblMonedaF0010" />
-											</hbox>
+										<hbox>
+											<button id="btnBuscarMoneda" class="btn" label="Buscar"
+												tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblMonedaF0010" />
+										</hbox>
 									</row>
 									<row>
 										<label class="etiqueta" value="Calculo redeterminacion:" />
@@ -224,6 +226,7 @@
 			<separator />
 
 			<div id="catalogoMonedaF0010" />
+			<div id="catalogoDireccionF0010" />
 		</groupbox>
 
 	</div>

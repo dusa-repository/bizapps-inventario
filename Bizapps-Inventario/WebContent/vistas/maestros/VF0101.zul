@@ -1,7 +1,8 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVF0101" apply="controlador.maestros.CF0101">
-		<groupbox width="auto" mold="3d" title="Trabajo con Direcciones (VF0101)">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con Direcciones (VF0101)">
 			<div id="botoneraF0101" />
 			<separator />
 			<groupbox id="gpxRegistroF0101" width="auto" title="" open="false">
@@ -104,7 +105,7 @@
 								<rows>
 									<row>
 										<label class="etiqueta" value="Destinatario:" />
-										<textbox id="txtDCF0101" hflex="1" maxlength="40"
+										<textbox id="txtMlnmF0101" hflex="1" maxlength="40"
 											tooltiptext="Ingrese el destinatario de la direccion" />
 										<hbox />
 										<hbox />
@@ -114,12 +115,12 @@
 										<textbox id="txtADD1F0101" hflex="1" maxlength="40"
 											tooltiptext="Ingrese la primera linea de la direccion" />
 										<label class="etiqueta" value="Ciudad: " />
-										<textbox id="txtALP1F0101" hflex="1" maxlength="40"
+										<textbox id="txtCTY1F0101" hflex="1" maxlength="25"
 											tooltiptext="Ingrese la ciudad de la direccion" />
 									</row>
 									<row>
 										<label class="etiqueta" value="Lin 2 direccion:" />
-										<textbox id="txtADD2F0101" hflex="1" maxlength="20"
+										<textbox id="txtADD2F0101" hflex="1" maxlength="40"
 											tooltiptext="Ingrese la segunda linea de la direccion" />
 										<cell colspan="2">
 											<div id="divBuscadorADDS" hflex="1" />
@@ -130,12 +131,18 @@
 										<textbox id="txtADD3F0101" hflex="1" maxlength="40"
 											tooltiptext="Ingrese la tercera linea de la direccion" />
 										<label class="etiqueta" value="Cd postal: " />
-										<textbox id="txtADDZF0101" hflex="1" maxlength="40"
-											tooltiptext="Ingrese el codigo postal de la direccion" />
+										<hbox>
+											<textbox id="txtADDZF0101" hflex="1" maxlength="40"
+												tooltiptext="Ingrese el codigo postal de la direccion" />
+											<button id="btnBuscarCodigoPostal" class="btn" label="Buscar"
+												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblCodigoPostal1F0101" />
+										</hbox>
+
 									</row>
 									<row>
 										<label class="etiqueta" value="Lin 4 direccion:" />
-										<textbox id="txtADD4F0101" hflex="1" maxlength="20"
+										<textbox id="txtADD4F0101" hflex="1" maxlength="40"
 											tooltiptext="IIngrese la cuarta linea de la direccion" />
 										<cell colspan="2">
 											<div id="divBuscadorCTR" hflex="1" />
@@ -198,7 +205,7 @@
 										<label class="etiqueta" value="Certificado exencion impuestos" />
 										<textbox id="txtTXCTF0101" hflex="1" maxlength="40"
 											tooltiptext="Ingrese la tercera linea de la direccion" />
-										<hbox/>
+										<hbox />
 									</row>
 									<row>
 										<cell colspan="2">
@@ -280,8 +287,8 @@
 											<row>
 												<label class="etiqueta" value="Año inicio:" />
 												<textbox id="txtYEARSTARF0101" hflex="1" maxlength="15"
-														tooltiptext="IIngrese el año de inicio" />
-												<hbox/>
+													tooltiptext="IIngrese el año de inicio" />
+												<hbox />
 											</row>
 											<row>
 												<cell colspan="3">
@@ -290,15 +297,15 @@
 											</row>
 											<row>
 												<label class="etiqueta" value="Tasa crmto:" />
-												<doublespinner id="dspGROWF0101" hflex="1" value="0" constraint="max 999999"
-													tooltiptext="Ingrese el periodo Actual" />
-												<hbox/>
+												<doublespinner id="dspGROWF0101" hflex="1"
+													value="0" constraint="max 999999" tooltiptext="Ingrese el periodo Actual" />
+												<hbox />
 											</row>
 											<row>
 												<label class="etiqueta" value="Nº empleado:" />
-												<doublespinner id="dspNOE0101" hflex="1" value="0" constraint="max 999999"
-													tooltiptext="Ingrese el periodo Actual" />
-												<hbox/>
+												<doublespinner id="dspNOE0101" hflex="1"
+													value="0" constraint="max 999999" tooltiptext="Ingrese el periodo Actual" />
+												<hbox />
 											</row>
 											<row>
 												<label class="etiqueta" value="Numero DUNS:" />
@@ -329,13 +336,13 @@
 											<row>
 												<label class="etiqueta" value="Ticker" />
 												<textbox id="txtTICKERF0101" hflex="1" maxlength="10"
-														tooltiptext="IIngrese el ticker de la direccion" />
+													tooltiptext="IIngrese el ticker de la direccion" />
 												<hbox />
 											</row>
 											<row>
 												<label class="etiqueta" value="Mercado valores" />
 												<textbox id="txtEXCHF0101" hflex="1" maxlength="10"
-														tooltiptext="IIngrese el cambio de la direccion" />
+													tooltiptext="IIngrese el cambio de la direccion" />
 												<hbox />
 											</row>
 										</rows>
@@ -353,73 +360,72 @@
 								<rows>
 									<row>
 										<label class="etiqueta" value="Nº Principal:" />
-										<longbox  hflex="1" 
-											tooltiptext="Ingrese la direccion Principal:" />
-											<hbox>
-										<button id="btnBuscarDireccion0" class="btn" label="Buscar"
-											tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-											<label id ="lblDireccion0F0101" />
-											</hbox>
+										<longbox hflex="1" tooltiptext="Ingrese la direccion Principal:" />
+										<hbox>
+											<button id="btnBuscarDireccion0" class="btn" label="Buscar"
+												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblDireccion0F0101" />
+										</hbox>
 									</row>
 									<row>
 										<label class="etiqueta" value="1º Nº direccion:" />
-										<longbox id="txtAN81F0101"  hflex="1"
+										<longbox id="txtAN81F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 1" />
-											<hbox>
-										<button id="btnBuscarDireccion1" class="btn" label="Buscar"
-											tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-											<label id ="lblDireccion1F0101" />
-											</hbox>
+										<hbox>
+											<button id="btnBuscarDireccion1" class="btn" label="Buscar"
+												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblDireccion1F0101" />
+										</hbox>
 									</row>
 									<row>
 										<label class="etiqueta" value="2º Nº direccion:" />
 										<longbox id="txtAN82F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 2" />
-											<hbox>
-										<button id="btnBuscarDireccion2" class="btn" label="Buscar"
-											tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-											<label id ="lblDireccion2F0101" />
-											</hbox>
+										<hbox>
+											<button id="btnBuscarDireccion2" class="btn" label="Buscar"
+												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblDireccion2F0101" />
+										</hbox>
 									</row>
 									<row>
 										<label class="etiqueta" value="3º Nº direccion:" />
 										<longbox id="txtAN83F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 3" />
-											<hbox>
-										<button id="btnBuscarDireccion3" class="btn" label="Buscar"
-											tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-											<label id ="lblDireccion3F0101" />
-											</hbox>
+										<hbox>
+											<button id="btnBuscarDireccion3" class="btn" label="Buscar"
+												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblDireccion3F0101" />
+										</hbox>
 									</row>
 									<row>
 										<label class="etiqueta" value="4º Nº direccion:" />
 										<longbox id="txtAN84F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 4" />
-											<hbox>
-										<button id="btnBuscarDireccion4" class="btn" label="Buscar"
-											tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-											<label id ="lblDireccion4F0101" />
-											</hbox>
+										<hbox>
+											<button id="btnBuscarDireccion4" class="btn" label="Buscar"
+												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblDireccion4F0101" />
+										</hbox>
 									</row>
 									<row>
 										<label class="etiqueta" value="5º Nº direccion:" />
 										<longbox id="txtAN85F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 5" />
-											<hbox>
-										<button id="btnBuscarDireccion5" class="btn" label="Buscar"
-											tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-											<label id ="lblDireccion5F0101" />
-											</hbox>
+										<hbox>
+											<button id="btnBuscarDireccion5" class="btn" label="Buscar"
+												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblDireccion5F0101" />
+										</hbox>
 									</row>
 									<row>
 										<label class="etiqueta" value="Factor/Beneficiario especial:" />
 										<longbox id="txtFactorF0101" hflex="1"
 											tooltiptext="Ingrese el Factor/Beneficiario especial" />
-											<hbox>
-										<button id="btnBuscarFactor" class="btn" label="Buscar"
-											tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-											<label id ="lblFactorF0101" />
-											</hbox>
+										<hbox>
+											<button id="btnBuscarFactor" class="btn" label="Buscar"
+												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+											<label id="lblFactorF0101" />
+										</hbox>
 									</row>
 								</rows>
 							</grid>
@@ -581,7 +587,7 @@
 			<separator />
 
 			<div id="catalogoF0006F0101" tooltiptext="Seleccione la Direccion para Realizar una Accion" />
-			<div id="DivCatalogoF0101" tooltiptext="Seleccione la Direccion"/>
+			<div id="DivCatalogoF0101" tooltiptext="Seleccione la Direccion" />
 		</groupbox>
 	</div>
 </zk>
