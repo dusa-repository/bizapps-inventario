@@ -12,12 +12,15 @@ public class F4008PK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
+	//
 	@Column(name="TATXA1")
 	private String tatxa1;
 
+	//
 	@Column(name="TAITM")
 	private double taitm;
 
+	// f venci
 	@Column(name="TAEFDJ")
 	private long taefdj;
 

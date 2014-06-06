@@ -98,6 +98,7 @@ public class CMenuArbol extends CGenerico {
 					arbol.setNombre(nombre);
 					arbol.setPadre(Long.valueOf(padre));
 					arbol.setUrl(url);
+					arbol.setIdArbol(clave);
 					servicioArbol.guardar(arbol);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
