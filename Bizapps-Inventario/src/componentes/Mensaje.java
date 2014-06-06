@@ -19,7 +19,9 @@ public class Mensaje {
 	public static String exportar = "¿Desea exportar los datos de la lista a formato CSV?";
 	public static String enUso = "La interfaz esta siendo usada";
 	public static String articuloNoExiste = "El Codigo del Articulo no Existe.";
-	
+	public static String correoInvalido = "El Correo es Invalido.";
+	public static String telefonoInvalido = "El número de Teléfono es invalido.";
+	public static String contrasennasInvalidas = "Las contraseñas no coinciden.";
 	
 	public void mensajeInformacion(String msj) {
 	      Messagebox.show(msj, "Informacion",

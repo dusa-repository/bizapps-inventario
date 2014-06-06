@@ -241,9 +241,9 @@ public class CUsuario extends CGenerico {
 
 					servicioUsuario.guardar(usuario);
 					limpiar();
-					Messagebox.show("Registro Guardado Exitosamente",
-							"Informacion", Messagebox.OK,
-							Messagebox.INFORMATION);
+					msj.mensajeInformacion(Mensaje.guardado);
+					catalogo.actualizarLista(servicioUsuario
+							.buscarTodos());
 				}
 			}
 
@@ -261,18 +261,15 @@ public class CUsuario extends CGenerico {
 												.buscarUsuarioPorId(id);
 										servicioUsuario.eliminar(usuario);
 										limpiar();
-										Messagebox
-												.show("Registro Eliminado Exitosamente",
-														"Informacion",
-														Messagebox.OK,
-														Messagebox.INFORMATION);
+										msj.mensajeInformacion(Mensaje.eliminado);
+										catalogo.actualizarLista(servicioUsuario
+												.buscarTodos());
 
 									}
 								}
 							});
 				} else
-					Messagebox.show("No ha Seleccionado Ningun Registro",
-							"Alerta", Messagebox.OK, Messagebox.EXCLAMATION);
+					msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 
 			}
 
@@ -424,30 +421,20 @@ public class CUsuario extends CGenerico {
 				|| txtTelefonoUsuario.getText().compareTo("") == 0
 				|| (!rdoSexoFUsuario.isChecked() && !rdoSexoMUsuario
 						.isChecked())) {
-			Messagebox.show("Debe Llenar Todos los Campos", "Informacion",
-					Messagebox.OK, Messagebox.INFORMATION);
+			msj.mensajeAlerta(Mensaje.camposVacios);
 			return false;
 		} else {
 			if (!Validador.validarCorreo(txtCorreoUsuario.getValue())) {
-				Messagebox.show("Correo Invalido", "Informacion",
-						Messagebox.OK, Messagebox.INFORMATION);
+				msj.mensajeAlerta(Mensaje.correoInvalido);
 				return false;
 			} else {
 				if (!Validador.validarTelefono(txtTelefonoUsuario.getValue())) {
-					Messagebox.show("Telefono Invalido", "Informacion",
-							Messagebox.OK, Messagebox.INFORMATION);
+					msj.mensajeAlerta(Mensaje.telefonoInvalido);
 					return false;
 				} else {
-					if (!Validador.validarNumero(txtCedulaUsuario.getValue())) {
-						Messagebox.show("Cedula Invalida", "Informacion",
-								Messagebox.OK, Messagebox.INFORMATION);
-						return false;
-						} else {
 							if (!txtPasswordUsuario.getValue().equals(
 									txtPassword2Usuario.getValue())) {
-								Messagebox.show("No coinciden las contraseñas",
-										"Informacion", Messagebox.OK,
-										Messagebox.INFORMATION);
+								msj.mensajeAlerta(Mensaje.contrasennasInvalidas);
 								return false;
 							} else
 								return true;
@@ -456,7 +443,7 @@ public class CUsuario extends CGenerico {
 				}
 
 			}
-		}
+		
 	
 
 	/* Valida que los passwords sean iguales */
@@ -464,8 +451,7 @@ public class CUsuario extends CGenerico {
 	public void validarPassword() {
 		if (!txtPasswordUsuario.getValue().equals(
 				txtPassword2Usuario.getValue())) {
-			Messagebox.show("No coinciden las contraseñas", "Informacion",
-					Messagebox.OK, Messagebox.INFORMATION);
+			msj.mensajeAlerta(Mensaje.contrasennasInvalidas);
 		}
 	}
 
@@ -473,8 +459,7 @@ public class CUsuario extends CGenerico {
 	@Listen("onChange = #txtTelefonoUsuario")
 	public void validarTelefono() {
 		if (!Validador.validarTelefono(txtTelefonoUsuario.getValue())) {
-			Messagebox.show("Telefono Invalido", "Informacion", Messagebox.OK,
-					Messagebox.INFORMATION);
+			msj.mensajeAlerta(Mensaje.telefonoInvalido);
 		}
 	}
 
@@ -482,19 +467,10 @@ public class CUsuario extends CGenerico {
 	@Listen("onChange = #txtCorreoUsuario")
 	public void validarCorreo() {
 		if (!Validador.validarCorreo(txtCorreoUsuario.getValue())) {
-			Messagebox.show("Correo Invalido", "Informacion", Messagebox.OK,
-					Messagebox.INFORMATION);
+			msj.mensajeAlerta(Mensaje.correoInvalido);
 		}
 	}
 
-	/* Valida la cedula */
-	@Listen("onChange = #txtCedulaUsuario")
-	public void validarCedula() {
-		if (!Validador.validarNumero(txtCedulaUsuario.getValue())) {
-			Messagebox.show("Cedula Invalida", "Informacion", Messagebox.OK,
-					Messagebox.INFORMATION);
-		}
-	}
 
 	/* LLena las listas dado un usario */
 	public void llenarListas(Usuario usuario) {
@@ -596,57 +572,6 @@ public class CUsuario extends CGenerico {
 		ltbGruposDisponibles.setCheckmark(true);
 	}
 
-	/* Busca si existe un usuario con la misma cedula nombre escrita */
-	@Listen("onChange = #txtCedulaUsuario")
-	public void buscarPorCedula() {
-		Usuario usuario = servicioUsuario.buscarPorCedula(txtCedulaUsuario
-				.getValue());
-		if (usuario != null)
-			llenarCampos(usuario);
-	}
-
-	/*
-	 * Selecciona un usuario del catalogo y llena los campos con la informacion
-	 */
-	@Listen("onSeleccion = #catalogoUsuario")
-	public void seleccion() {
-		Usuario usuario = catalogo.objetoSeleccionadoDelCatalogo();
-		llenarCampos(usuario);
-		catalogo.setParent(null);
-	}
-
-	/* LLena los campos del formulario dado un usuario */
-	public void llenarCampos(Usuario usuario) {
-		txtCedulaUsuario.setValue(usuario.getCedula());
-		txtCorreoUsuario.setValue(usuario.getEmail());
-		txtDireccionUsuario.setValue(usuario.getDireccion());
-		txtLoginUsuario.setValue(usuario.getLogin());
-		txtPasswordUsuario.setValue(usuario.getPassword());
-		txtPassword2Usuario.setValue(usuario.getPassword());
-		txtNombreUsuario.setValue(usuario.getPrimerNombre());
-		txtNombre2Usuario.setValue(usuario.getSegundoNombre());
-		txtApellidoUsuario.setValue(usuario.getPrimerApellido());
-		txtApellido2Usuario.setValue(usuario.getSegundoApellido());
-		txtTelefonoUsuario.setValue(usuario.getTelefono());
-		String sexo = usuario.getSexo();
-		if (sexo.equals("F"))
-			rdoSexoFUsuario.setChecked(true);
-		else
-			rdoSexoMUsuario.setChecked(true);
-		BufferedImage imag;
-		if (usuario.getImagen() != null) {
-			try {
-				imag = ImageIO.read(new ByteArrayInputStream(usuario
-						.getImagen()));
-				imagen.setContent(imag);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		txtCedulaUsuario.setDisabled(true);
-		id = Long.valueOf(usuario.getCedula());
-		llenarListas(usuario);
-	}
 
 	/* Abre la pestanna de datos de usuario */
 	@Listen("onClick = #btnSiguientePestanna")

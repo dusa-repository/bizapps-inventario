@@ -164,12 +164,12 @@
 			<separator />
 			</groupbox>
 				<separator />
-					<groupbox id="gpxDatos" width="auto" title="">
+				<groupbox id="gpxDatos" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para ver los Usuarios" />
 				<div id="catalogoUsuario"
 					tooltiptext="Seleccione el usuario para Realizar una Accion" />
 			</groupbox>
-		</groupbox>
-	</div>
+			</groupbox>
+			</div>
 </zk>
