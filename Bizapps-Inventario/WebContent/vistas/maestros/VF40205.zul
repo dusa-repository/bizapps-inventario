@@ -1,9 +1,9 @@
 <zk>
 	<style src="../public/Estilo.css" />
-	<div id="divVF0115" apply="controlador.maestros.CF40205">
+	<div id="divVF40205" apply="controlador.maestros.CF40205">
 		<groupbox width="auto" mold="3d"
 			title="Trabajo con Tipos de Linea (F40205)">
-			<div id="botoneraF0115" />
+			<div id="botoneraF40205" />
 			<separator />
 			<groupbox id="gpxRegistroF40205" width="auto" title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"
@@ -11,10 +11,10 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="5%" />
-						<column label="" width="25%" />
-						<column label="" width="35%" />
-						<column label="" width="35%" />
+						<column label="" width="10%" />
+						<column label="" width="30%" />
+						<column label="" width="30%" />
+						<column label="" width="30%" />
 					</columns>
 					<rows>
 						<row>
@@ -73,97 +73,92 @@
 							<checkbox id="chxTxynF40205" hflex="1"
 								tooltiptext="Marque para indicar la linea de Text" />
 							<label class="etiqueta" value="Linea texto" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxRsgnF40205" hflex="1"
 								tooltiptext="Marque para indicar invertir signo" />
 							<label class="etiqueta" value="Invertir signo" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxAftF40205" hflex="1"
 								tooltiptext="Marque para indicar aplicar flete" />
 							<label class="etiqueta" value="Aplicar flete" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxArtF40205" hflex="1"
 								tooltiptext="Marque para indicar aplicar retencion" />
 							<label class="etiqueta" value="Aplicar retencion" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxGwoF40205" hflex="1"
 								tooltiptext="Marque para indicar generacion de orden de trabajo" />
 							<label class="etiqueta" value="Generar orden trabajo" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxCdscF40205" hflex="1"
 								tooltiptext="Marque para indicar incluir descuento en efectivo" />
 							<label class="etiqueta" value="Inclir descuento en efectivo" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxPrftF40205" hflex="1"
 								tooltiptext="Marque para indicar incluir ventas/costos en ganancia bruta" />
 							<label class="etiqueta" value="Incluir ventas/costos en ganancia bruta" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxPdc4F40205" hflex="1"
 								tooltiptext="Marque para indicar Cuenta de Desviacion con cotejo comprobante" />
 							<label class="etiqueta" value="Cuenta desviacion c/cotejo comprobante" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxPdc3F40205" hflex="1"
 								tooltiptext="Marque para indicar editar art no almacenable en Mtro art" />
-							<hbox>
-								<label class="etiqueta" value="Editar art no almacenable en Mtro art" />
-								<space />
-								<label value="*" style="font-weight:bold;color:red">
-								</label>
-							</hbox>
-							<hbox/>
-							<hbox/>
+							<label class="etiqueta" value="Editar art no almacenable en Mtro art" />
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxPdc1F40205" hflex="1"
 								tooltiptext="Marque para indicar proteger precio en OV" />
 							<label class="etiqueta" value="Proteger precio en OV" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxIdc1F40205" hflex="1"
 								tooltiptext="Marque para indicar Generar orden de compra" />
 							<label class="etiqueta" value="Generar orden de compra" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxCmiF40205" hflex="1"
 								tooltiptext="Marque para indicar solicitar salida de materiales" />
 							<label class="etiqueta" value="Solicitar salida de materiales" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<checkbox id="chxPrrqF40205" hflex="1"
 								tooltiptext="Marque para indicar recepcion de compra obligatoria" />
 							<label class="etiqueta" value="Recepcion de compra obligatoria" />
-							<hbox/>
-							<hbox/>
+							<hbox />
+							<hbox />
 						</row>
 					</rows>
 				</grid>
