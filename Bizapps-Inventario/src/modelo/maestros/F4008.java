@@ -22,6 +22,7 @@ public class F4008 implements Serializable {
 	@Column(name="TAAITM")
 	private String taaitm;
 
+	// f efect
 	@Column(name="TAEFTJ")
 	private BigDecimal taeftj;
 
@@ -64,6 +65,7 @@ public class F4008 implements Serializable {
 	@Column(name="TATA5")
 	private Double tata5;
 
+	//descripcion
 	@Column(name="TATAXA")
 	private String tataxa;
 

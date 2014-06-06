@@ -68,3 +68,12 @@
 	color: gray;
 	border: 0 none;
 }
+
+.z-label {
+	pre: true;
+}
+
+div.z-listbox-header th.z-listheader,div.z-listbox-header th.z-auxheader
+	{
+	white-space: pre-line;
+}
