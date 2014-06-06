@@ -1,0 +1,75 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF01151" apply="controlador.maestros.CF01151">
+		<groupbox width="auto" mold="3d"
+			title="Direcccion de Correo Electronico/Internet (VF01151)">
+			<div id="botoneraF01151" />
+			<separator />
+			<groupbox id="gpxRegistroF01151" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Numero Correo Electronico/Internet" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="35%" />
+						<column label="" width="35%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Numero Direccion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<longbox id="txtAn8F01151" hflex="1" maxlength="19"
+								tooltiptext="Ingrese el Numero de Direccion" />
+							<hbox>
+								<button id="btnBuscarDireccionF01151" class="btn"
+									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblAn8F01151" />
+							</hbox>
+						</row>
+						<row>
+							<label class="etiqueta" value="Tipo Direccion Correo:" />
+							<combobox tooltiptext="Seleccione el Tipo de Direccion de Correo Electronico"
+								placeholder="Seleccione el Tipo de Direccion" id="cmbEtpF01151"
+								width="100%" readonly="true">
+								<comboitem label="Direccion de Internet" context="DirW" />
+								<comboitem label="Direccion Electronica" context="DirE" />
+								<comboitem label="Direccion Interna" context="DirI" />
+							</combobox>
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="Direccion Correo:" />
+							<textbox id="txtEmalF01151" hflex="1" maxlength="256"
+								tooltiptext="Ingrese la Direccion de Correo Electronico" />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divbuscadorEhier" hflex="1" />
+							</cell>
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divbuscadorEclass" hflex="1" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF01151" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las Direcciones de Correo electronicas Registradas" />
+				<div id="catalogoF01151" tooltiptext="Seleccione la Direccion para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+			<div id="DivCatalogoDireccionF01151" />
+		</groupbox>
+	</div>
+</zk>

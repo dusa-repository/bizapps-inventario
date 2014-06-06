@@ -1,0 +1,62 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF0115" apply="controlador.maestros.CF0115">
+		<groupbox width="auto" mold="3d" title="Numeros Telefonicos (VF0115)">
+			<div id="botoneraF0115" />
+			<separator />
+			<groupbox id="gpxRegistroF0115" width="auto" title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Numero Telefonico" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="35%" />
+						<column label="" width="30%" />
+						<column label="" width="5%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Numero Direccion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<longbox id="txtAn8F0115" hflex="1" maxlength="19"
+								tooltiptext="Ingrese el Numero de Direccion" />
+							<hbox>
+								<button id="btnBuscarDireccionF0115" class="btn"
+									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblAn8F0115" />
+							</hbox>
+						</row>
+						<row>
+							<label class="etiqueta" value="Numero Telefonico:" />
+							<textbox id="txtAr01F0115" hflex="1" maxlength="6"
+								tooltiptext="Ingrese el prefijo del Numero Telefonico. Ejemplo 0412" />
+							<label class="etiqueta" value="-" />
+							<textbox id="txtPh1F0115" hflex="1" maxlength="20"
+								tooltiptext="Ingrese el Numero Telefonico. Ejemplo 1256879" />
+						</row>
+						<row>
+							<cell colspan="4">
+								<div id="divBuscadorPhtp" hflex="1" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF0115" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los Numeros Telefonicos Registrados" />
+				<div id="catalogoF0115" tooltiptext="Seleccione la Moneda para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+			<div id="DivCatalogoDireccionF0115" />
+		</groupbox>
+
+	</div>
+</zk>
