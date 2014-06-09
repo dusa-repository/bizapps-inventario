@@ -5,8 +5,9 @@
 			title="Trabajo con Tipos de Codigos Definidos por el Usuario (VF0004)">
 			<div id="botoneraF0004" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" title="" open="false">
-				<caption label="Nuevo" style="font-weight:bold"
+			<groupbox id="gpxRegistro" width="auto" class="azul" title=""
+				open="false">
+				<caption label="Añadir" style="font-weight:bold; font-size: 13px"
 					tooltiptext="Presione para Registrar un Nuevo Tipo de Codigo" />
 				<separator />
 				<grid width="100%">
@@ -51,15 +52,14 @@
 							<cell colspan="2">
 								<textbox id="txtDL01F0004" hflex="1" maxlength="30"
 									tooltiptext="Ingrese la Descripcion del Tipo de Codigo"
-									multiline="true"/>
+									multiline="true" />
 							</cell>
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Long Codigo:" />
-							<doublespinner id="dblCDLF0004" constraint="min 0 max 500"
-								tooltiptext="Ingrese el Codigo del Tipo de Codigo" step="0.1"
-								format="#.##" width="98%" value="0" />
+							<doublebox id="txtCDLF0004" tooltiptext="Ingrese el Codigo del Tipo de Codigo"
+								width="98%" />
 							<hbox />
 							<hbox />
 						</row>
@@ -82,8 +82,8 @@
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatos" width="auto" title="">
-				<caption label="Registros" style="font-weight:bold"
+			<groupbox id="gpxDatos" class="azul" width="auto">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
 					tooltiptext="Presione para Visualizar los Tipos de Codigos Registrados" />
 				<div id="catalogoF0004" tooltiptext="Seleccione el Tipo de Codigo para Realizar una Accion" />
 			</groupbox>

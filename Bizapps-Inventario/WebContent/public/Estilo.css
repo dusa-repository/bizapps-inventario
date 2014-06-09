@@ -14,8 +14,12 @@
 	background: #DDECFD;
 }
 
-.z-groupbox-hr {
+.azul .z-groupbox-hr{
 	background: #DDECFD;
+}
+
+.blanco .z-groupbox-hr{
+	background: white;
 }
 
 .btn {

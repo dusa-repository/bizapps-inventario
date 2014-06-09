@@ -18,4 +18,9 @@ public class SF4008 {
 	public List<F4008> buscarTodosOrdenados() {
 		return f4008DAO.findAllOrderById();
 	}
+
+	public void guardar(F4008 f408) {
+		f4008DAO.save(f408);
+		
+	}
 }

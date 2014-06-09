@@ -5,8 +5,8 @@
 			title="Conversiones de Unidades de Medida de Articulos (VF41002)">
 			<div id="botoneraF41002" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" title="" open="false">
-				<caption label="Nuevo" style="font-weight:bold"
+			<groupbox id="gpxRegistro" width="auto" class ="azul" title="" open="false">
+				<caption label="Añadir"  style="font-weight:bold; font-size: 13px"
 					tooltiptext="Presione para Registrar una Nueva Unidad de Medida de Articulos" />
 				<separator />
 				<grid width="100%">
@@ -55,7 +55,7 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtCONVF41002" hflex="1"
+							<doublebox id="txtCONVF41002" hflex="1"
 								tooltiptext="Ingrese la Cantidad de la Conversion" />
 							<hbox />
 							<hbox />
@@ -90,7 +90,7 @@
 						<row>
 							<label class="etiqueta" value="Sec UM Ventas:" />
 							<cell colspan="2">
-								<textbox id="txtSEPCF41002" hflex="1" maxlength="18"
+								<longbox id="txtSEPCF41002" hflex="1" maxlength="18"
 									tooltiptext="Ingrese el Sec UM Ventas" />
 							</cell>
 							<hbox />
@@ -98,7 +98,7 @@
 						<row>
 							<label class="etiqueta" value="Sec UM Compras:" />
 							<cell colspan="2">
-								<textbox id="txtPUPCF41002" hflex="1" maxlength="18"
+								<longbox id="txtPUPCF41002" hflex="1" maxlength="18"
 									tooltiptext="Ingrese el Sec UM Compras" />
 							</cell>
 							<hbox />
@@ -107,8 +107,8 @@
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatos" width="auto" title="">
-				<caption label="Registros" style="font-weight:bold"
+			<groupbox id="gpxDatos" class="azul" width="auto">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
 					tooltiptext="Presione para Visualizar las Conversiones de Unidades de Medida" />
 				<div id="divCatalogoF41002"
 					tooltiptext="Seleccione la Conversion de Unidades de Medida para Realizar una Accion" />

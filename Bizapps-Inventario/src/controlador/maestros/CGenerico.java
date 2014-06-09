@@ -180,6 +180,38 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		return date;
 
 	}
+	public Date transformarJulianaAGregoriadeLong(Long valor) {
+		String j = valor.toString();
+		Date date = new Date();
+		String primerValor = "";
+		if (j.length() == 5) {
+			try {
+				date = new SimpleDateFormat("yyD").parse(j);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			primerValor = j.substring(0, 1);
+			if (primerValor.equals("1")) {
+				String anno = j.substring(1, 3);
+				date.setYear(Integer.valueOf("20" + anno) - 1900);
+				String s = j.substring(3);
+				Date fecha = new Date();
+				try {
+					fecha = new SimpleDateFormat("D").parse(s);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				fecha.setYear(date.getYear());
+				return fecha;
+			}
+		}
+
+		return date;
+
+	}
 
 	public abstract void inicializar() throws IOException;
 

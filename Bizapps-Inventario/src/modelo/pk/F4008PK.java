@@ -18,11 +18,11 @@ public class F4008PK implements Serializable {
 
 	//
 	@Column(name="TAITM")
-	private double taitm;
+	private Double taitm;
 
 	// f venci
 	@Column(name="TAEFDJ")
-	private long taefdj;
+	private Long taefdj;
 
 	public F4008PK() {
 	}
@@ -32,16 +32,16 @@ public class F4008PK implements Serializable {
 	public void setTatxa1(String tatxa1) {
 		this.tatxa1 = tatxa1;
 	}
-	public double getTaitm() {
+	public Double getTaitm() {
 		return this.taitm;
 	}
-	public void setTaitm(double taitm) {
+	public void setTaitm(Double taitm) {
 		this.taitm = taitm;
 	}
-	public long getTaefdj() {
+	public Long getTaefdj() {
 		return this.taefdj;
 	}
-	public void setTaefdj(long taefdj) {
+	public void setTaefdj(Long taefdj) {
 		this.taefdj = taefdj;
 	}
 

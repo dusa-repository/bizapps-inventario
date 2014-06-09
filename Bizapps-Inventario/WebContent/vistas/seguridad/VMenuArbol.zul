@@ -4,8 +4,8 @@
 		<groupbox width="auto" mold="3d" title="Menu Arbol (VMenuArbol)">
 			<div id="botoneraMenuArbol" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" title="" open="false">
-				<caption label="Nuevo" style="font-weight:bold"
+			<groupbox id="gpxRegistro" width="auto" class ="azul" title="" open="false">
+				<caption label="Añadir"  style="font-weight:bold; font-size: 13px"
 					tooltiptext="Presione para Registrar un Nuevo Item del Menu Arbol" />
 				<separator />
 				<grid width="100%">
@@ -36,7 +36,7 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtPadre" hflex="1" maxlength="3"
+							<longbox id="txtPadre" hflex="1" maxlength="3"
 								tooltiptext="Ingrese el Padre del Item" width="100%"/>
 							<hbox />
 							<hbox />
@@ -58,8 +58,8 @@
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatos" width="auto" title="">
-				<caption label="Registros" style="font-weight:bold"
+			<groupbox id="gpxDatos" class="azul" width="auto">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
 					tooltiptext="Presione para Visualizar los Item del Menu Registrados" />
 				<div id="divCatalogoMenuArbol" tooltiptext="Seleccione el Item del Menu para Realizar una Accion" />
 			</groupbox>
