@@ -5,8 +5,8 @@
 			title="Trabajo con Codigos Definidos por Usuario (VF0005)">
 			<div id="botoneraF0005" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" title="" open="false">
-				<caption label="Nuevo" style="font-weight:bold"
+			<groupbox id="gpxRegistro" width="auto" class ="azul" title="" open="false">
+				<caption label="Añadir"  style="font-weight:bold; font-size: 13px"
 					tooltiptext="Presione para Registrar un Nuevo Codigo" />
 				<separator />
 				<grid width="100%">
@@ -98,8 +98,8 @@
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatos" width="auto" title="">
-				<caption label="Registros" style="font-weight:bold"
+			<groupbox id="gpxDatos" class="azul" width="auto">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
 					tooltiptext="Presione para Visualizar los Codigos Registrados" />
 				<div id="catalogoF0005" tooltiptext="Seleccione el Codigo para Realizar una Accion" />
 			</groupbox>

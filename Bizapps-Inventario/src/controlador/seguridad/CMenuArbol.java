@@ -11,6 +11,7 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
+import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
@@ -25,7 +26,7 @@ public class CMenuArbol extends CGenerico {
 	@Wire
 	private Textbox txtNombre;
 	@Wire
-	private Textbox txtPadre;
+	private Longbox txtPadre;
 	@Wire
 	private Textbox txtUrl;
 	@Wire
@@ -61,7 +62,7 @@ public class CMenuArbol extends CGenerico {
 						clave = arbol.getIdArbol();
 						txtUrl.setValue(arbol.getUrl());
 						txtNombre.setValue(arbol.getNombre());
-						txtPadre.setValue(String.valueOf(arbol.getPadre()));
+						txtPadre.setValue(arbol.getPadre());
 						txtNombre.setFocus(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -93,10 +94,10 @@ public class CMenuArbol extends CGenerico {
 				if (guardar) {
 					String url = txtUrl.getValue();
 					String nombre = txtNombre.getValue();
-					String padre = txtPadre.getValue();
+					Long padre = txtPadre.getValue();
 					Arbol arbol = new Arbol();
 					arbol.setNombre(nombre);
-					arbol.setPadre(Long.valueOf(padre));
+					arbol.setPadre(padre);
 					arbol.setUrl(url);
 					arbol.setIdArbol(clave);
 					servicioArbol.guardar(arbol);
@@ -196,7 +197,7 @@ public class CMenuArbol extends CGenerico {
 		clave = 0;
 		txtUrl.setValue("");
 		txtNombre.setValue("");
-		txtPadre.setValue("");
+		txtPadre.setValue(null);
 	}
 
 	public boolean validarSeleccion() {

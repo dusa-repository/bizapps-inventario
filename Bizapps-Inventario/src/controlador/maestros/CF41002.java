@@ -17,8 +17,10 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Doublebox;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
@@ -36,7 +38,7 @@ public class CF41002 extends CGenerico {
 	@Wire
 	private Div divBuscadorRUMF41002;
 	@Wire
-	private Textbox txtCONVF41002;
+	private Doublebox txtCONVF41002;
 	@Wire
 	private Textbox txtDescripcionUnidad;
 	@Wire
@@ -48,9 +50,9 @@ public class CF41002 extends CGenerico {
 	@Wire
 	private Textbox txtEXPOF41002;
 	@Wire
-	private Textbox txtSEPCF41002;
+	private Longbox txtSEPCF41002;
 	@Wire
-	private Textbox txtPUPCF41002;
+	private Longbox txtPUPCF41002;
 	@Wire
 	private Div divVF41002;
 	@Wire
@@ -81,12 +83,12 @@ public class CF41002 extends CGenerico {
 		txtUMITMF41002.setFocus(true);
 		mostrarCatalogo();
 
-		List<F0005> listF0005 =  servicioF0005.buscarParaUDCOrdenados("00","00");
+		List<F0005> listF0005 =  servicioF0005.buscarParaUDCOrdenados("00","UM");
 		
 		buscadorUMF41002 = new BuscadorUDC("De UM", 3, listF0005, true,true,true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "UM",
 						buscadorUMF41002.obtenerCaja());
 			}
 		};
@@ -94,7 +96,7 @@ public class CF41002 extends CGenerico {
 		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, listF0005,true,true,true) {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "00",
+				return servicioF0005.buscar("00", "UM",
 						buscadorRUMF41002.obtenerCaja());
 			}
 		};
@@ -126,19 +128,27 @@ public class CF41002 extends CGenerico {
 						txtEXPOF41002.setValue(f41002.getUmexpo());
 						txtUSTRF41002.setValue(f41002.getUmustr());
 						txtEXSOF41002.setValue(f41002.getUmexso());
-						txtSEPCF41002.setValue(String.valueOf(f41002
-								.getUmsepc()));
-						txtPUPCF41002.setValue(String.valueOf(f41002
-								.getUmpupc()));
-						txtCONVF41002.setValue(String.valueOf(f41002
-								.getUmconv()));
+						
+						if(f41002.getUmsepc() != null)
+						{
+						BigDecimal s = f41002.getUmsepc();
+						txtSEPCF41002.setValue(s.longValue());
+						}
+						if(f41002.getUmpupc() != null)
+						{
+						BigDecimal s = f41002.getUmpupc();
+						txtPUPCF41002.setValue(s.longValue());
+						}
+						
+						txtCONVF41002.setValue(f41002
+								.getUmconv());
 
 						buscadorUMF41002.settearCampo(servicioF0005.buscar(
-								"00", "01", f41002.getId().getUmum()));
+								"00", "UM", f41002.getId().getUmum()));
 						buscadorUMF41002.inhabilitarCampo();
 
 						buscadorRUMF41002.settearCampo(servicioF0005.buscar(
-								"00", "01", f41002.getId().getUmrum()));
+								"00", "UM", f41002.getId().getUmrum()));
 						buscadorRUMF41002.inhabilitarCampo();
 
 					} else
@@ -174,30 +184,35 @@ public class CF41002 extends CGenerico {
 					String ustr = txtUSTRF41002.getValue();
 					String exso = txtEXSOF41002.getValue();
 
-					Double conv = null;
-					if (txtCONVF41002.getValue().compareTo("") != 0)
-						conv = Double.valueOf(txtCONVF41002.getValue());
-					BigDecimal sepc = null;
-					if (txtSEPCF41002.getValue().compareTo("") != 0)
-						sepc = BigDecimal.valueOf(Double
-								.parseDouble(txtSEPCF41002.getValue()));
+					F41002 f41002 = new F41002();
+					
+					Double conv;
+					if (txtCONVF41002.getValue() != null)
+					{			
+						conv = txtCONVF41002.getValue();
+						f41002.setUmconv(conv);
+					}
+					BigDecimal sepc;
+					if (txtSEPCF41002.getValue() != null)
+					{
+						sepc = BigDecimal.valueOf(txtSEPCF41002.getValue());
+						f41002.setUmsepc(sepc);
+					}
 
 					BigDecimal pupc = null;
-					if (txtPUPCF41002.getValue().compareTo("") != 0)
-						pupc = BigDecimal.valueOf(Double
-								.parseDouble(txtPUPCF41002.getValue()));
+					if (txtPUPCF41002.getValue() != null)
+					{
+						pupc = BigDecimal.valueOf(txtPUPCF41002.getValue());
+						f41002.setUmpupc(pupc);
+					}
 
 					F41002PK clave = new F41002PK();
 					clave.setUmum(buscadorUMF41002.obtenerCaja());
 					clave.setUmrum(buscadorRUMF41002.obtenerCaja());
 					clave.setUmitm(Double.parseDouble(txtUMITMF41002.getValue()));
 					clave.setUmmcu("");
-
-					F41002 f41002 = new F41002();
-					f41002.setUmpupc(pupc);
-					f41002.setUmsepc(sepc);
+				
 					f41002.setId(clave);
-					f41002.setUmconv(conv);
 					f41002.setUmexpo(expo);
 					f41002.setUmexso(exso);
 					f41002.setUmustr(ustr);
@@ -311,9 +326,9 @@ public class CF41002 extends CGenerico {
 		txtEXPOF41002.setValue("");
 		txtUSTRF41002.setValue("");
 		txtEXSOF41002.setValue("");
-		txtSEPCF41002.setValue("");
-		txtPUPCF41002.setValue("");
-		txtCONVF41002.setValue("");
+		txtSEPCF41002.setValue(null);
+		txtPUPCF41002.setValue(null);
+		txtCONVF41002.setValue(null);
 		btnBuscarF4101.setVisible(true);
 		buscadorRUMF41002.settearCampo(null);
 		buscadorRUMF41002.habilitarCampos();

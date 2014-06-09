@@ -11,6 +11,7 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Doublebox;
 import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Messagebox;
@@ -34,7 +35,7 @@ public class CF0004 extends CGenerico {
 	@Wire
 	private Textbox txtDL01F0004;
 	@Wire
-	private Doublespinner dblCDLF0004;
+	private Doublebox txtCDLF0004;
 	@Wire
 	private Div divVF0004;
 	@Wire
@@ -73,7 +74,8 @@ public class CF0004 extends CGenerico {
 						txtDL01F0004.setValue(f04.getDtdl01());
 						txtLNF0004.setValue(f04.getDtln2());
 						txtNUMF0004.setValue(f04.getDtcnum());
-						dblCDLF0004.setValue(f04.getDtcdl());
+						if(f04.getDtcdl()!=null)
+						txtCDLF0004.setValue(f04.getDtcdl());
 						txtDL01F0004.setFocus(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -104,21 +106,28 @@ public class CF0004 extends CGenerico {
 				if (clave == null)
 					guardar = validar();
 				if (guardar) {
+					
+					F0004 fooo4 = new F0004();
 					String rt = txtSYF0004.getValue();
 					String sy = txtRTF0004.getValue();
 					String dl = txtDL01F0004.getValue();
 					String ln = txtLNF0004.getValue();
-					double a = dblCDLF0004.getValue();
+					Double a;
+					if(txtCDLF0004.getValue()!=null)
+					{
+					a = txtCDLF0004.getValue();
+					fooo4.setDtcdl(a);
+					}
 					String num = txtNUMF0004.getValue();
 					F0004PK clave = new F0004PK();
 					clave.setDtsy(rt);
 					clave.setDtrt(sy);
-					F0004 fooo4 = new F0004();
+				
 					fooo4.setId(clave);
 					fooo4.setDtdl01(dl);
 					fooo4.setDtln2(ln);
 					fooo4.setDtcnum(num);
-					fooo4.setDtcdl(a);
+			
 					fooo4.setDtjobn("5");
 					fooo4.setDtuseq((double) 45);
 					fooo4.setDtuser("jDE");
@@ -225,7 +234,7 @@ public class CF0004 extends CGenerico {
 		txtNUMF0004.setValue("");
 		txtRTF0004.setValue("");
 		txtSYF0004.setValue("");
-		dblCDLF0004.setValue((double) 0);
+		txtCDLF0004.setValue(null);
 		txtSYF0004.setFocus(true);
 	}
 
@@ -298,7 +307,7 @@ public class CF0004 extends CGenerico {
 				|| txtNUMF0004.getText().compareTo("") != 0
 				|| txtRTF0004.getText().compareTo("") != 0
 				|| txtSYF0004.getText().compareTo("") != 0
-				|| dblCDLF0004.getValue() != 0) {
+				|| txtCDLF0004.getValue() != 0) {
 			return true;
 		} else
 			return false;

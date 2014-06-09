@@ -5,8 +5,8 @@
 			title="Trabajo con Zona/Tipo Impositivo (VF4008)">
 			<div id="botoneraF4008" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" title="" open="false">
-				<caption label="Nuevo" style="font-weight:bold"
+			<groupbox id="gpxRegistro" width="auto" class ="azul" title="" open="false">
+				<caption label="Añadir"  style="font-weight:bold; font-size: 13px"
 					tooltiptext="Presione para Registrar una Nueva zona/tipo impositivo" />
 				<separator />
 				<grid width="100%">
@@ -48,7 +48,7 @@
 							/> </cell> -->
 					</rows>
 				</grid>
-				<groupbox width="auto" title="Autoridades Fiscales" open="true"
+				<groupbox width="auto"  style="font-weight:bold" class="blanco" title="Autoridades Fiscales" open="true"
 					closable="false">
 					<separator />
 					<grid width="100%">
@@ -57,34 +57,49 @@
 							<column label="" width="10%" />
 							<column label="Autoridad Fiscal" width="22%" />
 							<column label="Comcen LM" width="16%" />
-							<column label="To motvo??" width="16%" />
+							<column label="To impto" width="16%" />
 							<column label="" width="18%" />
 						</columns>
 						<rows>
 							<row>
-								<textbox id="txtTA1F4008" hflex="1"
+								<longbox id="txtTA1F4008" hflex="1"
 									tooltiptext="Ingrese la direccion 1:" />
-								<button id="btnBuscarDireccion1" class="btn" label="Buscar"
+								<button id="btnBuscarDireccion0" class="btn" label="Buscar"
 									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-								<label id="lblDireccion1F0101" />
+								<label id="lblDireccion0F0101" />
 								<textbox id="txtGL01F4008" hflex="1" maxlength="255"
 									tooltiptext="Ingrese el GL01" />
-								<textbox id="txtTXR1F4008" hflex="1" tooltiptext="Ingrese el TXR1" />
+								<doublebox id="txtTXR1F4008" hflex="1" tooltiptext="Ingrese el TXR1" />
 								<hbox>
-									<checkbox style="float: right;" id="chxTT2F4008"
+									<checkbox style="float: right;" id="chxTT1F4008"
 										hflex="1" tooltiptext="Marque para indicar el Impuesto Compuesto" />
 									<label class="etiqueta" value="Impuesto Compuesto:" />
 								</hbox>
 							</row>
 							<row>
-								<textbox id="txtTA2F4008" hflex="1"
+								<longbox id="txtTA2F4008" hflex="1"
 									tooltiptext="Ingrese la direccion 2:" />
+								<button id="btnBuscarDireccion1" class="btn" label="Buscar"
+									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblDireccion1F0101" />
+								<textbox id="txtGL02F4008" hflex="1" maxlength="255"
+									tooltiptext="Ingrese el GL02" />
+								<doublebox id="txtTXR2F4008" hflex="1" tooltiptext="Ingrese el TXR2" />
+								<hbox>
+									<checkbox style="float: right;" id="chxTT2F4008"
+										hflex="1" tooltiptext="Marque para indicar el Gasto IVA" />
+									<label class="etiqueta" value="Gastos IVA:" />
+								</hbox>
+							</row>
+							<row>
+								<longbox id="txtTA3F4008" hflex="1"
+									tooltiptext="Ingrese la direccion 3:" />
 								<button id="btnBuscarDireccion2" class="btn" label="Buscar"
 									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccion2F0101" />
-								<textbox id="txtGL02F4008" hflex="1" maxlength="255"
-									tooltiptext="Ingrese el GL02" />
-								<textbox id="txtTXR2F4008" hflex="1" tooltiptext="Ingrese el TXR2" />
+								<textbox id="txtGL03F4008" hflex="1" maxlength="255"
+									tooltiptext="Ingrese el GL03" />
+								<doublebox id="txtTXR3F4008" hflex="1" tooltiptext="Ingrese el TXR3" />
 								<hbox>
 									<checkbox style="float: right;" id="chxTT3F4008"
 										hflex="1" tooltiptext="Marque para indicar el Gasto IVA" />
@@ -92,14 +107,14 @@
 								</hbox>
 							</row>
 							<row>
-								<textbox id="txtTA3F4008" hflex="1"
-									tooltiptext="Ingrese la direccion 3:" />
+								<longbox id="txtTA4F4008" hflex="1"
+									tooltiptext="Ingrese la direccion 1:" />
 								<button id="btnBuscarDireccion3" class="btn" label="Buscar"
 									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccion3F0101" />
-								<textbox id="txtGL03F4008" hflex="1" maxlength="255"
-									tooltiptext="Ingrese el GL03" />
-								<textbox id="txtTXR3F4008" hflex="1" tooltiptext="Ingrese el TXR3" />
+								<textbox id="txtGL04F4008" hflex="1" maxlength="255"
+									tooltiptext="Ingrese el GL04" />
+								<doublebox id="txtTXR4F4008" hflex="1" tooltiptext="Ingrese el TXR4" />
 								<hbox>
 									<checkbox style="float: right;" id="chxTT4F4008"
 										hflex="1" tooltiptext="Marque para indicar el Gasto IVA" />
@@ -107,36 +122,30 @@
 								</hbox>
 							</row>
 							<row>
-								<textbox id="txtTA4F4008" hflex="1"
-									tooltiptext="Ingrese la direccion 1:" />
+								<longbox id="txtTA5F4008" hflex="1"
+									tooltiptext="Ingrese la direccion 5:" />
 								<button id="btnBuscarDireccion4" class="btn" label="Buscar"
 									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccion4F0101" />
-								<textbox id="txtGL04F4008" hflex="1" maxlength="255"
-									tooltiptext="Ingrese el GL04" />
-								<textbox id="txtTXR4F4008" hflex="1" tooltiptext="Ingrese el TXR4" />
-								<hbox>
-									<checkbox style="float: right;" id="chxTT5F4008"
-										hflex="1" tooltiptext="Marque para indicar el Gasto IVA" />
-									<label class="etiqueta" value="Gastos IVA:" />
-								</hbox>
-							</row>
-							<row>
-								<textbox id="txtTA5F4008" hflex="1"
-									tooltiptext="Ingrese la direccion 5:" />
-								<button id="btnBuscarDireccion5" class="btn" label="Buscar"
-									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
-								<label id="lblDireccion5F0101" />
 								<textbox id="txtGL05F4008" hflex="1" maxlength="255"
 									tooltiptext="Ingrese el GL05" />
-								<textbox id="txtTXR5F4008" hflex="1" tooltiptext="Ingrese el TXR5" />
+								<doublebox id="txtTXR5F4008" hflex="1" tooltiptext="Ingrese el TXR5" />
 								<hbox />
 							</row>
-							<!-- AQUI VA LA SUMAAAAAAAAAAAAAAAAAAAA -->
+							<row>
+								<hbox />
+								<hbox />
+								<hbox />
+								<label class="etiqueta"  value="TOTAL IMPTO" id="lblTotalF4002" />
+								<doublebox id="txtSumaF4008" hflex="1" maxlength="255"
+									tooltiptext="Suma de los Impto" />
+								<hbox />
+
+							</row>
 						</rows>
 					</grid>
 				</groupbox>
-				<groupbox width="auto" title="Inventario/Compras/Ordenes Venta "
+				<groupbox class ="blanco"   style="font-weight:bold" width="auto" title="Inventario/Compras/Ordenes Venta "
 					open="true" closable="false">
 					<separator />
 					<grid width="100%">
@@ -156,22 +165,23 @@
 									<label value="*" style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtTAITMF4008" hflex="1"
+								<longbox id="txtTAITMF4008" hflex="1"
 									tooltiptext="Ingrese el Numero de Articulo" />
 								<button id="btnBuscarF4101" class="btn" label="Buscar"
 									tooltiptext="Catalogo Articulos" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblArticuloF4101" />
 								<label class="etiqueta" value="Costo unitario max:" />
-								<textbox id="txtTAMTAXF4008" hflex="1"
+								<doublebox id="txtMTAXF4008" hflex="1"
 									tooltiptext="Ingrese el Costo unitario max" />
 							</row>
+
 						</rows>
 					</grid>
 				</groupbox>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatos" width="auto"  >
-				<caption label="Registros" style="font-weight:bold"
+			<groupbox id="gpxDatos" class="azul" width="auto">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
 					tooltiptext="Presione para Visualizar las zona/tipo impositivo" />
 				<div id="divCatalogoF4008"
 					tooltiptext="Seleccione la zona/tipo impositivo para realizar una accion" />
@@ -179,5 +189,7 @@
 			<separator />
 			<separator />
 		</groupbox>
+		<div id="divCatalogoF0101" />
+		<div id="divCatalogoF4101" />
 	</div>
 </zk>

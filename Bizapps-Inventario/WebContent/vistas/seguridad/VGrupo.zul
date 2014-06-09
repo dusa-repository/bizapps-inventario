@@ -4,8 +4,8 @@
 		<groupbox width="auto" mold="3d" title="Grupo (VGrupo)">
 			<div id="botoneraGrupo" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" title="" open="false">
-				<caption label="Nuevo" style="font-weight:bold"
+			<groupbox id="gpxRegistro" width="auto" class ="azul" title="" open="false">
+				<caption label="Añadir"  style="font-weight:bold; font-size: 13px"
 					tooltiptext="Presione para Registrar un Nuevo Grupo" />
 				<separator />
 				<grid>
@@ -31,7 +31,7 @@
 				</grid>
 				<separator />
 				<hbox width="100%">
-					<groupbox width="100%" title="Funcionalidades Disponibles">
+					<groupbox width="100%" title="Funcionalidades Disponibles" class="blanco">
 						<tree id="treeGrupo" width="99%">
 							<template name="model">
 								<treeitem context="menupopup" open="true">
@@ -42,7 +42,7 @@
 							</template>
 						</tree>
 					</groupbox>
-					<groupbox width="100%" title="Funcionalidades Seleccionadas">
+					<groupbox width="100%" title="Funcionalidades Seleccionadas" class="blanco">
 						<listbox width="auto" id="ltbFuncionalidadesSeleccionados">
 							<listhead></listhead>
 							<template name="model">
@@ -56,8 +56,8 @@
 				<separator />
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatos" width="auto" title="">
-				<caption label="Registros" style="font-weight:bold"
+			<groupbox id="gpxDatos" class="azul" width="auto">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
 					tooltiptext="Presione para Visualizar los Grupos Registrados" />
 				<div id="divCatalogoGrupo" tooltiptext="Seleccione el Grupo para Realizar una Accion" />
 				<separator />
