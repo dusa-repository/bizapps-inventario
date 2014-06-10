@@ -511,6 +511,10 @@ public class CF4008 extends CGenerico {
 
 	@Listen("onClick = #gpxRegistro")
 	public void abrirRegistro() {
+		if (clave == null)
+			btnBuscarF4101.setVisible(true);
+		else
+			btnBuscarF4101.setVisible(false);
 		gpxDatos.setOpen(false);
 		gpxRegistro.setOpen(true);
 		mostrarBotones(false);
