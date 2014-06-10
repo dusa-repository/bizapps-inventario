@@ -1,0 +1,110 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF4100" apply="controlador.maestros.CF4100">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con Maestro de Ubicaciones (VF4100)">
+			<div id="botoneraF4100" />
+			<separator />
+			<groupbox id="gpxRegistro" width="auto" class="azul" title=""
+				open="false">
+				<caption label="Añadir" style="font-weight:bold; font-size: 13px"
+					tooltiptext="Presione para Registrar una Nueva Ubicacion" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="20%" />
+						<column label="" width="25%" />
+						<column label="" width="20%" />
+						<column label="" width="35%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Sucursal/Planta:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtMCUF4100" hflex="1" maxlength="255" width="10px"
+								tooltiptext="Ingrese el Codigo Principal del Sistema" />
+							<cell colspan="2">
+								<hbox>
+									<button id="btnBuscarF0006" label=""
+										tooltiptext="Catalogo de Sucursales" image="/public/imagenes/botones/buscar.png" />
+									<space />
+									<label id="lblMCUF0006" />
+								</hbox>
+							</cell>
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Ubicacion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtLOCNF4100" hflex="1" maxlength="255" width="10px"
+								tooltiptext="Ingrese la Ubicacion" />
+								<cell colspan="2">
+							<label value="Ubic no controlada por sucursal/planta" />
+					
+							</cell>
+						</row>
+						<row>
+							<label class="etiqueta" value="Fecha Acta:" />
+							<datebox readonly="true" width="100%" id="dtbUPMJF4100"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la fecha acta" />
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divBuscadorPZONF4100" hflex="1" />
+							</cell>
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divBuscadorKZONF4100" hflex="1" />
+							</cell>
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divBuscadorZONRF4100" hflex="1" />
+							</cell>
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divBuscadorLLDLF4100" hflex="1" />
+							</cell>
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divBuscadorMIXLF4100" hflex="1" />
+							</cell>
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divBuscadorSTAGF4100" hflex="1" />
+							</cell>
+							<hbox />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatos" class="azul" width="auto">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
+					tooltiptext="Presione para Visualizar las Ubicaciones Registrados" />
+				<div id="divCatalogoF4100" tooltiptext="Seleccione la Ubicacion para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+			<div id="divCatalogoF0006" />
+		</groupbox>
+	</div>
+</zk>
