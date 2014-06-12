@@ -15,15 +15,15 @@
 					<div align="right">
 						<label class="etiqueta"
 							value="N° artículo (corto)" />
-						<textbox id="txtArticuloF4101"
-							disabled="true" maxlength="100" />
+						<textbox id="txtArticuloF4101" disabled="true"
+							maxlength="100" />
 					</div>
 
 
 					<grid width="100%" style="border:0px">
 						<columns visible="false">
 							<column label="" width="15%" />
-							<column label="" width="40%" />
+							<column label="" width="28%" />
 							<column label="" width="45%" />
 						</columns>
 						<rows>
@@ -104,11 +104,11 @@
 											style="border:0px">
 											<columns visible="false">
 												<column label=""
-													width="30%" />
+													width="32%" />
 												<column label=""
 													width="34%" />
 												<column label=""
-													width="12%" />
+													width="13%" />
 												<column label=""
 													width="30%" />
 											</columns>
@@ -147,27 +147,13 @@
 													<label
 														id="lblIMLNTYF4101" />
 
+
 												</row>
 												<row>
 													<cell colspan="4">
 														<div
 															id="divBuscadorIMBPFG" hflex="1" />
 													</cell>
-												</row>
-												<row>
-													<label
-														class="etiqueta" value="Número planificador:" />
-
-													<textbox
-														id="txtIMALKYF4101" hflex="1" maxlength="100"
-														tooltiptext="Seleccione del Catalogo el Numero Planificador" />
-
-													<button
-														id="btnBuscarIMALKYF4101" label=""
-														tooltiptext="Catalogo de Numeros Planificadores"
-														image="/public/imagenes/botones/buscar.png" />
-													<label
-														id="lblIMALKYF4101" />
 												</row>
 											</rows>
 										</grid>
@@ -355,31 +341,6 @@
 									</grid>
 								</groupbox>
 							</hbox>
-							<separator />
-							<groupbox title="" closable="false">
-								<grid width="100%" style="border:0px">
-									<columns visible="false">
-										<column label="" width="20%" />
-										<column label="" width="30%" />
-										<column label="" width="20%" />
-										<column label="" width="30%" />
-									</columns>
-									<rows>
-										<row>
-											<label class="etiqueta"
-												value="Cd mercancía:" />
-											<textbox id="txtCMDCDEF4101"
-												hflex="1" maxlength="100"
-												tooltiptext="Ingrese el Codigo de la Mercancia" />
-											<label class="etiqueta"
-												value="Código UNSPSC:" />
-											<textbox id="txtUNSPSCF4101"
-												hflex="1" maxlength="100"
-												tooltiptext="Ingrese el Codigo UNSPSC" />
-										</row>
-									</rows>
-								</grid>
-							</groupbox>
 							<separator />
 							<hbox>
 								<groupbox title="Ventas Inventario"
@@ -695,8 +656,6 @@
 			<separator />
 		</groupbox>
 		<div id="divCatalogoF40205"
-			tooltiptext="Click para Seleccionar un Codigo" />
-		<div id="divCatalogoF0101"
 			tooltiptext="Click para Seleccionar un Codigo" />
 
 

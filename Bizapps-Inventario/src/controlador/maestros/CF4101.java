@@ -8,10 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 import modelo.maestros.F0005;
-import modelo.maestros.F0008;
-import modelo.maestros.F0015;
-import modelo.maestros.F0101;
 import modelo.maestros.F4101;
+
 
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -69,12 +67,6 @@ public class CF4101 extends CGenerico {
 	private Label lblIMLNTYF4101;
 	@Wire
 	private Div divBuscadorIMBPFG;
-	@Wire
-	private Textbox txtIMALKYF4101;
-	@Wire
-	private Button btnBuscarIMALKYF4101;
-	@Wire
-	private Label lblIMALKYF4101;
 	@Wire
 	private Checkbox chxIMBACKF4101;
 	@Wire
@@ -192,22 +184,15 @@ public class CF4101 extends CGenerico {
 	@Wire
 	private Checkbox chxIMDPPOF4101;
 	@Wire
-	private Textbox txtCMDCDEF4101;
-	@Wire
-	private Textbox txtUNSPSCF4101;
-	@Wire
 	private Groupbox gpxDatosF4101;
 	@Wire
 	private Div catalogoF4101;
 	@Wire
 	private Div divCatalogoF40205;
-	@Wire
-	private Div divCatalogoF0101;
 
 	Botonera botonera;
 	double clave = 0;
 	Catalogo<F0005> catalogoF0005;
-	Catalogo<F0101> catalogoDirecciones;
 	Catalogo<F4101> catalogo;
 
 	BuscadorUDC buscadorIMSTKT, buscadorIMGLPT, buscadorIMUOM1, buscadorIMBPFG,
@@ -741,7 +726,7 @@ public class CF4101 extends CGenerico {
 						if (f4101.getImabcs().equals("C"))
 							rdoIMABCSClasificacionCF4101.setSelected(true);
 
-						if (f4101.getImabcs().equals("S"))
+						if (f4101.getImabcs().equals("D"))
 							rdoIMABCSSinClasificacionF4101.setSelected(true);
 
 						if (f4101.getImabcm().equals("A"))
@@ -753,7 +738,7 @@ public class CF4101 extends CGenerico {
 						if (f4101.getImabcm().equals("C"))
 							rdoIMABCMClasificacionCF4101.setSelected(true);
 
-						if (f4101.getImabcm().equals("S"))
+						if (f4101.getImabcm().equals("D"))
 							rdoIMABCMSinClasificacionF4101.setSelected(true);
 
 						if (f4101.getImabci().equals("A"))
@@ -765,7 +750,7 @@ public class CF4101 extends CGenerico {
 						if (f4101.getImabci().equals("C"))
 							rdoIMABCMClasificacionCF4101.setSelected(true);
 
-						if (f4101.getImabci().equals("S"))
+						if (f4101.getImabci().equals("D"))
 							rdoIMABCMSinClasificacionF4101.setSelected(true);
 
 						txtIMSLDF4101
@@ -813,6 +798,169 @@ public class CF4101 extends CGenerico {
 			@Override
 			public void guardar() {
 				// TODO Auto-generated method stub
+				
+				boolean guardar = true;
+				if (clave == 0)
+					guardar = validar();
+				if (guardar) {
+					F4101 f4101 = new F4101();
+					double claveLong = 0;
+					if (clave == claveLong) {
+						double numero = servicioF00021.Numero("5", "JE");
+						if (numero != 0)
+							clave = numero + 1;
+						else
+							clave = 1;
+					}
+				
+					f4101.setImitm(clave);
+					f4101.setImlitm(txtArticuloIMLITMF4101.getValue());
+					f4101.setImdsc1(txtIMDSC1F4101.getValue());
+					f4101.setImdsc2(txtIMDSC2F4101.getValue());
+					f4101.setImsrtx(txtIMSRTXF4101.getValue());
+					f4101.setImstkt(buscadorIMSTKT.obtenerCaja());
+					f4101.setImglpt(buscadorIMGLPT.obtenerCaja());
+					f4101.setImuom1(buscadorIMUOM1.obtenerCaja());
+					f4101.setImlnty(txtIMLNTYF4101.getValue());
+					f4101.setImbpfg(buscadorIMBPFG.obtenerCaja());
+			
+					if(chxIMBACKF4101.isChecked()){
+						f4101.setImback("Y");
+					}else{
+						f4101.setImback("N");
+					}
+					
+					if(chxIMCKAVF4101.isChecked()){
+						f4101.setImckav("Y");
+					}else{
+						f4101.setImckav("N");
+					}
+					
+					f4101.setImclev(buscadorIMCLEV.obtenerCaja());
+					f4101.setImplev(buscadorIMPLEV.obtenerCaja());
+					f4101.setImpplv(buscadorIMPPLV.obtenerCaja());
+					f4101.setImpmth(buscadorIMPMTH.obtenerCaja());
+					f4101.setImcmeth(buscadorIMCMETH.obtenerCaja());
+					f4101.setImcmgl(buscadorIMCMGL.obtenerCaja());
+					f4101.setIminmg(buscadorIMINMG.obtenerCaja());
+					f4101.setImifla(buscadorIMIFLA.obtenerCaja());
+					f4101.setImtfla(buscadorIMTFLA.obtenerCaja());
+					f4101.setImprgr(buscadorIMPRGR.obtenerCaja());
+					f4101.setImrprc(buscadorIMRPRC.obtenerCaja());
+					f4101.setImorpr(buscadorIMORPR.obtenerCaja());
+					f4101.setImdsgp(buscadorIMDSGP.obtenerCaja());
+					
+					if(chxIMXDCKF4101.isChecked()){
+						f4101.setImxdck("Y");
+					}else{
+						f4101.setImxdck("N");
+					}
+					
+					if(chxIMDUALF4101.isChecked()){
+						f4101.setImdual("Y");
+					}else{
+						f4101.setImdual("N");
+					}
+					
+					if(chxIMDPPOF4101.isChecked()){
+						f4101.setImdppo("Y");
+					}else{
+						f4101.setImdppo("N");
+					}
+					
+					if(txtDLTLF4101.getValue()!= null)
+						f4101.setImdltl(Double.parseDouble(txtDLTLF4101.getValue()));
+					
+					if(rdoIMABCSClasificacionAF4101.isSelected()){
+						f4101.setImabcs("A");
+					}
+					
+					if(rdoIMABCSClasificacionBF4101.isSelected()){
+						f4101.setImabcs("B");
+					}
+					
+					if(rdoIMABCSClasificacionCF4101.isSelected()){
+						f4101.setImabcs("C");
+					}
+					
+					if(rdoIMABCSSinClasificacionF4101.isSelected()){
+						f4101.setImabcs("D");
+					}
+					
+					if(rdoIMABCMClasificacionAF4101.isSelected()){
+						f4101.setImabcm("A");
+					}
+					
+					if(rdoIMABCMClasificacionBF4101.isSelected()){
+						f4101.setImabcm("B");
+					}
+					
+					if(rdoIMABCMClasificacionCF4101.isSelected()){
+						f4101.setImabcm("C");
+					}
+					
+					if(rdoIMABCMSinClasificacionF4101.isSelected()){
+						f4101.setImabcm("D");
+					}
+					
+					if(rdoIMABCIClasificacionAF4101.isSelected()){
+						f4101.setImabci("A");
+					}
+					
+					if(rdoIMABCIClasificacionBF4101.isSelected()){
+						f4101.setImabci("B");
+					}
+					
+					if(rdoIMABCIClasificacionCF4101.isSelected()){
+						f4101.setImabci("C");
+					}
+					
+					if(rdoIMABCISinClasificacionF4101.isSelected()){
+						f4101.setImabci("D");
+					}
+					
+					f4101.setImuom2(buscadorIMUOM2.obtenerCaja());
+					f4101.setImuom3(buscadorIMUOM3.obtenerCaja());
+					f4101.setImuom4(buscadorIMUOM4.obtenerCaja());
+					f4101.setImuom6(buscadorIMUOM6.obtenerCaja());
+					f4101.setImuom8(buscadorIMUOM8.obtenerCaja());
+					f4101.setImuom9(buscadorIMUOM9.obtenerCaja());
+					f4101.setImuwum(buscadorIMUWUM.obtenerCaja());
+					f4101.setImuvm1(buscadorIMUVM1.obtenerCaja());
+					f4101.setImsrnr(buscadorIMSRNR.obtenerCaja());
+					f4101.setImlots(buscadorIMLOTS.obtenerCaja());
+					f4101.setImsrce(buscadorIMSRCE.obtenerCaja());
+					f4101.setImcmdm(buscadorIMCMDM.obtenerCaja());
+					f4101.setImlecm(buscadorIMLECM.obtenerCaja());
+					if(txtIMSLDF4101.getValue() != null)
+						f4101.setImsld(Double.parseDouble(txtIMSLDF4101.getValue()));
+					if(txtIMBBDDF4101.getValue() != null)
+						f4101.setImbbdd(Double.parseDouble(txtIMBBDDF4101.getValue()));
+					if(txtIMSBDDF4101.getValue() != null)
+						f4101.setImsbdd(Double.parseDouble(txtIMSBDDF4101.getValue()));
+					if(txtIMLEDDF4101.getValue() != null)
+						f4101.setImledd(Double.parseDouble(txtIMLEDDF4101.getValue()));
+					if(txtIMPEFDF4101.getValue()!= null)
+						f4101.setImpefd(Double.parseDouble(txtIMPEFDF4101.getValue()));
+					if(txtIMU1DDF4101.getValue() != null)
+						f4101.setImu1dd(Double.parseDouble(txtIMU1DDF4101.getValue()));
+					if(txtIMU2DDF4101.getValue() != null)
+						f4101.setImu2dd(Double.parseDouble(txtIMU2DDF4101.getValue()));
+					if(txtIMU3DDF4101.getValue() != null)
+						f4101.setImu3dd(Double.parseDouble(txtIMU3DDF4101.getValue()));
+					if(txtIMU4DDF4101.getValue() != null)
+						f4101.setImu4dd(Double.parseDouble(txtIMU4DDF4101.getValue()));
+					if(txtIMU5DDF4101.getValue() != null)
+						f4101.setImu5dd(Double.parseDouble(txtIMU5DDF4101.getValue()));
+					
+					servicioF4101.guardar(f4101);
+					msj.mensajeInformacion(Mensaje.guardado);
+					limpiar();
+					catalogo.actualizarLista(servicioF4101
+							.buscarTodosOrdenados());
+					
+				}
+
 
 			}
 
@@ -947,16 +1095,12 @@ public class CF4101 extends CGenerico {
 		txtIMSRTXF4101.setValue("");
 		txtIMLNTYF4101.setValue("");
 		lblIMLNTYF4101.setValue("");
-		txtIMALKYF4101.setValue("");
-		lblIMALKYF4101.setValue("");
 		chxIMBACKF4101.setChecked(false);
 		chxIMCKAVF4101.setChecked(false);
 		chxIMXDCKF4101.setChecked(false);
 		chxIMDUALF4101.setChecked(false);
 		chxIMDPPOF4101.setChecked(false);
 		txtDLTLF4101.setValue("");
-		txtCMDCDEF4101.setValue("");
-		txtUNSPSCF4101.setValue("");
 		rdgIMABCSF4101.setSelectedItem(null);
 		rdgIMABCMF4101.setSelectedItem(null);
 		rdgIMABCIF4101.setSelectedItem(null);
@@ -1024,13 +1168,10 @@ public class CF4101 extends CGenerico {
 				|| txtIMDSC2F4101.getText().compareTo("") != 0
 				|| txtIMSRTXF4101.getText().compareTo("") != 0
 				|| txtIMLNTYF4101.getText().compareTo("") != 0
-				|| txtIMALKYF4101.getText().compareTo("") != 0
 				|| chxIMBACKF4101.isChecked() || chxIMCKAVF4101.isChecked()
 				|| chxIMXDCKF4101.isChecked() || chxIMDUALF4101.isChecked()
 				|| chxIMDPPOF4101.isChecked()
 				|| txtDLTLF4101.getText().compareTo("") != 0
-				|| txtCMDCDEF4101.getText().compareTo("") != 0
-				|| txtUNSPSCF4101.getText().compareTo("") != 0
 				|| rdoIMABCSClasificacionAF4101.isChecked()
 				|| rdoIMABCSClasificacionBF4101.isChecked()
 				|| rdoIMABCMClasificacionCF4101.isChecked()
@@ -1175,62 +1316,6 @@ public class CF4101 extends CGenerico {
 			}
 		};
 		catalogo.setParent(catalogoF4101);
-	}
-
-	@Listen("onClick = #btnBuscarIMALKYF4101")
-	public void mostrarCatalogoF0101() {
-		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoDirecciones = new Catalogo<F0101>(divCatalogoF0101, "F0101",
-				listF0101, true, false, false, "Nº direccion",
-				"Nombre alfabetico", "Direccion larga",
-				"Clasificacion industria", "Tipo bus", "ID fiscal") {
-
-			@Override
-			protected List<F0101> buscar(List<String> valores) {
-
-				List<F0101> lista = new ArrayList<F0101>();
-
-				for (F0101 f01 : listF0101) {
-					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.startsWith(valores.get(0))
-							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
-							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
-							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
-							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
-							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
-						lista.add(f01);
-					}
-				}
-				return lista;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0101 f013) {
-				String[] registros = new String[6];
-				registros[0] = String.valueOf(f013.getAban8());
-				registros[1] = f013.getAbalph();
-				registros[2] = f013.getAbalky();
-				registros[3] = f013.getAbsic();
-				registros[4] = f013.getAbat1();
-				registros[5] = f013.getAbtax();
-				return registros;
-			}
-		};
-		catalogoDirecciones.setParent(divCatalogoF0101);
-		catalogoDirecciones.doModal();
-	}
-
-	@Listen("onSeleccion = #divCatalogoF0101")
-	public void seleccionCatalogoF0101() {
-		F0101 f0101 = catalogoDirecciones.objetoSeleccionadoDelCatalogo();
-		txtIMALKYF4101.setValue(String.valueOf(f0101.getAban8()));
-		lblIMALKYF4101.setValue(f0101.getAbac02());
-		catalogoDirecciones.setParent(null);
 	}
 
 }
