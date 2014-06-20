@@ -5,6 +5,8 @@ import java.util.List;
 
 import modelo.maestros.F0004;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -31,6 +33,8 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Vbox;
 import org.zkoss.zul.Window;
 
+import servicio.maestros.SF0004;
+
 public abstract class Catalogo<Clase> extends Window {
 
 	private static final long serialVersionUID = 1L;
@@ -43,6 +47,13 @@ public abstract class Catalogo<Clase> extends Window {
 	Textbox txtRT;
 	Label labelRTNombre;
 	Label labelBuscado;
+
+	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+			"/META-INF/ConfiguracionAplicacion.xml");
+
+	public static SF0004 getServicioF4() {
+		return applicationContext.getBean(SF0004.class);
+	}
 
 	public Catalogo(final Component cGenerico, String titulo,
 			List<Clase> lista, boolean emergente, boolean udc, boolean param2,
@@ -235,10 +246,17 @@ public abstract class Catalogo<Clase> extends Window {
 		}
 	}
 
-	public void settearCamposUdc(F0004 f004) {
-		txtSY.setValue(f004.getId().getDtsy());
-		labelBuscado.setValue(f004.getDtdl01());
-		txtRT.setValue(f004.getId().getDtrt());
+	public void settearCamposUdc(String valor1, String valor2) {
+		F0004 f004 = getServicioF4().buscar(valor1, valor2);
+		if (f004 != null) {
+			txtSY.setValue(f004.getId().getDtsy());
+			labelBuscado.setValue(f004.getDtdl01());
+			txtRT.setValue(f004.getId().getDtrt());
+		} else {
+			txtSY.setValue(valor1);
+			labelBuscado.setValue("Tipo UDC NO REGISTRADA AUN");
+			txtRT.setValue(valor2);
+		}
 	}
 
 	protected void pagineo() {

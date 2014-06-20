@@ -63,7 +63,7 @@ public class CF0115 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("01", "PM");
 		buscadorPhtp = new BuscadorUDC("Tipo telefono", 4, listF0005, false,
-				false, false) {
+				false, false,"01", "PM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "PM",

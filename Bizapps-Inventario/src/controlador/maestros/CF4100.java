@@ -83,7 +83,7 @@ public class CF4100 extends CGenerico {
 				.buscarParaUDCOrdenados("46", "ZN");
 
 		buscadorPZONF4100 = new BuscadorUDC("Zona alm", 255, listF0005, false,
-				true, true) {
+				true, true, "46", "ZN") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("46", "ZN",
@@ -92,7 +92,7 @@ public class CF4100 extends CGenerico {
 		};
 
 		buscadorKZONF4100 = new BuscadorUDC("Zona acopio", 255, listF0005,
-				false, true, true) {
+				false, true, true, "46", "ZN") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("46", "ZN",
@@ -101,7 +101,7 @@ public class CF4100 extends CGenerico {
 		};
 
 		buscadorZONRF4100 = new BuscadorUDC("Zona reabast", 255, listF0005,
-				false, true, true) {
+				false, true, true, "46", "ZN") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("46", "ZN",
@@ -112,7 +112,7 @@ public class CF4100 extends CGenerico {
 		List<F0005> listF0005LLDL = servicioF0005.buscarParaUDCOrdenados("M40",
 				"LL");
 		buscadorLLDLF4100 = new BuscadorUDC("Detalle", 255, listF0005LLDL,
-				false, true, true) {
+				false, true, true, "M40", "LL") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("M40", "LL",
@@ -123,7 +123,7 @@ public class CF4100 extends CGenerico {
 		List<F0005> listF0005MIXL = servicioF0005.buscarParaUDCOrdenados("41",
 				"ML");
 		buscadorMIXLF4100 = new BuscadorUDC("Art/Lotes mixtos", 255,
-				listF0005MIXL, false, true, true) {
+				listF0005MIXL, false, true, true, "41", "ML") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "ML",
@@ -134,7 +134,7 @@ public class CF4100 extends CGenerico {
 		List<F0005> listF0005STAG = servicioF0005.buscarParaUDCOrdenados("Y",
 				"N");
 		buscadorSTAGF4100 = new BuscadorUDC("Ubic temp", 255, listF0005STAG,
-				false, true, true) {
+				false, true, true, "Y", "N") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("Y", "N",
