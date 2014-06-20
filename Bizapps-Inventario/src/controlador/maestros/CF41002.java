@@ -85,7 +85,7 @@ public class CF41002 extends CGenerico {
 
 		List<F0005> listF0005 =  servicioF0005.buscarParaUDCOrdenados("00","UM");
 		
-		buscadorUMF41002 = new BuscadorUDC("De UM", 3, listF0005, true,true,true) {
+		buscadorUMF41002 = new BuscadorUDC("De UM", 3, listF0005, true,true,true,"00","UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -93,7 +93,7 @@ public class CF41002 extends CGenerico {
 			}
 		};
 
-		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, listF0005,true,true,true) {
+		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, listF0005,true,true,true,"00","UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",

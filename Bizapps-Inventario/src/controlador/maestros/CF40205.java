@@ -628,7 +628,8 @@ public class CF40205 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005.buscarParaUDCOrdenados("H40",
 				"IV");
 		buscadorIvi = new BuscadorUDC("Interfaz Inventario", 1, listF0005,
-				false, false, false) {
+				false, false, false,"H40",
+				"IV") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "IV",
@@ -639,7 +640,7 @@ public class CF40205 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("41", "9");
 		buscadorGltp = new BuscadorUDC("Compensacion LM", 4, listF0005, false,
-				false, false) {
+				false, false,"41", "9") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "9",
@@ -650,7 +651,7 @@ public class CF40205 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "TV");
 		buscadorTx01 = new BuscadorUDC("Incluir en impto 1", 1, listF0005,
-				false, false, false) {
+				false, false, false,"H00", "TV") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "TV",
@@ -661,7 +662,7 @@ public class CF40205 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "CS");
 		buscadorCsj = new BuscadorUDC("Col diario ventas", 1, listF0005, false,
-				false, false) {
+				false, false,"H41", "CS") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "CS",

@@ -92,7 +92,8 @@ public class CF0008 extends CGenerico {
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
 				"DP");
 		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 255, listaF0005,
-				true, false, false) {
+				true, false, false,"H00",
+				"DP") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DP",

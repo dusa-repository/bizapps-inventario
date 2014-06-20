@@ -36,23 +36,16 @@ public abstract class BuscadorUDC extends Hbox {
 	List<F0005> lista;
 	Textbox cajaTexto;
 	Label nombre;
-	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-			"/META-INF/ConfiguracionAplicacion.xml");
-
-	public static SF0004 getServicioF4() {
-		return applicationContext.getBean(SF0004.class);
-	}
 	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
-			boolean requerido, boolean param1, boolean param2) {
+			boolean requerido, boolean param1, boolean param2, final String valor1, final String valor2) {
 		super();
 		this.setWidth("100%");
-
 		Label label = new Label(etiqueta + " :");
 		label.setClass("etiqueta");
 		label.setWidth("auto");
 		label.setHflex("1");
 		label.setStyle("color:#636363");
-
+		
 		cajaTexto = new Textbox();
 		cajaTexto.setHflex("1");
 		// cajaTexto.setReadonly(true);
@@ -105,7 +98,7 @@ public abstract class BuscadorUDC extends Hbox {
 		boton.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 			@Override
 			public void onEvent(Event arg0) throws Exception {
-				mostrarCatalogo();
+				mostrarCatalogo(valor1,valor2);
 			}
 		});
 		divCatalogo.addEventListener("onSeleccion", new EventListener<Event>() {
@@ -168,7 +161,7 @@ public abstract class BuscadorUDC extends Hbox {
 		}
 	}
 
-	private void mostrarCatalogo() {
+	private void mostrarCatalogo(String valor1, String valor2) {
 
 		final List<F0005> listF0005 = lista;
 		
@@ -209,11 +202,7 @@ public abstract class BuscadorUDC extends Hbox {
 				return registros;
 			}
 		};
-		if(!listF0005.isEmpty()){
-			F0004 f004 = getServicioF4().buscar(listF0005.get(0).getId().getDrsy(), listF0005.get(0).getId().getDrrt());
-			System.out.println(f004);
-			catalogo.settearCamposUdc(f004);
-		}
+		catalogo.settearCamposUdc(valor1,valor2);
 		catalogo.setParent(divCatalogo);
 		catalogo.doModal();
 	}

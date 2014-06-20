@@ -214,7 +214,7 @@ public class CF4101 extends CGenerico {
 		List<F0005> listaF0005 = servicioF0005
 				.buscarParaUDCOrdenados("41", "I");
 		buscadorIMSTKT = new BuscadorUDC("Tipo alm", 1, listaF0005, true,
-				false, false) {
+				false, false,"41", "I") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "I",
@@ -226,7 +226,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMGLPT (41,9) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41", "9");
 		buscadorIMGLPT = new BuscadorUDC("Clasif libro mayor", 4, listaF0005,
-				false, false, false) {
+				false, false, false,"41", "9") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "9",
@@ -238,7 +238,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM1 (00,UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM1 = new BuscadorUDC("Unidad medida", 2, listaF0005, true,
-				false, false) {
+				false, false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -250,7 +250,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMBPFG (41B,BF) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41B", "BF");
 		buscadorIMBPFG = new BuscadorUDC("Prod granel/emb", 1, listaF0005,
-				false, false, false) {
+				false, false, false,"41B", "BF") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41B", "BF",
@@ -262,7 +262,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMCLEV (H40, CL) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "CL");
 		buscadorIMCLEV = new BuscadorUDC("Nivel costo inventario", 1,
-				listaF0005, false, false, false) {
+				listaF0005, false, false, false,"H40", "CL") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "CL",
@@ -274,7 +274,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMPLEV (H40, PL) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "PL");
 		buscadorIMPLEV = new BuscadorUDC("Nivel precio venta", 1, listaF0005,
-				false, false, false) {
+				false, false, false,"H40", "PL") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "PL",
@@ -286,7 +286,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMPPLV (H40, PP) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "PP");
 		buscadorIMPPLV = new BuscadorUDC("Nivel precio compra", 1, listaF0005,
-				false, false, false) {
+				false, false, false,"H40", "PP") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "PP",
@@ -298,7 +298,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMPMTH (H41, PM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "PM");
 		buscadorIMPMTH = new BuscadorUDC("Mét fijación precios juegos/config",
-				1, listaF0005, false, false, false) {
+				1, listaF0005, false, false, false,"H41", "PM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "PM",
@@ -310,7 +310,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMCMETH (41, CM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41", "CM");
 		buscadorIMCMETH = new BuscadorUDC("Método configurador cálculo costos",
-				1, listaF0005, false, false, false) {
+				1, listaF0005, false, false, false,"41", "CM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "CM",
@@ -322,7 +322,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMCMGL (H40, CM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "CM");
 		buscadorIMCMGL = new BuscadorUDC("Método compromiso", 1, listaF0005,
-				false, false, false) {
+				false, false, false,"H40", "CM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "CM",
@@ -334,7 +334,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMINMG (40, PM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "PM");
 		buscadorIMINMG = new BuscadorUDC("Mensaje impr", 10, listaF0005, false,
-				false, false) {
+				false, false,"40", "PM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "PM",
@@ -346,7 +346,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMIFLA (40, FL) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "FL");
 		buscadorIMIFLA = new BuscadorUDC("Mensaje intermitente artículo", 2,
-				listaF0005, false, false, false) {
+				listaF0005, false, false, false,"40", "FL") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "FL",
@@ -358,7 +358,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMTFLA (H40, ST) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "ST");
 		buscadorIMTFLA = new BuscadorUDC("Conversión UM estándar", 2,
-				listaF0005, false, false, false) {
+				listaF0005, false, false, false,"H40", "ST") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "ST",
@@ -370,7 +370,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMPRGR (40, PI) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "PI");
 		buscadorIMPRGR = new BuscadorUDC("Gp precios art", 8, listaF0005,
-				false, false, false) {
+				false, false, false,"40", "PI") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "PI",
@@ -382,7 +382,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMRPRC (40, PI) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "PI");
 		buscadorIMRPRC = new BuscadorUDC("Retarif precios gp", 8, listaF0005,
-				false, false, false) {
+				false, false, false,"40", "PI") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "PI",
@@ -394,7 +394,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMORPR (40, PI) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "PI");
 		buscadorIMORPR = new BuscadorUDC("Retarif precio órdenes", 8,
-				listaF0005, false, false, false) {
+				listaF0005, false, false, false,"40", "PI") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "PI",
@@ -406,7 +406,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMDSGP (41B, DG) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41B", "DG");
 		buscadorIMDSGP = new BuscadorUDC("Grupo despacho", 10, listaF0005,
-				false, false, false) {
+				false, false, false,"41B", "DG") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41B", "DG",
@@ -418,7 +418,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM1 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorPrincipalIMUOM1 = new BuscadorUDC("Principal", 2, listaF0005,
-				false, false, false) {
+				false, false, false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -430,7 +430,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM2 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM2 = new BuscadorUDC("Secundario", 2, listaF0005, false,
-				false, false) {
+				false, false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -442,7 +442,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM3 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM3 = new BuscadorUDC("Compras", 2, listaF0005, false,
-				false, false) {
+				false, false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -454,7 +454,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM4 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM4 = new BuscadorUDC("Tarificación", 2, listaF0005, false,
-				false, false) {
+				false, false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -466,7 +466,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM6 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM6 = new BuscadorUDC("Envío", 2, listaF0005, false, false,
-				false) {
+				false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -478,7 +478,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM8 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM8 = new BuscadorUDC("Producción", 2, listaF0005, false,
-				false, false) {
+				false, false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -490,7 +490,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM9 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM9 = new BuscadorUDC("Componente", 2, listaF0005, false,
-				false, false) {
+				false, false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -502,7 +502,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUWUM (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUWUM = new BuscadorUDC("Peso", 2, listaF0005, false, false,
-				false) {
+				false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -514,7 +514,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUVM1 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUVM1 = new BuscadorUDC("Volúmen", 2, listaF0005, false,
-				false, false) {
+				false, false,"00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -526,7 +526,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMSRNR (H41, NR) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "NR");
 		buscadorIMSRNR = new BuscadorUDC("N° serie obligatorio", 1,
-				listaF0005, false, false, false) {
+				listaF0005, false, false, false,"H41", "NR") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "NR",
@@ -538,7 +538,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMLOTS (41, L) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41", "L");
 		buscadorIMLOTS = new BuscadorUDC("Código estado lote", 1, listaF0005,
-				false, false, false) {
+				false, false, false,"41", "L") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "L",
@@ -550,7 +550,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMSRCE (H41, SR) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "SR");
 		buscadorIMSRCE = new BuscadorUDC("Tipo proceso lote", 1, listaF0005,
-				false, false, false) {
+				false, false, false,"H41", "SR") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "SR",
@@ -562,7 +562,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMCMDM (H40, CD) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "CD");
 		buscadorIMCMDM = new BuscadorUDC("Método fecha compromiso", 1,
-				listaF0005, false, false, false) {
+				listaF0005, false, false, false,"H40", "CD") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "CD",
@@ -574,7 +574,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMLECM (H41, EC) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "EC");
 		buscadorIMLECM = new BuscadorUDC("Método fecha caducidad lote", 1,
-				listaF0005, false, false, false) {
+				listaF0005, false, false, false,"H41", "EC") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "EC",

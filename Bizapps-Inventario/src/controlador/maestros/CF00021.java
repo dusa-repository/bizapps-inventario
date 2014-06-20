@@ -77,7 +77,7 @@ public class CF00021 extends CGenerico {
 		mostrarCatalogo();
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","DT");
 		buscadorDCT = new BuscadorUDC("Tipo Documento", 10,
-				listaF0005, true, false, false) {
+				listaF0005, true, false, false,"00","DT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
@@ -86,7 +86,7 @@ public class CF00021 extends CGenerico {
 		};
 		List<F0005> listF0005 = servicioF0005.buscarParaUDCOrdenados("00","DT");
 		buscadorSMAS = new BuscadorUDC("Igual a tipo doc", 10,
-				listF0005, false, false, false) {
+				listF0005, false, false, false,"00","DT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
@@ -95,7 +95,7 @@ public class CF00021 extends CGenerico {
 		};
 		List<F0005> lisF0005 = servicioF0005.buscarParaUDCOrdenados("H00","IM");
 		buscadorINCRUS = new BuscadorUDC("Digito Incrus", 10,
-				lisF0005, false, false, false) {
+				lisF0005, false, false, false,"H00","IM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "IM",

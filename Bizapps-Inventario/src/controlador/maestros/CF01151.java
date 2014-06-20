@@ -67,7 +67,7 @@ public class CF01151 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("01", "HI");
 		buscadorEhier = new BuscadorUDC("Indicador Mensajes", 19, listF0005,
-				false, false, false) {
+				false, false, false,"01", "HI") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "HI",
@@ -78,7 +78,7 @@ public class CF01151 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CF");
 		buscadorEclass = new BuscadorUDC("Cat. Direccion Electronica", 3,
-				listF0005, false, false, false) {
+				listF0005, false, false, false,"01", "CF") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "CF",

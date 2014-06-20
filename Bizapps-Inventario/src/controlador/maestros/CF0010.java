@@ -114,7 +114,8 @@ public class CF0010 extends CGenerico {
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
 				"DP");
 		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listaF0005,
-				true, false, false) {
+				true, false, false,"H00",
+				"DP") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DP",
@@ -123,7 +124,7 @@ public class CF0010 extends CGenerico {
 		};
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "DA");
 		buscadorCALD = new BuscadorUDC("Numero periodos", 2, listaF0005, false,
-				false, false) {
+				false, false,"H00", "DA") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DA",
