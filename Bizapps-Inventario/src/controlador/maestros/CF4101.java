@@ -5,12 +5,15 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
+import modelo.maestros.F00021;
 import modelo.maestros.F0005;
 import modelo.maestros.F4101;
+import modelo.pk.F00021PK;
 
-
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -24,6 +27,7 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Radio;
 import org.zkoss.zul.Radiogroup;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
@@ -207,14 +211,23 @@ public class CF4101 extends CGenerico {
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
-
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		txtArticuloF4101.setFocus(true);
 
 		/* UDC IMSTKT (41,I) */
 		List<F0005> listaF0005 = servicioF0005
 				.buscarParaUDCOrdenados("41", "I");
 		buscadorIMSTKT = new BuscadorUDC("Tipo alm", 1, listaF0005, true,
-				false, false,"41", "I") {
+				false, false, "41", "I") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "I",
@@ -226,7 +239,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMGLPT (41,9) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41", "9");
 		buscadorIMGLPT = new BuscadorUDC("Clasif libro mayor", 4, listaF0005,
-				false, false, false,"41", "9") {
+				false, false, false, "41", "9") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "9",
@@ -238,7 +251,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM1 (00,UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM1 = new BuscadorUDC("Unidad medida", 2, listaF0005, true,
-				false, false,"00", "UM") {
+				false, false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -250,7 +263,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMBPFG (41B,BF) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41B", "BF");
 		buscadorIMBPFG = new BuscadorUDC("Prod granel/emb", 1, listaF0005,
-				false, false, false,"41B", "BF") {
+				false, false, false, "41B", "BF") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41B", "BF",
@@ -262,7 +275,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMCLEV (H40, CL) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "CL");
 		buscadorIMCLEV = new BuscadorUDC("Nivel costo inventario", 1,
-				listaF0005, false, false, false,"H40", "CL") {
+				listaF0005, false, false, false, "H40", "CL") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "CL",
@@ -274,7 +287,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMPLEV (H40, PL) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "PL");
 		buscadorIMPLEV = new BuscadorUDC("Nivel precio venta", 1, listaF0005,
-				false, false, false,"H40", "PL") {
+				false, false, false, "H40", "PL") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "PL",
@@ -286,7 +299,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMPPLV (H40, PP) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "PP");
 		buscadorIMPPLV = new BuscadorUDC("Nivel precio compra", 1, listaF0005,
-				false, false, false,"H40", "PP") {
+				false, false, false, "H40", "PP") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "PP",
@@ -298,7 +311,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMPMTH (H41, PM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "PM");
 		buscadorIMPMTH = new BuscadorUDC("Mét fijación precios juegos/config",
-				1, listaF0005, false, false, false,"H41", "PM") {
+				1, listaF0005, false, false, false, "H41", "PM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "PM",
@@ -310,7 +323,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMCMETH (41, CM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41", "CM");
 		buscadorIMCMETH = new BuscadorUDC("Método configurador cálculo costos",
-				1, listaF0005, false, false, false,"41", "CM") {
+				1, listaF0005, false, false, false, "41", "CM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "CM",
@@ -322,7 +335,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMCMGL (H40, CM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "CM");
 		buscadorIMCMGL = new BuscadorUDC("Método compromiso", 1, listaF0005,
-				false, false, false,"H40", "CM") {
+				false, false, false, "H40", "CM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "CM",
@@ -334,7 +347,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMINMG (40, PM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "PM");
 		buscadorIMINMG = new BuscadorUDC("Mensaje impr", 10, listaF0005, false,
-				false, false,"40", "PM") {
+				false, false, "40", "PM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "PM",
@@ -346,7 +359,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMIFLA (40, FL) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "FL");
 		buscadorIMIFLA = new BuscadorUDC("Mensaje intermitente artículo", 2,
-				listaF0005, false, false, false,"40", "FL") {
+				listaF0005, false, false, false, "40", "FL") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "FL",
@@ -358,7 +371,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMTFLA (H40, ST) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "ST");
 		buscadorIMTFLA = new BuscadorUDC("Conversión UM estándar", 2,
-				listaF0005, false, false, false,"H40", "ST") {
+				listaF0005, false, false, false, "H40", "ST") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "ST",
@@ -370,7 +383,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMPRGR (40, PI) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "PI");
 		buscadorIMPRGR = new BuscadorUDC("Gp precios art", 8, listaF0005,
-				false, false, false,"40", "PI") {
+				false, false, false, "40", "PI") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "PI",
@@ -382,7 +395,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMRPRC (40, PI) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "PI");
 		buscadorIMRPRC = new BuscadorUDC("Retarif precios gp", 8, listaF0005,
-				false, false, false,"40", "PI") {
+				false, false, false, "40", "PI") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "PI",
@@ -394,7 +407,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMORPR (40, PI) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("40", "PI");
 		buscadorIMORPR = new BuscadorUDC("Retarif precio órdenes", 8,
-				listaF0005, false, false, false,"40", "PI") {
+				listaF0005, false, false, false, "40", "PI") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "PI",
@@ -406,7 +419,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMDSGP (41B, DG) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41B", "DG");
 		buscadorIMDSGP = new BuscadorUDC("Grupo despacho", 10, listaF0005,
-				false, false, false,"41B", "DG") {
+				false, false, false, "41B", "DG") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41B", "DG",
@@ -418,7 +431,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM1 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorPrincipalIMUOM1 = new BuscadorUDC("Principal", 2, listaF0005,
-				false, false, false,"00", "UM") {
+				false, false, false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -430,7 +443,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM2 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM2 = new BuscadorUDC("Secundario", 2, listaF0005, false,
-				false, false,"00", "UM") {
+				false, false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -442,7 +455,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM3 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM3 = new BuscadorUDC("Compras", 2, listaF0005, false,
-				false, false,"00", "UM") {
+				false, false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -454,7 +467,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM4 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM4 = new BuscadorUDC("Tarificación", 2, listaF0005, false,
-				false, false,"00", "UM") {
+				false, false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -466,7 +479,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM6 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM6 = new BuscadorUDC("Envío", 2, listaF0005, false, false,
-				false,"00", "UM") {
+				false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -478,7 +491,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM8 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM8 = new BuscadorUDC("Producción", 2, listaF0005, false,
-				false, false,"00", "UM") {
+				false, false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -490,7 +503,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUOM9 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUOM9 = new BuscadorUDC("Componente", 2, listaF0005, false,
-				false, false,"00", "UM") {
+				false, false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -502,7 +515,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUWUM (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUWUM = new BuscadorUDC("Peso", 2, listaF0005, false, false,
-				false,"00", "UM") {
+				false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -514,7 +527,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMUVM1 (00, UM) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "UM");
 		buscadorIMUVM1 = new BuscadorUDC("Volúmen", 2, listaF0005, false,
-				false, false,"00", "UM") {
+				false, false, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -525,8 +538,8 @@ public class CF4101 extends CGenerico {
 
 		/* UDC IMSRNR (H41, NR) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "NR");
-		buscadorIMSRNR = new BuscadorUDC("N° serie obligatorio", 1,
-				listaF0005, false, false, false,"H41", "NR") {
+		buscadorIMSRNR = new BuscadorUDC("N° serie obligatorio", 1, listaF0005,
+				false, false, false, "H41", "NR") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "NR",
@@ -538,7 +551,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMLOTS (41, L) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("41", "L");
 		buscadorIMLOTS = new BuscadorUDC("Código estado lote", 1, listaF0005,
-				false, false, false,"41", "L") {
+				false, false, false, "41", "L") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "L",
@@ -550,7 +563,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMSRCE (H41, SR) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "SR");
 		buscadorIMSRCE = new BuscadorUDC("Tipo proceso lote", 1, listaF0005,
-				false, false, false,"H41", "SR") {
+				false, false, false, "H41", "SR") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "SR",
@@ -562,7 +575,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMCMDM (H40, CD) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H40", "CD");
 		buscadorIMCMDM = new BuscadorUDC("Método fecha compromiso", 1,
-				listaF0005, false, false, false,"H40", "CD") {
+				listaF0005, false, false, false, "H40", "CD") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "CD",
@@ -574,7 +587,7 @@ public class CF4101 extends CGenerico {
 		/* UDC IMLECM (H41, EC) */
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "EC");
 		buscadorIMLECM = new BuscadorUDC("Método fecha caducidad lote", 1,
-				listaF0005, false, false, false,"H41", "EC") {
+				listaF0005, false, false, false, "H41", "EC") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "EC",
@@ -717,42 +730,48 @@ public class CF4101 extends CGenerico {
 						txtDLTLF4101
 								.setValue(String.valueOf(f4101.getImdltl()));
 
-						if (f4101.getImabcs().equals("A"))
-							rdoIMABCSClasificacionAF4101.setSelected(true);
+						if (f4101.getImabcs() != null) {
+							if (f4101.getImabcs().equals("A"))
+								rdoIMABCSClasificacionAF4101.setSelected(true);
 
-						if (f4101.getImabcs().equals("B"))
-							rdoIMABCSClasificacionBF4101.setSelected(true);
+							if (f4101.getImabcs().equals("B"))
+								rdoIMABCSClasificacionBF4101.setSelected(true);
 
-						if (f4101.getImabcs().equals("C"))
-							rdoIMABCSClasificacionCF4101.setSelected(true);
+							if (f4101.getImabcs().equals("C"))
+								rdoIMABCSClasificacionCF4101.setSelected(true);
 
-						if (f4101.getImabcs().equals("D"))
-							rdoIMABCSSinClasificacionF4101.setSelected(true);
+							if (f4101.getImabcs().equals("D"))
+								rdoIMABCSSinClasificacionF4101
+										.setSelected(true);
+						}
+						if (f4101.getImabcm() != null) {
+							if (f4101.getImabcm().equals("A"))
+								rdoIMABCMClasificacionAF4101.setSelected(true);
 
-						if (f4101.getImabcm().equals("A"))
-							rdoIMABCMClasificacionAF4101.setSelected(true);
+							if (f4101.getImabcm().equals("B"))
+								rdoIMABCMClasificacionBF4101.setSelected(true);
 
-						if (f4101.getImabcm().equals("B"))
-							rdoIMABCMClasificacionBF4101.setSelected(true);
+							if (f4101.getImabcm().equals("C"))
+								rdoIMABCMClasificacionCF4101.setSelected(true);
 
-						if (f4101.getImabcm().equals("C"))
-							rdoIMABCMClasificacionCF4101.setSelected(true);
+							if (f4101.getImabcm().equals("D"))
+								rdoIMABCMSinClasificacionF4101
+										.setSelected(true);
+						}
+						if (f4101.getImabci() != null) {
+							if (f4101.getImabci().equals("A"))
+								rdoIMABCMClasificacionAF4101.setSelected(true);
 
-						if (f4101.getImabcm().equals("D"))
-							rdoIMABCMSinClasificacionF4101.setSelected(true);
+							if (f4101.getImabci().equals("B"))
+								rdoIMABCMClasificacionBF4101.setSelected(true);
 
-						if (f4101.getImabci().equals("A"))
-							rdoIMABCMClasificacionAF4101.setSelected(true);
+							if (f4101.getImabci().equals("C"))
+								rdoIMABCMClasificacionCF4101.setSelected(true);
 
-						if (f4101.getImabci().equals("B"))
-							rdoIMABCMClasificacionBF4101.setSelected(true);
-
-						if (f4101.getImabci().equals("C"))
-							rdoIMABCMClasificacionCF4101.setSelected(true);
-
-						if (f4101.getImabci().equals("D"))
-							rdoIMABCMSinClasificacionF4101.setSelected(true);
-
+							if (f4101.getImabci().equals("D"))
+								rdoIMABCMSinClasificacionF4101
+										.setSelected(true);
+						}
 						txtIMSLDF4101
 								.setValue(String.valueOf(f4101.getImsld()));
 						txtIMU1DDF4101.setValue(String.valueOf(f4101
@@ -798,21 +817,58 @@ public class CF4101 extends CGenerico {
 			@Override
 			public void guardar() {
 				// TODO Auto-generated method stub
-				
+
 				boolean guardar = true;
 				if (clave == 0)
 					guardar = validar();
 				if (guardar) {
 					F4101 f4101 = new F4101();
 					double claveLong = 0;
-					if (clave == claveLong) {
-						double numero = servicioF00021.Numero("5", "JE");
-						if (numero != 0)
-							clave = numero + 1;
-						else
-							clave = 1;
+					synchronized (this) {
+						while (!nextNumber) {
+							try {
+								wait();
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+						}
+						nextNumber = false;
+
+						try {
+							if (clave == claveLong) {
+								double numero = servicioF00021
+										.Numero("4", "JE");
+								if (numero != 0) {
+									clave = numero + 1;
+									F00021 f021 = servicioF00021.buscar("4",
+											"JE");
+									System.out.println(f021);
+									f021.setNln001(clave);
+									servicioF00021.guardar(f021);
+								} else {
+									clave = 1;
+									F00021 f021 = new F00021();
+									F00021PK clave21 = new F00021PK();
+									clave21.setNldct("JE");
+									clave21.setNlkco("4");
+									clave21.setNlctry((double) 0);
+									clave21.setNlfy((double) 0);
+									f021.setId(clave21);
+									f021.setNln001(clave);
+									servicioF00021.guardar(f021);
+								}
+							}
+						} catch (NullPointerException e) {
+							nextNumber = true;
+						}
 					}
-				
+					synchronized (this) {
+						nextNumber = true;
+						notifyAll();
+					}
+					System.out.println("clave" + clave);
 					f4101.setImitm(clave);
 					f4101.setImlitm(txtArticuloIMLITMF4101.getValue());
 					f4101.setImdsc1(txtIMDSC1F4101.getValue());
@@ -823,19 +879,19 @@ public class CF4101 extends CGenerico {
 					f4101.setImuom1(buscadorIMUOM1.obtenerCaja());
 					f4101.setImlnty(txtIMLNTYF4101.getValue());
 					f4101.setImbpfg(buscadorIMBPFG.obtenerCaja());
-			
-					if(chxIMBACKF4101.isChecked()){
+
+					if (chxIMBACKF4101.isChecked()) {
 						f4101.setImback("Y");
-					}else{
+					} else {
 						f4101.setImback("N");
 					}
-					
-					if(chxIMCKAVF4101.isChecked()){
+
+					if (chxIMCKAVF4101.isChecked()) {
 						f4101.setImckav("Y");
-					}else{
+					} else {
 						f4101.setImckav("N");
 					}
-					
+
 					f4101.setImclev(buscadorIMCLEV.obtenerCaja());
 					f4101.setImplev(buscadorIMPLEV.obtenerCaja());
 					f4101.setImpplv(buscadorIMPPLV.obtenerCaja());
@@ -849,76 +905,77 @@ public class CF4101 extends CGenerico {
 					f4101.setImrprc(buscadorIMRPRC.obtenerCaja());
 					f4101.setImorpr(buscadorIMORPR.obtenerCaja());
 					f4101.setImdsgp(buscadorIMDSGP.obtenerCaja());
-					
-					if(chxIMXDCKF4101.isChecked()){
+
+					if (chxIMXDCKF4101.isChecked()) {
 						f4101.setImxdck("Y");
-					}else{
+					} else {
 						f4101.setImxdck("N");
 					}
-					
-					if(chxIMDUALF4101.isChecked()){
+
+					if (chxIMDUALF4101.isChecked()) {
 						f4101.setImdual("Y");
-					}else{
+					} else {
 						f4101.setImdual("N");
 					}
-					
-					if(chxIMDPPOF4101.isChecked()){
+
+					if (chxIMDPPOF4101.isChecked()) {
 						f4101.setImdppo("Y");
-					}else{
+					} else {
 						f4101.setImdppo("N");
 					}
-					
-					if(txtDLTLF4101.getValue()!= null)
-						f4101.setImdltl(Double.parseDouble(txtDLTLF4101.getValue()));
-					
-					if(rdoIMABCSClasificacionAF4101.isSelected()){
+
+					if (txtDLTLF4101.getText().compareTo("") != 0)
+						f4101.setImdltl(Double.parseDouble(txtDLTLF4101
+								.getValue()));
+
+					if (rdoIMABCSClasificacionAF4101.isSelected()) {
 						f4101.setImabcs("A");
 					}
-					
-					if(rdoIMABCSClasificacionBF4101.isSelected()){
+
+					if (rdoIMABCSClasificacionBF4101.isSelected()) {
 						f4101.setImabcs("B");
 					}
-					
-					if(rdoIMABCSClasificacionCF4101.isSelected()){
+
+					if (rdoIMABCSClasificacionCF4101.isSelected()) {
 						f4101.setImabcs("C");
 					}
-					
-					if(rdoIMABCSSinClasificacionF4101.isSelected()){
+
+					if (rdoIMABCSSinClasificacionF4101.isSelected()) {
 						f4101.setImabcs("D");
 					}
-					
-					if(rdoIMABCMClasificacionAF4101.isSelected()){
+
+					if (rdoIMABCMClasificacionAF4101.isSelected()) {
 						f4101.setImabcm("A");
 					}
-					
-					if(rdoIMABCMClasificacionBF4101.isSelected()){
+
+					if (rdoIMABCMClasificacionBF4101.isSelected()) {
 						f4101.setImabcm("B");
 					}
-					
-					if(rdoIMABCMClasificacionCF4101.isSelected()){
+
+					if (rdoIMABCMClasificacionCF4101.isSelected()) {
 						f4101.setImabcm("C");
 					}
-					
-					if(rdoIMABCMSinClasificacionF4101.isSelected()){
+
+					if (rdoIMABCMSinClasificacionF4101.isSelected()) {
 						f4101.setImabcm("D");
 					}
-					
-					if(rdoIMABCIClasificacionAF4101.isSelected()){
+
+					if (rdoIMABCIClasificacionAF4101.isSelected()) {
 						f4101.setImabci("A");
 					}
-					
-					if(rdoIMABCIClasificacionBF4101.isSelected()){
+
+					if (rdoIMABCIClasificacionBF4101.isSelected()) {
 						f4101.setImabci("B");
 					}
-					
-					if(rdoIMABCIClasificacionCF4101.isSelected()){
+
+					if (rdoIMABCIClasificacionCF4101.isSelected()) {
 						f4101.setImabci("C");
 					}
-					
-					if(rdoIMABCISinClasificacionF4101.isSelected()){
+
+					if (rdoIMABCISinClasificacionF4101.isSelected()) {
 						f4101.setImabci("D");
 					}
-					
+
 					f4101.setImuom2(buscadorIMUOM2.obtenerCaja());
 					f4101.setImuom3(buscadorIMUOM3.obtenerCaja());
 					f4101.setImuom4(buscadorIMUOM4.obtenerCaja());
@@ -932,35 +989,44 @@ public class CF4101 extends CGenerico {
 					f4101.setImsrce(buscadorIMSRCE.obtenerCaja());
 					f4101.setImcmdm(buscadorIMCMDM.obtenerCaja());
 					f4101.setImlecm(buscadorIMLECM.obtenerCaja());
-					if(txtIMSLDF4101.getValue() != null)
-						f4101.setImsld(Double.parseDouble(txtIMSLDF4101.getValue()));
-					if(txtIMBBDDF4101.getValue() != null)
-						f4101.setImbbdd(Double.parseDouble(txtIMBBDDF4101.getValue()));
-					if(txtIMSBDDF4101.getValue() != null)
-						f4101.setImsbdd(Double.parseDouble(txtIMSBDDF4101.getValue()));
-					if(txtIMLEDDF4101.getValue() != null)
-						f4101.setImledd(Double.parseDouble(txtIMLEDDF4101.getValue()));
-					if(txtIMPEFDF4101.getValue()!= null)
-						f4101.setImpefd(Double.parseDouble(txtIMPEFDF4101.getValue()));
-					if(txtIMU1DDF4101.getValue() != null)
-						f4101.setImu1dd(Double.parseDouble(txtIMU1DDF4101.getValue()));
-					if(txtIMU2DDF4101.getValue() != null)
-						f4101.setImu2dd(Double.parseDouble(txtIMU2DDF4101.getValue()));
-					if(txtIMU3DDF4101.getValue() != null)
-						f4101.setImu3dd(Double.parseDouble(txtIMU3DDF4101.getValue()));
-					if(txtIMU4DDF4101.getValue() != null)
-						f4101.setImu4dd(Double.parseDouble(txtIMU4DDF4101.getValue()));
-					if(txtIMU5DDF4101.getValue() != null)
-						f4101.setImu5dd(Double.parseDouble(txtIMU5DDF4101.getValue()));
-					
+					if (txtIMSLDF4101.getText().compareTo("") != 0)
+						f4101.setImsld(Double.parseDouble(txtIMSLDF4101
+								.getValue()));
+					if (txtIMBBDDF4101.getText().compareTo("") != 0)
+						f4101.setImbbdd(Double.parseDouble(txtIMBBDDF4101
+								.getValue()));
+					if (txtIMSBDDF4101.getText().compareTo("") != 0)
+						f4101.setImsbdd(Double.parseDouble(txtIMSBDDF4101
+								.getValue()));
+					if (txtIMLEDDF4101.getText().compareTo("") != 0)
+						f4101.setImledd(Double.parseDouble(txtIMLEDDF4101
+								.getValue()));
+					if (txtIMPEFDF4101.getText().compareTo("") != 0)
+						f4101.setImpefd(Double.parseDouble(txtIMPEFDF4101
+								.getValue()));
+					if (txtIMU1DDF4101.getText().compareTo("") != 0)
+						f4101.setImu1dd(Double.parseDouble(txtIMU1DDF4101
+								.getValue()));
+					if (txtIMU2DDF4101.getText().compareTo("") != 0)
+						f4101.setImu2dd(Double.parseDouble(txtIMU2DDF4101
+								.getValue()));
+					if (txtIMU3DDF4101.getText().compareTo("") != 0)
+						f4101.setImu3dd(Double.parseDouble(txtIMU3DDF4101
+								.getValue()));
+					if (txtIMU4DDF4101.getText().compareTo("") != 0)
+						f4101.setImu4dd(Double.parseDouble(txtIMU4DDF4101
+								.getValue()));
+					if (txtIMU5DDF4101.getText().compareTo("") != 0)
+						f4101.setImu5dd(Double.parseDouble(txtIMU5DDF4101
+								.getValue()));
+
 					servicioF4101.guardar(f4101);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 					catalogo.actualizarLista(servicioF4101
 							.buscarTodosOrdenados());
-					
-				}
 
+				}
 
 			}
 
@@ -982,7 +1048,7 @@ public class CF4101 extends CGenerico {
 			public void salir() {
 				// TODO Auto-generated method stub
 				cerrarVentana(divVF4101,
-						"Trabajo con Examinador de Maestro de Articulos");
+						"Trabajo con Examinador de Maestro de Articulos", tabs);
 			}
 
 			@Override

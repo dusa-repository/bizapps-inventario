@@ -2,8 +2,10 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -16,6 +18,7 @@ import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import modelo.maestros.F00021;
@@ -303,6 +306,16 @@ public class CF0101 extends CGenerico {
 	@Override
 	public void inicializar() throws IOException {
 
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		mostrarCatalogo();
 		// Ajustar a 3 el long
 		cargarBuscadores();
@@ -342,8 +355,9 @@ public class CF0101 extends CGenerico {
 							txtMCUF0101.setValue(f01.getAbmcu());
 							System.out.println(servicioF0006.buscar(f01
 									.getAbmcu()));
-							lblMCUF0101.setValue(servicioF0006.buscar(
-									f01.getAbmcu()).getMcdl01());
+							if (servicioF0006.buscar(f01.getAbmcu()) != null)
+								lblMCUF0101.setValue(servicioF0006.buscar(
+										f01.getAbmcu()).getMcdl01());
 						}
 						txtTAXF0101.setValue(f01.getAbtax());
 						txtTX2F0101.setValue(f01.getAbtx2());
@@ -389,7 +403,7 @@ public class CF0101 extends CGenerico {
 									.buscar(doble5).getAbalph());
 							txtFactorF0101.setValue(doble5.longValue());
 						}
-						
+
 						F0111PK clave2 = new F0111PK();
 						Long val2 = (long) 1;
 						clave2.setWwan8(f01.getAban8());
@@ -416,7 +430,7 @@ public class CF0101 extends CGenerico {
 							txtADD4F0101.setValue(f0116.getAladd4());
 							txtCTY1F0101.setValue(f0116.getAlcty1());
 						}
-						
+
 						buscadorAT1.settearCampo(servicioF0005.buscar("01",
 								"ST", f01.getAbat1()));
 						buscadorAT2.settearCampo(servicioF0005.buscar("H01",
@@ -528,7 +542,7 @@ public class CF0101 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0101, "Trabajo con Direcciones");
+				cerrarVentana(divVF0101, "Trabajo con Direcciones", tabs);
 
 			}
 
@@ -553,27 +567,48 @@ public class CF0101 extends CGenerico {
 				if (guardar) {
 					F0101 f01 = new F0101();
 					double claveLong = 0;
-					if (clave == claveLong) {
-						double numero = servicioF00021.Numero("5", "JE");
-						System.out.println("numero" + numero);
-						if (numero != 0){							
-							clave = numero + 1;
-//							F00021 f021 = servicioF00021.buscar("5", "JE");
-//							f021.setNln001(clave);
-//							servicioF00021.guardar(f021);
+					synchronized (this) {
+						while (!nextNumber) {
+							try {
+								wait();
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
-						else{
-							clave = 1;
-//							F00021 f021 = new F00021();
-//							F00021PK clave21 = new F00021PK();
-//							clave21.setNldct("JE");
-//							clave21.setNlkco("5");
-//							clave21.setNlctry((double) 0);
-//							clave21.setNlfy((double) 0);
-//							f021.setId(clave21);
-//							f021.setNln001(clave);
-//							servicioF00021.guardar(f021);
+
+						}
+						nextNumber = false;
+						try {
+							if (clave == claveLong) {
+								double numero = servicioF00021
+										.Numero("5", "JE");
+								System.out.println("numero" + numero);
+								if (numero != 0) {
+									clave = numero + 1;
+									F00021 f021 = servicioF00021.buscar("5",
+											"JE");
+									f021.setNln001(clave);
+									servicioF00021.guardar(f021);
+								} else {
+									clave = 1;
+									F00021 f021 = new F00021();
+									F00021PK clave21 = new F00021PK();
+									clave21.setNldct("JE");
+									clave21.setNlkco("5");
+									clave21.setNlctry((double) 0);
+									clave21.setNlfy((double) 0);
+									f021.setId(clave21);
+									f021.setNln001(clave);
+									servicioF00021.guardar(f021);
+								}
 							}
+						} catch (NullPointerException e) {
+							nextNumber = true;
+						}
+					}
+					synchronized (this) {
+						nextNumber = true;
+						notifyAll();
 					}
 					System.out.println(clave);
 					f01.setAban8(clave);
@@ -670,7 +705,7 @@ public class CF0101 extends CGenerico {
 					else
 						f01.setAbsbli("0");
 					servicioF0101.guardar(f01);
-					
+
 					F0111 f0111 = new F0111();
 					F0111PK clave01 = new F0111PK();
 					clave01.setWwan8(clave);
@@ -678,7 +713,7 @@ public class CF0101 extends CGenerico {
 					f0111.setId(clave01);
 					f0111.setWwmlnm(txtMlnmF0101.getValue());
 					servicioF0111.guardar(f0111);
-					
+
 					F0116 f0116 = new F0116();
 					F0116PK clave16 = new F0116PK();
 					clave16.setAlan8(clave);
@@ -693,7 +728,7 @@ public class CF0101 extends CGenerico {
 					f0116.setAlcoun(buscadorCOUN.obtenerCaja());
 					f0116.setAladds(buscadorADDS.obtenerCaja());
 					servicioF0116.guardar(f0116);
-					
+
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 					catalogo.actualizarLista(servicioF0101
@@ -1209,7 +1244,7 @@ public class CF0101 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("01", "ST");
 		buscadorAT1 = new BuscadorUDC("Tipo busqueda", 10, listF0005, true,
-				false, false,"01", "ST") {
+				false, false, "01", "ST") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "ST",
@@ -1219,7 +1254,8 @@ public class CF0101 extends CGenerico {
 		divBuscadorAT1.appendChild(buscadorAT1);
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CN");
-		buscadorCTR = new BuscadorUDC("Pais", 3, listF0005, false, false, false,"00", "CN") {
+		buscadorCTR = new BuscadorUDC("Pais", 3, listF0005, false, false,
+				false, "00", "CN") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "CN",
@@ -1230,7 +1266,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CT");
 		buscadorCOUN = new BuscadorUDC("Condado", 25, listF0005, false, false,
-				false,"00", "CT") {
+				false, "00", "CT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "CT",
@@ -1241,7 +1277,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "S");
 		buscadorADDS = new BuscadorUDC("Estado", 3, listF0005, false, false,
-				false,"00", "S") {
+				false, "00", "S") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "S",
@@ -1252,7 +1288,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H01", "AV");
 		buscadorAT2 = new BuscadorUDC("Compen c/c y c/p", 1, listF0005, false,
-				false, false,"H01", "AV") {
+				false, false, "H01", "AV") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H01", "AV",
@@ -1263,7 +1299,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H01", "AS");
 		buscadorATP = new BuscadorUDC("Cuentas por Pagar Y/N/M", 1, listF0005,
-				false, false, false,"H01", "AS") {
+				false, false, false, "H01", "AS") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H01", "AS",
@@ -1274,7 +1310,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CM");
 		buscadorCM = new BuscadorUDC("Mensaje credito", 2, listF0005, false,
-				false, false,"00", "CM") {
+				false, false, "00", "CM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "CM",
@@ -1285,7 +1321,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "LP");
 		buscadorLNGP = new BuscadorUDC("Idioma", 2, listF0005, false, false,
-				false,"01", "LP") {
+				false, "01", "LP") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "LP",
@@ -1296,7 +1332,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("43E", "AA");
 		buscadorMPGP = new BuscadorUDC("Aprobaciones Grupo Empl", 5, listF0005,
-				false, false, false,"43E", "AA") {
+				false, false, false, "43E", "AA") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("43E", "AA",
@@ -1307,7 +1343,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "SC");
 		buscadorSIC = new BuscadorUDC("Clasificacion industrial", 10,
-				listF0005, false, false, false,"01", "SC") {
+				listF0005, false, false, false, "01", "SC") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "SC",
@@ -1318,7 +1354,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "TA");
 		buscadorTAXC = new BuscadorUDC("Cd persona/compañia", 1, listF0005,
-				false, false, false,"H00", "TA") {
+				false, false, false, "H00", "TA") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "TA",
@@ -1329,7 +1365,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CA");
 		buscadorCLASS01 = new BuscadorUDC("Cd Clasificacion 01", 3, listF0005,
-				false, false, false,"01", "CA") {
+				false, false, false, "01", "CA") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "CA",
@@ -1340,7 +1376,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CB");
 		buscadorCLASS02 = new BuscadorUDC("Cd Clasificacion 02", 3, listF0005,
-				false, false, false,"01", "CB") {
+				false, false, false, "01", "CB") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "CB",
@@ -1351,7 +1387,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CC");
 		buscadorCLASS03 = new BuscadorUDC("Cd Clasificacion 03", 3, listF0005,
-				false, false, false,"01", "CC") {
+				false, false, false, "01", "CC") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "CC",
@@ -1362,7 +1398,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CD");
 		buscadorCLASS04 = new BuscadorUDC("Cd Clasificacion 04", 3, listF0005,
-				false, false, false,"01", "CD") {
+				false, false, false, "01", "CD") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "CD",
@@ -1373,7 +1409,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CE");
 		buscadorCLASS05 = new BuscadorUDC("Cd Clasificacion 05", 3, listF0005,
-				false, false, false,"01", "CE") {
+				false, false, false, "01", "CE") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "CE",
@@ -1384,7 +1420,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "RR");
 		buscadorABREV = new BuscadorUDC("Rango ingresos", 5, listF0005, false,
-				false, false,"01", "RR") {
+				false, false, "01", "RR") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "RR",
@@ -1395,7 +1431,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "01");
 		buscadorAC01 = new BuscadorUDC("Cd Categoria 1", 3, listF0005, false,
-				false, false,"01", "01") {
+				false, false, "01", "01") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "01",
@@ -1406,7 +1442,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "02");
 		buscadorAC02 = new BuscadorUDC("Cd Categoria 02", 3, listF0005, false,
-				false, false,"01", "02") {
+				false, false, "01", "02") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "02",
@@ -1417,7 +1453,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "03");
 		buscadorAC03 = new BuscadorUDC("Cd Categoria 03", 3, listF0005, false,
-				false, false,"01", "03") {
+				false, false, "01", "03") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "03",
@@ -1428,7 +1464,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "04");
 		buscadorAC04 = new BuscadorUDC("Cd Categoria 04", 3, listF0005, false,
-				false, false,"01", "04") {
+				false, false, "01", "04") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "04",
@@ -1439,7 +1475,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "05");
 		buscadorAC05 = new BuscadorUDC("Cd Categoria 05", 3, listF0005, false,
-				false, false,"01", "05") {
+				false, false, "01", "05") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "05",
@@ -1450,7 +1486,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "06");
 		buscadorAC06 = new BuscadorUDC("Cd Categoria 06", 3, listF0005, false,
-				false, false,"01", "06") {
+				false, false, "01", "06") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "06",
@@ -1461,7 +1497,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "07");
 		buscadorAC07 = new BuscadorUDC("Cd Categoria 07", 3, listF0005, false,
-				false, false,"01", "07") {
+				false, false, "01", "07") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "07",
@@ -1472,7 +1508,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "08");
 		buscadorAC08 = new BuscadorUDC("Cd Categoria 08", 3, listF0005, false,
-				false, false,"01", "08") {
+				false, false, "01", "08") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "08",
@@ -1483,7 +1519,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "09");
 		buscadorAC09 = new BuscadorUDC("Cd Categoria 09", 3, listF0005, false,
-				false, false,"01", "09") {
+				false, false, "01", "09") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "09",
@@ -1494,7 +1530,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "10");
 		buscadorAC10 = new BuscadorUDC("Cd Categoria 10", 3, listF0005, false,
-				false, false,"01", "10") {
+				false, false, "01", "10") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "10",
@@ -1505,7 +1541,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "11");
 		buscadorAC11 = new BuscadorUDC("Cd Categoria 11", 3, listF0005, false,
-				false, false,"01", "11") {
+				false, false, "01", "11") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "11",
@@ -1516,7 +1552,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "12");
 		buscadorAC12 = new BuscadorUDC("Cd Categoria 12", 3, listF0005, false,
-				false, false,"01", "12") {
+				false, false, "01", "12") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "12",
@@ -1527,7 +1563,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "13");
 		buscadorAC13 = new BuscadorUDC("Cd Categoria 13", 3, listF0005, false,
-				false, false,"01", "13") {
+				false, false, "01", "13") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "13",
@@ -1538,7 +1574,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "14");
 		buscadorAC14 = new BuscadorUDC("Cd Categoria 14", 3, listF0005, false,
-				false, false,"01", "14") {
+				false, false, "01", "14") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "14",
@@ -1549,7 +1585,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "15");
 		buscadorAC15 = new BuscadorUDC("Cd Categoria 15", 3, listF0005, false,
-				false, false,"01", "15") {
+				false, false, "01", "15") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "15",
@@ -1560,7 +1596,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "16");
 		buscadorAC16 = new BuscadorUDC("Cd Categoria 16", 3, listF0005, false,
-				false, false,"01", "16") {
+				false, false, "01", "16") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "16",
@@ -1571,7 +1607,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "17");
 		buscadorAC17 = new BuscadorUDC("Cd Categoria 17", 3, listF0005, false,
-				false, false,"01", "17") {
+				false, false, "01", "17") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "17",
@@ -1582,7 +1618,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "18");
 		buscadorAC18 = new BuscadorUDC("Cd Categoria 18", 3, listF0005, false,
-				false, false,"01", "18") {
+				false, false, "01", "18") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "18",
@@ -1593,7 +1629,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "19");
 		buscadorAC19 = new BuscadorUDC("Cd Categoria 19", 3, listF0005, false,
-				false, false,"01", "19") {
+				false, false, "01", "19") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "19",
@@ -1604,7 +1640,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "20");
 		buscadorAC20 = new BuscadorUDC("Cd Categoria 20", 3, listF0005, false,
-				false, false,"01", "20") {
+				false, false, "01", "20") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "20",
@@ -1615,7 +1651,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "21");
 		buscadorAC21 = new BuscadorUDC("Cd Categoria 21", 3, listF0005, false,
-				false, false,"01", "21") {
+				false, false, "01", "21") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "21",
@@ -1626,7 +1662,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "22");
 		buscadorAC22 = new BuscadorUDC("Cd Categoria 22", 3, listF0005, false,
-				false, false,"01", "22") {
+				false, false, "01", "22") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "22",
@@ -1637,7 +1673,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "23");
 		buscadorAC23 = new BuscadorUDC("Cd Categoria 23", 3, listF0005, false,
-				false, false,"01", "23") {
+				false, false, "01", "23") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "23",
@@ -1648,7 +1684,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "24");
 		buscadorAC24 = new BuscadorUDC("Cd Categoria 24", 3, listF0005, false,
-				false, false,"01", "24") {
+				false, false, "01", "24") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "24",
@@ -1659,7 +1695,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "25");
 		buscadorAC25 = new BuscadorUDC("Cd Categoria 25", 3, listF0005, false,
-				false, false,"01", "25") {
+				false, false, "01", "25") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "25",
@@ -1670,7 +1706,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "26");
 		buscadorAC26 = new BuscadorUDC("Cd Categoria 26", 3, listF0005, false,
-				false, false,"01", "26") {
+				false, false, "01", "26") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "26",
@@ -1681,7 +1717,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "27");
 		buscadorAC27 = new BuscadorUDC("Cd Categoria 27", 3, listF0005, false,
-				false, false,"01", "27") {
+				false, false, "01", "27") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "27",
@@ -1692,7 +1728,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "28");
 		buscadorAC28 = new BuscadorUDC("Cd Categoria 28", 3, listF0005, false,
-				false, false,"01", "28") {
+				false, false, "01", "28") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "28",
@@ -1703,7 +1739,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "29");
 		buscadorAC29 = new BuscadorUDC("Cd Categoria 29", 3, listF0005, false,
-				false, false,"01", "29") {
+				false, false, "01", "29") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "29",
@@ -1714,7 +1750,7 @@ public class CF0101 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "30");
 		buscadorAC30 = new BuscadorUDC("Cd Categoria 30", 3, listF0005, false,
-				false, false,"01", "30") {
+				false, false, "01", "30") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "30",

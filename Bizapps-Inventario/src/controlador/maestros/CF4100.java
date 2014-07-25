@@ -2,6 +2,7 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0005;
@@ -9,6 +10,7 @@ import modelo.maestros.F0006;
 import modelo.maestros.F4100;
 import modelo.pk.F4100PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -18,6 +20,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
@@ -75,7 +78,16 @@ public class CF4100 extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		txtMCUF4100.setFocus(true);
 		mostrarCatalogo();
 
@@ -192,7 +204,7 @@ public class CF4100 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4100, "Trabajo con Maestro de Ubicaciones");
+				cerrarVentana(divVF4100, "Trabajo con Maestro de Ubicaciones", tabs);
 
 			}
 
@@ -220,10 +232,10 @@ public class CF4100 extends CGenerico {
 					clave.setLmmcu(txtMCUF4100.getValue());
 					clave.setLmlocn(txtLOCNF4100.getValue());
 					f4100.setId(clave);
-
-					if (dtbUPMJF4100.getText().compareTo("") != 0)
-						f4100.setLmupmj(transformarGregorianoAJulia(dtbUPMJF4100
-								.getValue()));
+					//
+					// if (dtbUPMJF4100.getText().compareTo("") != 0)
+					f4100.setLmupmj(transformarGregorianoAJulia(dtbUPMJF4100
+							.getValue()));
 					f4100.setLmuser("JDE");
 
 					f4100.setLmpzon(buscadorPZONF4100.obtenerCaja());
@@ -538,8 +550,8 @@ public class CF4100 extends CGenerico {
 				String[] registros = new String[20];
 				registros[0] = String.valueOf(f4100.getId().getLmmcu());
 				registros[1] = f0006.getMcdc();
-				registros[2] = String.valueOf(transformarJulianaAGregoria(f4100
-						.getLmupmj()));
+				registros[2] = formatoFecha.format((transformarJulianaAGregoria(f4100
+						.getLmupmj())));
 				registros[3] = String.valueOf(f4100.getId().getLmlocn());
 				registros[4] = f4100.getLmpzon();
 				registros[5] = f4100.getLmkzon();

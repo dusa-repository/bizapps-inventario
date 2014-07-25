@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,7 @@ import modelo.seguridad.Usuario;
 
 import org.zkoss.image.AImage;
 import org.zkoss.util.media.Media;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -134,7 +136,16 @@ public class CUsuario extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		llenarListas(null);
 
 		try {
@@ -189,7 +200,7 @@ public class CUsuario extends CGenerico {
 			}
 			@Override
 			public void salir() {
-				cerrarVentana(divUsuario, "Usuario");
+				cerrarVentana(divUsuario, "Usuario", tabs);
 			}
 
 			@Override

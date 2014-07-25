@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +14,7 @@ import modelo.maestros.F0004;
 import modelo.seguridad.Arbol;
 import modelo.seguridad.Grupo;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.SelectEvent;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -23,6 +25,7 @@ import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.TreeModel;
@@ -64,7 +67,16 @@ public class CGrupo extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-		
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		treeGrupo.setModel(getModel());
 		treeGrupo.setCheckmark(true);
 		treeGrupo.setMultiple(true);
@@ -92,7 +104,7 @@ public class CGrupo extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divGrupo, "Grupos");
+				cerrarVentana(divGrupo, "Grupos", tabs);
 
 			}
 
@@ -412,7 +424,8 @@ public class CGrupo extends CGenerico {
 						.setModel(new ListModelList<String>(funcionalidades));
 			}
 			Arbol arbolItem = servicioArbol.buscarPorNombreArbol(nombreItem);
-			listaArbol.remove((int) (long) arbolItem.getIdArbol() - 1);
+//			listaArbol.remove((int) (long) arbolItem.getIdArbol() - 1);
+			listaArbol.remove(arbolItem);
 			long temp = arbolItem.getPadre();
 			long temp2 = 0;
 			long temp3 = temp;

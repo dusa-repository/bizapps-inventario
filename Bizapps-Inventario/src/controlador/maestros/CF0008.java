@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0004;
@@ -13,6 +14,7 @@ import modelo.maestros.F0008;
 import modelo.pk.F0004PK;
 import modelo.pk.F0008PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -22,6 +24,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
@@ -85,7 +88,16 @@ public class CF0008 extends CGenerico {
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
-
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		mostrarCatalogo();
 
 		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
@@ -260,7 +272,7 @@ public class CF0008 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF0008, "Trabajo con Patrones de Fecha Fiscal");
+				cerrarVentana(divVF0008, "Trabajo con Patrones de Fecha Fiscal", tabs);
 			}
 
 			@Override

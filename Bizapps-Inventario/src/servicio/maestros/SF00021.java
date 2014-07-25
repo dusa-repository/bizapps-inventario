@@ -29,6 +29,8 @@ public class SF00021 {
 		F00021PK clave = new F00021PK();
 		clave.setNlkco(value);
 		clave.setNldct(value2);
+		clave.setNlctry((double) 0);
+		clave.setNlfy((double) 0);
 		return f00021DAO.findOne(clave);
 	}
 	

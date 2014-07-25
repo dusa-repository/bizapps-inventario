@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0004;
@@ -13,6 +14,7 @@ import modelo.maestros.F0013;
 import modelo.maestros.F0101;
 import modelo.pk.F0004PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -26,6 +28,7 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Spinner;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
@@ -109,6 +112,16 @@ public class CF0010 extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		txtCCCOF0010.setFocus(true);
 		mostrarCatalogo();
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
@@ -194,7 +207,7 @@ public class CF0010 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0010, "Trabajo con Compañias");
+				cerrarVentana(divVF0010, "Trabajo con Compañias", tabs);
 			}
 
 			@Override
