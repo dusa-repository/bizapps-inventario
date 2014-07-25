@@ -2,7 +2,7 @@ package servicio.maestros;
 
 import java.util.List;
 
-import interfacedao.maestros.IF0010;
+import interfacedao.maestros.IF0010DAO;
 
 import modelo.maestros.F0010;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class SF0010 {
 
 	@Autowired
-	private IF0010 f0010DAO;
+	private IF0010DAO f0010DAO;
 
 	public void guardar(F0010 f010) {
 		System.out.println(f010.getCcco());

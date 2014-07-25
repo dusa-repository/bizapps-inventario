@@ -1,0 +1,220 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF4111" apply="controlador.transacciones.CF4111">
+		<groupbox width="auto" mold="3d" title="Trabajo con Inventario (VF4111)">
+			<div id="botoneraF4111" />
+			<separator />
+			<groupbox id="gpxRegistroF4111" width="auto" class="azul"
+				title="" open="false">
+				<caption label="Añadir" style="font-weight:bold; font-size: 13px"
+					tooltiptext="Presione para Registrar una Nuevo Operacion" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Numero documento:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<doublebox id="txtDoc" hflex="1" maxlength="5"
+								tooltiptext="Ingrese el Codigo de la Compañia" />
+							<hbox id="boxOrden"  visible="false">
+								<label  class="etiqueta" value="Orden de Compra:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<doublebox visible="false" id="txtOrden" hflex="1" maxlength="5"
+								tooltiptext="Orden de Compra" />
+						</row>
+						<row>
+							<!-- <cell colspan="2"> <div id="divbuscadorTipo" hflex="1" /> </cell> -->
+							<hbox>
+								<label class="etiqueta" value="Tipo Documento:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtTipo" hflex="1" maxlength="5"
+								tooltiptext="Tipo de Documento" disabled="true" />
+							<label class="etiqueta" value="Fecha Operacion:" />
+							<datebox readonly="true" width="100%" id="dtbFechaTransaccion"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+						</row>
+						<row>
+							<label class="etiqueta" value="Explicacion:" />
+							<textbox id="txtExplicacion" hflex="1" maxlength="5"
+								tooltiptext="Ingrese la explicacion de la operacion" />
+							<label class="etiqueta" value="Fecha LM:" />
+							<datebox readonly="true" width="100%" id="dtbFechaLm"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion LM" />
+						</row>
+						<row id="rowPlanta1">
+							<label class="etiqueta" value="De Suc/planta:" />
+							<textbox id="txtPlanta1" hflex="1" maxlength="15"
+								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+							<button id="btnBuscarPlanta1" class="btn" label="Buscar"
+								tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+							<label id="lblPlanta1" />
+						</row>
+						<row id="rowF0101">
+							<label id="lblF0101Dynamic" class="etiqueta" value="" />
+							<longbox id="txtF0101" hflex="1" maxlength="19"
+								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+							<button id="btnBuscarF0101" class="btn" label="Buscar"
+								tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+							<label id="lblF0101" />
+						</row>
+						<row id="rowPlanta2">
+							<label class="etiqueta" value="A Suc/planta:" />
+							<textbox id="txtPlanta2" hflex="1" maxlength="15"
+								tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
+							<button id="btnBuscarPlanta2" class="btn" label="Buscar"
+								tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+							<label id="lblPlanta2" />
+						</row>
+					</rows>
+				</grid>
+				<groupbox title="" closable="false">
+					<grid width="100%">
+						<columns visible="false">
+							<column label="" width="12.5%" />
+							<column label="" width="12.5%" />
+							<column label="" width="12.5%" />
+							<column label="" width="12.5%" />
+							<column label="" width="12.5%" />
+							<column label="" width="12.5%" />
+							<column label="" width="12.5%" />
+							<column label="" width="12.5%" />
+						</columns>
+						<rows>
+							<row>
+								<hbox>
+									<label class="etiqueta" value="Numero Articulo:" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red" />
+								</hbox>
+								<doublebox id="txtItem" hflex="1" maxlength="12"
+									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+								<button id="btnBuscarItem" class="btn" label="Buscar"
+									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblItem" />
+								<label id="lblCantidad" class="etiqueta" value="Cantidad:" />
+								<spinner id="spnCantidad" hflex="1" step="10" value="0"
+									constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
+								<hbox />
+								<button label="Agregar" id="btnAgregar" autodisable="true"
+									image="/public/imagenes/botones/buscar.png" hflex="1" />
+							</row>
+							<row>
+								<label class="etiqueta" value="UM:" />
+								<textbox id="txtUM" hflex="1" maxlength="3"
+									tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
+								<label class="etiqueta" value="UM sec:" />
+								<textbox id="txtUM2" hflex="1" maxlength="3"
+									tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
+								<label id="lblCantidad2" class="etiqueta" value="Cantidad Secundaria:" />
+								<spinner id="spnCantidad2" hflex="1" step="10" value="0"
+									constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
+								<label visible="false" id="lblCosto" class="etiqueta" value="Costo:" />
+								<doublespinner visible="false" id="spnCosto" hflex="1" step="10"
+									value="0" format="#.##" constraint="min 0 max 99999999"
+									tooltiptext="Ingrese el periodo Actual" />
+							</row>
+							<row>
+								<label id="lblNombreUbicacion" class="etiqueta" value="Ubicacion inicial:" />
+								<textbox readonly="true" id="txtUbicacion1" hflex="1"
+									maxlength="20"
+									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+								<button id="btnBuscarUbicacion1" class="btn" label="Buscar"
+									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblUbicacion1" />
+								<label id="lblNombreUbicacion2" class="etiqueta" value="Ubicacion Final:" />
+								<textbox readonly="true" id="txtUbicacion2" hflex="1"
+									maxlength="20"
+									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+								<button id="btnBuscarUbicacion2" class="btn" label="Buscar"
+									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblUbicacion2" />
+
+							</row>
+							<!-- <row> <label class="etiqueta" value="Nº lote inicial:" /> <textbox 
+								id="txtLote1" hflex="1" maxlength="3" tooltiptext="Ingrese la Sucursal de 
+								planta desde donde se realiza la operacion" /> <button id="btnBuscarLote1" 
+								class="btn" label="Buscar" tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" 
+								/> <label id="lblLote1" /> <label class="etiqueta" value="Nº lote final:" 
+								/> <textbox id="txtLote2" hflex="1" maxlength="3" tooltiptext="Ingrese la 
+								Sucursal de planta desde donde se realiza la operacion" /> <button id="btnBuscarLote2" 
+								class="btn" label="Buscar" tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" 
+								/> <label id="lblLote2" /> </row> -->
+						</rows>
+					</grid>
+				</groupbox>
+				<hbox widths="90%,10%">
+					<listbox id="ltbItems" span="true" height="150px" width="100%">
+						<listhead>
+							<listheader label="Numero Articulo" hflex="min" />
+							<listheader label="Descripcion Articulo" hflex="min" />
+							<listheader label="Cantidad" hflex="min" />
+							<listheader label="Costo" hflex="min" />
+							<listheader label="UM" hflex="min" />
+							<listheader label="Ubicacion Inicial" hflex="min" />
+							<listheader label="Ubicacion Final" hflex="min" />
+						</listhead>
+						<template name="model">
+							<listitem>
+								<listcell label="${each.valor1}">
+								</listcell>
+								<listcell label="${each.valor2}">
+								</listcell>
+								<listcell>
+									<spinner value="${each.valor8}" inplace="true"
+										readonly="true" hflex="1" constraint="min -99999999 max 99999999"
+										step="1" buttonVisible="false" />
+								</listcell>
+								<listcell>
+									<spinner value="${each.valor10}" inplace="true"
+										readonly="true" hflex="1" constraint="min -99999999 max 99999999"
+										step="1" buttonVisible="false" />
+								</listcell>
+								<listcell label="${each.valor3}">
+								</listcell>
+								<listcell label="${each.valor4}">
+								</listcell>
+								<listcell label="${each.valor6}">
+								</listcell>
+							</listitem>
+						</template>
+					</listbox>
+					<vbox width="100%">
+						<button label="Editar" id="btnVer" autodisable="true"
+							image="/public/imagenes/botones/buscar.png" hflex="1" />
+						<button label="Remover" id="btnRemover" autodisable="true"
+							image="/public/imagenes/botones/buscar.png" hflex="1" />
+					</vbox>
+				</hbox>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatosF4111" width="auto" class="azul">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
+					tooltiptext="Presione para Visualizar las Operaciones Registradas" />
+				<div id="catalogoF4111" tooltiptext="Seleccione la Compañia para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+			<div id="catalogoSucursalF0006" />
+			<div id="catalogoUbicacionF4100" />
+			<div id="catalogoLoteF4108" />
+			<div id="catalogoItemF4101" />
+			<div id="catalogoDireccionF0101" />
+		</groupbox>
+	</div>
+</zk>

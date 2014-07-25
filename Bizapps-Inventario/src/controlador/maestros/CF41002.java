@@ -3,6 +3,7 @@ package controlador.maestros;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0004;
@@ -12,6 +13,7 @@ import modelo.maestros.F4101;
 import modelo.pk.F0005PK;
 import modelo.pk.F41002PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -22,6 +24,7 @@ import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
@@ -79,7 +82,16 @@ public class CF41002 extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		txtUMITMF41002.setFocus(true);
 		mostrarCatalogo();
 
@@ -158,7 +170,7 @@ public class CF41002 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF41002, "Conversiones de Unidades de Medida de Articulos");
+				cerrarVentana(divVF41002, "Conversiones de Unidades de Medida de Articulos", tabs);
 
 			}
 

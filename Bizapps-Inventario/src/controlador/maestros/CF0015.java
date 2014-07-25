@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0006;
@@ -13,6 +14,7 @@ import modelo.maestros.F0013;
 import modelo.maestros.F0101;
 import modelo.pk.F0015PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -108,8 +110,16 @@ public class CF0015 extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-		// TODO Auto-generated method stub
-
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		txtCRCDF0015.setFocus(true);
 		agregarMetodoCalculo = false;
 		rdoMetodoInversionF0015.setSelected(true);
@@ -289,7 +299,7 @@ public class CF0015 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF0015, "Trabajo con Tipos de Cambio");
+				cerrarVentana(divVF0015, "Trabajo con Tipos de Cambio", tabs);
 			}
 
 			@Override

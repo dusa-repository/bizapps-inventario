@@ -2,12 +2,14 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0004;
 import modelo.maestros.F0005;
 import modelo.pk.F0005PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -16,6 +18,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
@@ -64,7 +67,16 @@ public class CF0005 extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		txtSYF0005.setFocus(true);
 		mostrarCatalogo();
 
@@ -98,7 +110,7 @@ public class CF0005 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0005, "Trabajo con Codigos Definidos por Usuario");
+				cerrarVentana(divVF0005, "Trabajo con Codigos Definidos por Usuario", tabs);
 
 			}
 

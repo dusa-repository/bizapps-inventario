@@ -2,6 +2,7 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0005;
@@ -11,6 +12,7 @@ import modelo.maestros.F0101;
 import modelo.maestros.F0115;
 import modelo.pk.F0115PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -19,6 +21,7 @@ import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
@@ -59,6 +62,16 @@ public class CF0115 extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		mostrarCatalogo();
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("01", "PM");
@@ -100,7 +113,7 @@ public class CF0115 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0115, "Numeros Telefonicos");
+				cerrarVentana(divVF0115, "Numeros Telefonicos", tabs);
 			}
 
 			@Override

@@ -50,9 +50,13 @@ import servicio.maestros.SF40205;
 import servicio.maestros.SF4100;
 import servicio.maestros.SF41002;
 import servicio.maestros.SF4101;
+import servicio.maestros.SF41021;
+import servicio.maestros.SF4105;
+import servicio.maestros.SF4108;
 import servicio.seguridad.SArbol;
 import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
+import servicio.transacciones.SF4111;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public abstract class CGenerico extends SelectorComposer<Component> {
@@ -99,13 +103,21 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF4101 servicioF4101;
 	@WireVariable("SF41002")
 	protected SF41002 servicioF41002;
+	@WireVariable("SF4111")
+	protected SF4111 servicioF4111;
+	@WireVariable("SF41021")
+	protected SF41021 servicioF41021;
+	@WireVariable("SF4105")
+	protected SF4105 servicioF4105;
+	@WireVariable("SF4108")
+	protected SF4108 servicioF4108;
 	@WireVariable("SGrupo")
 	protected SGrupo servicioGrupo;
 	@WireVariable("SUsuario")
 	protected SUsuario servicioUsuario;
 	protected static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
-	public static List<Tab> tabs = new ArrayList<Tab>();
+	public List<Tab> tabs = new ArrayList<Tab>();
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public Calendar calendario = Calendar.getInstance();
 	// Cambio en la hora borrados los :
@@ -117,6 +129,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	public java.util.Date fecha = new Date();
 	public Timestamp fechaHora = new Timestamp(fecha.getTime());
 	public Mensaje msj = new Mensaje();
+	public static boolean nextNumber = true;
 
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
@@ -215,8 +228,9 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 
 	public abstract void inicializar() throws IOException;
 
-	public void cerrarVentana(Div div, String id) {
+	public void cerrarVentana(Div div, String id,List<Tab> tabs2) {
 		div.setVisible(false);
+		tabs = tabs2;
 		for (int i = 0; i < tabs.size(); i++) {
 			if (tabs.get(i).getLabel().equals(id)) {
 				if (i == (tabs.size() - 1) && tabs.size() > 1) {

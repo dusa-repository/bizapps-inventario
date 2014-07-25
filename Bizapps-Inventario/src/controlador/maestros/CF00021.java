@@ -2,6 +2,7 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F00021;
@@ -9,6 +10,7 @@ import modelo.maestros.F0005;
 import modelo.maestros.F0010;
 import modelo.pk.F00021PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -17,6 +19,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 import arbol.CArbol;
 
@@ -52,7 +55,7 @@ public class CF00021 extends CGenerico {
 	@Wire
 	private Groupbox gpxRegistro;
 	@Wire
-	private Button btnBuscarCompannia ;
+	private Button btnBuscarCompannia;
 	@Wire
 	private Div botoneraF00021;
 	@Wire
@@ -69,33 +72,47 @@ public class CF00021 extends CGenerico {
 	F00021PK clave = null;
 	CArbol arbol = new CArbol();
 	BuscadorUDC buscadorDCT, buscadorSMAS, buscadorINCRUS;
+
 	@Override
 	public void inicializar() throws IOException {
 		// TODO Auto-generated method stub
-		arbol.booleanoApg ();
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
+		arbol.booleanoApg();
 		txtKCOF00021.setFocus(true);
 		mostrarCatalogo();
-		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","DT");
-		buscadorDCT = new BuscadorUDC("Tipo Documento", 10,
-				listaF0005, true, false, false,"00","DT") {
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
+				"DT");
+		buscadorDCT = new BuscadorUDC("Tipo Documento", 10, listaF0005, true,
+				false, false, "00", "DT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
 						buscadorDCT.obtenerCaja());
 			}
 		};
-		List<F0005> listF0005 = servicioF0005.buscarParaUDCOrdenados("00","DT");
-		buscadorSMAS = new BuscadorUDC("Igual a tipo doc", 10,
-				listF0005, false, false, false,"00","DT") {
+		List<F0005> listF0005 = servicioF0005
+				.buscarParaUDCOrdenados("00", "DT");
+		buscadorSMAS = new BuscadorUDC("Igual a tipo doc", 10, listF0005,
+				false, false, false, "00", "DT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
 						buscadorSMAS.obtenerCaja());
 			}
 		};
-		List<F0005> lisF0005 = servicioF0005.buscarParaUDCOrdenados("H00","IM");
-		buscadorINCRUS = new BuscadorUDC("Digito Incrus", 10,
-				lisF0005, false, false, false,"H00","IM") {
+		List<F0005> lisF0005 = servicioF0005
+				.buscarParaUDCOrdenados("H00", "IM");
+		buscadorINCRUS = new BuscadorUDC("Digito Incrus", 10, lisF0005, false,
+				false, false, "H00", "IM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "IM",
@@ -116,11 +133,15 @@ public class CF00021 extends CGenerico {
 						F00021 f21 = catalogo.objetoSeleccionadoDelCatalogo();
 						txtKCOF00021.setValue(f21.getId().getNlkco());
 						txtKCOF00021.setDisabled(true);
-						txtDCTF00021.setValue(f21.getId().getNldct());
-						txtDCTF00021.setDisabled(true);
+						if (f21.getId().getNldct() != null) {
+							txtDCTF00021.setValue(f21.getId().getNldct());
+							txtDCTF00021.setDisabled(true);
+						}
 						txtSMASF00021.setValue(f21.getNlsmas());
-						txtCTRYF00021.setValue(String.valueOf(f21.getId().getNlctry()));
-						txtFYF00021.setValue(String.valueOf(f21.getId().getNlfy()));
+						txtCTRYF00021.setValue(String.valueOf(f21.getId()
+								.getNlctry()));
+						txtFYF00021.setValue(String.valueOf(f21.getId()
+								.getNlfy()));
 						txtN001F00021.setValue(String.valueOf(f21.getNln001()));
 						txtN001F00021.setDisabled(true);
 						txtDESF00021.setFocus(true);
@@ -132,9 +153,10 @@ public class CF00021 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF00021, "Número Siguiente por Compañia/Año Fiscal");
-				arbol.booleanoApg ();
-				
+				cerrarVentana(divVF00021,
+						"Número Siguiente por Compañia/Año Fiscal", tabs);
+				arbol.booleanoApg();
+
 			}
 
 			@Override
@@ -239,8 +261,6 @@ public class CF00021 extends CGenerico {
 						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 
-
-
 			}
 
 			@Override
@@ -266,7 +286,7 @@ public class CF00021 extends CGenerico {
 		botoneraF00021.appendChild(botonera);
 
 	}
-	
+
 	public void mostrarBotones(boolean bol) {
 		botonera.getChildren().get(1).setVisible(bol);
 		botonera.getChildren().get(2).setVisible(bol);
@@ -275,15 +295,14 @@ public class CF00021 extends CGenerico {
 		botonera.getChildren().get(3).setVisible(!bol);
 		botonera.getChildren().get(5).setVisible(!bol);
 	}
-	
-	
+
 	@Listen("onClick = #gpxRegistro")
 	public void abrirRegistro() {
 		gpxDatos.setOpen(false);
 		gpxRegistro.setOpen(true);
 		mostrarBotones(false);
 	}
-	
+
 	public boolean validarSeleccion() {
 		List<F00021> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
@@ -298,7 +317,7 @@ public class CF00021 extends CGenerico {
 			}
 		}
 	}
-	
+
 	public boolean camposLLenos() {
 		if (txtKCOF00021.getText().compareTo("") == 0
 				|| buscadorDCT.obtenerCaja().compareTo("") == 0
@@ -308,44 +327,43 @@ public class CF00021 extends CGenerico {
 			return false;
 		} else
 			return true;
-		
+
 	}
-	
+
 	protected boolean validar() {
-			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
-				return false;
-			} else
-				return true;
-		}
-
-
-	@Listen("onClick = #txtN001F00021")
-	public boolean buscarSiguiente() {	
-			String a =txtKCOF00021.getValue();
-			String b =  buscadorDCT.obtenerCaja() ;
-			if (servicioF00021.Numero(a, b) >= 0){
-				double numero =  servicioF00021.Numero(a, b);
-				if (numero != 0)
-				txtN001F00021.setValue(String.valueOf(numero + 1));
-				return true;
-				} else
-					return false;
-		}	
-
-	@Listen("onClick = #txtN001F00021")
-	public boolean buscarSiguiente1() {	
-			String a =txtKCOF00021.getValue();
-			String b =  buscadorDCT.obtenerCaja();
-			if (servicioF00021.Numero(a, b) >= 0){
-			double numero =  servicioF00021.Numero(a, b);
-			if (numero != 0)
-			txtN001F00021.setValue(String.valueOf(numero + 1));
+		if (!camposLLenos()) {
+			msj.mensajeAlerta(Mensaje.camposVacios);
+			return false;
+		} else
 			return true;
-			} else
-				return false;
-	}	
-	
+	}
+
+	@Listen("onClick = #txtN001F00021")
+	public boolean buscarSiguiente() {
+		String a = txtKCOF00021.getValue();
+		String b = buscadorDCT.obtenerCaja();
+		if (servicioF00021.Numero(a, b) >= 0) {
+			double numero = servicioF00021.Numero(a, b);
+			if (numero != 0)
+				txtN001F00021.setValue(String.valueOf(numero + 1));
+			return true;
+		} else
+			return false;
+	}
+
+	@Listen("onClick = #txtN001F00021")
+	public boolean buscarSiguiente1() {
+		String a = txtKCOF00021.getValue();
+		String b = buscadorDCT.obtenerCaja();
+		if (servicioF00021.Numero(a, b) >= 0) {
+			double numero = servicioF00021.Numero(a, b);
+			if (numero != 0)
+				txtN001F00021.setValue(String.valueOf(numero + 1));
+			return true;
+		} else
+			return false;
+	}
+
 	public void limpiarCampos() {
 		txtKCOF00021.setValue("");
 		buscadorDCT.settearCampo(null);
@@ -381,7 +399,6 @@ public class CF00021 extends CGenerico {
 			return false;
 	}
 
-
 	@Listen("onOpen = #gpxDatos")
 	public void abrirCatalogo() {
 		gpxDatos.setOpen(false);
@@ -411,13 +428,13 @@ public class CF00021 extends CGenerico {
 			mostrarBotones(true);
 		}
 	}
-	
+
 	public void mostrarCatalogo() {
 		final List<F00021> compannias = servicioF00021.buscarTodosOrdenados();
-		catalogo = new Catalogo<F00021>(catalogoF00021, "F00021", compannias,false,true,true,
-				"Compañia Documento", "Tipo Documento", "Igual aTipo Doc", 
-				"Digito Incrus", "Digito Verif", "Número Siguiente", 
-				"Reinicio Automático") {
+		catalogo = new Catalogo<F00021>(catalogoF00021, "F00021", compannias,
+				false, true, true, "Compañia Documento", "Tipo Documento",
+				"Igual aTipo Doc", "Digito Incrus", "Digito Verif",
+				"Número Siguiente", "Reinicio Automático") {
 
 			@Override
 			protected List<F00021> buscar(List<String> valores) {
@@ -435,10 +452,10 @@ public class CF00021 extends CGenerico {
 									.startsWith(valores.get(3))
 							&& companniadoc.getNlck01().toLowerCase()
 									.startsWith(valores.get(4))
-							&& String.valueOf(companniadoc.getNln001()).toLowerCase()
-									.startsWith(valores.get(5))
-							&& String.valueOf(companniadoc.getNlaur()).toLowerCase()
-									.startsWith(valores.get(6))) {
+							&& String.valueOf(companniadoc.getNln001())
+									.toLowerCase().startsWith(valores.get(5))
+							&& String.valueOf(companniadoc.getNlaur())
+									.toLowerCase().startsWith(valores.get(6))) {
 						compannia.add(companniadoc);
 					}
 				}
@@ -465,10 +482,10 @@ public class CF00021 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista ,true,false,true, "Codigo",
-				"Nombre", "Nº Periodo", "Patron", "Inicio año Fiscal",
-				"Periodo LM", "Inicio año C/P", "Periodo C/P",
-				"Inicio año C/C", "Periodo C/C") {
+		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista,
+				true, false, true, "Codigo", "Nombre", "Nº Periodo", "Patron",
+				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
+				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {
 
 			@Override
 			protected List<F0010> buscar(List<String> valores) {
@@ -516,19 +533,19 @@ public class CF00021 extends CGenerico {
 				registros[8] = f0010.getCcdfyj().toString();
 				registros[9] = String.valueOf(f0010.getCcpnf());
 				return registros;
-	
 
 			}
 		};
 		catalogoF0010.setParent(divCatalogoF0010);
 		catalogoF0010.doModal();
 	}
-	
+
 	@Listen("onSeleccion = #divCatalogoF0010")
-		public void seleccionF0010() {
-			F0010 f0010 = catalogoF0010.objetoSeleccionadoDelCatalogo();
-			txtKCOF00021.setValue(f0010.getCcco());
-			lblDescripcionF0010.setValue(servicioF0010.buscar(f0010.getCcco()).getCcname());
-			catalogoF0010.setParent(null);
-		}
+	public void seleccionF0010() {
+		F0010 f0010 = catalogoF0010.objetoSeleccionadoDelCatalogo();
+		txtKCOF00021.setValue(f0010.getCcco());
+		lblDescripcionF0010.setValue(servicioF0010.buscar(f0010.getCcco())
+				.getCcname());
+		catalogoF0010.setParent(null);
+	}
 }

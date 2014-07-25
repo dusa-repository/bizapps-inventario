@@ -1,19 +1,30 @@
 package arbol;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import modelo.seguridad.Arbol;
+import modelo.seguridad.Usuario;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.zkoss.image.AImage;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Image;
 import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Tab;
@@ -25,6 +36,7 @@ import org.zkoss.zul.West;
 
 import controlador.maestros.CGenerico;
 import componentes.Mensaje;
+import componentes.Validador;
 
 public class CArbol extends CGenerico {
 
@@ -35,10 +47,10 @@ public class CArbol extends CGenerico {
 	private Include contenido;
 	@Wire
 	private Label etiqueta;
-//	@Wire
-//	private Image imagenes;
+	@Wire
+	private Image imagenes;
 	TreeModel _model;
-//	URL url = getClass().getResource("/controlador/maestros/usuario.png");
+	URL url = getClass().getResource("/controlador/maestros/usuario.png");
 //	List<String> listmenu1 = new ArrayList<String>();
 	@Wire
 	private Tab tab;
@@ -48,29 +60,30 @@ public class CArbol extends CGenerico {
 	private West west;
 
 	private static boolean numeroSgt = false;
-	private  static Tabbox tabBox2;
-	private static Include contenido2;
-	private static Tab tab2;
+	private Tabbox tabBox2;
+	private Include contenido2;
+	private Tab tab2;
 	Mensaje msj = new Mensaje();
-
+	HashMap<String, Object> mapGeneral = new HashMap<String, Object>();
+	
 	@Override
 	public void inicializar() throws IOException {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 
-//		Usuario u = servicioUsuario.buscarUsuarioPorNombre(auth.getName());
-//
-//		if (u.getImagen() == null) {
-//			imagenes.setContent(new AImage(url));
-//		} else {
-//			try {
-//				BufferedImage imag;
-//				imag = ImageIO.read(new ByteArrayInputStream(u.getImagen()));
-//				imagenes.setContent(imag);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		Usuario u = servicioUsuario.buscarUsuarioPorNombre(auth.getName());
+
+		if (u.getImagen() == null) {
+			imagenes.setContent(new AImage(url));
+		} else {
+			try {
+				BufferedImage imag;
+				imag = ImageIO.read(new ByteArrayInputStream(u.getImagen()));
+				imagenes.setContent(imag);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		arbolMenu.setModel(getModel());
 
 		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
@@ -108,47 +121,32 @@ public class CArbol extends CGenerico {
 		Nodos threeLevelNode = new Nodos(null, 0, "");
 		Nodos fourLevelNode = new Nodos(null, 0, "");
 
-//		Authentication auth = SecurityContextHolder.getContext()
-//				.getAuthentication();
-//		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(
-//				auth.getAuthorities());
-//
-//		ArrayList<Arbol> arbole = new ArrayList<Arbol>();
-//		List<Arbol> arboles = new ArrayList<Arbol>();
-//		ArrayList<Long> ids = new ArrayList<Long>();
-//		for (int k = 0; k < authorities.size(); k++) {
-//
-//			Arbol arbol;
-//			String nombre = authorities.get(k).toString();
-//			if(Validador.validarNumero(nombre)){
-//			arbol = servicioArbol.buscar(Long.parseLong(nombre));
-//			if (arbol != null)
-//				ids.add(arbol.getIdArbol());
-//			arbole.add(arbol);
-//			}
-//		}
-//		List<Arbol> arboles = new ArrayList<Arbol>();
-//		ArrayList<Long> ids = new ArrayList<Long>();
-//		for (int k = 0; k < authorities.size(); k++) {
-//
-//			Arbol arbol;
-//			String nombre = authorities.get(k).toString();
-//			if(Validador.validarNumero(nombre)){
-//			arbol = servicioArbol.buscar(Long.parseLong(nombre));
-//			if (arbol != null)
-//				ids.add(arbol.getIdArbol());
-//			arbole.add(arbol);
-//			}
-//		}
-//		
-//		Collections.sort(ids);
-//		for (int t = 0; t < ids.size(); t++) {
-//			Arbol a;
-//			a = servicioArbol.buscarPorId(ids.get(t));
-//			arboles.add(a);
-//		}
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(
+				auth.getAuthorities());
+		ArrayList<Arbol> arbole = new ArrayList<Arbol>();
+		List<Arbol> arboles = new ArrayList<Arbol>();
+		ArrayList<Long> ids = new ArrayList<Long>();
+		for (int k = 0; k < authorities.size(); k++) {
 
-		List<Arbol> arboles = servicioArbol.listarArbol();
+			Arbol arbol;
+			String nombre = authorities.get(k).toString();
+			if(Validador.validarNumero(nombre)){
+			arbol = servicioArbol.buscar(Long.parseLong(nombre));
+			if (arbol != null)
+				ids.add(arbol.getIdArbol());
+			arbole.add(arbol);
+			}
+		}
+		
+		Collections.sort(ids);
+		for (int t = 0; t < ids.size(); t++) {
+			Arbol a;
+			a = servicioArbol.buscarPorId(ids.get(t));
+			arboles.add(a);
+		}
+//		List<Arbol> arboles = servicioArbol.listarArbol();
 		long temp1, temp2, temp3 = 0;
 
 		for (int i = 0; i < arboles.size(); i++) {
@@ -219,7 +217,7 @@ public class CArbol extends CGenerico {
 		Tab taba = new Tab();
 		if (arbolMenu.getSelectedItem().getLevel() > 0) {
 			final Arbol arbolItem = servicioArbol.buscarPorNombreArbol(item);
-				
+			mapGeneral.put("titulo", arbolItem.getNombre());
 			if (!arbolItem.getUrl().equals("inicio")) {
 				
 				if (String.valueOf(arbolMenu.getSelectedItem().getValue()).equals("Consulta")) 
@@ -262,6 +260,8 @@ public class CArbol extends CGenerico {
 						tabBox.getTabs().insertBefore(newTab, tab);
 						newTabpanel.setParent(tabBox.getTabpanels());
 						tabs.add(newTab);
+						mapGeneral.put("tabsGenerales", tabs);
+						Sessions.getCurrent().setAttribute("mapaGeneral", mapGeneral);
 				}
 					else {
 						msj.mensajeError(Mensaje.enUso);
@@ -296,6 +296,8 @@ public class CArbol extends CGenerico {
 					tabBox.getTabs().insertBefore(newTab, tab);
 					newTabpanel.setParent(tabBox.getTabpanels());
 					tabs.add(newTab);
+					mapGeneral.put("tabsGenerales", tabs);
+					Sessions.getCurrent().setAttribute("mapaGeneral", mapGeneral);
 					}
 				}
 				 else {
@@ -363,6 +365,8 @@ public class CArbol extends CGenerico {
 			tabBox.getTabs().insertBefore(newTab, tab);
 			newTabpanel.setParent(tabBox.getTabpanels());
 			tabs.add(newTab);
+			mapGeneral.put("tabsGenerales", tabs);
+			Sessions.getCurrent().setAttribute("mapaGeneral", mapGeneral);
 		} else
 			taba.setSelected(true);
 	}

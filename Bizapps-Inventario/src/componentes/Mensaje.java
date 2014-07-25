@@ -23,6 +23,7 @@ public class Mensaje {
 	public static String correoInvalido = "El Correo es Invalido.";
 	public static String telefonoInvalido = "El número de Teléfono es invalido.";
 	public static String contrasennasInvalidas = "Las contraseñas no coinciden.";
+	public static String camposVaciosItem = "Debe Llenar Todos lo Campos Requeridos, de la seccion de Articulo.";
 	
 	public void mensajeInformacion(String msj) {
 	      Messagebox.show(msj, "Informacion",

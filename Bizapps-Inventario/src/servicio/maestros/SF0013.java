@@ -2,7 +2,7 @@ package servicio.maestros;
 
 import java.util.List;
 
-import interfacedao.maestros.IF0013;
+import interfacedao.maestros.IF0013DAO;
 
 import modelo.maestros.F0013;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class SF0013 {
 
 	@Autowired
-	private IF0013	f0013DAO;
+	private IF0013DAO	f0013DAO;
 
 	public List<F0013> buscarTodosOrdenados() {
 		return f0013DAO.findAllOrderByCvcrcdAsc();

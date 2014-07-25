@@ -2,6 +2,7 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0005;
@@ -10,12 +11,14 @@ import modelo.maestros.F40203;
 import modelo.pk.F40203PK;
 import modelo.pk.F40203PK;
 
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
@@ -71,7 +74,7 @@ public class CF40203 extends CGenerico {
 	private Div divbuscadorA4TR;
 	@Wire
 	private Div divbuscadorA5TR;
-	
+
 	@Wire
 	private Div divbuscadorCategoria2;
 	@Wire
@@ -84,87 +87,106 @@ public class CF40203 extends CGenerico {
 
 	Botonera botonera;
 	F40203PK clave = null;
-	BuscadorUDC buscadorDCTO, buscadorNTYF, buscadorTRTY, buscadorNXTR, buscadorA1TR,
-	buscadorA2TR, buscadorA3TR, buscadorA4TR, buscadorA5TR;
+	BuscadorUDC buscadorDCTO, buscadorNTYF, buscadorTRTY, buscadorNXTR,
+			buscadorA1TR, buscadorA2TR, buscadorA3TR, buscadorA4TR,
+			buscadorA5TR;
+
 	@Override
 	public void inicializar() throws IOException {
-		
+		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
+				.getCurrent().getAttribute("mapaGeneral");
+		if (map != null) {
+			if (map.get("tabsGenerales") != null) {
+				tabs = (List<Tab>) map.get("tabsGenerales");
+				System.out.println(tabs.size());
+				map.clear();
+				map = null;
+			}
+		}
 		mostrarCatalogo();
-		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","DT");
-		buscadorDCTO = new BuscadorUDC("Tipo Orden", 10,
-				listaF0005, true, false, false,"00","DT") {
+		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
+				"DT");
+		buscadorDCTO = new BuscadorUDC("Tipo Orden", 10, listaF0005, true,
+				false, false, "00", "DT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
 						buscadorDCTO.obtenerCaja());
 			}
 		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00","00");
-		buscadorNTYF = new BuscadorUDC("Tipo Línea", 10,
-				listaF0005, true, false, false,"00","00") {
+		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
+		buscadorNTYF = new BuscadorUDC("Tipo Línea", 10, listaF0005, true,
+				false, false, "00", "00") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
 						buscadorNTYF.obtenerCaja());
 			}
 		};
-		List<F0005> listaF0005TRTY = servicioF0005.buscarParaUDCOrdenados("40","AT");
-		buscadorTRTY = new BuscadorUDC("Último Estado", 10,
-				listaF0005TRTY, true, false, false,"40","AT") {
+		List<F0005> listaF0005TRTY = servicioF0005.buscarParaUDCOrdenados("40",
+				"AT");
+		buscadorTRTY = new BuscadorUDC("Último Estado", 10, listaF0005TRTY,
+				true, false, false, "40", "AT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
 						buscadorTRTY.obtenerCaja());
 			}
 		};
-		List<F0005> listaF0005NXTR = servicioF0005.buscarParaUDCOrdenados("40","AT");
-		buscadorNXTR = new BuscadorUDC("Estado Siguiente", 10,
-				listaF0005NXTR, false, false, false,"40","AT") {
+		List<F0005> listaF0005NXTR = servicioF0005.buscarParaUDCOrdenados("40",
+				"AT");
+		buscadorNXTR = new BuscadorUDC("Estado Siguiente", 10, listaF0005NXTR,
+				false, false, false, "40", "AT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
 						buscadorNXTR.obtenerCaja());
 			}
 		};
-		List<F0005> listaF0005A1TR = servicioF0005.buscarParaUDCOrdenados("40","AT");
-		buscadorA1TR = new BuscadorUDC("Otros 1", 10,
-				listaF0005A1TR, false, false, false,"40","AT") {
+		List<F0005> listaF0005A1TR = servicioF0005.buscarParaUDCOrdenados("40",
+				"AT");
+		buscadorA1TR = new BuscadorUDC("Otros 1", 10, listaF0005A1TR, false,
+				false, false, "40", "AT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
 						buscadorA1TR.obtenerCaja());
 			}
 		};
-		List<F0005> listaF0005A2TR = servicioF0005.buscarParaUDCOrdenados("A0","AT");
-		buscadorA2TR = new BuscadorUDC("Otros 2", 10,
-				listaF0005A2TR, false, false, false,"A0","AT") {
+		List<F0005> listaF0005A2TR = servicioF0005.buscarParaUDCOrdenados("A0",
+				"AT");
+		buscadorA2TR = new BuscadorUDC("Otros 2", 10, listaF0005A2TR, false,
+				false, false, "A0", "AT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("A0", "AT",
 						buscadorA2TR.obtenerCaja());
 			}
 		};
-		List<F0005> listaF0005A3TR = servicioF0005.buscarParaUDCOrdenados("40","AT");
-		buscadorA3TR = new BuscadorUDC("Otros 3", 10,
-				listaF0005A3TR, false, false, false,"40","AT") {
+		List<F0005> listaF0005A3TR = servicioF0005.buscarParaUDCOrdenados("40",
+				"AT");
+		buscadorA3TR = new BuscadorUDC("Otros 3", 10, listaF0005A3TR, false,
+				false, false, "40", "AT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
 						buscadorA3TR.obtenerCaja());
 			}
 		};
-		List<F0005> listaF0005A4TR = servicioF0005.buscarParaUDCOrdenados("40","AT");
-		buscadorA4TR = new BuscadorUDC("Otros 4", 10,
-				listaF0005A4TR, false, false, false,"40","AT") {
+		List<F0005> listaF0005A4TR = servicioF0005.buscarParaUDCOrdenados("40",
+				"AT");
+		buscadorA4TR = new BuscadorUDC("Otros 4", 10, listaF0005A4TR, false,
+				false, false, "40", "AT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
 						buscadorA4TR.obtenerCaja());
 			}
 		};
-		List<F0005> listaF0005A5TR = servicioF0005.buscarParaUDCOrdenados("40","AT");
-		buscadorA5TR = new BuscadorUDC("Otros 1", 10,
-				listaF0005A5TR, false, false, false,"40","AT") {
+		List<F0005> listaF0005A5TR = servicioF0005.buscarParaUDCOrdenados("40",
+				"AT");
+		buscadorA5TR = new BuscadorUDC("Otros 1", 10, listaF0005A5TR, false,
+				false, false, "40", "AT") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
@@ -172,7 +194,7 @@ public class CF40203 extends CGenerico {
 			}
 		};
 		divbuscadorNTYF.appendChild(buscadorNTYF);
-		divbuscadorDCTO.appendChild(buscadorDCTO);	
+		divbuscadorDCTO.appendChild(buscadorDCTO);
 		divbuscadorTRTY.appendChild(buscadorTRTY);
 		divbuscadorNXTR.appendChild(buscadorNXTR);
 		divbuscadorA1TR.appendChild(buscadorA1TR);
@@ -180,7 +202,7 @@ public class CF40203 extends CGenerico {
 		divbuscadorA3TR.appendChild(buscadorA3TR);
 		divbuscadorA4TR.appendChild(buscadorA4TR);
 		divbuscadorA5TR.appendChild(buscadorA5TR);
-		botonera = new Botonera()  {
+		botonera = new Botonera() {
 
 			@Override
 			public void seleccionar() {
@@ -190,17 +212,19 @@ public class CF40203 extends CGenerico {
 						abrirRegistro();
 						F40203 f40 = catalogo.objetoSeleccionadoDelCatalogo();
 						clave = f40.getId();
-//						txtDCTOF40203.setValue(f40.getId().getFsdcto());
+						// txtDCTOF40203.setValue(f40.getId().getFsdcto());
 						buscadorDCTO.settearCampo(servicioF0005.buscar("00",
 								"00", f40.getId().getFsdcto()));
 						buscadorDCTO.inhabilitarCampo();
 						buscadorNTYF.settearCampo(servicioF0005.buscar("00",
 								"00", f40.getId().getFslnty()));
 						buscadorNTYF.inhabilitarCampo();
-//						txtLNTYF40203.setValue(f40.getId().getFslnty());
-						txtTRTYF40203.setValue(f40.getId().getFstrty());
-						txtTRTYF40203.setDisabled(true);
-						//txtNSF40203.setValue(f40.);
+						// txtLNTYF40203.setValue(f40.getId().getFslnty());
+						if (f40.getId().getFstrty() != null) {
+							txtTRTYF40203.setValue(f40.getId().getFstrty());
+							txtTRTYF40203.setDisabled(true);
+						}
+						// txtNSF40203.setValue(f40.);
 						txtDSC1F40203.setValue(f40.getFsstds());
 						txtNXTRF40203.setValue(f40.getFsnxtr());
 						txtA1TRF40203.setValue(f40.getFsa1tr());
@@ -216,7 +240,8 @@ public class CF40203 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF40203, "Trabajo con Reglas de Actividad de Órdenes");
+				cerrarVentana(divVF40203,
+						"Trabajo con Reglas de Actividad de Órdenes", tabs);
 
 			}
 
@@ -244,7 +269,7 @@ public class CF40203 extends CGenerico {
 					String dcto = buscadorDCTO.obtenerCaja();
 					String lnty = buscadorNTYF.obtenerCaja();
 					String trty = buscadorTRTY.obtenerCaja();
-					//donde la guardo
+					// donde la guardo
 					String ns = txtNSF40203.getValue();
 					String dsc1 = txtDSC1F40203.getValue();
 					String nxtr = buscadorNXTR.obtenerCaja();
@@ -260,7 +285,7 @@ public class CF40203 extends CGenerico {
 					clave.setFstrty(trty);
 					F40203 f40203 = new F40203();
 					f40203.setId(clave);
-					//f40203
+					// f40203
 					f40203.setFsstds(dsc1);
 					f40203.setFsnxtr(nxtr);
 					f40203.setFsa1tr(a1tr);
@@ -331,7 +356,6 @@ public class CF40203 extends CGenerico {
 						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 
-
 			}
 
 			@Override
@@ -358,7 +382,7 @@ public class CF40203 extends CGenerico {
 		botoneraF40203.appendChild(botonera);
 
 	}
-	
+
 	public void mostrarBotones(boolean bol) {
 		botonera.getChildren().get(1).setVisible(bol);
 		botonera.getChildren().get(2).setVisible(bol);
@@ -367,7 +391,7 @@ public class CF40203 extends CGenerico {
 		botonera.getChildren().get(3).setVisible(!bol);
 		botonera.getChildren().get(5).setVisible(!bol);
 	}
-	
+
 	public void limpiarCampos() {
 		clave = null;
 		buscadorDCTO.settearCampo(null);
@@ -390,7 +414,7 @@ public class CF40203 extends CGenerico {
 		buscadorNTYF.habilitarCampos();
 		buscadorTRTY.habilitarCampos();
 	}
-	
+
 	public boolean validarSeleccion() {
 		List<F40203> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
@@ -405,7 +429,7 @@ public class CF40203 extends CGenerico {
 			}
 		}
 	}
-	
+
 	protected boolean validar() {
 		if (claveDCTOExiste()) {
 			return false;
@@ -420,14 +444,14 @@ public class CF40203 extends CGenerico {
 
 	@Listen("onChange = #txtDCTOF40203")
 	public boolean claveDCTOExiste() {
-		if (servicioF40203.buscar(buscadorDCTO.obtenerCaja(), buscadorNTYF.obtenerCaja(), buscadorTRTY.obtenerCaja()) != null) {
+		if (servicioF40203.buscar(buscadorDCTO.obtenerCaja(),
+				buscadorNTYF.obtenerCaja(), buscadorTRTY.obtenerCaja()) != null) {
 			msj.mensajeAlerta(Mensaje.claveUsada);
 			buscadorDCTO.focus();
 			return true;
 		} else
 			return false;
 	}
-
 
 	public boolean camposLLenos() {
 		if (buscadorDCTO.obtenerCaja().compareTo("") == 0
@@ -446,15 +470,14 @@ public class CF40203 extends CGenerico {
 		} else
 			return true;
 	}
-	
-	
+
 	@Listen("onClick = #gpxRegistro")
 	public void abrirRegistro() {
 		gpxDatos.setOpen(false);
 		gpxRegistro.setOpen(true);
 		mostrarBotones(false);
 	}
-	
+
 	public boolean camposEditando() {
 		if (buscadorDCTO.obtenerCaja().compareTo("") != 0
 				|| buscadorNTYF.obtenerCaja().compareTo("") != 0
@@ -472,7 +495,7 @@ public class CF40203 extends CGenerico {
 		} else
 			return false;
 	}
-	
+
 	@Listen("onOpen = #gpxDatos")
 	public void abrirCatalogo() {
 		gpxDatos.setOpen(false);
@@ -490,7 +513,7 @@ public class CF40203 extends CGenerico {
 									gpxDatos.setOpen(true);
 									gpxRegistro.setOpen(false);
 									limpiarCampos();
-									//habilitarTextClave();
+									// habilitarTextClave();
 									mostrarBotones(true);
 								}
 							}
@@ -505,9 +528,10 @@ public class CF40203 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F40203> actividades = servicioF40203.buscarTodosOrdenados();
-		catalogo = new Catalogo<F40203>(catalogoF40203, "F40203", actividades,false,false,true,
-				"Tipo Orden", "Tipo Línea", "Último estado", "Descripción", 
-				"Est sig", "Otros 1", "Otros 2", "Otros 3", "Otros 4" , "Otros 5", "LM (Y/M)") {
+		catalogo = new Catalogo<F40203>(catalogoF40203, "F40203", actividades,
+				false, false, true, "Tipo Orden", "Tipo Línea",
+				"Último estado", "Descripción", "Est sig", "Otros 1",
+				"Otros 2", "Otros 3", "Otros 4", "Otros 5", "LM (Y/M)") {
 
 			@Override
 			protected List<F40203> buscar(List<String> valores) {
@@ -526,7 +550,7 @@ public class CF40203 extends CGenerico {
 							&& actividadord.getFsnxtr().toLowerCase()
 									.startsWith(valores.get(4))
 							&& actividadord.getFsa1tr().toLowerCase()
-									.startsWith(valores.get(5)) 
+									.startsWith(valores.get(5))
 							&& actividadord.getFsa2tr().toLowerCase()
 									.startsWith(valores.get(6))
 							&& actividadord.getFsa3tr().toLowerCase()
@@ -536,7 +560,7 @@ public class CF40203 extends CGenerico {
 							&& actividadord.getFsa5tr().toLowerCase()
 									.startsWith(valores.get(9))
 							&& actividadord.getFswrth().toLowerCase()
-									.startsWith(valores.get(10))		){
+									.startsWith(valores.get(10))) {
 						actividad.add(actividadord);
 					}
 				}
@@ -556,7 +580,7 @@ public class CF40203 extends CGenerico {
 				registros[7] = reglasactividad.getFsa3tr();
 				registros[8] = reglasactividad.getFsa4tr();
 				registros[9] = reglasactividad.getFsa5tr();
-				registros[10] =reglasactividad.getFswrth();
+				registros[10] = reglasactividad.getFswrth();
 				return registros;
 			}
 		};
