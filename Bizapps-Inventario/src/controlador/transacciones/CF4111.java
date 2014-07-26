@@ -35,6 +35,8 @@ import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Listcell;
+import org.zkoss.zul.Listheader;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
@@ -255,6 +257,8 @@ public class CF4111 extends CGenerico {
 			lblNombreUbicacion.setValue("Ubicacion");
 			txtTipo.setValue("I4");
 			tipo = "I4";
+			Listheader cabeza = (Listheader) ltbItems.getChildren().get(0).getChildren().get(3);
+			cabeza.setVisible(true);
 			break;
 		case "Despacho a Paciente":
 			lblF0101Dynamic.setValue("Paciente");

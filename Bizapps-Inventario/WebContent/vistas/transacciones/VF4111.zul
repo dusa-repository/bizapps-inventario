@@ -200,7 +200,7 @@
 							<listheader label="Numero Articulo" hflex="min" />
 							<listheader label="Descripcion Articulo" hflex="min" />
 							<listheader label="Cantidad" hflex="min" />
-							<listheader label="Costo" hflex="min" />
+							<listheader visible="false" label="Costo" hflex="min" />
 							<listheader label="UM" hflex="min" />
 							<listheader label="Ubicacion Inicial" hflex="min" />
 							<listheader label="Ubicacion Final" hflex="min" />
