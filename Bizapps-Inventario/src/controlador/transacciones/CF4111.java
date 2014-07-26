@@ -168,6 +168,12 @@ public class CF4111 extends CGenerico {
 	@Wire
 	private Hbox boxOrden;
 	@Wire
+	private Hbox boxCosto;
+	@Wire
+	private Hbox boxCantidad;
+	@Wire
+	private Hbox boxUbicacion2;
+	@Wire
 	private Label lblNombreUbicacion2;
 	@Wire
 	private Label lblNombreUbicacion;
@@ -216,11 +222,12 @@ public class CF4111 extends CGenerico {
 			break;
 		case "Entre Almacenes":
 			rowF0101.setVisible(false);
-			txtTipo.setValue("IT");
-			tipo = "IT";
+			txtTipo.setValue("ET");
+			tipo = "ET";
 			break;
 		case "De Cantidad":
 			rowF0101.setVisible(false);
+			boxUbicacion2.setVisible(false);
 			txtUbicacion2.setVisible(false);
 			rowPlanta2.setVisible(false);
 			lblNombreUbicacion2.setVisible(false);
@@ -232,12 +239,15 @@ public class CF4111 extends CGenerico {
 			break;
 		case "De Costo":
 			rowF0101.setVisible(false);
+			boxCosto.setVisible(true);
 			lblCosto.setVisible(true);
 			spnCosto.setVisible(true);
 			rowPlanta2.setVisible(false);
+			boxUbicacion2.setVisible(false);
 			txtUbicacion2.setVisible(false);
 			lblCantidad.setVisible(false);
 			spnCantidad.setVisible(false);
+			boxCantidad.setVisible(false);
 			lblCantidad2.setVisible(false);
 			spnCantidad2.setVisible(false);
 			lblNombreUbicacion2.setVisible(false);
@@ -249,6 +259,7 @@ public class CF4111 extends CGenerico {
 		case "Despacho a Paciente":
 			lblF0101Dynamic.setValue("Paciente");
 			rowPlanta2.setVisible(false);
+			boxUbicacion2.setVisible(false);
 			txtUbicacion2.setVisible(false);
 			lblNombreUbicacion2.setVisible(false);
 			btnBuscarUbicacion2.setVisible(false);
@@ -259,6 +270,7 @@ public class CF4111 extends CGenerico {
 		case "Devolucion a Proveedor":
 			lblF0101Dynamic.setValue("Proveedor");
 			rowPlanta2.setVisible(false);
+			boxUbicacion2.setVisible(false);
 			txtUbicacion2.setVisible(false);
 			lblNombreUbicacion2.setVisible(false);
 			btnBuscarUbicacion2.setVisible(false);
@@ -271,6 +283,7 @@ public class CF4111 extends CGenerico {
 			rowPlanta1.setVisible(false);
 			txtTipo.setValue("OV");
 			txtUbicacion2.setVisible(false);
+			boxUbicacion2.setVisible(false);
 			lblNombreUbicacion2.setVisible(false);
 			btnBuscarUbicacion2.setVisible(false);
 			lblNombreUbicacion.setValue("Ubicacion");
@@ -300,11 +313,41 @@ public class CF4111 extends CGenerico {
 			public void seleccionar() {
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
+						System.out.println("hola");
 						F4111 f4111 = catalogo.objetoSeleccionadoDelCatalogo();
 						List<F4111> listF4111 = servicioF4111.buscarPorDoc(
 								f4111.getIldoc(), tipo);
+						txtDoc.setValue(f4111.getIldoc());
+						if (f4111.getIldoco() != null)
+							txtOrden.setValue(f4111.getIldoco());
+						if (f4111.getIlan8() != null)
+							txtF0101.setValue(f4111.getIlan8().longValue());
+						txtPlanta1.setValue(f4111.getIlmcu());
+						txtPlanta2.setValue(f4111.getIlmmcu());
+						txtExplicacion.setValue(f4111.getIltrex());
+						dtbFechaLm.setValue(transformarJulianaAGregoria(f4111
+								.getIltrdj()));
+						dtbFechaTransaccion
+								.setValue(transformarJulianaAGregoria(f4111
+										.getIlcrdj()));
+						for (int i = 0; i < listF4111.size(); i++) {
+							F4101 f4101 = servicioF4101.buscar(listF4111.get(i)
+									.getIlitm());
+							Generico generico = new Generico(listF4111.get(i)
+									.getIlitm(), f4101.getImdsc1(),
+									f4101.getImuom1(), listF4111.get(i)
+											.getIlmcu(), "", listF4111.get(i)
+											.getIlmmcu(), "", listF4111.get(i)
+											.getIltrqt().intValue(), listF4111
+											.get(i).getIluncs());
+							generico.setValor11(listF4111.get(i).getIlpaid());
+							lista.add(generico);
+						}
+						ltbItems.setModel(new ListModelList<Generico>(lista));
+						ltbItems.renderAll();
 						mostrarBotones(false);
 						abrirRegistro();
+						botonera.getChildren().get(3).setVisible(false);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -321,6 +364,7 @@ public class CF4111 extends CGenerico {
 
 			@Override
 			public void limpiar() {
+				botonera.getChildren().get(3).setVisible(true);
 				mostrarBotones(false);
 				limpiarCampos();
 			}
@@ -344,22 +388,23 @@ public class CF4111 extends CGenerico {
 						}
 						nextNumber = false;
 						try {
-//							if (id == 0) {
-//								id = numeroSiguiente();
-//							}
+							// if (id == 0) {
+							// id = numeroSiguiente();
+							// }
 							// termina el next number
 
 							F4111 f4111 = new F4111();
 							// No selecciona items
-							System.out.println("size de lista");
 							if (lista.size() == 0) {
 								f4111 = new F4111();
 								f4111.setIlukid(id);
 								f4111.setIlmcu(txtPlanta1.getValue());
 								f4111.setIlmmcu(txtPlanta2.getValue());
 								Integer inte = spnCantidad.getValue();
-								if (!tipo.equals("Por orden de Compra"))
-									inte = inte * -1;
+								if (!tipo.equals("OV")) {
+									if (!tipo.equalsIgnoreCase("IA"))
+										inte = inte * -1;
+								}
 								f4111.setIltrqt(inte.doubleValue());
 								f4111.setIldoc(txtDoc.getValue());
 								f4111.setIldoco(txtOrden.getValue());
@@ -397,7 +442,7 @@ public class CF4111 extends CGenerico {
 								String mcu = "";
 								String mcu2 = "";
 								// si es ov intercambio las F0006
-								if (tipo.equals("OV")) {
+								if (tipo.equalsIgnoreCase("OV")) {
 									mcu = txtPlanta2.getValue();
 									mcu2 = txtPlanta1.getValue();
 								} else {
@@ -432,8 +477,12 @@ public class CF4111 extends CGenerico {
 								f4111.setIluncs(costoUnitario);
 								// si es orden de compra o ajuste por
 								// cantidad sera negativa la cantidad
-								if (!tipo.equals("OV") || !tipo.equals("IA"))
-									inte = inte * -1;
+								if (!tipo.equals("OV")) {
+									if (!tipo.equalsIgnoreCase("IA"))
+										inte = inte * -1;
+								}
+								System.out.println(tipo);
+								System.out.println(inte);
 								f4111.setIltrqt(inte.doubleValue());
 								Double total = inte * costoUnitario;
 								f4111.setIlpaid(total);
@@ -468,12 +517,12 @@ public class CF4111 extends CGenerico {
 									f4105 = servicioF4105
 											.buscar(claveCostoUnitario);
 									Double costo2 = (double) 0;
-									System.out.println("objeto"+f4105);
+									System.out.println("objeto" + f4105);
 									if (f4105 != null)
 										costo2 = f4105.getCouncs();
 									Double total2 = inte * costo2;
-									
-//									<Nuevooo
+
+									// <Nuevooo
 									f4111 = new F4111();
 									f4111.setIlukid(numeroSiguiente());
 									f4111.setIldoc(txtDoc.getValue());
@@ -492,12 +541,13 @@ public class CF4111 extends CGenerico {
 									f4111.setIlitm(numero);
 									f4111.setIltrum(um);
 									f4111.setIluncs(costo2);
-									f4111.setIltrqt(inte.doubleValue()*(-1));
-									f4111.setIlpaid(costo2*(inte.doubleValue()*(-1)));
+									f4111.setIltrqt(inte.doubleValue() * (-1));
+									f4111.setIlpaid(costo2
+											* (inte.doubleValue() * (-1)));
 									servicioF4111.guardar(f4111);
-									
-//									>Nuevoooo
-									
+
+									// >Nuevoooo
+
 									// busco en la tabla de saldo
 									claveSaldo = new F41021PK();
 									claveSaldo.setLiitm(numero);
@@ -508,13 +558,13 @@ public class CF4111 extends CGenerico {
 											.buscar(claveSaldo);
 									if (f410212 != null) {
 										f410212.setLipqoh(f410212.getLipqoh()
-												+ (total2*(-1)));
+												+ (total2 * (-1)));
 									} else {
 										f410212 = new F41021();
 										f410212.setId(claveSaldo);
-										f410212.setLipqoh(total2*(-1));
+										f410212.setLipqoh(total2 * (-1));
 									}
-									System.out.println("valor"+total2);
+									System.out.println("valor" + total2);
 									servicioF41021.guardar(f410212);
 									// guardo en la tabla de saldo y si
 									// es ajuste de costo sigo
@@ -557,7 +607,8 @@ public class CF4111 extends CGenerico {
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 
-				}
+				} else
+					msj.mensajeAlerta(Mensaje.camposVacios);
 			}
 
 			@Override
@@ -590,20 +641,20 @@ public class CF4111 extends CGenerico {
 			public void annadir() {
 				abrirRegistro();
 				mostrarBotones(false);
+				botonera.getChildren().get(3).setVisible(true);
 			}
 		};
 		botonera.getChildren().get(3).setVisible(false);
+		botonera.getChildren().get(4).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
 		botoneraF4111.appendChild(botonera);
 	}
 
 	protected double numeroSiguiente() {
-		double numeroNext = servicioF00021.Numero("6",
-				"JE");
+		double numeroNext = servicioF00021.Numero("6", "JE");
 		if (numeroNext != 0) {
 			id = numeroNext + 1;
-			F00021 f021 = servicioF00021.buscar("6",
-					"JE");
+			F00021 f021 = servicioF00021.buscar("6", "JE");
 			f021.setNln001(id);
 			servicioF00021.guardar(f021);
 		} else {
@@ -622,16 +673,50 @@ public class CF4111 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		if (txtDoc.getText().compareTo("") == 0) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
-			return false;
-		} else
-			return true;
+		switch (tipo) {
+		case "OV":
+			if (txtDoc.getText().compareTo("") == 0
+					|| txtOrden.getText().compareTo("") == 0
+					|| txtF0101.getText().compareTo("") == 0
+					|| txtPlanta2.getText().compareTo("") == 0)
+				return false;
+			else
+				return true;
+		case "ET":
+		case "IT":
+			if (txtDoc.getText().compareTo("") == 0
+					|| txtPlanta1.getText().compareTo("") == 0
+					|| txtPlanta2.getText().compareTo("") == 0)
+				return false;
+			else
+				return true;
+		case "IA":
+		case "I4":
+			if (txtDoc.getText().compareTo("") == 0
+					|| txtPlanta1.getText().compareTo("") == 0)
+				return false;
+			else
+				return true;
+		default:
+			if (txtDoc.getText().compareTo("") == 0
+					|| txtPlanta1.getText().compareTo("") == 0
+					|| txtF0101.getText().compareTo("") == 0)
+				return false;
+			else
+				return true;
+		}
 	}
 
 	protected void limpiarCampos() {
-		// TODO Auto-generated method stub
-
+		txtDoc.setValue(null);
+		txtOrden.setValue(null);
+		txtExplicacion.setValue("");
+		txtF0101.setValue(null);
+		txtPlanta1.setValue("");
+		txtPlanta2.setValue("");
+		limpiarCamposItem();
+		ltbItems.getItems().clear();
+		lista.clear();
 	}
 
 	protected void mostrarBotones(boolean bol) {
@@ -639,12 +724,13 @@ public class CF4111 extends CGenerico {
 		botonera.getChildren().get(2).setVisible(bol);
 		botonera.getChildren().get(6).setVisible(bol);
 		botonera.getChildren().get(0).setVisible(bol);
-		botonera.getChildren().get(3).setVisible(!bol);
+		// botonera.getChildren().get(3).setVisible(!bol);
 		botonera.getChildren().get(5).setVisible(!bol);
 	}
 
 	@Listen("onOpen = #gpxRegistroF4111")
 	public void abrirRegistro() {
+		botonera.getChildren().get(3).setVisible(true);
 		gpxDatosF4111.setOpen(false);
 		gpxRegistroF4111.setOpen(true);
 		mostrarBotones(false);
@@ -664,6 +750,8 @@ public class CF4111 extends CGenerico {
 								gpxRegistroF4111.setOpen(true);
 							} else {
 								if (evt.getName().equals("onNo")) {
+									botonera.getChildren().get(3)
+											.setVisible(false);
 									gpxDatosF4111.setOpen(true);
 									gpxRegistroF4111.setOpen(false);
 									limpiarCampos();
@@ -674,6 +762,7 @@ public class CF4111 extends CGenerico {
 						}
 					});
 		} else {
+			botonera.getChildren().get(3).setVisible(false);
 			gpxDatosF4111.setOpen(true);
 			gpxRegistroF4111.setOpen(false);
 			mostrarBotones(true);
@@ -1171,9 +1260,50 @@ public class CF4111 extends CGenerico {
 		}
 	}
 
+	public boolean validarItems() {
+		switch (tipo) {
+		case "OV":
+			if (txtItem.getText().compareTo("") == 0
+					|| txtPlanta2.getText().compareTo("") == 0
+					|| txtUbicacion1.getText().compareTo("") == 0
+					|| spnCantidad.getValue() == 0)
+				return false;
+			else
+				return true;
+		case "ET":
+		case "IT":
+			if (txtItem.getText().compareTo("") == 0
+					|| txtPlanta1.getText().compareTo("") == 0
+					|| txtPlanta2.getText().compareTo("") == 0
+					|| txtUbicacion1.getText().compareTo("") == 0
+					|| txtUbicacion2.getText().compareTo("") == 0
+					|| spnCantidad.getValue() == 0)
+				return false;
+			else
+				return true;
+		case "I4":
+			if (txtItem.getText().compareTo("") == 0
+					|| txtPlanta1.getText().compareTo("") == 0
+					|| txtUbicacion1.getText().compareTo("") == 0
+					|| spnCosto.getValue() == 0)
+				return false;
+			else
+				return true;
+		default:
+			if (txtItem.getText().compareTo("") == 0
+					|| txtPlanta1.getText().compareTo("") == 0
+					|| txtUbicacion1.getText().compareTo("") == 0
+					|| spnCantidad.getValue() == 0)
+				return false;
+			else
+				return true;
+		}
+	}
+
 	@Listen("onClick = #btnAgregar")
 	public void annadirLista() {
-		if (txtItem.getText().compareTo("") != 0) {
+		if (validarItems()) {
+
 			Double item = txtItem.getValue();
 			String itemNombre = lblItem.getValue();
 			int cantidad = spnCantidad.getValue();
@@ -1181,12 +1311,32 @@ public class CF4111 extends CGenerico {
 			String um = txtUM.getValue();
 			String ubicacion = txtUbicacion1.getValue();
 			String ubicacion2 = txtUbicacion2.getValue();
+			String mcu = "";
+			if (tipo.equals("OV")) {
+				mcu = txtPlanta2.getValue();
+			} else {
+				mcu = txtPlanta1.getValue();
+			}
+			F4105PK claveCostoUnitario = new F4105PK();
+			claveCostoUnitario.setCoitm(item);
+			claveCostoUnitario.setComcu(mcu);
+			claveCostoUnitario.setColocn(ubicacion);
+			claveCostoUnitario.setColotn("");
+			claveCostoUnitario.setColedg("");
+			F4105 f4105 = servicioF4105.buscar(claveCostoUnitario);
+			double costoIn = 0;
+			if (f4105 != null)
+				costoIn = f4105.getCouncs();
+			double valorTotal = costoIn * cantidad;
 			Generico modelo = new Generico(item, itemNombre, um, ubicacion, "",
 					ubicacion2, "", cantidad, costo);
+			modelo.setValor11(valorTotal);
+
 			for (int i = 0; i < ltbItems.getItemCount(); i++) {
 				Listitem listItem = ltbItems.getItemAtIndex(i);
 				Generico modeloLista = listItem.getValue();
-				if (modeloLista.getValor1().equals(item)) {
+				if (modeloLista.getValor1().equals(item)
+						&& modeloLista.getValor4().equals(ubicacion)) {
 					ltbItems.removeItemAt(i);
 					lista.remove(modeloLista);
 					ltbItems.renderAll();
@@ -1258,6 +1408,37 @@ public class CF4111 extends CGenerico {
 				msj.mensajeAlerta(Mensaje.editarSoloUno);
 		} else
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
+	}
+
+	@Listen("onChange=#spnCantidad,#txtPlanta1,#txtUbicacion1,#txtItem")
+	public void sumar() {
+		if (!tipo.equals("OV")) {
+			if (!tipo.equalsIgnoreCase("IA")) {
+				System.out.println(tipo);
+				if (txtItem.getText().compareTo("") != 0
+						|| txtPlanta1.getText().compareTo("") != 0
+						|| txtUbicacion1.getText().compareTo("") != 0)
+					calcular(txtPlanta1);
+			}
+		}
+		// else {
+		// if (txtItem.getText().compareTo("") != 0
+		// || txtPlanta2.getText().compareTo("") != 0
+		// || txtUbicacion1.getText().compareTo("") != 0)
+		// calcular(txtPlanta2);
+		// }
+	}
+
+	private void calcular(Textbox txtPlanta22) {
+		Integer cantidad = spnCantidad.getValue();
+		Double suma = servicioF4111.sumar(txtItem.getValue(),
+				txtPlanta22.getValue(), txtUbicacion1.getValue());
+		System.out.println("suma" + suma);
+		if (suma.intValue() - cantidad < 0) {
+			spnCantidad.setValue(0);
+			spnCantidad.setFocus(true);
+			msj.mensajeError(Mensaje.noPoseeExistencia);
+		}
 	}
 
 }
