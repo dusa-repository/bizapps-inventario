@@ -12,6 +12,7 @@ public class Generico {
 	private Integer valor8;
 	private Integer valor9;
 	private Double valor10;
+	private Double valor11;
 	public Generico() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -88,6 +89,12 @@ public class Generico {
 	}
 	public void setValor10(Double valor10) {
 		this.valor10 = valor10;
+	}
+	public Double getValor11() {
+		return valor11;
+	}
+	public void setValor11(Double valor11) {
+		this.valor11 = valor11;
 	}
 	
 	

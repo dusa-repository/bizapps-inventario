@@ -26,4 +26,8 @@ public class SF4111 {
 	public List<F4111> buscarPorDoc(Double ildoc, String tipo) {
 		return iF4111DAO.findByIldocAndIldct(ildoc, tipo);
 	}
+
+	public Double sumar(Double value, String value2, String value3) {
+		return iF4111DAO.suma(value, value2, value3);
+	}
 }
