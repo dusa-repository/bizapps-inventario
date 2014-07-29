@@ -3,6 +3,7 @@ package interfacedao.maestros;
 import java.util.List;
 
 import modelo.maestros.F0006;
+import modelo.maestros.F0010;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,4 +14,6 @@ public interface IF0006DAO extends JpaRepository<F0006, String> {
 	List<F0006> findAllOrderByMcmcu();
 
 	List<F0006> findByMcmcu(String value);
+
+	List<F0010> findByMcco(String ccco);
 }

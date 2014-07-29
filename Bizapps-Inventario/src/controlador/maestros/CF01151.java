@@ -80,7 +80,7 @@ public class CF01151 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("01", "HI");
 		buscadorEhier = new BuscadorUDC("Indicador Mensajes", 19, listF0005,
-				false, false, false,"01", "HI") {
+				false, false, false, "01", "HI") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "HI",
@@ -91,7 +91,7 @@ public class CF01151 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CF");
 		buscadorEclass = new BuscadorUDC("Cat. Direccion Electronica", 3,
-				listF0005, false, false, false,"01", "CF") {
+				listF0005, false, false, false, "01", "CF") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "CF",
@@ -186,7 +186,9 @@ public class CF01151 extends CGenerico {
 					}
 					f015.setId(clavePk);
 					f015.setEaemal(txtEmalF01151.getValue());
-					f015.setEaetp(cmbEtpF01151.getSelectedItem().getContext());
+					if (cmbEtpF01151.getSelectedItem() != null)
+						f015.setEaetp(cmbEtpF01151.getSelectedItem()
+								.getContext());
 					f015.setEaeclass(buscadorEclass.obtenerCaja());
 					if (buscadorEhier.obtenerCaja().compareTo("") != 0)
 						f015.setEaehier(Double.valueOf(buscadorEhier
@@ -425,18 +427,20 @@ public class CF01151 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F01151 f0115) {
 				String valor = "";
-				switch (f0115.getEaetp()) {
-				case "DirW":
-					valor = "Direccion de Internet";
-					break;
-				case "DirE":
-					valor = "Direccion Electronica";
-					break;
-				case "DirI":
-					valor = "Direccion Interna";
-					break;
-				default:
-					break;
+				if (f0115.getEaetp() != null) {
+					switch (f0115.getEaetp()) {
+					case "DirW":
+						valor = "Direccion de Internet";
+						break;
+					case "DirE":
+						valor = "Direccion Electronica";
+						break;
+					case "DirI":
+						valor = "Direccion Interna";
+						break;
+					default:
+						break;
+					}
 				}
 				String[] registros = new String[5];
 				registros[0] = String.valueOf(f0115.getId().getEaan8());
@@ -449,7 +453,7 @@ public class CF01151 extends CGenerico {
 		};
 		catalogo.setParent(catalogoF01151);
 	}
-	
+
 	@Listen("onClick = #btnBuscarDireccionF01151")
 	public void mostrarCatalogoDireccion() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();

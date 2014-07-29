@@ -36,4 +36,8 @@ public class SF41002 {
 		
 	}
 
+	public List<F41002> buscarPorItm(double clave) {
+		return f41002DAO.findByIdUmitm(clave);
+	}
+
 }

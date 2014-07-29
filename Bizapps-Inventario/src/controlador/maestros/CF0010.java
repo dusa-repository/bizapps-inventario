@@ -127,8 +127,7 @@ public class CF0010 extends CGenerico {
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
 				"DP");
 		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listaF0005,
-				true, false, false,"H00",
-				"DP") {
+				true, false, false, "H00", "DP") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DP",
@@ -137,7 +136,7 @@ public class CF0010 extends CGenerico {
 		};
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "DA");
 		buscadorCALD = new BuscadorUDC("Numero periodos", 2, listaF0005, false,
-				false, false,"H00", "DA") {
+				false, false, "H00", "DA") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DA",
@@ -281,48 +280,72 @@ public class CF0010 extends CGenerico {
 					if (validarSeleccion()) {
 						final List<F0010> eliminarLista = catalogo
 								.obtenerSeleccionados();
-						Messagebox
-								.show("¿Desea Eliminar los "
-										+ eliminarLista.size() + " Registros?",
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0010
-															.eliminarVarios(eliminarLista);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF0010
-															.buscarTodosOrdenados());
+						final int cantidad = eliminarLista.size();
+						for (int i = 0; i < eliminarLista.size(); i++) {
+							F0010 valor = eliminarLista.get(i);
+							List<F0010> objeto = servicioF0006
+									.buscarPorMco(valor.getCcco());
+							if (!objeto.isEmpty()) {
+								eliminarLista.remove(valor);
+								i--;
+							}
+						}
+						if (!eliminarLista.isEmpty()) {
+							Messagebox
+									.show("¿Desea Eliminar los "
+											+ eliminarLista.size()
+											+ " Registros?",
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0010
+																.eliminarVarios(eliminarLista);
+														catalogo.actualizarLista(servicioF0010
+																.buscarTodosOrdenados());
+
+														if (cantidad != eliminarLista.size())
+															msj.mensajeInformacion(Mensaje.algunosEliminados);
+														else 
+															msj.mensajeInformacion(Mensaje.eliminado);
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					}
 				} else {
 					/* Elimina un solo registro */
 					if (clave != null) {
-						Messagebox
-								.show(Mensaje.deseaEliminar,
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0010
-															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													limpiar();
-													catalogo.actualizarLista(servicioF0010
-															.buscarTodosOrdenados());
+						List<F0010> objeto = servicioF0006.buscarPorMco(clave);
+						if (objeto.isEmpty()) {
+							Messagebox
+									.show(Mensaje.deseaEliminar,
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0010
+																.eliminarUno(clave);
+														msj.mensajeInformacion(Mensaje.eliminado);
+														limpiar();
+														catalogo.actualizarLista(servicioF0010
+																.buscarTodosOrdenados());
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					} else
 						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}

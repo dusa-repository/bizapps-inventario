@@ -12,4 +12,6 @@ public interface IF0010DAO extends JpaRepository<F0010, String> {
 	@Query("select f from F0010 f order by f.ccco asc")
 	List<F0010> findAllOrderByCccoAsc();
 
+	List<F0010> findByCccrcd(String cvcrcd);
+
 }

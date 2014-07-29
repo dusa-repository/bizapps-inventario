@@ -13,4 +13,8 @@ public interface IF0101DAO extends JpaRepository<F0101, Double> {
 	@Query("select f from F0101 f order by f.aban8 asc")
 	List<F0101> findAllOrderByAban8dAsc();
 
+	List<F0101> findByAban81OrAban82OrAban83OrAban84OrAban85OrAban86(
+			double aban8, double aban82, double aban83, double aban84,
+			double aban85, double aban86);
+
 }

@@ -35,4 +35,8 @@ public class SF0010 {
 	public F0010 buscar(String value) {
 		return f0010DAO.findOne(value);
 	}
+
+	public List<F0010> buscarPorDrdc(String cvcrcd) {
+		return f0010DAO.findByCccrcd(cvcrcd);
+	}
 }

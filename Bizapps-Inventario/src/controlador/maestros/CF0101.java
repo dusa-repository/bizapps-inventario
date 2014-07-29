@@ -28,10 +28,14 @@ import modelo.maestros.F0006;
 import modelo.maestros.F0013;
 import modelo.maestros.F0101;
 import modelo.maestros.F0111;
+import modelo.maestros.F0115;
+import modelo.maestros.F01151;
 import modelo.maestros.F0116;
+import modelo.maestros.F4100;
 import modelo.pk.F00021PK;
 import modelo.pk.F0111PK;
 import modelo.pk.F0116PK;
+import modelo.transacciones.F4111;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
@@ -368,42 +372,54 @@ public class CF0101 extends CGenerico {
 						txtEXCHF0101.setValue(f01.getAbexchg());
 						txtTICKERF0101.setValue(f01.getAbticker());
 						Double doble = f01.getAban81();
+						F0101 f0101 = new F0101();
 						if (doble != null) {
-							lblDireccion1F0101.setValue(servicioF0101.buscar(
-									doble).getAbalph());
-							txtAN81F0101.setValue(doble.longValue());
+							f0101 = servicioF0101.buscar(doble);
+							if (f0101 != null) {
+								lblDireccion1F0101.setValue(f0101.getAbalph());
+								txtAN81F0101.setValue(doble.longValue());
+							}
 						}
 						Double doble1 = f01.getAban82();
 						if (doble1 != null) {
-							lblDireccion2F0101.setValue(servicioF0101.buscar(
-									doble1).getAbalph());
-							txtAN82F0101.setValue(doble1.longValue());
+							f0101 = servicioF0101.buscar(doble1);
+							if (f0101 != null) {
+								lblDireccion2F0101.setValue(f0101.getAbalph());
+								txtAN82F0101.setValue(doble1.longValue());
+							}
 						}
 						Double doble2 = f01.getAban83();
 						if (doble2 != null) {
-							lblDireccion3F0101.setValue(servicioF0101.buscar(
-									doble2).getAbalph());
-							txtAN83F0101.setValue(doble2.longValue());
+							f0101 = servicioF0101.buscar(doble2);
+							if (f0101 != null) {
+								lblDireccion3F0101.setValue(f0101.getAbalph());
+								txtAN83F0101.setValue(doble2.longValue());
+							}
 						}
 						Double doble3 = f01.getAban84();
 						if (doble3 != null) {
-							lblDireccion4F0101.setValue(servicioF0101.buscar(
-									doble3).getAbalph());
-							txtAN84F0101.setValue(doble3.longValue());
+							f0101 = servicioF0101.buscar(doble3);
+							if (f0101 != null) {
+								lblDireccion4F0101.setValue(f0101.getAbalph());
+								txtAN84F0101.setValue(doble3.longValue());
+							}
 						}
 						Double doble4 = f01.getAban85();
 						if (doble4 != null) {
-							lblDireccion5F0101.setValue(servicioF0101.buscar(
-									doble4).getAbalph());
-							txtAN85F0101.setValue(doble4.longValue());
+							f0101 = servicioF0101.buscar(doble4);
+							if (f0101 != null) {
+								lblDireccion5F0101.setValue(f0101.getAbalph());
+								txtAN85F0101.setValue(doble4.longValue());
+							}
 						}
 						Double doble5 = f01.getAban86();
 						if (doble5 != null) {
-							lblFactorF0101.setValue(servicioF0101
-									.buscar(doble5).getAbalph());
-							txtFactorF0101.setValue(doble5.longValue());
+							f0101 = servicioF0101.buscar(doble5);
+							if (f0101 != null) {
+								lblFactorF0101.setValue(f0101.getAbalph());
+								txtFactorF0101.setValue(doble5.longValue());
+							}
 						}
-
 						F0111PK clave2 = new F0111PK();
 						Long val2 = (long) 1;
 						clave2.setWwan8(f01.getAban8());
@@ -744,48 +760,87 @@ public class CF0101 extends CGenerico {
 					if (validarSeleccion()) {
 						final List<F0101> eliminarLista = catalogo
 								.obtenerSeleccionados();
-						Messagebox
-								.show("¿Desea Eliminar los "
-										+ eliminarLista.size() + " Registros?",
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0101
-															.eliminarVarios(eliminarLista);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF0101
-															.buscarTodosOrdenados());
+						final int cantidad = eliminarLista.size();
+						for (int i = 0; i < eliminarLista.size(); i++) {
+							F0101 valor = eliminarLista.get(i);
+							List<F0115> objeto = servicioF0115
+									.buscarPorAn(valor.getAban8());
+							List<F01151> objeto3 = servicioF01151
+									.buscarPorAn(valor.getAban8());
+							List<F0101> objeto2 = servicioF0101
+									.buscarPorAns(valor.getAban8());
+							List<F4111> objeto4 = servicioF4111
+									.buscarPorAn(valor.getAban8());
+							if (!objeto.isEmpty() || !objeto2.isEmpty()
+									|| !objeto3.isEmpty() || !objeto4.isEmpty()) {
+								eliminarLista.remove(valor);
+								i--;
+							}
+						}
+						if (!eliminarLista.isEmpty()) {
+							Messagebox
+									.show("¿Desea Eliminar los "
+											+ eliminarLista.size()
+											+ " Registros?",
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0101
+																.eliminarVarios(eliminarLista);
+														catalogo.actualizarLista(servicioF0101
+																.buscarTodosOrdenados());
+														if (cantidad != eliminarLista
+																.size())
+															msj.mensajeInformacion(Mensaje.algunosEliminados);
+														else
+															msj.mensajeInformacion(Mensaje.eliminado);
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					}
 				} else {
 					/* Elimina un solo registro */
 					if (clave != 0) {
-						Messagebox
-								.show(Mensaje.deseaEliminar,
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0101
-															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													limpiar();
-													catalogo.actualizarLista(servicioF0101
-															.buscarTodosOrdenados());
+						List<F0115> objeto = servicioF0115
+								.buscarPorAn(clave);
+						List<F01151> objeto3 = servicioF01151
+								.buscarPorAn(clave);
+						List<F0101> objeto2 = servicioF0101
+								.buscarPorAns(clave);
+						List<F4111> objeto4 = servicioF4111
+								.buscarPorAn(clave);
+						if (objeto.isEmpty() && objeto2.isEmpty()
+								&& objeto3.isEmpty() && objeto4.isEmpty()) {
+							Messagebox
+									.show(Mensaje.deseaEliminar,
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0101
+																.eliminarUno(clave);
+														msj.mensajeInformacion(Mensaje.eliminado);
+														limpiar();
+														catalogo.actualizarLista(servicioF0101
+																.buscarTodosOrdenados());
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					} else
 						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
@@ -824,7 +879,7 @@ public class CF0101 extends CGenerico {
 
 	private boolean camposLLenos() {
 		if (txtALPHF0101.getText().compareTo("") == 0
-				|| buscadorAT1.obtenerCaja().compareTo("") == 0) {
+				|| buscadorAT1.obtenerCaja() == null) {
 			return false;
 		} else
 			return true;
@@ -1008,11 +1063,11 @@ public class CF0101 extends CGenerico {
 							&& f01.getAbalky().toLowerCase()
 									.startsWith(valores.get(2))
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
+									.startsWith(valores.get(3))
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
+									.startsWith(valores.get(4))
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
+									.startsWith(valores.get(5))) {
 						lista.add(f01);
 					}
 				}

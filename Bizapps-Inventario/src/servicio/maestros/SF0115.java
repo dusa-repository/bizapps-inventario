@@ -35,4 +35,8 @@ public class SF0115 {
 	public List<F0115> buscarParaRegistrar(double doubleValue) {
 		return f0115DAO.findByIdWpan8(doubleValue);
 	}
+
+	public List<F0115> buscarPorAn(double aban8) {
+		return f0115DAO.findByIdWpan8(aban8);
+	}
 }

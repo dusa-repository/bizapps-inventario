@@ -9,6 +9,7 @@ import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F4100;
 import modelo.pk.F4100PK;
+import modelo.transacciones.F4111;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -179,6 +180,7 @@ public class CF4100 extends CGenerico {
 						txtMCUF4100.setDisabled(true);
 
 						txtLOCNF4100.setValue(f4100.getId().getLmlocn());
+						txtLOCNF4100.setDisabled(true);
 						dtbUPMJF4100.setValue(transformarJulianaAGregoria(f4100
 								.getLmupmj()));
 
@@ -204,7 +206,8 @@ public class CF4100 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4100, "Trabajo con Maestro de Ubicaciones", tabs);
+				cerrarVentana(divVF4100, "Trabajo con Maestro de Ubicaciones",
+						tabs);
 
 			}
 
@@ -261,50 +264,76 @@ public class CF4100 extends CGenerico {
 					if (validarSeleccion()) {
 						final List<F4100> eliminarLista = catalogoF4100
 								.obtenerSeleccionados();
-						Messagebox
-								.show("¿Desea Eliminar los "
-										+ eliminarLista.size() + " Registros?",
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF4100
-															.eliminarVarios(eliminarLista);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogoF4100
-															.actualizarLista(servicioF4100
-																	.buscarTodosOrdenados());
+						final int cantidad = eliminarLista.size();
+						for (int i = 0; i < eliminarLista.size(); i++) {
+							F4100 valor = eliminarLista.get(i);
+							List<F4111> objeto = servicioF4111
+									.buscarPorUbicaciones(valor.getId()
+											.getLmlocn());
+							if (!objeto.isEmpty()) {
+								eliminarLista.remove(valor);
+								i--;
+							}
+						}
+						if (!eliminarLista.isEmpty()) {
+							Messagebox
+									.show("¿Desea Eliminar los "
+											+ eliminarLista.size()
+											+ " Registros?",
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF4100
+																.eliminarVarios(eliminarLista);
+														catalogoF4100
+																.actualizarLista(servicioF4100
+																		.buscarTodosOrdenados());
+														if (cantidad != eliminarLista
+																.size())
+															msj.mensajeInformacion(Mensaje.algunosEliminados);
+														else
+															msj.mensajeInformacion(Mensaje.eliminado);
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					}
 				} else {
 					/* Elimina un solo registro */
 					if (clave != null) {
-						Messagebox
-								.show(Mensaje.deseaEliminar,
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF4100
-															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													limpiar();
-													catalogoF4100
-															.actualizarLista(servicioF4100
-																	.buscarTodosOrdenados());
+						List<F4111> objeto = servicioF4111
+								.buscarPorUbicaciones(clave.getLmlocn());
+						if (objeto.isEmpty()) {
+							Messagebox
+									.show(Mensaje.deseaEliminar,
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF4100
+																.eliminarUno(clave);
+														msj.mensajeInformacion(Mensaje.eliminado);
+														limpiar();
+														catalogoF4100
+																.actualizarLista(servicioF4100
+																		.buscarTodosOrdenados());
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					} else
 						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
@@ -497,10 +526,29 @@ public class CF4100 extends CGenerico {
 				for (F4100 f4100 : listF4100) {
 					F0006 f0006 = servicioF0006
 							.buscar(f4100.getId().getLmmcu());
+					String mcdc = "";
+					if (f0006.getMcdc() != null)
+						mcdc = f0006.getMcdc();
+					String num3 = "", num4 = "", num5 = "", num6 = "", num7 = "", num8 = "", num9 = "", num10 = "";
+					if (f4100.getLmla03() != null)
+						num3 = f4100.getLmla03();
+					if (f4100.getLmla04() != null)
+						num4 = f4100.getLmla04();
+					if (f4100.getLmla05() != null)
+						num5 = f4100.getLmla05();
+					if (f4100.getLmla06() != null)
+						num6 = f4100.getLmla06();
+					if (f4100.getLmla07() != null)
+						num7 = f4100.getLmla07();
+					if (f4100.getLmla08() != null)
+						num8 = f4100.getLmla08();
+					if (f4100.getLmla09() != null)
+						num9 = f4100.getLmla09();
+					if (f4100.getLmla10() != null)
+						num10 = f4100.getLmla10();
 					if (String.valueOf(f4100.getId().getLmmcu()).toLowerCase()
 							.startsWith(valores.get(0))
-							&& f0006.getMcdc().toLowerCase()
-									.startsWith(valores.get(1))
+							&& mcdc.toLowerCase().startsWith(valores.get(1))
 							&& String
 									.valueOf(
 											transformarJulianaAGregoria(f4100
@@ -517,22 +565,14 @@ public class CF4100 extends CGenerico {
 							&& f4100.getLmlldl().toLowerCase()
 									.startsWith(valores.get(7))
 							// poner campos pasillo y bin
-							&& f4100.getLmla03().toLowerCase()
-									.startsWith(valores.get(10))
-							&& f4100.getLmla04().toLowerCase()
-									.startsWith(valores.get(11))
-							&& f4100.getLmla05().toLowerCase()
-									.startsWith(valores.get(12))
-							&& f4100.getLmla06().toLowerCase()
-									.startsWith(valores.get(13))
-							&& f4100.getLmla07().toLowerCase()
-									.startsWith(valores.get(14))
-							&& f4100.getLmla08().toLowerCase()
-									.startsWith(valores.get(15))
-							&& f4100.getLmla09().toLowerCase()
-									.startsWith(valores.get(16))
-							&& f4100.getLmla10().toLowerCase()
-									.startsWith(valores.get(17))
+							&& num3.toLowerCase().startsWith(valores.get(10))
+							&& num4.toLowerCase().startsWith(valores.get(11))
+							&& num5.toLowerCase().startsWith(valores.get(12))
+							&& num6.toLowerCase().startsWith(valores.get(13))
+							&& num7.toLowerCase().startsWith(valores.get(14))
+							&& num8.toLowerCase().startsWith(valores.get(15))
+							&& num9.toLowerCase().startsWith(valores.get(16))
+							&& num10.toLowerCase().startsWith(valores.get(17))
 							&& f4100.getLmmixl().toLowerCase()
 									.startsWith(valores.get(18))
 							&& f4100.getLmstag().toLowerCase()
@@ -550,8 +590,8 @@ public class CF4100 extends CGenerico {
 				String[] registros = new String[20];
 				registros[0] = String.valueOf(f4100.getId().getLmmcu());
 				registros[1] = f0006.getMcdc();
-				registros[2] = formatoFecha.format((transformarJulianaAGregoria(f4100
-						.getLmupmj())));
+				registros[2] = formatoFecha
+						.format((transformarJulianaAGregoria(f4100.getLmupmj())));
 				registros[3] = String.valueOf(f4100.getId().getLmlocn());
 				registros[4] = f4100.getLmpzon();
 				registros[5] = f4100.getLmkzon();

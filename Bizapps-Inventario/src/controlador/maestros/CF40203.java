@@ -221,17 +221,20 @@ public class CF40203 extends CGenerico {
 						buscadorNTYF.inhabilitarCampo();
 						// txtLNTYF40203.setValue(f40.getId().getFslnty());
 						if (f40.getId().getFstrty() != null) {
-							txtTRTYF40203.setValue(f40.getId().getFstrty());
-							txtTRTYF40203.setDisabled(true);
+//							txtTRTYF40203.setValue(f40.getId().getFstrty());
+//							txtTRTYF40203.setDisabled(true);
+							buscadorTRTY.settearCampo(servicioF0005.buscar("40",
+									"AT", f40.getId().getFstrty()));
+							buscadorTRTY.inhabilitarCampo();
 						}
 						// txtNSF40203.setValue(f40.);
-						txtDSC1F40203.setValue(f40.getFsstds());
-						txtNXTRF40203.setValue(f40.getFsnxtr());
-						txtA1TRF40203.setValue(f40.getFsa1tr());
-						txtA2TRF40203.setValue(f40.getFsa2tr());
-						txtA3TRF40203.setValue(f40.getFsa3tr());
-						txtA4TRF40203.setValue(f40.getFsa4tr());
-						txtA5TRF40203.setValue(f40.getFsa5tr());
+//						txtDSC1F40203.setValue(f40.getFsstds());
+//						txtNXTRF40203.setValue(f40.getFsnxtr());
+//						txtA1TRF40203.setValue(f40.getFsa1tr());
+//						txtA2TRF40203.setValue(f40.getFsa2tr());
+//						txtA3TRF40203.setValue(f40.getFsa3tr());
+//						txtA4TRF40203.setValue(f40.getFsa4tr());
+//						txtA5TRF40203.setValue(f40.getFsa5tr()); Acomodar UDC
 						txtWRTHF40203.setValue(f40.getFswrth());
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
