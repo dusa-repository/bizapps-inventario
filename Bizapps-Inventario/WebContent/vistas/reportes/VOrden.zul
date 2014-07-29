@@ -1,14 +1,14 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVOrden" apply="controlador.reporte.CROrden">
-		<groupbox width="auto" mold="3d" title="Reporte de Movimiento por Orden">
+		<groupbox width="40em" mold="3d" title="Reporte de Movimiento por Orden">
 			<separator />
 			<grid width="100%">
 				<columns visible="false">
-					<column label="" width="20%" />
-					<column label="" width="10%" />
 					<column label="" width="25%" />
-					<column label="" width="45%" />
+					<column label="" width="25%" />
+					<column label="" width="25%" />
+					<column label="" width="25%" />
 				</columns>
 				<rows>
 					<row>

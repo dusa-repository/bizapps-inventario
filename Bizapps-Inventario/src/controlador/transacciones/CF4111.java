@@ -785,15 +785,12 @@ public class CF4111 extends CGenerico {
 		if (txtDoc.getText().compareTo("") != 0
 				|| txtExplicacion.getText().compareTo("") != 0
 				|| txtItem.getText().compareTo("") != 0
-				|| spnCantidad.getValue() != 0 || spnCantidad2.getValue() != 0
 				|| txtPlanta1.getText().compareTo("") != 0
 				|| txtPlanta2.getText().compareTo("") != 0
 				|| txtUbicacion1.getText().compareTo("") != 0
 				|| txtUbicacion2.getText().compareTo("") != 0
 				|| txtUM.getText().compareTo("") != 0
-				|| txtUM2.getText().compareTo("") != 0
-				|| dtbFechaTransaccion.getText().compareTo("") != 0
-				|| dtbFechaLm.getText().compareTo("") != 0) {
+				|| txtUM2.getText().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
