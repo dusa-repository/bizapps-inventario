@@ -333,7 +333,7 @@
 		</band>
 	</pageFooter>
 	<lastPageFooter>
-		<band height="20">
+		<band height="40">
 			<staticText>
 				<reportElement x="408" y="0" width="89" height="20" uuid="122f3e66-2303-4149-94ad-86cfa91922c9"/>
 				<textElement textAlignment="Right">
@@ -354,6 +354,20 @@
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{total_Costo}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="712" y="20" width="40" height="20" uuid="1b2f74ea-da3e-4ff7-a5cb-49221e386f4d"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="646" y="20" width="66" height="20" uuid="0cc11035-6f6a-4e32-bfaa-4330725ce754"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 		</band>
 	</lastPageFooter>
