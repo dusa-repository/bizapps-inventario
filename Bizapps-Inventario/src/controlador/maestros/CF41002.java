@@ -95,9 +95,11 @@ public class CF41002 extends CGenerico {
 		txtUMITMF41002.setFocus(true);
 		mostrarCatalogo();
 
-		List<F0005> listF0005 =  servicioF0005.buscarParaUDCOrdenados("00","UM");
-		
-		buscadorUMF41002 = new BuscadorUDC("De UM", 3, listF0005, true,true,true,"00","UM") {
+		List<F0005> listF0005 = servicioF0005
+				.buscarParaUDCOrdenados("00", "UM");
+
+		buscadorUMF41002 = new BuscadorUDC("De UM", 3, listF0005, true, true,
+				true, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -105,7 +107,8 @@ public class CF41002 extends CGenerico {
 			}
 		};
 
-		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, listF0005,true,true,true,"00","UM") {
+		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, listF0005, true, true,
+				true, "00", "UM") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -134,26 +137,25 @@ public class CF41002 extends CGenerico {
 								.getUmitm()));
 						lblDescripcionF4101.setValue(f4101.getImdsc1());
 						txtUMITMF41002.setDisabled(true);
-						// lblDescripcionUnidad.setValue("falta");
-						// txtDescripcionUnidad.setValue("falta");
+						txtDescripcionUnidad.setValue(f4101.getImuom1());
+						F0005 f05 = servicioF0005.buscar("00", "UM", f4101.getImuom1());
+						if (f05 != null)
+							lblDescripcionUnidad.setValue(f05.getDrdl01());
 						txtDescripcionUnidad.setDisabled(true);
 						txtEXPOF41002.setValue(f41002.getUmexpo());
 						txtUSTRF41002.setValue(f41002.getUmustr());
 						txtEXSOF41002.setValue(f41002.getUmexso());
-						
-						if(f41002.getUmsepc() != null)
-						{
-						BigDecimal s = f41002.getUmsepc();
-						txtSEPCF41002.setValue(s.longValue());
+
+						if (f41002.getUmsepc() != null) {
+							BigDecimal s = f41002.getUmsepc();
+							txtSEPCF41002.setValue(s.longValue());
 						}
-						if(f41002.getUmpupc() != null)
-						{
-						BigDecimal s = f41002.getUmpupc();
-						txtPUPCF41002.setValue(s.longValue());
+						if (f41002.getUmpupc() != null) {
+							BigDecimal s = f41002.getUmpupc();
+							txtPUPCF41002.setValue(s.longValue());
 						}
-						
-						txtCONVF41002.setValue(f41002
-								.getUmconv());
+
+						txtCONVF41002.setValue(f41002.getUmconv());
 
 						buscadorUMF41002.settearCampo(servicioF0005.buscar(
 								"00", "UM", f41002.getId().getUmum()));
@@ -170,7 +172,8 @@ public class CF41002 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF41002, "Conversiones de Unidades de Medida de Articulos", tabs);
+				cerrarVentana(divVF41002,
+						"Conversiones de Unidades de Medida de Articulos", tabs);
 
 			}
 
@@ -197,23 +200,20 @@ public class CF41002 extends CGenerico {
 					String exso = txtEXSOF41002.getValue();
 
 					F41002 f41002 = new F41002();
-					
+
 					Double conv;
-					if (txtCONVF41002.getValue() != null)
-					{			
+					if (txtCONVF41002.getValue() != null) {
 						conv = txtCONVF41002.getValue();
 						f41002.setUmconv(conv);
 					}
 					BigDecimal sepc;
-					if (txtSEPCF41002.getValue() != null)
-					{
+					if (txtSEPCF41002.getValue() != null) {
 						sepc = BigDecimal.valueOf(txtSEPCF41002.getValue());
 						f41002.setUmsepc(sepc);
 					}
 
 					BigDecimal pupc = null;
-					if (txtPUPCF41002.getValue() != null)
-					{
+					if (txtPUPCF41002.getValue() != null) {
 						pupc = BigDecimal.valueOf(txtPUPCF41002.getValue());
 						f41002.setUmpupc(pupc);
 					}
@@ -223,7 +223,7 @@ public class CF41002 extends CGenerico {
 					clave.setUmrum(buscadorRUMF41002.obtenerCaja());
 					clave.setUmitm(Double.parseDouble(txtUMITMF41002.getValue()));
 					clave.setUmmcu("");
-				
+
 					f41002.setId(clave);
 					f41002.setUmexpo(expo);
 					f41002.setUmexso(exso);
@@ -472,9 +472,10 @@ public class CF41002 extends CGenerico {
 	public void mostrarCatalogo() {
 		final List<F41002> listF41002 = servicioF41002.buscarTodosOrdenados();
 		catalogoF41002 = new Catalogo<F41002>(divCatalogoF41002, "F41002",
-				listF41002,false,false,true, "Numero articulo", "Descripcion", "De UM",
-				"Cantidad", "A UM", "Codigo estructura", "Excluir de OV",
-				"Excluir de OC", "Sec UM ventas", "Sec UM compras") {
+				listF41002, false, false, true, "Numero articulo",
+				"Descripcion", "De UM", "Cantidad", "A UM",
+				"Codigo estructura", "Excluir de OV", "Excluir de OC",
+				"Sec UM ventas", "Sec UM compras") {
 
 			@Override
 			protected List<F41002> buscar(List<String> valores) {
@@ -534,8 +535,8 @@ public class CF41002 extends CGenerico {
 	@Listen("onClick = #btnBuscarF4101")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101,"F4101",
-				listF4101, true,false,true, "Codigo", "Descripcion") {
+		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101, "F4101",
+				listF4101, true, false, true, "Codigo", "Descripcion") {
 
 			@Override
 			protected List<F4101> buscar(List<String> valores) {
@@ -570,8 +571,10 @@ public class CF41002 extends CGenerico {
 		F4101 f4101 = catalogoF4101.objetoSeleccionadoDelCatalogo();
 		txtUMITMF41002.setValue(String.valueOf(f4101.getImitm()));
 		lblDescripcionF4101.setValue(f4101.getImdsc1());
-		// lblDescripcionUnidad.setValue(f4101.getImuom1());
-		// txtDescripcionUnidad.setValue(f4101);
+		txtDescripcionUnidad.setValue(f4101.getImuom1());
+		F0005 f05 = servicioF0005.buscar("00", "UM", f4101.getImuom1());
+		if (f05 != null)
+			lblDescripcionUnidad.setValue(f05.getDrdl01());
 		catalogoF4101.setParent(null);
 	}
 

@@ -1,0 +1,36 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVOrden" apply="controlador.reporte.CROrden">
+		<groupbox width="auto" mold="3d" title="Reporte de Movimiento por Orden">
+			<separator />
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="20%" />
+					<column label="" width="10%" />
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+				</columns>
+				<rows>
+					<row>
+						<hbox>
+							<label class="etiqueta" value="Fecha desde:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<datebox readonly="true" width="100%" id="dtbDesde"
+							onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+						<hbox>
+							<label class="etiqueta" value="Fecha hasta:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<datebox readonly="true" width="100%" id="dtbHasta"
+							onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+					</row>
+				</rows>
+			</grid>
+			<separator />
+		</groupbox>
+		<div id="botoneraVOrden" />
+	</div>
+</zk>

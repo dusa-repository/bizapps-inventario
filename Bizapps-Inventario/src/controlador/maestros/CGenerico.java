@@ -20,6 +20,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.zk.ui.Component;
@@ -115,6 +117,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SGrupo servicioGrupo;
 	@WireVariable("SUsuario")
 	protected SUsuario servicioUsuario;
+	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+			"/META-INF/ConfiguracionAplicacion.xml");
 	protected static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
 	public List<Tab> tabs = new ArrayList<Tab>();
@@ -122,6 +126,15 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	public Calendar calendario = Calendar.getInstance();
 	// Cambio en la hora borrados los :
 
+	public static SF4101 getServicioF4101() {
+		return applicationContext.getBean(SF4101.class);
+	}
+	public static SF4111 getServicioF4111() {
+		return applicationContext.getBean(SF4111.class);
+	}
+	public static SF4105 getServicioF4105() {
+		return applicationContext.getBean(SF4105.class);
+	}
 	public String horaAuditoria = String.valueOf(calendario
 			.get(Calendar.HOUR_OF_DAY))
 			+ String.valueOf(calendario.get(Calendar.MINUTE))

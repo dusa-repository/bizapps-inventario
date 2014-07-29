@@ -14,4 +14,6 @@ public interface IF41002DAO extends JpaRepository<F41002, F41002PK> {
 	@Query("Select f from F41002 f order by f.id.umitm asc")
 	List<F41002> findAllOrderByUMITM();
 
+	List<F41002> findByIdUmitm(double clave);
+
 }

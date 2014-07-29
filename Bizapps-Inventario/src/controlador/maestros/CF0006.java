@@ -12,7 +12,9 @@ import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0010;
 import modelo.maestros.F0101;
+import modelo.maestros.F4100;
 import modelo.pk.F0005PK;
+import modelo.transacciones.F4111;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -586,6 +588,7 @@ public class CF0006 extends CGenerico {
 						mostrarBotones(false);
 						abrirRegistro();
 						F0006 f06 = catalogo.objetoSeleccionadoDelCatalogo();
+						clave = f06.getMcmcu();
 						txtUDCF0006.setValue(f06.getMcmcu());
 						txtUDCF0006.setDisabled(true);
 						txtDL01F0006.setValue(f06.getMcdl01());
@@ -593,7 +596,9 @@ public class CF0006 extends CGenerico {
 						txtCOF0006.setValue(f06.getMcco());
 						txtCOF0006.setDisabled(true);
 						if (f06.getMcldm() != null)
-							txtLDMF0006.setValue(f06.getMcldm());
+							buscadorLDM.settearCampo(servicioF0005.buscar(
+									"H00", "LD", f06.getMcldm()));
+						// txtLDMF0006.setValue(f06.getMcldm());
 						buscadorSTYL.settearCampo(servicioF0005.buscar("00",
 								"00", f06.getMcstyl()));
 						buscadorSBLI.settearCampo(servicioF0005.buscar("00",
@@ -668,7 +673,7 @@ public class CF0006 extends CGenerico {
 								"00", "00", f06.getMcrp29()));
 						buscadorCategoria30.settearCampo(servicioF0005.buscar(
 								"00", "00", f06.getMcrp30()));
-						txtLDMF0006.setFocus(true);
+						buscadorLDM.setFocus(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -808,48 +813,73 @@ public class CF0006 extends CGenerico {
 					if (validarSeleccion()) {
 						final List<F0006> eliminarLista = catalogo
 								.obtenerSeleccionados();
-						Messagebox
-								.show("¿Desea Eliminar los "
-										+ eliminarLista.size() + " Registros?",
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0006
-															.eliminarVarios(eliminarLista);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF0006
-															.buscarTodosOrdenados());
+						final int cantidad = eliminarLista.size();
+						for (int i = 0; i < eliminarLista.size(); i++) {
+							F0006 valor = eliminarLista.get(i);
+							List<F4100> objeto = servicioF4100.buscarPorMcu(valor.getMcmcu());
+							List<F4111> objeto2 = servicioF4111.buscarPorMcuOMccu(valor.getMcmcu());
+							if (!objeto.isEmpty()||!objeto2.isEmpty()) {
+								eliminarLista.remove(valor);
+								i--;
+							}
+						}
+						if (!eliminarLista.isEmpty()) {
+							Messagebox
+									.show("¿Desea Eliminar los "
+											+ eliminarLista.size()
+											+ " Registros?",
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0006
+																.eliminarVarios(eliminarLista);
+														catalogo.actualizarLista(servicioF0006
+																.buscarTodosOrdenados());
+														if (cantidad != eliminarLista
+																.size())
+															msj.mensajeInformacion(Mensaje.algunosEliminados);
+														else
+															msj.mensajeInformacion(Mensaje.eliminado);
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					}
 				} else {
 					/* Elimina un solo registro */
 					if (clave != null) {
-						Messagebox
-								.show(Mensaje.deseaEliminar,
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0006
-															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													limpiar();
-													catalogo.actualizarLista(servicioF0006
-															.buscarTodosOrdenados());
+						List<F4100> objeto = servicioF4100.buscarPorMcu(clave);
+						List<F4111> objeto2 = servicioF4111.buscarPorMcuOMccu(clave);
+						if (objeto.isEmpty()||objeto2.isEmpty()) {
+							Messagebox
+									.show(Mensaje.deseaEliminar,
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0006
+																.eliminarUno(clave);
+														msj.mensajeInformacion(Mensaje.eliminado);
+														limpiar();
+														catalogo.actualizarLista(servicioF0006
+																.buscarTodosOrdenados());
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					} else
 						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
@@ -922,21 +952,23 @@ public class CF0006 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		if (claveSYExiste()) {
+		// if (claveSYExiste()) {
+		// return false;
+		// }
+		// else {
+		if (!camposLLenos()) {
+			msj.mensajeAlerta(Mensaje.camposVacios);
 			return false;
-		} else {
-			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
-				return false;
-			} else
-				return true;
-		}
+		} else
+			return true;
+		// }
 	}
 
 	@Listen("onChange = #txtUDCF0006")
 	public boolean claveSYExiste() {
 		if (servicioF0006.buscar(txtUDCF0006.getValue()) != null) {
 			msj.mensajeAlerta(Mensaje.claveUsada);
+			txtUDCF0006.setValue("");
 			txtUDCF0006.setFocus(true);
 			return true;
 		} else
@@ -944,6 +976,7 @@ public class CF0006 extends CGenerico {
 	}
 
 	public void limpiarCampos() {
+		clave = null;
 		txtUDCF0006.setValue("");
 		txtDL01F0006.setValue("");
 		txtCOF0006.setValue("");
@@ -1094,10 +1127,12 @@ public class CF0006 extends CGenerico {
 				List<F0006> unidadnegocio = new ArrayList<F0006>();
 
 				for (F0006 unidad : unidades) {
+					String mcdc = "";
+					if (unidad.getMcdc() != null)
+						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.startsWith(valores.get(0))
-							&& unidad.getMcdc().toLowerCase()
-									.startsWith(valores.get(1))
+							&& mcdc.toLowerCase().startsWith(valores.get(1))
 							&& unidad.getMcldm().toLowerCase()
 									.startsWith(valores.get(2))
 							&& unidad.getMcco().toLowerCase()
@@ -1162,14 +1197,16 @@ public class CF0006 extends CGenerico {
 				List<F0010> lista2 = new ArrayList<F0010>();
 
 				for (F0010 f0010 : lista) {
+					String ccdot = "";
+					if (f0010.getCcdot1() != null)
+						ccdot = f0010.getCcdot1();
 					if (f0010.getCcco().toLowerCase()
 							.startsWith(valores.get(0))
 							&& f0010.getCcname().toLowerCase()
 									.startsWith(valores.get(1))
 							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
 									.startsWith(valores.get(2))
-							&& f0010.getCcdot1().toLowerCase()
-									.startsWith(valores.get(3))
+							&& ccdot.toLowerCase().startsWith(valores.get(3))
 							&& f0010.getCcarfj().toString().toLowerCase()
 									.startsWith(valores.get(4))
 							&& String.valueOf(f0010.getCctxbm()).toLowerCase()

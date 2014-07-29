@@ -197,6 +197,8 @@ public class CF4111 extends CGenerico {
 	private String titulo = "";
 	private String tipo = "";
 	double id = (double) 0;
+	private String mcu = "";
+	private String mcu2 = "";
 
 	public String getTitulo() {
 		return titulo;
@@ -257,7 +259,8 @@ public class CF4111 extends CGenerico {
 			lblNombreUbicacion.setValue("Ubicacion");
 			txtTipo.setValue("I4");
 			tipo = "I4";
-			Listheader cabeza = (Listheader) ltbItems.getChildren().get(0).getChildren().get(3);
+			Listheader cabeza = (Listheader) ltbItems.getChildren().get(0)
+					.getChildren().get(3);
 			cabeza.setVisible(true);
 			break;
 		case "Despacho a Paciente":
@@ -867,9 +870,19 @@ public class CF4111 extends CGenerico {
 	public void mostrarCatalogoF4100(Event evento) {
 		Button boton = (Button) evento.getTarget();
 		idBotonF4100 = boton.getId();
-		final List<F4100> listF4100 = servicioF4100.buscarTodosOrdenados();
+		// final List<F4100> listF4100 = servicioF4100.buscarTodosOrdenados();
+		List<F4100> listF4100 = new ArrayList<F4100>();
+		if (tipo.equalsIgnoreCase("OV"))
+			listF4100 = servicioF4100.buscarTodosOrdenadosPorMcu(mcu);
+		else {
+			if (idBotonF4100.equals("btnBuscarUbicacion1"))
+				listF4100 = servicioF4100.buscarTodosOrdenadosPorMcu(mcu);
+			else
+				listF4100 = servicioF4100.buscarTodosOrdenadosPorMcu(mcu2);
+		}
+		final List<F4100> listF41002 = listF4100;
 		catalogoF4100 = new Catalogo<F4100>(catalogoUbicacionF4100, "F4100",
-				listF4100, true, false, false, "Cod. Sucursal/planta",
+				listF41002, true, false, false, "Cod. Sucursal/planta",
 				"Sucursal/planta", "Fecha acta", "Ubicacion", "Zona alm",
 				"Zona acopio", "Zona reabast", "Detalle", "Pasillo", "Bin",
 				"Ubic 3", "Ubic 4", "Ubic 5", "Ubic 6", "Ubic 7", "Ubic 8",
@@ -877,15 +890,34 @@ public class CF4111 extends CGenerico {
 
 			@Override
 			protected List<F4100> buscar(List<String> valores) {
-
 				List<F4100> listF4100_2 = new ArrayList<F4100>();
 
-				for (F4100 f4100 : listF4100) {
+				for (F4100 f4100 : listF41002) {
 					F0006 f0006 = servicioF0006
 							.buscar(f4100.getId().getLmmcu());
+					String mcdc ="";
+					if(f0006.getMcdc()!=null)
+						mcdc = f0006.getMcdc();
+				String num3 = "", num4 = "",num5= "",num6= "",num7= "",num8= "",num9= "",num10 = "";
+				if(f4100.getLmla03()!=null)
+					num3=f4100.getLmla03();
+				if(f4100.getLmla04()!=null)
+					num4=f4100.getLmla04();
+				if(f4100.getLmla05()!=null)
+					num5=f4100.getLmla05();
+				if(f4100.getLmla06()!=null)
+					num6=f4100.getLmla06();
+				if(f4100.getLmla07()!=null)
+					num7=f4100.getLmla07();
+				if(f4100.getLmla08()!=null)
+					num8=f4100.getLmla08();
+				if(f4100.getLmla09()!=null)
+					num9=f4100.getLmla09();
+				if(f4100.getLmla10()!=null)
+					num10=f4100.getLmla10();
 					if (String.valueOf(f4100.getId().getLmmcu()).toLowerCase()
 							.startsWith(valores.get(0))
-							&& f0006.getMcdc().toLowerCase()
+							&& mcdc.toLowerCase()
 									.startsWith(valores.get(1))
 							&& String
 									.valueOf(
@@ -903,21 +935,21 @@ public class CF4111 extends CGenerico {
 							&& f4100.getLmlldl().toLowerCase()
 									.startsWith(valores.get(7))
 							// poner campos pasillo y bin
-							&& f4100.getLmla03().toLowerCase()
+							&& num3.toLowerCase()
 									.startsWith(valores.get(10))
-							&& f4100.getLmla04().toLowerCase()
+							&& num4.toLowerCase()
 									.startsWith(valores.get(11))
-							&& f4100.getLmla05().toLowerCase()
+							&& num5.toLowerCase()
 									.startsWith(valores.get(12))
-							&& f4100.getLmla06().toLowerCase()
+							&& num6.toLowerCase()
 									.startsWith(valores.get(13))
-							&& f4100.getLmla07().toLowerCase()
+							&& num7.toLowerCase()
 									.startsWith(valores.get(14))
-							&& f4100.getLmla08().toLowerCase()
+							&& num8.toLowerCase()
 									.startsWith(valores.get(15))
-							&& f4100.getLmla09().toLowerCase()
+							&& num9.toLowerCase()
 									.startsWith(valores.get(16))
-							&& f4100.getLmla10().toLowerCase()
+							&& num10.toLowerCase()
 									.startsWith(valores.get(17))
 							&& f4100.getLmmixl().toLowerCase()
 									.startsWith(valores.get(18))
@@ -1004,9 +1036,12 @@ public class CF4111 extends CGenerico {
 				List<F0006> unidadnegocio = new ArrayList<F0006>();
 
 				for (F0006 unidad : unidades) {
+					String mcdc ="";
+					if(unidad.getMcdc()!=null)
+						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.startsWith(valores.get(0))
-							&& unidad.getMcdc().toLowerCase()
+							&& mcdc.toLowerCase()
 									.startsWith(valores.get(1))
 							&& unidad.getMcldm().toLowerCase()
 									.startsWith(valores.get(2))
@@ -1065,13 +1100,26 @@ public class CF4111 extends CGenerico {
 		switch (idBotonF0006) {
 		case "btnBuscarPlanta1":
 			setearPlanta(f06, txtPlanta1, lblPlanta1);
+			mcu = f06.getMcmcu();
+			txtUbicacion1.setValue("");
+			lblUbicacion1.setValue("");
 			break;
 		case "btnBuscarPlanta2":
 			setearPlanta(f06, txtPlanta2, lblPlanta2);
+			if (tipo.equalsIgnoreCase("OV")) {
+				txtUbicacion1.setValue("");
+				lblUbicacion1.setValue("");
+				mcu = f06.getMcmcu();
+			} else {
+				mcu2 = f06.getMcmcu();
+				txtUbicacion2.setValue("");
+				lblUbicacion2.setValue("");
+			}
 			break;
 		default:
 			break;
 		}
+
 		catalogoF0006.setParent(null);
 	}
 
@@ -1211,11 +1259,11 @@ public class CF4111 extends CGenerico {
 							&& f01.getAbalky().toLowerCase()
 									.startsWith(valores.get(2))
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
+									.startsWith(valores.get(3))
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
+									.startsWith(valores.get(4))
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
+									.startsWith(valores.get(5))) {
 						lista.add(f01);
 					}
 				}

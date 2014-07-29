@@ -25,6 +25,9 @@ public class Mensaje {
 	public static String contrasennasInvalidas = "Las contraseñas no coinciden.";
 	public static String camposVaciosItem = "Debe Llenar Todos lo Campos Requeridos, de la seccion de Articulo (**).";
 	public static String noPoseeExistencia= "No posee existencia suficiente para realizar la transaccion";
+	public static String algunosEliminados = "Algunos registros no pudieron ser eliminados ya que se estan utilizando";
+	public static String registroUtilizado = "El registro no se puede eliminar ya que esta siendo utilizado";
+	public static String errorEnReporte = "Ha ocurrido un error originando el reporte";
 	
 	public void mensajeInformacion(String msj) {
 	      Messagebox.show(msj, "Informacion",

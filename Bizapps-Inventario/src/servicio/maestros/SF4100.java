@@ -4,6 +4,7 @@ import java.util.List;
 
 import interfacedao.maestros.IF4100DAO;
 
+import modelo.maestros.F0006;
 import modelo.maestros.F4100;
 import modelo.pk.F4100PK;
 
@@ -32,5 +33,13 @@ public class SF4100 {
 
 	public void eliminarUno(F4100PK clave) {
 		f4100DAO.delete(clave);
+	}
+
+	public List<F4100> buscarTodosOrdenadosPorMcu(String mcu) {
+		return f4100DAO.findByIdLmmcuOrderByIdLmmcuAsc(mcu);
+	}
+
+	public List<F4100> buscarPorMcu(String clave) {
+		return f4100DAO.findByIdLmmcu(clave);
 	}
 }

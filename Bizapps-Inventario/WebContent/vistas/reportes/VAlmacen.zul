@@ -1,0 +1,31 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVAlmacen" apply="controlador.reporte.CRAlmacen">
+		<groupbox width="auto" mold="3d" title="Reporte de Existencia por Almacen">
+			<separator />
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="20%" />
+					<column label="" width="10%" />
+					<column label="" width="25%" />
+					<column label="" width="45%" />
+				</columns>
+				<rows>
+					<row>
+						<hbox>
+							<label class="etiqueta" value="Mostrar Existencia hasta:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<datebox readonly="true" width="100%" id="dtbFecha"
+							onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+						<hbox/>
+						<hbox/>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+		</groupbox>
+		<div id="botoneraVAlmacen" />
+	</div>
+</zk>

@@ -1,5 +1,6 @@
 package servicio.transacciones;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import interfacedao.transacciones.IF4111DAO;
@@ -29,5 +30,30 @@ public class SF4111 {
 
 	public Double sumar(Double value, String value2, String value3) {
 		return iF4111DAO.suma(value, value2, value3);
+	}
+
+	public List<F4111> buscarPorMcuOMccu(String clave) {
+		return iF4111DAO.findByIlmcuOrIlmmcu(clave,clave);
+	}
+
+	public List<F4111> buscarPorUbicaciones(String lmlocn) {
+		return iF4111DAO.findByIllocnOrIlasid(lmlocn,lmlocn);
+	}
+
+	public List<F4111> buscarPorAn(double aban8) {
+		return iF4111DAO.findByIlan8(aban8);
+	}
+
+	public List<F4111> buscarPorItm(double clave) {
+		return iF4111DAO.findByIlitm(clave);
+	}
+
+	public List<F4111> buscarEntreFechas(BigDecimal desde, BigDecimal hasta) {
+		// TODO Auto-generated method stub
+		return iF4111DAO.findByIltrdjBetweenOrderByIldocAsc(desde,hasta);
+	}
+
+	public List<F4111> buscarHastaFecha(BigDecimal hasta) {
+		return iF4111DAO.findByIltrdjBeforeOrderByMcuAsc(hasta);
 	}
 }

@@ -33,10 +33,6 @@ public class CF00021 extends CGenerico {
 	@Wire
 	private Textbox txtKCOF00021;
 	@Wire
-	private Textbox txtDCTF00021;
-	@Wire
-	private Textbox txtSMASF00021;
-	@Wire
 	private Textbox txtDESF00021;
 	@Wire
 	private Textbox txtCTRYF00021;
@@ -133,11 +129,15 @@ public class CF00021 extends CGenerico {
 						F00021 f21 = catalogo.objetoSeleccionadoDelCatalogo();
 						txtKCOF00021.setValue(f21.getId().getNlkco());
 						txtKCOF00021.setDisabled(true);
-						if (f21.getId().getNldct() != null) {
-							txtDCTF00021.setValue(f21.getId().getNldct());
-							txtDCTF00021.setDisabled(true);
+						if (f21.getId() != null) {
+							buscadorDCT.settearCampo(servicioF0005.buscar("00",
+									"DT", f21.getId().getNldct()));
+							buscadorDCT.inhabilitarCampo();
+//							txtDCTF00021.setValue(f21.getId().getNldct());
+//							txtDCTF00021.setDisabled(true);
 						}
-						txtSMASF00021.setValue(f21.getNlsmas());
+						buscadorSMAS.settearCampo(servicioF0005.buscar("00",
+								"DT", f21.getId().getNldct()));
 						txtCTRYF00021.setValue(String.valueOf(f21.getId()
 								.getNlctry()));
 						txtFYF00021.setValue(String.valueOf(f21.getId()
@@ -187,7 +187,9 @@ public class CF00021 extends CGenerico {
 					String des = txtDESF00021.getValue();
 					double ctry = Double.parseDouble(txtCTRYF00021.getValue());
 					double fy = Double.parseDouble(txtFYF00021.getValue());
-					double n001 = Double.parseDouble(txtN001F00021.getValue());
+					double n001 = 0;
+					if(txtN001F00021.getText().compareTo("")!=0)
+						n001 = Double.parseDouble(txtN001F00021.getValue());
 					String imb = buscadorINCRUS.obtenerCaja();
 					F00021PK clave = new F00021PK();
 					clave.setNlkco(kco);
@@ -442,6 +444,9 @@ public class CF00021 extends CGenerico {
 				List<F00021> compannia = new ArrayList<F00021>();
 
 				for (F00021 companniadoc : compannias) {
+					String ck = "";
+					if(companniadoc.getNlck01()!=null)
+						ck = companniadoc.getNlck01();
 					if (companniadoc.getId().getNlkco().toLowerCase()
 							.startsWith(valores.get(0))
 							&& companniadoc.getId().getNldct().toLowerCase()
@@ -450,7 +455,7 @@ public class CF00021 extends CGenerico {
 									.startsWith(valores.get(2))
 							&& companniadoc.getNlimb().toLowerCase()
 									.startsWith(valores.get(3))
-							&& companniadoc.getNlck01().toLowerCase()
+							&& ck.toLowerCase()
 									.startsWith(valores.get(4))
 							&& String.valueOf(companniadoc.getNln001())
 									.toLowerCase().startsWith(valores.get(5))

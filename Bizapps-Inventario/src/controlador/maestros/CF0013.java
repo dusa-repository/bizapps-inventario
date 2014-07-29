@@ -6,8 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0004;
+import modelo.maestros.F0010;
 import modelo.maestros.F0013;
+import modelo.maestros.F0015;
+import modelo.maestros.F0101;
+import modelo.maestros.F0115;
+import modelo.maestros.F01151;
 import modelo.pk.F0004PK;
+import modelo.transacciones.F4111;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -49,6 +55,7 @@ public class CF0013 extends CGenerico {
 	Botonera botonera;
 	Catalogo<F0013> catalogo;
 	String clave = null;
+
 	@Override
 	public void inicializar() throws IOException {
 		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
@@ -64,7 +71,7 @@ public class CF0013 extends CGenerico {
 		txtCRCDF0013.setFocus(true);
 		mostrarCatalogo();
 		botonera = new Botonera() {
-			
+
 			@Override
 			public void seleccionar() {
 				if (validarSeleccion()) {
@@ -83,19 +90,20 @@ public class CF0013 extends CGenerico {
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 			}
-			
+
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0013, "Trabajo con Codigo de Monedas y Tarifas", tabs);
+				cerrarVentana(divVF0013,
+						"Trabajo con Codigo de Monedas y Tarifas", tabs);
 
 			}
-			
+
 			@Override
 			public void reporte() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void limpiar() {
 				mostrarBotones(false);
@@ -103,7 +111,7 @@ public class CF0013 extends CGenerico {
 				habilitarTextClave();
 				clave = null;
 			}
-			
+
 			@Override
 			public void guardar() {
 				boolean guardar = true;
@@ -126,7 +134,7 @@ public class CF0013 extends CGenerico {
 				}
 
 			}
-			
+
 			@Override
 			public void eliminar() {
 				if (gpxDatosF0013.isOpen()) {
@@ -134,65 +142,94 @@ public class CF0013 extends CGenerico {
 					if (validarSeleccion()) {
 						final List<F0013> eliminarLista = catalogo
 								.obtenerSeleccionados();
-						Messagebox
-								.show("¿Desea Eliminar los "
-										+ eliminarLista.size() + " Registros?",
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0013
-															.eliminarVarios(eliminarLista);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF0013
-															.buscarTodosOrdenados());
+						final int cantidad = eliminarLista.size();
+						for (int i = 0; i < eliminarLista.size(); i++) {
+							F0013 valor = eliminarLista.get(i);
+							List<F0010> objeto = servicioF0010
+									.buscarPorDrdc(valor.getCvcrcd());
+							List<F0015> objeto2 = servicioF0015
+									.buscarCRCD(valor.getCvcrcd());
+							if (!objeto.isEmpty() || !objeto2.isEmpty()) {
+								eliminarLista.remove(valor);
+								i--;
+							}
+						}
+						if (!eliminarLista.isEmpty()) {
+							Messagebox
+									.show("¿Desea Eliminar los "
+											+ eliminarLista.size()
+											+ " Registros?",
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0013
+																.eliminarVarios(eliminarLista);
+														catalogo.actualizarLista(servicioF0013
+																.buscarTodosOrdenados());
+														if (cantidad != eliminarLista
+																.size())
+															msj.mensajeInformacion(Mensaje.algunosEliminados);
+														else
+															msj.mensajeInformacion(Mensaje.eliminado);
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					}
 				} else {
 					/* Elimina un solo registro */
 					if (clave != null) {
-						Messagebox
-								.show(Mensaje.deseaEliminar,
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0013
-															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													limpiar();
-													catalogo.actualizarLista(servicioF0013
-															.buscarTodosOrdenados());
+						List<F0010> objeto = servicioF0010
+								.buscarPorDrdc(clave);
+						List<F0015> objeto2 = servicioF0015
+								.buscarCRCD(clave);
+						if (objeto.isEmpty() && objeto2.isEmpty()) {
+							Messagebox
+									.show(Mensaje.deseaEliminar,
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0013
+																.eliminarUno(clave);
+														msj.mensajeInformacion(Mensaje.eliminado);
+														limpiar();
+														catalogo.actualizarLista(servicioF0013
+																.buscarTodosOrdenados());
+													}
 												}
-											}
-										});
+											});
+						} else {
+							msj.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					} else
 						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 			}
-			
+
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void ayuda() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void annadir() {
 				abrirRegistro();
@@ -212,7 +249,7 @@ public class CF0013 extends CGenerico {
 		botonera.getChildren().get(3).setVisible(!bol);
 		botonera.getChildren().get(5).setVisible(!bol);
 	}
-	
+
 	public void limpiarCampos() {
 		clave = null;
 		txtCKRF0013.setValue("");
@@ -221,12 +258,12 @@ public class CF0013 extends CGenerico {
 		txtDL01F0013.setValue("");
 		txtCRCDF0013.setFocus(true);
 	}
-	
+
 	public void habilitarTextClave() {
 		if (txtCRCDF0013.isDisabled())
 			txtCRCDF0013.setDisabled(false);
 	}
-	
+
 	public boolean validarSeleccion() {
 		List<F0013> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
@@ -241,7 +278,7 @@ public class CF0013 extends CGenerico {
 			}
 		}
 	}
-	
+
 	protected boolean validar() {
 		if (claveSYExiste()) {
 			return false;
@@ -253,7 +290,7 @@ public class CF0013 extends CGenerico {
 				return true;
 		}
 	}
-	
+
 	@Listen("onChange = #txtCRCDF0013")
 	public boolean claveSYExiste() {
 		if (servicioF0013.buscar(txtCRCDF0013.getValue()) != null) {
@@ -263,7 +300,7 @@ public class CF0013 extends CGenerico {
 		} else
 			return false;
 	}
-	
+
 	public boolean camposLLenos() {
 		if (txtCRCDF0013.getText().compareTo("") == 0
 				|| txtDL01F0013.getText().compareTo("") == 0) {
@@ -271,7 +308,7 @@ public class CF0013 extends CGenerico {
 		} else
 			return true;
 	}
-	
+
 	public boolean camposEditando() {
 		if (txtCKRF0013.getText().compareTo("") != 0
 				|| txtCRCDF0013.getText().compareTo("") != 0
@@ -281,14 +318,14 @@ public class CF0013 extends CGenerico {
 		} else
 			return false;
 	}
-	
+
 	@Listen("onClick = #gpxRegistroF0013")
 	public void abrirRegistro() {
 		gpxDatosF0013.setOpen(false);
 		gpxRegistroF0013.setOpen(true);
 		mostrarBotones(false);
 	}
-	
+
 	@Listen("onOpen = #gpxDatosF0013")
 	public void abrirCatalogo() {
 		gpxDatosF0013.setOpen(false);
@@ -318,11 +355,12 @@ public class CF0013 extends CGenerico {
 			mostrarBotones(true);
 		}
 	}
-	
+
 	public void mostrarCatalogo() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0013>(catalogoF0013, "F0013", listF0013, false, false, false, "Codigo moneda",
-				"Descripcion", "Vlslz", "Rutina cheques") {
+		catalogo = new Catalogo<F0013>(catalogoF0013, "F0013", listF0013,
+				false, false, false, "Codigo moneda", "Descripcion", "Vlslz",
+				"Rutina cheques") {
 
 			@Override
 			protected List<F0013> buscar(List<String> valores) {
@@ -337,7 +375,7 @@ public class CF0013 extends CGenerico {
 							&& f0013.getCvcdec().toLowerCase()
 									.startsWith(valores.get(2))
 							&& f0013.getCvckr().toLowerCase()
-									.startsWith(valores.get(4))) {
+									.startsWith(valores.get(3))) {
 						lista.add(f0013);
 					}
 				}
