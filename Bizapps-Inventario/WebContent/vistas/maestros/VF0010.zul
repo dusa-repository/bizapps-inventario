@@ -47,7 +47,7 @@
 					<tabpanels>
 						<tabpanel>
 							<hbox>
-								<groupbox title="Contabilidad General" closable="false">
+								<groupbox title="Contabilidad General" closable="false" class="blanco">
 									<grid width="100%" style="border:0px">
 										<columns visible="false">
 											<column label="" width="35%" />
@@ -102,7 +102,7 @@
 								</groupbox>
 								<separator />
 								<vbox>
-									<groupbox title="Cuentas por Pagar" closable="false">
+									<groupbox title="Cuentas por Pagar" closable="false" class="blanco">
 										<grid width="100%" style="border:0px">
 											<columns visible="false">
 												<column label="" width="35%" />
@@ -128,7 +128,7 @@
 										</grid>
 									</groupbox>
 									<separator />
-									<groupbox title="Cuentas por Cobrar" closable="false">
+									<groupbox title="Cuentas por Cobrar" closable="false" class="blanco">
 										<grid width="100%" style="border:0px">
 											<columns visible="false">
 												<column label="" width="35%" />
@@ -152,7 +152,7 @@
 								</vbox>
 							</hbox>
 							<separator />
-							<groupbox title="Informe Finaciero" closable="false">
+							<groupbox title="Informe Finaciero" closable="false" class="blanco">
 								<grid width="100%" style="border:0px">
 									<columns visible="false">
 										<column label="" width="20%" />
