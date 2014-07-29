@@ -84,8 +84,7 @@ public class CRAlmacen extends CGenerico {
 
 			@Override
 			public void limpiar() {
-				// TODO Auto-generated method stub
-
+				dtbFecha.setValue(fecha);
 			}
 
 			@Override
@@ -118,9 +117,12 @@ public class CRAlmacen extends CGenerico {
 
 			}
 		};
+		botonera.getChildren().get(0).setVisible(false);
+		botonera.getChildren().get(1).setVisible(false);
+		botonera.getChildren().get(2).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(4).setVisible(false);
-		botonera.getChildren().get(5).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
 		botoneraVAlmacen.appendChild(botonera);
 	}
 

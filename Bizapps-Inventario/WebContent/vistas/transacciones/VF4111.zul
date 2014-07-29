@@ -141,9 +141,9 @@
 								<label class="etiqueta" value="UM sec:" />
 								<textbox id="txtUM2" hflex="1" maxlength="2"
 									tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
-								<label id="lblCantidad2" class="etiqueta" value="Cantidad Secundaria:" />
+								<label id="lblCantidad2" class="etiqueta" value="Cantidad Secundaria:" visible="false"/>
 								<spinner id="spnCantidad2" hflex="1" step="10" value="0"
-									constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
+									constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual"  visible="false"/>
 								<hbox id="boxCosto" visible="false">
 									<label visible="false" id="lblCosto" class="etiqueta"
 										value="Costo:" />
