@@ -5,7 +5,8 @@
 			title="Trabajo con Direcciones (VF0101)">
 			<div id="botoneraF0101" />
 			<separator />
-			<groupbox id="gpxRegistroF0101" width="auto" title="" open="false">
+			<groupbox class="azul" id="gpxRegistroF0101" width="auto"
+				title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar una Nueva Direccion" />
 				<separator />
@@ -86,7 +87,7 @@
 										<label class="etiqueta" value="UN:" />
 										<textbox id="txtMCUF0101" hflex="1" maxlength="12"
 											tooltiptext="Ingrese el UN" />
-										<button id="btnBuscarUnidades" class="btn" label="Buscar"
+										<button id="btnBuscarUnidades" label=""
 											tooltiptext="Catalogo Unidades" image="/public/imagenes/botones/buscar.png" />
 										<label id="lblMCUF0101" />
 									</row>
@@ -134,7 +135,7 @@
 										<hbox>
 											<textbox id="txtADDZF0101" hflex="1" maxlength="40"
 												tooltiptext="Ingrese el codigo postal de la direccion" />
-											<button id="btnBuscarCodigoPostal" class="btn" label="Buscar"
+											<button id="btnBuscarCodigoPostal" label=""
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblCodigoPostal1F0101" />
 										</hbox>
@@ -362,7 +363,7 @@
 										<label class="etiqueta" value="Nº Principal:" />
 										<longbox hflex="1" tooltiptext="Ingrese la direccion Principal:" />
 										<hbox>
-											<button id="btnBuscarDireccion0" class="btn" label="Buscar"
+											<button id="btnBuscarDireccion0" label=""
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblDireccion0F0101" />
 										</hbox>
@@ -372,7 +373,7 @@
 										<longbox id="txtAN81F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 1" />
 										<hbox>
-											<button id="btnBuscarDireccion1" class="btn" label="Buscar"
+											<button id="btnBuscarDireccion1" label=""
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblDireccion1F0101" />
 										</hbox>
@@ -382,7 +383,7 @@
 										<longbox id="txtAN82F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 2" />
 										<hbox>
-											<button id="btnBuscarDireccion2" class="btn" label="Buscar"
+											<button id="btnBuscarDireccion2" label=""
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblDireccion2F0101" />
 										</hbox>
@@ -392,7 +393,7 @@
 										<longbox id="txtAN83F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 3" />
 										<hbox>
-											<button id="btnBuscarDireccion3" class="btn" label="Buscar"
+											<button id="btnBuscarDireccion3" label=""
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblDireccion3F0101" />
 										</hbox>
@@ -402,7 +403,7 @@
 										<longbox id="txtAN84F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 4" />
 										<hbox>
-											<button id="btnBuscarDireccion4" class="btn" label="Buscar"
+											<button id="btnBuscarDireccion4" label=""
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblDireccion4F0101" />
 										</hbox>
@@ -412,7 +413,7 @@
 										<longbox id="txtAN85F0101" hflex="1"
 											tooltiptext="Ingrese la direccion 5" />
 										<hbox>
-											<button id="btnBuscarDireccion5" class="btn" label="Buscar"
+											<button id="btnBuscarDireccion5" label=""
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblDireccion5F0101" />
 										</hbox>
@@ -422,7 +423,7 @@
 										<longbox id="txtFactorF0101" hflex="1"
 											tooltiptext="Ingrese el Factor/Beneficiario especial" />
 										<hbox>
-											<button id="btnBuscarFactor" class="btn" label="Buscar"
+											<button id="btnBuscarFactor" label=""
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblFactorF0101" />
 										</hbox>
@@ -578,7 +579,7 @@
 				</tabbox>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatosF0101" width="auto" title="">
+			<groupbox class="azul" id="gpxDatosF0101" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las Direcciones Registradas" />
 				<div id="catalogoF0101" tooltiptext="Seleccione la Direccion para Realizar una Accion" />

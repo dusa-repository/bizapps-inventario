@@ -22,4 +22,6 @@ public interface IGrupoDAO extends JpaRepository<Grupo, Long> {
 
 	@Query("Select g from Grupo g order by g.idGrupo asc")
 	public List<Grupo> findAllOrderById();
+
+	public List<Grupo> findByUsuariosOrderByNombreAsc(Usuario u);
 }

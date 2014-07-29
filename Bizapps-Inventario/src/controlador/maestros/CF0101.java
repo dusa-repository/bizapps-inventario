@@ -1179,11 +1179,12 @@ public class CF0101 extends CGenerico {
 
 	@Listen("onChange = #txtAN81F0101, #txtAN82F0101, #txtAN83F0101, #txtAN84F0101, #txtAN85F0101, #txtFactorF0101")
 	public void buscarNombre(Event evento) {
-		F0101 f0101 = servicioF0101.buscar(txtAN81F0101.getValue());
+		F0101 f0101 = new F0101();
 		if (f0101 != null) {
 			Longbox txt = (Longbox) evento.getTarget();
 			switch (txt.getId()) {
-			case "btnBuscarDireccion0":
+			case "txtAN81F0101":
+				f0101 = servicioF0101.buscar(txtAN81F0101.getValue());
 				// setearValores(f0101, txtAN81F0101, lblDireccion0F0101);
 				System.out.println("HOLAAa");
 				break;

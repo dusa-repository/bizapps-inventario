@@ -319,7 +319,7 @@ public class CF0004 extends CGenerico {
 				|| txtNUMF0004.getText().compareTo("") != 0
 				|| txtRTF0004.getText().compareTo("") != 0
 				|| txtSYF0004.getText().compareTo("") != 0
-				|| txtCDLF0004.getValue() != 0) {
+				|| txtCDLF0004.getValue() != null) {
 			return true;
 		} else
 			return false;

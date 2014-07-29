@@ -3,7 +3,7 @@
 	<div id="divVF40203" apply="controlador.maestros.CF40203">
 		<groupbox width="auto" mold="3d" title="Trabajo con Reglas de Actividad de Órdenes (VF40203)">
 		<div id="botoneraF40203" />
-		<groupbox id="gpxRegistro" width="auto" title="" open="false">
+		<groupbox id="gpxRegistro" width="auto" title="" open="false" class="azul">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar una Actividad de Orden" />
 				<separator />
@@ -11,7 +11,7 @@
 				<columns visible="false">
 					<column label="" width="19.5%" />
 					<column label="" width="45%" />
-					<column label="" width="31%" />
+					<column label="" width="34.5%" />
 				</columns>
 				<rows>
 					<row>
@@ -93,7 +93,7 @@
 			</grid>
 		</groupbox>	
 		<separator />
-			<groupbox id="gpxDatos" width="auto" title="">
+			<groupbox class="azul" id="gpxDatos" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las Actividades de Órdenes"/>
 				<div id="catalogoF40203" tooltiptext="Seleccione la Actividad de Órdenes para Realizar una Accion" />

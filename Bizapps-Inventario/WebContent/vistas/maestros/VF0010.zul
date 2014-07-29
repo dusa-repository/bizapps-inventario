@@ -4,7 +4,8 @@
 		<groupbox width="auto" mold="3d" title="Trabajo con Compañias (VF0010)">
 			<div id="botoneraF0010" />
 			<separator />
-			<groupbox id="gpxRegistroF0010" width="auto" title="" open="false">
+			<groupbox class="azul" id="gpxRegistroF0010" width="auto"
+				title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar una Nueva Compañia" />
 				<separator />
@@ -91,7 +92,7 @@
 												<hbox>
 													<longbox id="txtAn8F0010" hflex="1" maxlength="19"
 														tooltiptext="Ingrese la Moneda Nacional" />
-													<button id="btnBuscarDireccion" class="btn" label="Buscar"
+													<button id="btnBuscarDireccion" label=""
 														tooltiptext="Catalogo Direccion" image="/public/imagenes/botones/buscar.png" />
 													<label id="lblDireccionF0010" />
 												</hbox>
@@ -187,7 +188,7 @@
 										<textbox id="txtCCCRCDF0010" hflex="1" maxlength="3"
 											tooltiptext="Ingrese la Moneda Nacional" />
 										<hbox>
-											<button id="btnBuscarMoneda" class="btn" label="Buscar"
+											<button id="btnBuscarMoneda" label=""
 												tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblMonedaF0010" />
 										</hbox>
@@ -217,7 +218,8 @@
 				</tabbox>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatosF0010" width="auto" title="">
+			<groupbox class="azul" id="gpxDatosF0010" width="auto"
+				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las Compañias Registradas" />
 				<div id="catalogoF0010" tooltiptext="Seleccione la Compañia para Realizar una Accion" />

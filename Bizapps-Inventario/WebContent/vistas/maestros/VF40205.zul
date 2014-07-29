@@ -5,7 +5,8 @@
 			title="Trabajo con Tipos de Linea (F40205)">
 			<div id="botoneraF40205" />
 			<separator />
-			<groupbox id="gpxRegistroF40205" width="auto" title="" open="false">
+			<groupbox class="azul" id="gpxRegistroF40205" width="auto"
+				title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar un Tipo de Linea" />
 				<separator />
@@ -164,7 +165,8 @@
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatosF40205" width="auto" title="">
+			<groupbox class="azul" id="gpxDatosF40205" width="auto"
+				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar los Tipos de Linea Registrados" />
 				<div id="catalogoF40205" tooltiptext="Seleccione el Tipo de Linea para Realizar una Accion" />
