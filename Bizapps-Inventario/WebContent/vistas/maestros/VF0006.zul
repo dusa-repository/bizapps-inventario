@@ -1,392 +1,402 @@
 <zk>
-<style src="../public/Estilo.css" />
+	<style src="../public/Estilo.css" />
 	<div id="divVF0006" apply="controlador.maestros.CF0006">
-		<groupbox width="auto" mold="3d" 
-		title="Trabajo con Unidades de Negocio (VF0006)">
-		<div id="botoneraF0006" />
-		<separator />
-		<groupbox id="gpxRegistro" width="auto" title="" open="false">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con Unidades de Negocio (VF0006)">
+			<div id="botoneraF0006" />
+			<separator />
+			<groupbox class="azul" id="gpxRegistro" width="auto" title=""
+				open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar una Nueva Unidad de Negocio" />
 				<separator />
 				<separator />
 				<grid width="100%">
-				<columns visible="false">
-					<column label="" width="19.5%" />
-					<column label="" width="45%" />
-					<column label="" width="37%" />
-				</columns>
-				<rows>
-				<row>
-				<hbox>
-					<label class="etiqueta" value= "   Unidad Negocio" /> 
-					<space />
-					<label value="*" style="font-weight:bold;color:red">
-					</label>
-				</hbox>
-					<textbox id="txtUDCF0006" hflex="1" maxlength="12" width = "45%"
-						tooltiptext="Ingrese la Unidad de Negocio"/>
-					<hbox />
-				</row>
-				</rows>
+					<columns visible="false">
+						<column label="" width="19.5%" />
+						<column label="" width="45%" />
+						<column label="" width="37%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="   Unidad Negocio" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtUDCF0006" hflex="1" maxlength="12" width="45%"
+								tooltiptext="Ingrese la Unidad de Negocio" />
+							<hbox />
+						</row>
+					</rows>
 				</grid>
 				<separator />
-			<tabbox id="tbUnidadNegocio">
-			<tabs id="tabs">
-				<tab id="tbModificarUNUnica" label="Modificar UN Única" />
-				<tab id="tbMasDetalles" label="Más Detalles" />
-				<tab id="tbCodigosCategorias110" label="Códigos Categorias 1-10" />
-				<tab id="tbCodigosCategorias1120" label="Códigos Categorias 11-20" />
-				<tab id="tbCodigosCategorias2130" label="Códigos Categorias 21-30" />
-			</tabs>
-			<tabpanels>
-			<tabpanel>
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="19.5%" />
-					<column label="" width="45%" />
-					<column label="" width="10%" />
-					<column label="" width="27%" />
-				</columns>
-				<rows>
-					<row>
-				<hbox>
-					<label class="etiqueta" value= "Descripción" />					
-					<space />
-					<label value="*" style="font-weight:bold;color:red">
-					</label>
-				</hbox>					
-							<textbox id="txtDL01F0006" hflex="1" maxlength="30"
-								tooltiptext="Ingrese la Descripción de la Unidad de Negocio" />
-							<hbox />
-					</row>
-					<row>
-				<hbox>
-					<label class="etiqueta" value= "Compañia" />					
-					<space />
-					<label value="*" style="font-weight:bold;color:red">
-					</label>
-				</hbox>							
-							<textbox id="txtCOF0006" hflex="1" maxlength="5"
-								tooltiptext="Ingrese la Compañia" />
-								<button id="btnBuscarCompannia" label="" mold="trendy"
-							width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
-							<label id="lblDescripcionF0010" />
-							<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorLDM" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorSTYL" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorSBLI" hflex="1"/>
-						</cell>
-							<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorFMOD" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-				</rows>
-			</grid>
-			</tabpanel>
-			<tabpanel>
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="19%" />
-					<column label="" width="45%" />
-					<column label="" width="10%" />
-					<column label="" width="27%" />
-				</columns>
-				<rows>
-					<row>
-						<label class="etiqueta" value= "Linea Descripción 2" />
-							<textbox id="txtDL02F0006" hflex="1" maxlength="30"
-								tooltiptext="Ingrese la Linea de Descripción 2 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Linea Descripción 3" />
-							<textbox id="txtDL03F0006" hflex="1" maxlength="30"
-								tooltiptext="Ingrese la Linea de Descripción 3 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Linea Descripción 2" />
-							<textbox id="txtDL04F0006" hflex="1" maxlength="30"
-								tooltiptext="Ingrese la Linea de Descripción 4 " />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Número Dirección" />
-							<textbox id="txtAN8F0006" hflex="1" maxlength="100"
-								tooltiptext="Ingrese el Número Dirección" />
-								<button id="btnBuscarDireccion" label="" mold="trendy"
-							width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
-							<label id="lblDescripcionF0101" />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Zona/Tipo Fiscal" />
-							<textbox id="txtTXA1F0006" hflex="1" 
-								tooltiptext="Ingrese la Zona/Tipo Fiscal" />
-							<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Nº Proyecto" />
-							<textbox id="txtMCUSF0006" hflex="1" maxlength="12"
-								tooltiptext="Ingrese el Nº Proyecto" />
-							<button id="btnBuscarProyecto" label="" mold="trendy"
-							width="auto" height="auto" image="/public/imagenes/botones/buscar.png"/>
-							<label id="lblDescripcionF0006" />
-							<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorPECC" hflex="1" />
-						</cell>
-							<hbox />
-					</row>
-				</rows>
-			</grid>
-			</tabpanel>
-			<tabpanel>
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="20%" />
-					<column label="" width="45%" />
-					<column label="" width="30%" />
-				</columns>
-				<rows>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria1" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria2" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria3" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria4" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria5" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria6" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria7" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria8" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria9" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria10" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-				</rows>
-			</grid>
-			</tabpanel>
-			<tabpanel>
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="20%" />
-					<column label="" width="45%" />
-					<column label="" width="30%" />
-				</columns>
-				<rows>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria11" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria12" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-					<cell colspan="2">
-							<div id="divbuscadorCategoria13" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria14" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria15" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria16" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria17" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria18" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria19" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria20" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-				</rows>
-			</grid>
-			</tabpanel>
-			<tabpanel>
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="20%" />
-					<column label="" width="45%" />
-					<column label="" width="30%" />
-				</columns>
-				<rows>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria21" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria22" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria23" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria24" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria25" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria26" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria27" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria28" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria29" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorCategoria30" hflex="1" />
-						</cell>
-						<hbox/>
-					</row>
-				</rows>
-			</grid>
-			</tabpanel>
-			</tabpanels>
-			</tabbox>
-			</groupbox>	
-			<separator />
-			<separator />
-			<groupbox id="gpxDatos" width="auto" title="">
-				<caption label="Registros" style="font-weight:bold"
-					tooltiptext="Presione para Visualizar las Unidades de Negocio Registradas" />
-				<div id="catalogoF0006" tooltiptext="Seleccione la unidad de negocio para Realizar una Accion" />
+				<tabbox id="tbUnidadNegocio">
+					<tabs id="tabs">
+						<tab id="tbModificarUNUnica" label="Modificar UN Única" />
+						<tab id="tbMasDetalles" label="Más Detalles" />
+						<tab id="tbCodigosCategorias110" label="Códigos Categorias 1-10" />
+						<tab id="tbCodigosCategorias1120" label="Códigos Categorias 11-20" />
+						<tab id="tbCodigosCategorias2130" label="Códigos Categorias 21-30" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<grid width="100%">
+								<columns visible="false">
+									<column label="" width="19.5%" />
+									<column label="" width="45%" />
+									<column label="" width="10%" />
+									<column label="" width="27%" />
+								</columns>
+								<rows>
+									<row>
+										<hbox>
+											<label class="etiqueta" value="Descripción" />
+											<space />
+											<label value="*" style="font-weight:bold;color:red">
+											</label>
+										</hbox>
+										<textbox id="txtDL01F0006" hflex="1" maxlength="30"
+											tooltiptext="Ingrese la Descripción de la Unidad de Negocio" />
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<hbox>
+											<label class="etiqueta" value="Compañia" />
+											<space />
+											<label value="*" style="font-weight:bold;color:red">
+											</label>
+										</hbox>
+										<textbox id="txtCOF0006" hflex="1" maxlength="5"
+											tooltiptext="Ingrese la Compañia" />
+										<button id="btnBuscarCompannia" label="" mold="trendy"
+											width="auto" height="auto" image="/public/imagenes/botones/buscar.png" />
+										<label id="lblDescripcionF0010" />
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorLDM" hflex="1" />
+										</cell>
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorSTYL" hflex="1" />
+										</cell>
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorSBLI" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorFMOD" hflex="1" />
+										</cell>
+										<hbox />
+										<hbox />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100%">
+								<columns visible="false">
+									<column label="" width="19%" />
+									<column label="" width="45%" />
+									<column label="" width="10%" />
+									<column label="" width="27%" />
+								</columns>
+								<rows>
+									<row>
+										<label class="etiqueta" value="Linea Descripción 2" />
+										<textbox id="txtDL02F0006" hflex="1" maxlength="30"
+											tooltiptext="Ingrese la Linea de Descripción 2 " />
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Linea Descripción 3" />
+										<textbox id="txtDL03F0006" hflex="1" maxlength="30"
+											tooltiptext="Ingrese la Linea de Descripción 3 " />
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Linea Descripción 2" />
+										<textbox id="txtDL04F0006" hflex="1" maxlength="30"
+											tooltiptext="Ingrese la Linea de Descripción 4 " />
+										<hbox />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Número Dirección" />
+										<textbox id="txtAN8F0006" hflex="1" maxlength="100"
+											tooltiptext="Ingrese el Número Dirección" />
+										<button id="btnBuscarDireccion" label="" mold="trendy"
+											width="auto" height="auto" image="/public/imagenes/botones/buscar.png" />
+										<label id="lblDescripcionF0101" />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Zona/Tipo Fiscal" />
+										<textbox id="txtTXA1F0006" hflex="1"
+											tooltiptext="Ingrese la Zona/Tipo Fiscal" />
+										<hbox />
+									</row>
+									<row>
+										<label class="etiqueta" value="Nº Proyecto" />
+										<textbox id="txtMCUSF0006" hflex="1" maxlength="12"
+											tooltiptext="Ingrese el Nº Proyecto" />
+										<button id="btnBuscarProyecto" label="" mold="trendy"
+											width="auto" height="auto" image="/public/imagenes/botones/buscar.png" />
+										<label id="lblDescripcionF0006" />
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorPECC" hflex="1" />
+										</cell>
+										<hbox />
+										<hbox />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100%">
+								<columns visible="false">
+									<column label="" width="20%" />
+									<column label="" width="45%" />
+									<column label="" width="35%" />
+								</columns>
+								<rows>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria1" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria2" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria3" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria4" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria5" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria6" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria7" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria8" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria9" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria10" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100%">
+								<columns visible="false">
+									<column label="" width="20%" />
+									<column label="" width="45%" />
+									<column label="" width="35%" />
+								</columns>
+								<rows>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria11" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria12" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria13" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria14" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria15" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria16" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria17" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria18" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria19" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria20" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<grid width="100%">
+								<columns visible="false">
+									<column label="" width="20%" />
+									<column label="" width="45%" />
+									<column label="" width="35%" />
+								</columns>
+								<rows>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria21" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria22" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria23" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria24" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria25" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria26" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria27" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria28" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria29" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+									<row>
+										<cell colspan="2">
+											<div id="divbuscadorCategoria30" hflex="1" />
+										</cell>
+										<hbox />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
 			</groupbox>
 			<separator />
 			<separator />
-		</groupbox>	
+			<groupbox id="gpxDatos" width="auto" title="" class="azul">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las Unidades de Negocio Registradas" />
+				<div id="catalogoF0006"
+					tooltiptext="Seleccione la unidad de negocio para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
 		<div id="divCatalogoF0010" tooltiptext="Click para Seleccionar un Codigo" />
 		<div id="divCatalogoF0005" tooltiptext="Click para Seleccionar un Codigo" />
 		<div id="divCatalogoF0101" tooltiptext="Click para Seleccionar un Codigo" />

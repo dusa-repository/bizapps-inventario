@@ -16,12 +16,6 @@
 							<label value="Sistema de Inventario BIZAPPS" class="banner-head" />
 						</div>
 						<div align="rigth" hflex="1">
-							<!-- <hbox> <image width="60px" height="60px" style="max-height:70px;max-width:70px;margin-right:10px;" 
-								src="public/imagenes/generales/user.png"> </image> <vbox> <image id="imagenes" 
-								width="30px" height="30px" /> </vbox> <vbox> <label style="color: white" 
-								value="Usuario: Administrador" /> <a style="color: white"> <label value="Cerrar 
-								Sesion" /> </a> <a style="color: white"> <label value="Editar Cuenta" /> 
-								</a> </vbox> </hbox> -->
 							<hbox>
 								<vbox>
 									<separator />
@@ -29,16 +23,34 @@
 								</vbox>
 								<vbox>
 									<separator />
-									<label style="color: red"
+									<label style="color: white"
 										value="Usuario: ${desktop.execution.userPrincipal.name}" />
-									<a href="../j_spring_security_logout" style="color: blue">
+									<a href="../j_spring_security_logout" style="color: white">
 										<space />
 										<label value="Cerrar Sesion" />
 									</a>
-									<a style="color: blue">
+									<a style="color: white">
 										<space />
 										<label id="lblEditarCuenta" value="Editar Cuenta" />
 									</a>
+								</vbox>
+								<separator />
+								<separator />
+								<separator />
+								<separator />
+								<separator />
+								<vbox>
+									<separator />
+									<listbox style="border:none" width="200px" id="ltbRoles">
+										<template name="model">
+											<listitem>
+												<listcell
+													style="font-weight: bold; background: #0070AD;color:white"
+													label="${each.nombre}">
+												</listcell>
+											</listitem>
+										</template>
+									</listbox>
 								</vbox>
 							</hbox>
 						</div>

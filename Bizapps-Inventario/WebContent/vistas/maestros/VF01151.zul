@@ -5,15 +5,15 @@
 			title="Direcccion de Correo Electronico/Internet (VF01151)">
 			<div id="botoneraF01151" />
 			<separator />
-			<groupbox id="gpxRegistroF01151" width="auto" title="" open="false">
+			<groupbox class="azul" id="gpxRegistroF01151" width="auto" title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar un Numero Correo Electronico/Internet" />
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="35%" />
-						<column label="" width="35%" />
+						<column label="" width="20%" />
 						<column label="" width="30%" />
+						<column label="" width="50%" />
 					</columns>
 					<rows>
 						<row>
@@ -26,7 +26,7 @@
 							<longbox id="txtAn8F01151" hflex="1" maxlength="19"
 								tooltiptext="Ingrese el Numero de Direccion" />
 							<hbox>
-								<button id="btnBuscarDireccionF01151" class="btn"
+								<button id="btnBuscarDireccionF01151" 
 									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblAn8F01151" />
 							</hbox>
@@ -62,7 +62,7 @@
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatosF01151" width="auto" title="">
+			<groupbox class="azul" id="gpxDatosF01151" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las Direcciones de Correo electronicas Registradas" />
 				<div id="catalogoF01151" tooltiptext="Seleccione la Direccion para Realizar una Accion" />

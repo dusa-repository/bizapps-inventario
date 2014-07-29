@@ -56,4 +56,8 @@ public class SGrupo {
 		
 	}
 
+	public List<Grupo> buscarGruposUsuario(Usuario u) {
+		return grupoDAO.findByUsuariosOrderByNombreAsc(u);
+	}
+
 }

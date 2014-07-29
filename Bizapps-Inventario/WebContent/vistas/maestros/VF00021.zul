@@ -6,7 +6,7 @@
 			<div id="botoneraF00021" />
 			<separator />
 			<groupbox id="gpxRegistro" width="auto" title=""
-				open="false">
+				open="false"  class="azul">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Ingresar compañia" />
 				<separator />
@@ -35,17 +35,20 @@
 								image="/public/imagenes/botones/buscar.png" />
 							<label id="lblDescripcionF0010" />
 							<hbox />
+							<hbox />
 						</row>
 						<row>
 						<cell colspan="2">
 							<div id="divbuscadorDCT" hflex="1" />
 						</cell>
 						<hbox />
+						<hbox />
 						</row>
 						<row>
 						<cell colspan="2">
 							<div id="divbuscadorSMAS" hflex="1" />
 						</cell>
+						<hbox />
 						<hbox />
 						</row>
 						<row>
@@ -61,6 +64,7 @@
 								maxlength="100" width="45%"
 								tooltiptext="Ingrese la descripción" />
 							<hbox />
+							<hbox />
 						</row>
 						<row>
 							<hbox>
@@ -73,6 +77,7 @@
 							</hbox>
 							<textbox id="txtCTRYF00021" hflex="1"
 								width="45%" tooltiptext="Ingrese el Sigio" />
+							<hbox />
 							<hbox />
 						</row>
 						<row>
@@ -87,11 +92,13 @@
 							<textbox id="txtFYF00021" hflex="1"
 								width="45%" tooltiptext="Ingrese el año fiscal" />
 							<hbox />
+							<hbox />
 						</row>
 						<row>
 						<cell colspan="2">
 							<div id="divbuscadorINCRUS" hflex="1" />
 						</cell>
+						<hbox />
 						<hbox />
 						</row>
 						<row>
@@ -100,12 +107,13 @@
 							<textbox id="txtN001F00021" hflex="1"
 								width="45%" tooltiptext="Número Siguiente"/>
 							<hbox />
+							<hbox />
 						</row>
 					</rows>
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatos" width="auto" title="">
+			<groupbox  class="azul" id="gpxDatos" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las compañias" />
 				<div id="catalogoF00021"

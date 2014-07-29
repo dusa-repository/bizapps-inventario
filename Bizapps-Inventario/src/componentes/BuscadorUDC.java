@@ -44,7 +44,6 @@ public abstract class BuscadorUDC extends Hbox {
 		label.setClass("etiqueta");
 		label.setWidth("auto");
 		label.setHflex("1");
-		label.setStyle("color:#636363");
 		
 		cajaTexto = new Textbox();
 		cajaTexto.setHflex("1");

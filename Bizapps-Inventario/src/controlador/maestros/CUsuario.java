@@ -128,7 +128,7 @@ public class CUsuario extends CGenerico {
 	@Wire
 	private Groupbox gpxRegistro;
 	private CArbol cArbol = new CArbol();
-	long id = 0;
+	String id = "";
 	Catalogo<Usuario> catalogo;
 	List<Grupo> gruposDisponibles = new ArrayList<Grupo>();
 	List<Grupo> gruposOcupados = new ArrayList<Grupo>();
@@ -191,7 +191,7 @@ public class CUsuario extends CGenerico {
 							}
 						}
 						txtCedulaUsuario.setDisabled(true);
-						id = Long.valueOf(usuario.getCedula());
+						id =usuario.getCedula();
 						llenarListas(usuario);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -260,7 +260,7 @@ public class CUsuario extends CGenerico {
 
 			@Override
 			public void eliminar() {
-				if (id != 0) {
+				if (id.equals("")) {
 					Messagebox.show("¿Esta Seguro de Eliminar el Usuario?",
 							"Alerta", Messagebox.OK | Messagebox.CANCEL,
 							Messagebox.QUESTION,
@@ -367,7 +367,7 @@ public class CUsuario extends CGenerico {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		id = 0;
+		id = "";
 		llenarListas(null);
 	}
 	

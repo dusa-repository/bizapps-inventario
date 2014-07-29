@@ -5,7 +5,7 @@
 			title="Trabajo con Examinador de Maestro de Articulos (VF4101)">
 			<div id="botoneraF4101" />
 			<separator />
-			<groupbox id="gpxRegistroF4101" width="auto" title=""
+			<groupbox class="azul" id="gpxRegistroF4101" width="auto" title=""
 				open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar un Nuevo Articulo" />
@@ -646,7 +646,7 @@
 
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatosF4101" width="auto" title="">
+			<groupbox class="azul" id="gpxDatosF4101" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar los Articulos Registrados" />
 				<div id="catalogoF4101"

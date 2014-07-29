@@ -5,7 +5,8 @@
 			title="Trabajo con Codigo de Monedas y Tarifas (VF0013)">
 			<div id="botoneraF0013" />
 			<separator />
-			<groupbox id="gpxRegistroF0013" width="auto" title="" open="false">
+			<groupbox class="azul" id="gpxRegistroF0013" width="auto"
+				title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar una Nueva Moneda" />
 				<separator />
@@ -25,6 +26,7 @@
 							</hbox>
 							<textbox id="txtCRCDF0013" hflex="1" maxlength="3"
 								tooltiptext="Ingrese el Codigo de la Moneda" />
+							<hbox />
 						</row>
 						<row>
 							<hbox>
@@ -35,12 +37,13 @@
 							</hbox>
 							<textbox id="txtDL01F0013" hflex="1" maxlength="30"
 								tooltiptext="Ingrese la Descripcion de la Moneda" />
+							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Visualizacion decimales:" />
 							<textbox id="txtDECF0013" hflex="1" maxlength="1"
 								tooltiptext="Ingrese el numero de decimales de la moneda" />
-
+							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Importe traductor Palabras:" />
@@ -52,7 +55,8 @@
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox id="gpxDatosF0013" width="auto" title="">
+			<groupbox class="azul" id="gpxDatosF0013" width="auto"
+				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las Monedas Registradas" />
 				<div id="catalogoF0013" tooltiptext="Seleccione la Moneda para Realizar una Accion" />
