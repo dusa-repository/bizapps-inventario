@@ -66,7 +66,7 @@
 							</hbox>
 							<textbox id="txtPlanta1" hflex="1" maxlength="12"
 								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-							<button id="btnBuscarPlanta1" class="btn" label="Buscar"
+							<button autodisable="true" id="btnBuscarPlanta1" label=""
 								tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPlanta1" />
 						</row>
@@ -79,7 +79,7 @@
 							</hbox>
 							<longbox id="txtF0101" hflex="1" maxlength="19"
 								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-							<button id="btnBuscarF0101" class="btn" label="Buscar"
+							<button autodisable="true" id="btnBuscarF0101" label=""
 								tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblF0101" />
 						</row>
@@ -92,7 +92,7 @@
 							</hbox>
 							<textbox id="txtPlanta2" hflex="1" maxlength="12"
 								tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
-							<button id="btnBuscarPlanta2" class="btn" label="Buscar"
+							<button autodisable="true" id="btnBuscarPlanta2" label=""
 								tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPlanta2" />
 						</row>
@@ -119,7 +119,7 @@
 								</hbox>
 								<doublebox id="txtItem" hflex="1" maxlength="19"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button id="btnBuscarItem" class="btn" label="Buscar"
+								<button autodisable="true" id="btnBuscarItem" label=""
 									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblItem" />
 								<hbox id="boxCantidad">
@@ -132,7 +132,7 @@
 									constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
 								<hbox />
 								<button label="Agregar" id="btnAgregar" autodisable="true"
-									image="/public/imagenes/botones/buscar.png" hflex="1" />
+									image="/public/imagenes/botones/annadir.png"/>
 							</row>
 							<row>
 								<label class="etiqueta" value="UM:" />
@@ -165,7 +165,7 @@
 								<textbox readonly="true" id="txtUbicacion1" hflex="1"
 									maxlength="20"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button id="btnBuscarUbicacion1" class="btn" label="Buscar"
+								<button autodisable="true" id="btnBuscarUbicacion1" label=""
 									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblUbicacion1" />
 								<hbox id="boxUbicacion2">
@@ -177,7 +177,7 @@
 								<textbox readonly="true" id="txtUbicacion2" hflex="1"
 									maxlength="20"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button id="btnBuscarUbicacion2" class="btn" label="Buscar"
+								<button autodisable="true" id="btnBuscarUbicacion2" label=""
 									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblUbicacion2" />
 
@@ -194,7 +194,7 @@
 						</rows>
 					</grid>
 				</groupbox>
-				<hbox widths="90%,10%">
+				<hbox widths="95%,5%">
 					<listbox id="ltbItems" span="true" height="150px" width="100%">
 						<listhead>
 							<listheader label="Numero Articulo" hflex="min" />
@@ -234,10 +234,10 @@
 						</template>
 					</listbox>
 					<vbox width="100%">
-						<button label="Editar" id="btnVer" autodisable="true"
-							image="/public/imagenes/botones/buscar.png" hflex="1" />
-						<button label="Remover" id="btnRemover" autodisable="true"
-							image="/public/imagenes/botones/buscar.png" hflex="1" />
+						<button label="Editar" class="btn" id="btnVer" autodisable="true"
+							image="/public/imagenes/botones/generar.png"/>
+						<button label="Remover" class="btn" id="btnRemover" autodisable="true"
+							image="/public/imagenes/botones/anular.png" />
 					</vbox>
 				</hbox>
 			</groupbox>

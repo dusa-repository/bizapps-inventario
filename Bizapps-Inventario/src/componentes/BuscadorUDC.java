@@ -56,6 +56,7 @@ public abstract class BuscadorUDC extends Hbox {
 		cajaTexto.setHflex("1");
 
 		Button boton = new Button();
+		boton.setAutodisable("true");
 		boton.setTooltiptext("Buscar");
 		boton.setSrc("/public/imagenes/botones/buscar.png");
 		boton.setWidth("auto");

@@ -419,6 +419,9 @@ public class CF4111 extends CGenerico {
 										.getValue()));
 								f4111.setIlcrdj(transformarGregorianoAJulia(dtbFechaTransaccion
 										.getValue()));
+								f4111.setIluser(nombreUsuarioSesion());
+								f4111.setIlvpej(transformarGregorianoAJulia(fecha));
+								f4111.setIlicu(Double.valueOf(horaAuditoria));
 								f4111.setIldct(txtTipo.getValue());
 								f4111.setIltrex(txtExplicacion.getValue());
 								f4111.setIluncs((double) 0);
@@ -436,6 +439,9 @@ public class CF4111 extends CGenerico {
 								String ubicacion2 = modelo.getValor6();
 								Double costoActualizar = modelo.getValor10();
 								f4111 = new F4111();
+								f4111.setIluser(nombreUsuarioSesion());
+								f4111.setIlvpej(transformarGregorianoAJulia(fecha));
+								f4111.setIlicu(Double.valueOf(horaAuditoria));
 								f4111.setIlukid(numeroSiguiente());
 								f4111.setIldoc(txtDoc.getValue());
 								f4111.setIldoco(txtOrden.getValue());
@@ -531,6 +537,9 @@ public class CF4111 extends CGenerico {
 
 									// <Nuevooo
 									f4111 = new F4111();
+									f4111.setIluser(nombreUsuarioSesion());
+									f4111.setIlvpej(transformarGregorianoAJulia(fecha));
+									f4111.setIlicu(Double.valueOf(horaAuditoria));
 									f4111.setIlukid(numeroSiguiente());
 									f4111.setIldoc(txtDoc.getValue());
 									f4111.setIldoco(txtOrden.getValue());
