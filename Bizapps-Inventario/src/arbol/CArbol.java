@@ -54,7 +54,7 @@ public class CArbol extends CGenerico {
 	private Image imagenes;
 	TreeModel _model;
 	URL url = getClass().getResource("/controlador/maestros/usuario.png");
-//	List<String> listmenu1 = new ArrayList<String>();
+	// List<String> listmenu1 = new ArrayList<String>();
 	@Wire
 	private Tab tab;
 	@Wire
@@ -63,21 +63,21 @@ public class CArbol extends CGenerico {
 	private West west;
 	@Wire
 	private Listbox ltbRoles;
-	
+
 	private static boolean numeroSgt = false;
 	private Tabbox tabBox2;
 	private Include contenido2;
 	private Tab tab2;
 	Mensaje msj = new Mensaje();
 	HashMap<String, Object> mapGeneral = new HashMap<String, Object>();
-	
+
 	@Override
 	public void inicializar() throws IOException {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 
 		Usuario u = servicioUsuario.buscarUsuarioPorNombre(auth.getName());
-		
+
 		List<Grupo> grupos = servicioGrupo.buscarGruposUsuario(u);
 		ltbRoles.setModel(new ListModelList<Grupo>(grupos));
 
@@ -140,21 +140,21 @@ public class CArbol extends CGenerico {
 
 			Arbol arbol;
 			String nombre = authorities.get(k).toString();
-			if(Validador.validarNumero(nombre)){
-			arbol = servicioArbol.buscar(Long.parseLong(nombre));
-			if (arbol != null)
-				ids.add(arbol.getIdArbol());
-			arbole.add(arbol);
+			if (Validador.validarNumero(nombre)) {
+				arbol = servicioArbol.buscar(Long.parseLong(nombre));
+				if (arbol != null)
+					ids.add(arbol.getIdArbol());
+				arbole.add(arbol);
 			}
 		}
-		
+
 		Collections.sort(ids);
 		for (int t = 0; t < ids.size(); t++) {
 			Arbol a;
 			a = servicioArbol.buscarPorId(ids.get(t));
 			arboles.add(a);
 		}
-//		List<Arbol> arboles = servicioArbol.listarArbol();
+		// List<Arbol> arboles = servicioArbol.listarArbol();
 		long temp1, temp2, temp3 = 0;
 
 		for (int i = 0; i < arboles.size(); i++) {
@@ -208,27 +208,28 @@ public class CArbol extends CGenerico {
 		return root;
 	}
 
-	
-	public void booleanoApg (){
+	public void booleanoApg() {
 		numeroSgt = false;
 	}
+
 	/*
 	 * Permite seleccionar un elemento del arbol, mostrandolo en forma de
 	 * pestaña y su contenido es cargado en un div
 	 */
 	@Listen("onClick = #arbolMenu")
 	public void selectedNode() {
-		if(arbolMenu.getSelectedItem()!=null)
-		{
-		String item = String.valueOf(arbolMenu.getSelectedItem().getValue());
-		boolean abrir = true;
-		Tab taba = new Tab();
-		if (arbolMenu.getSelectedItem().getLevel() > 0) {
+		if (arbolMenu.getSelectedItem() != null) {
+			String item = String
+					.valueOf(arbolMenu.getSelectedItem().getValue());
+			boolean abrir = true;
+			Tab taba = new Tab();
+			// if (arbolMenu.getSelectedItem().getLevel() > 0) {
 			final Arbol arbolItem = servicioArbol.buscarPorNombreArbol(item);
 			mapGeneral.put("titulo", arbolItem.getNombre());
 			if (!arbolItem.getUrl().equals("inicio")) {
-				
-				if (String.valueOf(arbolMenu.getSelectedItem().getValue()).equals("Consulta")) 
+
+				if (String.valueOf(arbolMenu.getSelectedItem().getValue())
+						.equals("Consulta"))
 					west.setOpen(false);
 				for (int i = 0; i < tabs.size(); i++) {
 					if (tabs.get(i).getLabel().equals(arbolItem.getNombre())) {
@@ -237,25 +238,74 @@ public class CArbol extends CGenerico {
 					}
 				}
 				if (abrir) {
-				if (arbolItem.getUrl().equals("maestros/VF00021")){
-					if (numeroSgt ==false){
+					if (arbolItem.getUrl().equals("maestros/VF00021")) {
+						if (numeroSgt == false) {
+							String ruta = "/vistas/" + arbolItem.getUrl()
+									+ ".zul";
+							contenido = new Include();
+							contenido.setSrc(null);
+							contenido.setSrc(ruta);
+							numeroSgt = true;
+							Tab newTab = new Tab(arbolItem.getNombre());
+							newTab.setClosable(true);
+							newTab.addEventListener(Events.ON_CLOSE,
+									new EventListener<Event>() {
+										@Override
+										public void onEvent(Event arg0)
+												throws Exception {
+											for (int i = 0; i < tabs.size(); i++) {
+												if (tabs.get(i)
+														.getLabel()
+														.equals(arbolItem
+																.getNombre())) {
+													if (i == (tabs.size() - 1)
+															&& tabs.size() > 1) {
+														tabs.get(i - 1)
+																.setSelected(
+																		true);
+													}
+
+													tabs.get(i).close();
+													tabs.remove(i);
+												}
+											}
+										}
+									});
+							newTab.setSelected(true);
+							Tabpanel newTabpanel = new Tabpanel();
+							newTabpanel.appendChild(contenido);
+							tabBox.getTabs().insertBefore(newTab, tab);
+							newTabpanel.setParent(tabBox.getTabpanels());
+							tabs.add(newTab);
+							mapGeneral.put("tabsGenerales", tabs);
+							Sessions.getCurrent().setAttribute("mapaGeneral",
+									mapGeneral);
+						} else {
+							msj.mensajeError(Mensaje.enUso);
+						}
+					} else {
 						String ruta = "/vistas/" + arbolItem.getUrl() + ".zul";
 						contenido = new Include();
 						contenido.setSrc(null);
 						contenido.setSrc(ruta);
-						numeroSgt = true;
 						Tab newTab = new Tab(arbolItem.getNombre());
 						newTab.setClosable(true);
 						newTab.addEventListener(Events.ON_CLOSE,
 								new EventListener<Event>() {
 									@Override
-									public void onEvent(Event arg0) throws Exception {
+									public void onEvent(Event arg0)
+											throws Exception {
 										for (int i = 0; i < tabs.size(); i++) {
-											if (tabs.get(i).getLabel().equals(arbolItem.getNombre())) {
-												if (i == (tabs.size() - 1) && tabs.size() > 1) {
-													tabs.get(i - 1).setSelected(true);
+											if (tabs.get(i)
+													.getLabel()
+													.equals(arbolItem
+															.getNombre())) {
+												if (i == (tabs.size() - 1)
+														&& tabs.size() > 1) {
+													tabs.get(i - 1)
+															.setSelected(true);
 												}
-												
+
 												tabs.get(i).close();
 												tabs.remove(i);
 											}
@@ -269,85 +319,55 @@ public class CArbol extends CGenerico {
 						newTabpanel.setParent(tabBox.getTabpanels());
 						tabs.add(newTab);
 						mapGeneral.put("tabsGenerales", tabs);
-						Sessions.getCurrent().setAttribute("mapaGeneral", mapGeneral);
-				}
-					else {
-						msj.mensajeError(Mensaje.enUso);
+						Sessions.getCurrent().setAttribute("mapaGeneral",
+								mapGeneral);
 					}
-				}
-				else {
-					String ruta = "/vistas/" + arbolItem.getUrl() + ".zul";
-					contenido = new Include();
-					contenido.setSrc(null);
-					contenido.setSrc(ruta);
-					Tab newTab = new Tab(arbolItem.getNombre());
-					newTab.setClosable(true);
-					newTab.addEventListener(Events.ON_CLOSE,
-							new EventListener<Event>() {
-								@Override
-								public void onEvent(Event arg0) throws Exception {
-									for (int i = 0; i < tabs.size(); i++) {
-										if (tabs.get(i).getLabel().equals(arbolItem.getNombre())) {
-											if (i == (tabs.size() - 1) && tabs.size() > 1) {
-												tabs.get(i - 1).setSelected(true);
-											}
-											
-											tabs.get(i).close();
-											tabs.remove(i);
-										}
-									}
-								}
-							});
-					newTab.setSelected(true);
-					Tabpanel newTabpanel = new Tabpanel();
-					newTabpanel.appendChild(contenido);
-					tabBox.getTabs().insertBefore(newTab, tab);
-					newTabpanel.setParent(tabBox.getTabpanels());
-					tabs.add(newTab);
-					mapGeneral.put("tabsGenerales", tabs);
-					Sessions.getCurrent().setAttribute("mapaGeneral", mapGeneral);
-					}
-				}
-				 else {
+				} else {
 					taba.setSelected(true);
 				}
+			} else {
+				if (!arbolMenu.getSelectedItem().isOpen())
+					arbolMenu.getSelectedItem().setOpen(true);
+				else
+					arbolMenu.getSelectedItem().setOpen(false);
 			}
+
 		}
-		
-		}
+
+		// }
 		tabBox2 = tabBox;
 		contenido2 = contenido;
 		tab2 = tab;
 	}
-	
+
 	public void abrirVentanas(Arbol arbolItem) {
 		boolean abrir = true;
 		Tab taba = new Tab();
-		
-			if (!arbolItem.getUrl().equals("inicio")) {
-				for (int i = 0; i < tabs.size(); i++) {
-					if (tabs.get(i).getLabel().equals(arbolItem.getNombre())) {
-						abrir = false;
-						taba = tabs.get(i);
-					}
-				}
-				if (abrir) {
-					String ruta = "/vistas/" + arbolItem.getUrl() + ".zul";
-					contenido2 = new Include();
-					contenido2.setSrc(null);
-					contenido2.setSrc(ruta);
 
-					Tab newTab = new Tab(arbolItem.getNombre());
-					newTab.setSelected(true);
-					Tabpanel newTabpanel = new Tabpanel();
-					newTabpanel.appendChild(contenido2);
-					tabBox2.getTabs().insertBefore(newTab,tab2);
-					newTabpanel.setParent(tabBox2.getTabpanels());
-					tabs.add(newTab);
-				} else {
-					taba.setSelected(true);
+		if (!arbolItem.getUrl().equals("inicio")) {
+			for (int i = 0; i < tabs.size(); i++) {
+				if (tabs.get(i).getLabel().equals(arbolItem.getNombre())) {
+					abrir = false;
+					taba = tabs.get(i);
 				}
 			}
+			if (abrir) {
+				String ruta = "/vistas/" + arbolItem.getUrl() + ".zul";
+				contenido2 = new Include();
+				contenido2.setSrc(null);
+				contenido2.setSrc(ruta);
+
+				Tab newTab = new Tab(arbolItem.getNombre());
+				newTab.setSelected(true);
+				Tabpanel newTabpanel = new Tabpanel();
+				newTabpanel.appendChild(contenido2);
+				tabBox2.getTabs().insertBefore(newTab, tab2);
+				newTabpanel.setParent(tabBox2.getTabpanels());
+				tabs.add(newTab);
+			} else {
+				taba.setSelected(true);
+			}
+		}
 	}
 
 	/* Metodo que permite abrir la ventana de editar usuario en una pestaña */
