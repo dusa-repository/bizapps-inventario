@@ -9,6 +9,7 @@ import java.util.List;
 
 import modelo.maestros.F0004;
 import modelo.maestros.F0005;
+import modelo.maestros.F0006;
 import modelo.maestros.F0010;
 import modelo.maestros.F0013;
 import modelo.maestros.F0101;
@@ -283,7 +284,7 @@ public class CF0010 extends CGenerico {
 						final int cantidad = eliminarLista.size();
 						for (int i = 0; i < eliminarLista.size(); i++) {
 							F0010 valor = eliminarLista.get(i);
-							List<F0010> objeto = servicioF0006
+							List<F0006> objeto = servicioF0006
 									.buscarPorMco(valor.getCcco());
 							if (!objeto.isEmpty()) {
 								eliminarLista.remove(valor);
@@ -322,7 +323,7 @@ public class CF0010 extends CGenerico {
 				} else {
 					/* Elimina un solo registro */
 					if (clave != null) {
-						List<F0010> objeto = servicioF0006.buscarPorMco(clave);
+						List<F0006> objeto = servicioF0006.buscarPorMco(clave);
 						if (objeto.isEmpty()) {
 							Messagebox
 									.show(Mensaje.deseaEliminar,

@@ -60,31 +60,31 @@ public class F4105PK implements Serializable {
 		this.coledg = coledg;
 	}
 
-	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof F4105PK)) {
-			return false;
-		}
-		F4105PK castOther = (F4105PK)other;
-		return 
-			(this.coitm == castOther.coitm)
-			&& this.comcu.equals(castOther.comcu)
-			&& this.colocn.equals(castOther.colocn)
-			&& this.colotn.equals(castOther.colotn)
-			&& this.coledg.equals(castOther.coledg);
-	}
-
-	public int hashCode() {
-		final int prime = 31;
-		int hash = 17;
-		hash = hash * prime + ((int) (java.lang.Double.doubleToLongBits(this.coitm) ^ (java.lang.Double.doubleToLongBits(this.coitm) >>> 32)));
-		hash = hash * prime + this.comcu.hashCode();
-		hash = hash * prime + this.colocn.hashCode();
-		hash = hash * prime + this.colotn.hashCode();
-		hash = hash * prime + this.coledg.hashCode();
-		
-		return hash;
-	}
+//	public boolean equals(Object other) {
+//		if (this == other) {
+//			return true;
+//		}
+//		if (!(other instanceof F4105PK)) {
+//			return false;
+//		}
+//		F4105PK castOther = (F4105PK)other;
+//		return 
+//			(this.coitm == castOther.coitm)
+//			&& this.comcu.equals(castOther.comcu)
+//			&& this.colocn.equals(castOther.colocn)
+//			&& this.colotn.equals(castOther.colotn)
+//			&& this.coledg.equals(castOther.coledg);
+//	}
+//
+//	public int hashCode() {
+//		final int prime = 31;
+//		int hash = 17;
+//		hash = hash * prime + ((int) (java.lang.Double.doubleToLongBits(this.coitm) ^ (java.lang.Double.doubleToLongBits(this.coitm) >>> 32)));
+//		hash = hash * prime + this.comcu.hashCode();
+//		hash = hash * prime + this.colocn.hashCode();
+//		hash = hash * prime + this.colotn.hashCode();
+//		hash = hash * prime + this.coledg.hashCode();
+//		
+//		return hash;
+//	}
 }

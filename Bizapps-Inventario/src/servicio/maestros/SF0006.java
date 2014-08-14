@@ -45,7 +45,7 @@ public class SF0006 {
 		return f0006DAO.findByMcmcu(value);
 	}
 
-	public List<F0010> buscarPorMco(String ccco) {
+	public List<F0006> buscarPorMco(String ccco) {
 		return f0006DAO.findByMcco(ccco);
 	}
 

@@ -59,6 +59,7 @@ import servicio.seguridad.SArbol;
 import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
 import servicio.transacciones.SF4111;
+import servicio.transacciones.SF4211;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public abstract class CGenerico extends SelectorComposer<Component> {
@@ -101,6 +102,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF00021 servicioF00021;
 	@WireVariable("SF40203")
 	protected SF40203 servicioF40203;
+	@WireVariable("SF4211")
+	protected SF4211 servicioF4211;
 	@WireVariable("SF4101")
 	protected SF4101 servicioF4101;
 	@WireVariable("SF41002")
