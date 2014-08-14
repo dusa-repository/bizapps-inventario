@@ -1,6 +1,7 @@
 package servicio.transacciones;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import interfacedao.transacciones.IF4111DAO;
@@ -55,5 +56,19 @@ public class SF4111 {
 
 	public List<F4111> buscarHastaFecha(BigDecimal hasta) {
 		return iF4111DAO.findByIltrdjBeforeOrderByMcuAsc(hasta);
+	}
+
+	public List<F4111> buscarTodosOrdenadosPorProveedor(String string,
+			Double value) {
+		List<F4111> lista = new ArrayList<F4111>();
+		List<Double> lista2 = iF4111DAO.findByIlan8AndIldctOrderByIldocAsc(value, string);
+		for (int i = 0; i < lista2.size(); i++) {			
+			lista.add(iF4111DAO.findByIldocAndIldct(lista2.get(i), string).get(0));
+		}
+		return lista;
+	}
+
+	public F4111 buscar(Double clave41) {
+		return iF4111DAO.findOne(clave41);
 	}
 }
