@@ -239,6 +239,7 @@ public class CF4211 extends CGenerico {
 					f4211.setSddoc(txtDoc.getValue());
 					f4211.setSddrqj(transformarGregorianoAJulia(dtbFecha
 							.getValue()));
+					f4211.setSdspattn("Enviada");
 					if (listaPedido.isEmpty()) {
 						clave.setSdlnid((double) 0);
 						f4211.setId(clave);
@@ -264,6 +265,7 @@ public class CF4211 extends CGenerico {
 							f4211.setSdpqor(f42.getSdpqor());
 							f4211.setSdlocn(f42.getSdlocn());
 							f4211.setSduom(f42.getSduom());
+							f4211.setSdspattn("Enviada");
 							servicioF4211.guardar(f4211);
 						}
 					}

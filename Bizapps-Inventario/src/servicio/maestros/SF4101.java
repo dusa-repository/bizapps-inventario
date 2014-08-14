@@ -7,11 +7,13 @@ import java.util.List;
 import interfacedao.maestros.IF4101DAO;
 import interfacedao.maestros.IF41021DAO;
 import interfacedao.transacciones.IF4111DAO;
+import interfacedao.transacciones.IF4211DAO;
 import modelo.maestros.F0008;
 import modelo.maestros.F0101;
 import modelo.maestros.F4101;
 import modelo.pk.F0008PK;
 import modelo.transacciones.F4111;
+import modelo.transacciones.F4211;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class SF4101 {
 	private IF4111DAO f4111DAO;
 	@Autowired
 	private IF41021DAO f41021DAO;
+	@Autowired
+	private IF4211DAO f4211DAO;
 
 	public void guardar(F4101 f4101) {
 		f4101DAO.save(f4101);
@@ -65,6 +69,19 @@ public class SF4101 {
 			buscados.add(buscar(double1));
 		}
 		return buscados;
+	}
+
+	public List<F4101> buscarTodosOrdenadosPorSolicitud(Double value) {
+		List<F4211> listaF4211 = f4211DAO
+				.findByIdSddocoAndIdSddctoOrderBySditmAsc(value, "ET");
+		List<F4101> lista = new ArrayList<F4101>();
+		for (Iterator<F4211> iterator = listaF4211.iterator(); iterator
+				.hasNext();) {
+			F4211 f4211 = (F4211) iterator.next();
+			if (f4211.getSditm() != null)
+				lista.add(buscar(f4211.getSditm()));
+		}
+		return lista;
 	}
 
 }
