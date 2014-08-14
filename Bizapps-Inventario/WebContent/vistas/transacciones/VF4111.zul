@@ -62,6 +62,19 @@
 							<datebox readonly="true" width="100%" id="dtbFechaLm"
 								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion LM" />
 						</row>
+						<row id="rowPedido" visible="false">
+							<hbox>
+								<label class="etiqueta" value="Pedido:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<doublebox id="txtPedido" hflex="1" maxlength="12"
+								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+							<button autodisable="true" id="btnBuscarPedido" label=""
+								tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+							<label id="lblPedido" />
+						</row>
 						<row id="rowPlanta1">
 							<hbox>
 								<label class="etiqueta" value="De Suc/planta:" />
@@ -275,7 +288,8 @@
 			<div id="catalogoLoteF4108" />
 			<div id="catalogoItemF4101" />
 			<div id="catalogoDireccionF0101" />			
-			<div id="catalogoF4111Emergente" />
+			<div id="catalogoF4111Emergente" />			
+			<div id="catalogoPedidoF4211" />
 		</groupbox>
 	</div>
 </zk>
