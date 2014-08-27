@@ -188,7 +188,7 @@
 										<textbox id="txtCCCRCDF0010" hflex="1" maxlength="3"
 											tooltiptext="Ingrese la Moneda Nacional" />
 										<hbox>
-											<button id="btnBuscarMoneda" label=""
+											<button id="btnBuscarMoneda" label="Buscar" class="btn"
 												tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 											<label id="lblMonedaF0010" />
 										</hbox>

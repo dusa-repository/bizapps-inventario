@@ -5,8 +5,8 @@
 			title="Número Siguiente por Compañia/Año Fiscal (VF00021)">
 			<div id="botoneraF00021" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" title=""
-				open="false"  class="azul">
+			<groupbox id="gpxRegistro" width="auto" title="" open="false"
+				class="azul">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Ingresar compañia" />
 				<separator />
@@ -20,92 +20,80 @@
 					<rows>
 						<row>
 							<hbox>
-								<label class="etiqueta"
-									value=" Compañia Documento" />
+								<label class="etiqueta" value=" Compañia Documento" />
 								<space />
-								<label value="*"
-									style="font-weight:bold;color:red">
+								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtKCOF00021" hflex="1"
-								maxlength="5" width="45%"
+							<textbox id="txtKCOF00021" hflex="1" maxlength="5" width="45%"
 								tooltiptext="Ingrese la Compañia Documento" />
-							<button id="btnBuscarCompannia" label=""
-								mold="trendy" width="auto" height="auto"
+							<button id="btnBuscarCompannia" label="Buscar" class="btn"
 								image="/public/imagenes/botones/buscar.png" />
 							<label id="lblDescripcionF0010" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
-						<cell colspan="2">
-							<div id="divbuscadorDCT" hflex="1" />
-						</cell>
-						<hbox />
-						<hbox />
+							<cell colspan="2">
+								<div id="divbuscadorDCT" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
 						</row>
 						<row>
-						<cell colspan="2">
-							<div id="divbuscadorSMAS" hflex="1" />
-						</cell>
-						<hbox />
-						<hbox />
-						</row>
-						<row>
-							<hbox>
-								<label class="etiqueta"
-									value=" Descripción"/>
-								<space />
-								<label value="*"
-									style="font-weight:bold;color:red">
-								</label>
-							</hbox>
-							<textbox id="txtDESF00021" hflex="1"
-								maxlength="100" width="45%"
-								tooltiptext="Ingrese la descripción" />
+							<cell colspan="2">
+								<div id="divbuscadorSMAS" hflex="1" />
+							</cell>
 							<hbox />
 							<hbox />
 						</row>
 						<row>
 							<hbox>
-								<label class="etiqueta"
-									value=" Sigio"/>
+								<label class="etiqueta" value=" Descripción" />
 								<space />
-								<label value="*"
-									style="font-weight:bold;color:red">
+								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtCTRYF00021" hflex="1"
-								width="45%" tooltiptext="Ingrese el Sigio" />
+							<textbox id="txtDESF00021" hflex="1" maxlength="100"
+								width="45%" tooltiptext="Ingrese la descripción" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
 							<hbox>
-								<label class="etiqueta"
-									value="Año Fiscal"/>
+								<label class="etiqueta" value=" Sigio" />
 								<space />
-								<label value="*"
-									style="font-weight:bold;color:red">
+								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtFYF00021" hflex="1"
-								width="45%" tooltiptext="Ingrese el año fiscal" />
+							<textbox id="txtCTRYF00021" hflex="1" width="45%"
+								tooltiptext="Ingrese el Sigio" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
-						<cell colspan="2">
-							<div id="divbuscadorINCRUS" hflex="1" />
-						</cell>
-						<hbox />
-						<hbox />
+							<hbox>
+								<label class="etiqueta" value="Año Fiscal" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtFYF00021" hflex="1" width="45%"
+								tooltiptext="Ingrese el año fiscal" />
+							<hbox />
+							<hbox />
 						</row>
 						<row>
-							<label class="etiqueta"
-								value=" Número Siguiente" />
-							<textbox id="txtN001F00021" hflex="1"
-								width="45%" tooltiptext="Número Siguiente"/>
+							<cell colspan="2">
+								<div id="divbuscadorINCRUS" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value=" Número Siguiente" />
+							<textbox id="txtN001F00021" hflex="1" width="45%"
+								tooltiptext="Número Siguiente" />
 							<hbox />
 							<hbox />
 						</row>
@@ -113,14 +101,12 @@
 				</grid>
 			</groupbox>
 			<separator />
-			<groupbox  class="azul" id="gpxDatos" width="auto" title="">
+			<groupbox class="azul" id="gpxDatos" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las compañias" />
-				<div id="catalogoF00021"
-					tooltiptext="Seleccione la compañia para Realizar una Accion" />
+				<div id="catalogoF00021" tooltiptext="Seleccione la compañia para Realizar una Accion" />
 			</groupbox>
 		</groupbox>
-		<div id="divCatalogoF0010"
-			tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0010" tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>

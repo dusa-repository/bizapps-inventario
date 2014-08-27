@@ -26,8 +26,8 @@
 							</hbox>
 							<textbox id="txtSYF0005" hflex="1" maxlength="100"
 								tooltiptext="Seleccione del Catalogo el Codigo del Producto" />
-							<button id="btnBuscarF0004" label=""
-								tooltiptext="Catalogo de Codigos de Producto" image="/public/imagenes/botones/buscar.png" />
+							<button id="btnBuscarF0004" label="Buscar"
+								tooltiptext="Catalogo de Codigos de Producto" image="/public/imagenes/botones/buscar.png" class="btn"/>
 							<hbox />
 						</row>
 						<row>

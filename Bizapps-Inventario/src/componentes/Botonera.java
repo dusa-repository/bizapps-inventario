@@ -40,36 +40,17 @@ public abstract class Botonera extends Hbox {
 		btnSalir.setSrc("/public/imagenes/botones/salir.png");
 		btnAyuda.setSrc("/public/imagenes/botones/ayuda.png");
 		
-
-//		btnSeleccionar.setOrient("vertical");
-//		btnSeleccionar.setDir("reverse");
-//		btnBuscar.setOrient("vertical");
-//		btnBuscar.setDir("reverse");
-//		btnAnnadir.setOrient("vertical");
-//		btnAnnadir.setDir("reverse");
-//		btnGuardar.setOrient("vertical");
-//		btnGuardar.setDir("reverse");
-//		btnEliminar.setOrient("vertical");
-//		btnEliminar.setDir("reverse");
-//		btnLimpiar.setOrient("vertical");
-//		btnLimpiar.setDir("reverse");
-//		btnReporte.setOrient("vertical");
-//		btnReporte.setDir("reverse");
-//		btnSalir.setOrient("vertical");
-//		btnSalir.setDir("reverse");
-//		btnAyuda.setOrient("vertical");
-//		btnAyuda.setDir("reverse");
-
 		
-		btnAyuda.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnEliminar.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnAnnadir.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnGuardar.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnBuscar.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnLimpiar.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnSalir.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnReporte.setStyle("font-size: 11px ;width: 87px; height: 25px");
-		btnSeleccionar.setStyle("font-size: 11px ;width: 105px; height: 25px");
+		btnAyuda.setSclass("btn");
+		btnEliminar.setSclass("btn");
+		btnAnnadir.setSclass("btn");
+		btnGuardar.setSclass("btn");
+		btnBuscar.setSclass("btn");
+		btnLimpiar.setSclass("btn");
+		btnSalir.setSclass("btn");
+		btnReporte.setSclass("btn");
+		btnSeleccionar.setSclass("btn");
+		btnSeleccionar.setWidth("118px");
 		
 		btnSeleccionar.setLabel("Seleccionar");
 		btnBuscar.setLabel("Buscar");

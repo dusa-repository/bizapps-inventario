@@ -5,34 +5,39 @@
 			title="Trabajo con Examinador de Maestro de Articulos (VF4101)">
 			<div id="botoneraF4101" />
 			<separator />
-			<groupbox class="azul" id="gpxRegistroF4101" width="auto" title=""
-				open="false">
+			<groupbox class="azul" id="gpxRegistroF4101" width="auto"
+				title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar un Nuevo Articulo" />
 				<separator />
 				<groupbox>
-
 					<div align="right">
-						<label class="etiqueta"
-							value="N° artículo (corto)" />
-						<textbox id="txtArticuloF4101" disabled="true"
-							maxlength="100" />
+
 					</div>
-
-
 					<grid width="100%" style="border:0px">
 						<columns visible="false">
 							<column label="" width="15%" />
-							<column label="" width="28%" />
-							<column label="" width="45%" />
+							<column label="" width="30%" />
+							<column label="" width="20%" />
+							<column label="" width="15%" />
+							<column label="" width="20%" />
 						</columns>
 						<rows>
 							<row>
-								<label class="etiqueta"
-									value="N° artículo:" />
-								<textbox id="txtArticuloIMLITMF4101"
-									hflex="1" maxlength="25"
-									tooltiptext="Seleccione del Catalogo el N° del Articulo" />
+								<hbox />
+								<hbox />
+								<hbox />
+								<label class="etiqueta" value="N° artículo (corto)" />
+								<textbox id="txtArticuloF4101" disabled="true"
+									maxlength="100" />
+							</row>
+							<row>
+								<label class="etiqueta" value="N° artículo:" />
+								<textbox id="txtArticuloIMLITMF4101" hflex="1"
+									maxlength="25" tooltiptext="Seleccione del Catalogo el N° del Articulo" />
+								<hbox />
+								<hbox />
+								<hbox />
 							</row>
 						</rows>
 					</grid>
@@ -40,56 +45,47 @@
 				<separator />
 				<tabbox id="tbArticuloF4101">
 					<tabs id="tabsF4101">
-						<tab id="tbDatosBasicosF4101"
-							label="Datos básicos artículo" />
-						<tab id="tbInformacionAdicionalF4101"
-							label="Información adicional" />
-						<tab id="tbPesosyMedidasF4101"
-							label="Pesos y medidas" />
-						<tab id="tbProcesoLotesF4101"
-							label="Proceso lotes" />
+						<tab id="tbDatosBasicosF4101" label="Datos básicos artículo" />
+						<tab id="tbInformacionAdicionalF4101" label="Información adicional" />
+						<tab id="tbPesosyMedidasF4101" label="Pesos y medidas" />
+						<tab id="tbProcesoLotesF4101" label="Proceso lotes" />
 					</tabs>
 					<tabpanels>
 						<tabpanel>
 							<groupbox title="" closable="false">
 								<grid width="100%" style="border:0px">
 									<columns visible="false">
-										<column label="" width="16%" />
-										<column label="" width="28%" />
 										<column label="" width="15%" />
-										<column label="" width="30%" />
+										<column label="" width="35%" />
+										<column label="" width="15%" />
+										<column label="" width="35%" />
 									</columns>
 									<rows>
 										<row>
-											<label class="etiqueta"
-												value="Número cátalogo:" />
-											<textbox id="txtIMLITMF4101"
-												hflex="1" maxlength="25"
+											<label class="etiqueta" value="Número cátalogo:" />
+											<textbox id="txtIMLITMF4101" hflex="1" maxlength="25"
 												tooltiptext="Ingrese el Numero del catalogo" />
+											<hbox />
+											<hbox />
 										</row>
 										<row>
 											<hbox>
-												<label class="etiqueta"
-													value="Descripción:" />
+												<label class="etiqueta" value="Descripción:" />
 												<space />
-												<label value="*"
-													style="font-weight:bold;color:red">
+												<label value="*" style="font-weight:bold;color:red">
 												</label>
 											</hbox>
-											<textbox id="txtIMDSC1F4101"
-												hflex="1" maxlength="30"
+											<textbox id="txtIMDSC1F4101" hflex="1" maxlength="30"
 												tooltiptext="Ingrese la Descripcion" />
+											<hbox />
+											<hbox />
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Descripción:" />
-											<textbox id="txtIMDSC2F4101"
-												hflex="1" maxlength="30"
+											<label class="etiqueta" value="Descripción:" />
+											<textbox id="txtIMDSC2F4101" hflex="1" maxlength="30"
 												tooltiptext="Ingrese la Descripcion" />
-											<label class="etiqueta"
-												value="Texto búsqueda:" />
-											<textbox id="txtIMSRTXF4101"
-												hflex="1" maxlength="30"
+											<label class="etiqueta" value="Texto búsqueda:" />
+											<textbox id="txtIMSRTXF4101" hflex="1" maxlength="30"
 												tooltiptext="Ingrese el Texto de Busqueda" />
 										</row>
 									</rows>
@@ -98,86 +94,61 @@
 							<separator />
 							<hbox>
 								<vbox>
-									<groupbox title="" height="240px"
-										closable="false">
-										<grid width="100%"
-											style="border:0px">
+									<groupbox title="" height="240px" closable="false">
+										<grid width="100%" style="border:0px">
 											<columns visible="false">
-												<column label=""
-													width="32%" />
-												<column label=""
-													width="34%" />
-												<column label=""
-													width="13%" />
-												<column label=""
-													width="30%" />
+												<column label="" width="30%" />
+												<column label="" width="34%" />
+												<column label="" width="20%" />
+												<column label="" width="26%" />
 											</columns>
 											<rows>
 												<row>
 													<cell colspan="4">
-														<div
-															id="divBuscadorIMSTKT" hflex="1" />
+														<div id="divBuscadorIMSTKT" hflex="1" />
 													</cell>
 												</row>
 												<row>
 													<cell colspan="4">
-														<div
-															id="divBuscadorIMGLPT" hflex="1" />
+														<div id="divBuscadorIMGLPT" hflex="1" />
 													</cell>
 												</row>
 												<row>
 													<cell colspan="4">
-														<div
-															id="divBuscadorIMUOM1" hflex="1" />
+														<div id="divBuscadorIMUOM1" hflex="1" />
 													</cell>
 												</row>
 												<row>
-													<label
-														class="etiqueta" value="Tipo línea:" />
+													<label class="etiqueta" value="Tipo línea:" />
 
-													<textbox
-														id="txtIMLNTYF4101" hflex="1" maxlength="2"
-														style="margin-left:0px"
-														tooltiptext="Seleccione del Catalogo el Tipo de Linea" />
-
-													<button
-														id="btnBuscarIMLNTYF4101" label=""
-														tooltiptext="Catalogo de Tipos de Lineas"
+													<textbox id="txtIMLNTYF4101" hflex="1" maxlength="2"
+														style="margin-left:0px" tooltiptext="Seleccione del Catalogo el Tipo de Linea" />
+													<button id="btnBuscarIMLNTYF4101" label="Buscar"
+														class="btn" tooltiptext="Catalogo de Tipos de Lineas"
 														image="/public/imagenes/botones/buscar.png" />
-													<label
-														id="lblIMLNTYF4101" />
-
-
+													<label id="lblIMLNTYF4101" />
 												</row>
 												<row>
 													<cell colspan="4">
-														<div
-															id="divBuscadorIMBPFG" hflex="1" />
+														<div id="divBuscadorIMBPFG" hflex="1" />
 													</cell>
 												</row>
 											</rows>
 										</grid>
 									</groupbox>
-									<groupbox title="" closable="false"
-										height="122px">
-										<grid width="100%"
-											style="border:0px">
+									<groupbox title="" closable="false" height="122px">
+										<grid width="100%" style="border:0px">
 											<columns visible="false">
-												<column label=""
-													width="100%" />
+												<column label="" width="100%" />
 											</columns>
 											<rows>
 												<row>
-													<checkbox
-														label="Permitir órdenes atrasadas" id="chxIMBACKF4101"
-														hflex="1"
-														tooltiptext="Marque Para Permitir Ordenes Atrasadas " />
+													<checkbox label="Permitir órdenes atrasadas" id="chxIMBACKF4101"
+														hflex="1" tooltiptext="Marque Para Permitir Ordenes Atrasadas " />
 												</row>
 												<row>
-													<checkbox
-														label="Verificar Disponibilidad" id="chxIMCKAVF4101"
-														hflex="1"
-														tooltiptext="Marque Para Verificar la Disponibilidad " />
+													<checkbox label="Verificar Disponibilidad" id="chxIMCKAVF4101"
+														hflex="1" tooltiptext="Marque Para Verificar la Disponibilidad " />
 												</row>
 											</rows>
 										</grid>
@@ -185,73 +156,58 @@
 										<separator />
 									</groupbox>
 								</vbox>
-								<groupbox title="" closable="false"
-									height="367px">
-									<grid width="100%"
-										style="border:0px">
+								<groupbox title="" closable="false" height="400px">
+									<grid width="100%" style="border:0px">
 										<columns visible="false">
-											<column label=""
-												width="32%" />
-											<column label=""
-												width="35%" />
-											<column label=""
-												width="12%" />
-											<column label=""
-												width="30%" />
+											<column label="" width="30%" />
+											<column label="" width="30%" />
+											<column label="" width="10%" />
+											<column label="" width="30%" />
 										</columns>
 										<rows>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMCLEV" hflex="1" />
+													<div id="divBuscadorIMCLEV" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMPLEV" hflex="1" />
+													<div id="divBuscadorIMPLEV" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMPPLV" hflex="1" />
+													<div id="divBuscadorIMPPLV" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMPMTH" hflex="1" />
+													<div id="divBuscadorIMPMTH" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMCMETH" hflex="1" />
+													<div id="divBuscadorIMCMETH"  hflex="1"  />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMCMGL" hflex="1" />
+													<div id="divBuscadorIMCMGL" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMINMG" hflex="1" />
+													<div id="divBuscadorIMINMG" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMIFLA" hflex="1" />
+													<div id="divBuscadorIMIFLA" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="4">
-													<div
-														id="divBuscadorIMTFLA" hflex="1" />
+													<div id="divBuscadorIMTFLA" hflex="1" />
 												</cell>
 											</row>
 										</rows>
@@ -261,79 +217,64 @@
 						</tabpanel>
 						<tabpanel>
 							<hbox>
-								<groupbox title="" closable="false"
-									height="200px">
-									<grid width="100%"
-										style="border:0px">
+								<groupbox title="" closable="false" height="210px">
+									<grid width="100%" style="border:0px">
 										<columns visible="false">
-											<column label=""
-												width="35%" />
-											<column label=""
-												width="20%" />
-											<column label=""
-												width="35%" />
-
+											<column label="" width="35%" />
+											<column label="" width="30%" />
+											<column label="" width="35%" />
 										</columns>
 										<rows>
 											<row>
 												<cell colspan="3">
-													<div
-														id="divBuscadorIMPRGR" hflex="1" />
+													<div id="divBuscadorIMPRGR" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="3">
-													<div
-														id="divBuscadorIMRPRC" hflex="1" />
+													<div id="divBuscadorIMRPRC" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="3">
-													<div
-														id="divBuscadorIMORPR" hflex="1" />
+													<div id="divBuscadorIMORPR" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="3">
-													<div
-														id="divBuscadorIMDSGP" hflex="1" />
+													<div id="divBuscadorIMDSGP" hflex="1" />
 												</cell>
 											</row>
 											<row>
-												<checkbox
-													label="Reexpedición" id="chxIMXDCKF4101" hflex="1"
-													tooltiptext="Marque Para Permitir Reexpedicion" />
+											<cell colspan="3">
+												<checkbox label="Reexpedición" id="chxIMXDCKF4101"
+													hflex="1" tooltiptext="Marque Para Permitir Reexpedicion" />
+													</cell>
 											</row>
 										</rows>
 									</grid>
 								</groupbox>
-								<groupbox title="" closable="false"
-									height="200px">
-									<grid width="100%"
-										style="border:0px">
+								<groupbox title="" closable="false" height="210px">
+									<grid width="100%" style="border:0px">
 										<columns visible="false">
-											<column label=""
-												width="35%" />
-											<column label=""
-												width="30%" />
+											<column label="" width="50%" />
+											<column label="" width="50%" />
 										</columns>
 										<rows>
 											<row>
-												<checkbox
-													label="Artículo con UM doble" id="chxIMDUALF4101" hflex="1"
-													tooltiptext="Marque Para Permitir Articulo con UM Doble" />
+												<checkbox label="Artículo con UM doble" id="chxIMDUALF4101"
+													hflex="1" tooltiptext="Marque Para Permitir Articulo con UM Doble" />
+													<hbox/>
 											</row>
 											<row>
-												<checkbox
-													label="Proceso acoplo doble" id="chxIMDPPOF4101" hflex="1"
-													tooltiptext="Marque Para Permitir Proceso Acoplo Doble" />
+												<checkbox label="Proceso acoplo doble" id="chxIMDPPOF4101"
+													hflex="1" tooltiptext="Marque Para Permitir Proceso Acoplo Doble" />
+													<hbox/>
 											</row>
 
 											<row>
-												<label class="etiqueta"
-													value="Porcentaje tolerancia dual" />
-												<textbox
-													id="txtDLTLF4101" hflex="1" maxlength="100"
+												<label class="etiqueta" value="Porcentaje tolerancia dual" />
+												<textbox id="txtDLTLF4101" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Porcentaje de Tolerancia Dual" />
 
 											</row>
@@ -343,33 +284,25 @@
 							</hbox>
 							<separator />
 							<hbox>
-								<groupbox title="Ventas Inventario"
-									closable="false">
-									<grid width="100%"
-										style="border:0px">
+								<groupbox title="Ventas Inventario" class="blanco" closable="false">
+									<grid width="100%" style="border:0px">
 										<columns visible="false">
-											<column label=""
-												width="100%" />
+											<column label="" width="100%" />
 										</columns>
 										<rows>
 											<row>
-												<radiogroup
-													id="rdgIMABCSF4101">
+												<radiogroup id="rdgIMABCSF4101">
 													<vlayout>
-														<radio
-															id="rdoIMABCSClasificacionAF4101"
+														<radio id="rdoIMABCSClasificacionAF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion A"
 															label="Clasificación A" />
-														<radio
-															id="rdoIMABCSClasificacionBF4101"
+														<radio id="rdoIMABCSClasificacionBF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion B"
 															label="Clasificación B" />
-														<radio
-															id="rdoIMABCSClasificacionCF4101"
+														<radio id="rdoIMABCSClasificacionCF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion C"
 															label="Clasificación C" />
-														<radio
-															id="rdoIMABCSSinClasificacionF4101"
+														<radio id="rdoIMABCSSinClasificacionF4101"
 															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
 															label="Sin Clasificación D" />
 													</vlayout>
@@ -378,33 +311,25 @@
 										</rows>
 									</grid>
 								</groupbox>
-								<groupbox title="Margen Inventario"
-									closable="false">
-									<grid width="100%"
-										style="border:0px">
+								<groupbox title="Margen Inventario" class="blanco" closable="false">
+									<grid width="100%" style="border:0px">
 										<columns visible="false">
-											<column label=""
-												width="100%" />
+											<column label="" width="100%" />
 										</columns>
 										<rows>
 											<row>
-												<radiogroup
-													id="rdgIMABCMF4101">
+												<radiogroup id="rdgIMABCMF4101">
 													<vlayout>
-														<radio
-															id="rdoIMABCMClasificacionAF4101"
+														<radio id="rdoIMABCMClasificacionAF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion A"
 															label="Clasificación A" />
-														<radio
-															id="rdoIMABCMClasificacionBF4101"
+														<radio id="rdoIMABCMClasificacionBF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion B"
 															label="Clasificación B" />
-														<radio
-															id="rdoIMABCMClasificacionCF4101"
+														<radio id="rdoIMABCMClasificacionCF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion C"
 															label="Clasificación C" />
-														<radio
-															id="rdoIMABCMSinClasificacionF4101"
+														<radio id="rdoIMABCMSinClasificacionF4101"
 															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
 															label="Sin Clasificación D" />
 													</vlayout>
@@ -413,33 +338,25 @@
 										</rows>
 									</grid>
 								</groupbox>
-								<groupbox title="Inversión Inventario"
-									closable="false">
-									<grid width="100%"
-										style="border:0px">
+								<groupbox title="Inversión Inventario" class="blanco" closable="false">
+									<grid width="100%" style="border:0px">
 										<columns visible="false">
-											<column label=""
-												width="100%" />
+											<column label="" width="100%" />
 										</columns>
 										<rows>
 											<row>
-												<radiogroup
-													id="rdgIMABCIF4101">
+												<radiogroup id="rdgIMABCIF4101">
 													<vlayout>
-														<radio
-															id="rdoIMABCIClasificacionAF4101"
+														<radio id="rdoIMABCIClasificacionAF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion A"
 															label="Clasificación A" />
-														<radio
-															id="rdoIMABCIClasificacionBF4101"
+														<radio id="rdoIMABCIClasificacionBF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion B"
 															label="Clasificación B" />
-														<radio
-															id="rdoIMABCIClasificacionCF4101"
+														<radio id="rdoIMABCIClasificacionCF4101"
 															tooltiptext="Marque para Seleccionar la Clasificacion C"
 															label="Clasificación C" />
-														<radio
-															id="rdoIMABCISinClasificacionF4101"
+														<radio id="rdoIMABCISinClasificacionF4101"
 															tooltiptext="Marque para Seleccionar Sin Clasificacion D"
 															label="Sin Clasificación D" />
 													</vlayout>
@@ -451,67 +368,57 @@
 							</hbox>
 						</tabpanel>
 						<tabpanel>
-							<groupbox title="Unidades medida"
-								closable="false">
+							<groupbox title="Unidades medida" class="blanco" closable="false">
 								<grid width="100%" style="border:0px">
 									<columns visible="false">
-										<column label="" width="16%" />
-										<column label="" width="5%" />
 										<column label="" width="30%" />
+										<column label="" width="30%" />
+										<column label="" width="40%" />
 									</columns>
 									<rows>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorPrincipalIMUOM1" hflex="1" />
+												<div id="divBuscadorPrincipalIMUOM1" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMUOM2" hflex="1" />
+												<div id="divBuscadorIMUOM2" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMUOM3" hflex="1" />
+												<div id="divBuscadorIMUOM3" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMUOM4" hflex="1" />
+												<div id="divBuscadorIMUOM4" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMUOM6" hflex="1" />
+												<div id="divBuscadorIMUOM6" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMUOM8" hflex="1" />
+												<div id="divBuscadorIMUOM8" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMUOM9" hflex="1" />
+												<div id="divBuscadorIMUOM9" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMUWUM" hflex="1" />
+												<div id="divBuscadorIMUWUM" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMUVM1" hflex="1" />
+												<div id="divBuscadorIMUVM1" hflex="1" />
 											</cell>
 										</row>
 									</rows>
@@ -522,39 +429,34 @@
 							<groupbox title="" closable="false">
 								<grid width="100%" style="border:0px">
 									<columns visible="false">
-										<column label="" width="20%" />
+										<column label="" width="40%" />
 										<column label="" width="10%" />
 										<column label="" width="50%" />
 									</columns>
 									<rows>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMSRNR" hflex="1" />
+												<div id="divBuscadorIMSRNR" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMLOTS" hflex="1" />
+												<div id="divBuscadorIMLOTS" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMSRCE" hflex="1" />
+												<div id="divBuscadorIMSRCE" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMCMDM" hflex="1" />
+												<div id="divBuscadorIMCMDM" hflex="1" />
 											</cell>
 										</row>
 										<row>
 											<cell colspan="3">
-												<div
-													id="divBuscadorIMLECM" hflex="1" />
+												<div id="divBuscadorIMLECM" hflex="1" />
 											</cell>
 										</row>
 									</rows>
@@ -564,75 +466,55 @@
 							<groupbox title="" closable="false">
 								<grid width="100%" style="border:0px">
 									<columns visible="false">
-										<column label="" width="20%" />
-										<column label="" width="20%" />
 										<column label="" width="25%" />
-										<column label="" width="20%" />
+										<column label="" width="25%" />
+										<column label="" width="25%" />
+										<column label="" width="25%" />
 									</columns>
 									<rows>
 										<row>
-											<label class="etiqueta"
-												value="Días caducidad:" />
-											<textbox id="txtIMSLDF4101"
-												hflex="1" maxlength="100"
+											<label class="etiqueta" value="Días caducidad:" />
+											<textbox id="txtIMSLDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Caducidad" />
-											<label class="etiqueta"
-												style="margin-left:30px"
+											<label class="etiqueta" style="margin-left:30px"
 												value="Días fecha lote usuario 1 p/def" />
-											<textbox id="txtIMU1DDF4101"
-												hflex="1" maxlength="100"
+											<textbox id="txtIMU1DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 1 p/def" />
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Días p/def consumo pref:" />
-											<textbox id="txtIMBBDDF4101"
-												hflex="1" maxlength="100"
+											<label class="etiqueta" value="Días p/def consumo pref:" />
+											<textbox id="txtIMBBDDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias p/def Consumo" />
-											<label class="etiqueta"
-												style="margin-left:30px"
+											<label class="etiqueta" style="margin-left:30px"
 												value="Días fecha lote usuario 2 p/def" />
-											<textbox id="txtIMU2DDF4101"
-												hflex="1" maxlength="100"
+											<textbox id="txtIMU2DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 2 p/def" />
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Venta según días p/defecto:" />
-											<textbox id="txtIMSBDDF4101"
-												hflex="1" maxlength="100"
+											<label class="etiqueta" value="Venta según días p/defecto:" />
+											<textbox id="txtIMSBDDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese las Ventas Segun Dias p/defecto" />
-											<label class="etiqueta"
-												style="margin-left:30px"
+											<label class="etiqueta" style="margin-left:30px"
 												value="Días fecha lote usuario 3 p/def" />
-											<textbox id="txtIMU3DDF4101"
-												hflex="1" maxlength="100"
+											<textbox id="txtIMU3DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 3 p/def" />
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Días efectivos fabricación" />
-											<textbox id="txtIMLEDDF4101"
-												hflex="1" maxlength="100"
+											<label class="etiqueta" value="Días efectivos fabricación" />
+											<textbox id="txtIMLEDDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias Efectivos de Fabricacion" />
-											<label class="etiqueta"
-												style="margin-left:30px"
+											<label class="etiqueta" style="margin-left:30px"
 												value="Días fecha lote usuario 4 p/def" />
-											<textbox id="txtIMU4DDF4101"
-												hflex="1" maxlength="100"
+											<textbox id="txtIMU4DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 4 p/def" />
 										</row>
 										<row>
-											<label class="etiqueta"
-												value="Días efectivos compra" />
-											<textbox id="txtIMPEFDF4101"
-												hflex="1" maxlength="100"
+											<label class="etiqueta" value="Días efectivos compra" />
+											<textbox id="txtIMPEFDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias Efectivos de Compra" />
-											<label class="etiqueta"
-												style="margin-left:30px"
+											<label class="etiqueta" style="margin-left:30px"
 												value="Días fecha lote usuario 5 p/def" />
-											<textbox id="txtIMU5DDF4101"
-												hflex="1" maxlength="100"
+											<textbox id="txtIMU5DDF4101" hflex="1" maxlength="100"
 												tooltiptext="Ingrese los Dias de Fecha Lote Usuario 5 p/def" />
 										</row>
 									</rows>
@@ -646,17 +528,16 @@
 
 			</groupbox>
 			<separator />
-			<groupbox class="azul" id="gpxDatosF4101" width="auto" title="">
+			<groupbox class="azul" id="gpxDatosF4101" width="auto"
+				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar los Articulos Registrados" />
-				<div id="catalogoF4101"
-					tooltiptext="Seleccione el Articulo Realizar una Accion" />
+				<div id="catalogoF4101" tooltiptext="Seleccione el Articulo Realizar una Accion" />
 			</groupbox>
 			<separator />
 			<separator />
 		</groupbox>
-		<div id="divCatalogoF40205"
-			tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF40205" tooltiptext="Click para Seleccionar un Codigo" />
 
 
 	</div>
