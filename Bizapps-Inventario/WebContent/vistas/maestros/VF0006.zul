@@ -71,8 +71,8 @@
 										</hbox>
 										<textbox id="txtCOF0006" hflex="1" maxlength="5"
 											tooltiptext="Ingrese la Compañia" />
-										<button id="btnBuscarCompannia" label="" mold="trendy"
-											width="auto" height="auto" image="/public/imagenes/botones/buscar.png" />
+										<button id="btnBuscarCompannia" label="Buscar" class="btn"
+											image="/public/imagenes/botones/buscar.png" />
 										<label id="lblDescripcionF0010" />
 										<hbox />
 									</row>
@@ -140,8 +140,8 @@
 										<label class="etiqueta" value="Número Dirección" />
 										<textbox id="txtAN8F0006" hflex="1" maxlength="100"
 											tooltiptext="Ingrese el Número Dirección" />
-										<button id="btnBuscarDireccion" label="" mold="trendy"
-											width="auto" height="auto" image="/public/imagenes/botones/buscar.png" />
+										<button id="btnBuscarDireccion" label="Buscar" class="btn"
+											image="/public/imagenes/botones/buscar.png" />
 										<label id="lblDescripcionF0101" />
 										<hbox />
 									</row>
@@ -155,8 +155,8 @@
 										<label class="etiqueta" value="Nº Proyecto" />
 										<textbox id="txtMCUSF0006" hflex="1" maxlength="12"
 											tooltiptext="Ingrese el Nº Proyecto" />
-										<button id="btnBuscarProyecto" label="" mold="trendy"
-											width="auto" height="auto" image="/public/imagenes/botones/buscar.png" />
+										<button id="btnBuscarProyecto" label="Buscar" class="btn"
+											image="/public/imagenes/botones/buscar.png" />
 										<label id="lblDescripcionF0006" />
 										<hbox />
 									</row>

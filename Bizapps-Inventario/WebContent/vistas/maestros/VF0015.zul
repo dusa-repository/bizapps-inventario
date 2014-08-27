@@ -11,76 +11,62 @@
 					tooltiptext="Presione para Registrar un Nuevo Tipo de Cambio" />
 				<separator />
 				<hbox>
-					<groupbox title="" closable="false" height="125px">
-						<grid width="100%" style="border:0px">
-							<columns visible="false">
-								<column label="" width="35%" />
-								<column label="" width="25%" />
-								<column label="" width="11%" />
-								<column label="" width="29%" />
-							</columns>
-							<rows>
-								<row>
-									<hbox>
-										<label class="etiqueta" value="Código Moneda:" />
-										<space />
-										<label value="*" style="font-weight:bold;color:red">
-										</label>
-									</hbox>
-									<textbox id="txtCRCDF0015" hflex="1" maxlength="100"
-										tooltiptext="Ingrese el Codigo Moneda" />
-									<button id="btnBuscarMonedaF0013" label=""
-										tooltiptext="Catalogo de Codigos de Moneda" image="/public/imagenes/botones/buscar.png" />
-									<label id="lblMonedaF0013" />
-								</row>
-								<row>
-									<hbox>
-										<label class="etiqueta" value="Código Moneda destino:" />
-										<space />
-										<label value="*" style="font-weight:bold;color:red">
-										</label>
-									</hbox>
-									<textbox id="txtCRDCF0015" hflex="1" maxlength="100"
-										tooltiptext="Ingrese el Codigo Moneda" />
-									<button id="btnBuscarMonedaDestinoF0013" label=""
-										tooltiptext="Catalogo de Codigos de Moneda" image="/public/imagenes/botones/buscar.png" />
-									<label id="lblMonedaDestinoF0013" />
-								</row>
-								<row>
-									<hbox>
-										<label class="etiqueta" value="Fecha efectiva:" />
-										<space />
-										<label value="*" style="font-weight:bold;color:red">
-										</label>
-									</hbox>
-									<datebox readonly="true" width="100%" id="dtbEFTF0015"
-										format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Efectiva" />
-										<hbox/>
-										<hbox/>
-								</row>
-							</rows>
-						</grid>
-					</groupbox>
-					<groupbox title="" closable="false" height="125px">
-						<grid width="100%" style="border:0px">
-							<columns visible="false">
-								<column label="" width="35%" />
-								<column label="" width="25%" />
-								<column label="" width="11%" />
-								<column label="" width="29%" />
-							</columns>
-							<rows>
-								<row>
-									<label class="etiqueta" value="Contrato (dirección):" />
-									<textbox id="txtAN8F0015" hflex="1" maxlength="100"
-										tooltiptext="Ingrese el Contrato(direccion)" />
-									<button id="btnBuscarF0101" label=""
-										tooltiptext="Catalogo de Contratos(direcciones)" image="/public/imagenes/botones/buscar.png" />
-									<label id="lblDireccionF0101" />
-								</row>
-							</rows>
-						</grid>
-					</groupbox>
+					<grid width="100%" style="border:0px">
+						<columns visible="false">
+							<column label="" width="20%" />
+							<column label="" width="25%" />
+							<column label="" width="11%" />
+							<column label="" width="44%" />
+						</columns>
+						<rows>
+							<row>
+								<hbox>
+									<label class="etiqueta" value="Código Moneda:" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red">
+									</label>
+								</hbox>
+								<textbox id="txtCRCDF0015" hflex="1" maxlength="100"
+									tooltiptext="Ingrese el Codigo Moneda" />
+								<button id="btnBuscarMonedaF0013" label="Buscar" class="btn"
+									tooltiptext="Catalogo de Codigos de Moneda" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblMonedaF0013" />
+							</row>
+							<row>
+								<hbox>
+									<label class="etiqueta" value="Código Moneda destino:" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red">
+									</label>
+								</hbox>
+								<textbox id="txtCRDCF0015" hflex="1" maxlength="100"
+									tooltiptext="Ingrese el Codigo Moneda" />
+								<button id="btnBuscarMonedaDestinoF0013" label="Buscar"
+									class="btn" tooltiptext="Catalogo de Codigos de Moneda" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblMonedaDestinoF0013" />
+							</row>
+							<row>
+								<hbox>
+									<label class="etiqueta" value="Fecha efectiva:" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red">
+									</label>
+								</hbox>
+								<datebox readonly="true" width="100%" id="dtbEFTF0015"
+									format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Efectiva" />
+								<hbox />
+								<hbox />
+							</row>
+							<row>
+								<label class="etiqueta" value="Contrato (dirección):" />
+								<textbox id="txtAN8F0015" hflex="1" maxlength="100"
+									tooltiptext="Ingrese el Contrato(direccion)" />
+								<button id="btnBuscarF0101" label="Buscar" class="btn"
+									tooltiptext="Catalogo de Contratos(direcciones)" image="/public/imagenes/botones/buscar.png" />
+								<label id="lblDireccionF0101" />
+							</row>
+						</rows>
+					</grid>
 				</hbox>
 				<separator />
 				<separator />
@@ -89,13 +75,12 @@
 					<tabs id="tabsF0015">
 						<tab id="tbMetodoCalculoF0015" label="Metodo cálculo" />
 						<tab id="tbRevisionTipoCambioF0015" label="Revision de Tipos de Cambio" />
-
 					</tabs>
 					<tabpanels>
 						<tabpanel>
 							<hbox>
-								<groupbox title="" closable="false" height="160px">
-									<grid width="100%" style="border:0px">
+								<groupbox title="" closable="false" height="135px">
+									<grid width="70%" style="border:0px">
 										<columns visible="false">
 											<column label="" width="100%" />
 										</columns>
@@ -112,12 +97,12 @@
 										</rows>
 									</grid>
 								</groupbox>
-								<groupbox title="" closable="false" height="160px">
+								<groupbox title="" closable="false" height="135px">
 									<grid width="100%" style="border:0px">
 										<columns visible="false">
-											<column label="" width="40%" />
-											<column label="" width="10%" />
-											<column label="" width="50%" />
+											<column label="" width="35%" />
+											<column label="" width="30%" />
+											<column label="" width="35%" />
 										</columns>
 										<rows>
 											<row>
@@ -127,29 +112,17 @@
 												<label id="lblMetodoConversionF0015">
 												</label>
 											</row>
-										</rows>
-									</grid>
-									<separator />
-									<grid width="100%" style="border:0px">
-										<columns visible="false">
-											<column label="" width="40%" />
-											<column label="" width="40%" />
-											<column label="" width="20%" />
-										</columns>
-										<rows>
-											<row>
-												<space />
-											</row>
 											<row>
 												<label class="etiqueta" value="Tipo multiplicador:" />
 												<textbox id="txtCRRF0015" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Tipo de Multiplicador" />
+												<hbox />
 											</row>
 											<row>
 												<label class="etiqueta" value="Tipo divisor:" />
 												<textbox id="txtCRRDF0015" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Tipo de Divisor" />
-
+												<hbox />
 											</row>
 										</rows>
 									</grid>

@@ -46,7 +46,7 @@
 							<textbox id="txtLOCNF4100" hflex="1" maxlength="20" width="10px"
 								tooltiptext="Ingrese la Ubicacion" />
 								<cell colspan="2">
-							<label value="Ubic no controlada por sucursal/planta" />
+							<label value="Ubic no controlada por sucursal/planta ??" />
 					
 							</cell>
 						</row>

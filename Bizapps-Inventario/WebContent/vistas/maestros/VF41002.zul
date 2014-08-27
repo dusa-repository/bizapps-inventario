@@ -5,8 +5,9 @@
 			title="Conversiones de Unidades de Medida de Articulos (VF41002)">
 			<div id="botoneraF41002" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" class ="azul" title="" open="false">
-				<caption label="Añadir"  style="font-weight:bold; font-size: 13px"
+			<groupbox id="gpxRegistro" width="auto" class="azul" title=""
+				open="false">
+				<caption label="Añadir" style="font-weight:bold; font-size: 13px"
 					tooltiptext="Presione para Registrar una Nueva Unidad de Medida de Articulos" />
 				<separator />
 				<grid width="100%">
@@ -28,7 +29,7 @@
 								tooltiptext="Seleccione del Catalogo el Codigo del Articulo" />
 							<cell colspan="2">
 								<hbox>
-									<button id="btnBuscarF4101" label=""
+									<button id="btnBuscarF4101" label="Buscar" class="btn"
 										tooltiptext="Catalogo de Articulos" image="/public/imagenes/botones/buscar.png" />
 									<space />
 									<label id="lblDescripcionF4101" />

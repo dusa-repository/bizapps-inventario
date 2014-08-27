@@ -77,7 +77,7 @@ public abstract class Catalogo<Clase> extends Window {
 			final boolean emergente, boolean udc) {
 		exportador = new Button();
 		exportador.setTooltiptext("Exportar los Datos como un Archivo");
-		exportador.setStyle("width: 28px; height: 28px");
+		exportador.setSclass("catalogo");
 		exportador.setSrc("/public/imagenes/botones/exportar.png");
 		// ; float: right
 		exportador.addEventListener(Events.ON_CLICK,
@@ -89,7 +89,7 @@ public abstract class Catalogo<Clase> extends Window {
 				});
 		pagineo = new Button();
 		pagineo.setTooltiptext("Presione para mostrar todos los registros en una sola lista, sin pagineo");
-		pagineo.setStyle("width: 28px; height: 28px");
+		pagineo.setSclass("catalogo");
 		pagineo.setSrc("/public/imagenes/botones/pagineo.png");
 		pagineo.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 			@Override

@@ -44,8 +44,8 @@
 								</hbox>
 								<textbox id="txtPlanta1" hflex="1" maxlength="12"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarPlanta1" label=""
-									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+								<button autodisable="true" id="btnBuscarPlanta1"
+									tooltiptext="Catalogo" class="btn" label="Buscar" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblPlanta1" />
 							</row>
 							<row>
@@ -57,8 +57,8 @@
 								</hbox>
 								<textbox id="txtEmpresa1" hflex="1" maxlength="5"
 									tooltiptext="Ingrese la Compañia" />
-								<button id="btnBuscarEmpresa1" label="" mold="trendy"
-									width="auto" height="auto" image="/public/imagenes/botones/buscar.png" />
+								<button id="btnBuscarEmpresa1" class="btn" label="Buscar" 
+									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa1" />
 								<label class="etiqueta" value="Fecha Orden:" />
 								<datebox readonly="true" width="100%" id="dtbFecha"
@@ -75,8 +75,8 @@
 								</hbox>
 								<textbox id="txtEmpresa2" hflex="1" maxlength="5"
 									tooltiptext="Ingrese la Compañia" />
-								<button id="btnBuscarEmpresa2" label="" mold="trendy"
-									width="auto" height="auto" image="/public/imagenes/botones/buscar.png" />
+								<button id="btnBuscarEmpresa2" class="btn" label="Buscar"
+									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa2" />
 								<label class="etiqueta" value="O.C. Cliente:" />
 								<doublebox id="txtDoc" hflex="1" maxlength="15"
@@ -108,14 +108,14 @@
 								</hbox>
 								<doublebox id="txtItm" hflex="1" maxlength="19"
 									tooltiptext="Ingrese el Numero del Item" />
-								<button autodisable="true" id="btnBuscarItm" label=""
+								<button autodisable="true" id="btnBuscarItm" class="btn" label="Buscar"
 									tooltiptext="Catalogo Items" image="/public/imagenes/botones/buscar.png" />
 								<cell colspan="2">
 									<label id="lblItm" />
 								</cell>
 								<hbox />
 								<button label="Agregar" id="btnAgregar" autodisable="true"
-									image="/public/imagenes/botones/annadir.png" />
+									image="/public/imagenes/botones/annadir.png"  class="btn"/>
 							</row>
 							<row>
 								<label class="etiqueta" value="UM:" />
@@ -145,7 +145,7 @@
 								</hbox>
 								<textbox id="txtPlanta2" hflex="1" maxlength="12"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarPlanta2" label=""
+								<button autodisable="true" id="btnBuscarPlanta2" class="btn" label="Buscar"
 									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 								<cell colspan="2">
 									<label id="lblPlanta2" />
@@ -163,7 +163,7 @@
 								<textbox readonly="true" id="txtUbicacion" hflex="1"
 									maxlength="20"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarUbicacion" label=""
+								<button autodisable="true" id="btnBuscarUbicacion" class="btn" label="Buscar"
 									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
 								<cell colspan="2">
 									<label id="lblUbicacion" />
@@ -175,7 +175,7 @@
 						</rows>
 					</grid>
 					<hbox widths="95%,5%">
-						<listbox id="ltbPedidos" span="true" height="150px" width="100%">
+						<listbox id="ltbPedidos" span="true" height="180px" width="100%">
 							<listhead>
 								<listheader label="Articulo" hflex="min" />
 								<listheader label="UM" hflex="min" />

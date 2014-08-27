@@ -420,16 +420,12 @@ public class CUsuario extends CGenerico {
 	/* Validaciones de pantalla para poder realizar el guardar */
 	public boolean validar() {
 		if (txtApellidoUsuario.getText().compareTo("") == 0
-				|| txtApellido2Usuario.getText().compareTo("") == 0
-				|| txtNombre2Usuario.getText().compareTo("") == 0
 				|| txtCedulaUsuario.getText().compareTo("") == 0
 				|| txtCorreoUsuario.getText().compareTo("") == 0
-				|| txtDireccionUsuario.getText().compareTo("") == 0
 				|| txtLoginUsuario.getText().compareTo("") == 0
 				|| txtNombreUsuario.getText().compareTo("") == 0
 				|| txtPassword2Usuario.getText().compareTo("") == 0
 				|| txtPasswordUsuario.getText().compareTo("") == 0
-				|| txtTelefonoUsuario.getText().compareTo("") == 0
 				|| (!rdoSexoFUsuario.isChecked() && !rdoSexoMUsuario
 						.isChecked())) {
 			msj.mensajeAlerta(Mensaje.camposVacios);

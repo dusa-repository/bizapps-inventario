@@ -42,8 +42,7 @@ public abstract class BuscadorUDC extends Hbox {
 		this.setWidth("100%");
 		Label label = new Label(etiqueta + " :");
 		label.setClass("etiqueta");
-		label.setWidth("auto");
-		label.setHflex("1");
+
 		
 		cajaTexto = new Textbox();
 		cajaTexto.setHflex("1");
@@ -51,14 +50,15 @@ public abstract class BuscadorUDC extends Hbox {
 		cajaTexto.setMaxlength(longitud);
 		cajaTexto
 				.setTooltiptext("Seleccione del Catalogo el Codigo del Producto");
-		cajaTexto.setWidth("10px");
-		cajaTexto.setHflex("1");
+		cajaTexto.setWidth("8px");
+//		cajaTexto.setHflex("1");
 
 		Button boton = new Button();
 		boton.setAutodisable("true");
-		boton.setTooltiptext("Buscar");
+		boton.setTooltiptext("Buscar UDC");
+		boton.setLabel("Buscar");
 		boton.setSrc("/public/imagenes/botones/buscar.png");
-		boton.setWidth("auto");
+		boton.setClass("btn");
 
 		nombre = new Label();
 		nombre.setWidth("auto");
@@ -78,7 +78,11 @@ public abstract class BuscadorUDC extends Hbox {
 			caja.setHflex("1");
 			this.appendChild(caja);
 		} else
+		{
 			this.appendChild(label);
+			label.setWidth("auto");
+			label.setHflex("1");
+		}
 		this.appendChild(cajaTexto);
 		this.appendChild(boton);
 		this.appendChild(nombre);
