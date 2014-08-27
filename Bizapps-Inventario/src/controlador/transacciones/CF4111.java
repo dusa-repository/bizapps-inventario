@@ -207,6 +207,13 @@ public class CF4111 extends CGenerico {
 	private Label lblPedido;
 	@Wire
 	private Div catalogoPedidoF4211;
+	@Wire
+	private Button btnAgregarItems;
+	@Wire
+	private Groupbox gpxItems;
+	@Wire
+	private Row rowBoton;
+	
 	Botonera botonera;
 	Catalogo<F4111> catalogo;
 	Catalogo<F4111> catalogoEmergente;
@@ -1844,6 +1851,13 @@ public class CF4111 extends CGenerico {
 			spnCantidad.setFocus(true);
 			msj.mensajeError(Mensaje.noPoseeExistencia);
 		}
+	}
+	
+	@Listen("onClick = #btnAgregarItems")
+	public void mostrarGroupbox() {
+		gpxItems.setVisible(true);
+		rowBoton.setVisible(false);
+
 	}
 
 }

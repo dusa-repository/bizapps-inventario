@@ -128,158 +128,176 @@
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPlanta2" />
 						</row>
+						<row id="rowBoton">
+							<cell colspan="3">
+								<hbox />
+							</cell>
+							<button autodisable="true" id="btnAgregarItems" class="btn"
+								label="Agregar Items" tooltiptext="Catalogo"
+								image="/public/imagenes/botones/annadir.png" width="150px" />
+						</row>
 					</rows>
 				</grid>
-				<groupbox title="" closable="false">
-					<grid width="100%">
-						<columns visible="false">
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-						</columns>
-						<rows>
-							<row>
-								<hbox>
-									<label class="etiqueta" value="Numero Articulo:" />
-									<space />
-									<label value="**" style="font-weight:bold;color:red" />
-								</hbox>
-								<doublebox id="txtItem" hflex="1" maxlength="19"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarItem" class="btn"
-									label="Buscar" tooltiptext="Catalogo"
-									image="/public/imagenes/botones/buscar.png" />
-								<label id="lblItem" />
-								<hbox id="boxCantidad">
-									<label id="lblCantidad" class="etiqueta" value="Cantidad:" />
-									<space />
-									<label value="**" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<spinner id="spnCantidad" hflex="1" step="10" value="0"
-									constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
-								<hbox />
-								<button label="Agregar" id="btnAgregar" autodisable="true"
-									class="btn" image="/public/imagenes/botones/annadir.png"
-									tooltiptext="Presione para Agregar un Item" />
-							</row>
-							<row>
-								<label class="etiqueta" value="UM:" />
-								<textbox disabled="true" id="txtUM" hflex="1" maxlength="2"
-									tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
-								<label class="etiqueta" value="UM sec:" visible="false" />
-								<textbox id="txtUM2" hflex="1" maxlength="2"
-									tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion"
-									visible="false" />
-								<hbox id="boxCosto" visible="false">
-									<label visible="false" id="lblCosto" class="etiqueta"
-										value="Costo:" />
-									<space />
-									<label value="**" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<doublespinner visible="false" id="spnCosto"
-									hflex="1" step="10" value="0" format="#.##" constraint="min 0 max 99999999"
-									tooltiptext="Ingrese el periodo Actual" />
-								<label id="lblCantidad2" class="etiqueta" value="Cantidad Secundaria:"
-									visible="false" />
-								<spinner id="spnCantidad2" hflex="1" step="10" value="0"
-									constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual"
-									visible="false" />
-							</row>
-							<row>
-								<hbox>
-									<label id="lblNombreUbicacion" class="etiqueta" value="Ubicacion inicial:" />
-									<space />
-									<label value="**" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<textbox readonly="true" id="txtUbicacion1" hflex="1"
-									maxlength="20"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarUbicacion1"
-									class="btn" label="Buscar" tooltiptext="Catalogo"
-									image="/public/imagenes/botones/buscar.png" />
-								<label id="lblUbicacion1" />
-								<hbox id="boxUbicacion2">
-									<label id="lblNombreUbicacion2" class="etiqueta" value="Ubicacion Final:" />
-									<space />
-									<label value="**" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<textbox readonly="true" id="txtUbicacion2" hflex="1"
-									maxlength="20"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarUbicacion2"
-									class="btn" label="Buscar" tooltiptext="Catalogo"
-									image="/public/imagenes/botones/buscar.png" />
-								<label id="lblUbicacion2" />
-							</row>
-							<!-- <row> <label class="etiqueta" value="Nº lote inicial:" /> <textbox 
-								id="txtLote1" hflex="1" maxlength="3" tooltiptext="Ingrese la Sucursal de 
-								planta desde donde se realiza la operacion" /> <button id="btnBuscarLote1" 
-								class="btn" label="Buscar" tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" 
-								/> <label id="lblLote1" /> <label class="etiqueta" value="Nº lote final:" 
-								/> <textbox id="txtLote2" hflex="1" maxlength="3" tooltiptext="Ingrese la 
-								Sucursal de planta desde donde se realiza la operacion" /> <button id="btnBuscarLote2" 
-								class="btn" label="Buscar" tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" 
-								/> <label id="lblLote2" /> </row> -->
-						</rows>
-					</grid>
-				</groupbox>
-				<hbox widths="95%,5%">
-					<listbox id="ltbItems" span="true" height="200px" width="100%">
-						<listhead>
-							<listheader label="Numero Articulo" hflex="min" />
-							<listheader label="Descripcion Articulo" hflex="min" />
-							<listheader label="Cantidad" hflex="min" />
-							<listheader label="Costo" hflex="min" />
-							<listheader label="UM" hflex="min" />
-							<listheader label="Ubicacion Inicial" hflex="min" />
-							<listheader visible="false" label="Ubicacion Final"
-								hflex="min" />
-							<listheader label="Costo Total" hflex="min" />
-						</listhead>
-						<template name="model">
-							<listitem>
-								<listcell label="${each.valor1}">
-								</listcell>
-								<listcell label="${each.valor2}">
-								</listcell>
-								<listcell>
-									<spinner value="${each.valor8}" inplace="true"
-										readonly="true" hflex="1" constraint="min -99999999 max 99999999"
-										step="1" buttonVisible="false" />
-								</listcell>
-								<listcell>
-									<doublespinner value="${each.valor10}" inplace="true"
-										readonly="true" hflex="1" constraint="min -99999999 max 99999999"
-										step="1" buttonVisible="false" />
-								</listcell>
-								<listcell label="${each.valor3}">
-								</listcell>
-								<listcell label="${each.valor4}">
-								</listcell>
-								<listcell label="${each.valor6}">
-								</listcell>
-								<listcell label="${each.valor11}">
-								</listcell>
-							</listitem>
-						</template>
-					</listbox>
-					<vbox width="100%">
-						<button label="Editar" class="btn" id="btnVer" autodisable="true"
-							image="/public/imagenes/botones/generar.png" tooltiptext="Presione para Editar un Item" />
-						<button label="Remover" class="btn" id="btnRemover"
-							autodisable="true" image="/public/imagenes/botones/anular.png"
-							tooltiptext="Presione para Remover un Item" />
-					</vbox>
-				</hbox>
+				<div align="center" width="100%">
+					<groupbox id="gpxItems" visible="false" class="blanco" title="" closable="false" >
+						<caption label="Agregar Items de la Operacion" style="font-weight:bold; font-size: 12px" />
+						<separator />
+						<grid width="93%">
+							<columns visible="false">
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+							</columns>
+							<rows>
+								<row>
+									<hbox>
+										<label class="etiqueta" value="Numero Articulo:" />
+										<space />
+										<label value="**" style="font-weight:bold;color:red" />
+									</hbox>
+									<doublebox id="txtItem" hflex="1" maxlength="19"
+										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<button autodisable="true" id="btnBuscarItem" class="btn"
+										label="Buscar" tooltiptext="Catalogo"
+										image="/public/imagenes/botones/buscar.png" />
+									<label id="lblItem" />
+									<hbox id="boxCantidad">
+										<label id="lblCantidad" class="etiqueta" value="Cantidad:" />
+										<space />
+										<label value="**" style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<spinner id="spnCantidad" hflex="1" step="10" value="0"
+										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
+									<hbox />
+									<button label="Agregar" id="btnAgregar" autodisable="true"
+										class="btn" image="/public/imagenes/botones/annadir.png"
+										tooltiptext="Presione para Agregar un Item" />
+								</row>
+								<row>
+									<label class="etiqueta" value="UM:" />
+									<textbox disabled="true" id="txtUM" hflex="1"
+										maxlength="2"
+										tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
+									<label class="etiqueta" value="UM sec:" visible="false" />
+									<textbox id="txtUM2" hflex="1" maxlength="2"
+										tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion"
+										visible="false" />
+									<hbox id="boxCosto" visible="false">
+										<label visible="false" id="lblCosto" class="etiqueta"
+											value="Costo:" />
+										<space />
+										<label value="**" style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublespinner visible="false" id="spnCosto"
+										hflex="1" step="10" value="0" format="#.##" constraint="min 0 max 99999999"
+										tooltiptext="Ingrese el periodo Actual" />
+									<label id="lblCantidad2" class="etiqueta" value="Cantidad Secundaria:"
+										visible="false" />
+									<spinner id="spnCantidad2" hflex="1" step="10" value="0"
+										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual"
+										visible="false" />
+								</row>
+								<row>
+									<hbox>
+										<label id="lblNombreUbicacion" class="etiqueta"
+											value="Ubicacion inicial:" />
+										<space />
+										<label value="**" style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox readonly="true" id="txtUbicacion1" hflex="1"
+										maxlength="20"
+										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<button autodisable="true" id="btnBuscarUbicacion1"
+										class="btn" label="Buscar" tooltiptext="Catalogo"
+										image="/public/imagenes/botones/buscar.png" />
+									<label id="lblUbicacion1" />
+									<hbox id="boxUbicacion2">
+										<label id="lblNombreUbicacion2" class="etiqueta" value="Ubicacion Final:" />
+										<space />
+										<label value="**" style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox readonly="true" id="txtUbicacion2" hflex="1"
+										maxlength="20"
+										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<button autodisable="true" id="btnBuscarUbicacion2"
+										class="btn" label="Buscar" tooltiptext="Catalogo"
+										image="/public/imagenes/botones/buscar.png" />
+									<label id="lblUbicacion2" />
+								</row>
+								<!-- <row> <label class="etiqueta" value="Nº lote inicial:" /> <textbox 
+									id="txtLote1" hflex="1" maxlength="3" tooltiptext="Ingrese la Sucursal de 
+									planta desde donde se realiza la operacion" /> <button id="btnBuscarLote1" 
+									class="btn" label="Buscar" tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" 
+									/> <label id="lblLote1" /> <label class="etiqueta" value="Nº lote final:" 
+									/> <textbox id="txtLote2" hflex="1" maxlength="3" tooltiptext="Ingrese la 
+									Sucursal de planta desde donde se realiza la operacion" /> <button id="btnBuscarLote2" 
+									class="btn" label="Buscar" tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" 
+									/> <label id="lblLote2" /> </row> -->
+							</rows>
+						</grid>
+						<div width="93%">
+							<hbox widths="95%,5%">
+								<listbox id="ltbItems" span="true" height="230px" width="100%">
+									<listhead>
+										<listheader label="Numero Articulo" hflex="min" />
+										<listheader label="Descripcion Articulo" hflex="min" />
+										<listheader label="Cantidad" hflex="min" />
+										<listheader label="Costo" hflex="min" />
+										<listheader label="UM" hflex="min" />
+										<listheader label="Ubicacion Inicial" hflex="min" />
+										<listheader visible="false" label="Ubicacion Final"
+											hflex="min" />
+										<listheader label="Costo Total" hflex="min" />
+									</listhead>
+									<template name="model">
+										<listitem>
+											<listcell label="${each.valor1}">
+											</listcell>
+											<listcell label="${each.valor2}">
+											</listcell>
+											<listcell>
+												<spinner value="${each.valor8}" inplace="true"
+													readonly="true" hflex="1" constraint="min -99999999 max 99999999"
+													step="1" buttonVisible="false" />
+											</listcell>
+											<listcell>
+												<doublespinner value="${each.valor10}"
+													inplace="true" readonly="true" hflex="1"
+													constraint="min -99999999 max 99999999" step="1"
+													buttonVisible="false" />
+											</listcell>
+											<listcell label="${each.valor3}">
+											</listcell>
+											<listcell label="${each.valor4}">
+											</listcell>
+											<listcell label="${each.valor6}">
+											</listcell>
+											<listcell label="${each.valor11}">
+											</listcell>
+										</listitem>
+									</template>
+								</listbox>
+								<vbox width="100%">
+									<button label="Editar" class="btn" id="btnVer"
+										autodisable="true" image="/public/imagenes/botones/generar.png"
+										tooltiptext="Presione para Editar un Item" />
+									<button label="Remover" class="btn" id="btnRemover"
+										autodisable="true" image="/public/imagenes/botones/anular.png"
+										tooltiptext="Presione para Remover un Item" />
+								</vbox>
+							</hbox>
+						</div>
+					</groupbox>
+				</div>
 			</groupbox>
 			<separator />
 			<groupbox id="gpxDatosF4111" width="auto" class="azul">
