@@ -35,6 +35,7 @@ import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Row;
 import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
@@ -121,6 +122,13 @@ public class CF4211 extends CGenerico {
 	private Textbox txtUbicacion;
 	@Wire
 	private Listbox ltbPedidos;
+	@Wire
+	private Button btnAgregarItems;
+	@Wire
+	private Groupbox gpxItems;
+	@Wire
+	private Row rowBoton;
+	
 	F4211PK clave = null;
 	List<F4211> listaPedido = new ArrayList<F4211>();
 	Botonera botonera;
@@ -1125,5 +1133,12 @@ public class CF4211 extends CGenerico {
 				msj.mensajeAlerta(Mensaje.editarSoloUno);
 		} else
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
+	}
+	
+	@Listen("onClick = #btnAgregarItems")
+	public void mostrarGroupbox() {
+		gpxItems.setVisible(true);
+		rowBoton.setVisible(false);
+
 	}
 }

@@ -11,7 +11,7 @@
 					tooltiptext="Presione para Registrar un Nuevo Pedido" />
 				<separator />
 				<hbox width="100%" widths="50%,50%">
-					<grid style="border:0px">
+					<grid >
 						<columns visible="false">
 							<column label="" width="12.5%" />
 							<column label="" width="12.5%" />
@@ -45,7 +45,8 @@
 								<textbox id="txtPlanta1" hflex="1" maxlength="12"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
 								<button autodisable="true" id="btnBuscarPlanta1"
-									tooltiptext="Catalogo" class="btn" label="Buscar" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo" class="btn" label="Buscar"
+									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblPlanta1" />
 							</row>
 							<row>
@@ -57,7 +58,7 @@
 								</hbox>
 								<textbox id="txtEmpresa1" hflex="1" maxlength="5"
 									tooltiptext="Ingrese la Compañia" />
-								<button id="btnBuscarEmpresa1" class="btn" label="Buscar" 
+								<button id="btnBuscarEmpresa1" class="btn" label="Buscar"
 									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa1" />
 								<label class="etiqueta" value="Fecha Orden:" />
@@ -84,127 +85,148 @@
 								<hbox />
 								<hbox />
 							</row>
+							<row id="rowBoton">
+								<cell colspan="6">
+									<hbox />
+								</cell>
+								<cell colspan="2">
+									<button autodisable="true" id="btnAgregarItems" class="btn"
+										label="Agregar Items" tooltiptext="Catalogo"
+										image="/public/imagenes/botones/annadir.png" width="150px" />
+								</cell>
+							</row>
 						</rows>
 					</grid>
 				</hbox>
-				<groupbox title="Detalles de Pedido" closable="false"
-					class="blanco">
-					<grid style="border:0px">
-						<columns visible="false">
-							<column label="" width="12%" />
-							<column label="" width="18%" />
-							<column label="" width="12.6%" />
-							<column label="" width="18%" />
-							<column label="" width="12.6%" />
-							<column label="" width="13.4%" />
-							<column label="" width="13.4%" />
-						</columns>
-						<rows>
-							<row>
-								<hbox>
-									<label class="etiqueta" value="Articulo a solicitar:" />
-									<space />
-									<label value="*" style="font-weight:bold;color:red" />
-								</hbox>
-								<doublebox id="txtItm" hflex="1" maxlength="19"
-									tooltiptext="Ingrese el Numero del Item" />
-								<button autodisable="true" id="btnBuscarItm" class="btn" label="Buscar"
-									tooltiptext="Catalogo Items" image="/public/imagenes/botones/buscar.png" />
-								<cell colspan="2">
-									<label id="lblItm" />
-								</cell>
-								<hbox />
-								<button label="Agregar" id="btnAgregar" autodisable="true"
-									image="/public/imagenes/botones/annadir.png"  class="btn"/>
-							</row>
-							<row>
-								<label class="etiqueta" value="UM:" />
-								<textbox disabled="true" id="txtUM" hflex="1" maxlength="2"
-									tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
+				<div align="center" width="100%">
+					<groupbox id="gpxItems" visible="false" class="blanco"
+						title="" closable="false">
+						<caption label="Agregar Items de la Operacion" style="font-weight:bold; font-size: 12px" />
+								<separator />
+						<grid width="93%" >
+							<columns visible="false">
+								<column label="" width="12%" />
+								<column label="" width="18%" />
+								<column label="" width="12.6%" />
+								<column label="" width="18%" />
+								<column label="" width="12.6%" />
+								<column label="" width="13.4%" />
+								<column label="" width="13.4%" />
+							</columns>
+							<rows>
+								<row>
+									<hbox>
+										<label class="etiqueta" value="Articulo a solicitar:" />
+										<space />
+										<label value="*" style="font-weight:bold;color:red" />
+									</hbox>
+									<doublebox id="txtItm" hflex="1" maxlength="19"
+										tooltiptext="Ingrese el Numero del Item" />
+									<button autodisable="true" id="btnBuscarItm" class="btn"
+										label="Buscar" tooltiptext="Catalogo Items"
+										image="/public/imagenes/botones/buscar.png" />
+									<cell colspan="2">
+										<label id="lblItm" />
+									</cell>
+									<hbox />
+									<button label="Agregar" id="btnAgregar" autodisable="true"
+										image="/public/imagenes/botones/annadir.png" class="btn" />
+								</row>
+								<row>
+									<label class="etiqueta" value="UM:" />
+									<textbox disabled="true" id="txtUM" hflex="1"
+										maxlength="2"
+										tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
 
-								<label class="etiqueta" value="Costo Unitario:" />
+									<label class="etiqueta" value="Costo Unitario:" />
 
-								<doublebox disabled="true" id="txtCosto" hflex="1"
-									maxlength="19" tooltiptext="Ingrese el Numero del Item" />
-								<hbox>
-									<label id="lblCantidad" class="etiqueta" value="Cantidad:" />
-									<space />
-									<label value="*" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<spinner id="spnCantidad" hflex="1" step="10" value="0"
-									constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
-								<hbox />
-							</row>
-							<row>
-								<hbox>
-									<label class="etiqueta" value="Pedido desde Sucursal/planta:" />
-									<space />
-									<label value="*" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<textbox id="txtPlanta2" hflex="1" maxlength="12"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarPlanta2" class="btn" label="Buscar"
-									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
-								<cell colspan="2">
-									<label id="lblPlanta2" />
-								</cell>
-								<hbox />
-								<hbox />
-							</row>
-							<row>
-								<hbox>
-									<label class="etiqueta" value="Pedido desde Ubicacion:" />
-									<space />
-									<label value="*" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<textbox readonly="true" id="txtUbicacion" hflex="1"
-									maxlength="20"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarUbicacion" class="btn" label="Buscar"
-									tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
-								<cell colspan="2">
-									<label id="lblUbicacion" />
-								</cell>
-								<hbox />
-								<hbox />
-							</row>
+									<doublebox disabled="true" id="txtCosto" hflex="1"
+										maxlength="19" tooltiptext="Ingrese el Numero del Item" />
+									<hbox>
+										<label id="lblCantidad" class="etiqueta" value="Cantidad:" />
+										<space />
+										<label value="*" style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<spinner id="spnCantidad" hflex="1" step="10" value="0"
+										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta" value="Pedido desde Sucursal/planta:" />
+										<space />
+										<label value="*" style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtPlanta2" hflex="1" maxlength="12"
+										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<button autodisable="true" id="btnBuscarPlanta2" class="btn"
+										label="Buscar" tooltiptext="Catalogo Monedas"
+										image="/public/imagenes/botones/buscar.png" />
+									<cell colspan="2">
+										<label id="lblPlanta2" />
+									</cell>
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta" value="Pedido desde Ubicacion:" />
+										<space />
+										<label value="*" style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox readonly="true" id="txtUbicacion" hflex="1"
+										maxlength="20"
+										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<button autodisable="true" id="btnBuscarUbicacion"
+										class="btn" label="Buscar" tooltiptext="Catalogo Monedas"
+										image="/public/imagenes/botones/buscar.png" />
+									<cell colspan="2">
+										<label id="lblUbicacion" />
+									</cell>
+									<hbox />
+									<hbox />
+								</row>
 
-						</rows>
-					</grid>
-					<hbox widths="95%,5%">
-						<listbox id="ltbPedidos" span="true" height="180px" width="100%">
-							<listhead>
-								<listheader label="Articulo" hflex="min" />
-								<listheader label="UM" hflex="min" />
-								<listheader label="Cantidad" hflex="min" />
-								<listheader label="Costo unitario" hflex="min" />
-								<listheader label="Total" hflex="min" />
-								<listheader label="Sucursal/Planta" hflex="min" />
-								<listheader label="Ubicacion" hflex="min" />
-							</listhead>
-							<template name="model">
-								<listitem>
-									<listcell label="${each.sditm}" />
-									<listcell label="${each.sduom}" />
-									<listcell label="${each.sdpqor}" />
-									<listcell label="${each.sduncs}" />
-									<listcell label="${each.sdecst}" />
-									<listcell label="${each.sdemcu}" />
-									<listcell label="${each.sdlocn}" />
-								</listitem>
-							</template>
-						</listbox>
-						<vbox width="100%">
-							<button label="Editar" class="btn" id="btnVer"
-								autodisable="true" image="/public/imagenes/botones/generar.png" />
-							<button label="Remover" class="btn" id="btnRemover"
-								autodisable="true" image="/public/imagenes/botones/anular.png" />
-						</vbox>
-					</hbox>
-				</groupbox>
+							</rows>
+						</grid>
+						<div width="93%">
+							<hbox widths="95%,5%">
+								<listbox id="ltbPedidos" span="true" height="180px"
+									width="100%">
+									<listhead>
+										<listheader label="Articulo" hflex="min" />
+										<listheader label="UM" hflex="min" />
+										<listheader label="Cantidad" hflex="min" />
+										<listheader label="Costo unitario" hflex="min" />
+										<listheader label="Total" hflex="min" />
+										<listheader label="Sucursal/Planta" hflex="min" />
+										<listheader label="Ubicacion" hflex="min" />
+									</listhead>
+									<template name="model">
+										<listitem>
+											<listcell label="${each.sditm}" />
+											<listcell label="${each.sduom}" />
+											<listcell label="${each.sdpqor}" />
+											<listcell label="${each.sduncs}" />
+											<listcell label="${each.sdecst}" />
+											<listcell label="${each.sdemcu}" />
+											<listcell label="${each.sdlocn}" />
+										</listitem>
+									</template>
+								</listbox>
+								<vbox width="100%">
+									<button label="Editar" class="btn" id="btnVer"
+										autodisable="true" image="/public/imagenes/botones/generar.png" />
+									<button label="Remover" class="btn" id="btnRemover"
+										autodisable="true" image="/public/imagenes/botones/anular.png" />
+								</vbox>
+							</hbox>
+						</div>
+					</groupbox>
+				</div>
 			</groupbox>
 			<separator />
 			<groupbox id="gpxDatosF4211" class="azul" width="auto">
