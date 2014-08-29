@@ -21,7 +21,7 @@ public class F0101 implements Serializable {
 	@Id
 //	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ABAN8")
-	private double aban8;
+	private Double aban8;
 
 	@Column(name="ABAB3")
 	private String abab3;
@@ -308,11 +308,11 @@ public class F0101 implements Serializable {
 	public F0101() {
 	}
 
-	public double getAban8() {
+	public Double getAban8() {
 		return aban8;
 	}
 	
-	public void setAban8(double aban8) {
+	public void setAban8(Double aban8) {
 		this.aban8 = aban8;
 	}
 

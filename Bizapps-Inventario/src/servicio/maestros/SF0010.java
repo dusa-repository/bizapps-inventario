@@ -39,4 +39,8 @@ public class SF0010 {
 	public List<F0010> buscarPorDrdc(String cvcrcd) {
 		return f0010DAO.findByCccrcd(cvcrcd);
 	}
+
+	public void guardarVarios(List<F0010> empresas) {
+		f0010DAO.save(empresas);
+	}
 }

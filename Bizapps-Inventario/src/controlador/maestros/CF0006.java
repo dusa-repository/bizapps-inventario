@@ -816,9 +816,11 @@ public class CF0006 extends CGenerico {
 						final int cantidad = eliminarLista.size();
 						for (int i = 0; i < eliminarLista.size(); i++) {
 							F0006 valor = eliminarLista.get(i);
-							List<F4100> objeto = servicioF4100.buscarPorMcu(valor.getMcmcu());
-							List<F4111> objeto2 = servicioF4111.buscarPorMcuOMccu(valor.getMcmcu());
-							if (!objeto.isEmpty()||!objeto2.isEmpty()) {
+							List<F4100> objeto = servicioF4100
+									.buscarPorMcu(valor.getMcmcu());
+							List<F4111> objeto2 = servicioF4111
+									.buscarPorMcuOMccu(valor.getMcmcu());
+							if (!objeto.isEmpty() || !objeto2.isEmpty()) {
 								eliminarLista.remove(valor);
 								i--;
 							}
@@ -856,8 +858,9 @@ public class CF0006 extends CGenerico {
 					/* Elimina un solo registro */
 					if (clave != null) {
 						List<F4100> objeto = servicioF4100.buscarPorMcu(clave);
-						List<F4111> objeto2 = servicioF4111.buscarPorMcuOMccu(clave);
-						if (objeto.isEmpty()||objeto2.isEmpty()) {
+						List<F4111> objeto2 = servicioF4111
+								.buscarPorMcuOMccu(clave);
+						if (objeto.isEmpty() || objeto2.isEmpty()) {
 							Messagebox
 									.show(Mensaje.deseaEliminar,
 											"Alerta",
@@ -1384,7 +1387,8 @@ public class CF0006 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF0006Emergente")
 	public void seleccionF0006() {
 		F0006 f0006 = catalogoEmergente.objetoSeleccionadoDelCatalogo();
-		txtMCUSF0006.setValue(f0006.getMcmcus());
+		txtMCUSF0006.setValue(f0006.getMcmcu());
+		lblDescripcionF0006.setValue(f0006.getMcdl01());
 		catalogoEmergente.setParent(null);
 	}
 }

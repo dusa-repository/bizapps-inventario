@@ -214,7 +214,7 @@ public class CF40203 extends CGenerico {
 						clave = f40.getId();
 						// txtDCTOF40203.setValue(f40.getId().getFsdcto());
 						buscadorDCTO.settearCampo(servicioF0005.buscar("00",
-								"00", f40.getId().getFsdcto()));
+								"DT", f40.getId().getFsdcto()));
 						buscadorDCTO.inhabilitarCampo();
 						buscadorNTYF.settearCampo(servicioF0005.buscar("00",
 								"00", f40.getId().getFslnty()));

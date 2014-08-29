@@ -928,10 +928,11 @@ public class CF4101 extends CGenerico {
 					} else {
 						f4101.setImdppo("N");
 					}
-
+					System.out.println(txtDLTLF4101.getValue());
 					if (txtDLTLF4101.getText().compareTo("") != 0)
-						f4101.setImdltl(Double.parseDouble(txtDLTLF4101
-								.getValue()));
+						if (!txtDLTLF4101.getValue().equals("null"))
+							f4101.setImdltl(Double.parseDouble(txtDLTLF4101
+									.getValue()));
 
 					if (rdoIMABCSClasificacionAF4101.isSelected()) {
 						f4101.setImabcs("A");
@@ -995,33 +996,43 @@ public class CF4101 extends CGenerico {
 					f4101.setImcmdm(buscadorIMCMDM.obtenerCaja());
 					f4101.setImlecm(buscadorIMLECM.obtenerCaja());
 					if (txtIMSLDF4101.getText().compareTo("") != 0)
-						f4101.setImsld(Double.parseDouble(txtIMSLDF4101
-								.getValue()));
+						if (!txtIMSLDF4101.getValue().equals("null"))
+							f4101.setImsld(Double.parseDouble(txtIMSLDF4101
+									.getValue()));
 					if (txtIMBBDDF4101.getText().compareTo("") != 0)
+						if (!txtIMBBDDF4101.getValue().equals("null"))
 						f4101.setImbbdd(Double.parseDouble(txtIMBBDDF4101
 								.getValue()));
 					if (txtIMSBDDF4101.getText().compareTo("") != 0)
+						if (!txtIMSBDDF4101.getValue().equals("null"))
 						f4101.setImsbdd(Double.parseDouble(txtIMSBDDF4101
 								.getValue()));
 					if (txtIMLEDDF4101.getText().compareTo("") != 0)
+						if (!txtIMLEDDF4101.getValue().equals("null"))
 						f4101.setImledd(Double.parseDouble(txtIMLEDDF4101
 								.getValue()));
 					if (txtIMPEFDF4101.getText().compareTo("") != 0)
+						if (!txtIMPEFDF4101.getValue().equals("null"))
 						f4101.setImpefd(Double.parseDouble(txtIMPEFDF4101
 								.getValue()));
 					if (txtIMU1DDF4101.getText().compareTo("") != 0)
+						if (!txtIMU1DDF4101.getValue().equals("null"))
 						f4101.setImu1dd(Double.parseDouble(txtIMU1DDF4101
 								.getValue()));
 					if (txtIMU2DDF4101.getText().compareTo("") != 0)
+						if (!txtIMU2DDF4101.getValue().equals("null"))
 						f4101.setImu2dd(Double.parseDouble(txtIMU2DDF4101
 								.getValue()));
 					if (txtIMU3DDF4101.getText().compareTo("") != 0)
+						if (!txtIMU3DDF4101.getValue().equals("null"))
 						f4101.setImu3dd(Double.parseDouble(txtIMU3DDF4101
 								.getValue()));
 					if (txtIMU4DDF4101.getText().compareTo("") != 0)
+						if (!txtIMU4DDF4101.getValue().equals("null"))
 						f4101.setImu4dd(Double.parseDouble(txtIMU4DDF4101
 								.getValue()));
 					if (txtIMU5DDF4101.getText().compareTo("") != 0)
+						if (!txtIMU5DDF4101.getValue().equals("null"))
 						f4101.setImu5dd(Double.parseDouble(txtIMU5DDF4101
 								.getValue()));
 
@@ -1077,29 +1088,30 @@ public class CF4101 extends CGenerico {
 							}
 						}
 						if (!eliminarLista.isEmpty()) {
-						Messagebox
-								.show("¿Desea Eliminar los "
-										+ eliminarLista.size() + " Registros?",
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF4101
-															.eliminarVarios(eliminarLista);
-													catalogo.actualizarLista(servicioF4101
-															.buscarTodosOrdenados());
-													if (cantidad != eliminarLista
-															.size())
-														msj.mensajeInformacion(Mensaje.algunosEliminados);
-													else
-														msj.mensajeInformacion(Mensaje.eliminado);
+							Messagebox
+									.show("¿Desea Eliminar los "
+											+ eliminarLista.size()
+											+ " Registros?",
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF4101
+																.eliminarVarios(eliminarLista);
+														catalogo.actualizarLista(servicioF4101
+																.buscarTodosOrdenados());
+														if (cantidad != eliminarLista
+																.size())
+															msj.mensajeInformacion(Mensaje.algunosEliminados);
+														else
+															msj.mensajeInformacion(Mensaje.eliminado);
+													}
 												}
-											}
-										});
+											});
 						} else {
 							msj.mensajeAlerta(Mensaje.registroUtilizado);
 						}
@@ -1109,28 +1121,27 @@ public class CF4101 extends CGenerico {
 					if (clave != 0) {
 						List<F41002> objeto = servicioF41002
 								.buscarPorItm(clave);
-						List<F4111> objeto2 = servicioF4111
-								.buscarPorItm(clave);
+						List<F4111> objeto2 = servicioF4111.buscarPorItm(clave);
 						if (objeto.isEmpty() && objeto2.isEmpty()) {
-						Messagebox
-								.show(Mensaje.deseaEliminar,
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF4101
-															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													limpiar();
-													catalogo.actualizarLista(servicioF4101
-															.buscarTodosOrdenados());
+							Messagebox
+									.show(Mensaje.deseaEliminar,
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF4101
+																.eliminarUno(clave);
+														msj.mensajeInformacion(Mensaje.eliminado);
+														limpiar();
+														catalogo.actualizarLista(servicioF4101
+																.buscarTodosOrdenados());
+													}
 												}
-											}
-										});
+											});
 						} else {
 							msj.mensajeAlerta(Mensaje.registroUtilizado);
 						}
@@ -1381,7 +1392,7 @@ public class CF4101 extends CGenerico {
 				List<F4101> lista = new ArrayList<F4101>();
 				for (F4101 f4101 : listF4101) {
 					String imsrp1 = "";
-					if(f4101.getImsrp1()!=null)
+					if (f4101.getImsrp1() != null)
 						imsrp1 = f4101.getImsrp1();
 					if (f4101.getImlitm().toLowerCase()
 							.startsWith(valores.get(0))
@@ -1395,8 +1406,7 @@ public class CF4101 extends CGenerico {
 									.startsWith(valores.get(4))
 							&& f4101.getImstkt().toLowerCase()
 									.startsWith(valores.get(5))
-							&& imsrp1.toLowerCase()
-									.startsWith(valores.get(6))) {
+							&& imsrp1.toLowerCase().startsWith(valores.get(6))) {
 						lista.add(f4101);
 					}
 				}

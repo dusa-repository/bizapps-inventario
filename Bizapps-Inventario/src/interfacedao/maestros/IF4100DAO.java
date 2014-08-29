@@ -16,4 +16,6 @@ public interface IF4100DAO extends JpaRepository<F4100, F4100PK> {
 	List<F4100> findByIdLmmcu(String valor);
 
 	List<F4100> findByIdLmmcuOrderByIdLmmcuAsc(String mcu);
+
+	F4100 findByIdLmmcuAndIdLmlocn(String almacenRef, String ubicacionRef);
 }

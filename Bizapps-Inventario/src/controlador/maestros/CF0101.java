@@ -1077,7 +1077,7 @@ public class CF0101 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F0101 f013) {
 				String[] registros = new String[6];
-				registros[0] = String.valueOf(f013.getAban8());
+				registros[0] = String.valueOf(f013.getAban8().longValue());
 				registros[1] = f013.getAbalph();
 				registros[2] = f013.getAbalky();
 				registros[3] = f013.getAbsic();
@@ -1126,7 +1126,7 @@ public class CF0101 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F0101 f013) {
 				String[] registros = new String[6];
-				registros[0] = String.valueOf(f013.getAban8());
+				registros[0] = String.valueOf(f013.getAban8().longValue());
 				registros[1] = f013.getAbalph();
 				registros[2] = f013.getAbalky();
 				registros[3] = f013.getAbsic();
