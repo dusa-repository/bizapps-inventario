@@ -20,6 +20,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import modelo.maestros.F00021;
+import modelo.pk.F00021PK;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.core.Authentication;
@@ -127,17 +130,22 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	public List<Tab> tabs = new ArrayList<Tab>();
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public Calendar calendario = Calendar.getInstance();
+	public static double id = 0;
+
 	// Cambio en la hora borrados los :
 
 	public static SF4101 getServicioF4101() {
 		return applicationContext.getBean(SF4101.class);
 	}
+
 	public static SF4111 getServicioF4111() {
 		return applicationContext.getBean(SF4111.class);
 	}
+
 	public static SF4105 getServicioF4105() {
 		return applicationContext.getBean(SF4105.class);
 	}
+
 	public String horaAuditoria = String.valueOf(calendario
 			.get(Calendar.HOUR_OF_DAY))
 			+ String.valueOf(calendario.get(Calendar.MINUTE))
@@ -209,6 +217,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		return date;
 
 	}
+
 	public Date transformarJulianaAGregoriadeLong(Long valor) {
 		String j = valor.toString();
 		Date date = new Date();
@@ -244,7 +253,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 
 	public abstract void inicializar() throws IOException;
 
-	public void cerrarVentana(Div div, String id,List<Tab> tabs2) {
+	public void cerrarVentana(Div div, String id, List<Tab> tabs2) {
 		div.setVisible(false);
 		tabs = tabs2;
 		for (int i = 0; i < tabs.size(); i++) {
@@ -311,6 +320,51 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+
+	protected double nextNumber(String numero, String user) {
+		synchronized (this) {
+			while (!nextNumber) {
+				try {
+					wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			nextNumber = false;
+			try {
+				double numeroNext = servicioF00021.Numero(numero, user);
+				if (numeroNext != 0) {
+					id = numeroNext + 1;
+					F00021 f021 = servicioF00021.buscar(numero, user);
+					f021.setNln001(id);
+					servicioF00021.guardar(f021);
+				} else {
+					id = 1;
+					F00021 f021 = new F00021();
+					F00021PK clave21 = new F00021PK();
+					clave21.setNldct(user);
+					clave21.setNlkco(numero);
+					clave21.setNlctry((double) 0);
+					clave21.setNlfy((double) 0);
+					f021.setId(clave21);
+					f021.setNln001(id);
+					servicioF00021.guardar(f021);
+				}
+			} catch (Exception a) {
+				nextNumber = true;
+				a.printStackTrace();
+				System.out.println("error");
+				return 0;
+			}
+		}
+		synchronized (this) {
+			nextNumber = true;
+			notifyAll();
+			return id;
 		}
 	}
 }

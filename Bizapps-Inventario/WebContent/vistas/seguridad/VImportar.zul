@@ -1,0 +1,64 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divImportar" apply="controlador.seguridad.CImportar">
+		<groupbox width="auto" mold="3d" title="Importar">
+			<div id="botoneraImportar" />
+			<groupbox id="gpxRegistro" width="auto" class="azul" title=""
+				closable="false">
+				<caption label="" style="font-weight:bold; font-size: 13px"
+					tooltiptext="Presione para Registrar un Nuevo Grupo" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="35%" />
+						<column label="" width="20%" />
+						<column label="" width="35%" />
+						<column label="" width="10%" />
+					</columns>
+					<rows>
+						<row id="rowEmpresa">
+							<label class="etiqueta" value="Importar Empresas:" />
+							<button autodisable="self" id="btnImportarEmpresa"
+								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+								upload="true" label="Buscar" tooltiptext="Importar Medicinas"
+								image="/public/imagenes/botones/importar.png" />
+							<label id="lblNombreEmpresa" />
+						</row>
+						<row id="rowAlmacen">
+							<label class="etiqueta" value="Importar Almacen/Planta:" />
+							<button autodisable="self" id="btnImportarAlmacen"
+								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+								upload="true" label="Buscar" tooltiptext="Importar Examenes"
+								image="/public/imagenes/botones/importar.png" />
+							<label id="lblNombreAlmacen" />
+						</row>
+						<row id="rowUbicacion">
+							<label class="etiqueta" value="Importar Ubicaciones:" />
+							<button autodisable="self" id="btnImportarUbicacion"
+								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+								upload="true" label="Buscar" tooltiptext="Importar Areas"
+								image="/public/imagenes/botones/importar.png" />
+							<label id="lblNombreUbicacion" />
+						</row>
+						<row id="rowArticulo">
+							<label class="etiqueta" value="Importar Articulo:" />
+							<button autodisable="self" id="btnImportarArticulo"
+								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+								upload="true" label="Buscar" tooltiptext="Importar Diagnosticos"
+								image="/public/imagenes/botones/importar.png" />
+							<label id="lblNombreArticulo" />
+						</row>
+						<row id="rowZ">
+							<label class="etiqueta" value="Importar Z0:" />
+							<button autodisable="self" id="btnImportarZ"
+								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+								upload="true" label="Buscar" tooltiptext="Importar Pacientes"
+								image="/public/imagenes/botones/importar.png" />
+							<label id="lblNombreZ" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+		</groupbox>
+	</div>
+</zk>

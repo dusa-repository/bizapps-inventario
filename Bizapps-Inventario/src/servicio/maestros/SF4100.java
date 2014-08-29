@@ -42,4 +42,12 @@ public class SF4100 {
 	public List<F4100> buscarPorMcu(String clave) {
 		return f4100DAO.findByIdLmmcu(clave);
 	}
+
+	public void guardarVarios(List<F4100> ubicaciones) {
+		 f4100DAO.save(ubicaciones);
+	}
+
+	public F4100 buscarPorMcuYLoc(String almacenRef, String ubicacionRef) {
+		return f4100DAO.findByIdLmmcuAndIdLmlocn(almacenRef,ubicacionRef);
+	}
 }

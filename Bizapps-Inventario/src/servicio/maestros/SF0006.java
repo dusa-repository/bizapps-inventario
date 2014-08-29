@@ -49,4 +49,8 @@ public class SF0006 {
 		return f0006DAO.findByMcco(ccco);
 	}
 
+	public void guardarVarios(List<F0006> almacenes) {
+		f0006DAO.save(almacenes);
+	}
+
 }

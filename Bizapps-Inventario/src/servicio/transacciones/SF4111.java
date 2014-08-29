@@ -34,11 +34,11 @@ public class SF4111 {
 	}
 
 	public List<F4111> buscarPorMcuOMccu(String clave) {
-		return iF4111DAO.findByIlmcuOrIlmmcu(clave,clave);
+		return iF4111DAO.findByIlmcuOrIlmmcu(clave, clave);
 	}
 
 	public List<F4111> buscarPorUbicaciones(String lmlocn) {
-		return iF4111DAO.findByIllocnOrIlasid(lmlocn,lmlocn);
+		return iF4111DAO.findByIllocnOrIlasid(lmlocn, lmlocn);
 	}
 
 	public List<F4111> buscarPorAn(double aban8) {
@@ -51,7 +51,7 @@ public class SF4111 {
 
 	public List<F4111> buscarEntreFechas(BigDecimal desde, BigDecimal hasta) {
 		// TODO Auto-generated method stub
-		return iF4111DAO.findByIltrdjBetweenOrderByIldocAsc(desde,hasta);
+		return iF4111DAO.findByIltrdjBetweenOrderByIldocAsc(desde, hasta);
 	}
 
 	public List<F4111> buscarHastaFecha(BigDecimal hasta) {
@@ -61,14 +61,20 @@ public class SF4111 {
 	public List<F4111> buscarTodosOrdenadosPorProveedor(String string,
 			Double value) {
 		List<F4111> lista = new ArrayList<F4111>();
-		List<Double> lista2 = iF4111DAO.findByIlan8AndIldctOrderByIldocAsc(value, string);
-		for (int i = 0; i < lista2.size(); i++) {			
-			lista.add(iF4111DAO.findByIldocAndIldct(lista2.get(i), string).get(0));
+		List<Double> lista2 = iF4111DAO.findByIlan8AndIldctOrderByIldocAsc(
+				value, string);
+		for (int i = 0; i < lista2.size(); i++) {
+			lista.add(iF4111DAO.findByIldocAndIldct(lista2.get(i), string).get(
+					0));
 		}
 		return lista;
 	}
 
 	public F4111 buscar(Double clave41) {
 		return iF4111DAO.findOne(clave41);
+	}
+
+	public void guardarVarios(List<F4111> cardexs) {
+		iF4111DAO.save(cardexs);
 	}
 }

@@ -84,4 +84,8 @@ public class SF4101 {
 		return lista;
 	}
 
+	public void guardarVarios(List<F4101> articulos) {
+		f4101DAO.save(articulos);
+	}
+
 }
