@@ -334,25 +334,25 @@ public class CImportar extends CGenerico {
 									} else {
 										msj.mensajeError(valorNoEncontrado
 												+ " F4101. El valor es: "
-												+ idArticulo + ". Fila: "
-												+ contadorRow + ". Columna: "
-												+ contadorCell);
+												+ idArticulo
+												+ ". Se encuentra en la Fila: "
+												+ contadorRow);
 										error = true;
 									}
 								} else {
 									msj.mensajeError(valorNoEncontrado
 											+ " F4100. El valor es: "
 											+ ubicacionRef + " y el Almacen:"
-											+ almacenRef + ". Fila: "
-											+ contadorRow + ". Columna: "
-											+ contadorCell);
+											+ almacenRef
+											+ ". Se encuentra en la Fila: "
+											+ contadorRow);
 									error = true;
 								}
 							} else {
 								msj.mensajeError(valorNoEncontrado
 										+ " F0006. El valor es: " + almacenRef
-										+ ". Fila: " + contadorRow
-										+ ". Columna: " + contadorCell);
+										+ ". Se encuentra en la Fila: "
+										+ contadorRow);
 								error = true;
 							}
 						} else {
