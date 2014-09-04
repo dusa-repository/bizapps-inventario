@@ -45,6 +45,8 @@ import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
+import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
+
 import componentes.Botonera;
 import componentes.BuscadorUDC;
 import componentes.Catalogo;
@@ -376,7 +378,8 @@ public class CF4111 extends CGenerico {
 			public void seleccionar() {
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
-						System.out.println("hola");
+						
+						mostrarGroupbox();
 						F4111 f4111 = catalogo.objetoSeleccionadoDelCatalogo();
 						List<F4111> listF4111 = servicioF4111.buscarPorDoc(
 								f4111.getIldoc(), tipo);

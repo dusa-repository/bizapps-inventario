@@ -163,6 +163,8 @@ public class CF4211 extends CGenerico {
 			public void seleccionar() {
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
+						
+						mostrarGroupbox();
 						mostrarBotones(false);
 						F4211 f4211 = catalogo.objetoSeleccionadoDelCatalogo();
 						clave = f4211.getId();
