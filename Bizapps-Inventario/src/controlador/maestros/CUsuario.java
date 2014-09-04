@@ -292,7 +292,8 @@ public class CUsuario extends CGenerico {
 
 			@Override
 			public void annadir() {
-				// TODO Auto-generated method stub
+				abrirRegistro();
+				mostrarBotones(false);
 				
 			}
 

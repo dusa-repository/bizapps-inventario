@@ -7,6 +7,7 @@
 			<groupbox id="gpxRegistro" class="azul" width="auto" title="">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para ingresar los Usuarios" />
+				<separator />
 				<grid width="100%">
 					<columns visible="false">
 						<column label="" width="10%" />
@@ -75,7 +76,8 @@
 					</tabs>
 					<tabpanels>
 						<tabpanel>
-							<groupbox width="100%" title="Datos Personales">
+							<groupbox width="100%" class="blanco" title="Datos Personales">
+								<separator />
 								<grid width="100%">
 									<columns visible="false">
 										<column label="" width="20%" />
@@ -117,8 +119,10 @@
 									</rows>
 								</grid>
 							</groupbox>
+							<separator />
 							<div align="right" style="float: right;">
-								<button id="btnSiguientePestanna" label="Siguiente"
+								<separator />
+								<button class="btn" id="btnSiguientePestanna" label="Siguiente"
 									image="/public/imagenes/botones/adelante.png" />
 							</div>
 						</tabpanel>
@@ -164,8 +168,9 @@
 								</rows>
 							</grid>
 							<separator />
-							<groupbox width="100%"
+							<groupbox class="blanco" width="100%"
 								title="Seleccione los Grupos Correspondientes al Usuario">
+								<separator />
 								<hbox>
 									<listbox id="ltbGruposDisponibles" height="160px"
 										emptyMessage="No hay Grupos registrados">
@@ -177,11 +182,13 @@
 										</template>
 									</listbox>
 									<vbox>
-										<button id="pasar1" image="/public/imagenes/botones/adelante.png"
-											tooltiptext="Agregar Grupos" width="30px" />
+										<button class="abrir" id="pasar1"
+											image="/public/imagenes/botones/adelante.png" tooltiptext="Agregar Grupos"
+											width="30px" />
 										<separator />
-										<button id="pasar2" image="/public/imagenes/botones/atras.png"
-											tooltiptext="Quitar Grupos" width="30px" />
+										<button class="abrir" id="pasar2"
+											image="/public/imagenes/botones/atras.png" tooltiptext="Quitar Grupos"
+											width="30px" />
 									</vbox>
 									<listbox id="ltbGruposAgregados" height="160px"
 										emptyMessage="No ha Seleccionado ningun Grupo" checkmark="true">
@@ -195,9 +202,9 @@
 								</hbox>
 							</groupbox>
 							<separator />
-							<separator />
 							<div align="left" style="float: right;">
-								<button label="Anterior" id="btnAnteriorPestanna"
+								<separator />
+								<button class="btn" label="Anterior" id="btnAnteriorPestanna"
 									image="/public/imagenes/botones/atras.png" />
 							</div>
 						</tabpanel>
@@ -209,6 +216,7 @@
 			<groupbox class="azul" id="gpxDatos" width="auto" title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para ver los Usuarios" />
+				<separator />
 				<div id="catalogoUsuario" tooltiptext="Seleccione el usuario para Realizar una Accion" />
 			</groupbox>
 		</groupbox>
