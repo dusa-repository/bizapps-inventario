@@ -13,32 +13,32 @@ public class F01151PK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="EAAN8")
-	private double eaan8;
+	private Double eaan8;
 
 	@Column(name="EAIDLN")
-	private double eaidln;
+	private Double eaidln;
 
 	@Column(name="EARCK7")
-	private double earck7;
+	private Double earck7;
 
 	public F01151PK() {
 	}
-	public double getEaan8() {
+	public Double getEaan8() {
 		return this.eaan8;
 	}
-	public void setEaan8(double eaan8) {
+	public void setEaan8(Double eaan8) {
 		this.eaan8 = eaan8;
 	}
-	public double getEaidln() {
+	public Double getEaidln() {
 		return this.eaidln;
 	}
-	public void setEaidln(double eaidln) {
+	public void setEaidln(Double eaidln) {
 		this.eaidln = eaidln;
 	}
-	public double getEarck7() {
+	public Double getEarck7() {
 		return this.earck7;
 	}
-	public void setEarck7(double earck7) {
+	public void setEarck7(Double earck7) {
 		this.earck7 = earck7;
 	}
 

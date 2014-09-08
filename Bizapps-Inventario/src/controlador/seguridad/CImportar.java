@@ -37,6 +37,7 @@ import org.zkoss.zul.Tab;
 
 import componentes.Botonera;
 import componentes.Mensaje;
+import componentes.Validador;
 
 import controlador.maestros.CGenerico;
 
@@ -78,6 +79,7 @@ public class CImportar extends CGenerico {
 	private String udcNoEncontrada = "La siguiente UDC no fue encontrada.";
 	private String errorLongitud = "La siguiente ubicacion excede el limite establecido de longitud:";
 	private String valorNoEncontrado = "El valor que hace referencia no se ha encontrado en la tabla:";
+	private boolean errorGeneral = false;
 
 	@Override
 	public void inicializar() throws IOException {
@@ -107,17 +109,37 @@ public class CImportar extends CGenerico {
 
 			@Override
 			public void limpiar() {
+				if (rowAlmacen.getChildren().size() == 4) {
+					A linea = (A) rowAlmacen.getChildren().get(3);
+					Events.postEvent("onClick", linea, null);
+				}
+				if (rowArticulo.getChildren().size() == 4) {
+					A linea = (A) rowArticulo.getChildren().get(3);
+					Events.postEvent("onClick", linea, null);
+				}
+				if (rowEmpresa.getChildren().size() == 4) {
+					A linea = (A) rowEmpresa.getChildren().get(3);
+					Events.postEvent("onClick", linea, null);
+				}
+				if (rowUbicacion.getChildren().size() == 4) {
+					A linea = (A) rowUbicacion.getChildren().get(3);
+					Events.postEvent("onClick", linea, null);
+				}
+				if (rowZ.getChildren().size() == 4) {
+					A linea = (A) rowZ.getChildren().get(3);
+					Events.postEvent("onClick", linea, null);
+				}
 			}
 
 			@Override
 			public void guardar() {
-
-				if (validar()) {
-					importarEmpresa();
-					importarAlmacen();
-					importarUbicacion();
-					importarArticulo();
-					importarZ();
+				importarEmpresa();
+				importarAlmacen();
+				importarUbicacion();
+				importarArticulo();
+				importarZ();
+				if (!errorGeneral) {
+					msj.mensajeInformacion(Mensaje.guardadosArchivos);
 					limpiar();
 				}
 			}
@@ -150,86 +172,96 @@ public class CImportar extends CGenerico {
 	@Listen("onUpload = #btnImportarEmpresa")
 	public void cargarEmpresa(UploadEvent event) {
 		mediaEmpresa = event.getMedia();
-		lblNombreEmpresa.setValue(mediaEmpresa.getName());
-		final A rm = new A("Remover");
-		rm.addEventListener(Events.ON_CLICK,
-				new org.zkoss.zk.ui.event.EventListener<Event>() {
-					public void onEvent(Event event) throws Exception {
-						lblNombreEmpresa.setValue("");
-						rm.detach();
-						mediaEmpresa = null;
-					}
-				});
-		rowEmpresa.appendChild(rm);
+		if (mediaEmpresa != null && Validador.validarExcel(mediaEmpresa)) {
+			lblNombreEmpresa.setValue(mediaEmpresa.getName());
+			final A rm = new A("Remover");
+			rm.addEventListener(Events.ON_CLICK,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event event) throws Exception {
+							lblNombreEmpresa.setValue("");
+							rm.detach();
+							mediaEmpresa = null;
+						}
+					});
+			rowEmpresa.appendChild(rm);
+		} else
+			msj.mensajeError(Mensaje.archivoExcel);
 	}
 
 	@Listen("onUpload = #btnImportarAlmacen")
 	public void cargarAlmacen(UploadEvent event) {
 		mediaAlmacen = event.getMedia();
-		lblNombreAlmacen.setValue(mediaAlmacen.getName());
-		final A rm = new A("Remover");
-		rm.addEventListener(Events.ON_CLICK,
-				new org.zkoss.zk.ui.event.EventListener<Event>() {
-					public void onEvent(Event event) throws Exception {
-						lblNombreAlmacen.setValue("");
-						rm.detach();
-						mediaAlmacen = null;
-					}
-				});
-		rowAlmacen.appendChild(rm);
+		if (mediaAlmacen != null && Validador.validarExcel(mediaAlmacen)) {
+			lblNombreAlmacen.setValue(mediaAlmacen.getName());
+			final A rm = new A("Remover");
+			rm.addEventListener(Events.ON_CLICK,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event event) throws Exception {
+							lblNombreAlmacen.setValue("");
+							rm.detach();
+							mediaAlmacen = null;
+						}
+					});
+			rowAlmacen.appendChild(rm);
+		} else
+			msj.mensajeError(Mensaje.archivoExcel);
 	}
 
 	@Listen("onUpload = #btnImportarUbicacion")
 	public void cargarUbicacion(UploadEvent event) {
 		mediaUbicacion = event.getMedia();
-		lblNombreUbicacion.setValue(mediaUbicacion.getName());
-		final A rm = new A("Remover");
-		rm.addEventListener(Events.ON_CLICK,
-				new org.zkoss.zk.ui.event.EventListener<Event>() {
-					public void onEvent(Event event) throws Exception {
-						lblNombreUbicacion.setValue("");
-						rm.detach();
-						mediaUbicacion = null;
-					}
-				});
-		rowUbicacion.appendChild(rm);
+		if (mediaUbicacion != null && Validador.validarExcel(mediaUbicacion)) {
+			lblNombreUbicacion.setValue(mediaUbicacion.getName());
+			final A rm = new A("Remover");
+			rm.addEventListener(Events.ON_CLICK,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event event) throws Exception {
+							lblNombreUbicacion.setValue("");
+							rm.detach();
+							mediaUbicacion = null;
+						}
+					});
+			rowUbicacion.appendChild(rm);
+		} else
+			msj.mensajeError(Mensaje.archivoExcel);
 	}
 
 	@Listen("onUpload = #btnImportarArticulo")
 	public void cargarArticulo(UploadEvent event) {
 		mediaArticulo = event.getMedia();
-		lblNombreArticulo.setValue(mediaArticulo.getName());
-		final A rm = new A("Remover");
-		rm.addEventListener(Events.ON_CLICK,
-				new org.zkoss.zk.ui.event.EventListener<Event>() {
-					public void onEvent(Event event) throws Exception {
-						lblNombreArticulo.setValue("");
-						rm.detach();
-						mediaArticulo = null;
-					}
-				});
-		rowArticulo.appendChild(rm);
+		if (mediaArticulo != null && Validador.validarExcel(mediaArticulo)) {
+			lblNombreArticulo.setValue(mediaArticulo.getName());
+			final A rm = new A("Remover");
+			rm.addEventListener(Events.ON_CLICK,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event event) throws Exception {
+							lblNombreArticulo.setValue("");
+							rm.detach();
+							mediaArticulo = null;
+						}
+					});
+			rowArticulo.appendChild(rm);
+		} else
+			msj.mensajeError(Mensaje.archivoExcel);
 	}
 
 	@Listen("onUpload = #btnImportarZ")
 	public void cargarZ(UploadEvent event) {
 		mediaZ = event.getMedia();
-		lblNombreZ.setValue(mediaZ.getName());
-		final A rm = new A("Remover");
-		rm.addEventListener(Events.ON_CLICK,
-				new org.zkoss.zk.ui.event.EventListener<Event>() {
-					public void onEvent(Event event) throws Exception {
-						lblNombreZ.setValue("");
-						rm.detach();
-						mediaZ = null;
-					}
-				});
-		rowZ.appendChild(rm);
-	}
-
-	protected boolean validar() {
-		// TODO Auto-generated method stub
-		return true;
+		if (mediaZ != null && Validador.validarExcel(mediaZ)) {
+			lblNombreZ.setValue(mediaZ.getName());
+			final A rm = new A("Remover");
+			rm.addEventListener(Events.ON_CLICK,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event event) throws Exception {
+							lblNombreZ.setValue("");
+							rm.detach();
+							mediaZ = null;
+						}
+					});
+			rowZ.appendChild(rm);
+		} else
+			msj.mensajeError(Mensaje.archivoExcel);
 	}
 
 	protected void importarZ() {
@@ -243,6 +275,7 @@ public class CImportar extends CGenerico {
 			}
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			Iterator<Row> rowIterator = sheet.iterator();
+			String mostrarError = "";
 			if (rowIterator.hasNext()) {
 				List<F4111> cardexs = new ArrayList<F4111>();
 				int contadorRow = 0;
@@ -332,6 +365,13 @@ public class CImportar extends CGenerico {
 										cardex.setIlpaid(cantidad * costo);
 										cardexs.add(cardex);
 									} else {
+										mostrarError = mostrarError
+												+ valorNoEncontrado
+												+ " F4101. El valor es: "
+												+ idArticulo
+												+ ". Se encuentra en la Fila: "
+												+ contadorRow;
+
 										msj.mensajeError(valorNoEncontrado
 												+ " F4101. El valor es: "
 												+ idArticulo
@@ -340,6 +380,14 @@ public class CImportar extends CGenerico {
 										error = true;
 									}
 								} else {
+									mostrarError = mostrarError
+											+ valorNoEncontrado
+											+ " F4100. El valor es: "
+											+ ubicacionRef + " y el Almacen:"
+											+ almacenRef
+											+ ". Se encuentra en la Fila: "
+											+ contadorRow;
+
 									msj.mensajeError(valorNoEncontrado
 											+ " F4100. El valor es: "
 											+ ubicacionRef + " y el Almacen:"
@@ -349,6 +397,10 @@ public class CImportar extends CGenerico {
 									error = true;
 								}
 							} else {
+								mostrarError = mostrarError + valorNoEncontrado
+										+ " F0006. El valor es: " + almacenRef
+										+ ". Se encuentra en la Fila: "
+										+ contadorRow;
 								msj.mensajeError(valorNoEncontrado
 										+ " F0006. El valor es: " + almacenRef
 										+ ". Se encuentra en la Fila: "
@@ -356,12 +408,26 @@ public class CImportar extends CGenerico {
 								error = true;
 							}
 						} else {
+							mostrarError = mostrarError + archivoConError
+									+ lblNombreUbicacion.getValue()
+									+ ". Fila: " + contadorRow + ". Columna: "
+									+ contadorCell;
+
 							msj.mensajeError(archivoConError
 									+ lblNombreUbicacion.getValue()
 									+ ". Fila: " + contadorRow + ". Columna: "
 									+ contadorCell);
 						}
-					} else
+					} else {
+						mostrarError = mostrarError
+								+ errorLongitud
+								+ lblNombreUbicacion.getValue()
+								+ ". Fila: "
+								+ contadorRow
+								+ ". Columna: "
+								+ contadorCell
+								+ ". Longitudes permitidas: campo1 20 y campo2 12";
+
 						msj.mensajeError(errorLongitud
 								+ lblNombreUbicacion.getValue()
 								+ ". Fila: "
@@ -369,6 +435,7 @@ public class CImportar extends CGenerico {
 								+ ". Columna: "
 								+ contadorCell
 								+ ". Longitudes permitidas: campo1 20 y campo2 12");
+					}
 				}
 				if (!error) {
 					for (int i = 0; i < cardexs.size(); i++) {
@@ -404,7 +471,8 @@ public class CImportar extends CGenerico {
 						servicioF4105.guardar(f4105);
 					}
 					servicioF4111.guardarVarios(cardexs);
-				}
+				} else
+					errorGeneral = true;
 			} else
 				msj.mensajeAlerta(archivoVacio + " "
 						+ lblNombreUbicacion.getValue());
@@ -565,8 +633,9 @@ public class CImportar extends CGenerico {
 									+ lblNombreArticulo.getValue() + ". Fila: "
 									+ contadorRow + ". Columna: "
 									+ contadorCell);
+							error = true;
 						}
-					} else
+					} else {
 						msj.mensajeError(errorLongitud
 								+ lblNombreArticulo.getValue()
 								+ ". Fila: "
@@ -574,6 +643,8 @@ public class CImportar extends CGenerico {
 								+ ". Columna: "
 								+ contadorCell
 								+ ". Longitudes permitidas: campo1 25, campo2 30, campo3 1 y campo4 2");
+						error = true;
+					}
 				}
 				if (!error) {
 					String nombre = "";
@@ -589,7 +660,8 @@ public class CImportar extends CGenerico {
 						}
 					}
 					servicioF4101.guardarVarios(articulos);
-				}
+				} else
+					errorGeneral = true;
 			} else
 				msj.mensajeAlerta(archivoVacio + " "
 						+ lblNombreArticulo.getValue());
@@ -675,8 +747,9 @@ public class CImportar extends CGenerico {
 									+ lblNombreUbicacion.getValue()
 									+ ". Fila: " + contadorRow + ". Columna: "
 									+ contadorCell);
+							error = true;
 						}
-					} else
+					} else {
 						msj.mensajeError(errorLongitud
 								+ lblNombreUbicacion.getValue()
 								+ ". Fila: "
@@ -684,10 +757,13 @@ public class CImportar extends CGenerico {
 								+ ". Columna: "
 								+ contadorCell
 								+ ". Longitudes permitidas: campo1 20 y campo2 12");
+						error = true;
+					}
 				}
 				if (!error) {
 					servicioF4100.guardarVarios(ubicaciones);
-				}
+				} else
+					errorGeneral = true;
 			} else
 				msj.mensajeAlerta(archivoVacio + " "
 						+ lblNombreUbicacion.getValue());
@@ -838,7 +914,8 @@ public class CImportar extends CGenerico {
 						}
 					}
 					servicioF0006.guardarVarios(almacenes);
-				}
+				} else
+					errorGeneral = true;
 			} else
 				msj.mensajeAlerta(archivoVacio + " "
 						+ lblNombreAlmacen.getValue());
@@ -966,7 +1043,8 @@ public class CImportar extends CGenerico {
 						}
 					}
 					servicioF0010.guardarVarios(empresas);
-				}
+				} else
+					errorGeneral = true;
 			} else
 				msj.mensajeAlerta(archivoVacio + " "
 						+ lblNombreEmpresa.getValue());

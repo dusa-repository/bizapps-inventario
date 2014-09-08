@@ -146,9 +146,9 @@ public class CF0115 extends CGenerico {
 						List<F0115> lista = servicioF0115
 								.buscarParaRegistrar(lon.doubleValue());
 						clavePk.setWpan8(lon.doubleValue());
-						clavePk.setWpcnln(lista.size() + 1);
-						clavePk.setWpidln(0);
-						clavePk.setWprck7(0);
+						clavePk.setWpcnln((double) (lista.size() + 1));
+						clavePk.setWpidln((double) 0);
+						clavePk.setWprck7((double) 0);
 					}
 					f015.setId(clavePk);
 					f015.setWpar1(txtAr01F0115.getValue());
@@ -360,7 +360,7 @@ public class CF0115 extends CGenerico {
 					String valor = "";
 					if (f05 != null)
 						valor = f05.getDrdl01();
-					if (String.valueOf(f01.getId().getWpan8()).toLowerCase()
+					if (String.valueOf(f01.getId().getWpan8().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& f01.getWpar1().toLowerCase()
 									.startsWith(valores.get(1))
@@ -382,7 +382,7 @@ public class CF0115 extends CGenerico {
 				if (f05 != null)
 					valor = f05.getDrdl01();
 				String[] registros = new String[5];
-				registros[0] = String.valueOf(f0115.getId().getWpan8());
+				registros[0] = String.valueOf(f0115.getId().getWpan8().longValue());
 				registros[1] = f0115.getWpar1();
 				registros[2] = f0115.getWpph1();
 				registros[3] = f0115.getWpphtp();
@@ -407,7 +407,7 @@ public class CF0115 extends CGenerico {
 				List<F0101> lista = new ArrayList<F0101>();
 
 				for (F0101 f01 : listF0101) {
-					if (String.valueOf(f01.getAban8()).toLowerCase()
+					if (String.valueOf(f01.getAban8().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& f01.getAbalph().toLowerCase()
 									.startsWith(valores.get(1))
@@ -428,7 +428,7 @@ public class CF0115 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F0101 f013) {
 				String[] registros = new String[6];
-				registros[0] = String.valueOf(f013.getAban8());
+				registros[0] = String.valueOf(f013.getAban8().longValue());
 				registros[1] = f013.getAbalph();
 				registros[2] = f013.getAbalky();
 				registros[3] = f013.getAbsic();

@@ -13,41 +13,41 @@ public class F0115PK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="WPAN8")
-	private double wpan8;
+	private Double wpan8;
 
 	@Column(name="WPIDLN")
-	private double wpidln;
+	private Double wpidln;
 
 	@Column(name="WPCNLN")
-	private double wpcnln;
+	private Double wpcnln;
 
 	@Column(name="WPRCK7")
-	private double wprck7;
+	private Double wprck7;
 
 	public F0115PK() {
 	}
-	public double getWpan8() {
+	public Double getWpan8() {
 		return this.wpan8;
 	}
-	public void setWpan8(double wpan8) {
+	public void setWpan8(Double wpan8) {
 		this.wpan8 = wpan8;
 	}
-	public double getWpidln() {
+	public Double getWpidln() {
 		return this.wpidln;
 	}
-	public void setWpidln(double wpidln) {
+	public void setWpidln(Double wpidln) {
 		this.wpidln = wpidln;
 	}
-	public double getWpcnln() {
+	public Double getWpcnln() {
 		return this.wpcnln;
 	}
-	public void setWpcnln(double wpcnln) {
+	public void setWpcnln(Double wpcnln) {
 		this.wpcnln = wpcnln;
 	}
-	public double getWprck7() {
+	public Double getWprck7() {
 		return this.wprck7;
 	}
-	public void setWprck7(double wprck7) {
+	public void setWprck7(Double wprck7) {
 		this.wprck7 = wprck7;
 	}
 

@@ -441,7 +441,7 @@ public class CF4105 extends CGenerico {
 				List<F4105> listF0005_2 = new ArrayList<F4105>();
 
 				for (F4105 f0005 : listF0005) {
-					if (String.valueOf(f0005.getId().getCoitm()).toLowerCase()
+					if (String.valueOf(f0005.getId().getCoitm().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& f0005.getId().getComcu().toLowerCase()
 									.startsWith(valores.get(1))
@@ -456,7 +456,7 @@ public class CF4105 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F4105 f0005) {
 				String[] registros = new String[3];
-				registros[0] = String.valueOf(f0005.getId().getCoitm());
+				registros[0] = String.valueOf(f0005.getId().getCoitm().longValue());
 				registros[1] = f0005.getId().getComcu();
 				registros[2] = f0005.getId().getColedg();
 				;

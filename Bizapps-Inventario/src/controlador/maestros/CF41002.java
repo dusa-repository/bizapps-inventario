@@ -485,7 +485,7 @@ public class CF41002 extends CGenerico {
 				for (F41002 f41002 : listF41002) {
 					F4101 f4101 = servicioF4101.buscar(f41002.getId()
 							.getUmitm());
-					if (String.valueOf(f41002.getId().getUmitm()).toLowerCase()
+					if (String.valueOf(f41002.getId().getUmitm().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& f4101.getImdsc1().toLowerCase()
 									.startsWith(valores.get(1))
@@ -516,7 +516,7 @@ public class CF41002 extends CGenerico {
 
 				F4101 f4101 = servicioF4101.buscar(f41002.getId().getUmitm());
 				String[] registros = new String[10];
-				registros[0] = String.valueOf(f41002.getId().getUmitm());
+				registros[0] = String.valueOf(f41002.getId().getUmitm().longValue());
 				registros[1] = f4101.getImdsc1();
 				registros[2] = f41002.getId().getUmum();
 				registros[3] = String.valueOf(f41002.getUmconv());
@@ -544,7 +544,7 @@ public class CF41002 extends CGenerico {
 				List<F4101> lista = new ArrayList<F4101>();
 
 				for (F4101 f4101 : listF4101) {
-					if (String.valueOf(f4101.getImitm()).toLowerCase()
+					if (String.valueOf(f4101.getImitm().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& f4101.getImdsc1().toLowerCase()
 									.startsWith(valores.get(1))) {
@@ -557,7 +557,7 @@ public class CF41002 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F4101 f4101) {
 				String[] registros = new String[2];
-				registros[0] = String.valueOf(f4101.getImitm());
+				registros[0] = String.valueOf(f4101.getImitm().longValue());
 				registros[1] = f4101.getImdsc1();
 				return registros;
 			}

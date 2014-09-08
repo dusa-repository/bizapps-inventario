@@ -963,7 +963,7 @@ public class CF4111 extends CGenerico {
 				List<F4111> unidadnegocio = new ArrayList<F4111>();
 
 				for (F4111 unidad : unidades) {
-					if (unidad.getIldoc().toString().toLowerCase()
+					if (String.valueOf(unidad.getIldoc().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& unidad.getIldct().toLowerCase()
 									.startsWith(valores.get(1))
@@ -988,7 +988,7 @@ public class CF4111 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F4111 negocio) {
 				String[] registros = new String[6];
-				registros[0] = negocio.getIldoc().toString();
+				registros[0] = String.valueOf(negocio.getIldoc().longValue());
 				registros[1] = negocio.getIldct();
 				registros[2] = formatoFecha
 						.format(transformarJulianaAGregoria(negocio.getIltrdj()));
@@ -1020,7 +1020,7 @@ public class CF4111 extends CGenerico {
 					List<F4111> unidadnegocio = new ArrayList<F4111>();
 
 					for (F4111 unidad : unidades) {
-						if (unidad.getIldoc().toString().toLowerCase()
+						if (String.valueOf(unidad.getIldoc().longValue()).toLowerCase()
 								.startsWith(valores.get(0))
 								&& unidad.getIldct().toLowerCase()
 										.startsWith(valores.get(1))
@@ -1045,7 +1045,7 @@ public class CF4111 extends CGenerico {
 				@Override
 				protected String[] crearRegistros(F4111 negocio) {
 					String[] registros = new String[6];
-					registros[0] = negocio.getIldoc().toString();
+					registros[0] = String.valueOf(negocio.getIldoc().longValue());
 					registros[1] = negocio.getIldct();
 					registros[2] = formatoFecha
 							.format(transformarJulianaAGregoria(negocio
@@ -1379,7 +1379,7 @@ public class CF4111 extends CGenerico {
 				List<F4211> listF0005_2 = new ArrayList<F4211>();
 
 				for (F4211 f0005 : listF0005) {
-					if (String.valueOf(f0005.getId().getSddoco()).toLowerCase()
+					if (String.valueOf(f0005.getId().getSddoco().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& f0005.getId().getSddcto().toLowerCase()
 									.startsWith(valores.get(1))
@@ -1408,7 +1408,7 @@ public class CF4111 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F4211 f0005) {
 				String[] registros = new String[9];
-				registros[0] = String.valueOf(f0005.getId().getSddoco());
+				registros[0] = String.valueOf(f0005.getId().getSddoco().longValue());
 				registros[1] = f0005.getId().getSddcto();
 				registros[2] = String.valueOf(f0005.getId().getSdlnid());
 				registros[3] = f0005.getId().getSdkcoo();
@@ -1586,7 +1586,7 @@ public class CF4111 extends CGenerico {
 				List<F0101> lista = new ArrayList<F0101>();
 
 				for (F0101 f01 : listF0101) {
-					if (String.valueOf(f01.getAban8()).toLowerCase()
+					if (String.valueOf(f01.getAban8().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& f01.getAbalph().toLowerCase()
 									.startsWith(valores.get(1))
@@ -1607,7 +1607,7 @@ public class CF4111 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F0101 f013) {
 				String[] registros = new String[6];
-				registros[0] = String.valueOf(f013.getAban8());
+				registros[0] = String.valueOf(f013.getAban8().longValue());
 				registros[1] = f013.getAbalph();
 				registros[2] = f013.getAbalky();
 				registros[3] = f013.getAbsic();

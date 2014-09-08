@@ -522,21 +522,21 @@ public class CF4211 extends CGenerico {
 				List<F4211> listF0005_2 = new ArrayList<F4211>();
 
 				for (F4211 f0005 : listF0005) {
-					if (String.valueOf(f0005.getId().getSddoco()).toLowerCase()
+					if (String.valueOf(f0005.getId().getSddoco().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& f0005.getId().getSddcto().toLowerCase()
 									.startsWith(valores.get(1))
-							&& String.valueOf(f0005.getId().getSdlnid())
+							&& String.valueOf(f0005.getId().getSdlnid().longValue())
 									.toLowerCase().startsWith(valores.get(2))
 							&& f0005.getId().getSdkcoo().toLowerCase()
 									.startsWith(valores.get(3))
 							&& f0005.getSdmcu().toLowerCase()
 									.startsWith(valores.get(4))
-							&& String.valueOf(f0005.getSditm()).toLowerCase()
+							&& String.valueOf(f0005.getSditm().longValue()).toLowerCase()
 									.startsWith(valores.get(5))
-							&& String.valueOf(f0005.getSdpqor()).toLowerCase()
+							&& String.valueOf(f0005.getSdpqor().longValue()).toLowerCase()
 									.startsWith(valores.get(6))
-							&& String.valueOf(f0005.getSdecst()).toLowerCase()
+							&& String.valueOf(f0005.getSdecst().longValue()).toLowerCase()
 									.startsWith(valores.get(7))
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0005
@@ -551,14 +551,14 @@ public class CF4211 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F4211 f0005) {
 				String[] registros = new String[9];
-				registros[0] = String.valueOf(f0005.getId().getSddoco());
+				registros[0] = String.valueOf(f0005.getId().getSddoco().longValue());
 				registros[1] = f0005.getId().getSddcto();
-				registros[2] = String.valueOf(f0005.getId().getSdlnid());
+				registros[2] = String.valueOf(f0005.getId().getSdlnid().longValue());
 				registros[3] = f0005.getId().getSdkcoo();
 				registros[4] = f0005.getSdmcu();
-				registros[5] = String.valueOf(f0005.getSditm());
-				registros[6] = String.valueOf(f0005.getSdpqor());
-				registros[7] = String.valueOf(f0005.getSdecst());
+				registros[5] = String.valueOf(f0005.getSditm().longValue());
+				registros[6] = String.valueOf(f0005.getSdpqor().longValue());
+				registros[7] = String.valueOf(f0005.getSdecst().longValue());
 				registros[8] = formatoFecha
 						.format(transformarJulianaAGregoria(f0005.getSddrqj()));
 				;
