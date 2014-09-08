@@ -181,8 +181,8 @@ public class CF01151 extends CGenerico {
 						List<F01151> lista = servicioF01151
 								.buscarParaRegistrar(lon.doubleValue());
 						clavePk.setEaan8(lon.doubleValue());
-						clavePk.setEaidln(lista.size() + 1);
-						clavePk.setEarck7(0);
+						clavePk.setEaidln((double) (lista.size() + 1));
+						clavePk.setEarck7((double) 0);
 					}
 					f015.setId(clavePk);
 					f015.setEaemal(txtEmalF01151.getValue());
@@ -409,7 +409,7 @@ public class CF01151 extends CGenerico {
 					default:
 						break;
 					}
-					if (String.valueOf(f01.getId().getEaan8()).toLowerCase()
+					if (String.valueOf(f01.getId().getEaan8().longValue()).toLowerCase()
 							.startsWith(valores.get(0))
 							&& valor.toLowerCase().startsWith(valores.get(1))
 							&& f01.getEaemal().toLowerCase()
@@ -443,7 +443,7 @@ public class CF01151 extends CGenerico {
 					}
 				}
 				String[] registros = new String[5];
-				registros[0] = String.valueOf(f0115.getId().getEaan8());
+				registros[0] = String.valueOf(f0115.getId().getEaan8().longValue());
 				registros[1] = valor;
 				registros[2] = f0115.getEaemal();
 				registros[3] = String.valueOf(f0115.getEaehier());

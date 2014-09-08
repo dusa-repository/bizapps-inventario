@@ -57,8 +57,10 @@ public class Mensaje {
 	public static String citasAnuladas = "Se ha(n) Anulado la(s) Cita(s)";
 	public static String seleccioneCitaAnular = "Seleccione al menos una Cita para Anular";
 	public static String noCitasAnulacion = "Actualmente No hay Citas para su Anulacion";
+	public static String guardadosArchivos ="La Data ha sido Guardada Exitosamente";
 	public static String seleccionarProveedor = "Debe seleccionar un proveedor previamente para mostrar las ordenes respectivas de compra";
 	public static String itemRepetido = "Ya posee un Costo con ese codigo en la lista, modifique o elimine el existente";
+	public static String archivoExcel = "Los Archivos deben ser de Tipo .xlsx";
 	
 	public void mensajeInformacion(String msj) {
 	      Messagebox.show(msj, "Informacion",
