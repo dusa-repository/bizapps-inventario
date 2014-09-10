@@ -221,7 +221,6 @@ public class CF4101 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
-				System.out.println(tabs.size());
 				map.clear();
 				map = null;
 			}
@@ -849,7 +848,6 @@ public class CF4101 extends CGenerico {
 									clave = numero + 1;
 									F00021 f021 = servicioF00021.buscar("4",
 											"JE");
-									System.out.println(f021);
 									f021.setNln001(clave);
 									servicioF00021.guardar(f021);
 								} else {
@@ -873,7 +871,6 @@ public class CF4101 extends CGenerico {
 						nextNumber = true;
 						notifyAll();
 					}
-					System.out.println("clave" + clave);
 					f4101.setImitm(clave);
 					f4101.setImlitm(txtArticuloIMLITMF4101.getValue());
 					f4101.setImdsc1(txtIMDSC1F4101.getValue());
@@ -928,7 +925,6 @@ public class CF4101 extends CGenerico {
 					} else {
 						f4101.setImdppo("N");
 					}
-					System.out.println(txtDLTLF4101.getValue());
 					if (txtDLTLF4101.getText().compareTo("") != 0)
 						if (!txtDLTLF4101.getValue().equals("null"))
 							f4101.setImdltl(Double.parseDouble(txtDLTLF4101

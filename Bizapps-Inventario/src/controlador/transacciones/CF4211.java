@@ -255,12 +255,10 @@ public class CF4211 extends CGenerico {
 						f4211.setId(clave);
 						servicioF4211.guardar(f4211);
 					} else {
-						System.out.println(dtbFecha.getValue());
 						for (int i = 0; i < listaPedido.size(); i++) {
 							F4211 f42 = listaPedido.get(i);
 							Integer a = i + 1;
 							clave.setSdlnid(a.doubleValue());
-							System.out.println(clave.getSdlnid());
 							f4211 = new F4211();
 							f4211.setId(clave);
 							f4211.setSdmcu(txtPlanta1.getValue());

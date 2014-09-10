@@ -77,4 +77,13 @@ public class SF4111 {
 	public void guardarVarios(List<F4111> cardexs) {
 		iF4111DAO.save(cardexs);
 	}
+
+	public List<F4111> buscarHastaFecha2(BigDecimal hasta) {
+		return iF4111DAO.findByIlvpejBeforeOrderByMcuAsc(hasta);
+	}
+	
+	public List<F4111> buscarEntreFechas2(BigDecimal desde, BigDecimal hasta) {
+		// TODO Auto-generated method stub
+		return iF4111DAO.findByIlvpejBetweenOrderByIldocAsc(desde, hasta);
+	}
 }

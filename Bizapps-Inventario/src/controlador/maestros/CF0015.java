@@ -115,7 +115,6 @@ public class CF0015 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
-				System.out.println(tabs.size());
 				map.clear();
 				map = null;
 			}
@@ -258,7 +257,6 @@ public class CF0015 extends CGenerico {
 					foo15.setId(clave);
 
 					if (agregarMetodoCalculo) {
-						System.out.println("Metodo calculo");
 						foo15.setCxcrcm(txtCRCMF0015.getValue());
 						foo15.setCxcrr(Double.parseDouble(txtCRRF0015
 								.getValue()));

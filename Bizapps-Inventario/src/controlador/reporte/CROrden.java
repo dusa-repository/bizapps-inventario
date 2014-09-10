@@ -74,8 +74,10 @@ public class CROrden extends CGenerico {
 						.getValue());
 				BigDecimal hasta = transformarGregorianoAJulia(dtbHasta
 						.getValue());
-				List<F4111> ordenes = servicioF4111.buscarEntreFechas(desde,
-						hasta);
+//				List<F4111> ordenes = servicioF4111.buscarEntreFechas(desde,
+//						hasta);
+				List<F4111> ordenes = servicioF4111.buscarEntreFechas2(desde,
+								hasta);
 				if (!ordenes.isEmpty()) {
 					DateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
 					String fecha11 = fecha.format(dtbDesde.getValue());
@@ -153,10 +155,11 @@ public class CROrden extends CGenerico {
 		}
 		BigDecimal desde = transformarGregorianoAJulia(fecha1);
 		BigDecimal hasta = transformarGregorianoAJulia(fecha2);
-		List<F4111> ordenes = getServicioF4111().buscarEntreFechas(desde, hasta);
+//		List<F4111> ordenes = getServicioF4111().buscarEntreFechas(desde, hasta);
+		List<F4111> ordenes = getServicioF4111().buscarEntreFechas2(desde, hasta);
 		for (int i = 0; i < ordenes.size(); i++) {
 			Date fechaM = transformarJulianaAGregoria(ordenes.get(i)
-					.getIlcrdj());
+					.getIlvpej());
 			ordenes.get(i).setIlasid(formatoFecha.format(fechaM));
 			F4101 f = new F4101();
 			if (ordenes.get(i).getIlitm() != null) {

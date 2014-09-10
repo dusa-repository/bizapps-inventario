@@ -315,7 +315,6 @@ public class CF0101 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
-				System.out.println(tabs.size());
 				map.clear();
 				map = null;
 			}
@@ -357,8 +356,6 @@ public class CF0101 extends CGenerico {
 						}
 						if (!f01.getAbmcu().equals("")) {
 							txtMCUF0101.setValue(f01.getAbmcu());
-							System.out.println(servicioF0006.buscar(f01
-									.getAbmcu()));
 							if (servicioF0006.buscar(f01.getAbmcu()) != null)
 								lblMCUF0101.setValue(servicioF0006.buscar(
 										f01.getAbmcu()).getMcdl01());
@@ -598,7 +595,6 @@ public class CF0101 extends CGenerico {
 							if (clave == claveLong) {
 								double numero = servicioF00021
 										.Numero("5", "JE");
-								System.out.println("numero" + numero);
 								if (numero != 0) {
 									clave = numero + 1;
 									F00021 f021 = servicioF00021.buscar("5",
@@ -626,7 +622,6 @@ public class CF0101 extends CGenerico {
 						nextNumber = true;
 						notifyAll();
 					}
-					System.out.println(clave);
 					f01.setAban8(clave);
 					f01.setAbalky(txtALKYF0101.getValue());
 					f01.setAbalph(txtALPHF0101.getValue());
@@ -1145,7 +1140,6 @@ public class CF0101 extends CGenerico {
 		switch (idBoton) {
 		case "btnBuscarDireccion0":
 			// setearValores(f0101, txtAN81F0101, lblDireccion0F0101);
-			System.out.println("HOLAAa");
 			break;
 		case "btnBuscarDireccion1":
 			setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
@@ -1186,7 +1180,6 @@ public class CF0101 extends CGenerico {
 			case "txtAN81F0101":
 				f0101 = servicioF0101.buscar(txtAN81F0101.getValue());
 				// setearValores(f0101, txtAN81F0101, lblDireccion0F0101);
-				System.out.println("HOLAAa");
 				break;
 			case "btnBuscarDireccion1":
 				// setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
@@ -1288,7 +1281,6 @@ public class CF0101 extends CGenerico {
 
 	@Listen("onSeleccion = #catalogoF0006F0101")
 	public void seleccion() {
-		System.out.println("aqui");
 		F0006 f0006 = catalogoF0006.objetoSeleccionadoDelCatalogo();
 		txtMCUF0101.setValue(f0006.getMcmcu());
 		lblMCUF0101.setValue(f0006.getMcdl01());

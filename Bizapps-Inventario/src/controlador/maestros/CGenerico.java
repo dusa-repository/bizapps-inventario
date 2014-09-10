@@ -357,7 +357,6 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 			} catch (Exception a) {
 				nextNumber = true;
 				a.printStackTrace();
-				System.out.println("error");
 				return 0;
 			}
 		}

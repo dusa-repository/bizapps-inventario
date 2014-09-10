@@ -30,9 +30,6 @@ public class SF4105 {
 		Double costoPromedioNuevo = ((inte * costoUnitario) + (cantidadAnterior * costoUnitarioAnterior))
 				/ (cantidadAnterior + inte);
 		F4105 f05 = buscar(claveCostoUnitario);
-		System.out.println("cantidad"+inte+" "+"Costo"+costoUnitario+" "+"cantidadAnterior"+cantidadAnterior+" "+"costoAnterior"+costoUnitarioAnterior);
-		System.out.println("opera"+((inte * costoUnitario) + (cantidadAnterior * costoUnitarioAnterior))
-				/ (cantidadAnterior + inte));
 		if (f05 != null) {
 			if(costoPromedioNuevo.isNaN())
 				costoPromedioNuevo = (double) 0;
@@ -68,7 +65,6 @@ public class SF4105 {
 	}
 
 	public void guardarVarios(List<F4105> guardados) {
-		System.out.println(guardados.size()+"serv");
 		iF4105DAO.save(guardados);
 	}
 
