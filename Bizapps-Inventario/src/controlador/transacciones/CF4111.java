@@ -247,8 +247,6 @@ public class CF4111 extends CGenerico {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
 				titulo = (String) map.get("titulo");
-				System.out.println(titulo);
-				System.out.println(tabs.size());
 				map.clear();
 				map = null;
 			}
@@ -567,8 +565,6 @@ public class CF4111 extends CGenerico {
 									if (!tipo.equalsIgnoreCase("IA"))
 										inte = inte * -1;
 								}
-								System.out.println(tipo);
-								System.out.println(inte);
 								f4111.setIltrqt(inte.doubleValue());
 								Double total = inte * costoUnitario;
 								if (tipo.equals("I4"))
@@ -624,7 +620,6 @@ public class CF4111 extends CGenerico {
 									f4105 = servicioF4105
 											.buscar(claveCostoUnitario);
 									Double costo2 = (double) 0;
-									System.out.println("objeto" + f4105);
 									costoUnitarioAnterior = (double) 0;
 									if (f4105 != null) {
 										costoUnitarioAnterior = f4105
@@ -696,13 +691,11 @@ public class CF4111 extends CGenerico {
 										}
 										servicioF4211.guardarVarios(f421);
 									}
-									System.out.println("valor" + total2);
 									servicioF41021.guardar(f410212);
 									// guardo en la tabla de saldo y si
 									// es ajuste de costo sigo
 								}
 								if (tipo.equals("I4")) {
-									System.out.println("entro");
 									// busco el costo por si se embasura
 									// por alla
 									claveCostoUnitario = new F4105PK();
@@ -713,7 +706,6 @@ public class CF4111 extends CGenerico {
 									claveCostoUnitario.setColedg("02");
 									f4105 = servicioF4105
 											.buscar(claveCostoUnitario);
-									System.out.println(f4105);
 									if (f4105 != null)
 										f4105.setCouncs(costoActualizar);
 									else {
@@ -727,7 +719,6 @@ public class CF4111 extends CGenerico {
 						} catch (Exception a) {
 							nextNumber = true;
 							a.printStackTrace();
-							System.out.println("error");
 						}
 					}
 					synchronized (this) {
@@ -1004,7 +995,6 @@ public class CF4111 extends CGenerico {
 
 	@Listen("onClick=#btnBuscarF4111P")
 	public void mostrarCatalogoEmergente() {
-		System.out.println("entro");
 		if (txtF0101.getText().compareTo("") != 0) {
 			Long l = txtF0101.getValue();
 			final List<F4111> unidades = servicioF4111
@@ -1552,7 +1542,6 @@ public class CF4111 extends CGenerico {
 		txtUM.setValue(f4101.getImuom1());
 		txtUM2.setValue(f4101.getImuom2());
 		lblItem.setValue(f4101.getImdsc1());
-		System.out.println(clave41 + "clave");
 		if (tipo.equals("ET")) {
 			F4211 f42 = servicioF4211.buscarPorDocoEItem(txtPedido.getValue(),
 					f4101.getImitm());
@@ -1560,7 +1549,6 @@ public class CF4111 extends CGenerico {
 			txtUbicacion2.setValue(f42.getSdlocn());
 		}
 		if (clave41 != null) {
-			System.out.println(clave41 + "clave");
 			F4111 f = servicioF4111.buscar(clave41);
 			spnCosto.setValue(f.getIluncs());
 		}
@@ -1825,7 +1813,6 @@ public class CF4111 extends CGenerico {
 	@Listen("onChange=#spnCantidad,#txtPlanta1,#txtUbicacion1,#txtItem")
 	public void sumar() {
 		if (!tipo.equals("OV")) {
-			System.out.println(tipo);
 			if (txtItem.getText().compareTo("") != 0
 					|| txtPlanta1.getText().compareTo("") != 0
 					|| txtUbicacion1.getText().compareTo("") != 0)
@@ -1848,7 +1835,6 @@ public class CF4111 extends CGenerico {
 		double suma = 0;
 		if (f != null)
 			suma = f.getLipqoh();
-		System.out.println("suma" + suma);
 		if (suma - cantidad < 0) {
 			spnCantidad.setValue(0);
 			spnCantidad.setFocus(true);

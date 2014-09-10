@@ -19,7 +19,6 @@ public class SF0116 {
 	}
 
 	public void guardar(F0116 f0116) {
-		System.out.println("servicio"+f0116.getId().getAlan8());
 		f0116DAO.save(f0116);
 	}
 }

@@ -16,7 +16,6 @@ public class SF0010 {
 	private IF0010DAO f0010DAO;
 
 	public void guardar(F0010 f010) {
-		System.out.println(f010.getCcco());
 		f0010DAO.save(f010);
 	}
 
