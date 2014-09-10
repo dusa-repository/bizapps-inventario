@@ -1,0 +1,79 @@
+<zk>
+	<window width="70em" closable="false" id="wdwDetalle"
+		apply="controlador.seguridad.CDetalleImport">
+		<style src="/public/Estilo.css" />
+		<div id="divDetalle">
+			<groupbox width="auto" mold="3d" title="Detalle Z0">
+				<hbox>
+					<button autodisable="self" id="btnGuardar"
+						style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+						label="Guardar" tooltiptext="Guardar" image="/public/imagenes/botones/guardar.png" />
+					<button autodisable="self" id="btnSalir"
+						style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+						label="Salir" tooltiptext="Salir" image="/public/imagenes/botones/salir.png" />
+				</hbox>
+				<groupbox width="100%" class="azul" title="" closable="false">
+					<caption label="" style="font-weight:bold; font-size: 13px"
+						tooltiptext="" />
+					<separator />
+					<grid width="100%">
+						<columns visible="false">
+							<column label="" width="25%" />
+							<column label="" width="25%" />
+							<column label="" width="25%" />
+							<column label="" width="25%" />
+						</columns>
+						<rows>
+							<row>
+								<hbox>
+									<label class="etiqueta" value="Compañia" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red">
+									</label>
+								</hbox>
+								<textbox id="txtEmpresa" hflex="1" maxlength="5"
+									tooltiptext="Ingrese la Compañia" />
+								<button id="btnBuscarEmpresa" class="btn" label="Buscar"
+									image="/public/imagenes/botones/buscar.png" />
+								<label id="lblEmpresa" />
+							</row>
+							<row>
+								<hbox>
+									<label class="etiqueta" value="Sucursal/planta:" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red">
+									</label>
+								</hbox>
+								<textbox id="txtPlanta" hflex="1" maxlength="12"
+									tooltiptext="Ingrese la Sucursal de planta" />
+								<button autodisable="true" id="btnBuscarPlanta"
+									tooltiptext="Catalogo" class="btn" label="Buscar"
+									image="/public/imagenes/botones/buscar.png" />
+								<label id="lblPlanta" />
+							</row>
+							<row>
+								<hbox>
+									<label class="etiqueta" value="Ubicacion:" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red">
+									</label>
+								</hbox>
+								<textbox readonly="true" id="txtUbicacion" hflex="1"
+									maxlength="20" tooltiptext="Ingrese la Ubicacion" />
+								<button autodisable="true" id="btnBuscarUbicacion" class="btn"
+									label="Buscar" tooltiptext="Catalogo"
+									image="/public/imagenes/botones/buscar.png" />
+								<cell colspan="2">
+									<label id="lblUbicacion" />
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+			</groupbox>
+			<div id="divCatalogoF0006" tooltiptext="Click para Seleccionar un Almacen" />
+			<div id="divCatalogoF4100" tooltiptext="Click para Seleccionar una Ubicacion" />
+			<div id="divCatalogoF0010" tooltiptext="Click para Seleccionar una Compañia" />
+		</div>
+	</window>
+</zk>

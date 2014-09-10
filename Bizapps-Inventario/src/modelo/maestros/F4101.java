@@ -202,6 +202,9 @@ public class F4101 implements Serializable {
 
 	@Column(name = "IMLEDD")
 	private Double imledd;
+	
+	@Column(name = "REFERENCIA")
+	private Long referencia;
 
 	@Column(name = "IMLINE")
 	private String imline;
@@ -2222,6 +2225,14 @@ public class F4101 implements Serializable {
 
 	public void setImxdck(String imxdck) {
 		this.imxdck = imxdck;
+	}
+
+	public Long getReferencia() {
+		return referencia;
+	}
+
+	public void setReferencia(Long referencia) {
+		this.referencia = referencia;
 	}
 
 }

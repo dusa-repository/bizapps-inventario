@@ -194,9 +194,9 @@ public class CF4105 extends CGenerico {
 							f4105.setColitm(f41052.getColitm());
 							f4105.setCouncs(f41052.getCouncs());
 							// settear udcs
-							guardados.add(f4105);
+							servicioF4105.guardar(f4105);
 						}
-						servicioF4105.guardarVarios(guardados);
+//						servicioF4105.guardarVarios(guardados);
 					}
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();

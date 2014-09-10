@@ -23,6 +23,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.zkoss.util.media.Media;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
@@ -33,7 +34,9 @@ import org.zkoss.zul.A;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Tab;
+import org.zkoss.zul.Window;
 
 import componentes.Botonera;
 import componentes.Mensaje;
@@ -44,6 +47,7 @@ import controlador.maestros.CGenerico;
 public class CImportar extends CGenerico {
 
 	private static final long serialVersionUID = -7298493613443147836L;
+
 	@Wire
 	private Div botoneraImportar;
 	@Wire
@@ -57,6 +61,8 @@ public class CImportar extends CGenerico {
 	@Wire
 	private org.zkoss.zul.Row rowAlmacen;
 	@Wire
+	private org.zkoss.zul.Row rowDescripcion;
+	@Wire
 	private Label lblNombreUbicacion;
 	@Wire
 	private org.zkoss.zul.Row rowUbicacion;
@@ -68,6 +74,12 @@ public class CImportar extends CGenerico {
 	private Label lblNombreZ;
 	@Wire
 	private org.zkoss.zul.Row rowZ;
+	@Wire
+	private Label lblE;
+	@Wire
+	private Label lblA;
+	@Wire
+	private Label lblL;
 	private Media mediaEmpresa;
 	private Media mediaAlmacen;
 	private Media mediaUbicacion;
@@ -257,225 +269,214 @@ public class CImportar extends CGenerico {
 							lblNombreZ.setValue("");
 							rm.detach();
 							mediaZ = null;
+							rowDescripcion.setVisible(false);
 						}
 					});
 			rowZ.appendChild(rm);
+			abrir();
+			rowDescripcion.setVisible(true);
 		} else
 			msj.mensajeError(Mensaje.archivoExcel);
 	}
 
 	protected void importarZ() {
-
 		if (mediaZ != null) {
-			XSSFWorkbook workbook = null;
-			try {
-				workbook = new XSSFWorkbook(mediaZ.getStreamData());
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			XSSFSheet sheet = workbook.getSheetAt(0);
-			Iterator<Row> rowIterator = sheet.iterator();
-			String mostrarError = "";
-			if (rowIterator.hasNext()) {
-				List<F4111> cardexs = new ArrayList<F4111>();
-				int contadorRow = 0;
-				boolean error = false;
-				boolean errorLong = false;
-				while (rowIterator.hasNext() && !error && !errorLong) {
-					contadorRow = contadorRow + 1;
-					Row row = rowIterator.next();
-					F4100 ubicacion = new F4100();
-					F0006 almacen = new F0006();
-					F4101 articulo = new F4101();
-					F4111 cardex = new F4111();
-					Double idArticulo = null;
-					Double cantidad = null;
-					Double costo = null;
-					Double almacenReferencia = (double) 0;
-					String almacenRef = null;
-					Double ubicacionReferencia = (double) 0;
-					String ubicacionRef = null;
-					Iterator<Cell> cellIterator = row.cellIterator();
-					int contadorCell = 0;
-					while (cellIterator.hasNext() && !error && !errorLong) {
-						contadorCell = contadorCell + 1;
-						Cell cell = cellIterator.next();
-						switch (cell.getColumnIndex()) {
-						case 0:
-							if (cell.getCellType() == 0) {
-								idArticulo = cell.getNumericCellValue();
-							} else
-								error = true;
-							break;
-						case 1:
-							almacenRef = obtenerStringCualquiera(cell,
-									almacenReferencia, almacenRef);
-							if (almacenRef != null && almacenRef.length() > 12)
-								errorLong = true;
-							break;
-						case 2:
-							ubicacionRef = obtenerStringCualquiera(cell,
-									ubicacionReferencia, ubicacionRef);
-							if (ubicacionRef != null
-									&& ubicacionRef.length() > 20)
-								errorLong = true;
-							break;
-						case 3:
-							if (cell.getCellType() == 0) {
-								cantidad = cell.getNumericCellValue();
-							} else
-								error = true;
-							break;
-						case 4:
-							if (cell.getCellType() == 0) {
-								costo = cell.getNumericCellValue();
-							} else
-								error = true;
-							break;
-						default:
-							break;
+			if (lblE.getValue().compareTo("") != 0) {
+				if (lblA.getValue().compareTo("") != 0) {
+					if (lblL.getValue().compareTo("") != 0) {
+						XSSFWorkbook workbook = null;
+						try {
+							workbook = new XSSFWorkbook(mediaZ.getStreamData());
+						} catch (IOException e1) {
+							e1.printStackTrace();
 						}
-					}
-					if (!errorLong) {
-						if (!error && almacenRef != null
-								&& ubicacionRef != null && costo != null
-								&& idArticulo != null && cantidad != null) {
-							almacen = servicioF0006.buscar(almacenRef);
-							if (almacen != null) {
-								ubicacion = servicioF4100.buscarPorMcuYLoc(
-										almacenRef, ubicacionRef);
-								if (ubicacion != null) {
-									articulo = servicioF4101.buscar(idArticulo);
-									if (articulo != null) {
-										cardex.setIluser(nombreUsuarioSesion());
-										cardex.setIlvpej(transformarGregorianoAJulia(fecha));
-										cardex.setIlicu(Double
-												.valueOf(horaAuditoria));
-										cardex.setIlukid(nextNumber("6", "JE"));
-										cardex.setIldoc((double) 0);
-										cardex.setIldct("Z0");
-										cardex.setIltrex("Inicio de Inventario");
-										cardex.setIllotn("");
-										cardex.setIlmcu(almacenRef);
-										cardex.setIllocn(ubicacionRef);
-										cardex.setIlitm(idArticulo);
-										cardex.setIltrum(articulo.getImuom1());
-										cardex.setIluncs(costo);
-										cardex.setIltrqt(cantidad);
-										cardex.setIlpaid(cantidad * costo);
-										cardexs.add(cardex);
+						XSSFSheet sheet = workbook.getSheetAt(0);
+						Iterator<Row> rowIterator = sheet.iterator();
+						String mostrarError = "";
+						if (rowIterator.hasNext()) {
+							List<F4111> cardexs = new ArrayList<F4111>();
+							int contadorRow = 0;
+							boolean error = false;
+							boolean errorLong = false;
+							boolean entro = false;
+							while (rowIterator.hasNext() && !error
+									&& !errorLong) {
+								contadorRow = contadorRow + 1;
+								Row row = rowIterator.next();
+								if (!entro) {
+									row = rowIterator.next();
+									contadorRow = contadorRow + 1;
+									entro = true;
+								}
+								F4101 articulo = new F4101();
+								F4111 cardex = new F4111();
+								Double idArticulo = null;
+								Double cantidad = null;
+								Double costo = null;
+								Iterator<Cell> cellIterator = row
+										.cellIterator();
+								int contadorCell = 0;
+								while (cellIterator.hasNext() && !error
+										&& !errorLong) {
+									contadorCell = contadorCell + 1;
+									Cell cell = cellIterator.next();
+									switch (cell.getColumnIndex()) {
+									case 0:
+										if (cell.getCellType() == 0) {
+											idArticulo = cell
+													.getNumericCellValue();
+										} else
+											error = true;
+										break;
+									case 1:
+										if (cell.getCellType() == 0) {
+											cantidad = cell
+													.getNumericCellValue();
+										} else
+											error = true;
+										break;
+									case 2:
+										if (cell.getCellType() == 0) {
+											costo = cell.getNumericCellValue();
+										} else
+											error = true;
+										break;
+									default:
+										break;
+									}
+								}
+								if (!errorLong) {
+									if (!error && costo != null
+											&& idArticulo != null
+											&& cantidad != null) {
+										articulo = servicioF4101
+												.buscarPorReferencia(idArticulo.longValue());
+										if (articulo != null) {
+											cardex.setIluser(nombreUsuarioSesion());
+											cardex.setIlvpej(transformarGregorianoAJulia(fecha));
+											cardex.setIlicu(Double
+													.valueOf(horaAuditoria));
+											cardex.setIlukid(nextNumber("6",
+													"JE"));
+											cardex.setIldoc((double) 0);
+											cardex.setIldct("Z0");
+											cardex.setIltrex("Inicio de Inventario");
+											cardex.setIllotn("");
+											cardex.setIlmcu(lblA.getValue());
+											cardex.setIllocn(lblL.getValue());
+											cardex.setIlitm(articulo.getImitm());
+											cardex.setIltrum(articulo
+													.getImuom1());
+											cardex.setIluncs(costo);
+											cardex.setIltrqt(cantidad);
+											cardex.setIlpaid(cantidad * costo);
+											cardexs.add(cardex);
+										} else {
+											mostrarError = mostrarError
+													+ valorNoEncontrado
+													+ " F4101. El valor es: "
+													+ idArticulo
+													+ ". Se encuentra en la Fila: "
+													+ contadorRow;
+
+											msj.mensajeError(valorNoEncontrado
+													+ " F4101. El valor es: "
+													+ idArticulo
+													+ ". Se encuentra en la Fila: "
+													+ contadorRow
+													+ ". Y Columna: 1");
+											error = true;
+										}
 									} else {
 										mostrarError = mostrarError
-												+ valorNoEncontrado
-												+ " F4101. El valor es: "
-												+ idArticulo
-												+ ". Se encuentra en la Fila: "
-												+ contadorRow;
+												+ archivoConError
+												+ lblNombreUbicacion.getValue()
+												+ ". Fila: " + contadorRow
+												+ ". Columna: " + contadorCell;
 
-										msj.mensajeError(valorNoEncontrado
-												+ " F4101. El valor es: "
-												+ idArticulo
-												+ ". Se encuentra en la Fila: "
-												+ contadorRow);
-										error = true;
+										msj.mensajeError(archivoConError
+												+ lblNombreUbicacion.getValue()
+												+ ". Fila: " + contadorRow
+												+ ". Columna: " + contadorCell);
 									}
 								} else {
 									mostrarError = mostrarError
-											+ valorNoEncontrado
-											+ " F4100. El valor es: "
-											+ ubicacionRef + " y el Almacen:"
-											+ almacenRef
-											+ ". Se encuentra en la Fila: "
-											+ contadorRow;
+											+ errorLongitud
+											+ lblNombreUbicacion.getValue()
+											+ ". Fila: "
+											+ contadorRow
+											+ ". Columna: "
+											+ contadorCell
+											+ ". Longitudes permitidas: campo1 20 y campo2 12";
 
-									msj.mensajeError(valorNoEncontrado
-											+ " F4100. El valor es: "
-											+ ubicacionRef + " y el Almacen:"
-											+ almacenRef
-											+ ". Se encuentra en la Fila: "
-											+ contadorRow);
-									error = true;
+									msj.mensajeError(errorLongitud
+											+ lblNombreUbicacion.getValue()
+											+ ". Fila: "
+											+ contadorRow
+											+ ". Columna: "
+											+ contadorCell
+											+ ". Longitudes permitidas: campo1 20 y campo2 12");
 								}
-							} else {
-								mostrarError = mostrarError + valorNoEncontrado
-										+ " F0006. El valor es: " + almacenRef
-										+ ". Se encuentra en la Fila: "
-										+ contadorRow;
-								msj.mensajeError(valorNoEncontrado
-										+ " F0006. El valor es: " + almacenRef
-										+ ". Se encuentra en la Fila: "
-										+ contadorRow);
-								error = true;
 							}
-						} else {
-							mostrarError = mostrarError + archivoConError
-									+ lblNombreUbicacion.getValue()
-									+ ". Fila: " + contadorRow + ". Columna: "
-									+ contadorCell;
-
-							msj.mensajeError(archivoConError
-									+ lblNombreUbicacion.getValue()
-									+ ". Fila: " + contadorRow + ". Columna: "
-									+ contadorCell);
-						}
+							if (!error) {
+								for (int i = 0; i < cardexs.size(); i++) {
+									// Saldo
+									double cantidadAnterior = 0;
+									F41021PK claveSaldo = new F41021PK();
+									claveSaldo.setLiitm(cardexs.get(i)
+											.getIlitm());
+									claveSaldo.setLilocn(cardexs.get(i)
+											.getIllocn());
+									claveSaldo.setLilotn("");
+									claveSaldo.setLimcu(cardexs.get(i)
+											.getIlmcu());
+									F41021 f41021 = servicioF41021
+											.buscar(claveSaldo);
+									if (f41021 != null) {
+										cantidadAnterior = f41021.getLipqoh();
+										f41021.setLipqoh(f41021.getLipqoh()
+												+ cardexs.get(i).getIltrqt());
+									} else {
+										f41021 = new F41021();
+										f41021.setId(claveSaldo);
+										f41021.setLipqoh(cardexs.get(i)
+												.getIltrqt());
+									}
+									servicioF41021.guardar(f41021);
+									// Costos
+									guardarCostoPromedio(cardexs.get(i),
+											cantidadAnterior);
+									F4105 f4105 = new F4105();
+									F4105PK claveCostoUnitario = new F4105PK();
+									claveCostoUnitario.setCoitm(cardexs.get(i)
+											.getIlitm());
+									claveCostoUnitario.setComcu(cardexs.get(i)
+											.getIlmcu());
+									claveCostoUnitario.setColocn("");
+									claveCostoUnitario.setColotn("");
+									claveCostoUnitario.setColedg("01");
+									f4105.setId(claveCostoUnitario);
+									f4105.setCouncs(cardexs.get(i).getIluncs());
+									servicioF4105.guardar(f4105);
+								}
+								servicioF4111.guardarVarios(cardexs);
+							} else
+								errorGeneral = true;
+						} else
+							msj.mensajeAlerta(archivoVacio + " "
+									+ lblNombreUbicacion.getValue());
 					} else {
-						mostrarError = mostrarError
-								+ errorLongitud
-								+ lblNombreUbicacion.getValue()
-								+ ". Fila: "
-								+ contadorRow
-								+ ". Columna: "
-								+ contadorCell
-								+ ". Longitudes permitidas: campo1 20 y campo2 12";
-
-						msj.mensajeError(errorLongitud
-								+ lblNombreUbicacion.getValue()
-								+ ". Fila: "
-								+ contadorRow
-								+ ". Columna: "
-								+ contadorCell
-								+ ". Longitudes permitidas: campo1 20 y campo2 12");
+						errorGeneral = true;
+						msj.mensajeAlerta("Debe seleccionar una Ubicacion");
 					}
-				}
-				if (!error) {
-					for (int i = 0; i < cardexs.size(); i++) {
-						// Saldo
-						double cantidadAnterior = 0;
-						F41021PK claveSaldo = new F41021PK();
-						claveSaldo.setLiitm(cardexs.get(i).getIlitm());
-						claveSaldo.setLilocn(cardexs.get(i).getIllocn());
-						claveSaldo.setLilotn("");
-						claveSaldo.setLimcu(cardexs.get(i).getIlmcu());
-						F41021 f41021 = servicioF41021.buscar(claveSaldo);
-						if (f41021 != null) {
-							cantidadAnterior = f41021.getLipqoh();
-							f41021.setLipqoh(f41021.getLipqoh()
-									+ cardexs.get(i).getIltrqt());
-						} else {
-							f41021 = new F41021();
-							f41021.setId(claveSaldo);
-							f41021.setLipqoh(cardexs.get(i).getIltrqt());
-						}
-						servicioF41021.guardar(f41021);
-						// Costos
-						guardarCostoPromedio(cardexs.get(i), cantidadAnterior);
-						F4105 f4105 = new F4105();
-						F4105PK claveCostoUnitario = new F4105PK();
-						claveCostoUnitario.setCoitm(cardexs.get(i).getIlitm());
-						claveCostoUnitario.setComcu(cardexs.get(i).getIlmcu());
-						claveCostoUnitario.setColocn("");
-						claveCostoUnitario.setColotn("");
-						claveCostoUnitario.setColedg("01");
-						f4105.setId(claveCostoUnitario);
-						f4105.setCouncs(cardexs.get(i).getIluncs());
-						servicioF4105.guardar(f4105);
-					}
-					servicioF4111.guardarVarios(cardexs);
-				} else
+				} else {
 					errorGeneral = true;
-			} else
-				msj.mensajeAlerta(archivoVacio + " "
-						+ lblNombreUbicacion.getValue());
+					msj.mensajeAlerta("Debe seleccionar un Almacen");
+				}
+			} else {
+				errorGeneral = true;
+				msj.mensajeAlerta("Debe seleccionar una Empresa");
+			}
 		}
 	}
 
@@ -528,6 +529,7 @@ public class CImportar extends CGenerico {
 					String campoUdc = null;
 					Double udcReferencia2 = (double) 0;
 					String campoUdc2 = null;
+					Double idItemReferencia = null;
 					Iterator<Cell> cellIterator = row.cellIterator();
 					int contadorCell = 0;
 					while (cellIterator.hasNext() && !error && !errorLong) {
@@ -560,23 +562,31 @@ public class CImportar extends CGenerico {
 							if (campoUdc.length() > 2)
 								errorLong = true;
 							break;
+						case 4:
+							if (cell.getCellType() == 0) {
+								idItemReferencia = cell.getNumericCellValue();
+							} else
+								error = true;
+							break;
 						default:
 							break;
 						}
 					}
 					if (!errorLong) {
 						if (!error && campoUdc != null && idRef != null
-								&& nombre != null && campoUdc2 != null) {
+								&& nombre != null && campoUdc2 != null
+								&& idItemReferencia != null) {
 							udc = servicioF0005.buscar("41", "I", campoUdc);
 							if (udc != null) {
 								udc2 = servicioF0005.buscar("00", "UM",
 										campoUdc2);
 								if (udc2 != null) {
-									articulo.setImitm(nextNumber("4", "JE"));
 									articulo.setImlitm(idRef);
 									articulo.setImdsc1(nombre);
 									articulo.setImuom1(campoUdc2);
 									articulo.setImstkt(campoUdc);
+									articulo.setReferencia(idItemReferencia
+											.longValue());
 									articulo.setImdsc2("");
 									articulo.setImsrtx("");
 									articulo.setImglpt("");
@@ -649,6 +659,7 @@ public class CImportar extends CGenerico {
 				if (!error) {
 					String nombre = "";
 					for (int i = 0; i < articulos.size(); i++) {
+						articulos.get(i).setImitm(nextNumber("4", "JE"));
 						nombre = articulos.get(i).getImdsc1();
 						if (i < articulos.size() - 1) {
 							for (int j = i + 1; j < articulos.size(); j++) {
@@ -1068,6 +1079,32 @@ public class CImportar extends CGenerico {
 			}
 			return null;
 		}
+	}
+
+	@Listen("onClick = #btnModificar")
+	public void abrir() {
+		HashMap<String, Object> mapita = new HashMap<String, Object>();
+		mapita.put("empresa", lblE.getValue());
+		mapita.put("almacen", lblA.getValue());
+		mapita.put("ubicacion", lblL.getValue());
+		mapita.put("empresaEtiqueta", lblE);
+		mapita.put("almacenEtiqueta", lblA);
+		mapita.put("ubicacionEtiqueta", lblL);
+		Sessions.getCurrent().setAttribute("detalle", mapita);
+		Window window = (Window) Executions.createComponents(
+				"/vistas/seguridad/VDetalleImportar.zul", null, mapita);
+		window.doModal();
+	}
+
+	public void actualizar(String empresa, String almacen, String ubicacion,
+			Label lblEmpresaDetalle, Label lblPlantaDetalle,
+			Label lblUbicacionDetalle) {
+		lblE = lblEmpresaDetalle;
+		lblA = lblPlantaDetalle;
+		lblL = lblUbicacionDetalle;
+		lblE.setValue(empresa);
+		lblA.setValue(almacen);
+		lblL.setValue(ubicacion);
 	}
 
 }

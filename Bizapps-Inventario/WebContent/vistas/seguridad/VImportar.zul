@@ -10,51 +10,88 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="35%" />
-						<column label="" width="20%" />
-						<column label="" width="35%" />
-						<column label="" width="10%" />
+						<column label="" width="5.5%" />
+						<column label="" width="19.5%" />
+						<column label="" width="8.5%" />
+						<column label="" width="16.5%" />
+						<column label="" width="6.5%" />
+						<column label="" width="18.5%" />
+						<column label="" width="12.5%" />
+						<column label="" width="12.5%" />
 					</columns>
 					<rows>
 						<row id="rowEmpresa">
-							<label class="etiqueta" value="Importar Empresas:" />
+							<cell colspan="3">
+								<label class="etiqueta" value="Importar Empresas:" />
+							</cell>
 							<button autodisable="self" id="btnImportarEmpresa"
 								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
 								upload="true" label="Buscar" tooltiptext="Importar Medicinas"
 								image="/public/imagenes/botones/importar.png" />
-							<label id="lblNombreEmpresa" />
+							<cell colspan="3">
+								<label id="lblNombreEmpresa" />
+							</cell>
 						</row>
 						<row id="rowAlmacen">
-							<label class="etiqueta" value="Importar Almacen/Planta:" />
+							<cell colspan="3">
+								<label class="etiqueta" value="Importar Almacen/Planta:" />
+							</cell>
 							<button autodisable="self" id="btnImportarAlmacen"
 								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
 								upload="true" label="Buscar" tooltiptext="Importar Examenes"
 								image="/public/imagenes/botones/importar.png" />
-							<label id="lblNombreAlmacen" />
+							<cell colspan="3">
+								<label id="lblNombreAlmacen" />
+							</cell>
 						</row>
 						<row id="rowUbicacion">
-							<label class="etiqueta" value="Importar Ubicaciones:" />
+							<cell colspan="3">
+								<label class="etiqueta" value="Importar Ubicaciones:" />
+							</cell>
 							<button autodisable="self" id="btnImportarUbicacion"
 								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
 								upload="true" label="Buscar" tooltiptext="Importar Areas"
 								image="/public/imagenes/botones/importar.png" />
-							<label id="lblNombreUbicacion" />
+							<cell colspan="3">
+								<label id="lblNombreUbicacion" />
+							</cell>
 						</row>
 						<row id="rowArticulo">
-							<label class="etiqueta" value="Importar Articulo:" />
+							<cell colspan="3">
+								<label class="etiqueta" value="Importar Articulo:" />
+							</cell>
 							<button autodisable="self" id="btnImportarArticulo"
 								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
 								upload="true" label="Buscar" tooltiptext="Importar Diagnosticos"
 								image="/public/imagenes/botones/importar.png" />
-							<label id="lblNombreArticulo" />
+							<cell colspan="3">
+								<label id="lblNombreArticulo" />
+							</cell>
 						</row>
 						<row id="rowZ">
-							<label class="etiqueta" value="Importar Z0:" />
+							<cell colspan="3">
+								<label class="etiqueta" value="Importar Z0:" />
+							</cell>
 							<button autodisable="self" id="btnImportarZ"
 								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
 								upload="true" label="Buscar" tooltiptext="Importar Pacientes"
 								image="/public/imagenes/botones/importar.png" />
-							<label id="lblNombreZ" />
+							<cell colspan="3">
+								<label id="lblNombreZ" />
+							</cell>
+						</row>
+						<row id="rowDescripcion" visible="false">
+							<label class="etiqueta" value="Empresa:" />
+							<label id="lblE" value="" />
+							<label class="etiqueta" value="Sucursal/Planta:" />
+							<label id="lblA" value="" />
+							<label class="etiqueta" value="Ubicacion:" />
+							<label id="lblL" value="" />
+							<button autodisable="self" id="btnModificar"
+								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+								label="Buscar" tooltiptext="Modificar"
+								image="/public/imagenes/botones/generar.png" />
+							<hbox />
 						</row>
 					</rows>
 				</grid>

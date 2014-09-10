@@ -68,6 +68,7 @@ public class SF4105 {
 	}
 
 	public void guardarVarios(List<F4105> guardados) {
+		System.out.println(guardados.size()+"serv");
 		iF4105DAO.save(guardados);
 	}
 
