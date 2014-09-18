@@ -44,4 +44,7 @@ public interface IF4111DAO extends JpaRepository<F4111, Double> {
 	@Query("select f from F4111 f where f.ilvpej between ?1 and ?2 order by f.ildoc asc, f.ildct asc, f.ilitm asc")
 	List<F4111> findByIlvpejBetweenOrderByIldocAsc(BigDecimal desde,
 			BigDecimal hasta);
+
+	F4111 findByIldocAndIldctAndIlitm(Double claveDoc, String string,
+			Double double1);
 }

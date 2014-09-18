@@ -215,7 +215,7 @@ public class CF4111 extends CGenerico {
 	private Groupbox gpxItems;
 	@Wire
 	private Row rowBoton;
-	
+
 	Botonera botonera;
 	Catalogo<F4111> catalogo;
 	Catalogo<F4111> catalogoEmergente;
@@ -376,7 +376,7 @@ public class CF4111 extends CGenerico {
 			public void seleccionar() {
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
-						
+
 						mostrarGroupbox();
 						F4111 f4111 = catalogo.objetoSeleccionadoDelCatalogo();
 						List<F4111> listF4111 = servicioF4111.buscarPorDoc(
@@ -954,8 +954,8 @@ public class CF4111 extends CGenerico {
 				List<F4111> unidadnegocio = new ArrayList<F4111>();
 
 				for (F4111 unidad : unidades) {
-					if (String.valueOf(unidad.getIldoc().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+					if (String.valueOf(unidad.getIldoc().longValue())
+							.toLowerCase().startsWith(valores.get(0))
 							&& unidad.getIldct().toLowerCase()
 									.startsWith(valores.get(1))
 							&& formatoFecha
@@ -1010,8 +1010,8 @@ public class CF4111 extends CGenerico {
 					List<F4111> unidadnegocio = new ArrayList<F4111>();
 
 					for (F4111 unidad : unidades) {
-						if (String.valueOf(unidad.getIldoc().longValue()).toLowerCase()
-								.startsWith(valores.get(0))
+						if (String.valueOf(unidad.getIldoc().longValue())
+								.toLowerCase().startsWith(valores.get(0))
 								&& unidad.getIldct().toLowerCase()
 										.startsWith(valores.get(1))
 								&& formatoFecha
@@ -1035,7 +1035,8 @@ public class CF4111 extends CGenerico {
 				@Override
 				protected String[] crearRegistros(F4111 negocio) {
 					String[] registros = new String[6];
-					registros[0] = String.valueOf(negocio.getIldoc().longValue());
+					registros[0] = String.valueOf(negocio.getIldoc()
+							.longValue());
 					registros[1] = negocio.getIldct();
 					registros[2] = formatoFecha
 							.format(transformarJulianaAGregoria(negocio
@@ -1369,8 +1370,8 @@ public class CF4111 extends CGenerico {
 				List<F4211> listF0005_2 = new ArrayList<F4211>();
 
 				for (F4211 f0005 : listF0005) {
-					if (String.valueOf(f0005.getId().getSddoco().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+					if (String.valueOf(f0005.getId().getSddoco().longValue())
+							.toLowerCase().startsWith(valores.get(0))
 							&& f0005.getId().getSddcto().toLowerCase()
 									.startsWith(valores.get(1))
 							&& String.valueOf(f0005.getId().getSdlnid())
@@ -1398,7 +1399,8 @@ public class CF4111 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F4211 f0005) {
 				String[] registros = new String[9];
-				registros[0] = String.valueOf(f0005.getId().getSddoco().longValue());
+				registros[0] = String.valueOf(f0005.getId().getSddoco()
+						.longValue());
 				registros[1] = f0005.getId().getSddcto();
 				registros[2] = String.valueOf(f0005.getId().getSdlnid());
 				registros[3] = f0005.getId().getSdkcoo();
@@ -1448,8 +1450,12 @@ public class CF4111 extends CGenerico {
 		String descripcion = "";
 		if (tipo.equals("ET")) {
 			descripcion = "Cantidad Solicitada";
-		} else
-			descripcion = "Descripcion";
+		} else {
+			if (tipo.equals("DP"))
+				descripcion = "Cantidad Recibida";
+			else
+				descripcion = "Descripcion";
+		}
 		catalogoF4101 = new Catalogo<F4101>(catalogoItemF4101, "F4101",
 				listF4101, true, false, false, "Número artículo",
 				"Descripcion", descripcion, "Texto búsqueda", "Tipo línea",
@@ -1463,11 +1469,19 @@ public class CF4111 extends CGenerico {
 				for (F4101 f4101 : listF4101) {
 					F4211 f = servicioF4211.buscarPorDocoEItem(
 							txtPedido.getValue(), f4101.getImitm());
+					F4111 v = new F4111();
 					String cantidad = "";
 					if (tipo.equals("ET")) {
 						cantidad = f.getSdpqor().toString();
-					} else
-						cantidad = f4101.getImdsc2();
+					} else {
+						if (tipo.equals("DP")) {
+							v = servicioF4111.buscarTodosOrdenadosPorDoc("OV",
+									claveDoc, f4101.getImitm());
+							cantidad = String
+									.valueOf(v.getIltrqt().longValue());
+						} else
+							cantidad = f4101.getImdsc2();
+					}
 					String valor = "";
 					if (f4101.getImsrp1() != null)
 						valor = f4101.getImsrp1();
@@ -1494,11 +1508,18 @@ public class CF4111 extends CGenerico {
 			protected String[] crearRegistros(F4101 f4101) {
 				F4211 f = servicioF4211.buscarPorDocoEItem(
 						txtPedido.getValue(), f4101.getImitm());
+				F4111 v = new F4111();
 				String cantidad = "";
 				if (tipo.equals("ET")) {
 					cantidad = f.getSdpqor().toString();
-				} else
-					cantidad = f4101.getImdsc2();
+				} else {
+					if (tipo.equals("DP")) {
+						v = servicioF4111.buscarTodosOrdenadosPorDoc("OV",
+								claveDoc, f4101.getImitm());
+						cantidad = String.valueOf(v.getIltrqt().longValue());
+					} else
+						cantidad = f4101.getImdsc2();
+				}
 				String[] registros = new String[7];
 				registros[0] = f4101.getImlitm();
 				registros[1] = f4101.getImdsc1();
@@ -1547,10 +1568,13 @@ public class CF4111 extends CGenerico {
 					f4101.getImitm());
 			spnCantidad.setValue(f42.getSdpqor().intValue());
 			txtUbicacion2.setValue(f42.getSdlocn());
+			lblUbicacion2.setValue(f42.getSdlocn());
 		}
 		if (clave41 != null) {
-			F4111 f = servicioF4111.buscar(clave41);
+			F4111 f = servicioF4111.buscarTodosOrdenadosPorDoc("OV",
+					claveDoc, f4101.getImitm());
 			spnCosto.setValue(f.getIluncs());
+			spnCantidad.setValue(f.getIltrqt().intValue());
 		}
 	}
 
@@ -1574,8 +1598,8 @@ public class CF4111 extends CGenerico {
 				List<F0101> lista = new ArrayList<F0101>();
 
 				for (F0101 f01 : listF0101) {
-					if (String.valueOf(f01.getAban8().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+					if (String.valueOf(f01.getAban8().longValue())
+							.toLowerCase().startsWith(valores.get(0))
 							&& f01.getAbalph().toLowerCase()
 									.startsWith(valores.get(1))
 							&& f01.getAbalky().toLowerCase()
@@ -1697,56 +1721,58 @@ public class CF4111 extends CGenerico {
 	@Listen("onClick = #btnAgregar")
 	public void annadirLista() {
 		if (validarItems()) {
-			Double item = txtItem.getValue();
-			String itemNombre = lblItem.getValue();
-			int cantidad = spnCantidad.getValue();
-			double costo = spnCosto.getValue();
-			String um = txtUM.getValue();
-			String ubicacion = txtUbicacion1.getValue();
-			String ubicacion2 = txtUbicacion2.getValue();
-			String mcu = txtPlanta1.getValue();
-			F4105 f4105 = new F4105();
-			if (tipo.equals("OV")) {
-				mcu = txtPlanta2.getValue();
-				f4105 = null;
-			} else {
-				if (!tipo.equals("DP")) {
-					F4105PK claveCostoUnitario = new F4105PK();
-					claveCostoUnitario.setCoitm(item);
-					claveCostoUnitario.setComcu(mcu);
-					claveCostoUnitario.setColocn("");
-					claveCostoUnitario.setColotn("");
-					claveCostoUnitario.setColedg("02");
-					f4105 = servicioF4105.buscar(claveCostoUnitario);
-				} else
+			if (calcular(txtPlanta1)) {
+				Double item = txtItem.getValue();
+				String itemNombre = lblItem.getValue();
+				int cantidad = spnCantidad.getValue();
+				double costo = spnCosto.getValue();
+				String um = txtUM.getValue();
+				String ubicacion = txtUbicacion1.getValue();
+				String ubicacion2 = txtUbicacion2.getValue();
+				String mcu = txtPlanta1.getValue();
+				F4105 f4105 = new F4105();
+				if (tipo.equals("OV")) {
+					mcu = txtPlanta2.getValue();
 					f4105 = null;
-				mcu = txtPlanta1.getValue();
-			}
-			double costoIn = 0;
-			if (f4105 != null)
-				costoIn = f4105.getCouncs();
-			else
-				costoIn = costo;
-			double valorTotal = costoIn * cantidad;
-			Generico modelo = new Generico(item, itemNombre, um, ubicacion, "",
-					ubicacion2, "", cantidad, costoIn);
-			modelo.setValor11(valorTotal);
-
-			for (int i = 0; i < ltbItems.getItemCount(); i++) {
-				Listitem listItem = ltbItems.getItemAtIndex(i);
-				Generico modeloLista = listItem.getValue();
-				if (modeloLista.getValor1().equals(item)
-						&& modeloLista.getValor4().equals(ubicacion)) {
-					ltbItems.removeItemAt(i);
-					lista.remove(modeloLista);
-					ltbItems.renderAll();
-					i = ltbItems.getItemCount();
+				} else {
+					if (!tipo.equals("DP") && !tipo.equals("I4")) {
+						F4105PK claveCostoUnitario = new F4105PK();
+						claveCostoUnitario.setCoitm(item);
+						claveCostoUnitario.setComcu(mcu);
+						claveCostoUnitario.setColocn("");
+						claveCostoUnitario.setColotn("");
+						claveCostoUnitario.setColedg("02");
+						f4105 = servicioF4105.buscar(claveCostoUnitario);
+					} else
+						f4105 = null;
+					mcu = txtPlanta1.getValue();
 				}
+				double costoIn = 0;
+				if (f4105 != null)
+					costoIn = f4105.getCouncs();
+				else
+					costoIn = costo;
+				double valorTotal = costoIn * cantidad;
+				Generico modelo = new Generico(item, itemNombre, um, ubicacion,
+						"", ubicacion2, "", cantidad, costoIn);
+				modelo.setValor11(valorTotal);
+
+				for (int i = 0; i < ltbItems.getItemCount(); i++) {
+					Listitem listItem = ltbItems.getItemAtIndex(i);
+					Generico modeloLista = listItem.getValue();
+					if (modeloLista.getValor1().equals(item)
+							&& modeloLista.getValor4().equals(ubicacion)) {
+						ltbItems.removeItemAt(i);
+						lista.remove(modeloLista);
+						ltbItems.renderAll();
+						i = ltbItems.getItemCount();
+					}
+				}
+				lista.add(modelo);
+				ltbItems.setModel(new ListModelList<Generico>(lista));
+				ltbItems.renderAll();
+				limpiarCamposItem();
 			}
-			lista.add(modelo);
-			ltbItems.setModel(new ListModelList<Generico>(lista));
-			ltbItems.renderAll();
-			limpiarCamposItem();
 		} else
 			msj.mensajeAlerta(Mensaje.camposVaciosItem);
 	}
@@ -1810,38 +1836,31 @@ public class CF4111 extends CGenerico {
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
 	}
 
-	@Listen("onChange=#spnCantidad,#txtPlanta1,#txtUbicacion1,#txtItem")
-	public void sumar() {
+	public boolean calcular(Textbox txtPlanta22) {
 		if (!tipo.equals("OV")) {
-			if (txtItem.getText().compareTo("") != 0
-					|| txtPlanta1.getText().compareTo("") != 0
-					|| txtUbicacion1.getText().compareTo("") != 0)
-				calcular(txtPlanta1);
-		}
+			Integer cantidad = spnCantidad.getValue();
+			if (tipo.equals("IA"))
+				cantidad = cantidad * -1;
+			F41021PK claveSaldo = new F41021PK();
+			claveSaldo.setLiitm(txtItem.getValue());
+			claveSaldo.setLilocn(txtUbicacion1.getValue());
+			claveSaldo.setLimcu(txtPlanta22.getValue());
+			claveSaldo.setLilotn("");
+			F41021 f = servicioF41021.buscar(claveSaldo);
+			double suma = 0;
+			if (f != null)
+				suma = f.getLipqoh();
+			if (suma - cantidad < 0) {
+				spnCantidad.setValue(Double.valueOf(suma).intValue());
+				spnCantidad.setFocus(true);
+				msj.mensajeError(Mensaje.noPoseeExistencia);
+				return false;
+			} else
+				return true;
+		} else
+			return true;
 	}
 
-	private void calcular(Textbox txtPlanta22) {
-		Integer cantidad = spnCantidad.getValue();
-		// Double suma = servicioF4111.sumar(txtItem.getValue(),
-		// txtPlanta22.getValue(), txtUbicacion1.getValue());
-		if (tipo.equals("IA"))
-			cantidad = cantidad * -1;
-		F41021PK claveSaldo = new F41021PK();
-		claveSaldo.setLiitm(txtItem.getValue());
-		claveSaldo.setLilocn(txtUbicacion1.getValue());
-		claveSaldo.setLimcu(txtPlanta22.getValue());
-		claveSaldo.setLilotn("");
-		F41021 f = servicioF41021.buscar(claveSaldo);
-		double suma = 0;
-		if (f != null)
-			suma = f.getLipqoh();
-		if (suma - cantidad < 0) {
-			spnCantidad.setValue(0);
-			spnCantidad.setFocus(true);
-			msj.mensajeError(Mensaje.noPoseeExistencia);
-		}
-	}
-	
 	@Listen("onClick = #btnAgregarItems")
 	public void mostrarGroupbox() {
 		gpxItems.setVisible(true);

@@ -190,7 +190,7 @@
 										visible="false" />
 									<hbox id="boxCosto" visible="false">
 										<label visible="false" id="lblCosto" class="etiqueta"
-											value="Costo:" />
+											value="Costo x UM:" />
 										<space />
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
