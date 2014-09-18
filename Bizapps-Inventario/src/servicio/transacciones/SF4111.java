@@ -86,4 +86,9 @@ public class SF4111 {
 		// TODO Auto-generated method stub
 		return iF4111DAO.findByIlvpejBetweenOrderByIldocAsc(desde, hasta);
 	}
+
+	public F4111 buscarTodosOrdenadosPorDoc(String string, Double claveDoc,
+			Double double1) {
+		return iF4111DAO.findByIldocAndIldctAndIlitm(claveDoc, string, double1);
+	}
 }
