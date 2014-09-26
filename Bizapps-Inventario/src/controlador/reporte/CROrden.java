@@ -74,15 +74,17 @@ public class CROrden extends CGenerico {
 						.getValue());
 				BigDecimal hasta = transformarGregorianoAJulia(dtbHasta
 						.getValue());
-//				List<F4111> ordenes = servicioF4111.buscarEntreFechas(desde,
-//						hasta);
+				// List<F4111> ordenes = servicioF4111.buscarEntreFechas(desde,
+				// hasta);
 				List<F4111> ordenes = servicioF4111.buscarEntreFechas2(desde,
-								hasta);
+						hasta);
 				if (!ordenes.isEmpty()) {
 					DateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
 					String fecha11 = fecha.format(dtbDesde.getValue());
 					String fecha22 = fecha.format(dtbHasta.getValue());
-					Clients.evalJavaScript("window.open('/Bizapps-Inventario/Generador?valor=1&valor2="
+					Clients.evalJavaScript("window.open('"
+							+ damePath()
+							+ "Generador?valor=1&valor2="
 							+ fecha11
 							+ "&valor3="
 							+ fecha22
@@ -155,8 +157,10 @@ public class CROrden extends CGenerico {
 		}
 		BigDecimal desde = transformarGregorianoAJulia(fecha1);
 		BigDecimal hasta = transformarGregorianoAJulia(fecha2);
-//		List<F4111> ordenes = getServicioF4111().buscarEntreFechas(desde, hasta);
-		List<F4111> ordenes = getServicioF4111().buscarEntreFechas2(desde, hasta);
+		// List<F4111> ordenes = getServicioF4111().buscarEntreFechas(desde,
+		// hasta);
+		List<F4111> ordenes = getServicioF4111().buscarEntreFechas2(desde,
+				hasta);
 		for (int i = 0; i < ordenes.size(); i++) {
 			Date fechaM = transformarJulianaAGregoria(ordenes.get(i)
 					.getIlvpej());

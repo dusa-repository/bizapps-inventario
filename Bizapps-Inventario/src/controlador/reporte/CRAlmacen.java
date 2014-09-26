@@ -71,12 +71,14 @@ public class CRAlmacen extends CGenerico {
 			public void reporte() {
 				BigDecimal hasta = transformarGregorianoAJulia(dtbFecha
 						.getValue());
-//				List<F4111> ordenes = servicioF4111.buscarHastaFecha(hasta);
+				// List<F4111> ordenes = servicioF4111.buscarHastaFecha(hasta);
 				List<F4111> ordenes = servicioF4111.buscarHastaFecha2(hasta);
 				if (!ordenes.isEmpty()) {
 					DateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
 					String fecha11 = fecha.format(dtbFecha.getValue());
-					Clients.evalJavaScript("window.open('/Bizapps-Inventario/Generador?valor=2&valor2="
+					Clients.evalJavaScript("window.open('"
+							+ damePath()
+							+ "Generador?valor=2&valor2="
 							+ fecha11
 							+ "','','top=100,left=200,height=600,width=800,scrollbars=1,resizable=1')");
 				} else
@@ -138,10 +140,11 @@ public class CRAlmacen extends CGenerico {
 			e.printStackTrace();
 		}
 		BigDecimal desde = transformarGregorianoAJulia(fecha1);
-//		List<F4111> ordenes = getServicioF4111().buscarHastaFecha(desde);
+		// List<F4111> ordenes = getServicioF4111().buscarHastaFecha(desde);
 		List<F4111> ordenes = getServicioF4111().buscarHastaFecha2(desde);
 		List<F4111> finales = new ArrayList<F4111>();
-//		Date fechaMa = transformarJulianaAGregoria(ordenes.get(0).getIlcrdj());
+		// Date fechaMa =
+		// transformarJulianaAGregoria(ordenes.get(0).getIlcrdj());
 		Date fechaMa = transformarJulianaAGregoria(ordenes.get(0).getIlvpej());
 		ordenes.get(0).setIlasid(formatoFecha.format(fechaMa));
 		F4101 f = new F4101();
