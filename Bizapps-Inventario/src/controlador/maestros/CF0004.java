@@ -69,7 +69,7 @@ public class CF0004 extends CGenerico {
 		mostrarCatalogo();
 
 		botonera = new Botonera() {
-			
+
 			@Override
 			public void seleccionar() {
 				if (validarSeleccion()) {
@@ -85,8 +85,8 @@ public class CF0004 extends CGenerico {
 						txtDL01F0004.setValue(f04.getDtdl01());
 						txtLNF0004.setValue(f04.getDtln2());
 						txtNUMF0004.setValue(f04.getDtcnum());
-						if(f04.getDtcdl()!=null)
-						txtCDLF0004.setValue(f04.getDtcdl());
+						if (f04.getDtcdl() != null)
+							txtCDLF0004.setValue(f04.getDtcdl());
 						txtDL01F0004.setFocus(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -95,7 +95,10 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0004, "Trabajo con Tipos de Codigos Definidos por el Usuario", tabs);
+				cerrarVentana(
+						divVF0004,
+						"Trabajo con Tipos de Codigos Definidos por el Usuario",
+						tabs);
 
 			}
 
@@ -117,28 +120,27 @@ public class CF0004 extends CGenerico {
 				if (clave == null)
 					guardar = validar();
 				if (guardar) {
-					
+
 					F0004 fooo4 = new F0004();
 					String rt = txtSYF0004.getValue();
 					String sy = txtRTF0004.getValue();
 					String dl = txtDL01F0004.getValue();
 					String ln = txtLNF0004.getValue();
 					Double a;
-					if(txtCDLF0004.getValue()!=null)
-					{
-					a = txtCDLF0004.getValue();
-					fooo4.setDtcdl(a);
+					if (txtCDLF0004.getValue() != null) {
+						a = txtCDLF0004.getValue();
+						fooo4.setDtcdl(a);
 					}
 					String num = txtNUMF0004.getValue();
 					F0004PK clave = new F0004PK();
 					clave.setDtsy(rt);
 					clave.setDtrt(sy);
-				
+
 					fooo4.setId(clave);
 					fooo4.setDtdl01(dl);
 					fooo4.setDtln2(ln);
 					fooo4.setDtcnum(num);
-			
+
 					fooo4.setDtjobn("5");
 					fooo4.setDtuseq((double) 45);
 					fooo4.setDtuser("jDE");
@@ -311,7 +313,7 @@ public class CF0004 extends CGenerico {
 		} else
 			return true;
 	}
-	
+
 	public boolean camposEditando() {
 		if (txtDL01F0004.getText().compareTo("") != 0
 				|| txtLNF0004.getText().compareTo("") != 0
@@ -363,8 +365,9 @@ public class CF0004 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004", listF0004,false,false,true, "SY",
-				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
+		catalogo = new Catalogo<F0004>(catalogoF0004, "F0004", listF0004,
+				false, false, true, "SY", "RT", "Descripcion", "Codigo",
+				"2 Linea", "Numerico") {
 
 			@Override
 			protected List<F0004> buscar(List<String> valores) {
@@ -373,17 +376,17 @@ public class CF0004 extends CGenerico {
 
 				for (F0004 f0004 : listF0004) {
 					if (f0004.getId().getDtsy().toLowerCase()
-							.startsWith(valores.get(0))
+							.startsWith(valores.get(0).toLowerCase())
 							&& f0004.getId().getDtrt().toLowerCase()
-									.startsWith(valores.get(1))
+									.startsWith(valores.get(1).toLowerCase())
 							&& f0004.getDtdl01().toLowerCase()
-									.startsWith(valores.get(2))
+									.startsWith(valores.get(2).toLowerCase())
 							&& String.valueOf(f0004.getDtcdl()).toLowerCase()
-									.startsWith(valores.get(3))
+									.startsWith(valores.get(3).toLowerCase())
 							&& f0004.getDtln2().toLowerCase()
-									.startsWith(valores.get(4))
+									.startsWith(valores.get(4).toLowerCase())
 							&& f0004.getDtcnum().toLowerCase()
-									.startsWith(valores.get(5))) {
+									.startsWith(valores.get(5).toLowerCase())) {
 						lista.add(f0004);
 					}
 				}
