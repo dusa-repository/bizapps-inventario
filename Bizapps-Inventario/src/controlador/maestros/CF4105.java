@@ -85,6 +85,11 @@ public class CF4105 extends CGenerico {
 	private Button btnBuscarItm;
 	@Wire
 	private Button btnBuscarMcu;
+	@Wire
+	private Button btnAgregarItems;
+	@Wire
+	private Groupbox gpxItems;
+	
 	Botonera botonera;
 	Catalogo<F4105> catalogo;
 	Catalogo<F4101> catalogoF4101;
@@ -278,15 +283,19 @@ public class CF4105 extends CGenerico {
 				mostrarBotones(false);
 			}
 		};
+		botonera.getChildren().get(6).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
+		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
 		botoneraF4105.appendChild(botonera);
 	}
 
 	protected void mostrarBotones(boolean bol) {
-		botonera.getChildren().get(1).setVisible(bol);
+		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(2).setVisible(bol);
-		botonera.getChildren().get(6).setVisible(bol);
+		botonera.getChildren().get(6).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
 		botonera.getChildren().get(0).setVisible(bol);
 		botonera.getChildren().get(3).setVisible(!bol);
 		botonera.getChildren().get(5).setVisible(!bol);
@@ -720,6 +729,13 @@ public class CF4105 extends CGenerico {
 				msj.mensajeAlerta(Mensaje.editarSoloUno);
 		} else
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
+	}
+	
+	@Listen("onClick = #btnAgregarItems")
+	public void mostrarGroupbox() {
+		gpxItems.setVisible(true);
+		btnAgregarItems.setVisible(false);
+
 	}
 
 }

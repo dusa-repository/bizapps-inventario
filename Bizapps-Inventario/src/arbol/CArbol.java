@@ -403,13 +403,4 @@ public class CArbol extends CGenerico {
 			taba.setSelected(true);
 	}
 	
-	public void ventanaBoton(ClientInfoEvent evt) {
-        System.out.println("width" + evt.getScreenWidth());
-        System.out.println(evt.getScreenHeight());
-        int w = evt.getDesktopWidth();
-        int y  = evt.getDesktopHeight();
-        Clients.resizeTo(w, y);
-        wdwIndex.setWidth(String.valueOf(w)+"px");
-        wdwIndex.setHeight(String.valueOf(y)+"px");
-}
 }

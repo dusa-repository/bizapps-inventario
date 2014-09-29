@@ -1,5 +1,5 @@
 <zk>
-	<window width="70em" closable="false" id="wdwDetalle"
+	<window width="70%" closable="false" id="wdwDetalle"
 		apply="controlador.seguridad.CDetalleImport">
 		<style src="/public/Estilo.css" />
 		<div id="divDetalle">

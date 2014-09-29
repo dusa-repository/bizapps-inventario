@@ -99,8 +99,8 @@
 											<columns visible="false">
 												<column label="" width="30%" />
 												<column label="" width="34%" />
-												<column label="" width="20%" />
 												<column label="" width="26%" />
+												<column label="" width="20%" />
 											</columns>
 											<rows>
 												<row>

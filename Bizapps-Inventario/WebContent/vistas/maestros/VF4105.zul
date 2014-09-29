@@ -13,10 +13,10 @@
 				<hbox width="100%" widths="50%,50%">
 					<grid style="border:0px">
 						<columns visible="false">
-							<column label="" width="15%" />
+							<column label="" width="17%" />
 							<column label="" width="20%" />
-							<column label="" width="10%" />
-							<column label="" width="55%" />
+							<column label="" width="25%" />
+							<column label="" width="38%" />
 						</columns>
 						<rows>
 							<row>
@@ -27,8 +27,8 @@
 								</hbox>
 								<doublebox id="txtItm" hflex="1" maxlength="19"
 									tooltiptext="Ingrese el Numero del Item" />
-								<button autodisable="true" id="btnBuscarItm" label=""
-									tooltiptext="Catalogo Items" image="/public/imagenes/botones/buscar.png" />
+								<button autodisable="true" id="btnBuscarItm" label="Buscar"
+									class="btn" tooltiptext="Catalogo Items" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblItm" />
 							</row>
 							<row>
@@ -40,8 +40,8 @@
 								</hbox>
 								<textbox id="txtMcu" hflex="1" maxlength="12"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarMcu" label=""
-									tooltiptext="Catalogo Sucursales" image="/public/imagenes/botones/buscar.png" />
+								<button autodisable="true" id="btnBuscarMcu" label="Buscar"
+									class="btn" tooltiptext="Catalogo Sucursales" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblMcu" />
 							</row>
 						</rows>
@@ -70,67 +70,82 @@
 						</grid>
 					</groupbox>
 				</hbox>
-				<groupbox title="Detalles de Costo" closable="false" class="blanco">
-					<grid style="border:0px">
-						<columns visible="false">
-							<column label="" width="20%" />
-							<column label="" width="30%" />
-							<column label="" width="30%" />
-							<column label="" width="20%" />
-						</columns>
-						<rows>
-							<row>
-								<cell colspan="4">
-									<div id="divBuscadorLEDG" hflex="1" />
-								</cell>
-							</row>
-							<row>
-								<label class="etiqueta" value="Descripcion:" />
-								<cell colspan="2">
-									<textbox id="txtLitm" hflex="1" maxlength="25"
-										tooltiptext="Ingrese la explicacion de la operacion" />
-								</cell>
-								<button label="Agregar" id="btnAgregar" autodisable="true"
-									image="/public/imagenes/botones/annadir.png" />
-							</row>
-							<row>
-								<hbox>
-									<label class="etiqueta" value="Costo Unitario:" />
-									<space />
-									<label value="*" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<doublespinner id="spnCosto" hflex="1" step="10"
-									value="0" format="#.##" constraint="min 0 max 999999999"
-									tooltiptext="Ingrese el periodo Actual" />
-								<hbox />
-								<hbox />
-							</row>
-						</rows>
-					</grid>
-					<hbox widths="95%,5%">
-						<listbox id="ltbCostos" span="true" height="150px" width="100%">
-							<listhead>
-								<listheader label="Metodo Calculo" hflex="min" />
-								<listheader label="Descripcion" hflex="min" />
-								<listheader label="Costo Unitario" hflex="min" />
-							</listhead>
-							<template name="model">
-								<listitem>
-									<listcell label="${each.id.coledg}" />
-									<listcell label="${each.colitm}" />
-									<listcell label="${each.councs}" />
-								</listitem>
-							</template>
-						</listbox>
-						<vbox width="100%">
-							<button label="Editar" class="btn" id="btnVer"
-								autodisable="true" image="/public/imagenes/botones/generar.png" />
-							<button label="Remover" class="btn" id="btnRemover"
-								autodisable="true" image="/public/imagenes/botones/anular.png" />
-						</vbox>
+					<separator />
+				<div align="right" width="100%">
+					<hbox>
+						<button autodisable="true" id="btnAgregarItems" class="btn"
+							label="Agregar Costos" tooltiptext="Catalogo"
+							image="/public/imagenes/botones/annadir.png" width="150px" />
 					</hbox>
-				</groupbox>
+				</div>
+				<div align="center" width="100%">
+					<groupbox id="gpxItems" visible="false" class="blanco"
+						title="" closable="false">
+						<caption label="Detalles de Costo" style="font-weight:bold; font-size: 12px" />
+						<separator />
+						<grid  width="93%">
+							<columns visible="false">
+								<column label="" width="20%" />
+								<column label="" width="30%" />
+								<column label="" width="30%" />
+								<column label="" width="20%" />
+							</columns>
+							<rows>
+								<row>
+									<cell colspan="4">
+										<div id="divBuscadorLEDG" hflex="1" />
+									</cell>
+								</row>
+								<row>
+									<label class="etiqueta" value="Descripcion:" />
+									<cell colspan="2">
+										<textbox id="txtLitm" hflex="1" maxlength="25"
+											tooltiptext="Ingrese la explicacion de la operacion" />
+									</cell>
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta" value="Costo Unitario:" />
+										<space />
+										<label value="*" style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublespinner id="spnCosto" hflex="1" step="10"
+										value="0" format="#.##" constraint="min 0 max 999999999"
+										tooltiptext="Ingrese el periodo Actual" />
+									<hbox />
+									<button label="Agregar" id="btnAgregar" autodisable="true"
+										class="btn" image="/public/imagenes/botones/annadir.png" />
+								</row>
+							</rows>
+						</grid>
+								<div width="93%">
+						<hbox widths="95%,5%">
+							<listbox id="ltbCostos" span="true" height="150px" width="100%">
+								<listhead>
+									<listheader label="Metodo Calculo" hflex="min" />
+									<listheader label="Descripcion" hflex="min" />
+									<listheader label="Costo Unitario" hflex="min" />
+								</listhead>
+								<template name="model">
+									<listitem>
+										<listcell label="${each.id.coledg}" />
+										<listcell label="${each.colitm}" />
+										<listcell label="${each.councs}" />
+									</listitem>
+								</template>
+							</listbox>
+							<vbox width="100%">
+								<button label="Editar" class="btn" id="btnVer"
+									autodisable="true" image="/public/imagenes/botones/generar.png" />
+								<button label="Remover" class="btn" id="btnRemover"
+									autodisable="true" image="/public/imagenes/botones/anular.png" />
+							</vbox>
+						</hbox>
+						</div>
+					</groupbox>
+				</div>
 			</groupbox>
 			<separator />
 			<groupbox id="gpxDatosF4105" class="azul" width="auto">

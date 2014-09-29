@@ -46,8 +46,8 @@
 								<columns visible="false">
 									<column label="" width="19.5%" />
 									<column label="" width="45%" />
-									<column label="" width="10%" />
-									<column label="" width="27%" />
+									<column label="" width="15%" />
+									<column label="" width="22%" />
 								</columns>
 								<rows>
 									<row>
@@ -111,8 +111,8 @@
 								<columns visible="false">
 									<column label="" width="19%" />
 									<column label="" width="45%" />
-									<column label="" width="10%" />
-									<column label="" width="27%" />
+									<column label="" width="15%" />
+									<column label="" width="22%" />
 								</columns>
 								<rows>
 									<row>

@@ -1,7 +1,8 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVOrden" apply="controlador.reporte.CROrden">
-		<groupbox width="40em" mold="3d" title="Reporte de Movimiento por Orden">
+		<groupbox width="55%" mold="3d" title="Reporte de Movimiento por Orden">
+				<div id="botoneraVOrden" />
 			<separator />
 			<grid width="100%">
 				<columns visible="false">
@@ -31,6 +32,6 @@
 			</grid>
 			<separator />
 		</groupbox>
-		<div id="botoneraVOrden" />
+
 	</div>
 </zk>
