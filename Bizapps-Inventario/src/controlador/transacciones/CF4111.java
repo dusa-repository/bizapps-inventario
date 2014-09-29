@@ -1867,5 +1867,46 @@ public class CF4111 extends CGenerico {
 		rowBoton.setVisible(false);
 
 	}
+	
+	@Listen("onChange=#txtDoc")
+	public void validarDoc(){
+		Double doc = txtDoc.getValue();
+		List<F4111> lista2 = servicioF4111.buscarPorDoc(doc, tipo);
+		if(!lista2.isEmpty()){
+			F4111 f4111 = lista2.get(0);
+			txtDoc.setValue(f4111.getIldoc());
+			if (f4111.getIldoco() != null)
+				txtOrden.setValue(f4111.getIldoco());
+			if (f4111.getIlan8() != null)
+				txtF0101.setValue(f4111.getIlan8().longValue());
+			txtPlanta1.setValue(f4111.getIlmcu());
+			txtPlanta2.setValue(f4111.getIlmmcu());
+			txtExplicacion.setValue(f4111.getIltrex());
+			dtbFechaLm.setValue(transformarJulianaAGregoria(f4111
+					.getIltrdj()));
+			dtbFechaTransaccion
+					.setValue(transformarJulianaAGregoria(f4111
+							.getIlcrdj()));
+			for (int i = 0; i < lista2.size(); i++) {
+				F4101 f4101 = servicioF4101.buscar(lista2.get(i)
+						.getIlitm());
+				Generico generico = new Generico(lista2.get(i)
+						.getIlitm(), f4101.getImdsc1(),
+						f4101.getImuom1(), lista2.get(i)
+								.getIlmcu(), "", lista2.get(i)
+								.getIlmmcu(), "", lista2.get(i)
+								.getIltrqt().intValue(), lista2
+								.get(i).getIluncs());
+				generico.setValor11(lista2.get(i).getIlpaid());
+				lista.add(generico);
+			}
+			ltbItems.setModel(new ListModelList<Generico>(lista));
+			ltbItems.renderAll();
+			mostrarBotones(false);
+			abrirRegistro();
+			botonera.getChildren().get(3).setVisible(false);
+			mostrarGroupbox();
+		}
+	}
 
 }

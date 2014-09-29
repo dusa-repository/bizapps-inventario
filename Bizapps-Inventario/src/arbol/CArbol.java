@@ -20,11 +20,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.image.AImage;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.event.ClientInfoEvent;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
@@ -36,6 +38,7 @@ import org.zkoss.zul.Tabpanel;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.TreeModel;
 import org.zkoss.zul.West;
+import org.zkoss.zul.Window;
 
 import controlador.maestros.CGenerico;
 import componentes.Mensaje;
@@ -63,7 +66,8 @@ public class CArbol extends CGenerico {
 	private West west;
 	@Wire
 	private Listbox ltbRoles;
-
+	@Wire
+	private Window wdwIndex;
 	private static boolean numeroSgt = false;
 	private Tabbox tabBox2;
 	private Include contenido2;
@@ -398,4 +402,14 @@ public class CArbol extends CGenerico {
 		} else
 			taba.setSelected(true);
 	}
+	
+	public void ventanaBoton(ClientInfoEvent evt) {
+        System.out.println("width" + evt.getScreenWidth());
+        System.out.println(evt.getScreenHeight());
+        int w = evt.getDesktopWidth();
+        int y  = evt.getDesktopHeight();
+        Clients.resizeTo(w, y);
+        wdwIndex.setWidth(String.valueOf(w)+"px");
+        wdwIndex.setHeight(String.valueOf(y)+"px");
+}
 }
