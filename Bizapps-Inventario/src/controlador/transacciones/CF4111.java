@@ -767,9 +767,13 @@ public class CF4111 extends CGenerico {
 				botonera.getChildren().get(3).setVisible(true);
 			}
 		};
+		
+		botonera.getChildren().get(6).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
+		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
-		botonera.getChildren().get(4).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
+		botonera.getChildren().get(4).setVisible(false);
 		botoneraF4111.appendChild(botonera);
 	}
 
@@ -857,11 +861,12 @@ public class CF4111 extends CGenerico {
 	}
 
 	protected void mostrarBotones(boolean bol) {
-		botonera.getChildren().get(1).setVisible(bol);
+		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(2).setVisible(bol);
-		botonera.getChildren().get(6).setVisible(bol);
+		botonera.getChildren().get(6).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
 		botonera.getChildren().get(0).setVisible(bol);
-		// botonera.getChildren().get(3).setVisible(!bol);
+	//	botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(!bol);
 	}
 

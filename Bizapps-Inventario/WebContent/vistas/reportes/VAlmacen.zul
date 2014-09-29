@@ -1,13 +1,13 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVAlmacen" apply="controlador.reporte.CRAlmacen">
-		<groupbox width="40em" mold="3d" title="Reporte de Existencia por Almacen">
+		<groupbox width="50%" mold="3d" title="Reporte de Existencia por Almacen">
+				<div id="botoneraVAlmacen" />
 			<separator />
 			<grid width="100%">
 				<columns>					
-					<column label="" width="30%" />
-					<column label="" width="25%" />
-					<column label="" width="45%" />
+					<column label="" width="50%" />
+					<column label="" width="50%" />
 				</columns>
 				<rows>
 					<row>
@@ -18,12 +18,10 @@
 						</hbox>
 						<datebox readonly="true" width="100%" id="dtbFecha"
 							onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
-						<hbox/>
 					</row>
 				</rows>
 			</grid>
 			<separator />
 		</groupbox>
-		<div id="botoneraVAlmacen" />
 	</div>
 </zk>

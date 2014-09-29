@@ -29,7 +29,7 @@
 								tooltiptext="Ingrese el Codigo Principal del Sistema" />
 							<cell colspan="2">
 								<hbox>
-									<button id="btnBuscarF0006" label=""
+									<button id="btnBuscarF0006" label="Buscar" class="btn"
 										tooltiptext="Catalogo de Sucursales" image="/public/imagenes/botones/buscar.png" />
 									<space />
 									<label id="lblMCUF0006" />

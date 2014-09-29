@@ -308,15 +308,19 @@ public class CUsuario extends CGenerico {
 				
 			}
 		};
+		botonera.getChildren().get(6).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
+		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
 		botoneraUsuario.appendChild(botonera);
 	}
 
 	public void mostrarBotones(boolean bol) {
-		botonera.getChildren().get(1).setVisible(bol);
+		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(2).setVisible(bol);
-		botonera.getChildren().get(6).setVisible(bol);
+		botonera.getChildren().get(6).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
 		botonera.getChildren().get(0).setVisible(bol);
 		botonera.getChildren().get(3).setVisible(!bol);
 		botonera.getChildren().get(5).setVisible(!bol);

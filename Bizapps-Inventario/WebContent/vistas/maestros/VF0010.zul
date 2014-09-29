@@ -92,7 +92,7 @@
 												<hbox>
 													<longbox id="txtAn8F0010" hflex="1" maxlength="19"
 														tooltiptext="Ingrese la Moneda Nacional" />
-													<button id="btnBuscarDireccion" label=""
+													<button id="btnBuscarDireccion" label="Buscar" class="btn"
 														tooltiptext="Catalogo Direccion" image="/public/imagenes/botones/buscar.png" />
 													<label id="lblDireccionF0010" />
 												</hbox>
