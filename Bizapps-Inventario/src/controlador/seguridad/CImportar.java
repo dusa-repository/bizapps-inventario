@@ -547,7 +547,7 @@ public class CImportar extends CGenerico {
 								nombre = cell.getStringCellValue();
 							} else
 								error = true;
-							if (nombre.length() > 30)
+							if (nombre.length() > 500)
 								errorLong = true;
 							break;
 						case 2:
@@ -652,7 +652,7 @@ public class CImportar extends CGenerico {
 								+ contadorRow
 								+ ". Columna: "
 								+ contadorCell
-								+ ". Longitudes permitidas: campo1 25, campo2 30, campo3 1 y campo4 2");
+								+ ". Longitudes permitidas: campo1 25, campo2 500, campo3 1 y campo4 2");
 						error = true;
 					}
 				}

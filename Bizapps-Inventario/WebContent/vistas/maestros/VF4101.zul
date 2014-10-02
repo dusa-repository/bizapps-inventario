@@ -75,7 +75,7 @@
 												<label value="*" style="font-weight:bold;color:red">
 												</label>
 											</hbox>
-											<textbox id="txtIMDSC1F4101" hflex="1" maxlength="30"
+											<textbox multiline="true" id="txtIMDSC1F4101" hflex="1" maxlength="500"
 												tooltiptext="Ingrese la Descripcion" />
 											<hbox />
 											<hbox />

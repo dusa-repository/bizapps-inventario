@@ -31,11 +31,16 @@ public class SF4105 {
 				/ (cantidadAnterior + inte);
 		F4105 f05 = buscar(claveCostoUnitario);
 		if (f05 != null) {
-			if(costoPromedioNuevo.isNaN())
+			if (costoPromedioNuevo.isNaN())
 				costoPromedioNuevo = (double) 0;
 			f05.setCouncs(costoPromedioNuevo);
 			guardar(f05);
-		}else System.out.println("MENSAJE");
+		} else {
+			f05 = new F4105();
+			f05.setId(claveCostoUnitario);
+			f05.setCouncs(costoUnitario);
+			iF4105DAO.save(f05);
+		}
 
 	}
 
@@ -45,6 +50,11 @@ public class SF4105 {
 		if (f05 != null) {
 			f05.setCouncs(costoUnitario);
 			guardar(f05);
+		}else {
+			f05 = new F4105();
+			f05.setId(claveCostoUnitario);
+			f05.setCouncs(costoUnitario);
+			iF4105DAO.save(f05);
 		}
 	}
 
@@ -61,7 +71,7 @@ public class SF4105 {
 	}
 
 	public List<F4105> buscarPorMcuEItem(String comcu, Double coitm) {
-		return iF4105DAO.findByIdCoitmAndIdComcuOrderByIdCoitmAsc(coitm,comcu);
+		return iF4105DAO.findByIdCoitmAndIdComcuOrderByIdCoitmAsc(coitm, comcu);
 	}
 
 	public void guardarVarios(List<F4105> guardados) {

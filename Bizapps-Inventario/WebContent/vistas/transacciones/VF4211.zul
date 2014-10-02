@@ -148,7 +148,7 @@
 										<label value="*" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<spinner id="spnCantidad" hflex="1" step="10" value="0"
+									<spinner id="spnCantidad" width="100%" step="10" value="0"
 										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
 									<hbox />
 								</row>

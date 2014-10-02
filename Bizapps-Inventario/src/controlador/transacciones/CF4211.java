@@ -844,6 +844,9 @@ public class CF4211 extends CGenerico {
 				List<F4101> lista = new ArrayList<F4101>();
 
 				for (F4101 f4101 : listF4101) {
+					String valor = "";
+					if(f4101.getImsrp1()!=null)
+						valor = f4101.getImsrp1();
 					if (f4101.getImlitm().toLowerCase()
 							.startsWith(valores.get(0))
 							&& f4101.getImdsc1().toLowerCase()
@@ -856,7 +859,7 @@ public class CF4211 extends CGenerico {
 									.startsWith(valores.get(4))
 							&& f4101.getImstkt().toLowerCase()
 									.startsWith(valores.get(5))
-							&& f4101.getImsrp1().toLowerCase()
+							&& valor.toLowerCase()
 									.startsWith(valores.get(6))) {
 						lista.add(f4101);
 					}
