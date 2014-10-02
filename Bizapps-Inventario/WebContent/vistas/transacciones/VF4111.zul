@@ -139,7 +139,8 @@
 					</rows>
 				</grid>
 				<div align="center" width="100%">
-					<groupbox id="gpxItems" visible="false" class="blanco" title="" closable="false" >
+					<groupbox id="gpxItems" visible="false" class="blanco"
+						title="" closable="false">
 						<caption label="Agregar Items de la Operacion" style="font-weight:bold; font-size: 12px" />
 						<separator />
 						<grid width="93%">
@@ -172,7 +173,7 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<spinner id="spnCantidad" hflex="1" step="10" value="0"
+									<spinner id="spnCantidad" width="100%" step="10" value="0"
 										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
 									<hbox />
 									<button label="Agregar" id="btnAgregar" autodisable="true"
@@ -195,12 +196,12 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<doublespinner visible="false" id="spnCosto"
-										hflex="1" step="10" value="0" format="#.##" constraint="min 0 max 99999999"
+									<doublespinner width="100%" visible="false" id="spnCosto"
+										step="10" value="0" format="#.##" constraint="min 0 max 99999999"
 										tooltiptext="Ingrese el periodo Actual" />
 									<label id="lblCantidad2" class="etiqueta" value="Cantidad Secundaria:"
 										visible="false" />
-									<spinner id="spnCantidad2" hflex="1" step="10" value="0"
+									<spinner id="spnCantidad2" width="100%" step="10" value="0"
 										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual"
 										visible="false" />
 								</row>

@@ -649,10 +649,12 @@ public class CF4111 extends CGenerico {
 									f4111.setIlasid(ubicacion1);
 									f4111.setIlitm(numero);
 									f4111.setIltrum(um);
-									f4111.setIluncs(costo2);
+//									f4111.setIluncs(costo2);
+									f4111.setIluncs(costoUnitario);
 									f4111.setIltrqt(inte.doubleValue() * (-1));
-									f4111.setIlpaid(costo2
-											* (inte.doubleValue() * (-1)));
+//									f4111.setIlpaid(costo2
+//											* (inte.doubleValue() * (-1)));
+									f4111.setIlpaid(total);
 									servicioF4111.guardar(f4111);
 
 									// >Nuevoooo

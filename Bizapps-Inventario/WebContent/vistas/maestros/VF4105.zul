@@ -111,7 +111,7 @@
 										<label value="*" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<doublespinner id="spnCosto" hflex="1" step="10"
+									<doublespinner id="spnCosto" width="100%" step="10"
 										value="0" format="#.##" constraint="min 0 max 999999999"
 										tooltiptext="Ingrese el periodo Actual" />
 									<hbox />
