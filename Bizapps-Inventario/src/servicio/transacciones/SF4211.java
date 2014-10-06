@@ -30,8 +30,8 @@ public class SF4211 {
 	}
 
 	public List<F4211> buscarPorDocoYDcto(Double sddoco, String sddcto) {
-		return f4211DAO
-				.findByIdSddocoAndIdSddctoAndSdspattnOrderBySditmAsc(sddoco, sddcto, "Enviada");
+		return f4211DAO.findByIdSddocoAndIdSddctoAndSdspattnOrderBySditmAsc(
+				sddoco, sddcto, "Enviada");
 	}
 
 	public void guardar(F4211 f4211) {
@@ -42,17 +42,16 @@ public class SF4211 {
 		f4211DAO.save(guardados);
 	}
 
-	public List<F4211> buscarTodosOrdenadosUnicos() {
-		List<Double> listaBuscada = f4211DAO.findDocoDistinct();
+	public List<F4211> buscarTodosOrdenadosUnicos(String et) {
+		List<Double> listaBuscada = f4211DAO.findDocoDistinct(et);
 		List<F4211> lista = new ArrayList<F4211>();
 		for (int i = 0; i < listaBuscada.size(); i++) {
-			lista.add(buscarPorDocoYDcto(listaBuscada.get(i), "ET").get(0));
+			lista.add(buscarPorDocoYDcto(listaBuscada.get(i), et).get(0));
 		}
 		return lista;
 	}
 
 	public F4211 buscarPorDocoEItem(Double value, Double imitm) {
-		return f4211DAO
-				.findByIdSddocoAndSditm(value, imitm);
+		return f4211DAO.findByIdSddocoAndSditm(value, imitm);
 	}
 }
