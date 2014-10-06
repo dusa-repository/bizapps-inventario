@@ -71,9 +71,9 @@ public class SF4101 {
 		return buscados;
 	}
 
-	public List<F4101> buscarTodosOrdenadosPorSolicitud(Double value) {
+	public List<F4101> buscarTodosOrdenadosPorSolicitud(Double value, String et) {
 		List<F4211> listaF4211 = f4211DAO
-				.findByIdSddocoAndIdSddctoOrderBySditmAsc(value, "ET");
+				.findByIdSddocoAndIdSddctoAndSdspattnOrderBySditmAsc(value, et,"Enviada");
 		List<F4101> lista = new ArrayList<F4101>();
 		for (Iterator<F4211> iterator = listaF4211.iterator(); iterator
 				.hasNext();) {

@@ -14,11 +14,8 @@ public interface IF4211DAO extends JpaRepository<F4211, F4211PK> {
 	@Query("Select f from F4211 f where f.sdspattn='Enviada' order by f.id.sddoco asc, f.id.sddcto asc, f.id.sdkcoo asc")
 	List<F4211> findAllById();
 
-	List<F4211> findByIdSddocoAndIdSddctoOrderBySditmAsc(Double sddoco,
-			String sddcto);
-
-	@Query("select distinct(f.id.sddoco) from F4211 f where f.sdspattn='Enviada'")
-	List<Double> findDocoDistinct();
+	@Query("select distinct(f.id.sddoco) from F4211 f where f.sdspattn='Enviada' and f.id.sddcto = ?1")
+	List<Double> findDocoDistinct(String et);
 
 	F4211 findByIdSddocoAndSditm(Double value, Double imitm);
 
