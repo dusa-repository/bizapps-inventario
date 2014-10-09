@@ -37,13 +37,14 @@ public class Generador extends HttpServlet {
 		String par1 = request.getParameter("valor");
 		String part2 = request.getParameter("valor2");
 		String part3 = request.getParameter("valor3");
+		String part4 = request.getParameter("valor4");
 		byte[] fichero = null;
 		switch (par1) {
 		case "1":
 			fichero = cOrden.reporte(part2,part3);
 			break;
 		case "2":
-			fichero = cAlmacen.reporte(part2);
+			fichero = cAlmacen.reporte2(part2, part4);
 			break;
 		default:
 			break;

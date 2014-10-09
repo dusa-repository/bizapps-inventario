@@ -4,30 +4,30 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fecha" class="java.util.Date"/>
-	<field name="iltrex" class="java.lang.String"/>
-	<field name="ilmcu" class="java.lang.String"/>
-	<field name="illocn" class="java.lang.String"/>
-	<field name="iltrqt" class="java.lang.Double"/>
-	<field name="ilasid" class="java.lang.String"/>
-	<field name="ilplot" class="java.lang.String"/>
-	<field name="ilitm" class="java.lang.Double"/>
-	<field name="iluncs" class="java.lang.Double"/>
-	<field name="ilpaid" class="java.lang.Double"/>
+	<field name="lichdf" class="java.lang.String"/>
+	<field name="id.limcu" class="java.lang.String"/>
+	<field name="id.lilocn" class="java.lang.String"/>
+	<field name="lipqoh" class="java.lang.Double"/>
+	<field name="licfgsid" class="java.lang.String"/>
+	<field name="liglpt" class="java.lang.String"/>
+	<field name="id.liitm" class="java.lang.Double"/>
+	<field name="lisqwo" class="java.lang.Double"/>
+	<field name="lisreq" class="java.lang.Double"/>
 	<variable name="sumGrupo" class="java.lang.Double" resetType="Group" resetGroup="ubicacion" calculation="Sum">
-		<variableExpression><![CDATA[$F{iltrqt}]]></variableExpression>
+		<variableExpression><![CDATA[$F{lipqoh}]]></variableExpression>
 	</variable>
 	<variable name="sumAlmacen" class="java.lang.Double" resetType="Group" resetGroup="almacen" calculation="Sum">
-		<variableExpression><![CDATA[$F{iltrqt}]]></variableExpression>
+		<variableExpression><![CDATA[$F{lipqoh}]]></variableExpression>
 	</variable>
 	<variable name="totalGrupo" class="java.lang.Double" resetType="Group" resetGroup="ubicacion" calculation="Sum">
-		<variableExpression><![CDATA[$F{ilpaid}]]></variableExpression>
+		<variableExpression><![CDATA[$F{lisreq}]]></variableExpression>
 	</variable>
 	<variable name="totalAlmacen" class="java.lang.Double" resetType="Group" resetGroup="almacen" calculation="Sum">
-		<variableExpression><![CDATA[$F{ilpaid}]]></variableExpression>
+		<variableExpression><![CDATA[$F{lisreq}]]></variableExpression>
 		<initialValueExpression><![CDATA[]]></initialValueExpression>
 	</variable>
 	<group name="almacen" isStartNewPage="true" isReprintHeaderOnEachPage="true">
-		<groupExpression><![CDATA[$F{ilmcu}]]></groupExpression>
+		<groupExpression><![CDATA[$F{id.limcu}]]></groupExpression>
 		<groupHeader>
 			<band height="34">
 				<textField>
@@ -35,7 +35,7 @@
 					<textElement>
 						<font fontName="Arial" size="12"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{ilmcu}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{id.limcu}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="23" y="7" width="77" height="20" uuid="2aaf484f-9d5a-4675-9112-2dd6816a7fa3"/>
@@ -73,7 +73,7 @@
 		</groupFooter>
 	</group>
 	<group name="ubicacion">
-		<groupExpression><![CDATA[$F{illocn}]]></groupExpression>
+		<groupExpression><![CDATA[$F{id.lilocn}]]></groupExpression>
 		<groupHeader>
 			<band height="38">
 				<textField>
@@ -81,7 +81,7 @@
 					<textElement>
 						<font fontName="Arial" size="12"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{illocn}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{id.lilocn}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="51" y="9" width="77" height="20" uuid="3a1b5a1f-d09d-4b9d-b47e-f93c65d0940b"/>
@@ -224,49 +224,49 @@
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ilplot}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{liglpt}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="292" y="0" width="141" height="20" uuid="f11ce646-c393-4721-bbd3-037a985226e7"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{iltrqt}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lipqoh}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="239" y="0" width="53" height="20" uuid="ff4f3189-9e65-41f6-8982-0295d172f89b"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ilasid}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{licfgsid}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="0" width="147" height="20" uuid="c62b4758-8e06-4191-a3b9-82578245b3b5"/>
 				<textElement>
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{iltrex}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lichdf}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="65" height="20" uuid="38ea6c4c-64f7-483e-95e3-20be2e390868"/>
 				<textElement>
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ilitm}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{id.liitm}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="433" y="0" width="76" height="20" uuid="4d2e82e5-eb97-488c-8538-0690cf5cb489"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{iluncs}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lisqwo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="509" y="0" width="243" height="20" uuid="42f9c18c-43d0-4c22-924d-057b10c44add"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ilpaid}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lisreq}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

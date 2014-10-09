@@ -1,7 +1,9 @@
 package servicio.maestros;
 
-import interfacedao.maestros.IF41021DAO;
+import java.math.BigDecimal;
+import java.util.List;
 
+import interfacedao.maestros.IF41021DAO;
 import modelo.maestros.F41021;
 import modelo.pk.F41021PK;
 
@@ -20,5 +22,13 @@ public class SF41021 {
 
 	public void guardar(F41021 f41021) {
 		iF41021DAO.saveAndFlush(f41021);
+	}
+
+	public List<F41021> buscarHastaFecha2(BigDecimal desde) {
+		return iF41021DAO.findByLiupmjBeforeNow(desde);
+	}
+
+	public List<F41021> buscarHastaFechaExistencia2(BigDecimal hasta) {
+		return iF41021DAO.findByLiupmjBeforeNowExistencia(hasta);
 	}
 }

@@ -590,6 +590,8 @@ public class CF4111 extends CGenerico {
 									f41021.setId(claveSaldo);
 									f41021.setLipqoh(inte.doubleValue());
 								}
+								f41021.setLiupmj(transformarGregorianoAJulia(dtbFechaTransaccion
+										.getValue()));
 								servicioF41021.guardar(f41021);
 								// actualizo los costos
 
@@ -685,6 +687,8 @@ public class CF4111 extends CGenerico {
 												costoUnitarioAnterior);
 										guardarPedido(numero);
 									}
+									f410212.setLiupmj(transformarGregorianoAJulia(dtbFechaTransaccion
+											.getValue()));
 									servicioF41021.guardar(f410212);
 									// guardo en la tabla de saldo y si
 									// es ajuste de costo sigo
@@ -1484,6 +1488,7 @@ public class CF4111 extends CGenerico {
 			}
 		}
 		final List<F4101> listF4101 = listF41011;
+		final List<F4101> listF41016 = new ArrayList<F4101>();
 		String descripcion = "";
 		if (tipo.equals("ET") || tipo.equals("MK")) {
 			descripcion = "Cantidad Solicitada";
@@ -1494,7 +1499,7 @@ public class CF4111 extends CGenerico {
 				descripcion = "Descripcion";
 		}
 		catalogoF4101 = new Catalogo<F4101>(catalogoItemF4101, "F4101",
-				listF4101, true, false, false, "Número artículo",
+				listF41016, true, false, false, "Número artículo",
 				"Descripcion", descripcion, "Texto búsqueda", "Tipo línea",
 				"Tipo alm", "Código vta 1") {
 
@@ -1504,11 +1509,12 @@ public class CF4111 extends CGenerico {
 				List<F4101> lista = new ArrayList<F4101>();
 
 				for (F4101 f4101 : listF4101) {
-					F4211 f = servicioF4211.buscarPorDocoEItem(
-							txtPedido.getValue(), f4101.getImitm());
+					F4211 f = new F4211();
 					F4111 v = new F4111();
 					String cantidad = "";
 					if (tipo.equals("ET") || tipo.equals("MK")) {
+						f = servicioF4211.buscarPorDocoEItem(
+								txtPedido.getValue(), f4101.getImitm());
 						cantidad = f.getSdpqor().toString();
 					} else {
 						if (tipo.equals("DP")) {
