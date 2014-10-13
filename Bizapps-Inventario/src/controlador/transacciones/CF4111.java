@@ -321,6 +321,20 @@ public class CF4111 extends CGenerico {
 			txtTipo.setValue("MK");
 			tipo = "MK";
 			break;
+		case "Despacho a Paciente Cronico":
+			lblExplicacion.setValue("Datos Paciente");
+			lblExplicacionRequerida.setVisible(true);
+			lblF0101Dynamic.setValue("Paciente");
+			rowF0101.setVisible(false);
+			rowPlanta2.setVisible(false);
+			boxUbicacion2.setVisible(false);
+			txtUbicacion2.setVisible(false);
+			lblNombreUbicacion2.setVisible(false);
+			btnBuscarUbicacion2.setVisible(false);
+			lblNombreUbicacion.setValue("Ubicacion");
+			txtTipo.setValue("MC");
+			tipo = "MC";
+			break;
 		case "Devolucion a Proveedor":
 			rowF4111P.setVisible(true);
 			lblF0101Dynamic.setValue("Proveedor");
@@ -597,11 +611,15 @@ public class CF4111 extends CGenerico {
 
 								if (!tipo.equals("MK")) {
 									if (!tipo.equals("IT")) {
-										servicioF4105.actualizarCostoPromedio(
-												claveCostoUnitario, inte,
-												cantidadAnterior,
-												costoUnitario,
-												costoUnitarioAnterior);
+										if (!tipo.equals("MC")) {
+											servicioF4105
+													.actualizarCostoPromedio(
+															claveCostoUnitario,
+															inte,
+															cantidadAnterior,
+															costoUnitario,
+															costoUnitarioAnterior);
+										}
 									}
 								}
 								if (tipo.equals("OV")) {
@@ -693,6 +711,9 @@ public class CF4111 extends CGenerico {
 									// guardo en la tabla de saldo y si
 									// es ajuste de costo sigo
 								}
+
+								// if (tipo.equals("MC"))
+								// guardarPedido(numero);
 								if (tipo.equals("MK"))
 									guardarPedido(numero);
 								if (tipo.equals("I4")) {
@@ -840,6 +861,7 @@ public class CF4111 extends CGenerico {
 				return false;
 			else
 				return true;
+		case "MC":
 		case "MK":
 			if (txtDoc.getText().compareTo("") == 0
 					|| txtPlanta1.getText().compareTo("") == 0
@@ -1455,6 +1477,11 @@ public class CF4111 extends CGenerico {
 	@Listen("onSeleccion = #catalogoPedidoF4211")
 	public void seleccionarCatalogoPedido() {
 		F4211 f42 = catalogoF4211.objetoSeleccionadoDelCatalogo();
+		if (tipo.equals("MK")) {
+			txtDoc.setValue(f42.getSddoc());
+			if (f42.getSdacom() != null)
+				txtExplicacion.setValue(f42.getSdacom());
+		}
 		txtPedido.setValue(f42.getId().getSddoco());
 		lblPedido.setValue(f42.getSdco());
 		txtPlanta1.setValue(f42.getSdmcu());

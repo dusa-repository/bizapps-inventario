@@ -12,10 +12,10 @@
 			default-target-url="/vistas/inicio.zul"
 			authentication-failure-url="/index.zul?respuesta=USUARIO O CONTRASEÑA INCORRECTOS" />
 		<logout logout-success-url="/index.zul" delete-cookies="JSESSIONID" />
-		<session-management>
+		<!-- <session-management>
 			<concurrency-control max-sessions="1"
 				error-if-maximum-exceeded="true" />
-		</session-management>
+		</session-management> -->
 	</http>
 
 	<global-method-security secured-annotations="enabled" />
