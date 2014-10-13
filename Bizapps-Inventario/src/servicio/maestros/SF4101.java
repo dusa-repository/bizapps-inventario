@@ -16,6 +16,8 @@ import modelo.transacciones.F4111;
 import modelo.transacciones.F4211;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service("SF4101")
@@ -47,7 +49,6 @@ public class SF4101 {
 	}
 
 	public List<F4101> buscarTodosOrdenados() {
-
 		return f4101DAO.findAllAndOrderByIMDSC1();
 	}
 
@@ -62,13 +63,17 @@ public class SF4101 {
 	}
 
 	public List<F4101> buscarTodosOrdenadosPorMcu(String value) {
-		List<Double> lista = f41021DAO.buscarItemDistintos(value);
-		List<F4101> buscados = new ArrayList<F4101>();
-		for (Iterator<Double> iterator = lista.iterator(); iterator.hasNext();) {
-			Double double1 = (Double) iterator.next();
-			buscados.add(buscar(double1));
-		}
-		return buscados;
+//		List<Double> lista = f41021DAO.buscarItemDistintos(value);
+//		List<F4101> buscados = new ArrayList<F4101>();
+////		for (Iterator<Double> iterator = lista.iterator(); iterator.hasNext();) {
+////			Double double1 = (Double) iterator.next();
+////			buscados.add(buscar(double1));
+////		}
+//		buscados = f4101DAO.findByImitmIn(lista);
+////		for (int i = 0; i < lista.size(); i++) {
+////			buscados.add(buscar(lista.get(i)));
+////		}
+		return f4101DAO.buscarPorMcu(value);
 	}
 
 	public List<F4101> buscarTodosOrdenadosPorSolicitud(Double value, String et) {

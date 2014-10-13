@@ -1515,7 +1515,6 @@ public class CF4111 extends CGenerico {
 			}
 		}
 		final List<F4101> listF4101 = listF41011;
-		final List<F4101> listF41016 = new ArrayList<F4101>();
 		String descripcion = "";
 		if (tipo.equals("ET") || tipo.equals("MK")) {
 			descripcion = "Cantidad Solicitada";
@@ -1526,7 +1525,7 @@ public class CF4111 extends CGenerico {
 				descripcion = "Descripcion";
 		}
 		catalogoF4101 = new Catalogo<F4101>(catalogoItemF4101, "F4101",
-				listF41016, true, false, false, "Número artículo",
+				listF4101, true, false, false, "Número artículo",
 				"Descripcion", descripcion, "Texto búsqueda", "Tipo línea",
 				"Tipo alm", "Código vta 1") {
 
