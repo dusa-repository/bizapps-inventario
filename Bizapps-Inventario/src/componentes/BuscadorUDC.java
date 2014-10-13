@@ -180,15 +180,15 @@ public abstract class BuscadorUDC extends Hbox {
 
 				for (F0005 f0005 : listF0005) {
 					if (f0005.getId().getDrky().toLowerCase()
-									.startsWith(valores.get(0))
+									.contains(valores.get(0).toLowerCase())
 							&& f0005.getDrdl01().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0005.getDrdl02().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f0005.getDrsphd().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f0005.getDrhrdc().toLowerCase()
-									.startsWith(valores.get(4))) {
+									.contains(valores.get(4).toLowerCase())) {
 						listF0005_2.add(f0005);
 					}
 				}

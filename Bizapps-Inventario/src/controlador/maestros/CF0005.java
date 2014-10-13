@@ -430,19 +430,19 @@ public class CF0005 extends CGenerico {
 
 				for (F0005 f0005 : listF0005) {
 					if (f0005.getId().getDrsy().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0005.getId().getDrrt().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0005.getId().getDrky().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f0005.getDrdl01().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f0005.getDrdl02().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& f0005.getDrsphd().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& f0005.getDrhrdc().toLowerCase()
-									.startsWith(valores.get(6))) {
+									.contains(valores.get(6).toLowerCase())) {
 						listF0005_2.add(f0005);
 					}
 				}
@@ -479,17 +479,17 @@ public class CF0005 extends CGenerico {
 
 				for (F0004 f0004 : listF0004) {
 					if (f0004.getId().getDtsy().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0004.getId().getDtrt().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0004.getDtdl01().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& String.valueOf(f0004.getDtcdl()).toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f0004.getDtln2().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& f0004.getDtcnum().toLowerCase()
-									.startsWith(valores.get(5))) {
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(f0004);
 					}
 				}

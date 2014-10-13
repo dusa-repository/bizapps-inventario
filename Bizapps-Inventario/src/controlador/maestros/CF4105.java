@@ -37,7 +37,6 @@ import componentes.Botonera;
 import componentes.BuscadorUDC;
 import componentes.Catalogo;
 import componentes.Mensaje;
-
 import controlador.maestros.CGenerico;
 
 public class CF4105 extends CGenerico {
@@ -451,11 +450,11 @@ public class CF4105 extends CGenerico {
 
 				for (F4105 f0005 : listF0005) {
 					if (String.valueOf(f0005.getId().getCoitm().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0005.getId().getComcu().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0005.getId().getComcu().toLowerCase()
-									.startsWith(valores.get(2))) {
+									.contains(valores.get(2).toLowerCase())) {
 						listF0005_2.add(f0005);
 					}
 				}
@@ -494,30 +493,30 @@ public class CF4105 extends CGenerico {
 					if (unidad.getMcdc() != null)
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
-							.startsWith(valores.get(0))
-							&& mcdc.toLowerCase().startsWith(valores.get(1))
+							.contains(valores.get(0).toLowerCase())
+							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& unidad.getMcstyl().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& unidad.getMcfmod().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& unidad.getMcsbli().toLowerCase()
-									.startsWith(valores.get(6))
+									.contains(valores.get(6).toLowerCase())
 							&& unidad.getMcrp01().toLowerCase()
-									.startsWith(valores.get(7))
+									.contains(valores.get(7).toLowerCase())
 							&& unidad.getMcrp02().toLowerCase()
-									.startsWith(valores.get(8))
+									.contains(valores.get(8).toLowerCase())
 							&& unidad.getMcrp03().toLowerCase()
-									.startsWith(valores.get(9))
+									.contains(valores.get(9).toLowerCase())
 							&& unidad.getMcrp04().toLowerCase()
-									.startsWith(valores.get(10))
+									.contains(valores.get(10).toLowerCase())
 							&& unidad.getMcrp05().toLowerCase()
-									.startsWith(valores.get(11))
+									.contains(valores.get(11).toLowerCase())
 							&& unidad.getMcrp06().toLowerCase()
-									.startsWith(valores.get(12))) {
+									.contains(valores.get(12).toLowerCase())) {
 						unidadnegocio.add(unidad);
 					}
 				}
@@ -587,19 +586,19 @@ public class CF4105 extends CGenerico {
 
 				for (F4101 f4101 : listF4101) {
 					if (f4101.getImlitm().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f4101.getImdsc2().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f4101.getImsrtx().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f4101.getImlnty().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& f4101.getImstkt().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& f4101.getImsrp1().toLowerCase()
-									.startsWith(valores.get(6))) {
+									.contains(valores.get(6).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}

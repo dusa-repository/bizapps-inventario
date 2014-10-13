@@ -539,33 +539,33 @@ public class CF0010 extends CGenerico {
 
 				for (F0010 f0010 : lista) {
 					if (f0010.getCcco().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0010.getCcname().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0010.getCccald().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f0010.getCcdtpn().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0010
 											.getCcdfyj())).toString()
-									.toLowerCase().startsWith(valores.get(4))
+									.toLowerCase().contains(valores.get(4).toLowerCase())
 							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0010
 											.getCcapfj())).toString()
-									.toLowerCase().startsWith(valores.get(6))
+									.toLowerCase().contains(valores.get(6).toLowerCase())
 							&& String.valueOf(f0010.getCcappn()).toLowerCase()
-									.startsWith(valores.get(7))
+									.contains(valores.get(7).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0010
 											.getCcarfj())).toString()
-									.toLowerCase().startsWith(valores.get(8))
+									.toLowerCase().contains(valores.get(8).toLowerCase())
 							&& String.valueOf(f0010.getCcarpn()).toLowerCase()
-									.startsWith(valores.get(9))
+									.contains(valores.get(9).toLowerCase())
 							&& String.valueOf(f0010.getCcpnf()).toLowerCase()
-									.startsWith(valores.get(10))) {
+									.contains(valores.get(10).toLowerCase())) {
 						lista2.add(f0010);
 					}
 				}
@@ -610,17 +610,17 @@ public class CF0010 extends CGenerico {
 
 				for (F0101 f01 : listF0101) {
 					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -686,13 +686,13 @@ public class CF0010 extends CGenerico {
 
 				for (F0013 f0013 : listF0013) {
 					if (f0013.getCvcrcd().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0013.getCvdl01().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0013.getCvcdec().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f0013.getCvec().toLowerCase()
-									.startsWith(valores.get(3))) {
+									.contains(valores.get(3).toLowerCase())) {
 						lista.add(f0013);
 					}
 				}

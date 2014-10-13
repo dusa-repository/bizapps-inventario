@@ -1395,18 +1395,18 @@ public class CF4101 extends CGenerico {
 					if (f4101.getImsrp1() != null)
 						imsrp1 = f4101.getImsrp1();
 					if (f4101.getImlitm().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f4101.getImdsc2().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f4101.getImsrtx().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f4101.getImlnty().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& f4101.getImstkt().toLowerCase()
-									.startsWith(valores.get(5))
-							&& imsrp1.toLowerCase().startsWith(valores.get(6))) {
+									.contains(valores.get(5).toLowerCase())
+							&& imsrp1.toLowerCase().contains(valores.get(6).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}

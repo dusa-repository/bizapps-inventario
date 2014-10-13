@@ -298,8 +298,8 @@ public class CF4111 extends CGenerico {
 			lblCantidad.setVisible(false);
 			spnCantidad.setVisible(false);
 			boxCantidad.setVisible(false);
-			lblCantidad2.setVisible(false);
-			spnCantidad2.setVisible(false);
+//			lblCantidad2.setVisible(false);
+//			spnCantidad2.setVisible(false);
 			lblNombreUbicacion2.setVisible(false);
 			btnBuscarUbicacion2.setVisible(false);
 			lblNombreUbicacion.setValue("Ubicacion");
@@ -993,21 +993,21 @@ public class CF4111 extends CGenerico {
 
 				for (F4111 unidad : unidades) {
 					if (String.valueOf(unidad.getIldoc().longValue())
-							.toLowerCase().startsWith(valores.get(0))
+							.toLowerCase().contains(valores.get(0).toLowerCase())
 							&& unidad.getIldct().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(unidad
 											.getIltrdj())).toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& unidad.getIltrex().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& unidad.getIlmcu().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(unidad
 											.getIlcrdj())).toLowerCase()
-									.startsWith(valores.get(5))) {
+									.contains(valores.get(5).toLowerCase())) {
 						unidadnegocio.add(unidad);
 					}
 				}
@@ -1049,21 +1049,21 @@ public class CF4111 extends CGenerico {
 
 					for (F4111 unidad : unidades) {
 						if (String.valueOf(unidad.getIldoc().longValue())
-								.toLowerCase().startsWith(valores.get(0))
+								.toLowerCase().contains(valores.get(0).toLowerCase())
 								&& unidad.getIldct().toLowerCase()
-										.startsWith(valores.get(1))
+										.contains(valores.get(1).toLowerCase())
 								&& formatoFecha
 										.format(transformarJulianaAGregoria(unidad
 												.getIltrdj())).toLowerCase()
-										.startsWith(valores.get(2))
+										.contains(valores.get(2).toLowerCase())
 								&& unidad.getIltrex().toLowerCase()
-										.startsWith(valores.get(3))
+										.contains(valores.get(3).toLowerCase())
 								&& unidad.getIlmcu().toLowerCase()
-										.startsWith(valores.get(4))
+										.contains(valores.get(4).toLowerCase())
 								&& formatoFecha
 										.format(transformarJulianaAGregoria(unidad
 												.getIlcrdj())).toLowerCase()
-										.startsWith(valores.get(5))) {
+										.contains(valores.get(5))) {
 							unidadnegocio.add(unidad);
 						}
 					}
@@ -1160,36 +1160,36 @@ public class CF4111 extends CGenerico {
 					if (f4100.getLmla10() != null)
 						num10 = f4100.getLmla10();
 					if (String.valueOf(f4100.getId().getLmmcu()).toLowerCase()
-							.startsWith(valores.get(0))
-							&& mcdc.toLowerCase().startsWith(valores.get(1))
+							.contains(valores.get(0).toLowerCase())
+							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
 							&& String
 									.valueOf(
 											transformarJulianaAGregoria(f4100
 													.getLmupmj()))
-									.toLowerCase().startsWith(valores.get(2))
+									.toLowerCase().contains(valores.get(2).toLowerCase())
 							&& f4100.getId().getLmlocn().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f4100.getLmpzon().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& f4100.getLmkzon().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& f4100.getLmzonr().toLowerCase()
-									.startsWith(valores.get(6))
+									.contains(valores.get(6).toLowerCase())
 							&& f4100.getLmlldl().toLowerCase()
-									.startsWith(valores.get(7))
+									.contains(valores.get(7).toLowerCase())
 							// poner campos pasillo y bin
-							&& num3.toLowerCase().startsWith(valores.get(10))
-							&& num4.toLowerCase().startsWith(valores.get(11))
-							&& num5.toLowerCase().startsWith(valores.get(12))
-							&& num6.toLowerCase().startsWith(valores.get(13))
-							&& num7.toLowerCase().startsWith(valores.get(14))
-							&& num8.toLowerCase().startsWith(valores.get(15))
-							&& num9.toLowerCase().startsWith(valores.get(16))
-							&& num10.toLowerCase().startsWith(valores.get(17))
+							&& num3.toLowerCase().contains(valores.get(10).toLowerCase())
+							&& num4.toLowerCase().contains(valores.get(11).toLowerCase())
+							&& num5.toLowerCase().contains(valores.get(12).toLowerCase())
+							&& num6.toLowerCase().contains(valores.get(13).toLowerCase())
+							&& num7.toLowerCase().contains(valores.get(14).toLowerCase())
+							&& num8.toLowerCase().contains(valores.get(15).toLowerCase())
+							&& num9.toLowerCase().contains(valores.get(16).toLowerCase())
+							&& num10.toLowerCase().contains(valores.get(17).toLowerCase())
 							&& f4100.getLmmixl().toLowerCase()
-									.startsWith(valores.get(18))
+									.contains(valores.get(18).toLowerCase())
 							&& f4100.getLmstag().toLowerCase()
-									.startsWith(valores.get(19))) {
+									.contains(valores.get(19).toLowerCase())) {
 						listF4100_2.add(f4100);
 					}
 				}
@@ -1275,30 +1275,30 @@ public class CF4111 extends CGenerico {
 					if (unidad.getMcdc() != null)
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
-							.startsWith(valores.get(0))
-							&& mcdc.toLowerCase().startsWith(valores.get(1))
+							.contains(valores.get(0).toLowerCase())
+							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& unidad.getMcstyl().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& unidad.getMcfmod().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& unidad.getMcsbli().toLowerCase()
-									.startsWith(valores.get(6))
+									.contains(valores.get(6).toLowerCase())
 							&& unidad.getMcrp01().toLowerCase()
-									.startsWith(valores.get(7))
+									.contains(valores.get(7).toLowerCase())
 							&& unidad.getMcrp02().toLowerCase()
-									.startsWith(valores.get(8))
+									.contains(valores.get(8).toLowerCase())
 							&& unidad.getMcrp03().toLowerCase()
-									.startsWith(valores.get(9))
+									.contains(valores.get(9).toLowerCase())
 							&& unidad.getMcrp04().toLowerCase()
-									.startsWith(valores.get(10))
+									.contains(valores.get(10).toLowerCase())
 							&& unidad.getMcrp05().toLowerCase()
-									.startsWith(valores.get(11))
+									.contains(valores.get(11).toLowerCase())
 							&& unidad.getMcrp06().toLowerCase()
-									.startsWith(valores.get(12))) {
+									.contains(valores.get(12).toLowerCase())) {
 						unidadnegocio.add(unidad);
 					}
 				}
@@ -1423,25 +1423,25 @@ public class CF4111 extends CGenerico {
 					else
 						valor = f0005.getSddoc();
 					if (String.valueOf(valor.longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0005.getId().getSddcto().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& String.valueOf(f0005.getId().getSdlnid())
-									.toLowerCase().startsWith(valores.get(2))
+									.toLowerCase().contains(valores.get(2).toLowerCase())
 							&& f0005.getId().getSdkcoo().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f0005.getSdmcu().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& String.valueOf(f0005.getSditm()).toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& String.valueOf(f0005.getSdpqor()).toLowerCase()
-									.startsWith(valores.get(6))
+									.contains(valores.get(6).toLowerCase())
 							&& String.valueOf(f0005.getSdecst()).toLowerCase()
-									.startsWith(valores.get(7))
+									.contains(valores.get(7).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0005
 											.getSddrqj())).toLowerCase()
-									.startsWith(valores.get(8))) {
+									.contains(valores.get(8).toLowerCase())) {
 						listF0005_2.add(f0005);
 					}
 				}
@@ -1555,18 +1555,18 @@ public class CF4111 extends CGenerico {
 					if (f4101.getImsrp1() != null)
 						valor = f4101.getImsrp1();
 					if (f4101.getImlitm().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& cantidad.toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f4101.getImsrtx().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f4101.getImlnty().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& f4101.getImstkt().toLowerCase()
-									.startsWith(valores.get(5))
-							&& valor.toLowerCase().startsWith(valores.get(6))) {
+									.contains(valores.get(5).toLowerCase())
+							&& valor.toLowerCase().contains(valores.get(6).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}
@@ -1668,17 +1668,17 @@ public class CF4111 extends CGenerico {
 
 				for (F0101 f01 : listF0101) {
 					if (String.valueOf(f01.getAban8().longValue())
-							.toLowerCase().startsWith(valores.get(0))
+							.toLowerCase().contains(valores.get(0))
 							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1))
 							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2))
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3))
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4))
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(5))) {
+									.contains(valores.get(5))) {
 						lista.add(f01);
 					}
 				}
@@ -1887,6 +1887,7 @@ public class CF4111 extends CGenerico {
 		txtUM2.setValue("");
 		spnCantidad.setValue(0);
 		spnCosto.setValue((double) 0);
+		spnCantidad2.setValue(0);
 	}
 
 	@Listen("onClick = #btnRemover")
