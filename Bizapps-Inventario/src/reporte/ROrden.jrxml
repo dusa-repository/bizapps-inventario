@@ -33,10 +33,10 @@
 	<variable name="orden_Costo" class="java.lang.Double" resetType="Group" resetGroup="orden" calculation="Sum">
 		<variableExpression><![CDATA[$F{ilpaid}]]></variableExpression>
 	</variable>
-	<variable name="total_Cantidad" class="java.lang.Double" resetType="None" calculation="Sum">
+	<variable name="total_Cantidad" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{iltrqt}]]></variableExpression>
 	</variable>
-	<variable name="total_Costo" class="java.lang.Double" resetType="None" calculation="Sum">
+	<variable name="total_Costo" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{ilpaid}]]></variableExpression>
 	</variable>
 	<group name="orden" isStartNewPage="true" isReprintHeaderOnEachPage="true">

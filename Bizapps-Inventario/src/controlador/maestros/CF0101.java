@@ -36,7 +36,6 @@ import modelo.pk.F00021PK;
 import modelo.pk.F0111PK;
 import modelo.pk.F0116PK;
 import modelo.transacciones.F4111;
-
 import componentes.Botonera;
 import componentes.BuscadorUDC;
 import componentes.Catalogo;
@@ -1056,17 +1055,17 @@ public class CF0101 extends CGenerico {
 
 				for (F0101 f01 : listF0101) {
 					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(5))) {
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -1105,17 +1104,17 @@ public class CF0101 extends CGenerico {
 
 				for (F0101 f01 : listF0101) {
 					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -1228,32 +1227,34 @@ public class CF0101 extends CGenerico {
 				List<F0006> unidadnegocio = new ArrayList<F0006>();
 
 				for (F0006 unidad : unidades) {
+					String mcdc = "";
+					if (unidad.getMcdc() != null)
+						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
-							.startsWith(valores.get(0))
-							&& unidad.getMcdc().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(0).toLowerCase())
+							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& unidad.getMcstyl().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& unidad.getMcfmod().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& unidad.getMcsbli().toLowerCase()
-									.startsWith(valores.get(6))
+									.contains(valores.get(6).toLowerCase())
 							&& unidad.getMcrp01().toLowerCase()
-									.startsWith(valores.get(7))
+									.contains(valores.get(7).toLowerCase())
 							&& unidad.getMcrp02().toLowerCase()
-									.startsWith(valores.get(8))
+									.contains(valores.get(8).toLowerCase())
 							&& unidad.getMcrp03().toLowerCase()
-									.startsWith(valores.get(9))
+									.contains(valores.get(9).toLowerCase())
 							&& unidad.getMcrp04().toLowerCase()
-									.startsWith(valores.get(10))
+									.contains(valores.get(10).toLowerCase())
 							&& unidad.getMcrp05().toLowerCase()
-									.startsWith(valores.get(11))
+									.contains(valores.get(11).toLowerCase())
 							&& unidad.getMcrp06().toLowerCase()
-									.startsWith(valores.get(12))) {
+									.contains(valores.get(12).toLowerCase())) {
 						unidadnegocio.add(unidad);
 					}
 				}

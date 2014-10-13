@@ -173,7 +173,7 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<spinner id="spnCantidad" width="100%" step="10" value="0"
+									<spinner id="spnCantidad" width="100%" step="1" value="0"
 										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
 									<hbox />
 									<button label="Agregar" id="btnAgregar" autodisable="true"
@@ -197,13 +197,12 @@
 										</label>
 									</hbox>
 									<doublespinner width="100%" visible="false" id="spnCosto"
-										step="10" value="0" format="#.##" constraint="min 0 max 99999999"
+										step="1" value="0" format="#.##" constraint="min 0 max 99999999"
 										tooltiptext="Ingrese el periodo Actual" />
-									<label id="lblCantidad2" class="etiqueta" value="Cantidad Secundaria:"
-										visible="false" />
-									<spinner id="spnCantidad2" width="100%" step="10" value="0"
-										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual"
-										visible="false" />
+									<label id="lblCantidad2" class="etiqueta" value="Existencia:" visible="false"/>
+									<spinner id="spnCantidad2" buttonVisible="false" visible="false"
+										readonly="true" width="100%" step="10" value="0"
+										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
 								</row>
 								<row>
 									<hbox>
