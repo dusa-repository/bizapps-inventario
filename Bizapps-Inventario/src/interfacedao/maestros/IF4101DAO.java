@@ -17,7 +17,7 @@ public interface IF4101DAO extends JpaRepository<F4101, Double> {
 
 	List<F4101> findByImitmIn(List<Double> lista);
 
-	@Query("select fa from F4101 fa where fa.imitm in (select distinct f.id.liitm from F41021 f where f.id.limcu = ?1)")
+	@Query("select fa from F4101 fa where fa.imitm in (select distinct f.id.liitm from F41021 f where f.id.limcu = ?1) order by fa.imdsc1 asc")
 	List<F4101> buscarPorMcu(String value);
 }
 
