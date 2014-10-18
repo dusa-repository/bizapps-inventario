@@ -252,6 +252,7 @@ public class CF0004 extends CGenerico {
 		txtRTF0004.setValue("");
 		txtSYF0004.setValue("");
 		txtCDLF0004.setValue(null);
+		catalogo.limpiarSeleccion();
 		txtSYF0004.setFocus(true);
 	}
 
@@ -403,7 +404,10 @@ public class CF0004 extends CGenerico {
 				registros[0] = f0004.getId().getDtsy();
 				registros[1] = f0004.getId().getDtrt();
 				registros[2] = f0004.getDtdl01();
-				registros[3] = String.valueOf(f0004.getDtcdl());
+				if (f0004.getDtcdl() != null)
+					registros[3] = String.valueOf(f0004.getDtcdl());
+				else
+					registros[3] = null;
 				registros[4] = f0004.getDtln2();
 				registros[5] = f0004.getDtcnum();
 				return registros;
