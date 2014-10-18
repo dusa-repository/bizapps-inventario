@@ -27,7 +27,6 @@ import componentes.Mensaje;
 
 public class CF0005 extends CGenerico {
 
-
 	private static final long serialVersionUID = 4858496432716297913L;
 	@Wire
 	private Textbox txtSYF0005;
@@ -84,12 +83,13 @@ public class CF0005 extends CGenerico {
 			@Override
 			public void seleccionar() {
 				if (validarSeleccion()) {
-					if (catalogo.obtenerSeleccionados().size() == 1) {				
+					if (catalogo.obtenerSeleccionados().size() == 1) {
 						mostrarBotones(false);
-						F0005 f05 = catalogo.objetoSeleccionadoDelCatalogo();				
+						F0005 f05 = catalogo.objetoSeleccionadoDelCatalogo();
 						clave = f05.getId();
-						abrirRegistro();				
-						F0004 f04 = servicioF0004.buscar(f05.getId().getDrsy(), f05.getId().getDrrt());
+						abrirRegistro();
+						F0004 f04 = servicioF0004.buscar(f05.getId().getDrsy(),
+								f05.getId().getDrrt());
 						txtRTF0005.setValue(f05.getId().getDrrt());
 						txtRTF0005.setDisabled(true);
 						txtSYF0005.setValue(f05.getId().getDrsy());
@@ -109,7 +109,8 @@ public class CF0005 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0005, "Trabajo con Codigos Definidos por Usuario", tabs);
+				cerrarVentana(divVF0005,
+						"Trabajo con Codigos Definidos por Usuario", tabs);
 
 			}
 
@@ -123,7 +124,7 @@ public class CF0005 extends CGenerico {
 				mostrarBotones(false);
 				limpiarCampos();
 				habilitarTextClave();
-			
+
 			}
 
 			@Override
@@ -261,6 +262,7 @@ public class CF0005 extends CGenerico {
 		txtKYF0005.setValue("");
 		txtSYF0005.setFocus(true);
 		lblDescripcionF0004.setValue("");
+		catalogo.limpiarSeleccion();
 		btnBuscarF0004.setVisible(true);
 	}
 
@@ -302,6 +304,7 @@ public class CF0005 extends CGenerico {
 
 	@Listen("onChange = #txtSYF0005")
 	public boolean claveSYExiste() {
+
 		if (servicioF0004.buscarSY(txtSYF0005.getValue()).isEmpty()) {
 			msj.mensajeAlerta(Mensaje.claveSYNoEsta);
 			txtSYF0005.setFocus(true);
@@ -314,9 +317,10 @@ public class CF0005 extends CGenerico {
 					lblDescripcionF0004.setValue("");
 					txtRTF0005.setFocus(true);
 					return true;
-				}
-				else
-					lblDescripcionF0004.setValue(servicioF0004.buscar(txtSYF0005.getValue(),txtRTF0005.getValue()).getDtdl01());
+				} else
+					lblDescripcionF0004.setValue(servicioF0004.buscar(
+							txtSYF0005.getValue(), txtRTF0005.getValue())
+							.getDtdl01());
 			}
 		}
 		return false;
@@ -331,9 +335,10 @@ public class CF0005 extends CGenerico {
 				txtRTF0005.setFocus(true);
 				lblDescripcionF0004.setValue("");
 				return true;
-			}
-			else 
-				lblDescripcionF0004.setValue(servicioF0004.buscar(txtSYF0005.getValue(),txtRTF0005.getValue()).getDtdl01());
+			} else
+				lblDescripcionF0004.setValue(servicioF0004.buscar(
+						txtSYF0005.getValue(), txtRTF0005.getValue())
+						.getDtdl01());
 		}
 		return false;
 	}
@@ -378,8 +383,8 @@ public class CF0005 extends CGenerico {
 
 	@Listen("onClick = #gpxRegistro")
 	public void abrirRegistro() {
-		if(clave==null)
-		btnBuscarF0004.setVisible(true);
+		if (clave == null)
+			btnBuscarF0004.setVisible(true);
 		else
 			btnBuscarF0004.setVisible(false);
 		gpxDatos.setOpen(false);
@@ -419,9 +424,9 @@ public class CF0005 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0005>(catalogoF0005, "F0005", listF0005,false, false, false, "SY",
-				"RT", "KY", "Descripcion 01", "Descripcion 02",
-				"Gestion Especial", "Codificacion Fija") {
+		catalogo = new Catalogo<F0005>(catalogoF0005, "F0005", listF0005,
+				false, false, false, "SY", "RT", "KY", "Descripcion 01",
+				"Descripcion 02", "Gestion Especial", "Codificacion Fija") {
 
 			@Override
 			protected List<F0005> buscar(List<String> valores) {
@@ -464,13 +469,13 @@ public class CF0005 extends CGenerico {
 		};
 		catalogo.setParent(catalogoF0005);
 	}
-	
 
 	@Listen("onClick = #btnBuscarF0004")
 	public void mostrarCatalogoF0004() {
 		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
-		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "F0004", listF0004, true, false, false,"SY",
-				"RT", "Descripcion", "Codigo", "2 Linea", "Numerico") {
+		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "F0004",
+				listF0004, true, false, false, "SY", "RT", "Descripcion",
+				"Codigo", "2 Linea", "Numerico") {
 
 			@Override
 			protected List<F0004> buscar(List<String> valores) {
@@ -502,7 +507,10 @@ public class CF0005 extends CGenerico {
 				registros[0] = f0004.getId().getDtsy();
 				registros[1] = f0004.getId().getDtrt();
 				registros[2] = f0004.getDtdl01();
-				registros[3] = String.valueOf(f0004.getDtcdl());
+				if (f0004.getDtcdl() != null)
+					registros[3] = String.valueOf(f0004.getDtcdl());
+				else
+					registros[3] = null;
 				registros[4] = f0004.getDtln2();
 				registros[5] = f0004.getDtcnum();
 				return registros;
@@ -520,7 +528,8 @@ public class CF0005 extends CGenerico {
 		F0004 f0004 = catalogoF0004.objetoSeleccionadoDelCatalogo();
 		txtSYF0005.setValue(f0004.getId().getDtsy());
 		txtRTF0005.setValue(f0004.getId().getDtrt());
-		lblDescripcionF0004.setValue(servicioF0004.buscar(f0004.getId().getDtsy(),f0004.getId().getDtrt()).getDtdl01());
+		lblDescripcionF0004.setValue(servicioF0004.buscar(
+				f0004.getId().getDtsy(), f0004.getId().getDtrt()).getDtdl01());
 		catalogoF0004.setParent(null);
 	}
 }
