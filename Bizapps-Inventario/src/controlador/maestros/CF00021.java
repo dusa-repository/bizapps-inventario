@@ -451,19 +451,21 @@ public class CF00021 extends CGenerico {
 					if(companniadoc.getNlck01()!=null)
 						ck = companniadoc.getNlck01();
 					if (companniadoc.getId().getNlkco().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& companniadoc.getId().getNldct().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& companniadoc.getNlsmas().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& companniadoc.getNlimb().toLowerCase()
-									.startsWith(valores.get(3))
+							.contains(valores.get(3).toLowerCase())
 							&& ck.toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(4).toLowerCase())
 							&& String.valueOf(companniadoc.getNln001())
-									.toLowerCase().startsWith(valores.get(5))
+									.toLowerCase()
+									.contains(valores.get(5).toLowerCase())
 							&& String.valueOf(companniadoc.getNlaur())
-									.toLowerCase().startsWith(valores.get(6))) {
+									.toLowerCase()
+									.contains(valores.get(6).toLowerCase())) {
 						compannia.add(companniadoc);
 					}
 				}
@@ -502,25 +504,25 @@ public class CF00021 extends CGenerico {
 
 				for (F0010 f0010 : lista) {
 					if (f0010.getCcco().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0010.getCcname().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& f0010.getCcdot1().toLowerCase()
-									.startsWith(valores.get(3))
+							.contains(valores.get(3).toLowerCase())
 							&& f0010.getCcarfj().toString().toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(4).toLowerCase())
 							&& String.valueOf(f0010.getCctxbm()).toLowerCase()
-									.startsWith(valores.get(5))
+							.contains(valores.get(5).toLowerCase())
 							&& f0010.getCcapfj().toString().toLowerCase()
-									.startsWith(valores.get(6))
+							.contains(valores.get(6).toLowerCase())
 							&& String.valueOf(f0010.getCctxbo()).toLowerCase()
-									.startsWith(valores.get(7))
+							.contains(valores.get(7).toLowerCase())
 							&& f0010.getCcdfyj().toString().toLowerCase()
-									.startsWith(valores.get(8))
+							.contains(valores.get(8).toLowerCase())
 							&& String.valueOf(f0010.getCcpnf()).toLowerCase()
-									.startsWith(valores.get(9))) {
+							.contains(valores.get(9).toLowerCase())) {
 						lista2.add(f0010);
 					}
 				}
