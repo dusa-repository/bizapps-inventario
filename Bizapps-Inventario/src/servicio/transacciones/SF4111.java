@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import interfacedao.transacciones.IF4111DAO;
-
 import modelo.transacciones.F4111;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +80,7 @@ public class SF4111 {
 	public List<F4111> buscarHastaFecha2(BigDecimal hasta) {
 		return iF4111DAO.findByIlvpejBeforeOrderByMcuAsc(hasta);
 	}
-	
+
 	public List<F4111> buscarEntreFechas2(BigDecimal desde, BigDecimal hasta) {
 		// TODO Auto-generated method stub
 		return iF4111DAO.findByIlvpejBetweenOrderByIldocAsc(desde, hasta);
@@ -90,5 +89,13 @@ public class SF4111 {
 	public F4111 buscarTodosOrdenadosPorDoc(String string, Double claveDoc,
 			Double double1) {
 		return iF4111DAO.findByIldocAndIldctAndIlitm(claveDoc, string, double1);
+	}
+
+	public List<F4111> buscarEntreFechasItemMcuLocnDct(BigDecimal ilvpej1,
+			BigDecimal ilvpej2, Double item, String planta, String ubicacion,
+			String lote, String tipo) {
+		return iF4111DAO
+				.findByIlvpejBetweenAndIlitmAndIlmcuLikeAndIllocnLikeAndIllotnLikeAndIldctLikeOrderByIlitmAsc(
+						ilvpej1, ilvpej2, item, planta, ubicacion, lote, tipo);
 	}
 }
