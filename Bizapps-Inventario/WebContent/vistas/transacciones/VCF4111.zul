@@ -1,0 +1,114 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVCF4111" apply="controlador.transacciones.CCF4111">
+		<groupbox width="auto" mold="3d" title="Cardex (VCF4111)">
+			<div id="botoneraCF4111" />
+			<separator />
+			<groupbox id="gpxRegistro" width="auto" class="azul" title="">
+				<caption label="Consultar" style="font-weight:bold; font-size: 13px"
+					tooltiptext="Presione para Registrar un Nuevo Pedido" />
+				<separator />
+				<grid>
+					<columns visible="false">
+						<column label="" width="20%" />
+						<column label="" width="20%" />
+						<column label="" width="10%" />
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Numero de Articulo" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<doublebox id="txtItem" hflex="1" maxlength="19"
+								tooltiptext="Ingrese el Numero del Item que desea consultar" />
+							<button autodisable="true" id="btnBuscarItem" class="btn"
+								label="Buscar" tooltiptext="Catalogo Items" image="/public/imagenes/botones/buscar.png" />
+							<cell colspan="2">
+								<label id="lblItem" />
+							</cell>
+						</row>
+						<row>
+							<label class="etiqueta" value="Sucursal/planta:" />
+							<textbox id="txtPlanta" hflex="1" maxlength="12"
+								tooltiptext="Ingrese la Planta/Sucursal desde donde desea consultar" />
+							<button autodisable="true" id="btnBuscarPlanta"
+								tooltiptext="Catalogo Plantas/Sucursales" class="btn" label="Buscar"
+								image="/public/imagenes/botones/buscar.png" />
+							<cell colspan="2">
+								<label id="lblPlanta" />
+							</cell>
+						</row>
+						<row>
+							<label class="etiqueta" value="Ubicacion:" />
+							<textbox readonly="true" id="txtUbicacion" hflex="1"
+								maxlength="20" tooltiptext="Ingrese la Ubicacion desde donde desea consultar" />
+							<button autodisable="true" id="btnBuscarUbicacion" class="btn"
+								label="Buscar" tooltiptext="Catalogo Ubicaciones" image="/public/imagenes/botones/buscar.png" />
+							<cell colspan="2">
+								<label id="lblUbicacion" />
+							</cell>
+						</row>
+						<row>
+							<label class="etiqueta" value="Lote:" />
+							<textbox readonly="true" id="txtLote" hflex="1"
+								maxlength="20" tooltiptext="Ingrese el Lote Asociado que desea buscar" />
+							<button autodisable="true" id="btnBuscarLote" class="btn"
+								label="Buscar" tooltiptext="Catalogo de Lotes" image="/public/imagenes/botones/buscar.png" />
+							<cell colspan="2">
+								<label id="lblLote" />
+							</cell>
+						</row>
+						<row>
+							<cell colspan="4">
+								<div id="divbuscadorTipo" hflex="1" />
+							</cell>
+							<hbox />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Fecha Trasaccion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<datebox readonly="true" width="100%" id="dtbDesde"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de Inicio de la Transaccion" />
+							<label class="etiqueta" value="-" />
+							<datebox readonly="true" width="100%" id="dtbHasta"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de Finalizacion de la Transaccion" />
+							<hbox />
+							<!-- <button autodisable="true" id="btnBuscar" class="btn" label="Buscar" 
+								tooltiptext="Buscar Existencia y Valor del Articulo" image="/public/imagenes/botones/buscar.png" 
+								/> -->
+						</row>
+						<row>
+							<label class="etiqueta" value="Existencia Fisica" />
+							<doublebox id="txtExistencia" maxlength="19"
+								tooltiptext="Existencia Fisica del Articulo en el Inventario" />
+							<label class="etiqueta" value="Valor de Articulo" />
+							<doublebox id="txtValor" maxlength="19"
+								tooltiptext="Valor del Articulo en el Inventario" />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatos" class="azul" width="auto" closable="false">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
+					tooltiptext="Presione para Visualizar los Codigos Registrados" />
+				<div id="catalogoCF4111" tooltiptext="Seleccione el Codigo para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+		<div id="divCatalogoF4101" tooltiptext="Click para Seleccionar un Articulo" />
+		<div id="divCatalogoF4100" tooltiptext="Click para Seleccionar una Ubicacion" />
+		<div id="divCatalogoF0006" tooltiptext="Click para Seleccionar una Planta/Sucursal" />
+		<div id="divCatalogoF4008" tooltiptext="Click para Seleccionar un Lote" />
+	</div>
+</zk>

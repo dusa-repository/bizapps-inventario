@@ -47,4 +47,8 @@ public interface IF4111DAO extends JpaRepository<F4111, Double> {
 
 	F4111 findByIldocAndIldctAndIlitm(Double claveDoc, String string,
 			Double double1);
+
+	List<F4111> findByIlvpejBetweenAndIlitmAndIlmcuLikeAndIllocnLikeAndIllotnLikeAndIldctLikeOrderByIlitmAsc(
+			BigDecimal ilvpej1, BigDecimal ilvpej2, Double item, String planta,
+			String ubicacion, String lote, String tipo);
 }
