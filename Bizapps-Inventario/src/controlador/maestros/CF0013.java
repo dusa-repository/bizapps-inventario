@@ -259,6 +259,7 @@ public class CF0013 extends CGenerico {
 		txtCRCDF0013.setValue("");
 		txtDECF0013.setValue("");
 		txtDL01F0013.setValue("");
+		catalogo.limpiarSeleccion();
 		txtCRCDF0013.setFocus(true);
 	}
 
@@ -287,7 +288,7 @@ public class CF0013 extends CGenerico {
 			return false;
 		} else {
 			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
+				msj.mensajeError(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
@@ -372,13 +373,13 @@ public class CF0013 extends CGenerico {
 
 				for (F0013 f0013 : listF0013) {
 					if (f0013.getCvcrcd().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0013.getCvdl01().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& f0013.getCvcdec().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& f0013.getCvckr().toLowerCase()
-									.startsWith(valores.get(3))) {
+							.contains(valores.get(3).toLowerCase())) {
 						lista.add(f0013);
 					}
 				}
