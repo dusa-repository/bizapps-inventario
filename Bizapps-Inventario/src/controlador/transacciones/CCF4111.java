@@ -96,6 +96,8 @@ public class CCF4111 extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
+		txtExistencia.setDisabled(true);
+		txtValor.setDisabled(true);
 		HashMap<String, Object> map = (HashMap<String, Object>) Sessions
 				.getCurrent().getAttribute("mapaGeneral");
 		if (map != null) {
@@ -130,13 +132,19 @@ public class CCF4111 extends CGenerico {
 
 			@Override
 			public void limpiar() {
+				lblItem.setValue("");
+				lblLote.setValue("");
+				lblPlanta.setValue("");
+				lblUbicacion.setValue("");
 				txtExistencia.setValue(null);
 				txtItem.setValue(null);
 				txtLote.setValue("");
 				txtPlanta.setValue("");
 				txtUbicacion.setValue("");
 				txtValor.setValue(null);
-				catalogo.limpiarSeleccion();
+				buscadorTipo.settearCampo(null);
+				lista = new ArrayList<F4111>();
+				catalogo.actualizarLista(lista);
 			}
 
 			@Override
@@ -219,7 +227,7 @@ public class CCF4111 extends CGenerico {
 	private void cargarBuscador() {
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
 				"DT");
-		buscadorTipo = new BuscadorUDC("Tipo Documento", 2, listaF0005, true,
+		buscadorTipo = new BuscadorUDC("Tipo Documento", 2, listaF0005, false,
 				false, false, "00", "DT") {
 			@Override
 			protected F0005 buscar() {

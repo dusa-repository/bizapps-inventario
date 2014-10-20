@@ -10,8 +10,8 @@
 				<separator />
 				<grid>
 					<columns visible="false">
-						<column label="" width="20%" />
-						<column label="" width="20%" />
+						<column label="" width="19.5%" />
+						<column label="" width="20.5%" />
 						<column label="" width="10%" />
 						<column label="" width="20%" />
 						<column label="" width="30%" />
@@ -44,7 +44,7 @@
 						</row>
 						<row>
 							<label class="etiqueta" value="Ubicacion:" />
-							<textbox readonly="true" id="txtUbicacion" hflex="1"
+							<textbox id="txtUbicacion" hflex="1"
 								maxlength="20" tooltiptext="Ingrese la Ubicacion desde donde desea consultar" />
 							<button autodisable="true" id="btnBuscarUbicacion" class="btn"
 								label="Buscar" tooltiptext="Catalogo Ubicaciones" image="/public/imagenes/botones/buscar.png" />
