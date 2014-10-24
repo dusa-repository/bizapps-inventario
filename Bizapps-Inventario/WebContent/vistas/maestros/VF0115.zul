@@ -13,8 +13,8 @@
 					<columns visible="false">
 						<column label="" width="20%" />
 						<column label="" width="35%" />
-						<column label="" width="10%" />
-						<column label="" width="35%" />
+						<column label="" width="16%" />
+						<column label="" width="30%" />
 					</columns>
 					<rows>
 						<row>

@@ -124,7 +124,7 @@ public class CF0015 extends CGenerico {
 		rdoMetodoInversionF0015.setSelected(true);
 		mostrarCatalogoEncabezado();
 		mostrarCatalogoDetalle();
-
+		
 		botonera = new Botonera() {
 
 			@Override
@@ -158,12 +158,14 @@ public class CF0015 extends CGenerico {
 											.valueOf(f015.getId().getCxeft()))));
 							txtAN8F0015.setValue(String.valueOf(f015.getId()
 									.getCxan8()));
-							txtAN8F0015.setDisabled(true);
+
+							if (f015.getId().getCxan8() != 0){
+								lblDireccionF0101.setValue(servicioF0101.buscar(
+										f015.getId().getCxan8()).getAbalph());
+								txtAN8F0015.setDisabled(true);
+								btnBuscarF0101.setDisabled(true);	
+							}
 							
-							lblDireccionF0101.setValue((servicioF0101.buscar(f015
-									.getId().getCxan8())).getAbac02());
-							
-							btnBuscarF0101.setDisabled(true);
 							txtCRCMF0015.setValue(f015.getCxcrcm());
 							txtCRRF0015
 									.setValue(String.valueOf(f015.getCxcrr()));
@@ -221,7 +223,7 @@ public class CF0015 extends CGenerico {
 			public void annadir() {
 				// TODO Auto-generated method stub
 				abrirRegistro();
-				dtbEFTF0015.setDisabled(true);
+				// dtbEFTF0015.setDisabled(true);
 				tbMetodoCalculoF0015.setSelected(true);
 				tbTipoCambioF0015.setVisible(true);
 				rdoMetodoInversionF0015.setSelected(true);
@@ -246,7 +248,10 @@ public class CF0015 extends CGenerico {
 					long eft = Long.valueOf((String
 							.valueOf(transformarGregorianoAJulia(dtbEFTF0015
 									.getValue()))));
-					double an8 = Double.parseDouble(txtAN8F0015.getValue());
+
+					double an8 = 0;
+					if (txtAN8F0015.getText().compareTo("") != 0)
+						an8 = Double.parseDouble(txtAN8F0015.getValue());
 					F0015PK clave = new F0015PK();
 					clave.setCxcrcd(crcd);
 					clave.setCxcrdc(crdc);
@@ -257,11 +262,14 @@ public class CF0015 extends CGenerico {
 					foo15.setId(clave);
 
 					if (agregarMetodoCalculo) {
-						foo15.setCxcrcm(txtCRCMF0015.getValue());
-						foo15.setCxcrr(Double.parseDouble(txtCRRF0015
-								.getValue()));
-						foo15.setCxcrrd(Double.parseDouble(txtCRRDF0015
-								.getValue()));
+						if (txtCRCMF0015.getText().compareTo("") != 0)
+							foo15.setCxcrcm(txtCRCMF0015.getValue());
+						if (txtCRRF0015.getText().compareTo("") != 0)
+							foo15.setCxcrr(Double.parseDouble(txtCRRF0015
+									.getValue()));
+						if (txtCRRDF0015.getText().compareTo("") != 0)
+							foo15.setCxcrrd(Double.parseDouble(txtCRRDF0015
+									.getValue()));
 					}
 
 					foo15.setCxuser("JDE");
@@ -599,7 +607,7 @@ public class CF0015 extends CGenerico {
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -620,19 +628,20 @@ public class CF0015 extends CGenerico {
 
 				for (F0015 f0015 : listF0015) {
 					if (f0015.getId().getCxcrcd().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& (servicioF0013.buscar(f0015.getId().getCxcrcd()))
 									.getCvdl01().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0015.getId().getCxcrdc().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& (servicioF0013.buscar(f0015.getId().getCxcrdc()))
 									.getCvdl01().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& String.valueOf(f0015.getId().getCxan8())
-									.toLowerCase().startsWith(valores.get(4))
+									.toLowerCase()
+									.contains(valores.get(4).toLowerCase())
 							&& f0015.getId().getCxrttyp().toLowerCase()
-									.startsWith(valores.get(5))) {
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(f0015);
 					}
 				}
@@ -649,7 +658,12 @@ public class CF0015 extends CGenerico {
 				registros[3] = (servicioF0013.buscar(f0015.getId().getCxcrdc()))
 						.getCvdl01();
 				registros[4] = String.valueOf(f0015.getId().getCxan8());
-				registros[5] = f0015.getId().getCxrttyp();
+
+				if (servicioF0101.buscar(f0015.getId().getCxan8()) != null)
+					registros[5] = servicioF0101.buscar(
+							f0015.getId().getCxan8()).getAbalph();
+				else
+					registros[5] = "";
 				return registros;
 			}
 		};
@@ -672,19 +686,20 @@ public class CF0015 extends CGenerico {
 					if (formatoFecha
 							.format(transformarJulianaAGregoria(BigDecimal
 									.valueOf(f0015.getId().getCxeft())))
-							.toLowerCase().startsWith(valores.get(0))
+							.toLowerCase()
+							.contains(valores.get(0).toLowerCase())
 							&& f0015.getCxclmeth().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0015.getCxcrcm().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& String.valueOf(f0015.getCxcrr()).toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& String.valueOf(f0015.getCxcrrd()).toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& f0015.getCxtrcr().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& f0015.getCxcsr().toLowerCase()
-									.startsWith(valores.get(6))) {
+									.contains(valores.get(6).toLowerCase())) {
 						lista.add(f0015);
 					}
 				}
@@ -723,13 +738,13 @@ public class CF0015 extends CGenerico {
 
 				for (F0013 f0013 : listF0013) {
 					if (f0013.getCvcrcd().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0013.getCvdl01().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0013.getCvcdec().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f0013.getCvckr().toLowerCase()
-									.startsWith(valores.get(4))) {
+									.contains(valores.get(3).toLowerCase())) {
 						lista.add(f0013);
 					}
 				}
@@ -773,13 +788,13 @@ public class CF0015 extends CGenerico {
 
 				for (F0013 f0013 : listF0013) {
 					if (f0013.getCvcrcd().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f0013.getCvdl01().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f0013.getCvcdec().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f0013.getCvckr().toLowerCase()
-									.startsWith(valores.get(4))) {
+									.contains(valores.get(3).toLowerCase())) {
 						lista.add(f0013);
 					}
 				}
@@ -824,17 +839,17 @@ public class CF0015 extends CGenerico {
 
 				for (F0101 f01 : listF0101) {
 					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -861,20 +876,22 @@ public class CF0015 extends CGenerico {
 	public void seleccionCatalogoF0101() {
 		F0101 f0101 = catalogoF0101.objetoSeleccionadoDelCatalogo();
 		txtAN8F0015.setValue(String.valueOf(f0101.getAban8()));
-		lblDireccionF0101.setValue(f0101.getAbac02());
+		lblDireccionF0101.setValue(f0101.getAbalph());
 		catalogoF0101.setParent(null);
 	}
 
 	@Listen("onChange = #txtCRCMF0015")
 	public void metodoConversion() {
 
-		if (txtCRCMF0015.getValue().equals("Y")) {
+		if (txtCRCMF0015.getValue().equalsIgnoreCase("Y")) {
 			lblMetodoConversionF0015.setValue("Metodo Multiplicador");
-		}
+		} else {
 
-		if (txtCRCMF0015.getValue().equals("Z")) {
+			if (txtCRCMF0015.getValue().equalsIgnoreCase("Z")) {
 
-			lblMetodoConversionF0015.setValue("Metodo Divisor");
+				lblMetodoConversionF0015.setValue("Metodo Divisor");
+			}
+
 		}
 
 	}
