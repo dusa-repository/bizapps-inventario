@@ -246,7 +246,7 @@ public class CF0115 extends CGenerico {
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -363,14 +363,15 @@ public class CF0115 extends CGenerico {
 					if (f05 != null)
 						valor = f05.getDrdl01();
 					if (String.valueOf(f01.getId().getWpan8().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getWpar1().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& f01.getWpph1().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& f01.getWpphtp().toLowerCase()
-									.startsWith(valores.get(3))
-							&& valor.toLowerCase().startsWith(valores.get(4))) {
+							.contains(valores.get(3).toLowerCase())
+							&& valor.toLowerCase()
+							.contains(valores.get(4).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -410,17 +411,17 @@ public class CF0115 extends CGenerico {
 
 				for (F0101 f01 : listF0101) {
 					if (String.valueOf(f01.getAban8().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
+							.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
+							.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
