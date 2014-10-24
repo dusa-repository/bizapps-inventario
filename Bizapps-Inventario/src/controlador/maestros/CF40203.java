@@ -226,8 +226,10 @@ public class CF40203 extends CGenerico {
 									"AT", f40.getId().getFstrty()));
 							buscadorTRTY.inhabilitarCampo();
 						}
+						
 						// txtNSF40203.setValue(f40.);
 //						txtDSC1F40203.setValue(f40.getFsstds());
+						txtDSC1F40203.setValue(f40.getFsstds());
 //						txtNXTRF40203.setValue(f40.getFsnxtr());
 //						txtA1TRF40203.setValue(f40.getFsa1tr());
 //						txtA2TRF40203.setValue(f40.getFsa2tr());
@@ -441,7 +443,7 @@ public class CF40203 extends CGenerico {
 			return false;
 		} else {
 			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
+				msj.mensajeError(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
@@ -462,16 +464,17 @@ public class CF40203 extends CGenerico {
 	public boolean camposLLenos() {
 		if (buscadorDCTO.obtenerCaja().compareTo("") == 0
 				|| buscadorNTYF.obtenerCaja().compareTo("") == 0
-				|| txtNSF40203.getText().compareTo("") == 0
+				//|| txtNSF40203.getText().compareTo("") == 0
 				|| buscadorTRTY.obtenerCaja().compareTo("") == 0
-				|| txtDSC1F40203.getText().compareTo("") == 0
-				|| buscadorNXTR.obtenerCaja().compareTo("") == 0
-				|| buscadorA1TR.obtenerCaja().compareTo("") == 0
-				|| buscadorA2TR.obtenerCaja().compareTo("") == 0
-				|| buscadorA3TR.obtenerCaja().compareTo("") == 0
-				|| buscadorA4TR.obtenerCaja().compareTo("") == 0
-				|| buscadorA5TR.obtenerCaja().compareTo("") == 0
-				|| txtWRTHF40203.getText().compareTo("") == 0) {
+				//|| txtDSC1F40203.getText().compareTo("") == 0
+				//|| buscadorNXTR.obtenerCaja().compareTo("") == 0
+				//|| buscadorA1TR.obtenerCaja().compareTo("") == 0
+				//|| buscadorA2TR.obtenerCaja().compareTo("") == 0
+				//|| buscadorA3TR.obtenerCaja().compareTo("") == 0
+				//|| buscadorA4TR.obtenerCaja().compareTo("") == 0
+				//|| buscadorA5TR.obtenerCaja().compareTo("") == 0
+				//|| txtWRTHF40203.getText().compareTo("") == 0
+				) {
 			return false;
 		} else
 			return true;
@@ -546,27 +549,27 @@ public class CF40203 extends CGenerico {
 
 				for (F40203 actividadord : actividades) {
 					if (actividadord.getId().getFsdcto().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& actividadord.getId().getFslnty().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& actividadord.getId().getFslnty().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& actividadord.getFsstds().toLowerCase()
-									.startsWith(valores.get(3))
+							.contains(valores.get(3).toLowerCase())
 							&& actividadord.getFsnxtr().toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(4).toLowerCase())
 							&& actividadord.getFsa1tr().toLowerCase()
-									.startsWith(valores.get(5))
+							.contains(valores.get(5).toLowerCase())
 							&& actividadord.getFsa2tr().toLowerCase()
-									.startsWith(valores.get(6))
+							.contains(valores.get(6).toLowerCase())
 							&& actividadord.getFsa3tr().toLowerCase()
-									.startsWith(valores.get(7))
+							.contains(valores.get(7).toLowerCase())
 							&& actividadord.getFsa4tr().toLowerCase()
-									.startsWith(valores.get(8))
+							.contains(valores.get(8).toLowerCase())
 							&& actividadord.getFsa5tr().toLowerCase()
-									.startsWith(valores.get(9))
+							.contains(valores.get(9).toLowerCase())
 							&& actividadord.getFswrth().toLowerCase()
-									.startsWith(valores.get(10))) {
+							.contains(valores.get(10).toLowerCase())) {
 						actividad.add(actividadord);
 					}
 				}

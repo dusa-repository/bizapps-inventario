@@ -602,21 +602,21 @@ public class CF40205 extends CGenerico {
 
 				for (F40205 f01 : listF40205) {
 					if (f01.getLflnty().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getLflnds().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& f01.getLfivi().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& f01.getLfapi().toLowerCase()
-									.startsWith(valores.get(3))
+							.contains(valores.get(3).toLowerCase())
 							&& f01.getLfari().toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(4).toLowerCase())
 							&& f01.getLfgli().toLowerCase()
-									.startsWith(valores.get(5))
+							.contains(valores.get(5).toLowerCase())
 							&& f01.getLfpdc2().toLowerCase()
-									.startsWith(valores.get(6))
+							.contains(valores.get(6).toLowerCase())
 							&& f01.getLfglc().toLowerCase()
-									.startsWith(valores.get(7))) {
+							.contains(valores.get(7).toLowerCase())) {
 						lista.add(f01);
 					}
 				}

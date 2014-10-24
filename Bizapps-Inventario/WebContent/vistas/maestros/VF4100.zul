@@ -13,7 +13,7 @@
 				<grid width="100%">
 					<columns visible="false">
 						<column label="" width="20%" />
-						<column label="" width="25%" />
+						<column label="" width="30%" />
 						<column label="" width="20%" />
 						<column label="" width="35%" />
 					</columns>

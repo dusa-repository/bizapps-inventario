@@ -489,25 +489,25 @@ public class CF41002 extends CGenerico {
 					F4101 f4101 = servicioF4101.buscar(f41002.getId()
 							.getUmitm());
 					if (String.valueOf(f41002.getId().getUmitm().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& f41002.getId().getUmum().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& String.valueOf(f41002.getUmconv()).toLowerCase()
-									.startsWith(valores.get(3))
+							.contains(valores.get(3).toLowerCase())
 							&& f41002.getId().getUmrum().toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(4).toLowerCase())
 							&& f41002.getUmustr().toLowerCase()
-									.startsWith(valores.get(5))
+							.contains(valores.get(5).toLowerCase())
 							&& f41002.getUmexso().toLowerCase()
-									.startsWith(valores.get(6))
+							.contains(valores.get(6).toLowerCase())
 							&& f41002.getUmexpo().toLowerCase()
-									.startsWith(valores.get(7))
+							.contains(valores.get(7).toLowerCase())
 							&& String.valueOf(f41002.getUmsepc()).toLowerCase()
-									.startsWith(valores.get(8))
+							.contains(valores.get(8).toLowerCase())
 							&& String.valueOf(f41002.getUmpupc()).toLowerCase()
-									.startsWith(valores.get(9))) {
+							.contains(valores.get(9).toLowerCase())) {
 						listF41002_2.add(f41002);
 					}
 				}
@@ -548,9 +548,9 @@ public class CF41002 extends CGenerico {
 
 				for (F4101 f4101 : listF4101) {
 					if (String.valueOf(f4101.getImitm().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-									.startsWith(valores.get(1))) {
+							.contains(valores.get(1).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}

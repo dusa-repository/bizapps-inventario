@@ -618,17 +618,17 @@ public class CF4008 extends CGenerico {
 
 				for (F0101 f01 : listF0101) {
 					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
+							.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
+							.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -763,9 +763,9 @@ public class CF4008 extends CGenerico {
 
 				for (F4101 f4101 : listF4101) {
 					if (String.valueOf(f4101.getImitm()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-									.startsWith(valores.get(1))) {
+							.contains(valores.get(1).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}
@@ -808,31 +808,34 @@ public class CF4008 extends CGenerico {
 
 				for (F4008 f4008 : listF4008) {
 					if (f4008.getId().getTatxa1().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f4008.getTataxa().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& String
 									.valueOf(
 											transformarJulianaAGregoria(f4008
 													.getTaeftj()))
-									.toLowerCase().startsWith(valores.get(2))
+									.toLowerCase()
+									.contains(valores.get(2).toLowerCase())
 							&& String
 									.valueOf(
 											transformarJulianaAGregoriadeLong(f4008
 													.getId().getTaefdj()))
-									.toLowerCase().startsWith(valores.get(3))
+									.toLowerCase()
+									.contains(valores.get(3).toLowerCase())
 							&& String.valueOf(f4008.getTatxr1()).toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(4).toLowerCase())
 							&& String.valueOf(f4008.getTatxr2()).toLowerCase()
-									.startsWith(valores.get(5))
+							.contains(valores.get(5).toLowerCase())
 							&& String.valueOf(f4008.getTatxr3()).toLowerCase()
-									.startsWith(valores.get(6))
+							.contains(valores.get(6).toLowerCase())
 							&& String.valueOf(f4008.getTatxr4()).toLowerCase()
-									.startsWith(valores.get(7))
+							.contains(valores.get(7).toLowerCase())
 							&& String.valueOf(f4008.getTatxr5()).toLowerCase()
-									.startsWith(valores.get(8))
+							.contains(valores.get(8).toLowerCase())
 							&& String.valueOf(f4008.getId().getTaitm())
-									.toLowerCase().startsWith(valores.get(9))) {
+									.toLowerCase()
+									.contains(valores.get(9).toLowerCase())) {
 						lista.add(f4008);
 					}
 				}
