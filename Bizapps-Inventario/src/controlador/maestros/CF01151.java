@@ -413,14 +413,15 @@ public class CF01151 extends CGenerico {
 						break;
 					}
 					if (String.valueOf(f01.getId().getEaan8().longValue()).toLowerCase()
-							.startsWith(valores.get(0))
-							&& valor.toLowerCase().startsWith(valores.get(1))
+							.contains(valores.get(0).toLowerCase())
+							&& valor.toLowerCase()
+							.contains(valores.get(1).toLowerCase())
 							&& f01.getEaemal().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& String.valueOf(f01.getEaehier()).toLowerCase()
-									.startsWith(valores.get(3))
+							.contains(valores.get(3).toLowerCase())
 							&& f01.getEaeclass().toLowerCase()
-									.startsWith(valores.get(4))) {
+							.contains(valores.get(4).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -472,17 +473,17 @@ public class CF01151 extends CGenerico {
 
 				for (F0101 f01 : listF0101) {
 					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-									.startsWith(valores.get(1))
+							.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-									.startsWith(valores.get(2))
+							.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-									.startsWith(valores.get(4))
+							.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-									.startsWith(valores.get(5))
+							.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-									.startsWith(valores.get(6))) {
+							.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}

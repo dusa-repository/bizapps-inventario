@@ -508,67 +508,68 @@ public class CF0008 extends CGenerico {
 
 				for (F0008 f0008 : listF0008) {
 					if (f0008.getId().getCddtpn().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(BigDecimal
 											.valueOf(f0008.getId().getCddfyj())))
-									.toLowerCase().startsWith(valores.get(1))
+									.toLowerCase()
+									.contains(valores.get(1).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd01j())).toLowerCase()
-									.startsWith(valores.get(2))
+											.contains(valores.get(2).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd02j())).toLowerCase()
-									.startsWith(valores.get(3))
+											.contains(valores.get(3).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd03j())).toLowerCase()
-									.startsWith(valores.get(4))
+											.contains(valores.get(4).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd04j())).toLowerCase()
-									.startsWith(valores.get(5))
+											.contains(valores.get(5).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd05j())).toLowerCase()
-									.startsWith(valores.get(6))
+											.contains(valores.get(6).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd06j())).toLowerCase()
-									.startsWith(valores.get(7))
+											.contains(valores.get(7).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd07j())).toLowerCase()
-									.startsWith(valores.get(8))
+											.contains(valores.get(8).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd08j())).toLowerCase()
-									.startsWith(valores.get(9))
+											.contains(valores.get(9).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd09j())).toLowerCase()
-									.startsWith(valores.get(10))
+											.contains(valores.get(10).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd10j())).toLowerCase()
-									.startsWith(valores.get(11))
+											.contains(valores.get(11).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd11j())).toLowerCase()
-									.startsWith(valores.get(12))
+											.contains(valores.get(12).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd12j())).toLowerCase()
-									.startsWith(valores.get(13))
+											.contains(valores.get(13).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd13j())).toLowerCase()
-									.startsWith(valores.get(14))
+											.contains(valores.get(14).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd14j())).toLowerCase()
-									.startsWith(valores.get(15))) {
+											.contains(valores.get(15).toLowerCase())) {
 						lista.add(f0008);
 					}
 				}

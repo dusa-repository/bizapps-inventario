@@ -600,8 +600,8 @@ public class CF4100 extends CGenerico {
 				registros[5] = f4100.getLmkzon();
 				registros[6] = f4100.getLmzonr();
 				registros[7] = f4100.getLmlldl();
-				registros[8] = "no se";
-				registros[9] = "no se";
+				registros[8] = "";
+				registros[9] = "";
 				registros[10] = f4100.getLmla03();
 				registros[11] = f4100.getLmla04();
 				registros[12] = f4100.getLmla05();
