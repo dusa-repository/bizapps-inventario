@@ -36,7 +36,6 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 
 import componentes.Mensaje;
-
 import servicio.maestros.SF00021;
 import servicio.maestros.SF0004;
 import servicio.maestros.SF0005;
@@ -59,6 +58,7 @@ import servicio.maestros.SF4101;
 import servicio.maestros.SF41021;
 import servicio.maestros.SF4105;
 import servicio.maestros.SF4108;
+import servicio.maestros.SF4301;
 import servicio.seguridad.SArbol;
 import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
@@ -120,6 +120,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF4105 servicioF4105;
 	@WireVariable("SF4108")
 	protected SF4108 servicioF4108;
+	@WireVariable("SF4301")
+	protected SF4301 servicioF4301;
 	@WireVariable("SGrupo")
 	protected SGrupo servicioGrupo;
 	@WireVariable("SUsuario")
@@ -371,8 +373,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 			return id;
 		}
 	}
-	
-	public String damePath(){
-		return Executions.getCurrent().getContextPath()+"/";
+
+	public String damePath() {
+		return Executions.getCurrent().getContextPath() + "/";
 	}
 }
