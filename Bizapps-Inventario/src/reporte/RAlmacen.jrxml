@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RAlmacen" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e630ce25-dfa6-45f4-9695-dd1336e9d4bf">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="29"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fecha" class="java.util.Date"/>
 	<field name="lichdf" class="java.lang.String"/>
@@ -62,7 +62,7 @@
 		<groupFooter>
 			<band height="26">
 				<textField isStretchWithOverflow="true">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="336" y="0" width="85" height="20" uuid="ae8d064b-67db-4a22-be6d-a6dab4575469"/>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="348" y="0" width="67" height="20" uuid="ae8d064b-67db-4a22-be6d-a6dab4575469"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -72,14 +72,14 @@
 					<textFieldExpression><![CDATA[$V{sumAlmacen}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="247" y="0" width="90" height="20" uuid="d66ffc7b-c06f-4a47-831c-9475dfba4cc2"/>
+					<reportElement x="259" y="0" width="90" height="20" uuid="d66ffc7b-c06f-4a47-831c-9475dfba4cc2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="SansSerif" size="11" isBold="true" isUnderline="false"/>
 					</textElement>
 					<text><![CDATA[Total Almacen:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="586" y="0" width="114" height="20" uuid="52692109-fc31-4ddf-8f9b-74a3fc0fe564"/>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="606" y="0" width="67" height="20" uuid="52692109-fc31-4ddf-8f9b-74a3fc0fe564"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -127,7 +127,7 @@
 		<groupFooter>
 			<band height="20">
 				<textField isStretchWithOverflow="true">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="336" y="0" width="85" height="20" uuid="afaf36d3-68f9-41c1-8499-b6318f9f48d7"/>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="348" y="0" width="67" height="20" uuid="afaf36d3-68f9-41c1-8499-b6318f9f48d7"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -137,14 +137,14 @@
 					<textFieldExpression><![CDATA[$V{sumGrupo}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="247" y="0" width="90" height="20" uuid="c4231e5e-b168-4be9-ab3a-7047e2bfbf34"/>
+					<reportElement x="259" y="0" width="90" height="20" uuid="c4231e5e-b168-4be9-ab3a-7047e2bfbf34"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="SansSerif" size="11" isBold="true" isUnderline="false"/>
 					</textElement>
 					<text><![CDATA[Total Ubicacion:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="586" y="0" width="114" height="20" uuid="32adb47d-65d8-4c34-8d69-9f7ef4a80265"/>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="606" y="0" width="67" height="20" uuid="32adb47d-65d8-4c34-8d69-9f7ef4a80265"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -181,7 +181,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="387" y="52" width="100" height="20" uuid="4001872e-511f-4a91-a533-220226104c0c"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format($P{fecha})]]></textFieldExpression>
