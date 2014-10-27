@@ -165,6 +165,8 @@ public class CROrden extends CGenerico {
 			Date fechaM = transformarJulianaAGregoria(ordenes.get(i)
 					.getIlvpej());
 			ordenes.get(i).setIlasid(formatoFecha.format(fechaM));
+			double costo = ordenes.get(i).getIlpaid();
+			ordenes.get(i).setIlpaid( Math.rint(costo * 100) / 100);
 			F4101 f = new F4101();
 			if (ordenes.get(i).getIlitm() != null) {
 				f = getServicioF4101().buscar(ordenes.get(i).getIlitm());
@@ -179,16 +181,17 @@ public class CROrden extends CGenerico {
 		JasperReport repor = null;
 		try {
 			repor = (JasperReport) JRLoader.loadObject(getClass().getResource(
-					"/reporte/ROrden.jasper"));
+					"/reporte/ROrden2.jasper"));
 		} catch (JRException e1) {
 			e1.printStackTrace();
 		}
-		try {
-			fichero = JasperRunManager.runReportToPdf(repor, p,
-					new JRBeanCollectionDataSource(ordenes));
-		} catch (JRException e) {
-			msj.mensajeError(Mensaje.errorEnReporte);
-		}
+			try {
+				fichero = JasperRunManager.runReportToPdf(repor, p,
+						new JRBeanCollectionDataSource(ordenes));
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return fichero;
 	}
 
