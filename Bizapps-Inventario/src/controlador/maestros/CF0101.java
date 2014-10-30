@@ -643,7 +643,7 @@ public class CF0101 extends CGenerico {
 					f01.setAblngp(buscadorLNGP.obtenerCaja());
 					f01.setAbaempgp(buscadorMPGP.obtenerCaja());
 					f01.setAbsic(buscadorSIC.obtenerCaja());
-					f01.setAbtax(buscadorTAXC.obtenerCaja());
+					//f01.setAbtax(buscadorTAXC.obtenerCaja());
 					Long valor = txtAN81F0101.getValue();
 					if (valor != null)
 						f01.setAban81(valor.doubleValue());
@@ -876,7 +876,7 @@ public class CF0101 extends CGenerico {
 
 	private boolean camposLLenos() {
 		if (txtALPHF0101.getText().compareTo("") == 0
-				|| buscadorAT1.obtenerCaja() == null) {
+				|| buscadorAT1.obtenerCaja().compareTo("") == 0) {
 			return false;
 		} else
 			return true;

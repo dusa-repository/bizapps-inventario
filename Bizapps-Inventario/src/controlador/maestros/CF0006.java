@@ -599,79 +599,81 @@ public class CF0006 extends CGenerico {
 									"H00", "LD", f06.getMcldm()));
 						// txtLDMF0006.setValue(f06.getMcldm());
 						buscadorSTYL.settearCampo(servicioF0005.buscar("00",
-								"00", f06.getMcstyl()));
+								"MC", f06.getMcstyl()));
 						buscadorSBLI.settearCampo(servicioF0005.buscar("00",
-								"00", f06.getMcsbli()));
-						buscadorFMOD.settearCampo(servicioF0005.buscar("00",
-								"00", f06.getMcfmod()));
+								"SI", f06.getMcsbli()));
+						buscadorFMOD.settearCampo(servicioF0005.buscar("H09",
+								"MD", f06.getMcfmod()));
 						txtDL02F0006.setValue(f06.getMcdl02());
 						txtDL03F0006.setValue(f06.getMcdl03());
 						txtDL04F0006.setValue(f06.getMcdl04());
-						txtAN8F0006.setValue(String.valueOf(f06.getMcan8()));
+						if (f06.getMcan8() != null)
+							txtAN8F0006
+									.setValue(String.valueOf(f06.getMcan8()));
 						txtTXA1F0006.setValue(f06.getMctxa1());
 						txtMCUSF0006.setValue(f06.getMcmcus());
 						buscadorPECC.settearCampo(servicioF0005.buscar("00",
-								"00", String.valueOf(f06.getMcpcc())));
+								"PF", String.valueOf(f06.getMcpecc())));
 						buscadorCategoria1.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp01()));
+								"00", "01", f06.getMcrp01()));
 						buscadorCategoria2.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp02()));
+								"00", "02", f06.getMcrp02()));
 						buscadorCategoria3.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp03()));
+								"00", "03", f06.getMcrp03()));
 						buscadorCategoria4.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp04()));
+								"00", "04", f06.getMcrp04()));
 						buscadorCategoria5.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp05()));
+								"00", "05", f06.getMcrp05()));
 						buscadorCategoria6.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp06()));
+								"00", "06", f06.getMcrp06()));
 						buscadorCategoria7.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp07()));
+								"00", "07", f06.getMcrp07()));
 						buscadorCategoria8.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp08()));
+								"00", "08", f06.getMcrp08()));
 						buscadorCategoria9.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp09()));
+								"00", "09", f06.getMcrp09()));
 						buscadorCategoria10.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp10()));
+								"00", "10", f06.getMcrp10()));
 						buscadorCategoria11.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp11()));
+								"00", "11", f06.getMcrp11()));
 						buscadorCategoria12.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp12()));
+								"00", "12", f06.getMcrp12()));
 						buscadorCategoria13.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp13()));
+								"00", "13", f06.getMcrp13()));
 						buscadorCategoria14.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp14()));
+								"00", "14", f06.getMcrp14()));
 						buscadorCategoria15.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp15()));
+								"00", "15", f06.getMcrp15()));
 						buscadorCategoria16.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp16()));
+								"00", "16", f06.getMcrp16()));
 						buscadorCategoria17.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp17()));
+								"00", "17", f06.getMcrp17()));
 						buscadorCategoria18.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp18()));
+								"00", "18", f06.getMcrp18()));
 						buscadorCategoria19.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp19()));
+								"00", "19", f06.getMcrp19()));
 						buscadorCategoria20.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp20()));
+								"00", "20", f06.getMcrp20()));
 						buscadorCategoria21.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp21()));
+								"00", "21", f06.getMcrp21()));
 						buscadorCategoria22.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp22()));
+								"00", "22", f06.getMcrp22()));
 						buscadorCategoria23.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp23()));
+								"00", "23", f06.getMcrp23()));
 						buscadorCategoria24.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp24()));
+								"00", "24", f06.getMcrp24()));
 						buscadorCategoria25.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp25()));
+								"00", "25", f06.getMcrp25()));
 						buscadorCategoria26.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp26()));
+								"00", "26", f06.getMcrp26()));
 						buscadorCategoria27.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp27()));
+								"00", "27", f06.getMcrp27()));
 						buscadorCategoria28.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp28()));
+								"00", "28", f06.getMcrp28()));
 						buscadorCategoria29.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp29()));
+								"00", "29", f06.getMcrp29()));
 						buscadorCategoria30.settearCampo(servicioF0005.buscar(
-								"00", "00", f06.getMcrp30()));
+								"00", "30", f06.getMcrp30()));
 						buscadorLDM.setFocus(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -715,7 +717,7 @@ public class CF0006 extends CGenerico {
 					String dl02 = txtDL02F0006.getValue();
 					String dl03 = txtDL03F0006.getValue();
 					String dl04 = txtDL04F0006.getValue();
-					// double an8 = Double.parseDouble(txtAN8F0006.getValue());
+					double an8 = Double.parseDouble(txtAN8F0006.getValue());
 					String txa1 = txtTXA1F0006.getValue();
 					String mcus = txtMCUSF0006.getValue();
 					String pecc = buscadorPECC.obtenerCaja();
@@ -760,7 +762,7 @@ public class CF0006 extends CGenerico {
 					fooo6.setMcdl02(dl02);
 					fooo6.setMcdl03(dl03);
 					fooo6.setMcdl04(dl04);
-					// fooo6.setMcan8(an8);
+					fooo6.setMcan8(an8);
 					fooo6.setMctxa1(txa1);
 					fooo6.setMcmcus(mcus);
 					fooo6.setMcpecc(pecc);
@@ -1138,7 +1140,8 @@ public class CF0006 extends CGenerico {
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
+							&& mcdc.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
 									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()
@@ -1212,7 +1215,8 @@ public class CF0006 extends CGenerico {
 									.contains(valores.get(1).toLowerCase())
 							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
 									.contains(valores.get(2).toLowerCase())
-							&& ccdot.toLowerCase().contains(valores.get(3).toLowerCase())
+							&& ccdot.toLowerCase().contains(
+									valores.get(3).toLowerCase())
 							&& f0010.getCcarfj().toString().toLowerCase()
 									.contains(valores.get(4).toLowerCase())
 							&& String.valueOf(f0010.getCctxbm()).toLowerCase()
@@ -1337,7 +1341,8 @@ public class CF0006 extends CGenerico {
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
+							&& mcdc.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
 									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()

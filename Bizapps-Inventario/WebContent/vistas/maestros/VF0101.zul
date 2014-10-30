@@ -46,7 +46,7 @@
 							<grid width="100%" style="border:0px">
 								<columns visible="false">
 									<column label="" width="20%" />
-									<column label="" width="30%" />
+									<column label="" width="35%" />
 									<column label="" width="15%" />
 									<column label="" width="35%" />
 								</columns>
@@ -164,7 +164,7 @@
 								" style="border:0px">
 								<columns visible="false">
 									<column label="" width="19.5%" />
-									<column label="" width="44.5%" />
+									<column label="" width="50%" />
 									<column label="" width="5%" />
 									<column label="" width="30%" />
 								</columns>
@@ -281,7 +281,7 @@
 									<grid width="100%" style="border:0px">
 										<columns visible="false">
 											<column label="" width="30%" />
-											<column label="" width="30%" />
+											<column label="" width="45%" />
 											<column label="" width="40%" />
 										</columns>
 										<rows>
@@ -321,6 +321,16 @@
 														tooltiptext="IIngrese la cuarta linea de la direccion" />
 												</hbox>
 											</row>
+											<row>
+												<hbox/>
+												<hbox/>
+												<hbox/>
+											</row>
+											<row>
+												<hbox/>
+												<hbox/>
+												<hbox/>
+											</row>
 										</rows>
 									</grid>
 								</groupbox>
@@ -329,9 +339,9 @@
 								<groupbox class="blanco" title="Informacion valores" closable="false">
 									<grid width="100%" style="border:0px">
 										<columns visible="false">
-											<column label="" width="30%" />
-											<column label="" width="30%" />
-											<column label="" width="40%" />
+											<column label="" width="13%" />
+											<column label="" width="45%" />
+											<column label="" width="45%" />
 										</columns>
 										<rows>
 											<row>
@@ -361,7 +371,7 @@
 								<rows>
 									<row>
 										<label class="etiqueta" value="Nº Principal:" />
-										<longbox hflex="1" tooltiptext="Ingrese la direccion Principal:" />
+										<longbox id="txtNPrincipal" hflex="1" tooltiptext="Ingrese la direccion Principal:" />
 										<hbox>
 											<button id="btnBuscarDireccion0" label="Buscar" class="btn"
 												tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />

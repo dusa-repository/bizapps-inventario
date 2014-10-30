@@ -132,11 +132,13 @@ public class CF00021 extends CGenerico {
 							buscadorDCT.settearCampo(servicioF0005.buscar("00",
 									"DT", f21.getId().getNldct()));
 							buscadorDCT.inhabilitarCampo();
-//							txtDCTF00021.setValue(f21.getId().getNldct());
-//							txtDCTF00021.setDisabled(true);
+							// txtDCTF00021.setValue(f21.getId().getNldct());
+							// txtDCTF00021.setDisabled(true);
 						}
 						buscadorSMAS.settearCampo(servicioF0005.buscar("00",
 								"DT", f21.getId().getNldct()));
+						buscadorINCRUS.settearCampo(servicioF0005.buscar("H00",
+								"IM", f21.getNlimb()));
 						txtCTRYF00021.setValue(String.valueOf(f21.getId()
 								.getNlctry()));
 						txtFYF00021.setValue(String.valueOf(f21.getId()
@@ -187,7 +189,7 @@ public class CF00021 extends CGenerico {
 					double ctry = Double.parseDouble(txtCTRYF00021.getValue());
 					double fy = Double.parseDouble(txtFYF00021.getValue());
 					double n001 = 0;
-					if(txtN001F00021.getText().compareTo("")!=0)
+					if (txtN001F00021.getText().compareTo("") != 0)
 						n001 = Double.parseDouble(txtN001F00021.getValue());
 					String imb = buscadorINCRUS.obtenerCaja();
 					F00021PK clave = new F00021PK();
@@ -448,18 +450,18 @@ public class CF00021 extends CGenerico {
 
 				for (F00021 companniadoc : compannias) {
 					String ck = "";
-					if(companniadoc.getNlck01()!=null)
+					if (companniadoc.getNlck01() != null)
 						ck = companniadoc.getNlck01();
 					if (companniadoc.getId().getNlkco().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& companniadoc.getId().getNldct().toLowerCase()
-							.contains(valores.get(1).toLowerCase())
+									.contains(valores.get(1).toLowerCase())
 							&& companniadoc.getNlsmas().toLowerCase()
-							.contains(valores.get(2).toLowerCase())
+									.contains(valores.get(2).toLowerCase())
 							&& companniadoc.getNlimb().toLowerCase()
-							.contains(valores.get(3).toLowerCase())
-							&& ck.toLowerCase()
-							.contains(valores.get(4).toLowerCase())
+									.contains(valores.get(3).toLowerCase())
+							&& ck.toLowerCase().contains(
+									valores.get(4).toLowerCase())
 							&& String.valueOf(companniadoc.getNln001())
 									.toLowerCase()
 									.contains(valores.get(5).toLowerCase())
@@ -481,7 +483,11 @@ public class CF00021 extends CGenerico {
 				registros[3] = numerosiguiente.getNlimb();
 				registros[4] = numerosiguiente.getNlck01();
 				registros[5] = String.valueOf(numerosiguiente.getNln001());
-				registros[6] = String.valueOf(numerosiguiente.getNlaur());
+				if (numerosiguiente.getNlaur() != null)
+					registros[6] = String.valueOf(numerosiguiente.getNlaur());
+				else
+					registros[6] = "";
+					
 				return registros;
 			}
 		};
@@ -506,23 +512,23 @@ public class CF00021 extends CGenerico {
 					if (f0010.getCcco().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f0010.getCcname().toLowerCase()
-							.contains(valores.get(1).toLowerCase())
+									.contains(valores.get(1).toLowerCase())
 							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
-							.contains(valores.get(2).toLowerCase())
+									.contains(valores.get(2).toLowerCase())
 							&& f0010.getCcdot1().toLowerCase()
-							.contains(valores.get(3).toLowerCase())
+									.contains(valores.get(3).toLowerCase())
 							&& f0010.getCcarfj().toString().toLowerCase()
-							.contains(valores.get(4).toLowerCase())
+									.contains(valores.get(4).toLowerCase())
 							&& String.valueOf(f0010.getCctxbm()).toLowerCase()
-							.contains(valores.get(5).toLowerCase())
+									.contains(valores.get(5).toLowerCase())
 							&& f0010.getCcapfj().toString().toLowerCase()
-							.contains(valores.get(6).toLowerCase())
+									.contains(valores.get(6).toLowerCase())
 							&& String.valueOf(f0010.getCctxbo()).toLowerCase()
-							.contains(valores.get(7).toLowerCase())
+									.contains(valores.get(7).toLowerCase())
 							&& f0010.getCcdfyj().toString().toLowerCase()
-							.contains(valores.get(8).toLowerCase())
+									.contains(valores.get(8).toLowerCase())
 							&& String.valueOf(f0010.getCcpnf()).toLowerCase()
-							.contains(valores.get(9).toLowerCase())) {
+									.contains(valores.get(9).toLowerCase())) {
 						lista2.add(f0010);
 					}
 				}

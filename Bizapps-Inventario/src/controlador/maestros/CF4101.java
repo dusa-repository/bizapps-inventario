@@ -776,26 +776,37 @@ public class CF4101 extends CGenerico {
 								rdoIMABCMSinClasificacionF4101
 										.setSelected(true);
 						}
-						txtIMSLDF4101
-								.setValue(String.valueOf(f4101.getImsld()));
-						txtIMU1DDF4101.setValue(String.valueOf(f4101
-								.getImu1dd()));
-						txtIMU2DDF4101.setValue(String.valueOf(f4101
-								.getImu2dd()));
-						txtIMU3DDF4101.setValue(String.valueOf(f4101
-								.getImu3dd()));
-						txtIMU4DDF4101.setValue(String.valueOf(f4101
-								.getImu4dd()));
-						txtIMU5DDF4101.setValue(String.valueOf(f4101
-								.getImu5dd()));
-						txtIMBBDDF4101.setValue(String.valueOf(f4101
-								.getImbbdd()));
-						txtIMSBDDF4101.setValue(String.valueOf(f4101
-								.getImsbdd()));
-						txtIMLEDDF4101.setValue(String.valueOf(f4101
-								.getImledd()));
-						txtIMPEFDF4101.setValue(String.valueOf(f4101
-								.getImpefd()));
+						if (f4101.getImsld() != null)
+							txtIMSLDF4101.setValue(String.valueOf(f4101
+									.getImsld()));
+						if (f4101.getImu1dd() != null)
+							txtIMU1DDF4101.setValue(String.valueOf(f4101
+									.getImu1dd()));
+						if (f4101.getImu2dd() != null)
+							txtIMU2DDF4101.setValue(String.valueOf(f4101
+									.getImu2dd()));
+						if (f4101.getImu3dd() != null)
+							txtIMU3DDF4101.setValue(String.valueOf(f4101
+									.getImu3dd()));
+						if (f4101.getImu4dd() != null)
+							txtIMU4DDF4101.setValue(String.valueOf(f4101
+									.getImu4dd()));
+						if (f4101.getImu5dd() != null)
+							txtIMU5DDF4101.setValue(String.valueOf(f4101
+									.getImu5dd()));
+						if (f4101.getImbbdd() != null)
+							txtIMBBDDF4101.setValue(String.valueOf(f4101
+									.getImbbdd()));
+						if (f4101.getImsbdd() != null)
+							txtIMSBDDF4101.setValue(String.valueOf(f4101
+									.getImsbdd()));
+						if (f4101.getImledd() != null)
+							txtIMLEDDF4101.setValue(String.valueOf(f4101
+									.getImledd()));
+						if (f4101.getImpefd() != null)
+							txtIMPEFDF4101.setValue(String.valueOf(f4101
+									.getImpefd()));
+
 						txtArticuloIMLITMF4101.setFocus(true);
 
 					} else
@@ -997,40 +1008,40 @@ public class CF4101 extends CGenerico {
 									.getValue()));
 					if (txtIMBBDDF4101.getText().compareTo("") != 0)
 						if (!txtIMBBDDF4101.getValue().equals("null"))
-						f4101.setImbbdd(Double.parseDouble(txtIMBBDDF4101
-								.getValue()));
+							f4101.setImbbdd(Double.parseDouble(txtIMBBDDF4101
+									.getValue()));
 					if (txtIMSBDDF4101.getText().compareTo("") != 0)
 						if (!txtIMSBDDF4101.getValue().equals("null"))
-						f4101.setImsbdd(Double.parseDouble(txtIMSBDDF4101
-								.getValue()));
+							f4101.setImsbdd(Double.parseDouble(txtIMSBDDF4101
+									.getValue()));
 					if (txtIMLEDDF4101.getText().compareTo("") != 0)
 						if (!txtIMLEDDF4101.getValue().equals("null"))
-						f4101.setImledd(Double.parseDouble(txtIMLEDDF4101
-								.getValue()));
+							f4101.setImledd(Double.parseDouble(txtIMLEDDF4101
+									.getValue()));
 					if (txtIMPEFDF4101.getText().compareTo("") != 0)
 						if (!txtIMPEFDF4101.getValue().equals("null"))
-						f4101.setImpefd(Double.parseDouble(txtIMPEFDF4101
-								.getValue()));
+							f4101.setImpefd(Double.parseDouble(txtIMPEFDF4101
+									.getValue()));
 					if (txtIMU1DDF4101.getText().compareTo("") != 0)
 						if (!txtIMU1DDF4101.getValue().equals("null"))
-						f4101.setImu1dd(Double.parseDouble(txtIMU1DDF4101
-								.getValue()));
+							f4101.setImu1dd(Double.parseDouble(txtIMU1DDF4101
+									.getValue()));
 					if (txtIMU2DDF4101.getText().compareTo("") != 0)
 						if (!txtIMU2DDF4101.getValue().equals("null"))
-						f4101.setImu2dd(Double.parseDouble(txtIMU2DDF4101
-								.getValue()));
+							f4101.setImu2dd(Double.parseDouble(txtIMU2DDF4101
+									.getValue()));
 					if (txtIMU3DDF4101.getText().compareTo("") != 0)
 						if (!txtIMU3DDF4101.getValue().equals("null"))
-						f4101.setImu3dd(Double.parseDouble(txtIMU3DDF4101
-								.getValue()));
+							f4101.setImu3dd(Double.parseDouble(txtIMU3DDF4101
+									.getValue()));
 					if (txtIMU4DDF4101.getText().compareTo("") != 0)
 						if (!txtIMU4DDF4101.getValue().equals("null"))
-						f4101.setImu4dd(Double.parseDouble(txtIMU4DDF4101
-								.getValue()));
+							f4101.setImu4dd(Double.parseDouble(txtIMU4DDF4101
+									.getValue()));
 					if (txtIMU5DDF4101.getText().compareTo("") != 0)
 						if (!txtIMU5DDF4101.getValue().equals("null"))
-						f4101.setImu5dd(Double.parseDouble(txtIMU5DDF4101
-								.getValue()));
+							f4101.setImu5dd(Double.parseDouble(txtIMU5DDF4101
+									.getValue()));
 
 					servicioF4101.guardar(f4101);
 					msj.mensajeInformacion(Mensaje.guardado);
@@ -1229,8 +1240,8 @@ public class CF4101 extends CGenerico {
 	}
 
 	public boolean camposLLenos() {
-		if (txtArticuloIMLITMF4101.getText().compareTo("") == 0
-				|| buscadorIMSTKT.obtenerCaja().compareTo("") == 0
+		if (//txtArticuloIMLITMF4101.getText().compareTo("") == 0
+				 buscadorIMSTKT.obtenerCaja().compareTo("") == 0
 				|| txtIMDSC1F4101.getText().compareTo("") == 0
 				|| buscadorIMUOM1.obtenerCaja().compareTo("") == 0) {
 			return false;
@@ -1406,7 +1417,8 @@ public class CF4101 extends CGenerico {
 									.contains(valores.get(4).toLowerCase())
 							&& f4101.getImstkt().toLowerCase()
 									.contains(valores.get(5).toLowerCase())
-							&& imsrp1.toLowerCase().contains(valores.get(6).toLowerCase())) {
+							&& imsrp1.toLowerCase().contains(
+									valores.get(6).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}
