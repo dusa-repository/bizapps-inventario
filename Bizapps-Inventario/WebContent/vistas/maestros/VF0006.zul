@@ -14,8 +14,8 @@
 				<grid width="100%">
 					<columns visible="false">
 						<column label="" width="19.5%" />
-						<column label="" width="45%" />
-						<column label="" width="37%" />
+						<column label="" width="50%" />
+						<column label="" width="30.5%" />
 					</columns>
 					<rows>
 						<row>
@@ -45,9 +45,9 @@
 							<grid width="100%">
 								<columns visible="false">
 									<column label="" width="19.5%" />
-									<column label="" width="45%" />
+									<column label="" width="50%" />
 									<column label="" width="15%" />
-									<column label="" width="22%" />
+									<column label="" width="15.5%" />
 								</columns>
 								<rows>
 									<row>
@@ -95,6 +95,7 @@
 											<div id="divbuscadorSBLI" hflex="1" />
 										</cell>
 										<hbox />
+										<hbox />
 									</row>
 									<row>
 										<cell colspan="2">
@@ -110,9 +111,9 @@
 							<grid width="100%">
 								<columns visible="false">
 									<column label="" width="19%" />
-									<column label="" width="45%" />
+									<column label="" width="50%" />
 									<column label="" width="15%" />
-									<column label="" width="22%" />
+									<column label="" width="16%" />
 								</columns>
 								<rows>
 									<row>

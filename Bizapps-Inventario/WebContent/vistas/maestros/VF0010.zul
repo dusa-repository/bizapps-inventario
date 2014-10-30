@@ -1,7 +1,8 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVF0010" apply="controlador.maestros.CF0010">
-		<groupbox width="auto" mold="3d" title="Trabajo con Compañias (VF0010)">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con Compañias (VF0010)">
 			<div id="botoneraF0010" />
 			<separator />
 			<groupbox class="azul" id="gpxRegistroF0010" width="auto"
@@ -11,47 +12,56 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="20%" />
-						<column label="" width="30%" />
-						<column label="" width="20%" />
-						<column label="" width="30%" />
+						<column label="" width="13%" />
+						<column label="" width="40%" />
+						<column label="" width="13%" />
+						<column label="" width="34%" />
 					</columns>
 					<rows>
 						<row>
 							<hbox>
-								<label class="etiqueta" value="Compañia:" />
+								<label class="etiqueta"
+									value="Compañia:" />
 								<space />
-								<label value="*" style="font-weight:bold;color:red">
+								<label value="*"
+									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtCCCOF0010" hflex="1" maxlength="5"
-								tooltiptext="Ingrese el Codigo de la Compañia" />
+							<textbox id="txtCCCOF0010" hflex="1"
+								maxlength="5" tooltiptext="Ingrese el Codigo de la Compañia" />
 							<hbox>
 								<label class="etiqueta" value="Nombre:" />
 								<space />
-								<label value="*" style="font-weight:bold;color:red">
+								<label value="*"
+									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtNameF0010" hflex="1" maxlength="30"
-								tooltiptext="Ingrese el nombre de la Compañia" />
+							<textbox id="txtNameF0010" hflex="1"
+								maxlength="30" tooltiptext="Ingrese el nombre de la Compañia" />
 						</row>
 					</rows>
 				</grid>
 				<separator />
 				<tabbox orient="horizontal">
 					<tabs width="auto">
-						<tab label="Configuracion Compañia" id="tabConfiguracion" />
-						<tab label="Contabilidad 52 Periodos" id="tabContabilidad" />
+						<tab label="Configuracion Compañia"
+							id="tabConfiguracion" />
+						<tab label="Contabilidad 52 Periodos"
+							id="tabContabilidad" />
 						<tab label="Moneda" id="tabMoneda" />
 					</tabs>
 					<tabpanels>
 						<tabpanel>
 							<hbox>
-								<groupbox title="Contabilidad General" closable="false" class="blanco">
-									<grid width="100%" style="border:0px">
+								<groupbox title="Contabilidad General"
+									closable="false" class="blanco">
+									<grid width="100%"
+										style="border:0px">
 										<columns visible="false">
-											<column label="" width="35%" />
-											<column label="" width="65%" />
+											<column label=""
+												width="25%" />
+											<column label=""
+												width="75%" />
 										</columns>
 										<rows>
 											<row>
@@ -59,7 +69,8 @@
 													<textbox id="txtPatronF0010" hflex="1" maxlength="1" tooltiptext="Ingrese 
 													el Patron de la Fecha Fiscal" /> -->
 												<cell colspan="2">
-													<div id="divbuscadorDPNT" hflex="1" />
+													<div
+														id="divbuscadorDPNT" hflex="1" />
 												</cell>
 											</row>
 											<row>
@@ -67,34 +78,45 @@
 													id="txtCaldF0010" hflex="1" maxlength="100" tooltiptext="Ingrese el numero 
 													de Periodos" /> -->
 												<cell colspan="2">
-													<div id="divbuscadorCALD" hflex="1" />
+													<div
+														id="divbuscadorCALD" hflex="1" />
 												</cell>
 											</row>
 											<row>
-												<label class="etiqueta" value="Periodo Actual:" />
-												<doublespinner id="dpnPeriodoActualGeneralF0010"
-													hflex="1" constraint="max 999999" value="0"
+												<label class="etiqueta"
+													value="Periodo Actual:" />
+												<doublespinner
+													id="dpnPeriodoActualGeneralF0010" hflex="1"
+													constraint="max 999999" value="0"
 													tooltiptext="Ingrese el periodo Actual" />
 											</row>
 											<row>
 												<hbox>
-													<label class="etiqueta" value="Inicio Año Fiscal:" />
+													<label
+														class="etiqueta" value="Inicio Año Fiscal:" />
 													<space />
-													<label value="*" style="font-weight:bold;color:red">
+													<label value="*"
+														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<datebox readonly="true" width="100%"
-													id="dtbFechaGeneralF0010" onCreate="self.value = new Date()"
+												<datebox readonly="true"
+													width="100%" id="dtbFechaGeneralF0010"
+													onCreate="self.value = new Date()"
 													tooltiptext="Ingrese el Inicio del año fiscal" />
 											</row>
 											<row>
-												<label class="etiqueta" value="Nº Direccion Compañia:" />
+												<label class="etiqueta"
+													value="Nº Direccion Compañia:" />
 												<hbox>
-													<longbox id="txtAn8F0010" hflex="1" maxlength="19"
+													<longbox
+														id="txtAn8F0010" hflex="1" maxlength="19"
 														tooltiptext="Ingrese la Moneda Nacional" />
-													<button id="btnBuscarDireccion" label="Buscar" class="btn"
-														tooltiptext="Catalogo Direccion" image="/public/imagenes/botones/buscar.png" />
-													<label id="lblDireccionF0010" />
+													<button
+														id="btnBuscarDireccion" label="Buscar" class="btn"
+														tooltiptext="Catalogo Direccion"
+														image="/public/imagenes/botones/buscar.png" />
+													<label
+														id="lblDireccionF0010" />
 												</hbox>
 											</row>
 										</rows>
@@ -102,48 +124,69 @@
 								</groupbox>
 								<separator />
 								<vbox>
-									<groupbox title="Cuentas por Pagar" closable="false" class="blanco">
-										<grid width="100%" style="border:0px">
+									<groupbox title="Cuentas por Pagar"
+										closable="false" class="blanco">
+										<grid width="100%"
+											style="border:0px">
 											<columns visible="false">
-												<column label="" width="35%" />
-												<column label="" width="65%" />
+												<column label=""
+													width="35%" />
+												<column label=""
+													width="65%" />
 											</columns>
 											<rows>
 												<row>
-													<label class="etiqueta" value="Periodo Actual:" />
-													<doublespinner id="dpnPeriodoPagarF0010"
-														hflex="1" value="0" constraint="max 999999" tooltiptext="Ingrese el periodo Actual" />
+													<label
+														class="etiqueta" value="Periodo Actual:" />
+													<doublespinner
+														id="dpnPeriodoPagarF0010" hflex="1" value="0"
+														constraint="max 999999"
+														tooltiptext="Ingrese el periodo Actual" />
 												</row>
 												<row>
-													<label class="etiqueta" value="Inicio Año Fiscal:" />
-													<datebox readonly="true" width="100%" id="dtbFechaPagarF0010"
-														onCreate="self.value = new Date()" tooltiptext="Ingrese el Inicio del año fiscal" />
+													<label
+														class="etiqueta" value="Inicio Año Fiscal:" />
+													<datebox
+														readonly="true" width="100%" id="dtbFechaPagarF0010"
+														onCreate="self.value = new Date()"
+														tooltiptext="Ingrese el Inicio del año fiscal" />
 												</row>
 												<row>
-													<label class="etiqueta" value="Usar Cuenta Transitoria:" />
-													<checkbox id="chxTransitoria" hflex="1"
+													<label
+														class="etiqueta" value="Usar Cuenta Transitoria:" />
+													<checkbox
+														id="chxTransitoria" hflex="1"
 														tooltiptext="Marque para Usar Cuenta Transitoria" />
 												</row>
 											</rows>
 										</grid>
 									</groupbox>
 									<separator />
-									<groupbox title="Cuentas por Cobrar" closable="false" class="blanco">
-										<grid width="100%" style="border:0px">
+									<groupbox title="Cuentas por Cobrar"
+										closable="false" class="blanco">
+										<grid width="100%"
+											style="border:0px">
 											<columns visible="false">
-												<column label="" width="35%" />
-												<column label="" width="65%" />
+												<column label=""
+													width="35%" />
+												<column label=""
+													width="65%" />
 											</columns>
 											<rows>
 												<row>
-													<label class="etiqueta" value="Periodo Actual:" />
-													<doublespinner id="dpnPeriodoCobrarF0010"
-														value="0" hflex="1" constraint="max 999999" tooltiptext="Ingrese el periodo Actual" />
+													<label
+														class="etiqueta" value="Periodo Actual:" />
+													<doublespinner
+														id="dpnPeriodoCobrarF0010" value="0" hflex="1"
+														constraint="max 999999"
+														tooltiptext="Ingrese el periodo Actual" />
 												</row>
 												<row>
-													<label class="etiqueta" value="Inicio Año Fiscal:" />
-													<datebox readonly="true" width="100%"
-														id="dtbFechaCobrarF0010" onCreate="self.value = new Date()"
+													<label
+														class="etiqueta" value="Inicio Año Fiscal:" />
+													<datebox
+														readonly="true" width="100%" id="dtbFechaCobrarF0010"
+														onCreate="self.value = new Date()"
 														tooltiptext="Ingrese el Inicio del año fiscal" />
 												</row>
 											</rows>
@@ -152,23 +195,29 @@
 								</vbox>
 							</hbox>
 							<separator />
-							<groupbox title="Informe Finaciero" closable="false" class="blanco">
+							<groupbox title="Informe Finaciero"
+								closable="false" class="blanco">
 								<grid width="100%" style="border:0px">
 									<columns visible="false">
-										<column label="" width="20%" />
-										<column label="" width="30%" />
-										<column label="" width="20%" />
-										<column label="" width="30%" />
+										<column label="" width="13%" />
+										<column label="" width="40%" />
+										<column label="" width="15%" />
+										<column label="" width="32%" />
 									</columns>
 									<rows>
 										<row>
-											<label class="etiqueta" value="Periodo Informes:" />
-											<doublespinner id="dpnPeriodoInformeF0010"
-												value="0" hflex="1" constraint="max 999999"
+											<label class="etiqueta"
+												value="Periodo Informes:" />
+											<doublespinner
+												id="dpnPeriodoInformeF0010" value="0" hflex="1"
+												constraint="max 999999"
 												tooltiptext="Ingrese el numero de Periodos de informes" />
-											<label class="etiqueta" value="Año Informes:" />
-											<doublespinner id="dpnAnnoInformeF0010" hflex="1"
-												value="0" constraint="max 999999" tooltiptext="Ingrese los Años de Informe" />
+											<label class="etiqueta"
+												value="Año Informes:" />
+											<doublespinner
+												id="dpnAnnoInformeF0010" hflex="1" value="0"
+												constraint="max 999999"
+												tooltiptext="Ingrese los Años de Informe" />
 										</row>
 									</rows>
 								</grid>
@@ -184,31 +233,39 @@
 								</columns>
 								<rows>
 									<row>
-										<label class="etiqueta" value="Moneda Nacional:" />
-										<textbox id="txtCCCRCDF0010" hflex="1" maxlength="3"
+										<label class="etiqueta"
+											value="Moneda Nacional:" />
+										<textbox id="txtCCCRCDF0010"
+											hflex="1" maxlength="3"
 											tooltiptext="Ingrese la Moneda Nacional" />
 										<hbox>
-											<button id="btnBuscarMoneda" label="Buscar" class="btn"
-												tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" />
+											<button id="btnBuscarMoneda"
+												label="Buscar" class="btn" tooltiptext="Catalogo Monedas"
+												image="/public/imagenes/botones/buscar.png" />
 											<label id="lblMonedaF0010" />
 										</hbox>
 									</row>
 									<row>
-										<label class="etiqueta" value="Calculo redeterminacion:" />
-										<textbox id="txtDot2F0010" hflex="1" maxlength="1"
+										<label class="etiqueta"
+											value="Calculo redeterminacion:" />
+										<textbox id="txtDot2F0010"
+											hflex="1" maxlength="1"
 											tooltiptext="Ingrese el Calculo de Redeterminacion" />
 										<hbox />
 									</row>
 									<row>
-										<label class="etiqueta" value="Redeterminacion de Monedas:" />
-										<textbox id="txtRMF0010" hflex="1" maxlength="1"
+										<label class="etiqueta"
+											value="Redeterminacion de Monedas:" />
+										<textbox id="txtRMF0010"
+											hflex="1" maxlength="1"
 											tooltiptext="Ingrese la Redeerminacion de las monedas" />
 										<hbox />
 									</row>
 									<row>
-										<label class="etiqueta" value="Contabilizar saldos cuenta p/moneda:" />
-										<checkbox id="chxSaldos" hflex="1"
-											tooltiptext="Marque para contabilizar los saldos" />
+										<label class="etiqueta"
+											value="Contabilizar saldos cuenta p/moneda:" />
+										<checkbox id="chxSaldos"
+											hflex="1" tooltiptext="Marque para contabilizar los saldos" />
 										<hbox />
 									</row>
 								</rows>
@@ -222,7 +279,8 @@
 				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las Compañias Registradas" />
-				<div id="catalogoF0010" tooltiptext="Seleccione la Compañia para Realizar una Accion" />
+				<div id="catalogoF0010"
+					tooltiptext="Seleccione la Compañia para Realizar una Accion" />
 			</groupbox>
 			<separator />
 			<separator />
