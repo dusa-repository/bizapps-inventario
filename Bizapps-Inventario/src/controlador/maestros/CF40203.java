@@ -217,6 +217,8 @@ public class CF40203 extends CGenerico {
 						buscadorDCTO.inhabilitarCampo();
 						buscadorNTYF.settearCampo(servicioF0005.buscar("00",
 								"00", f40.getId().getFslnty()));
+						buscadorNXTR.settearCampo(servicioF0005.buscar("40",
+								"AT", f40.getFsnxtr()));
 						buscadorNTYF.inhabilitarCampo();
 						// txtLNTYF40203.setValue(f40.getId().getFslnty());
 						if (f40.getId().getFstrty() != null) {

@@ -288,7 +288,7 @@
 											<row>
 												<label class="etiqueta" value="Año inicio:" />
 												<textbox id="txtYEARSTARF0101" hflex="1" maxlength="15"
-													tooltiptext="IIngrese el año de inicio" />
+													tooltiptext="Ingrese el año de inicio" />
 												<hbox />
 											</row>
 											<row>

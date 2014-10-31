@@ -128,6 +128,8 @@ public class CF0101 extends CGenerico {
 	@Wire
 	private Longbox txtAN81F0101;
 	@Wire
+	private Longbox txtNPrincipal;
+	@Wire
 	private Button btnBuscarDireccion1;
 	@Wire
 	private Label lblDireccion1F0101;
@@ -433,9 +435,9 @@ public class CF0101 extends CGenerico {
 							buscadorCTR.settearCampo(servicioF0005.buscar("00",
 									"CN", f0116.getAlctr()));
 							buscadorADDS.settearCampo(servicioF0005.buscar(
-									"00", "CT", f0116.getAladds()));
+									"00", "S", f0116.getAladds()));
 							buscadorCOUN.settearCampo(servicioF0005.buscar(
-									"00", "S", f0116.getAlcoun()));
+									"00", "CT", f0116.getAlcoun()));
 							txtADD1F0101.setValue(f0116.getAladd1());
 							txtADD2F0101.setValue(f0116.getAladd2());
 							txtADD3F0101.setValue(f0116.getAladd3());
@@ -460,17 +462,17 @@ public class CF0101 extends CGenerico {
 						buscadorTAXC.settearCampo(servicioF0005.buscar("H00",
 								"TA", f01.getAbtax()));
 						buscadorABREV.settearCampo(servicioF0005.buscar("01",
-								"RR", f01.getAbtax()));
+								"RR", f01.getAbrevrng()));
 						buscadorCLASS01.settearCampo(servicioF0005.buscar("01",
-								"CA", f01.getAbtax()));
+								"CA", f01.getAbclass01()));
 						buscadorCLASS02.settearCampo(servicioF0005.buscar("01",
-								"CB", f01.getAbtax()));
+								"CB", f01.getAbclass02()));
 						buscadorCLASS03.settearCampo(servicioF0005.buscar("01",
-								"CC", f01.getAbtax()));
+								"CC", f01.getAbclass03()));
 						buscadorCLASS05.settearCampo(servicioF0005.buscar("01",
-								"CE", f01.getAbtax()));
+								"CE", f01.getAbclass05()));
 						buscadorCLASS04.settearCampo(servicioF0005.buscar("01",
-								"CD", f01.getAbtax()));
+								"CD", f01.getAbclass04()));
 						buscadorAC01.settearCampo(servicioF0005.buscar("01",
 								"01", f01.getAbac01()));
 						buscadorAC02.settearCampo(servicioF0005.buscar("01",
@@ -643,7 +645,7 @@ public class CF0101 extends CGenerico {
 					f01.setAblngp(buscadorLNGP.obtenerCaja());
 					f01.setAbaempgp(buscadorMPGP.obtenerCaja());
 					f01.setAbsic(buscadorSIC.obtenerCaja());
-					//f01.setAbtax(buscadorTAXC.obtenerCaja());
+					f01.setAbtax(buscadorTAXC.obtenerCaja());
 					Long valor = txtAN81F0101.getValue();
 					if (valor != null)
 						f01.setAban81(valor.doubleValue());
@@ -1142,7 +1144,7 @@ public class CF0101 extends CGenerico {
 		F0101 f0101 = catalogoDivF0101.objetoSeleccionadoDelCatalogo();
 		switch (idBoton) {
 		case "btnBuscarDireccion0":
-			// setearValores(f0101, txtAN81F0101, lblDireccion0F0101);
+			setearValores(f0101, txtNPrincipal , lblDireccion0F0101);
 			break;
 		case "btnBuscarDireccion1":
 			setearValores(f0101, txtAN81F0101, lblDireccion1F0101);

@@ -124,7 +124,7 @@ public class CF0015 extends CGenerico {
 		rdoMetodoInversionF0015.setSelected(true);
 		mostrarCatalogoEncabezado();
 		mostrarCatalogoDetalle();
-		
+
 		botonera = new Botonera() {
 
 			@Override
@@ -159,13 +159,14 @@ public class CF0015 extends CGenerico {
 							txtAN8F0015.setValue(String.valueOf(f015.getId()
 									.getCxan8()));
 
-							if (f015.getId().getCxan8() != 0){
-								lblDireccionF0101.setValue(servicioF0101.buscar(
-										f015.getId().getCxan8()).getAbalph());
+							if (f015.getId().getCxan8() != 0) {
+								lblDireccionF0101.setValue(servicioF0101
+										.buscar(f015.getId().getCxan8())
+										.getAbalph());
 								txtAN8F0015.setDisabled(true);
-								btnBuscarF0101.setDisabled(true);	
+								btnBuscarF0101.setDisabled(true);
 							}
-							
+
 							txtCRCMF0015.setValue(f015.getCxcrcm());
 							txtCRRF0015
 									.setValue(String.valueOf(f015.getCxcrr()));
@@ -714,8 +715,14 @@ public class CF0015 extends CGenerico {
 								.valueOf(f0015.getId().getCxeft())));
 				registros[1] = f0015.getCxclmeth();
 				registros[2] = f0015.getCxcrcm();
-				registros[3] = String.valueOf(f0015.getCxcrr());
-				registros[4] = String.valueOf(f0015.getCxcrrd());
+				if (f0015.getCxcrr() != null)
+					registros[3] = String.valueOf(f0015.getCxcrr());
+				else
+					registros[3] = "";
+				if (f0015.getCxcrrd() != null)
+					registros[4] = String.valueOf(f0015.getCxcrrd());
+				else
+					registros[4] = "";
 				registros[5] = f0015.getCxtrcr();
 				registros[6] = f0015.getCxcsr();
 				return registros;
