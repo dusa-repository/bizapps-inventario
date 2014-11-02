@@ -30,6 +30,37 @@
 					</row>
 					<row>
 						<hbox>
+							<label class="etiqueta" value="Estado Ordenes:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<combobox id="cmbEstado" readonly="true" tabindex="1"
+							value="Despachadas" width="100%" tooltiptext="Seleccione un Estado"
+							placeholder="Seleccione un Tipo">
+							<comboitem label="Despachadas" />
+							<comboitem label="Pendientes" />
+						</combobox>
+						<hbox>
+							<label class="etiqueta" value="Tipo de Documento:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<combobox id="cmbDoc" readonly="true" tabindex="1"
+							value="TODOS" width="100%" tooltiptext="Seleccione un Tipo"
+							placeholder="Seleccione un Tipo">
+							<comboitem label="TODOS" />
+							<comboitem label="MK" />
+							<comboitem label="MC" />
+							<comboitem label="DP" />
+							<comboitem label="OV" />
+							<comboitem label="IT" />
+							<comboitem label="ET" />
+							<comboitem label="I4" />
+							<comboitem label="IA" />
+						</combobox>
+					</row>
+					<row>
+						<hbox>
 							<label class="etiqueta" value="Reporte de Tipo:" />
 							<space />
 							<label value="*" style="font-weight:bold;color:red" />

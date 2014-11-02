@@ -77,6 +77,7 @@ public class CArbol extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
+		Clients.confirmClose("Mensaje de la Aplicacion:");
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 

@@ -8,6 +8,7 @@ import interfacedao.transacciones.IF4111DAO;
 import modelo.transacciones.F4111;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service("SF4111")
@@ -97,5 +98,16 @@ public class SF4111 {
 		return iF4111DAO
 				.findByIlvpejBetweenAndIlitmAndIlmcuLikeAndIllocnLikeAndIllotnLikeAndIldctLikeOrderByIlitmAsc(
 						ilvpej1, ilvpej2, item, planta, ubicacion, lote, tipo);
+	}
+
+	public List<F4111> buscarEntreFechas2YTipo(BigDecimal desde,
+			BigDecimal hasta, String tipo) {
+		List<String> ordenar = new ArrayList<String>();
+		ordenar.add("ildct");
+		ordenar.add("ildoc");
+		ordenar.add("ilitm");
+		Sort o = new Sort(Sort.Direction.ASC, ordenar);
+		return iF4111DAO
+				.findByIlvpejBetweenAndIldct(desde,hasta,tipo,o);
 	}
 }

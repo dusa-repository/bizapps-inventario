@@ -1,10 +1,12 @@
 package interfacedao.transacciones;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import modelo.pk.F4211PK;
 import modelo.transacciones.F4211;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -21,5 +23,11 @@ public interface IF4211DAO extends JpaRepository<F4211, F4211PK> {
 
 	List<F4211> findByIdSddocoAndIdSddctoAndSdspattnOrderBySditmAsc(
 			Double sddoco, String sddcto, String string);
+
+	List<F4211> findBySddrqjBetweenAndSdspattn(BigDecimal desde,
+			BigDecimal hasta, String string, Sort o);
+
+	List<F4211> findBySddrqjBetweenAndSdspattnAndIdSddcto(BigDecimal desde,
+			BigDecimal hasta, String string, String tipo, Sort o);
 
 }
