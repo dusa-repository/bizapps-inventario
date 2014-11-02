@@ -5,6 +5,7 @@ import java.util.List;
 
 import modelo.transacciones.F4111;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -41,7 +42,7 @@ public interface IF4111DAO extends JpaRepository<F4111, Double> {
 	List<F4111> findByIlvpejBeforeOrderByMcuAsc(BigDecimal hasta);
 	
 
-	@Query("select f from F4111 f where f.ilvpej between ?1 and ?2 order by f.ildoc asc, f.ildct asc, f.ilitm asc")
+	@Query("select f from F4111 f where f.ilvpej between ?1 and ?2 order by  f.ildct asc, f.ildoc asc, f.ilitm asc")
 	List<F4111> findByIlvpejBetweenOrderByIldocAsc(BigDecimal desde,
 			BigDecimal hasta);
 
@@ -51,4 +52,7 @@ public interface IF4111DAO extends JpaRepository<F4111, Double> {
 	List<F4111> findByIlvpejBetweenAndIlitmAndIlmcuLikeAndIllocnLikeAndIllotnLikeAndIldctLikeOrderByIlitmAsc(
 			BigDecimal ilvpej1, BigDecimal ilvpej2, Double item, String planta,
 			String ubicacion, String lote, String tipo);
+
+	List<F4111> findByIlvpejBetweenAndIldct(BigDecimal desde, BigDecimal hasta,
+			String tipo, Sort o);
 }

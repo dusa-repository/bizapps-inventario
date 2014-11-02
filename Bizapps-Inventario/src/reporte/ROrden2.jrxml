@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ROrden2" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2aa46aa0-789b-49df-8037-8ecb1848891e">
-	<property name="ireport.zoom" value="0.75"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.4615378250000017"/>
+	<property name="ireport.x" value="318"/>
+	<property name="ireport.y" value="18"/>
 	<parameter name="fecha1" class="java.util.Date"/>
 	<parameter name="fecha2" class="java.util.Date"/>
+	<parameter name="estado" class="java.lang.String"/>
 	<field name="ildct" class="java.lang.String"/>
 	<field name="ildoc" class="java.lang.Double"/>
 	<field name="ilitm" class="java.lang.Double"/>
@@ -44,104 +45,39 @@
 					</graphicElement>
 				</rectangle>
 				<staticText>
-					<reportElement x="1" y="4" width="27" height="20" uuid="88c22065-bd2b-494b-a0c6-2630cebe7ec5"/>
+					<reportElement x="1" y="5" width="27" height="20" uuid="88c22065-bd2b-494b-a0c6-2630cebe7ec5"/>
 					<textElement textAlignment="Center">
 						<font size="11" isBold="true"/>
 					</textElement>
 					<text><![CDATA[>>]]></text>
 				</staticText>
-				<staticText>
-					<reportElement x="28" y="4" width="57" height="20" uuid="586bfc81-ff3b-4544-8785-2de5c4f91fc8"/>
-					<textElement>
-						<font size="11" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Orden:]]></text>
-				</staticText>
-				<textField pattern="###0;-###0">
-					<reportElement x="85" y="4" width="461" height="20" uuid="fb52e8ac-f0e6-4a87-8fc8-b82688a8697c"/>
-					<textElement>
-						<font size="11"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{ildoc}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band height="28">
-				<staticText>
-					<reportElement x="536" y="3" width="81" height="20" uuid="30bce3ac-9d1e-4e97-8b8c-aa6f65987c50"/>
-					<textElement textAlignment="Right">
-						<font size="11" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Total Orden:]]></text>
-				</staticText>
-				<textField pattern="###0;-###0">
-					<reportElement x="620" y="3" width="50" height="20" uuid="df5df781-e9b3-47d6-91c1-21f574100032"/>
-					<box>
-						<topPen lineWidth="0.5"/>
-					</box>
-					<textElement textAlignment="Center">
-						<font size="11"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{orden_cantidad}]]></textFieldExpression>
-				</textField>
-				<textField pattern="###0.00;-###0.00">
-					<reportElement x="692" y="3" width="50" height="20" uuid="50e7de93-7475-4283-8b28-bda0b85a4d45"/>
-					<box>
-						<topPen lineWidth="0.5"/>
-					</box>
-					<textElement textAlignment="Center">
-						<font size="11"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{orden_costo}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupFooter>
-	</group>
-	<group name="orden">
-		<groupExpression><![CDATA[$F{ildoc}]]></groupExpression>
-		<groupHeader>
-			<band height="28">
-				<rectangle>
-					<reportElement x="2" y="6" width="750" height="20" backcolor="#F1EDED" uuid="9a12a0c0-2538-41a6-9fc3-3b7e6d10f0b0"/>
-					<graphicElement>
-						<pen lineWidth="0.0"/>
-					</graphicElement>
-				</rectangle>
-				<staticText>
-					<reportElement x="29" y="5" width="13" height="20" uuid="b59ed0f9-0ba2-4bea-a0b4-977379a43fa3"/>
-					<textElement textAlignment="Center">
-						<font size="11" isBold="true"/>
-					</textElement>
-					<text><![CDATA[>]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="42" y="5" width="70" height="20" uuid="7fdfe01d-a508-42ee-a430-2a91604f697d"/>
-					<textElement>
-						<font size="11" isBold="true" isUnderline="false"/>
-					</textElement>
-					<text><![CDATA[Tipo Doc:]]></text>
-				</staticText>
 				<textField>
-					<reportElement x="112" y="5" width="451" height="20" uuid="8c465d67-973b-45f1-868d-7a19553f45bf"/>
+					<reportElement x="98" y="5" width="451" height="20" uuid="8c465d67-973b-45f1-868d-7a19553f45bf"/>
 					<textElement>
 						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{ildct}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="28" y="5" width="70" height="20" uuid="7fdfe01d-a508-42ee-a430-2a91604f697d"/>
+					<textElement>
+						<font size="11" isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Tipo Doc:]]></text>
+				</staticText>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="29">
+			<band height="28">
 				<staticText>
-					<reportElement x="526" y="5" width="91" height="20" uuid="1ef54121-794b-4552-a08f-ea8573885d37"/>
+					<reportElement x="519" y="3" width="91" height="20" uuid="1ef54121-794b-4552-a08f-ea8573885d37"/>
 					<textElement textAlignment="Right">
 						<font size="11" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Total Tipo:]]></text>
 				</staticText>
 				<textField pattern="###0;-###0">
-					<reportElement x="620" y="5" width="50" height="20" uuid="f23fffb1-b879-456d-aafc-6cf3ffc30864"/>
+					<reportElement x="615" y="3" width="55" height="20" uuid="f23fffb1-b879-456d-aafc-6cf3ffc30864"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -151,7 +87,7 @@
 					<textFieldExpression><![CDATA[$V{tipo_cantidad}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0.00;-###0.00">
-					<reportElement x="692" y="5" width="50" height="20" uuid="83ed3b87-e899-4c9f-960a-f7b1d0c851eb"/>
+					<reportElement x="684" y="4" width="61" height="20" uuid="83ed3b87-e899-4c9f-960a-f7b1d0c851eb"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -159,6 +95,71 @@
 						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{tipo_costo}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="orden">
+		<groupExpression><![CDATA[$F{ildoc}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<rectangle>
+					<reportElement x="2" y="6" width="750" height="20" backcolor="#F1EDED" uuid="9a12a0c0-2538-41a6-9fc3-3b7e6d10f0b0"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="29" y="6" width="13" height="20" uuid="b59ed0f9-0ba2-4bea-a0b4-977379a43fa3"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[>]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="43" y="6" width="57" height="20" uuid="586bfc81-ff3b-4544-8785-2de5c4f91fc8"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Orden:]]></text>
+				</staticText>
+				<textField pattern="###0;-###0">
+					<reportElement x="100" y="6" width="461" height="20" uuid="fb52e8ac-f0e6-4a87-8fc8-b82688a8697c"/>
+					<textElement>
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ildoc}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="29">
+				<staticText>
+					<reportElement x="528" y="5" width="81" height="20" uuid="30bce3ac-9d1e-4e97-8b8c-aa6f65987c50"/>
+					<textElement textAlignment="Right">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Orden:]]></text>
+				</staticText>
+				<textField pattern="###0;-###0">
+					<reportElement x="615" y="5" width="55" height="20" uuid="df5df781-e9b3-47d6-91c1-21f574100032"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{orden_cantidad}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement x="684" y="5" width="61" height="20" uuid="50e7de93-7475-4283-8b28-bda0b85a4d45"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{orden_costo}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -206,6 +207,20 @@
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format($P{fecha2})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="154" y="53" width="100" height="20" uuid="9aa4483b-d812-4d0d-a23a-e0d1eaa3c211"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Estado Ordenes:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="254" y="53" width="215" height="20" uuid="929b8462-1a12-45c0-8227-fadb1c7a5839"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{estado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -384,14 +399,14 @@
 	<lastPageFooter>
 		<band height="43">
 			<staticText>
-				<reportElement x="487" y="0" width="100" height="20" uuid="c1eb7236-d5d8-48b3-9f3a-ce5c8d4aa360"/>
+				<reportElement x="509" y="0" width="100" height="20" uuid="c1eb7236-d5d8-48b3-9f3a-ce5c8d4aa360"/>
 				<textElement textAlignment="Right">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total General:]]></text>
 			</staticText>
 			<textField pattern="###0;-###0">
-				<reportElement x="586" y="0" width="58" height="20" uuid="a2468f90-9ea2-4c08-a0eb-4f8239763a0f"/>
+				<reportElement x="615" y="0" width="55" height="20" uuid="a2468f90-9ea2-4c08-a0eb-4f8239763a0f"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 				</box>
@@ -401,7 +416,7 @@
 				<textFieldExpression><![CDATA[$V{total_cantidad}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="680" y="0" width="58" height="20" uuid="3c90287a-a959-4c3d-bfa1-d978902cdc39"/>
+				<reportElement x="684" y="0" width="61" height="20" uuid="3c90287a-a959-4c3d-bfa1-d978902cdc39"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 				</box>

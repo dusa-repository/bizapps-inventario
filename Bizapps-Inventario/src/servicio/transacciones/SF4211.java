@@ -1,14 +1,15 @@
 package servicio.transacciones;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import interfacedao.transacciones.IF4211DAO;
-
 import modelo.pk.F4211PK;
 import modelo.transacciones.F4211;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service("SF4211")
@@ -53,5 +54,26 @@ public class SF4211 {
 
 	public F4211 buscarPorDocoEItem(Double value, Double imitm) {
 		return f4211DAO.findByIdSddocoAndSditm(value, imitm);
+	}
+
+	public List<F4211> buscarEntreFechasYEstado(BigDecimal desde,
+			BigDecimal hasta, String string) {
+		List<String> ordenar = new ArrayList<String>();
+		ordenar.add("id.sddcto");
+		ordenar.add("sddoc");
+		ordenar.add("sditm");
+		Sort o = new Sort(Sort.Direction.ASC, ordenar);
+		return f4211DAO.findBySddrqjBetweenAndSdspattn(desde, hasta, string, o);
+	}
+
+	public List<F4211> buscarEntreFechasYEstadoYTipo(BigDecimal desde,
+			BigDecimal hasta, String string, String tipo) {
+		List<String> ordenar = new ArrayList<String>();
+		ordenar.add("id.sddcto");
+		ordenar.add("sddoc");
+		ordenar.add("sditm");
+		Sort o = new Sort(Sort.Direction.ASC, ordenar);
+		return f4211DAO.findBySddrqjBetweenAndSdspattnAndIdSddcto(desde, hasta,
+				string, tipo, o);
 	}
 }

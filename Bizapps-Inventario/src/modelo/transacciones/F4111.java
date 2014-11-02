@@ -200,7 +200,7 @@ public class F4111 implements Serializable {
 	@Column(name="ILTREF")
 	private String iltref;
 
-	@Column(name="ILTREX")
+	@Column(name="ILTREX", length=500)
 	private String iltrex;
 
 	@Column(name="ILTRNO")

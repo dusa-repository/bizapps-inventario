@@ -233,6 +233,7 @@ public class CF4111 extends CGenerico {
 	private String mcu2 = "";
 	private Double claveDoc = null;
 	private Double clave41 = null;
+	private String versionCronica = null;
 
 	public String getTitulo() {
 		return titulo;
@@ -298,8 +299,8 @@ public class CF4111 extends CGenerico {
 			lblCantidad.setVisible(false);
 			spnCantidad.setVisible(false);
 			boxCantidad.setVisible(false);
-//			lblCantidad2.setVisible(false);
-//			spnCantidad2.setVisible(false);
+			// lblCantidad2.setVisible(false);
+			// spnCantidad2.setVisible(false);
 			lblNombreUbicacion2.setVisible(false);
 			btnBuscarUbicacion2.setVisible(false);
 			lblNombreUbicacion.setValue("Ubicacion");
@@ -520,7 +521,10 @@ public class CF4111 extends CGenerico {
 										.getValue()));
 								f4111.setIlcrdj(transformarGregorianoAJulia(dtbFechaTransaccion
 										.getValue()));
-								f4111.setIldct(txtTipo.getValue());
+								if (versionCronica == null)
+									f4111.setIldct(txtTipo.getValue());
+								else
+									f4111.setIldct("MC");
 								f4111.setIltrex(txtExplicacion.getValue());
 								f4111.setIllotn("");
 								String mcu = "";
@@ -714,7 +718,7 @@ public class CF4111 extends CGenerico {
 
 								// if (tipo.equals("MC"))
 								// guardarPedido(numero);
-								if (tipo.equals("MK"))
+								if (tipo.equals("MK") || versionCronica != null)
 									guardarPedido(numero);
 								if (tipo.equals("I4")) {
 									// busco el costo por si se embasura
@@ -799,8 +803,11 @@ public class CF4111 extends CGenerico {
 	}
 
 	protected void guardarPedido(Double numero) {
+		String dct = tipo;
+		if (versionCronica != null)
+			dct = "MC";
 		List<F4211> f421 = servicioF4211.buscarPorDocoYDcto(
-				txtPedido.getValue(), tipo);
+				txtPedido.getValue(), dct);
 		for (int j = 0; j < f421.size(); j++) {
 			if (numero.equals(f421.get(j).getSditm())) {
 				f421.get(j).setSdspattn("Procesada");
@@ -880,6 +887,7 @@ public class CF4111 extends CGenerico {
 	}
 
 	protected void limpiarCampos() {
+		versionCronica = null;
 		txtDoc.setValue(null);
 		txtOrden.setValue(null);
 		txtExplicacion.setValue("");
@@ -993,7 +1001,8 @@ public class CF4111 extends CGenerico {
 
 				for (F4111 unidad : unidades) {
 					if (String.valueOf(unidad.getIldoc().longValue())
-							.toLowerCase().contains(valores.get(0).toLowerCase())
+							.toLowerCase()
+							.contains(valores.get(0).toLowerCase())
 							&& unidad.getIldct().toLowerCase()
 									.contains(valores.get(1).toLowerCase())
 							&& formatoFecha
@@ -1049,7 +1058,8 @@ public class CF4111 extends CGenerico {
 
 					for (F4111 unidad : unidades) {
 						if (String.valueOf(unidad.getIldoc().longValue())
-								.toLowerCase().contains(valores.get(0).toLowerCase())
+								.toLowerCase()
+								.contains(valores.get(0).toLowerCase())
 								&& unidad.getIldct().toLowerCase()
 										.contains(valores.get(1).toLowerCase())
 								&& formatoFecha
@@ -1161,12 +1171,14 @@ public class CF4111 extends CGenerico {
 						num10 = f4100.getLmla10();
 					if (String.valueOf(f4100.getId().getLmmcu()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
+							&& mcdc.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& String
 									.valueOf(
 											transformarJulianaAGregoria(f4100
 													.getLmupmj()))
-									.toLowerCase().contains(valores.get(2).toLowerCase())
+									.toLowerCase()
+									.contains(valores.get(2).toLowerCase())
 							&& f4100.getId().getLmlocn().toLowerCase()
 									.contains(valores.get(3).toLowerCase())
 							&& f4100.getLmpzon().toLowerCase()
@@ -1178,14 +1190,22 @@ public class CF4111 extends CGenerico {
 							&& f4100.getLmlldl().toLowerCase()
 									.contains(valores.get(7).toLowerCase())
 							// poner campos pasillo y bin
-							&& num3.toLowerCase().contains(valores.get(10).toLowerCase())
-							&& num4.toLowerCase().contains(valores.get(11).toLowerCase())
-							&& num5.toLowerCase().contains(valores.get(12).toLowerCase())
-							&& num6.toLowerCase().contains(valores.get(13).toLowerCase())
-							&& num7.toLowerCase().contains(valores.get(14).toLowerCase())
-							&& num8.toLowerCase().contains(valores.get(15).toLowerCase())
-							&& num9.toLowerCase().contains(valores.get(16).toLowerCase())
-							&& num10.toLowerCase().contains(valores.get(17).toLowerCase())
+							&& num3.toLowerCase().contains(
+									valores.get(10).toLowerCase())
+							&& num4.toLowerCase().contains(
+									valores.get(11).toLowerCase())
+							&& num5.toLowerCase().contains(
+									valores.get(12).toLowerCase())
+							&& num6.toLowerCase().contains(
+									valores.get(13).toLowerCase())
+							&& num7.toLowerCase().contains(
+									valores.get(14).toLowerCase())
+							&& num8.toLowerCase().contains(
+									valores.get(15).toLowerCase())
+							&& num9.toLowerCase().contains(
+									valores.get(16).toLowerCase())
+							&& num10.toLowerCase().contains(
+									valores.get(17).toLowerCase())
 							&& f4100.getLmmixl().toLowerCase()
 									.contains(valores.get(18).toLowerCase())
 							&& f4100.getLmstag().toLowerCase()
@@ -1276,7 +1296,8 @@ public class CF4111 extends CGenerico {
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
+							&& mcdc.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
 									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()
@@ -1398,8 +1419,10 @@ public class CF4111 extends CGenerico {
 		List<F4211> listF00052 = new ArrayList<F4211>();
 		if (tipo.equals("ET"))
 			listF00052 = servicioF4211.buscarTodosOrdenadosUnicos("ET");
-		else
+		else {
 			listF00052 = servicioF4211.buscarTodosOrdenadosUnicos("MK");
+			listF00052.addAll(servicioF4211.buscarTodosOrdenadosUnicos("MC"));
+		}
 		final List<F4211> listF0005 = listF00052;
 		String orden = "";
 		if (tipo.equals("ET"))
@@ -1427,7 +1450,8 @@ public class CF4111 extends CGenerico {
 							&& f0005.getId().getSddcto().toLowerCase()
 									.contains(valores.get(1).toLowerCase())
 							&& String.valueOf(f0005.getId().getSdlnid())
-									.toLowerCase().contains(valores.get(2).toLowerCase())
+									.toLowerCase()
+									.contains(valores.get(2).toLowerCase())
 							&& f0005.getId().getSdkcoo().toLowerCase()
 									.contains(valores.get(3).toLowerCase())
 							&& f0005.getSdmcu().toLowerCase()
@@ -1482,6 +1506,11 @@ public class CF4111 extends CGenerico {
 			if (f42.getSdacom() != null)
 				txtExplicacion.setValue(f42.getSdacom());
 		}
+		if (f42.getId().getSddcto().equals("MC"))
+			versionCronica = "MC";
+		else
+			versionCronica = null;
+		txtExplicacion.setValue(f42.getSdzon());
 		txtPedido.setValue(f42.getId().getSddoco());
 		lblPedido.setValue(f42.getSdco());
 		txtPlanta1.setValue(f42.getSdmcu());
@@ -1493,30 +1522,34 @@ public class CF4111 extends CGenerico {
 	@Listen("onClick = #btnBuscarItem")
 	public void mostrarCatalogoF4101() {
 		List<F4101> listF41011 = new ArrayList<F4101>();
-		if (tipo.equals("ET")) {
-			listF41011 = servicioF4101.buscarTodosOrdenadosPorSolicitud(
-					txtPedido.getValue(), "ET");
-		} else {
-			if (tipo.equals("MK"))
+		if (versionCronica == null) {
+			if (tipo.equals("ET")) {
 				listF41011 = servicioF4101.buscarTodosOrdenadosPorSolicitud(
-						txtPedido.getValue(), "MK");
-			else {
-				if (!tipo.equals("DP"))
-					if (!tipo.equals("OV"))
-						listF41011 = servicioF4101
-								.buscarTodosOrdenadosPorMcu(txtPlanta1
-										.getValue());
+						txtPedido.getValue(), "ET");
+			} else {
+				if (tipo.equals("MK"))
+					listF41011 = servicioF4101
+							.buscarTodosOrdenadosPorSolicitud(
+									txtPedido.getValue(), "MK");
+				else {
+					if (!tipo.equals("DP"))
+						if (!tipo.equals("OV"))
+							listF41011 = servicioF4101
+									.buscarTodosOrdenadosPorMcu(txtPlanta1
+											.getValue());
+						else
+							listF41011 = servicioF4101.buscarTodosOrdenados();
 					else
-						listF41011 = servicioF4101.buscarTodosOrdenados();
-				else
-					listF41011 = servicioF4101.buscarTodosOrdenadosPorDoc("OV",
-							claveDoc);
-
+						listF41011 = servicioF4101.buscarTodosOrdenadosPorDoc(
+								"OV", claveDoc);
+				}
 			}
-		}
+		} else
+			listF41011 = servicioF4101.buscarTodosOrdenadosPorSolicitud(
+					txtPedido.getValue(), "MC");
 		final List<F4101> listF4101 = listF41011;
 		String descripcion = "";
-		if (tipo.equals("ET") || tipo.equals("MK")) {
+		if (tipo.equals("ET") || tipo.equals("MK") || versionCronica != null) {
 			descripcion = "Cantidad Solicitada";
 		} else {
 			if (tipo.equals("DP"))
@@ -1538,7 +1571,8 @@ public class CF4111 extends CGenerico {
 					F4211 f = new F4211();
 					F4111 v = new F4111();
 					String cantidad = "";
-					if (tipo.equals("ET") || tipo.equals("MK")) {
+					if (tipo.equals("ET") || tipo.equals("MK")
+							|| versionCronica != null) {
 						f = servicioF4211.buscarPorDocoEItem(
 								txtPedido.getValue(), f4101.getImitm());
 						cantidad = f.getSdpqor().toString();
@@ -1558,15 +1592,16 @@ public class CF4111 extends CGenerico {
 							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
 									.contains(valores.get(1).toLowerCase())
-							&& cantidad.toLowerCase()
-									.contains(valores.get(2).toLowerCase())
+							&& cantidad.toLowerCase().contains(
+									valores.get(2).toLowerCase())
 							&& f4101.getImsrtx().toLowerCase()
 									.contains(valores.get(3).toLowerCase())
 							&& f4101.getImlnty().toLowerCase()
 									.contains(valores.get(4).toLowerCase())
 							&& f4101.getImstkt().toLowerCase()
 									.contains(valores.get(5).toLowerCase())
-							&& valor.toLowerCase().contains(valores.get(6).toLowerCase())) {
+							&& valor.toLowerCase().contains(
+									valores.get(6).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}
@@ -1579,7 +1614,8 @@ public class CF4111 extends CGenerico {
 						txtPedido.getValue(), f4101.getImitm());
 				F4111 v = new F4111();
 				String cantidad = "";
-				if (tipo.equals("ET") || tipo.equals("MK")) {
+				if (tipo.equals("ET") || tipo.equals("MK")
+						|| versionCronica != null) {
 					cantidad = f.getSdpqor().toString();
 				} else {
 					if (tipo.equals("DP")) {
@@ -1632,7 +1668,7 @@ public class CF4111 extends CGenerico {
 		txtUM.setValue(f4101.getImuom1());
 		txtUM2.setValue(f4101.getImuom2());
 		lblItem.setValue(f4101.getImdsc1());
-		if (tipo.equals("ET") || tipo.equals("MK")) {
+		if (tipo.equals("ET") || tipo.equals("MK") || versionCronica != null) {
 			F4211 f42 = servicioF4211.buscarPorDocoEItem(txtPedido.getValue(),
 					f4101.getImitm());
 			spnCantidad.setValue(f42.getSdpqor().intValue());

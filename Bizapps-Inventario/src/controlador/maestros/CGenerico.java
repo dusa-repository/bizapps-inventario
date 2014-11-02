@@ -145,6 +145,10 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		return applicationContext.getBean(SF4111.class);
 	}
 
+	public static SF4211 getServicioF4211() {
+		return applicationContext.getBean(SF4211.class);
+	}
+
 	public static SF41021 getServicioF41021() {
 		return applicationContext.getBean(SF41021.class);
 	}
