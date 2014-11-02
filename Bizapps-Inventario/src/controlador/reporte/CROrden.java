@@ -1,5 +1,6 @@
 package controlador.reporte;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -14,9 +15,13 @@ import modelo.maestros.F4100;
 import modelo.maestros.F4101;
 import modelo.transacciones.F4111;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 import org.zkoss.zk.ui.Sessions;
@@ -43,6 +48,8 @@ public class CROrden extends CGenerico {
 	private Datebox dtbDesde;
 	@Wire
 	private Datebox dtbHasta;
+	@Wire
+	private Combobox cmbTipo;
 
 	@Override
 	public void inicializar() throws IOException {
@@ -78,6 +85,7 @@ public class CROrden extends CGenerico {
 				// hasta);
 				List<F4111> ordenes = servicioF4111.buscarEntreFechas2(desde,
 						hasta);
+				String tipoReporte = cmbTipo.getValue();
 				if (!ordenes.isEmpty()) {
 					DateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
 					String fecha11 = fecha.format(dtbDesde.getValue());
@@ -88,6 +96,8 @@ public class CROrden extends CGenerico {
 							+ fecha11
 							+ "&valor3="
 							+ fecha22
+							+ "&valor20="
+							+ tipoReporte
 							+ "','','top=100,left=200,height=600,width=800,scrollbars=1,resizable=1')");
 				} else
 					msj.mensajeAlerta(Mensaje.noHayRegistros);
@@ -138,7 +148,7 @@ public class CROrden extends CGenerico {
 		botoneraVOrden.appendChild(botonera);
 	}
 
-	public byte[] reporte(String par1, String part2) {
+	public byte[] reporte(String par1, String part2, String tipoReporte) {
 		byte[] fichero = null;
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 		Date fecha1 = null;
@@ -166,7 +176,7 @@ public class CROrden extends CGenerico {
 					.getIlvpej());
 			ordenes.get(i).setIlasid(formatoFecha.format(fechaM));
 			double costo = ordenes.get(i).getIlpaid();
-			ordenes.get(i).setIlpaid( Math.rint(costo * 100) / 100);
+			ordenes.get(i).setIlpaid(Math.rint(costo * 100) / 100);
 			F4101 f = new F4101();
 			if (ordenes.get(i).getIlitm() != null) {
 				f = getServicioF4101().buscar(ordenes.get(i).getIlitm());
@@ -185,14 +195,37 @@ public class CROrden extends CGenerico {
 		} catch (JRException e1) {
 			e1.printStackTrace();
 		}
+
+		if (tipoReporte.equals("EXCEL")) {
+
+			JasperPrint jasperPrint = null;
 			try {
-				fichero = JasperRunManager.runReportToPdf(repor, p,
+				jasperPrint = JasperFillManager.fillReport(repor, p,
 						new JRBeanCollectionDataSource(ordenes));
 			} catch (JRException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return fichero;
+			ByteArrayOutputStream xlsReport = new ByteArrayOutputStream();
+			JRXlsxExporter exporter = new JRXlsxExporter();
+			exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, xlsReport);
+			try {
+				exporter.exportReport();
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return xlsReport.toByteArray();
+		} else {
+			try {
+				fichero = JasperRunManager.runReportToPdf(repor, p,
+						new JRBeanCollectionDataSource(ordenes));
+			} catch (JRException e) {
+				msj.mensajeError("Error en Reporte");
+			}
+			return fichero;
+		}
 	}
 
 }

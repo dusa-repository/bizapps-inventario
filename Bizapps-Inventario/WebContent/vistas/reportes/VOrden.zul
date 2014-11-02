@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div id="divVOrden" apply="controlador.reporte.CROrden">
 		<groupbox width="60%" mold="3d" title="Reporte de Movimiento por Orden">
-				<div id="botoneraVOrden" />
+			<div id="botoneraVOrden" />
 			<separator />
 			<grid width="100%">
 				<columns visible="false">
@@ -27,6 +27,21 @@
 						</hbox>
 						<datebox readonly="true" width="100%" id="dtbHasta"
 							onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+					</row>
+					<row>
+						<hbox>
+							<label class="etiqueta" value="Reporte de Tipo:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<combobox id="cmbTipo" readonly="true" tabindex="1"
+							value="PDF" width="100%" tooltiptext="Seleccione un Tipo"
+							placeholder="Seleccione un Tipo">
+							<comboitem label="PDF" />
+							<comboitem label="EXCEL" />
+						</combobox>
+						<hbox />
+						<hbox />
 					</row>
 				</rows>
 			</grid>
