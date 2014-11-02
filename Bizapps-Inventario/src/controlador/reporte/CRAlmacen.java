@@ -1,5 +1,6 @@
 package controlador.reporte;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -18,15 +19,20 @@ import modelo.maestros.F4105;
 import modelo.pk.F4105PK;
 import modelo.transacciones.F4111;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Checkbox;
+import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
@@ -45,6 +51,9 @@ public class CRAlmacen extends CGenerico {
 	private Datebox dtbFecha;
 	@Wire
 	private Checkbox chkTodos;
+	@Wire
+	private Combobox cmbTipo;
+
 	private static final long serialVersionUID = 3154539496606898070L;
 
 	@Override
@@ -87,6 +96,7 @@ public class CRAlmacen extends CGenerico {
 							hasta);
 					todos = "no";
 				}
+				String tipoReporte = cmbTipo.getValue();
 				if (!ordenes.isEmpty()) {
 					DateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
 					String fecha11 = fecha.format(dtbFecha.getValue());
@@ -96,6 +106,8 @@ public class CRAlmacen extends CGenerico {
 							+ fecha11
 							+ "&valor4="
 							+ todos
+							+ "&valor20="
+							+ tipoReporte
 							+ "','','top=100,left=200,height=600,width=800,scrollbars=1,resizable=1')");
 				} else
 					msj.mensajeAlerta(Mensaje.noHayRegistros);
@@ -240,7 +252,7 @@ public class CRAlmacen extends CGenerico {
 	// return fichero;
 	// }
 
-	public byte[] reporte2(String part2, String part4) {
+	public byte[] reporte2(String part2, String part4, String tipoReporte) {
 		byte[] fichero = null;
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 		Date fecha1 = null;
@@ -252,12 +264,11 @@ public class CRAlmacen extends CGenerico {
 		}
 		BigDecimal desde = transformarGregorianoAJulia(fecha1);
 		List<F41021> ordenes = new ArrayList<F41021>();
-//		List<F41021> ordenes = getServicioF41021().buscarHastaFecha2(desde);
+		// List<F41021> ordenes = getServicioF41021().buscarHastaFecha2(desde);
 		if (part4.equals("si")) {
 			ordenes = getServicioF41021().buscarHastaFecha2(desde);
 		} else {
-			ordenes = getServicioF41021().buscarHastaFechaExistencia2(
-					desde);
+			ordenes = getServicioF41021().buscarHastaFechaExistencia2(desde);
 		}
 		Date fechaNew = transformarJulianaAGregoria(desde);
 		String fechaReporte = formatoFecha.format(fechaNew);
@@ -294,13 +305,37 @@ public class CRAlmacen extends CGenerico {
 		} catch (JRException e1) {
 			e1.printStackTrace();
 		}
-		try {
-			fichero = JasperRunManager.runReportToPdf(repor, p,
-					new JRBeanCollectionDataSource(ordenesFinales));
-		} catch (JRException e) {
-			msj.mensajeError(Mensaje.errorEnReporte);
+
+		if (tipoReporte.equals("EXCEL")) {
+
+			JasperPrint jasperPrint = null;
+			try {
+				jasperPrint = JasperFillManager.fillReport(repor, p,
+						new JRBeanCollectionDataSource(ordenesFinales));
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ByteArrayOutputStream xlsReport = new ByteArrayOutputStream();
+			JRXlsxExporter exporter = new JRXlsxExporter();
+			exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, xlsReport);
+			try {
+				exporter.exportReport();
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return xlsReport.toByteArray();
+		} else {
+			try {
+				fichero = JasperRunManager.runReportToPdf(repor, p,
+						new JRBeanCollectionDataSource(ordenesFinales));
+			} catch (JRException e) {
+				msj.mensajeError("Error en Reporte");
+			}
+			return fichero;
 		}
-		return fichero;
 	}
 
 }

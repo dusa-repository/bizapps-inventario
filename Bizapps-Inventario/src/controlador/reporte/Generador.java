@@ -38,20 +38,35 @@ public class Generador extends HttpServlet {
 		String part2 = request.getParameter("valor2");
 		String part3 = request.getParameter("valor3");
 		String part4 = request.getParameter("valor4");
+		String tipo = request.getParameter("valor20");
 		byte[] fichero = null;
 		switch (par1) {
 		case "1":
-			fichero = cOrden.reporte(part2,part3);
+			fichero = cOrden.reporte(part2,part3,tipo);
 			break;
 		case "2":
-			fichero = cAlmacen.reporte2(part2, part4);
+			fichero = cAlmacen.reporte2(part2, part4,tipo);
 			break;
 		default:
 			break;
 		}
-		response.setContentType("application/pdf");
-		response.setHeader("Content-disposition",
-				"inline; filename=Reporte.pdf");
+
+		if (tipo != null) {
+			if (tipo.equals("EXCEL")) {
+				response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+				response.setHeader("Content-Disposition",
+						"inline; filename=Reporte.xlsx");
+			} else {
+				response.setContentType("application/pdf");
+				response.setHeader("Content-disposition",
+						"inline; filename=Reporte.pdf");
+			}
+		} else {
+			response.setContentType("application/pdf");
+			response.setHeader("Content-disposition",
+					"inline; filename=Reporte.pdf");
+		}
+		
 		response.setHeader("Cache-Control", "max-age=30");
 		response.setHeader("Pragma", "No-cache");
 		response.setDateHeader("Expires", 0);
