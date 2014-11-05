@@ -21,6 +21,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import modelo.maestros.F00021;
+import modelo.maestros.F0005;
 import modelo.pk.F00021PK;
 
 import org.springframework.context.ApplicationContext;
@@ -35,6 +36,7 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 
+import componentes.BuscadorUDC;
 import componentes.Mensaje;
 import servicio.maestros.SF00021;
 import servicio.maestros.SF0004;
@@ -59,6 +61,7 @@ import servicio.maestros.SF41021;
 import servicio.maestros.SF4105;
 import servicio.maestros.SF4108;
 import servicio.maestros.SF4301;
+import servicio.maestros.SF4931;
 import servicio.seguridad.SArbol;
 import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
@@ -122,6 +125,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF4108 servicioF4108;
 	@WireVariable("SF4301")
 	protected SF4301 servicioF4301;
+	@WireVariable("SF4931")
+	protected SF4931 servicioF4931;
 	@WireVariable("SGrupo")
 	protected SGrupo servicioGrupo;
 	@WireVariable("SUsuario")
@@ -380,5 +385,19 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 
 	public String damePath() {
 		return Executions.getCurrent().getContextPath() + "/";
+	}
+
+	protected BuscadorUDC crearCampoUDC(Div div, String titulo,
+			final String valor1, final String valor2) {
+		BuscadorUDC buscador = new BuscadorUDC(titulo, 10,
+				servicioF0005.buscarParaUDCOrdenados(valor1, valor2), false,
+				true, true, valor1, valor2) {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar(valor1, valor2, this.obtenerCaja());
+			}
+		};
+		div.appendChild(buscador);
+		return buscador;
 	}
 }
