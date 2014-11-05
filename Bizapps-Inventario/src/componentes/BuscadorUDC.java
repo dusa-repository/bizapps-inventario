@@ -36,15 +36,25 @@ public abstract class BuscadorUDC extends Hbox {
 	List<F0005> lista;
 	Textbox cajaTexto;
 	Label nombre;
+	String valorP1;
+	String valorP2;
 	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
 			boolean requerido, boolean param1, boolean param2, final String valor1, final String valor2) {
+		this(etiqueta,longitud, lista2,requerido, param1, param2, valor1, valor2, null);
+	}
+	
+	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
+			boolean requerido, boolean param1, boolean param2, final String valor1, final String valor2, String tooltip) {
 		super();
+		valorP1 = valor1;
+		valorP2 = valor2;
 		this.setWidth("100%");
 		Label label = new Label(etiqueta + " :");
 		label.setClass("etiqueta");
 
 		
 		cajaTexto = new Textbox();
+		cajaTexto.setTooltip(tooltip);
 		cajaTexto.setHflex("1");
 		// cajaTexto.setReadonly(true);
 		cajaTexto.setMaxlength(longitud);
@@ -114,6 +124,7 @@ public abstract class BuscadorUDC extends Hbox {
 		lista = lista2;
 	}
 
+
 	protected void buscarPorTexto() {
 		F0005 f0005 = buscar();
 		if (f0005 != null) {
@@ -163,6 +174,15 @@ public abstract class BuscadorUDC extends Hbox {
 			cajaTexto.setValue("");
 			nombre.setValue("");
 		}
+	}
+	
+	public void settearCampo(SF0005 servicioF0005, String valorBusqueda) {
+		F0005 f0005 = servicioF0005.buscar(valorP1, valorP2, valorBusqueda);
+		settearCampo(f0005);
+	}
+	
+	public void limpiarCampo(){
+		settearCampo(null);
 	}
 
 	private void mostrarCatalogo(String valor1, String valor2) {

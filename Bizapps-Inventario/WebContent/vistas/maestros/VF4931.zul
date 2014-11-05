@@ -1,0 +1,370 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF4931" apply="controlador.maestros.CF4931">
+		<groupbox width="auto" mold="3d"
+			title="Modificaciones de tipos de vehiculos (VF4931)">
+			<div id="botoneraF4931" />
+			<separator />
+			<groupbox class="azul" id="gpxRegistroF4931" width="auto"
+				title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Tipo de Vehiculo" />
+				<separator />
+				<separator />
+				<groupbox class="azul" id="gpxRegistro1F4931"
+					width="auto" title="" open="true">
+					<separator />
+					<hbox>
+						<grid width="100%" style="border:0px">
+							<columns visible="false">
+								<column label="" width="20%" />
+								<column label="" width="25%" />
+								<column label="" width="11%" />
+								<column label="" width="44%" />
+							</columns>
+							<rows>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Tipo Vehiculo:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtVTYPF4931" hflex="1"
+										maxlength="100" tooltiptext="" />
+									<textbox id="txtDL01F4931" hflex="9"
+										maxlength="100" tooltiptext="" />
+									<!--falta el tooltiptext -->
+									<checkbox label="Transp prod"
+										id="chxCPFGF4931" hflex="5" tooltiptext="Marque Para ... " />
+								</row>
+							</rows>
+						</grid>
+					</hbox>
+				</groupbox>
+				<separator />
+				<tabbox id="tbOrdenF4931">
+					<tabs id="tabsF4931">
+						<tab id="tbPesoF4931" label="Peso" />
+						<tab id="tbVolumenF4931"
+							label="Volumen a Granel" />
+						<tab id="tbCapacidadF4931"
+							label="Capacidad Cubica" />
+						<tab id="tbDetallesF4931" label="Detalles" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<groupbox id="gpxPesoF4931" width="auto"
+								title="" closable="false">
+								<separator />
+								<hbox>
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="20%" />
+											<column label=""
+												width="25%" />
+											<column label=""
+												width="11%" />
+											<column label=""
+												width="44%" />
+										</columns>
+										<rows>
+											<row>
+												<cell colspan="2">
+													<div
+														id="divBuscadorWTUMF4931" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Vacio:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtWTEMF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese el Vacio" />
+												<hbox />
+												<hbox />
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Capacidad:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtWTCAF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese la capacidad" />
+												<hbox />
+												<hbox />
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Bruto maximo:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtWTGRF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese bruto maximo" />
+												<hbox />
+												<hbox />
+											</row>
+										</rows>
+									</grid>
+								</hbox>
+							</groupbox>
+						</tabpanel>
+						<tabpanel>
+							<groupbox id="gpxRegistroF49312"
+								width="auto" title="" open="true" closable="false">
+								<separator />
+								<hbox>
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="20%" />
+											<column label=""
+												width="25%" />
+											<column label=""
+												width="11%" />
+											<column label=""
+												width="44%" />
+										</columns>
+										<rows>
+											<row>
+												<cell colspan="2">
+													<div
+														id="divBuscadorLCNTF4931" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<cell colspan="2">
+													<div
+														id="divBuscadorVLUMF4931" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Capacidad:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtVLCPF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese la capacidad" />
+												<hbox />
+												<hbox />
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Capacidad Secundaria:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtVLCSF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese la capacidad secundaria" />
+												<hbox />
+												<hbox />
+											</row>
+										</rows>
+									</grid>
+								</hbox>
+							</groupbox>
+						</tabpanel>
+						<tabpanel>
+							<groupbox class="azul"
+								id="gpxRegistro2F4931" width="auto" title="" open="true">
+								<separator />
+								<hbox>
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="20%" />
+											<column label=""
+												width="25%" />
+											<column label=""
+												width="11%" />
+											<column label=""
+												width="44%" />
+										</columns>
+										<rows>
+											<row>
+												<cell colspan="2">
+													<div
+														id="divBuscadorCVUMF4931" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Capacidad:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtCVOLF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese la capacidad" />
+												<hbox />
+											</row>
+										</rows>
+									</grid>
+								</hbox>
+							</groupbox>
+						</tabpanel>
+						<tabpanel>
+							<groupbox class="azul"
+								id="gpxRegistro3F4931" width="auto" title="" open="true">
+								<separator />
+								<hbox>
+									<grid width="100%"
+										style="border:0px">
+										<columns visible="false">
+											<column label=""
+												width="20%" />
+											<column label=""
+												width="25%" />
+											<column label=""
+												width="11%" />
+											<column label=""
+												width="44%" />
+										</columns>
+										<rows>
+											<row>
+												<cell colspan="2">
+													<div
+														id="divBuscadorDSGPF4931" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<cell colspan="2">
+													<div
+														id="divBuscadorDSGSF4931" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Nº de compart:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtNCEF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese el numero de compartimientos" />
+												<hbox />
+												<hbox />
+											</row>
+											<row>
+												<cell colspan="2">
+													<div
+														id="divBuscadorMOTF4931" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<cell colspan="2">
+													<div
+														id="divBuscadorBPFGF4931" hflex="1" />
+												</cell>
+											</row>
+											<row>
+												<checkbox
+													label="Lineas Multiples" id="chxMLLNF4931" hflex="5"
+													tooltiptext="Marque Para ... " />
+												<hbox />
+												<hbox />
+												<hbox />
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Nº de ejes:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtAXLEF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese el numero de ejes" />
+												<hbox />
+												<hbox />
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Capacidad de peso por eje:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtWTAXF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese la capacidad de peso por eje" />
+												<hbox />
+												<hbox />
+											</row>
+											<row>
+												<hbox>
+													<label
+														class="etiqueta" value="Nº de sellos requeridos:" />
+													<space />
+													<label value="*"
+														style="font-weight:bold;color:red">
+													</label>
+												</hbox>
+												<textbox
+													id="txtSEALF4931" hflex="1" maxlength="100"
+													tooltiptext="Ingrese el Nº de sellos requeridos" />
+												<hbox />
+												<hbox />
+											</row>
+										</rows>
+									</grid>
+								</hbox>
+							</groupbox>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatosF4931" width="auto"
+				title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los Tipos de Vehiculo" />
+				<div id="catalogoF4931"
+					tooltiptext="Seleccione el Tipo de Vehiculo Para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+	</div>
+</zk>
