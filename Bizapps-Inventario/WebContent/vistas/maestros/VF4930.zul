@@ -1,0 +1,217 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF4930" apply="controlador.maestros.CF4930">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con vehiculos (VF4930)">
+			<div id="botoneraF4930" />
+			<separator />
+			<groupbox class="azul" id="gpxRegistro" width="auto"
+				title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Vehiculo" />
+				<separator />
+				<grid width="100%" style="border:0px">
+					<columns visible="false">
+						<column label="" width="15%" />
+						<column label="" width="25%" />
+						<column label="" width="15%" />
+						<column label="" width="25%" />
+						<column label="" width="20%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta"
+									value="ID vehículo:" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtVEHIF4930" hflex="1"
+								maxlength="12" tooltiptext="Ingrese el id del vehiculo" />
+							<hbox>
+								<label class="etiqueta"
+									style="margin-left:15px" value="Sucursal/planta:" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtMCUF4930" hflex="1"
+								maxlength="12"
+								tooltiptext="Ingrese la sucursal/planta del vehiculo" />
+							<hbox>
+								<button id="btnBuscarMCUF0011"
+									label="Buscar" class="btn" tooltiptext="Catalogo de sucursales"
+									image="/public/imagenes/botones/buscar.png" />
+								<label id="lblF0011" />
+							</hbox>
+						</row>
+						<row>
+
+							<label class="etiqueta"
+								value="Descripción:" />
+
+							<textbox id="txtDL01F4930" hflex="1"
+								maxlength="30" tooltiptext="Ingrese la descripción" />
+							<hbox>
+								<label class="etiqueta"
+									style="margin-left:15px" value="N° serie vehículo:" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtVEHSF4930" hflex="1"
+								maxlength="25" tooltiptext="Ingrese el numero de serie" />
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta"
+								value="Tpo vehículo:" />
+
+							<hbox>
+								<textbox id="txtVTYPF4931" hflex="1"
+									maxlength="30" tooltiptext="Ingrese el tipo de vehiulo" />
+
+								<button id="btnBuscarVTYPF4931"
+									label="Buscar" class="btn"
+									tooltiptext="Catalogo de tipo de vehiculos"
+									image="/public/imagenes/botones/buscar.png" />
+								<label id="lblF4931" />
+							</hbox>
+
+							<label class="etiqueta"
+								style="margin-left:15px" value="N° de propietario:" />
+
+							<textbox id="txtVOWNF0101" hflex="1"
+								maxlength="30" tooltiptext="Ingrese el numero de propietario" />
+
+							<button id="btnBuscarVOWNF0101"
+								label="Buscar" class="btn"
+								tooltiptext="Catalogo de tipo de propietarios"
+								image="/public/imagenes/botones/buscar.png" />
+							<label id="lblF0101" />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<separator />
+				<groupbox class="azul" id="gpxPeso" width="auto"
+					title="">
+					<caption label="Peso" style="font-weight:bold" />
+					<separator />
+					<grid width="100%" style="border:0px">
+						<columns visible="false">
+							<column label="" width="15%" />
+							<column label="" width="25%" />
+							<column label="" width="15%" />
+							<column label="" width="45%" />
+						</columns>
+						<rows>
+							<row>
+								<label class="etiqueta" value="UM:" />
+
+								<textbox id="txtWTUMF4930" hflex="1"
+									maxlength="2" tooltiptext="Ingrese el UM" />
+
+								<hbox />
+								<hbox />
+							</row>
+							<row>
+								<label class="etiqueta" value="Vacío:" />
+
+								<textbox id="txtWTEMF4930" hflex="1"
+									tooltiptext="Ingrese el vacio" />
+
+								<hbox />
+								<hbox />
+							</row>
+							<row>
+								<label class="etiqueta"
+									value="Capacidad:" />
+
+								<textbox id="txtCapacidadPesoF4930"
+									hflex="1" disabled="true" />
+
+								<hbox />
+								<hbox />
+							</row>
+							<row>
+								<label class="etiqueta"
+									value="Bruto máximo:" />
+
+								<textbox id="txtBrutoF4930" hflex="1"
+									disabled="true" />
+
+								<hbox />
+								<hbox />
+							</row>
+						</rows>
+					</grid>
+					<separator />
+				</groupbox>
+				<separator />
+				<separator />
+				<groupbox class="azul" id="gpxVolumen" width="auto"
+					title="">
+					<caption label="Volumen cúbico"
+						style="font-weight:bold" />
+					<separator />
+					<grid width="100%" style="border:0px">
+						<columns visible="false">
+							<column label="" width="15%" />
+							<column label="" width="25%" />
+							<column label="" width="15%" />
+							<column label="" width="45%" />
+						</columns>
+						<rows>
+							<row>
+								<label class="etiqueta" value="UM:" />
+
+								<textbox id="txtCVUMF4930" hflex="1"
+									maxlength="2" tooltiptext="Ingrese el UM" />
+
+								<hbox />
+								<hbox />
+							</row>
+							<row>
+								<label class="etiqueta"
+									value="Capacidad:" />
+
+								<textbox id="txtCapacidadVolumenF4930"
+									hflex="1" disabled="true" />
+
+								<hbox />
+								<hbox />
+							</row>
+						</rows>
+					</grid>
+					<separator />
+				</groupbox>
+
+				<separator />
+				<separator />
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto"
+				title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los vehiculos" />
+				<div id="divCatalogoF4930"
+					tooltiptext="Seleccione el vehiculo Para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+		<div id="divCatalogoF0011"
+			tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF4931"
+			tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0101"
+			tooltiptext="Click para Seleccionar un Codigo" />
+
+	</div>
+</zk>
