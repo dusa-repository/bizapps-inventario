@@ -1,0 +1,110 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF49041" apply="controlador.maestros.CF49041">
+		<groupbox width="auto" mold="3d"
+			title="Configuración de Choferes (VF49041)">
+			<div id="botoneraF49041" />
+			<separator />
+			<groupbox class="azul" id="gpxRegistro" width="auto"
+				title="" open="false">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Chofer" />
+				<separator />
+				<grid width="100%" style="border:0px">
+					<columns visible="false">
+						<column label="" width="17%" />
+						<column label="" width="28%" />
+						<column label="" width="11%" />
+						<column label="" width="44%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta"
+									value="N° empleado:" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtSTFNF49041" hflex="1"
+								tooltiptext="Ingrese el N° de Empleado" />
+							<button id="btnBuscarF0101" label="Buscar"
+								class="btn" tooltiptext="Catalogo de Empleados"
+								image="/public/imagenes/botones/buscar.png" />
+							<label id="lblF0101" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta"
+									value="ID vehículo:" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtVEHIF49041" hflex="1"
+								maxlength="12" tooltiptext="Ingrese el ID del vehiculo" />
+							<button id="btnBuscarF4930" label="Buscar"
+								class="btn" tooltiptext="Catalogo de Vehiculos"
+								image="/public/imagenes/botones/buscar.png" />
+							<label id="lblF4930" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta"
+									value="Fecha referencia:" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+							</hbox>
+
+							<datebox readonly="true" width="100%"
+								id="dtbEFTJF49041" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha de referencia" />
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="3">
+								<div id="divBuscadorSHFTF49041"
+									hflex="1" />
+							</cell>
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="Depósito:" />
+
+							<textbox id="txtMCU49041" hflex="1"
+								maxlength="12" tooltiptext="Ingrese el deposito" />
+							<button id="btnBuscarF0011" label="Buscar"
+								class="btn" tooltiptext="Catalogo de depositos"
+								image="/public/imagenes/botones/buscar.png" />
+							<label id="lblF0011" />
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<separator />
+				<separator />
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto"
+				title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar los choferes" />
+				<div id="divCatalogoF49041"
+					tooltiptext="Seleccione el chofer Para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+		<div id="divCatalogoF0101"
+			tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF4930"
+			tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0011"
+			tooltiptext="Click para Seleccionar un Codigo" />
+
+	</div>
+</zk>
