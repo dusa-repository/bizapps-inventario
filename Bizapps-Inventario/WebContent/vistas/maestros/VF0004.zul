@@ -26,7 +26,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtSYF0004" hflex="1" maxlength="4" width="10px"
-								tooltiptext="Ingrese el Codigo Principal del Sistema" />
+								tooltiptext="Ingrese el Codigo Principal del Sistema (DTSY)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -38,7 +38,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtRTF0004" hflex="1" maxlength="2" width="10px"
-								tooltiptext="Ingrese el Codigo Secundario del Sistema" />
+								tooltiptext="Ingrese el Codigo Secundario del Sistema (DTRT)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -51,14 +51,14 @@
 							</hbox>
 							<cell colspan="2">
 								<textbox id="txtDL01F0004" hflex="1" maxlength="30"
-									tooltiptext="Ingrese la Descripcion del Tipo de Codigo"
+									tooltiptext="Ingrese la Descripcion del Tipo de Codigo (DTDL01)"
 									multiline="true" />
 							</cell>
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Long Codigo:" />
-							<doublebox id="txtCDLF0004" tooltiptext="Ingrese el Codigo del Tipo de Codigo"
+							<doublebox id="txtCDLF0004" tooltiptext="Ingrese el Codigo del Tipo de Codigo (DTCDL)"
 								width="98%" />
 							<hbox />
 							<hbox />
@@ -66,14 +66,14 @@
 						<row>
 							<label class="etiqueta" value="2da Linea (Y/N):" />
 							<textbox id="txtLNF0004" hflex="1" maxlength="1"
-								tooltiptext="Ingrese la Segunda Linea del Tipo de Codigo" />
+								tooltiptext="Ingrese la Segunda Linea del Tipo de Codigo (DTLN2)" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Numerico (Y/N):" />
 							<textbox id="txtNUMF0004" hflex="1" maxlength="1"
-								tooltiptext="Ingrese el valor Numerico del Tipo de Codigo" />
+								tooltiptext="Ingrese el valor Numerico del Tipo de Codigo (DTCNUM)" />
 							<hbox />
 							<hbox />
 

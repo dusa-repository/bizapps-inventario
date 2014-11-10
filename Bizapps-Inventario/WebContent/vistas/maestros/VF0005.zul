@@ -25,9 +25,9 @@
 								</label>
 							</hbox>
 							<textbox id="txtSYF0005" hflex="1" maxlength="100"
-								tooltiptext="Seleccione del Catalogo el Codigo del Producto" />
+								tooltiptext="Seleccione del Catalogo el Codigo del Producto (DTSY de F0005)" />
 							<button id="btnBuscarF0004" label="Buscar"
-								tooltiptext="Catalogo de Codigos de Producto" image="/public/imagenes/botones/buscar.png" class="btn"/>
+								tooltiptext="Catalogo de Codigos de Producto (F0004)" image="/public/imagenes/botones/buscar.png" class="btn"/>
 							<hbox />
 						</row>
 						<row>
@@ -38,7 +38,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtRTF0005" hflex="1" maxlength="100"
-								tooltiptext="Seleccione del Catalogo el Codigo del Producto" />
+								tooltiptext="Seleccione del Catalogo el Codigo del Producto (DTRT de F0005)" />
 							<label id="lblDescripcionF0004" />
 							<hbox />
 							<hbox />

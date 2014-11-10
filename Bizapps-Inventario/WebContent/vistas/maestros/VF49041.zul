@@ -56,7 +56,7 @@
 									value="Fecha referencia:" />
 								<space />
 								<label value="*"
-									style="font-weight:bold;color:red">
+									style="font-weight:bold;color:red"/>
 							</hbox>
 
 							<datebox readonly="true" width="100%"

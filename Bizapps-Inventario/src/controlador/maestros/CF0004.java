@@ -61,10 +61,12 @@ public class CF0004 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
 		}
+
 		txtSYF0004.setFocus(true);
 		mostrarCatalogo();
 
@@ -95,10 +97,7 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(
-						divVF0004,
-						"Trabajo con Tipos de Codigos Definidos por el Usuario",
-						tabs);
+				cerrarVentana(divVF0004, titulo, tabs);
 
 			}
 
@@ -212,6 +211,7 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void buscar() {
+				abrirCatalogo();
 			}
 
 			@Override
@@ -226,8 +226,8 @@ public class CF0004 extends CGenerico {
 			}
 		};
 		botonera.getChildren().get(6).setVisible(false);
-		botonera.getChildren().get(8).setVisible(false);
 		botonera.getChildren().get(1).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
 		botoneraF0004.appendChild(botonera);
@@ -235,7 +235,7 @@ public class CF0004 extends CGenerico {
 	}
 
 	public void mostrarBotones(boolean bol) {
-		botonera.getChildren().get(1).setVisible(false);
+		botonera.getChildren().get(1).setVisible(!bol);
 		botonera.getChildren().get(2).setVisible(bol);
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);

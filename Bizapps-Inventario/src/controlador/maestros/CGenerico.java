@@ -145,6 +145,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public Calendar calendario = Calendar.getInstance();
 	public static double id = 0;
+	public String titulo = "";
 
 	// Cambio en la hora borrados los :
 
