@@ -65,7 +65,7 @@ public abstract class BuscadorUDC extends Hbox {
 
 		Button boton = new Button();
 		boton.setAutodisable("true");
-		boton.setTooltiptext("Buscar UDC");
+		boton.setTooltiptext("Catalogo de Codigo Definidos por el Usuario"+ " "+"("+valor1+","+valor2+")");
 		boton.setLabel("Buscar");
 		boton.setSrc("/public/imagenes/botones/buscar.png");
 		boton.setClass("btn");

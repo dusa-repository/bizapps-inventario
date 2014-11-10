@@ -25,6 +25,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
@@ -318,7 +319,14 @@ public class CRAlmacen extends CGenerico {
 			}
 			ByteArrayOutputStream xlsReport = new ByteArrayOutputStream();
 			JRXlsxExporter exporter = new JRXlsxExporter();
+			
+			exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.FALSE);
+			exporter.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
+			exporter.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.FALSE);
+			exporter.setParameter(JRXlsExporterParameter.IS_COLLAPSE_ROW_SPAN, Boolean.TRUE);
+			exporter.setIgnoreAnchors(true);
 			exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+
 			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, xlsReport);
 			try {
 				exporter.exportReport();

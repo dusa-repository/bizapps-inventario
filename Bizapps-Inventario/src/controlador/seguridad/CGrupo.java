@@ -564,8 +564,8 @@ public class CGrupo extends CGenerico {
 		ArrayList<Long> ids = new ArrayList<Long>();
 		for (int k = 0; k < listaArbol.size(); k++) {
 			Arbol arbol;
-			String nombre = listaArbol.get(k).getNombre();
-			arbol = servicioArbol.buscarPorNombreArbol(nombre);
+			long nombre = listaArbol.get(k).getIdArbol();
+			arbol = servicioArbol.buscarPorId(nombre);
 			if (arbol != null)
 				ids.add(arbol.getIdArbol());
 			arbole.add(arbol);

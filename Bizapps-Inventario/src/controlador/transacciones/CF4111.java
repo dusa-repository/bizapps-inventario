@@ -226,7 +226,7 @@ public class CF4111 extends CGenerico {
 	private String idBotonF0006 = "";
 	private String idBotonF4100 = "";
 	private List<Generico> lista = new ArrayList<Generico>();
-	private String titulo = "";
+//	private String titulo = "";
 	private String tipo = "";
 	double id = (double) 0;
 	private String mcu = "";
