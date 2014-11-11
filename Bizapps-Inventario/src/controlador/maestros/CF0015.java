@@ -115,6 +115,7 @@ public class CF0015 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -306,7 +307,7 @@ public class CF0015 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF0015, "Trabajo con Tipos de Cambio", tabs);
+				cerrarVentana(divVF0015, titulo , tabs);
 			}
 
 			@Override

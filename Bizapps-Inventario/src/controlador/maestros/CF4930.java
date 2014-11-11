@@ -122,6 +122,7 @@ public class CF4930 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -165,7 +166,7 @@ public class CF4930 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4930, "Trabajo con vehiculos", tabs);
+				cerrarVentana(divVF4930, titulo , tabs);
 
 			}
 

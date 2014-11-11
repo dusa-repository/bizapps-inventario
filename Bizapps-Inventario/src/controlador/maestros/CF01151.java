@@ -71,6 +71,7 @@ public class CF01151 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -147,7 +148,7 @@ public class CF01151 extends CGenerico {
 			@Override
 			public void salir() {
 				cerrarVentana(divVF01151,
-						"Direcccion de Correo Electronico/Internet", tabs);
+						titulo , tabs);
 			}
 
 			@Override

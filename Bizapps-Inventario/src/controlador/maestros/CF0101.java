@@ -316,6 +316,7 @@ public class CF0101 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -556,7 +557,7 @@ public class CF0101 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0101, "Trabajo con Direcciones", tabs);
+				cerrarVentana(divVF0101, titulo , tabs);
 
 			}
 

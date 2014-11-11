@@ -77,6 +77,7 @@ public class CF00021 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -154,8 +155,7 @@ public class CF00021 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF00021,
-						"Número Siguiente por Compañia/Año Fiscal", tabs);
+				cerrarVentana(divVF00021, titulo, tabs);
 				arbol.booleanoApg();
 
 			}
@@ -487,7 +487,7 @@ public class CF00021 extends CGenerico {
 					registros[6] = String.valueOf(numerosiguiente.getNlaur());
 				else
 					registros[6] = "";
-					
+
 				return registros;
 			}
 		};

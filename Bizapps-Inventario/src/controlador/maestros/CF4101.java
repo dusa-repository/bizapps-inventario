@@ -221,6 +221,7 @@ public class CF4101 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -1070,8 +1071,7 @@ public class CF4101 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF4101,
-						"Trabajo con Examinador de Maestro de Articulos", tabs);
+				cerrarVentana(divVF4101, titulo, tabs);
 			}
 
 			@Override
@@ -1240,8 +1240,8 @@ public class CF4101 extends CGenerico {
 	}
 
 	public boolean camposLLenos() {
-		if (//txtArticuloIMLITMF4101.getText().compareTo("") == 0
-				 buscadorIMSTKT.obtenerCaja().compareTo("") == 0
+		if (// txtArticuloIMLITMF4101.getText().compareTo("") == 0
+		buscadorIMSTKT.obtenerCaja().compareTo("") == 0
 				|| txtIMDSC1F4101.getText().compareTo("") == 0
 				|| buscadorIMUOM1.obtenerCaja().compareTo("") == 0) {
 			return false;

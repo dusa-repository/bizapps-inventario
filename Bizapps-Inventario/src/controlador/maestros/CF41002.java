@@ -87,6 +87,7 @@ public class CF41002 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -137,7 +138,8 @@ public class CF41002 extends CGenerico {
 						lblDescripcionF4101.setValue(f4101.getImdsc1());
 						txtUMITMF41002.setDisabled(true);
 						txtDescripcionUnidad.setValue(f4101.getImuom1());
-						F0005 f05 = servicioF0005.buscar("00", "UM", f4101.getImuom1());
+						F0005 f05 = servicioF0005.buscar("00", "UM",
+								f4101.getImuom1());
 						if (f05 != null)
 							lblDescripcionUnidad.setValue(f05.getDrdl01());
 						txtDescripcionUnidad.setDisabled(true);
@@ -171,8 +173,7 @@ public class CF41002 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF41002,
-						"Conversiones de Unidades de Medida de Articulos", tabs);
+				cerrarVentana(divVF41002, titulo, tabs);
 
 			}
 
@@ -488,26 +489,27 @@ public class CF41002 extends CGenerico {
 				for (F41002 f41002 : listF41002) {
 					F4101 f4101 = servicioF4101.buscar(f41002.getId()
 							.getUmitm());
-					if (String.valueOf(f41002.getId().getUmitm().longValue()).toLowerCase()
+					if (String.valueOf(f41002.getId().getUmitm().longValue())
+							.toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-							.contains(valores.get(1).toLowerCase())
+									.contains(valores.get(1).toLowerCase())
 							&& f41002.getId().getUmum().toLowerCase()
-							.contains(valores.get(2).toLowerCase())
+									.contains(valores.get(2).toLowerCase())
 							&& String.valueOf(f41002.getUmconv()).toLowerCase()
-							.contains(valores.get(3).toLowerCase())
+									.contains(valores.get(3).toLowerCase())
 							&& f41002.getId().getUmrum().toLowerCase()
-							.contains(valores.get(4).toLowerCase())
+									.contains(valores.get(4).toLowerCase())
 							&& f41002.getUmustr().toLowerCase()
-							.contains(valores.get(5).toLowerCase())
+									.contains(valores.get(5).toLowerCase())
 							&& f41002.getUmexso().toLowerCase()
-							.contains(valores.get(6).toLowerCase())
+									.contains(valores.get(6).toLowerCase())
 							&& f41002.getUmexpo().toLowerCase()
-							.contains(valores.get(7).toLowerCase())
+									.contains(valores.get(7).toLowerCase())
 							&& String.valueOf(f41002.getUmsepc()).toLowerCase()
-							.contains(valores.get(8).toLowerCase())
+									.contains(valores.get(8).toLowerCase())
 							&& String.valueOf(f41002.getUmpupc()).toLowerCase()
-							.contains(valores.get(9).toLowerCase())) {
+									.contains(valores.get(9).toLowerCase())) {
 						listF41002_2.add(f41002);
 					}
 				}
@@ -519,7 +521,8 @@ public class CF41002 extends CGenerico {
 
 				F4101 f4101 = servicioF4101.buscar(f41002.getId().getUmitm());
 				String[] registros = new String[10];
-				registros[0] = String.valueOf(f41002.getId().getUmitm().longValue());
+				registros[0] = String.valueOf(f41002.getId().getUmitm()
+						.longValue());
 				registros[1] = f4101.getImdsc1();
 				registros[2] = f41002.getId().getUmum();
 				registros[3] = String.valueOf(f41002.getUmconv());
@@ -547,10 +550,11 @@ public class CF41002 extends CGenerico {
 				List<F4101> lista = new ArrayList<F4101>();
 
 				for (F4101 f4101 : listF4101) {
-					if (String.valueOf(f4101.getImitm().longValue()).toLowerCase()
+					if (String.valueOf(f4101.getImitm().longValue())
+							.toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-							.contains(valores.get(1).toLowerCase())) {
+									.contains(valores.get(1).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}
