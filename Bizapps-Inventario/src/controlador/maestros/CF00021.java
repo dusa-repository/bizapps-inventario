@@ -269,6 +269,7 @@ public class CF00021 extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
+				abrirCatalogo();
 
 			}
 
@@ -294,7 +295,7 @@ public class CF00021 extends CGenerico {
 	}
 
 	public void mostrarBotones(boolean bol) {
-		botonera.getChildren().get(1).setVisible(false);
+		botonera.getChildren().get(1).setVisible(!bol);
 		botonera.getChildren().get(2).setVisible(bol);
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);

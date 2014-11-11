@@ -269,6 +269,9 @@ public class CF4930 extends CGenerico {
 
 			@Override
 			public void buscar() {
+				
+				abrirCatalogo();
+				
 			}
 
 			@Override
@@ -292,7 +295,7 @@ public class CF4930 extends CGenerico {
 	}
 
 	public void mostrarBotones(boolean bol) {
-		botonera.getChildren().get(1).setVisible(false);
+		botonera.getChildren().get(1).setVisible(!bol);
 		botonera.getChildren().get(2).setVisible(bol);
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);
