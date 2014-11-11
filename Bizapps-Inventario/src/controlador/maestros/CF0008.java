@@ -93,6 +93,7 @@ public class CF0008 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -271,7 +272,7 @@ public class CF0008 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF0008, "Trabajo con Patrones de Fecha Fiscal", tabs);
+				cerrarVentana(divVF0008, titulo , tabs);
 			}
 
 			@Override

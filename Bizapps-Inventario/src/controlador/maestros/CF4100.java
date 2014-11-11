@@ -84,6 +84,7 @@ public class CF4100 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -205,7 +206,7 @@ public class CF4100 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4100, "Trabajo con Maestro de Ubicaciones",
+				cerrarVentana(divVF4100, titulo ,
 						tabs);
 
 			}

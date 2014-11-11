@@ -144,6 +144,7 @@ public class CF4008 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -270,7 +271,7 @@ public class CF4008 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4008, "Trabajo con Zona/Tipo Impositivo", tabs);
+				cerrarVentana(divVF4008, titulo , tabs);
 
 			}
 

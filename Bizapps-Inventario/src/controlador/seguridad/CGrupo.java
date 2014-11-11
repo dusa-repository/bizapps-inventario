@@ -72,6 +72,7 @@ public class CGrupo extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -103,7 +104,7 @@ public class CGrupo extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divGrupo, "Grupos", tabs);
+				cerrarVentana(divGrupo, titulo , tabs);
 
 			}
 

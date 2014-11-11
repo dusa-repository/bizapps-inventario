@@ -201,6 +201,7 @@ public class CF4301 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -330,7 +331,7 @@ public class CF4301 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4301, "Orden de Compra Normal", tabs);
+				cerrarVentana(divVF4301, titulo , tabs);
 			}
 
 			@Override
