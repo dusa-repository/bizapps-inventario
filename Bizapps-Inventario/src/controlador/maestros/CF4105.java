@@ -456,7 +456,7 @@ public class CF4105 extends CGenerico {
 							.contains(valores.get(0).toLowerCase())
 							&& f0005.getId().getComcu().toLowerCase()
 									.contains(valores.get(1).toLowerCase())
-							&& f0005.getId().getComcu().toLowerCase()
+							&& f0005.getId().getColedg().toLowerCase()
 									.contains(valores.get(2).toLowerCase())) {
 						listF0005_2.add(f0005);
 					}

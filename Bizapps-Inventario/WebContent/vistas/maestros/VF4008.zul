@@ -54,10 +54,10 @@
 					<grid width="100%">
 						<columns>
 							<column label="Direccion" width="18%" />
-							<column label="" width="10%" />
+							<column label="" width="14%" />
 							<column label="Autoridad Fiscal" width="22%" />
-							<column label="Comcen LM" width="16%" />
-							<column label="To impto" width="16%" />
+							<column label="Comcen LM" width="14%" />
+							<column label="To impto" width="14%" />
 							<column label="" width="18%" />
 						</columns>
 						<rows>
@@ -152,10 +152,10 @@
 						<columns visible="false">
 							<column label="" width="16%" />
 							<column label="" width="18%" />
-							<column label="" width="10%" />
+							<column label="" width="13%" />
 							<column label="" width="22%" />
 							<column label="" width="16%" />
-							<column label="" width="18%" />
+							<column label="" width="15%" />
 						</columns>
 						<rows>
 							<row>

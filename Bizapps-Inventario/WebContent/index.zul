@@ -2,7 +2,7 @@
 	<style src="public/Estilo.css" />
 
 	<style>
-		.z-groupbox-hr { background:#661313;border-radius: 30px 30px
+		.z-groupbox-hr { background:#800400;border-radius: 30px 30px
 		30px 30px }
 		.z-groupbox { border-radius: 30px 30px 30px 30px }
 	</style>
@@ -35,8 +35,7 @@
 						<separator />
 						<separator />
 						<separator />
-								<image src="/public/imagenes/generales/LogoDusa.png" height="4em"
-							width="15em" />
+								<image src="/public/imagenes/generales/LogoDusa.png" height="55px" width="240px"  />
 					</div>
 					<div height="100%" align="rigth">
 							<separator />
