@@ -8,12 +8,10 @@
 			<north height="10%" class="banner">
 				<hbox hflex="1">
 					<separator />
-					<separator />
-					<separator />
 					<vbox>
 						<separator />
 						<image src="../public/imagenes/generales/LogoDusa.png"
-							height="4em" width="18em" />
+							height="55px" width="240px" />
 					</vbox>
 					<separator />
 					<separator />
@@ -72,8 +70,9 @@
 								<listbox style="border:none" width="200px" id="ltbRoles">
 									<template name="model">
 										<listitem>
-											<listcell style="color:white;font-weight: bold; background:#661313"
-												label="${each.nombre}">
+											<listcell
+												style="border:none;font-size:14px;color:white;font-weight: bold"
+												class="gruposUsuario" label="${each.nombre}">
 											</listcell>
 										</listitem>
 									</template>

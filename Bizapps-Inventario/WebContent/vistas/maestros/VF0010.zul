@@ -46,8 +46,6 @@
 					<tabs width="auto">
 						<tab label="Configuracion Compañia"
 							id="tabConfiguracion" />
-						<tab label="Contabilidad 52 Periodos"
-							id="tabContabilidad" />
 						<tab label="Moneda" id="tabMoneda" />
 					</tabs>
 					<tabpanels>
@@ -223,7 +221,6 @@
 								</grid>
 							</groupbox>
 						</tabpanel>
-						<tabpanel></tabpanel>
 						<tabpanel>
 							<grid width="100%" style="border:0px">
 								<columns visible="false">

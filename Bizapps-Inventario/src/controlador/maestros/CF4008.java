@@ -271,7 +271,7 @@ public class CF4008 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4008, titulo , tabs);
+				cerrarVentana(divVF4008, titulo, tabs);
 
 			}
 
@@ -393,9 +393,9 @@ public class CF4008 extends CGenerico {
 
 			@Override
 			public void buscar() {
-				
+
 				abrirCatalogo();
-				
+
 			}
 
 			@Override
@@ -418,11 +418,10 @@ public class CF4008 extends CGenerico {
 	}
 
 	public boolean validar() {
-		if (!validarArticulo())
+		if (!camposLLenos())
 			return false;
 		else {
-			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
+			if (!validarArticulo()) {
 				return false;
 			} else
 				return true;
@@ -443,8 +442,9 @@ public class CF4008 extends CGenerico {
 				msj.mensajeAlerta(Mensaje.articuloNoExiste);
 				return false;
 			}
+		} else {
+			return false;
 		}
-		return false;
 
 	}
 
@@ -452,6 +452,7 @@ public class CF4008 extends CGenerico {
 		if (txtTATXA1F4008.getText().compareTo("") == 0
 				|| txtTAITMF4008.getText().compareTo("") == 0
 				|| dtbTAEFTJF4008.getText().compareTo("") == 0) {
+			msj.mensajeAlerta(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -624,15 +625,15 @@ public class CF4008 extends CGenerico {
 					if (String.valueOf(f01.getAban8()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-							.contains(valores.get(1).toLowerCase())
+									.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-							.contains(valores.get(2).toLowerCase())
+									.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-							.contains(valores.get(3).toLowerCase())
+									.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-							.contains(valores.get(4).toLowerCase())
+									.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-							.contains(valores.get(5).toLowerCase())) {
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -769,7 +770,7 @@ public class CF4008 extends CGenerico {
 					if (String.valueOf(f4101.getImitm()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f4101.getImdsc1().toLowerCase()
-							.contains(valores.get(1).toLowerCase())) {
+									.contains(valores.get(1).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}
@@ -814,7 +815,7 @@ public class CF4008 extends CGenerico {
 					if (f4008.getId().getTatxa1().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f4008.getTataxa().toLowerCase()
-							.contains(valores.get(1).toLowerCase())
+									.contains(valores.get(1).toLowerCase())
 							&& String
 									.valueOf(
 											transformarJulianaAGregoria(f4008
@@ -828,15 +829,15 @@ public class CF4008 extends CGenerico {
 									.toLowerCase()
 									.contains(valores.get(3).toLowerCase())
 							&& String.valueOf(f4008.getTatxr1()).toLowerCase()
-							.contains(valores.get(4).toLowerCase())
+									.contains(valores.get(4).toLowerCase())
 							&& String.valueOf(f4008.getTatxr2()).toLowerCase()
-							.contains(valores.get(5).toLowerCase())
+									.contains(valores.get(5).toLowerCase())
 							&& String.valueOf(f4008.getTatxr3()).toLowerCase()
-							.contains(valores.get(6).toLowerCase())
+									.contains(valores.get(6).toLowerCase())
 							&& String.valueOf(f4008.getTatxr4()).toLowerCase()
-							.contains(valores.get(7).toLowerCase())
+									.contains(valores.get(7).toLowerCase())
 							&& String.valueOf(f4008.getTatxr5()).toLowerCase()
-							.contains(valores.get(8).toLowerCase())
+									.contains(valores.get(8).toLowerCase())
 							&& String.valueOf(f4008.getId().getTaitm())
 									.toLowerCase()
 									.contains(valores.get(9).toLowerCase())) {
@@ -851,8 +852,11 @@ public class CF4008 extends CGenerico {
 				String[] registros = new String[10];
 				registros[0] = f4008.getId().getTatxa1();
 				registros[1] = f4008.getTataxa();
-				registros[2] = String.valueOf(f4008.getTaeftj());
-				registros[3] = String.valueOf(f4008.getId().getTaefdj());
+				registros[2] = formatoFecha
+						.format(transformarJulianaAGregoria(f4008.getTaeftj()));
+				registros[3] = formatoFecha
+						.format(transformarJulianaAGregoriadeLong(f4008.getId()
+								.getTaefdj()));
 				registros[4] = String.valueOf(f4008.getTatxr1());
 				registros[5] = String.valueOf(f4008.getTatxr2());
 				registros[6] = String.valueOf(f4008.getTatxr3());
