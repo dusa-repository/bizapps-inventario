@@ -23,7 +23,7 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtNombreGrupo" tooltiptext="Ingrese el Nombre del Grupo" />
+							<textbox id="txtNombreGrupo" tooltiptext="Ingrese el Nombre del Grupo (nombre)" />
 							<hbox />
 							<hbox />
 						</row>

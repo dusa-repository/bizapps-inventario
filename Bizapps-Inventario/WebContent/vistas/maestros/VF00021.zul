@@ -26,9 +26,9 @@
 								</label>
 							</hbox>
 							<textbox id="txtKCOF00021" hflex="1" maxlength="5" width="45%"
-								tooltiptext="Ingrese la Compañia Documento" />
+								tooltiptext="Seleccione del Catalogo el Codigo de la Compañia Documento (CCCO de F0010)" />
 							<button id="btnBuscarCompannia" label="Buscar" class="btn"
-								image="/public/imagenes/botones/buscar.png" />
+								tooltiptext="Catalogo de Codigos de Compañias (F0010)" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblDescripcionF0010" />
 							<hbox />
 							<hbox />
@@ -67,7 +67,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtCTRYF00021" hflex="1" width="45%"
-								tooltiptext="Ingrese el Sigio" />
+								tooltiptext="Ingrese el Sigio (NLCTRY)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -79,7 +79,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtFYF00021" hflex="1" width="45%"
-								tooltiptext="Ingrese el año fiscal" />
+								tooltiptext="Ingrese el año fiscal (NLFY)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -93,7 +93,7 @@
 						<row>
 							<label class="etiqueta" value=" Número Siguiente" />
 							<textbox id="txtN001F00021" hflex="1" width="45%"
-								tooltiptext="Número Siguiente" />
+								tooltiptext="Número Siguiente (NLN001)" />
 							<hbox />
 							<hbox />
 						</row>

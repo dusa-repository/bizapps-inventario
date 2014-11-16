@@ -26,7 +26,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtUDCF0006" hflex="1" maxlength="12" width="45%"
-								tooltiptext="Ingrese la Unidad de Negocio" />
+								tooltiptext="Ingrese El Codigo de La Unidad de Negocio (MCMCU)" />
 							<hbox />
 						</row>
 					</rows>
@@ -58,7 +58,7 @@
 											</label>
 										</hbox>
 										<textbox id="txtDL01F0006" hflex="1" maxlength="30"
-											tooltiptext="Ingrese la Descripción de la Unidad de Negocio" />
+											tooltiptext="Ingrese la Descripción de la Unidad de Negocio (MCDL01)" />
 										<hbox />
 										<hbox />
 									</row>
@@ -70,9 +70,9 @@
 											</label>
 										</hbox>
 										<textbox id="txtCOF0006" hflex="1" maxlength="5"
-											tooltiptext="Ingrese la Compañia" />
+											tooltiptext="Seleccione del Catalogo el Codigo de la Compañia (CCCO de F0010)" />
 										<button id="btnBuscarCompannia" label="Buscar" class="btn"
-											image="/public/imagenes/botones/buscar.png" />
+											tooltiptext="Catalogo de Codigos de Compañias (F0010)" image="/public/imagenes/botones/buscar.png" />
 										<label id="lblDescripcionF0010" />
 										<hbox />
 									</row>
@@ -119,45 +119,45 @@
 									<row>
 										<label class="etiqueta" value="Linea Descripción 2" />
 										<textbox id="txtDL02F0006" hflex="1" maxlength="30"
-											tooltiptext="Ingrese la Linea de Descripción 2 " />
+											tooltiptext="Ingrese la Linea de Descripción 2 (MCDL02) " />
 										<hbox />
 										<hbox />
 									</row>
 									<row>
 										<label class="etiqueta" value="Linea Descripción 3" />
 										<textbox id="txtDL03F0006" hflex="1" maxlength="30"
-											tooltiptext="Ingrese la Linea de Descripción 3 " />
+											tooltiptext="Ingrese la Linea de Descripción 3 (MCDL03)" />
 										<hbox />
 										<hbox />
 									</row>
 									<row>
 										<label class="etiqueta" value="Linea Descripción 2" />
 										<textbox id="txtDL04F0006" hflex="1" maxlength="30"
-											tooltiptext="Ingrese la Linea de Descripción 4 " />
+											tooltiptext="Ingrese la Linea de Descripción 4 (MCDL04) " />
 										<hbox />
 										<hbox />
 									</row>
 									<row>
 										<label class="etiqueta" value="Número Dirección" />
 										<textbox id="txtAN8F0006" hflex="1" maxlength="100"
-											tooltiptext="Ingrese el Número Dirección" />
+											tooltiptext="Seleccione del Catalogo el Codigo de la Dirección (ABAN8 de F0101)" />
 										<button id="btnBuscarDireccion" label="Buscar" class="btn"
-											image="/public/imagenes/botones/buscar.png" />
+											tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
 										<label id="lblDescripcionF0101" />
 										<hbox />
 									</row>
 									<row>
 										<label class="etiqueta" value="Zona/Tipo Fiscal" />
 										<textbox id="txtTXA1F0006" hflex="1"
-											tooltiptext="Ingrese la Zona/Tipo Fiscal" />
+											tooltiptext="Ingrese la Zona/Tipo Fiscal (MCTXA1)" />
 										<hbox />
 									</row>
 									<row>
 										<label class="etiqueta" value="Nº Proyecto" />
 										<textbox id="txtMCUSF0006" hflex="1" maxlength="12"
-											tooltiptext="Ingrese el Nº Proyecto" />
+											tooltiptext="Seleccione del Catalogo el Codigo del Proyecto (MCMCU de F0006)" />
 										<button id="btnBuscarProyecto" label="Buscar" class="btn"
-											image="/public/imagenes/botones/buscar.png" />
+											tooltiptext="Catalogo de Codigos de Unidades de Negocio (F0006)" image="/public/imagenes/botones/buscar.png" />
 										<label id="lblDescripcionF0006" />
 										<hbox />
 									</row>

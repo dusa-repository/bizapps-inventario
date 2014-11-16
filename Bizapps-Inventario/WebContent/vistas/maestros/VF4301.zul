@@ -33,11 +33,11 @@
 										</label>
 									</hbox>
 									<longbox id="txtDOCOF4301" hflex="1"
-										maxlength="100" tooltiptext="Ingrese el Número de orden" />
+										maxlength="100" tooltiptext="Ingrese el Número de orden (PHDOCO)" />
 									<textbox id="txtDCTOF4301" hflex="1"
-										maxlength="100" tooltiptext="" value="OP" disabled="true" />
+										maxlength="100" tooltiptext="Ingrese el Valor OP (PHDCTO)" value="OP" disabled="true" />
 									<textbox id="txtKCOOF4301" hflex="1"
-										maxlength="100" tooltiptext="" />
+										maxlength="100" tooltiptext="Ingrese el Número de orden  (PHKCOO)" />
 								</row>
 								<row>
 									<hbox>
@@ -50,10 +50,10 @@
 									</hbox>
 									<textbox id="txtMCUF4301" hflex="1"
 										maxlength="100"
-										tooltiptext="Ingrese la Planta/Sucursal desde donde desea consultar" />
+										tooltiptext="Seleccione del Catalogo el Codigo de la Sucursal (MCMCU de F0006)" />
 									<button id="btnBuscarSucPlantaF0006"
 										label="Buscar" class="btn"
-										tooltiptext="Catalogo de Suc/Planta"
+										tooltiptext="Catalogo de Codigos de Sucursales (F0006)"
 										image="/public/imagenes/botones/buscar.png" />
 									<label id="lblSucPlantaF0006" />
 								</row>
@@ -67,9 +67,9 @@
 										</label>
 									</hbox>
 									<textbox id="txtCRCDF4301" hflex="1"
-										maxlength="100" tooltiptext="Ingrese el Codigo Moneda" />
+										maxlength="100" tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
 									<button id="btnBuscarMonedaF0013"
-										label="Buscar" class="btn" tooltiptext="Catalogo de Moneda"
+										label="Buscar" class="btn" tooltiptext="Catalogo de Codigos de Sucursales (F0013)"
 										image="/public/imagenes/botones/buscar.png" />
 									<label id="lblMonedaF0013" />
 								</row>
@@ -77,7 +77,7 @@
 									<label class="etiqueta"
 										value="Tipo Cambio:" />
 									<textbox id="txtCRRF4301" hflex="1"
-										maxlength="100" tooltiptext="Ingrese el Tipo de Cambio" />
+										maxlength="100" tooltiptext="Ingrese el Tipo de Cambio (PHCRR)" />
 									<label id="lblTipoDireccionF0101" />
 									<label id="lblTipoDireccion2F0101" />
 								</row>
@@ -123,10 +123,10 @@
 												</hbox>
 												<longbox
 													id="txtAN8F4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el Número de orden" />
+													tooltiptext="Seleccione del Catalogo el Codigo del Proveedores (ABAN8 de F0101)" />
 												<button
 													id="btnBuscarProveedorF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Proveedores"
+													tooltiptext="Catalogo de Codigos de Proveedores (F0101)"
 													image="/public/imagenes/botones/buscar.png" />
 												<label
 													id="lblProveedoresF0101" />
@@ -142,10 +142,10 @@
 												</hbox>
 												<longbox
 													id="txtSHANF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el Destino" />
+													tooltiptext="Seleccione del Catalogo el Codigo de Direcciones de Envio (ABAN8 de F0101)" />
 												<button
 													id="btnBuscarDestinoF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Destino Envio"
+													tooltiptext="Catalogo de Codigos de Direcciones de Envio (F0101)"
 													image="/public/imagenes/botones/buscar.png" />
 												<label
 													id="lblDestinoF0101" />
@@ -161,10 +161,10 @@
 												</hbox>
 												<longbox
 													id="txtANBYF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el Comprador" />
+													tooltiptext="Seleccione del Catalogo el Codigo del Comprador (ABAN8 de F0101)" />
 												<button
 													id="btnBuscarCompradorF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Compradores"
+													tooltiptext="Catalogo de Codigos de Compradores (F0101)"
 													image="/public/imagenes/botones/buscar.png" />
 												<label
 													id="lblCompradorF0101" />
@@ -174,10 +174,10 @@
 													value="Transportista:" />
 												<longbox
 													id="txtANCRF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el Transportista" />
+													tooltiptext="Seleccione del Catalogo el Codigo del Transportista (ABAN8 de F0101)" />
 												<button
 													id="btnBuscarTransportistaF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Transportistas"
+													tooltiptext="Catalogo de Codigos de Transportistas (F0101)"
 													image="/public/imagenes/botones/buscar.png" />
 												<label
 													id="lblTransportistaF0101" />
@@ -188,7 +188,7 @@
 													value="Observación pg:" />
 												<textbox
 													id="txtRMKF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese una observacion" />
+													tooltiptext="Ingrese una observacion (PHRMK)" />
 												<label
 													id="lblObservacion" />
 												<hbox />
@@ -199,7 +199,7 @@
 													value="Descripción:" />
 												<textbox
 													id="txtDESCF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la descripción" />
+													tooltiptext="Ingrese la descripción (PHDESC)" />
 												<label
 													id="lblDescripcion" />
 												<hbox />
@@ -210,7 +210,7 @@
 													value="Mensaje imp:" />
 												<textbox
 													id="txtINMGF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese un mensaje" />
+													tooltiptext="Ingrese un mensaje (PHINMG)" />
 												<label id="lblMensaje" />
 												<hbox />
 											</row>
@@ -255,7 +255,7 @@
 												</hbox>
 												<datebox readonly="true"
 													width="100%" id="dtbTRDJF4301" format="dd-MM-yyyy"
-													tooltiptext="Ingrese la Fecha de la orden" />
+													tooltiptext="Ingrese la Fecha de la orden (PHTRDJ)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -270,7 +270,7 @@
 												</hbox>
 												<datebox readonly="true"
 													width="100%" id="dtbDRQJF4301" format="dd-MM-yyyy"
-													tooltiptext="Ingrese la Fecha de la solicitud" />
+													tooltiptext="Ingrese la Fecha de la solicitud (PHDRQJ)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -285,7 +285,7 @@
 												</hbox>
 												<datebox readonly="true"
 													width="100%" id="dtbPDDJF4301" format="dd-MM-yyyy"
-													tooltiptext="Ingrese la Fecha prometida" />
+													tooltiptext="Ingrese la Fecha prometida (PHPDDJ)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -300,7 +300,7 @@
 												</hbox>
 												<datebox readonly="true"
 													width="100%" id="dtbCNDJF4301" format="dd-MM-yyyy"
-													tooltiptext="Ingrese la Fecha de cancelación" />
+													tooltiptext="Ingrese la Fecha de cancelación (PHCNDJ)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -308,7 +308,7 @@
 												<cell colspan="3">
 													<button
 														id="btnBuscarF0006" label="Buscar" class="btn"
-														tooltiptext="Catalogo fechas"
+														tooltiptext="Catalogo de Codigo de Uniddes de Negocio (MCMCU de F0006)"
 														image="/public/imagenes/botones/buscar.png" />
 												</cell>
 												<hbox />
@@ -347,7 +347,7 @@
 												</hbox>
 												<textbox
 													id="txtEXR1F4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese Codigo expl fiscal" />
+													tooltiptext="Ingrese Codigo expl fiscal (PHEXR1)" />
 												<label
 													id="lblCodExpFiscal" />
 												<hbox />
@@ -370,7 +370,7 @@
 												</hbox>
 												<textbox
 													id="txtHOLDF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese Código de retención" />
+													tooltiptext="Ingrese Código de retención (PHHOLD)" />
 												<label
 													id="lblCodRetencionExp" />
 												<hbox />
@@ -393,10 +393,10 @@
 												</hbox>
 												<textbox
 													id="txtTXA1F4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la Tasa/zona fiscal" />
+													tooltiptext="Seleccione del Catalogo el Codigo la Zona Fiscal (TATXA1 de F4008)" />
 												<button
 													id="btnBuscarTaxAreasV4008" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Tax Áreas"
+													tooltiptext="Catalogo de Codigos de Zonas (F4008)"
 													image="/public/imagenes/botones/buscar.png" />
 												<label
 													id="lblZonaV4008" />
@@ -412,7 +412,7 @@
 												</hbox>
 												<textbox
 													id="txtTXCTF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el certificado" />
+													tooltiptext="Ingrese el certificado (PHTXCT)" />
 												<label
 													id="lblCertificadoF0013" />
 												<hbox />
@@ -428,7 +428,7 @@
 												</hbox>
 												<textbox
 													id="txtPCRTF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el porcentaje de retención" />
+													tooltiptext="Ingrese el porcentaje de retención (PHPCRT)" />
 												<label
 													id="lblRetencion" />
 												<hbox />
@@ -438,10 +438,10 @@
 													value="ID fiscal:" />
 												<textbox
 													id="txtABTAXF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el código fiscal" disabled="true" />
+													tooltiptext="Seleccione del Catalogo el Codigo Fiscal (ABTAX de F0101)" disabled="true" />
 												<button
 													id="btnBuscarRifF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Direcciones"
+													tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
 													image="/public/imagenes/botones/buscar.png" />
 												<label
 													id="lblIdFiscalF0101" />
@@ -451,7 +451,7 @@
 													value="Orden tomada por:" />
 												<textbox
 													id="txtTKBYF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese quien tomo la orden" />
+													tooltiptext="Ingrese quien tomo la orden (PHTKBY)" />
 												<label id="lblOrdenPor" />
 												<hbox />
 											</row>
@@ -460,7 +460,7 @@
 													value="Condicion de pago:" />
 												<textbox
 													id="txtPTCF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la condición de pago" />
+													tooltiptext="Ingrese la condición de pago (PHTKBY)" />
 												<label
 													id="lblCondicionPagoF0101" value="Sin Crédito" />
 												<hbox />
@@ -470,7 +470,7 @@
 													value="Doc A\A:" />
 												<textbox
 													id="txtFUF1F4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el doc" />
+													tooltiptext="Ingrese el doc (PHFUF1)" />
 												<label id="lblDocF0101" />
 												<hbox />
 											</row>

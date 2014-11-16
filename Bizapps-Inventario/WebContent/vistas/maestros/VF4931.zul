@@ -33,12 +33,12 @@
 										</label>
 									</hbox>
 									<textbox id="txtVTYPF4931" hflex="1"
-										maxlength="100" tooltiptext="" />
+										maxlength="100" tooltiptext="Ingresar el Tipo de Vehiculo (VGVTYP)" />
 									<textbox id="txtDL01F4931" hflex="9"
-										maxlength="100" tooltiptext="" />
+										maxlength="100" tooltiptext="Ingresar el Tipo de Vehiculo (VGDL01)" />
 									<!--falta el tooltiptext -->
 									<checkbox label="Transp prod"
-										id="chxCPFGF4931" hflex="5" tooltiptext="Marque Para ... " />
+										id="chxCPFGF4931" hflex="5" tooltiptext="Marque Para Seleccionar Esta Opcion (VGCPFG) " />
 								</row>
 							</rows>
 						</grid>
@@ -90,7 +90,7 @@
 												</hbox>
 												<textbox
 													id="txtWTEMF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el Vacio" />
+													tooltiptext="Ingrese el Vacio (VGWTEM)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -105,7 +105,7 @@
 												</hbox>
 												<textbox
 													id="txtWTCAF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la capacidad" />
+													tooltiptext="Ingrese la capacidad (VGWTCA)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -120,7 +120,7 @@
 												</hbox>
 												<textbox
 													id="txtWTGRF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese bruto maximo" />
+													tooltiptext="Ingrese bruto maximo (VGWTGR)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -170,7 +170,7 @@
 												</hbox>
 												<textbox
 													id="txtVLCPF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la capacidad" />
+													tooltiptext="Ingrese la capacidad (VGVLCP)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -185,7 +185,7 @@
 												</hbox>
 												<textbox
 													id="txtVLCSF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la capacidad secundaria" />
+													tooltiptext="Ingrese la capacidad secundaria (VGVLCS)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -229,7 +229,7 @@
 												</hbox>
 												<textbox
 													id="txtCVOLF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la capacidad" />
+													tooltiptext="Ingrese la capacidad (VGCVOL)" />
 												<hbox />
 											</row>
 										</rows>
@@ -278,7 +278,7 @@
 												</hbox>
 												<textbox
 													id="txtNCEF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el numero de compartimientos" />
+													tooltiptext="Ingrese el numero de compartimientos (VGNCE)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -297,7 +297,7 @@
 											<row>
 												<checkbox
 													label="Lineas Multiples" id="chxMLLNF4931" hflex="5"
-													tooltiptext="Marque Para ... " />
+													tooltiptext="Marque Para Seleccionar Lineas Miltiples (VGMLLN) " />
 												<hbox />
 												<hbox />
 												<hbox />
@@ -313,7 +313,7 @@
 												</hbox>
 												<textbox
 													id="txtAXLEF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el numero de ejes" />
+													tooltiptext="Ingrese el numero de ejes (VGAXLE)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -328,7 +328,7 @@
 												</hbox>
 												<textbox
 													id="txtWTAXF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la capacidad de peso por eje" />
+													tooltiptext="Ingrese la capacidad de peso por eje (VGWTAX)" />
 												<hbox />
 												<hbox />
 											</row>
@@ -343,7 +343,7 @@
 												</hbox>
 												<textbox
 													id="txtSEALF4931" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el Nº de sellos requeridos" />
+													tooltiptext="Ingrese el Nº de sellos requeridos (VGSEAL)" />
 												<hbox />
 												<hbox />
 											</row>

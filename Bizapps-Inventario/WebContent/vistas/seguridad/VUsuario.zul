@@ -25,7 +25,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtCedulaUsuario" hflex="1" maxlength="12"
-								tooltiptext="Ingrese la Cedula del Usuario" />
+								tooltiptext="Ingrese la Cedula del Usuario (cedula)" />
 							<fileupload
 								style="	background: #952C2C;font-size: 11px;color: white;cursor: pointer;width: 95px;height: 29px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
 								image="/public/imagenes/botones/cargar.png" id="fudImagenUsuario"
@@ -43,11 +43,11 @@
 								</label>
 							</hbox>
 							<textbox id="txtNombreUsuario" hflex="1" maxlength="100"
-								tooltiptext="Ingrese el Primer Nombre del Usuario" />
+								tooltiptext="Ingrese el Primer Nombre del Usuario (primerNombre)" />
 							<image id="imagen" width="50px" height="50px" />
 							<label class="etiqueta" value="Segundo Nombre:" />
 							<textbox id="txtNombre2Usuario" hflex="1" maxlength="100"
-								tooltiptext="Ingrese el Segundo Nombre del Usuario" />
+								tooltiptext="Ingrese el Segundo Nombre del Usuario (segundoNombre)" />
 							<hbox />
 						</row>
 						<row>
@@ -58,11 +58,11 @@
 								</label>
 							</hbox>
 							<textbox id="txtApellidoUsuario" hflex="1" maxlength="100"
-								tooltiptext="Ingrese el Primer Apellido del Usuario" />
+								tooltiptext="Ingrese el Primer Apellido del Usuario (primerApellido)" />
 							<hbox />
 							<label class="etiqueta" value="Segundo Apellido:" />
 							<textbox id="txtApellido2Usuario" hflex="1" maxlength="100"
-								tooltiptext="Ingrese el Segundo Apellido del Usuario" />
+								tooltiptext="Ingrese el Segundo Apellido del Usuario (segundoApellido)" />
 							<hbox />
 						</row>
 					</rows>
@@ -88,7 +88,7 @@
 										<row>
 											<label class="etiqueta" value="Telefono:" />
 											<textbox id="txtTelefonoUsuario" hflex="1" maxlength="50"
-												tooltiptext="Ingrese el Numero de Telefono del Usuario (0426-9999999)" />
+												tooltiptext="Ingrese el Numero de Telefono del Usuario Ejem:0426-9999999 (telefono)" />
 											<hbox>
 												<label class="etiqueta" value="Correo:" />
 												<space />
@@ -96,7 +96,7 @@
 												</label>
 											</hbox>
 											<textbox id="txtCorreoUsuario" hflex="1" maxlength="50"
-												tooltiptext="Ingrese el Correo Electronico del Usuario (ejemplo@ejemplo.com)" />
+												tooltiptext="Ingrese el Correo Electronico del Usuario Ejem:ejemplo@ejemplo.com (email))" />
 										</row>
 										<row>
 											<hbox>
@@ -105,14 +105,14 @@
 												<label value="*" style="font-weight:bold;color:red">
 												</label>
 											</hbox>
-											<radiogroup id="rdbSexoUsuario">
+											<radiogroup id="rdbSexoUsuario" tooltiptext="Seleccione el Sexo (sexo)">
 												<radio id="rdoSexoFUsuario" label="Femenino" />
 												<radio id="rdoSexoMUsuario" label="Masculino" />
 											</radiogroup>
 											<label class="etiqueta" value="Direccion:" />
 											<textbox class="multilinea" id="txtDireccionUsuario"
 												hflex="1" maxlength="500"
-												tooltiptext="Ingrese el Numero de Telefono del Usuario"
+												tooltiptext="Ingrese la Direccion (direccion)"
 												multiline="true" />
 										</row>
 									</rows>
@@ -142,7 +142,7 @@
 											</label>
 										</hbox>
 										<textbox id="txtLoginUsuario" hflex="1" maxlength="50"
-											tooltiptext="Ingrese el Login del Usuario" />
+											tooltiptext="Ingrese el Login del Usuario (login)" />
 										<hbox />
 										<hbox />
 									</row>
@@ -154,7 +154,7 @@
 											</label>
 										</hbox>
 										<textbox id="txtPasswordUsuario" hflex="1" maxlength="256"
-											tooltiptext="Ingrese la Contraseña del Usuario" type="password" />
+											tooltiptext="Ingrese la Contraseña del Usuario (password)" type="password" />
 										<hbox>
 											<label class="etiqueta" value="Reescriba el Password:" />
 											<space />
@@ -162,7 +162,7 @@
 											</label>
 										</hbox>
 										<textbox id="txtPassword2Usuario" hflex="1" maxlength="256"
-											tooltiptext="Reescriba el Login del Usuario" type="password" />
+											tooltiptext="Reescriba el Login del Usuario (password)" type="password" />
 									</row>
 								</rows>
 							</grid>

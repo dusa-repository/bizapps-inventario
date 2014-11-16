@@ -12,10 +12,10 @@
 				<separator />
 				<grid width="100%" style="border:0px">
 					<columns visible="false">
-						<column label="" width="17%" />
-						<column label="" width="28%" />
-						<column label="" width="11%" />
-						<column label="" width="44%" />
+						<column label="" width="18%" />
+						<column label="" width="35%" />
+						<column label="" width="12%" />
+						<column label="" width="35%" />
 					</columns>
 					<rows>
 						<row>
@@ -28,9 +28,9 @@
 								</label>
 							</hbox>
 							<textbox id="txtSTFNF49041" hflex="1"
-								tooltiptext="Ingrese el N° de Empleado" />
+								tooltiptext="Seleccione del Catalogo el Codigo del Empleado (ABAN8 de F0101)" />
 							<button id="btnBuscarF0101" label="Buscar"
-								class="btn" tooltiptext="Catalogo de Empleados"
+								class="btn" tooltiptext="Catalogo de Codigos de Empleados (F0101)"
 								image="/public/imagenes/botones/buscar.png" />
 							<label id="lblF0101" />
 						</row>
@@ -44,9 +44,9 @@
 								</label>
 							</hbox>
 							<textbox id="txtVEHIF49041" hflex="1"
-								maxlength="12" tooltiptext="Ingrese el ID del vehiculo" />
+								maxlength="12" tooltiptext="Seleccione del Catalogo el Codigo del Vehiculo (VSSTFN de F4930)"/>
 							<button id="btnBuscarF4930" label="Buscar"
-								class="btn" tooltiptext="Catalogo de Vehiculos"
+								class="btn" tooltiptext="Catalogo de Codigos de Vehiculos (F4930)"
 								image="/public/imagenes/botones/buscar.png" />
 							<label id="lblF4930" />
 						</row>
@@ -61,7 +61,7 @@
 
 							<datebox readonly="true" width="100%"
 								id="dtbEFTJF49041" format="dd-MM-yyyy"
-								tooltiptext="Ingrese la Fecha de referencia" />
+								tooltiptext="Ingrese la Fecha de referencia (VSEFTJ)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -76,9 +76,9 @@
 							<label class="etiqueta" value="Depósito:" />
 
 							<textbox id="txtMCU49041" hflex="1"
-								maxlength="12" tooltiptext="Ingrese el deposito" />
+								maxlength="12" tooltiptext="Seleccione del Catalogo el Codigo del Deposito (MCMCU de F0006)"/>
 							<button id="btnBuscarF0011" label="Buscar"
-								class="btn" tooltiptext="Catalogo de depositos"
+								class="btn" tooltiptext="Catalogo de Codigos de Depositos (F0006)"
 								image="/public/imagenes/botones/buscar.png" />
 							<label id="lblF0011" />
 						</row>

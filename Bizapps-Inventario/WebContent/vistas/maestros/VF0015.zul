@@ -27,9 +27,9 @@
 									</label>
 								</hbox>
 								<textbox id="txtCRCDF0015" hflex="1" maxlength="100"
-									tooltiptext="Ingrese el Codigo Moneda" />
+									tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
 								<button id="btnBuscarMonedaF0013" label="Buscar" class="btn"
-									tooltiptext="Catalogo de Codigos de Moneda" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Moneda (F0013)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblMonedaF0013" />
 							</row>
 							<row>
@@ -40,9 +40,9 @@
 									</label>
 								</hbox>
 								<textbox id="txtCRDCF0015" hflex="1" maxlength="100"
-									tooltiptext="Ingrese el Codigo Moneda" />
+									tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
 								<button id="btnBuscarMonedaDestinoF0013" label="Buscar"
-									class="btn" tooltiptext="Catalogo de Codigos de Moneda" image="/public/imagenes/botones/buscar.png" />
+									class="btn" tooltiptext="Catalogo de Codigos de Moneda (F0013)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblMonedaDestinoF0013" />
 							</row>
 							<row>
@@ -53,16 +53,16 @@
 									</label>
 								</hbox>
 								<datebox readonly="true" width="100%" id="dtbEFTF0015"
-									format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Efectiva" />
+									format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Efectiva (CXEFT)" />
 								<hbox />
 								<hbox />
 							</row>
 							<row>
 								<label class="etiqueta" value="Contrato (dirección):" />
 								<textbox id="txtAN8F0015" hflex="1" maxlength="100"
-									tooltiptext="Ingrese el Contrato(direccion)" />
+									tooltiptext="Seleccione del Catalogo el Codigo de la Direccion (ABAN8 de F0101)" />
 								<button id="btnBuscarF0101" label="Buscar" class="btn"
-									tooltiptext="Catalogo de Contratos(direcciones)" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccionF0101" />
 							</row>
 						</rows>
@@ -89,7 +89,6 @@
 												<radiogroup id="rdgMetodoCalculoF0015">
 													<vlayout>
 														<radio id="rdoMetodoInversionF0015"
-															tooltiptext="Marque para Seleccionar el Metodo Inversion"
 															label="Método Inversión" />
 													</vlayout>
 												</radiogroup>
@@ -108,20 +107,20 @@
 											<row>
 												<label class="etiqueta" value="Método conversión (Y/Z):" />
 												<textbox id="txtCRCMF0015" hflex="1" maxlength="1"
-													tooltiptext="Ingrese el Metodo de Conversion" />
+													tooltiptext="Ingrese el Metodo de Conversion (CXCRCM)" />
 												<label id="lblMetodoConversionF0015">
 												</label>
 											</row>
 											<row>
 												<label class="etiqueta" value="Tipo multiplicador:" />
 												<textbox id="txtCRRF0015" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el Tipo de Multiplicador" />
+													tooltiptext="Ingrese el Tipo de Multiplicador (CXCRR)" />
 												<hbox />
 											</row>
 											<row>
 												<label class="etiqueta" value="Tipo divisor:" />
 												<textbox id="txtCRRDF0015" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el Tipo de Divisor" />
+													tooltiptext="Ingrese el Tipo de Divisor (CXCRRD)" />
 												<hbox />
 											</row>
 										</rows>

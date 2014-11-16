@@ -21,9 +21,6 @@
 						<hbox />
 					</row>
 					<row>
-				<!-- 	<label class="etiqueta" value= "Tipo Línea" />
-							<textbox id="txtLNTYF40203" hflex="1" maxlength="2"
-								tooltiptext="Ingrese Código Tipo de Línea " />  -->	
 						<cell colspan="2">
 							<div id="divbuscadorNTYF" hflex="1" />
 						</cell>
@@ -32,7 +29,7 @@
 					<row>
 						<label class="etiqueta" value= "Nº Siguiente Tipo Orden" />
 							<textbox id="txtNSF40203" hflex="1" maxlength="100"
-								tooltiptext="Nº Siguiente Tipo Orden" />
+								tooltiptext="Ingrese el Nº Siguiente del Tipo de Orden" />
 							<hbox />
 					</row>
 					<row>
@@ -44,7 +41,7 @@
 					<row>
 						<label class="etiqueta" value= "Descripción último estado" />
 							<textbox id="txtDSC1F40203" hflex="1" maxlength="30"
-								tooltiptext="Ingrese la descripción del último estado" />
+								tooltiptext="Ingrese la Descripción del Último Estado (FSSTDS)" />
 							<hbox />
 					</row>
 					<row>
@@ -86,7 +83,7 @@
 					<row>
 						<label class="etiqueta" value= "LM (Y/N)" />
 							<textbox id="txtWRTHF40203" hflex="1" maxlength="1"
-								tooltiptext="Ingrese LM (Y/M)" />
+								tooltiptext="Ingrese el Valor LM (Y/M) (FSWRTH)" />
 							<hbox />
 					</row>
 				</rows>

@@ -71,10 +71,6 @@ public class CF4101 extends CGenerico {
 	@Wire
 	private Textbox txtIMLNTYF4101;
 	@Wire
-	private Button btnBuscarIMLNTYF4101;
-	@Wire
-	private Label lblIMLNTYF4101;
-	@Wire
 	private Div divBuscadorIMBPFG;
 	@Wire
 	private Checkbox chxIMBACKF4101;
@@ -723,7 +719,7 @@ public class CF4101 extends CGenerico {
 						if (f4101.getImckav().equals("Y"))
 							chxIMCKAVF4101.setChecked(true);
 
-						if (f4101.getImckav().equals("Y"))
+						if (f4101.getImxdck().equals("Y"))
 							chxIMXDCKF4101.setChecked(true);
 
 						if (f4101.getImdual().equals("Y"))
@@ -1216,7 +1212,6 @@ public class CF4101 extends CGenerico {
 		txtIMDSC2F4101.setValue("");
 		txtIMSRTXF4101.setValue("");
 		txtIMLNTYF4101.setValue("");
-		lblIMLNTYF4101.setValue("");
 		chxIMBACKF4101.setChecked(false);
 		chxIMCKAVF4101.setChecked(false);
 		chxIMXDCKF4101.setChecked(false);

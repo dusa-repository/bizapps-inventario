@@ -25,10 +25,10 @@
 								</label>
 							</hbox>
 							<longbox id="txtAn8F0115" hflex="1" maxlength="19"
-								tooltiptext="Ingrese el Numero de Direccion" />
+								tooltiptext="Seleccione del Catalogo el Codigo la Direccion (ABAN8 de F0101)" />
 							<hbox>
 								<button id="btnBuscarDireccionF0115" label="Buscar"
-									class="btn" tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+									class="btn" tooltiptext="Catalogo de Codigos de Producto (F0101)" image="/public/imagenes/botones/buscar.png" />
 							</hbox>
 							<label id="lblAn8F0115" />
 						</row>
@@ -37,10 +37,10 @@
 							<cell colspan="3">
 								<hbox>
 									<textbox id="txtAr01F0115" hflex="1" maxlength="6"
-										tooltiptext="Ingrese el prefijo del Numero Telefonico. Ejemplo 0412" />
+										tooltiptext="Ingrese el prefijo del Numero Telefonico. Ejemplo 0412 (WPAR1)" />
 									<label class="etiqueta" value="-" />
 									<textbox id="txtPh1F0115" hflex="1" maxlength="20"
-										tooltiptext="Ingrese el Numero Telefonico. Ejemplo 1256879" />
+										tooltiptext="Ingrese el Numero Telefonico. Ejemplo 1256879 (WPPH1)" />
 								</hbox>
 							</cell>
 						</row>

@@ -504,8 +504,8 @@ public class CF4930 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF0101")
 	public void seleccionF0101() {
 		F0101 f0101 = catalogoF0101.objetoSeleccionadoDelCatalogo();
-		txtVOWNF0101.setValue(f0101.getAbab3());
-		lblF0101.setValue("");
+		txtVOWNF0101.setValue(String.valueOf(f0101.getAban8()));
+		lblF0101.setValue(f0101.getAbalph());
 		catalogoF0101.setParent(null);
 	}
 	

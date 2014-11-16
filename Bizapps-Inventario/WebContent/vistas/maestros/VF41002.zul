@@ -12,10 +12,10 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="20%" />
-						<column label="" width="10%" />
-						<column label="" width="25%" />
-						<column label="" width="45%" />
+						<column label="" width="18%" />
+						<column label="" width="15%" />
+						<column label="" width="30%" />
+						<column label="" width="37%" />
 					</columns>
 					<rows>
 						<row>
@@ -26,11 +26,11 @@
 								</label>
 							</hbox>
 							<textbox id="txtUMITMF41002" hflex="1" maxlength="100"
-								tooltiptext="Seleccione del Catalogo el Codigo del Articulo" />
+								tooltiptext="Seleccione del Catalogo el Codigo del Articulo (IMITM de F4101)" />
 							<cell colspan="2">
 								<hbox>
 									<button id="btnBuscarF4101" label="Buscar" class="btn"
-										tooltiptext="Catalogo de Articulos" image="/public/imagenes/botones/buscar.png" />
+										tooltiptext="Catalogo de codigos de Articulos (F4101)" image="/public/imagenes/botones/buscar.png" />
 									<space />
 									<label id="lblDescripcionF4101" />
 								</hbox>
@@ -38,7 +38,7 @@
 						</row>
 						<row>
 							<label class="etiqueta" value="UM Principal:" />
-							<textbox id="txtDescripcionUnidad" tooltiptext="Unidad Principal del Articulo" />
+							<textbox id="txtDescripcionUnidad" tooltiptext="Seleccione del Catalogo el codigo de la Unidad Principal del Articulo (IMUOM1 de F4101)" />
 							<cell colspan="2">
 								<label id="lblDescripcionUnidad" />
 							</cell>
@@ -57,7 +57,7 @@
 								</label>
 							</hbox>
 							<doublebox id="txtCONVF41002" hflex="1"
-								tooltiptext="Ingrese la Cantidad de la Conversion" />
+								tooltiptext="Ingrese la Cantidad de la Conversion (UMCONV)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -70,21 +70,21 @@
 						<row>
 							<label class="etiqueta" value="Codigo Estructura:" />
 							<textbox id="txtUSTRF41002" hflex="1" maxlength="1"
-								tooltiptext="Ingrese el Codigo de la Estructura" />
+								tooltiptext="Ingrese el Codigo de la Estructura (UMUSTR)" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Excluir de OV" />
 							<textbox id="txtEXSOF41002" hflex="1" maxlength="1"
-								tooltiptext="Ingrese el valor de Excluir OV" />
+								tooltiptext="Ingrese el valor de Excluir OV (UMEXSO)" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Excluir de OC" />
 							<textbox id="txtEXPOF41002" hflex="1" maxlength="1"
-								tooltiptext="Ingrese el valor de Excluir OC" />
+								tooltiptext="Ingrese el valor de Excluir OC (UMEXPO)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -92,7 +92,7 @@
 							<label class="etiqueta" value="Sec UM Ventas:" />
 							<cell colspan="2">
 								<longbox id="txtSEPCF41002" hflex="1" maxlength="18"
-									tooltiptext="Ingrese el Sec UM Ventas" />
+									tooltiptext="Ingrese el Sec UM Ventas (UMSEPC)" />
 							</cell>
 							<hbox />
 						</row>
@@ -100,7 +100,7 @@
 							<label class="etiqueta" value="Sec UM Compras:" />
 							<cell colspan="2">
 								<longbox id="txtPUPCF41002" hflex="1" maxlength="18"
-									tooltiptext="Ingrese el Sec UM Compras" />
+									tooltiptext="Ingrese el Sec UM Compras (UMPUPC)" />
 							</cell>
 							<hbox />
 						</row>

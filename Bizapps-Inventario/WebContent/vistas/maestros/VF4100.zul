@@ -26,11 +26,11 @@
 								</label>
 							</hbox>
 							<textbox id="txtMCUF4100" hflex="1" maxlength="255" width="10px"
-								tooltiptext="Ingrese el Codigo Principal del Sistema" />
+								tooltiptext="Seleccione del Catalogo el Codigo de la Unidad de Negocio (MCMCU de F0006)" />
 							<cell colspan="2">
 								<hbox>
 									<button id="btnBuscarF0006" label="Buscar" class="btn"
-										tooltiptext="Catalogo de Sucursales" image="/public/imagenes/botones/buscar.png" />
+										tooltiptext="Catalogo de Codigos de Unidades de Negocio (F0006)" image="/public/imagenes/botones/buscar.png" />
 									<space />
 									<label id="lblMCUF0006" />
 								</hbox>
@@ -44,7 +44,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtLOCNF4100" hflex="1" maxlength="20" width="10px"
-								tooltiptext="Ingrese la Ubicacion" />
+								tooltiptext="Ingrese la Ubicacion (LMLOCN)" />
 								<cell colspan="2">
 							<label value="" />
 					
@@ -53,7 +53,7 @@
 						<row>
 							<label class="etiqueta" value="Fecha Acta:" />
 							<datebox readonly="true" width="100%" id="dtbUPMJF4100"
-								onCreate="self.value = new Date()" tooltiptext="Ingrese la fecha acta" />
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la fecha acta (LMUPMJ)" />
 							<hbox />
 							<hbox />
 						</row>

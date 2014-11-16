@@ -28,7 +28,8 @@
 								</label>
 							</hbox>
 							<textbox id="txtCCCOF0010" hflex="1"
-								maxlength="5" tooltiptext="Ingrese el Codigo de la Compañia" />
+								maxlength="5"
+								tooltiptext="Ingrese el Codigo de la Compañia (CCCO)" />
 							<hbox>
 								<label class="etiqueta" value="Nombre:" />
 								<space />
@@ -37,7 +38,8 @@
 								</label>
 							</hbox>
 							<textbox id="txtNameF0010" hflex="1"
-								maxlength="30" tooltiptext="Ingrese el nombre de la Compañia" />
+								maxlength="30"
+								tooltiptext="Ingrese el nombre de la Compañia (CCNAME)" />
 						</row>
 					</rows>
 				</grid>
@@ -63,18 +65,12 @@
 										</columns>
 										<rows>
 											<row>
-												<!-- <label class="etiqueta" value="Patron Fecha Fiscal:" /> 
-													<textbox id="txtPatronF0010" hflex="1" maxlength="1" tooltiptext="Ingrese 
-													el Patron de la Fecha Fiscal" /> -->
 												<cell colspan="2">
 													<div
 														id="divbuscadorDPNT" hflex="1" />
 												</cell>
 											</row>
 											<row>
-												<!-- <label class="etiqueta" value="Numero de Periodos:" /> <textbox 
-													id="txtCaldF0010" hflex="1" maxlength="100" tooltiptext="Ingrese el numero 
-													de Periodos" /> -->
 												<cell colspan="2">
 													<div
 														id="divbuscadorCALD" hflex="1" />
@@ -86,7 +82,7 @@
 												<doublespinner
 													id="dpnPeriodoActualGeneralF0010" hflex="1"
 													constraint="max 999999" value="0"
-													tooltiptext="Ingrese el periodo Actual" />
+													tooltiptext="Ingrese el periodo Actual (CCPNC)" />
 											</row>
 											<row>
 												<hbox>
@@ -100,7 +96,7 @@
 												<datebox readonly="true"
 													width="100%" id="dtbFechaGeneralF0010"
 													onCreate="self.value = new Date()"
-													tooltiptext="Ingrese el Inicio del año fiscal" />
+													tooltiptext="Ingrese el Inicio del año fiscal (CCDFYJ)" />
 											</row>
 											<row>
 												<label class="etiqueta"
@@ -108,13 +104,13 @@
 												<hbox>
 													<longbox
 														id="txtAn8F0010" hflex="1" maxlength="19"
-														tooltiptext="Ingrese la Moneda Nacional" />
-													<button
-														id="btnBuscarDireccion" label="Buscar" class="btn"
-														tooltiptext="Catalogo Direccion"
-														image="/public/imagenes/botones/buscar.png" />
-													<label
-														id="lblDireccionF0010" />
+														tooltiptext="Seleccione del Catalogo el Codigo de la Moneda Nacional (ABAN8 de F0101)"/>
+														<button
+															id="btnBuscarDireccion" label="Buscar" class="btn"
+															tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
+															image="/public/imagenes/botones/buscar.png" />
+														<label
+															id="lblDireccionF0010" />
 												</hbox>
 											</row>
 										</rows>
@@ -139,7 +135,7 @@
 													<doublespinner
 														id="dpnPeriodoPagarF0010" hflex="1" value="0"
 														constraint="max 999999"
-														tooltiptext="Ingrese el periodo Actual" />
+														tooltiptext="Ingrese el periodo Actual (CCAPPN)" />
 												</row>
 												<row>
 													<label
@@ -147,14 +143,14 @@
 													<datebox
 														readonly="true" width="100%" id="dtbFechaPagarF0010"
 														onCreate="self.value = new Date()"
-														tooltiptext="Ingrese el Inicio del año fiscal" />
+														tooltiptext="Ingrese el Inicio del año fiscal (CCAPFJ)" />
 												</row>
 												<row>
 													<label
 														class="etiqueta" value="Usar Cuenta Transitoria:" />
 													<checkbox
 														id="chxTransitoria" hflex="1"
-														tooltiptext="Marque para Usar Cuenta Transitoria" />
+														tooltiptext="Marque para Usar Cuenta Transitoria (CCDPRC)" />
 												</row>
 											</rows>
 										</grid>
@@ -177,7 +173,7 @@
 													<doublespinner
 														id="dpnPeriodoCobrarF0010" value="0" hflex="1"
 														constraint="max 999999"
-														tooltiptext="Ingrese el periodo Actual" />
+														tooltiptext="Ingrese el periodo Actual (CCARPN)" />
 												</row>
 												<row>
 													<label
@@ -185,7 +181,7 @@
 													<datebox
 														readonly="true" width="100%" id="dtbFechaCobrarF0010"
 														onCreate="self.value = new Date()"
-														tooltiptext="Ingrese el Inicio del año fiscal" />
+														tooltiptext="Ingrese el Inicio del año fiscal (CCARFJ)" />
 												</row>
 											</rows>
 										</grid>
@@ -209,13 +205,13 @@
 											<doublespinner
 												id="dpnPeriodoInformeF0010" value="0" hflex="1"
 												constraint="max 999999"
-												tooltiptext="Ingrese el numero de Periodos de informes" />
+												tooltiptext="Ingrese el numero de Periodos de informes (CCPNF)" />
 											<label class="etiqueta"
 												value="Año Informes:" />
 											<doublespinner
 												id="dpnAnnoInformeF0010" hflex="1" value="0"
 												constraint="max 999999"
-												tooltiptext="Ingrese los Años de Informe" />
+												tooltiptext="Ingrese los Años de Informe (CCFRY)" />
 										</row>
 									</rows>
 								</grid>
@@ -234,10 +230,10 @@
 											value="Moneda Nacional:" />
 										<textbox id="txtCCCRCDF0010"
 											hflex="1" maxlength="3"
-											tooltiptext="Ingrese la Moneda Nacional" />
+											tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
 										<hbox>
 											<button id="btnBuscarMoneda"
-												label="Buscar" class="btn" tooltiptext="Catalogo Monedas"
+												label="Buscar" class="btn" tooltiptext="Catalogo de Codigos de Monedas (F0013)"
 												image="/public/imagenes/botones/buscar.png" />
 											<label id="lblMonedaF0010" />
 										</hbox>
@@ -247,7 +243,7 @@
 											value="Calculo redeterminacion:" />
 										<textbox id="txtDot2F0010"
 											hflex="1" maxlength="1"
-											tooltiptext="Ingrese el Calculo de Redeterminacion" />
+											tooltiptext="Ingrese el Calculo de Redeterminacion (CCDOT2)" />
 										<hbox />
 									</row>
 									<row>
@@ -255,14 +251,14 @@
 											value="Redeterminacion de Monedas:" />
 										<textbox id="txtRMF0010"
 											hflex="1" maxlength="1"
-											tooltiptext="Ingrese la Redeerminacion de las monedas" />
+											tooltiptext="Ingrese la Redeerminacion de las monedas (CCBKTX)" />
 										<hbox />
 									</row>
 									<row>
 										<label class="etiqueta"
 											value="Contabilizar saldos cuenta p/moneda:" />
 										<checkbox id="chxSaldos"
-											hflex="1" tooltiptext="Marque para contabilizar los saldos" />
+											hflex="1" tooltiptext="Marque para contabilizar los saldos (CCDPRC)" />
 										<hbox />
 									</row>
 								</rows>

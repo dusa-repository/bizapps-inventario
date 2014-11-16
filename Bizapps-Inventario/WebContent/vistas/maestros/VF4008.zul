@@ -25,15 +25,15 @@
 								</label>
 							</hbox>
 							<textbox id="txtTATXA1F4008" hflex="1" maxlength="255"
-								tooltiptext="Ingrese la Zona/tp fiscal" />
+								tooltiptext="Ingrese la Zona/tp fiscal (TATXA1)" />
 							<label class="etiqueta" value="f efectiva:" />
 							<datebox readonly="true" width="100%" id="dtbTAEFTJF4008"
-								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha efectiva" />
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha efectiva (TAEFTJ)" />
 						</row>
 						<row>
 							<label class="etiqueta" value="Descripcion:" />
 							<textbox id="txtTATAXAF4008" hflex="1" maxlength="255"
-								width="10px" tooltiptext="Ingrese la Descripcion" multiline="true" />
+								width="10px" tooltiptext="Ingrese la Descripcion (TATAXA)" multiline="true" />
 							<hbox>
 								<label class="etiqueta" value="f vencimiento:" />
 								<space />
@@ -41,7 +41,7 @@
 								</label>
 							</hbox>
 							<datebox readonly="true" width="100%" id="dtbTAEFDJF4008"
-								onCreate="self.value = new Date()" tooltiptext="Ingrese la fecha de vencimiento" />
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la fecha de vencimiento (TAEFDJ)" />
 						</row>
 						<!-- <cell colspan="2"> <textbox id="txtDL01F0004" hflex="1" maxlength="30" 
 							tooltiptext="Ingrese la Descripcion del Tipo de Codigo" multiline="true" 
@@ -63,73 +63,73 @@
 						<rows>
 							<row>
 								<longbox id="txtTA1F4008" hflex="1"
-									tooltiptext="Ingrese la direccion 1:" />
+									tooltiptext="Seleccione del Catalogo el Codigo de La Direccion (ABAN8 de F0101)" />
 								<button id="btnBuscarDireccion0" class="btn" label="Buscar"
-									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccion0F0101" />
 								<textbox id="txtGL01F4008" hflex="1" maxlength="255"
-									tooltiptext="Ingrese el GL01" />
-								<doublebox id="txtTXR1F4008" hflex="1" tooltiptext="Ingrese el TXR1" />
+									tooltiptext="Ingrese el GL01 (TAGL01)" />
+								<doublebox id="txtTXR1F4008" hflex="1" tooltiptext="Ingrese el TXR1 (TATXR1)" />
 								<hbox>
 									<checkbox style="float: right;" id="chxTT1F4008"
-										hflex="1" tooltiptext="Marque para indicar el Impuesto Compuesto" />
+										hflex="1" tooltiptext="Marque para indicar el Impuesto Compuesto (TATT2)" />
 									<label class="etiqueta" value="Impuesto Compuesto:" />
 								</hbox>
 							</row>
 							<row>
 								<longbox id="txtTA2F4008" hflex="1"
-									tooltiptext="Ingrese la direccion 2:" />
+									tooltiptext="Seleccione del Catalogo el Codigo de La Direccion (ABAN8 de F0101)" />
 								<button id="btnBuscarDireccion1" class="btn" label="Buscar"
-									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccion1F0101" />
 								<textbox id="txtGL02F4008" hflex="1" maxlength="255"
-									tooltiptext="Ingrese el GL02" />
-								<doublebox id="txtTXR2F4008" hflex="1" tooltiptext="Ingrese el TXR2" />
+									tooltiptext="Ingrese el GL02 (TAGL02)" />
+								<doublebox id="txtTXR2F4008" hflex="1" tooltiptext="Ingrese el TXR2 (TATXR2)" />
 								<hbox>
 									<checkbox style="float: right;" id="chxTT2F4008"
-										hflex="1" tooltiptext="Marque para indicar el Gasto IVA" />
+										hflex="1" tooltiptext="Marque para indicar el Gasto IVA (TATT3)" />
 									<label class="etiqueta" value="Gastos IVA:" />
 								</hbox>
 							</row>
 							<row>
 								<longbox id="txtTA3F4008" hflex="1"
-									tooltiptext="Ingrese la direccion 3:" />
+									tooltiptext="Seleccione del Catalogo el Codigo de La Direccion (ABAN8 de F0101)" />
 								<button id="btnBuscarDireccion2" class="btn" label="Buscar"
-									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccion2F0101" />
 								<textbox id="txtGL03F4008" hflex="1" maxlength="255"
-									tooltiptext="Ingrese el GL03" />
-								<doublebox id="txtTXR3F4008" hflex="1" tooltiptext="Ingrese el TXR3" />
+									tooltiptext="Ingrese el GL03 (TAGL03)" />
+								<doublebox id="txtTXR3F4008" hflex="1" tooltiptext="Ingrese el TXR3 (TATXR3)" />
 								<hbox>
 									<checkbox style="float: right;" id="chxTT3F4008"
-										hflex="1" tooltiptext="Marque para indicar el Gasto IVA" />
+										hflex="1" tooltiptext="Marque para indicar el Gasto IVA (TATT4)" />
 									<label class="etiqueta" value="Gastos IVA:" />
 								</hbox>
 							</row>
 							<row>
 								<longbox id="txtTA4F4008" hflex="1"
-									tooltiptext="Ingrese la direccion 1:" />
+									tooltiptext="Seleccione del Catalogo el Codigo de La Direccion (ABAN8 de F0101)" />
 								<button id="btnBuscarDireccion3" class="btn" label="Buscar"
-									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccion3F0101" />
 								<textbox id="txtGL04F4008" hflex="1" maxlength="255"
-									tooltiptext="Ingrese el GL04" />
-								<doublebox id="txtTXR4F4008" hflex="1" tooltiptext="Ingrese el TXR4" />
+									tooltiptext="Ingrese el GL04 (TAGL04)" />
+								<doublebox id="txtTXR4F4008" hflex="1" tooltiptext="Ingrese el TXR4 (TATXR4)" />
 								<hbox>
 									<checkbox style="float: right;" id="chxTT4F4008"
-										hflex="1" tooltiptext="Marque para indicar el Gasto IVA" />
+										hflex="1" tooltiptext="Marque para indicar el Gasto IVA (TATT5)" />
 									<label class="etiqueta" value="Gastos IVA:" />
 								</hbox>
 							</row>
 							<row>
 								<longbox id="txtTA5F4008" hflex="1"
-									tooltiptext="Ingrese la direccion 5:" />
+									tooltiptext="Seleccione del Catalogo el Codigo de La Direccion (ABAN8 de F0101)" />
 								<button id="btnBuscarDireccion4" class="btn" label="Buscar"
-									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccion4F0101" />
 								<textbox id="txtGL05F4008" hflex="1" maxlength="255"
-									tooltiptext="Ingrese el GL05" />
-								<doublebox id="txtTXR5F4008" hflex="1" tooltiptext="Ingrese el TXR5" />
+									tooltiptext="Ingrese el GL05 (TAGL05)" />
+								<doublebox id="txtTXR5F4008" hflex="1" tooltiptext="Ingrese el TXR5 (TATXR5)" />
 								<hbox />
 							</row>
 							<row>
@@ -166,13 +166,13 @@
 									</label>
 								</hbox>
 								<longbox id="txtTAITMF4008" hflex="1"
-									tooltiptext="Ingrese el Numero de Articulo" />
+									tooltiptext="Seleccione del Catalogo el Codigo del Articulo (IMITM de F4101)" />
 								<button id="btnBuscarF4101" class="btn" label="Buscar"
-									tooltiptext="Catalogo Articulos" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Articulos (F4101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblArticuloF4101" />
 								<label class="etiqueta" value="Costo unitario max:" />
 								<doublebox id="txtMTAXF4008" hflex="1"
-									tooltiptext="Ingrese el Costo unitario max" />
+									tooltiptext="Ingrese el Costo unitario max (TAMTAX)" />
 							</row>
 
 						</rows>

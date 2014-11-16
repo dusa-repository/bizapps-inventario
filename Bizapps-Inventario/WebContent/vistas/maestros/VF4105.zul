@@ -26,9 +26,9 @@
 									<label value="*" style="font-weight:bold;color:red" />
 								</hbox>
 								<doublebox id="txtItm" hflex="1" maxlength="19"
-									tooltiptext="Ingrese el Numero del Item" />
+									tooltiptext="Seleccione del Catalogo el Codigo del Articulo (IMITM de F4101)" />
 								<button autodisable="true" id="btnBuscarItm" label="Buscar"
-									class="btn" tooltiptext="Catalogo Items" image="/public/imagenes/botones/buscar.png" />
+									class="btn" tooltiptext="Catalogo de Codigos de Articulos (F4101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblItm" />
 							</row>
 							<row>
@@ -39,9 +39,9 @@
 									</label>
 								</hbox>
 								<textbox id="txtMcu" hflex="1" maxlength="12"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									tooltiptext="Seleccione del Catalogo el Codigo de la Sucursal (MCMCU de F0006)" />
 								<button autodisable="true" id="btnBuscarMcu" label="Buscar"
-									class="btn" tooltiptext="Catalogo Sucursales" image="/public/imagenes/botones/buscar.png" />
+									class="btn" tooltiptext="Catalogo de Codigos de Sucursales (F0006)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblMcu" />
 							</row>
 						</rows>
@@ -100,7 +100,7 @@
 									<label class="etiqueta" value="Descripcion:" />
 									<cell colspan="2">
 										<textbox id="txtLitm" hflex="1" maxlength="25"
-											tooltiptext="Ingrese la explicacion de la operacion" />
+											tooltiptext="Ingrese la explicacion de la operacion (COLITM)" />
 									</cell>
 									<hbox />
 								</row>
@@ -113,7 +113,7 @@
 									</hbox>
 									<doublespinner id="spnCosto" width="100%" step="10"
 										value="0" format="#.##" constraint="min 0 max 999999999"
-										tooltiptext="Ingrese el periodo Actual" />
+										tooltiptext="Ingrese el periodo Actual (COUNCS)" />
 									<hbox />
 									<button label="Agregar" id="btnAgregar" autodisable="true"
 										class="btn" image="/public/imagenes/botones/annadir.png" />
