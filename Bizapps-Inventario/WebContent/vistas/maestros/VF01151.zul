@@ -12,9 +12,9 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="25%" />
-						<column label="" width="40%" />
-						<column label="" width="35%" />
+						<column label="" width="20%" />
+						<column label="" width="52%" />
+						<column label="" width="28%" />
 					</columns>
 					<rows>
 						<row>
@@ -25,16 +25,16 @@
 								</label>
 							</hbox>
 							<longbox id="txtAn8F01151" hflex="1" maxlength="19"
-								tooltiptext="Ingrese el Numero de Direccion" />
+								tooltiptext="Seleccione del Catalogo el Codigo la Direccion (ABAN8 de F0101)" />
 							<hbox>
 								<button id="btnBuscarDireccionF01151" class="btn" label="Buscar"
-									tooltiptext="Catalogo Direcciones" image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Catalogo de Codigos de Producto (F0101)" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblAn8F01151" />
 							</hbox>
 						</row>
 						<row>
 							<label class="etiqueta" value="Tipo Direccion Correo:" />
-							<combobox tooltiptext="Seleccione el Tipo de Direccion de Correo Electronico"
+							<combobox tooltiptext="Seleccione el Tipo de Direccion de Correo Electronico (EAETP)"
 								placeholder="Seleccione el Tipo de Direccion" id="cmbEtpF01151"
 								width="100%" readonly="true">
 								<comboitem label="Direccion de Internet" context="DirW" />
@@ -46,19 +46,21 @@
 						<row>
 							<label class="etiqueta" value="Direccion Correo:" />
 							<textbox id="txtEmalF01151" hflex="1" maxlength="256"
-								tooltiptext="Ingrese la Direccion de Correo Electronico" />
+								tooltiptext="Ingrese la Direccion de Correo Electronico (EAEMAL)" />
 							<hbox />
 						</row>
 						<row>
-							<cell colspan="3">
+							<cell colspan="2">
 								<div id="divbuscadorEhier" hflex="1" />
 							</cell>
+							<hbox/>
 
 						</row>
 						<row>
-							<cell colspan="3">
+							<cell colspan="2">
 								<div id="divbuscadorEclass" hflex="1" />
 							</cell>
+							<hbox/>
 						</row>
 					</rows>
 				</grid>

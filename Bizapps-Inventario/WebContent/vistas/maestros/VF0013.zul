@@ -26,7 +26,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtCRCDF0013" hflex="1" maxlength="3"
-								tooltiptext="Ingrese el Codigo de la Moneda" />
+								tooltiptext="Ingrese el Codigo de la Moneda (CVCRCD)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -39,21 +39,21 @@
 							</hbox>
 							<cell colspan="2">
 								<textbox id="txtDL01F0013" hflex="1" maxlength="30"
-									multiline="true" tooltiptext="Ingrese la Descripcion de la Moneda" />
+									multiline="true" tooltiptext="Ingrese la Descripcion de la Moneda (CVDL01)" />
 							</cell>
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Visualizacion decimales:" />
 							<textbox id="txtDECF0013" hflex="1" maxlength="1"
-								tooltiptext="Ingrese el numero de decimales de la moneda" />
+								tooltiptext="Ingrese el numero de decimales de la moneda (CVCDEC)" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Importe traductor Palabras:" />
 							<textbox id="txtCKRF0013" hflex="1" maxlength="10"
-								tooltiptext="Ingrese el Importe del traductor de Palabras" />
+								tooltiptext="Ingrese el Importe del traductor de Palabras (CVCKR)" />
 							<hbox />
 							<hbox />
 						</row>

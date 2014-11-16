@@ -25,7 +25,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtSYF0005" hflex="1" maxlength="100"
-								tooltiptext="Seleccione del Catalogo el Codigo del Producto (DTSY de F0005)" />
+								tooltiptext="Seleccione del Catalogo el Codigo del Producto (DTSY de F0004)" />
 							<button id="btnBuscarF0004" label="Buscar"
 								tooltiptext="Catalogo de Codigos de Producto (F0004)" image="/public/imagenes/botones/buscar.png" class="btn"/>
 							<hbox />
@@ -38,7 +38,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtRTF0005" hflex="1" maxlength="100"
-								tooltiptext="Seleccione del Catalogo el Codigo del Producto (DTRT de F0005)" />
+								tooltiptext="Seleccione del Catalogo el Codigo del Producto (DTRT de F0004)" />
 							<label id="lblDescripcionF0004" />
 							<hbox />
 							<hbox />
@@ -51,7 +51,7 @@
 								</label>
 							</hbox>
 							<textbox id="txtKYF0005" hflex="1" maxlength="10"
-								tooltiptext="Ingrese el Codigo" />
+								tooltiptext="Ingrese el Codigo (DRKY)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -64,7 +64,7 @@
 							</hbox>
 							<cell colspan="2">
 								<textbox id="txtDL01F0005" hflex="1" maxlength="30"
-									tooltiptext="Ingrese la Descripcion Nro. 01 del Codigo"
+									tooltiptext="Ingrese la Descripcion Nro. 01 del Codigo (DRDL01)"
 									multiline="true" />
 							</cell>
 							<hbox />
@@ -74,7 +74,7 @@
 							<label class="etiqueta" value="Descripcion 02:" />
 							<cell colspan="2">
 								<textbox id="txtDL02F0005" hflex="1" maxlength="30"
-									tooltiptext="Ingrese la Descripcion Nro. 02 del Codigo"
+									tooltiptext="Ingrese la Descripcion Nro. 02 del Codigo (DRDL02)"
 									multiline="true" />
 							</cell>
 							<hbox />
@@ -83,14 +83,14 @@
 						<row>
 							<label class="etiqueta" value="Gestion Especial:" />
 							<textbox id="txtSPHDF0005" hflex="1" maxlength="10"
-								tooltiptext="Ingrese la Gestion Especial del Codigo" />
+								tooltiptext="Ingrese la Gestion Especial del Codigo (DRSPHD)" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
 							<label class="etiqueta" value="Codif Fija:" />
 							<textbox id="txtHRDCF0005" hflex="1" maxlength="1"
-								tooltiptext="Ingrese la Codificacion Fija del Codigo" />
+								tooltiptext="Ingrese la Codificacion Fija del Codigo (DRHRDC)" />
 							<hbox />
 							<hbox />
 						</row>
