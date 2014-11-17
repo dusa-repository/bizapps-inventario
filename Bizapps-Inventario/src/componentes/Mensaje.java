@@ -3,10 +3,10 @@ package componentes;
 import org.zkoss.zul.Messagebox;
 
 public class Mensaje {
-	public static String almacenNoExiste ="El Codigo del Almacen no Existe.";
+	public static String almacenNoExiste = "El Codigo del Almacen no Existe.";
 	public static String contrasennasInvalidas = "Las contraseñas no coinciden.";
 	public static String camposVaciosItem = "Debe Llenar Todos lo Campos Requeridos, de la seccion de Articulo (**).";
-	public static String noPoseeExistencia= "No posee existencia suficiente para realizar la transaccion";
+	public static String noPoseeExistencia = "No posee existencia suficiente para realizar la transaccion";
 	public static String algunosEliminados = "Algunos registros no pudieron ser eliminados ya que se estan utilizando";
 	public static String registroUtilizado = "El registro no se puede eliminar ya que esta siendo utilizado";
 	public static String errorEnReporte = "Ha ocurrido un error originando el reporte";
@@ -50,30 +50,28 @@ public class Mensaje {
 	public static String seleccioneFuncionalidades = "Seleccione las Funcionalidades";
 	public static String cedulaNoExiste = "El Numero de Cedula que Ingreso No esta asociado a Ningun Usuario";
 	public static String reinicioContrasenna = "Se envio un Correo Indicando los datos del Usuario";
-	public static String loginUsado= "El Login no esta Disponible, esta siendo usado por otro Usuario";
+	public static String loginUsado = "El Login no esta Disponible, esta siendo usado por otro Usuario";
 	public static String citasCanceladas = "Se ha(n) Cancelado la(s) Cita(s)";
 	public static String seleccioneCitaCancelar = "Seleccione al menos una Cita para Cancelar";
 	public static String noCitasCancelacion = "Actualmente No hay Citas para su Cancelacion";
 	public static String citasAnuladas = "Se ha(n) Anulado la(s) Cita(s)";
 	public static String seleccioneCitaAnular = "Seleccione al menos una Cita para Anular";
 	public static String noCitasAnulacion = "Actualmente No hay Citas para su Anulacion";
-	public static String guardadosArchivos ="La Data ha sido Guardada Exitosamente";
+	public static String guardadosArchivos = "La Data ha sido Guardada Exitosamente";
 	public static String seleccionarProveedor = "Debe seleccionar un proveedor previamente para mostrar las ordenes respectivas de compra";
 	public static String itemRepetido = "Ya posee un Costo con ese codigo en la lista, modifique o elimine el existente";
 	public static String archivoExcel = "Los Archivos deben ser de Tipo .xlsx";
-	
-	public void mensajeInformacion(String msj) {
-	      Messagebox.show(msj, "Informacion",
-					Messagebox.OK, Messagebox.INFORMATION);
-		}
-	
-	public void mensajeAlerta(String msj) {
-	      Messagebox.show(msj, "Alerta",
-					Messagebox.OK, Messagebox.EXCLAMATION);
-		}
 
-		public void mensajeError(String msj) {
-	      Messagebox.show(msj, "Error",
-					Messagebox.OK, Messagebox.ERROR);
-		}
+	public static void mensajeInformacion(String msj) {
+		Messagebox.show(msj, "Informacion", Messagebox.OK,
+				Messagebox.INFORMATION);
+	}
+
+	public static void mensajeAlerta(String msj) {
+		Messagebox.show(msj, "Alerta", Messagebox.OK, Messagebox.EXCLAMATION);
+	}
+
+	public static void mensajeError(String msj) {
+		Messagebox.show(msj, "Error", Messagebox.OK, Messagebox.ERROR);
+	}
 }

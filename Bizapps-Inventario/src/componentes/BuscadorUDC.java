@@ -1,20 +1,12 @@
 package componentes;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import modelo.maestros.F0004;
 import modelo.maestros.F0005;
-import modelo.maestros.F0013;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
-import org.zkoss.zk.ui.select.annotation.VariableResolver;
-import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
@@ -22,29 +14,32 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Textbox;
 
-import arbol.CArbol;
-
-import servicio.maestros.SF0004;
 import servicio.maestros.SF0005;
 
-import controlador.maestros.CGenerico;
+import componentes.catalogos.CatalogoUDC;
 
 public abstract class BuscadorUDC extends Hbox {
-	Mensaje msj = new Mensaje();
-	Catalogo<F0005> catalogo;
-	Div divCatalogo;
-	List<F0005> lista;
-	Textbox cajaTexto;
-	Label nombre;
-	String valorP1;
-	String valorP2;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private CatalogoUDC catalogo;
+	private Div divCatalogo;
+	private List<F0005> lista;
+	private Label lblNombre;
+	private Textbox cajaTexto;
+	private String valorP1;
+	private String valorP2;
+
 	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
-			boolean requerido, boolean param1, boolean param2, final String valor1, final String valor2) {
-		this(etiqueta,longitud, lista2,requerido, param1, param2, valor1, valor2, null);
+			boolean requerido, boolean param1, boolean param2,
+			final String valor1, final String valor2) {
+		this(etiqueta, longitud, lista2, requerido, valor1, valor2);
 	}
-	
+
 	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
-			boolean requerido, boolean param1, boolean param2, final String valor1, final String valor2, String tooltip) {
+			boolean requerido, String valor1, String valor2) {
 		super();
 		valorP1 = valor1;
 		valorP2 = valor2;
@@ -52,27 +47,24 @@ public abstract class BuscadorUDC extends Hbox {
 		Label label = new Label(etiqueta + " :");
 		label.setClass("etiqueta");
 
-		
 		cajaTexto = new Textbox();
-		cajaTexto.setTooltip(tooltip);
-		cajaTexto.setHflex("1");
-		// cajaTexto.setReadonly(true);
-		cajaTexto.setMaxlength(longitud);
 		cajaTexto
 				.setTooltiptext("Seleccione del Catalogo el Codigo del Producto");
+		cajaTexto.setHflex("1");
+		cajaTexto.setMaxlength(longitud);
 		cajaTexto.setWidth("8px");
-//		cajaTexto.setHflex("1");
 
 		Button boton = new Button();
 		boton.setAutodisable("true");
-		boton.setTooltiptext("Catalogo de Codigo Definidos por el Usuario"+ " "+"("+valor1+","+valor2+")");
+		boton.setTooltiptext("Catalogo de Codigo Definidos por el Usuario"
+				+ " " + "(" + valor1 + "," + valor2 + ")");
 		boton.setLabel("Buscar");
-		boton.setSrc("/public/imagenes/botones/buscar.png");
+		boton.setImage("/public/imagenes/botones/buscar.png");
 		boton.setClass("btn");
 
-		nombre = new Label();
-		nombre.setWidth("auto");
-		nombre.setHflex("1");
+		lblNombre = new Label();
+		lblNombre.setWidth("auto");
+		lblNombre.setHflex("1");
 
 		divCatalogo = new Div();
 		divCatalogo.setTooltiptext("Click para Seleccionar un Codigo");
@@ -87,32 +79,30 @@ public abstract class BuscadorUDC extends Hbox {
 			caja.setWidth("auto");
 			caja.setHflex("1");
 			this.appendChild(caja);
-		} else
-		{
+		} else {
 			this.appendChild(label);
 			label.setWidth("auto");
 			label.setHflex("1");
 		}
 		this.appendChild(cajaTexto);
 		this.appendChild(boton);
-		this.appendChild(nombre);
+		this.appendChild(lblNombre);
 		this.appendChild(divCatalogo);
 		this.setAlign("center");
 		this.setPack("center");
 		this.setWidths("46%,2%,2%,50%,0%");
 
-		cajaTexto.addEventListener(Events.ON_CHANGE,
-				new EventListener<Event>() {
-					@Override
-					public void onEvent(Event arg0) throws Exception {
-						buscarPorTexto();
-					}
-				});
+		cajaTexto.addEventListener(Events.ON_OK, new EventListener<Event>() {
+			@Override
+			public void onEvent(Event arg0) throws Exception {
+				buscarPorTexto();
+			}
+		});
 
 		boton.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
 			@Override
 			public void onEvent(Event arg0) throws Exception {
-				mostrarCatalogo(valor1,valor2);
+				mostrarCatalogo(valorP1, valorP2);
 			}
 		});
 		divCatalogo.addEventListener("onSeleccion", new EventListener<Event>() {
@@ -124,16 +114,15 @@ public abstract class BuscadorUDC extends Hbox {
 		lista = lista2;
 	}
 
-
 	protected void buscarPorTexto() {
 		F0005 f0005 = buscar();
 		if (f0005 != null) {
 			cajaTexto.setValue(f0005.getId().getDrky());
-			nombre.setValue(f0005.getDrdl01());
+			lblNombre.setValue(f0005.getDrdl01());
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			cajaTexto.setValue("");
-			nombre.setValue("");
+			lblNombre.setValue("");
 			cajaTexto.setFocus(true);
 		}
 	}
@@ -144,7 +133,7 @@ public abstract class BuscadorUDC extends Hbox {
 	public void seleccionarItem() {
 		F0005 f0005 = catalogo.objetoSeleccionadoDelCatalogo();
 		cajaTexto.setValue(f0005.getId().getDrky());
-		nombre.setValue(f0005.getDrdl01());
+		lblNombre.setValue(f0005.getDrdl01());
 		catalogo.setParent(null);
 	}
 
@@ -169,64 +158,28 @@ public abstract class BuscadorUDC extends Hbox {
 	public void settearCampo(F0005 f0005) {
 		if (f0005 != null) {
 			cajaTexto.setValue(f0005.getId().getDrky());
-			nombre.setValue(f0005.getDrdl01());
+			lblNombre.setValue(f0005.getDrdl01());
 		} else {
 			cajaTexto.setValue("");
-			nombre.setValue("");
+			lblNombre.setValue("");
 		}
 	}
-	
+
 	public void settearCampo(SF0005 servicioF0005, String valorBusqueda) {
 		F0005 f0005 = servicioF0005.buscar(valorP1, valorP2, valorBusqueda);
 		settearCampo(f0005);
 	}
-	
-	public void limpiarCampo(){
+
+	public void limpiarCampo() {
 		settearCampo(null);
 	}
 
 	private void mostrarCatalogo(String valor1, String valor2) {
-
-		final List<F0005> listF0005 = lista;
-		
-		catalogo = new Catalogo<F0005>(divCatalogo, "CatF0005", listF0005,
-				true, true, false, "KY", "Descripcion 01",
-				"Descripcion 02", "Gestion Especial", "Codificacion Fija") {
-			
-			@Override
-			protected List<F0005> buscar(List<String> valores) {
-
-				List<F0005> listF0005_2 = new ArrayList<F0005>();
-
-				for (F0005 f0005 : listF0005) {
-					if (f0005.getId().getDrky().toLowerCase()
-									.contains(valores.get(0).toLowerCase())
-							&& f0005.getDrdl01().toLowerCase()
-									.contains(valores.get(1).toLowerCase())
-							&& f0005.getDrdl02().toLowerCase()
-									.contains(valores.get(2).toLowerCase())
-							&& f0005.getDrsphd().toLowerCase()
-									.contains(valores.get(3).toLowerCase())
-							&& f0005.getDrhrdc().toLowerCase()
-									.contains(valores.get(4).toLowerCase())) {
-						listF0005_2.add(f0005);
-					}
-				}
-				return listF0005_2;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0005 f0005) {
-				String[] registros = new String[5];
-				registros[0] = f0005.getId().getDrky();
-				registros[1] = f0005.getDrdl01();
-				registros[2] = f0005.getDrdl02();
-				registros[3] = f0005.getDrsphd();
-				registros[4] = f0005.getDrhrdc();
-				return registros;
-			}
-		};
-		catalogo.settearCamposUdc(valor1,valor2);
+		catalogo = new CatalogoUDC(
+				"Catalogo de Códigos Definidos por el Usuario (" + valorP1
+						+ "," + valorP2 + ")", lista, "KY", "Descripcion 01",
+				"Descripcion 02", "Gestion Especial", "Codificacion Fija");
+		catalogo.settearCamposUdc(valor1, valor2);
 		catalogo.setParent(divCatalogo);
 		catalogo.doModal();
 	}
