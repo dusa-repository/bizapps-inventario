@@ -8,6 +8,11 @@ import org.zkoss.zul.Hbox;
 
 public abstract class Botonera extends Hbox {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Botonera() {
 		super();
 		Button btnSeleccionar = new Button();
@@ -30,17 +35,16 @@ public abstract class Botonera extends Hbox {
 		this.appendChild(btnSalir);
 		this.appendChild(btnAyuda);
 
-		btnSeleccionar.setSrc("/public/imagenes/botones/seleccionar.png");
-		btnBuscar.setSrc("/public/imagenes/botones/volver.png");
-		btnAnnadir.setSrc("/public/imagenes/botones/annadir.png");
-		btnGuardar.setSrc("/public/imagenes/botones/guardar.png");
-		btnEliminar.setSrc("/public/imagenes/botones/eliminar.png");
-		btnLimpiar.setSrc("/public/imagenes/botones/limpiar.png");
-		btnReporte.setSrc("/public/imagenes/botones/reporte.png");
-		btnSalir.setSrc("/public/imagenes/botones/salir.png");
-		btnAyuda.setSrc("/public/imagenes/botones/ayuda.png");
-		
-		
+		btnSeleccionar.setImage("/public/imagenes/botones/seleccionar.png");
+		btnBuscar.setImage("/public/imagenes/botones/volver.png");
+		btnAnnadir.setImage("/public/imagenes/botones/annadir.png");
+		btnGuardar.setImage("/public/imagenes/botones/guardar.png");
+		btnEliminar.setImage("/public/imagenes/botones/eliminar.png");
+		btnLimpiar.setImage("/public/imagenes/botones/limpiar.png");
+		btnReporte.setImage("/public/imagenes/botones/reporte.png");
+		btnSalir.setImage("/public/imagenes/botones/salir.png");
+		btnAyuda.setImage("/public/imagenes/botones/ayuda.png");
+
 		btnAyuda.setSclass("btn");
 		btnEliminar.setSclass("btn");
 		btnAnnadir.setSclass("btn");
@@ -51,7 +55,7 @@ public abstract class Botonera extends Hbox {
 		btnReporte.setSclass("btn");
 		btnSeleccionar.setSclass("btn");
 		btnSeleccionar.setWidth("118px");
-		
+
 		btnSeleccionar.setLabel("Seleccionar");
 		btnBuscar.setLabel("Volver");
 		btnAnnadir.setLabel("Añadir");
@@ -71,7 +75,6 @@ public abstract class Botonera extends Hbox {
 		btnReporte.setTooltiptext("Reporte");
 		btnSalir.setTooltiptext("Salir");
 		btnAyuda.setTooltiptext("Ayuda");
-
 
 		btnSeleccionar.addEventListener(Events.ON_CLICK,
 				new EventListener<Event>() {

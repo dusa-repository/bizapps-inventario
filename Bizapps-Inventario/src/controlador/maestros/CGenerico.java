@@ -398,7 +398,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 			final String valor1, final String valor2) {
 		BuscadorUDC buscador = new BuscadorUDC(titulo, 10,
 				servicioF0005.buscarParaUDCOrdenados(valor1, valor2), false,
-				true, true, valor1, valor2) {
+				valor1, valor2) {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar(valor1, valor2, this.obtenerCaja());
