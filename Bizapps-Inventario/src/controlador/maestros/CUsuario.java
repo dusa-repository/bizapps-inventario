@@ -153,17 +153,18 @@ public class CUsuario extends CGenerico {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		mostrarCatalogo ();
+		mostrarCatalogo();
 		gpxRegistro.setOpen(false);
-		botonera = new Botonera (){
-			
+		botonera = new Botonera() {
+
 			@Override
 			public void seleccionar() {
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
 						mostrarBotones(false);
 						abrirRegistro();
-						Usuario usuario = catalogo.objetoSeleccionadoDelCatalogo();
+						Usuario usuario = catalogo
+								.objetoSeleccionadoDelCatalogo();
 						txtCedulaUsuario.setValue(usuario.getCedula());
 						txtCorreoUsuario.setValue(usuario.getEmail());
 						txtDireccionUsuario.setValue(usuario.getDireccion());
@@ -172,8 +173,10 @@ public class CUsuario extends CGenerico {
 						txtPassword2Usuario.setValue(usuario.getPassword());
 						txtNombreUsuario.setValue(usuario.getPrimerNombre());
 						txtNombre2Usuario.setValue(usuario.getSegundoNombre());
-						txtApellidoUsuario.setValue(usuario.getPrimerApellido());
-						txtApellido2Usuario.setValue(usuario.getSegundoApellido());
+						txtApellidoUsuario
+								.setValue(usuario.getPrimerApellido());
+						txtApellido2Usuario.setValue(usuario
+								.getSegundoApellido());
 						txtTelefonoUsuario.setValue(usuario.getTelefono());
 						String sexo = usuario.getSexo();
 						if (sexo.equals("F"))
@@ -183,24 +186,25 @@ public class CUsuario extends CGenerico {
 						BufferedImage imag;
 						if (usuario.getImagen() != null) {
 							try {
-								imag = ImageIO.read(new ByteArrayInputStream(usuario
-										.getImagen()));
+								imag = ImageIO.read(new ByteArrayInputStream(
+										usuario.getImagen()));
 								imagen.setContent(imag);
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
 						}
 						txtCedulaUsuario.setDisabled(true);
-						id =usuario.getCedula();
+						id = usuario.getCedula();
 						llenarListas(usuario);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 
 			}
+
 			@Override
 			public void salir() {
-				cerrarVentana(divUsuario, titulo , tabs);
+				cerrarVentana(divUsuario, titulo, tabs);
 			}
 
 			@Override
@@ -211,50 +215,54 @@ public class CUsuario extends CGenerico {
 
 			@Override
 			public void guardar() {
+
 				if (validar()) {
-					Set<Grupo> gruposUsuario = new HashSet<Grupo>();
-					for (int i = 0; i < ltbGruposAgregados.getItemCount(); i++) {
-						Grupo grupo = ltbGruposAgregados.getItems().get(i)
-								.getValue();
-						gruposUsuario.add(grupo);
-					}
-					String cedula = txtCedulaUsuario.getValue();
-					String correo = txtCorreoUsuario.getValue();
-					String direccion = txtDireccionUsuario.getValue();
-					String login = txtLoginUsuario.getValue();
-					String password = txtPasswordUsuario.getValue();
-					String nombre = txtNombreUsuario.getValue();
-					String apellido = txtApellidoUsuario.getValue();
-					String nombre2 = txtNombre2Usuario.getValue();
-					String apellido2 = txtApellido2Usuario.getValue();
-					String telefono = txtTelefonoUsuario.getValue();
-					
-					String sexo = "";
-					if (rdoSexoFUsuario.isChecked())
-						sexo = "F";
-					else
-						sexo = "M";
-					byte[] imagenUsuario = null;
-					if (media instanceof org.zkoss.image.Image) {
-						imagenUsuario = imagen.getContent().getByteData();
-
-					} else {
-						try {
-							imagen.setContent(new AImage(url));
-						} catch (IOException e) {
-							e.printStackTrace();
+					if (buscarPorLogin()) {
+						Set<Grupo> gruposUsuario = new HashSet<Grupo>();
+						for (int i = 0; i < ltbGruposAgregados.getItemCount(); i++) {
+							Grupo grupo = ltbGruposAgregados.getItems().get(i)
+									.getValue();
+							gruposUsuario.add(grupo);
 						}
-						imagenUsuario = imagen.getContent().getByteData();
-					}
-							
-					Usuario usuario = new Usuario (cedula, correo, login, password, imagenUsuario, true, 
-							 gruposUsuario, nombre, apellido, nombre2, apellido2, sexo, telefono, direccion);
+						String cedula = txtCedulaUsuario.getValue();
+						String correo = txtCorreoUsuario.getValue();
+						String direccion = txtDireccionUsuario.getValue();
+						String login = txtLoginUsuario.getValue();
+						String password = txtPasswordUsuario.getValue();
+						String nombre = txtNombreUsuario.getValue();
+						String apellido = txtApellidoUsuario.getValue();
+						String nombre2 = txtNombre2Usuario.getValue();
+						String apellido2 = txtApellido2Usuario.getValue();
+						String telefono = txtTelefonoUsuario.getValue();
 
-					servicioUsuario.guardar(usuario);
-					limpiar();
-					msj.mensajeInformacion(Mensaje.guardado);
-					catalogo.actualizarLista(servicioUsuario
-							.buscarTodos());
+						String sexo = "";
+						if (rdoSexoFUsuario.isChecked())
+							sexo = "F";
+						else
+							sexo = "M";
+						byte[] imagenUsuario = null;
+						if (media instanceof org.zkoss.image.Image) {
+							imagenUsuario = imagen.getContent().getByteData();
+
+						} else {
+							try {
+								imagen.setContent(new AImage(url));
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							imagenUsuario = imagen.getContent().getByteData();
+						}
+
+						Usuario usuario = new Usuario(cedula, correo, login,
+								password, imagenUsuario, true, gruposUsuario,
+								nombre, apellido, nombre2, apellido2, sexo,
+								telefono, direccion);
+
+						servicioUsuario.guardar(usuario);
+						limpiar();
+						msj.mensajeInformacion(Mensaje.guardado);
+						catalogo.actualizarLista(servicioUsuario.buscarTodos());
+					}
 				}
 			}
 
@@ -287,28 +295,28 @@ public class CUsuario extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
-				
+
 			}
 
 			@Override
 			public void annadir() {
 				abrirRegistro();
 				mostrarBotones(false);
-				
+
 			}
 
 			@Override
 			public void reporte() {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void ayuda() {
 				// TODO Auto-generated method stub
-				
+
 			}
 		};
 		botonera.getChildren().get(6).setVisible(false);
@@ -328,15 +336,13 @@ public class CUsuario extends CGenerico {
 		botonera.getChildren().get(3).setVisible(!bol);
 		botonera.getChildren().get(5).setVisible(!bol);
 	}
-	
-	
+
 	@Listen("onClick = #gpxRegistro")
 	public void abrirRegistro() {
 		gpxDatos.setOpen(false);
 		gpxRegistro.setOpen(true);
 		mostrarBotones(false);
 	}
-	
 
 	public boolean validarSeleccion() {
 		List<Usuario> seleccionados = catalogo.obtenerSeleccionados();
@@ -352,7 +358,7 @@ public class CUsuario extends CGenerico {
 			}
 		}
 	}
-	
+
 	public void limpiarCampos() {
 		ltbGruposAgregados.getItems().clear();
 		ltbGruposDisponibles.getItems().clear();
@@ -377,8 +383,7 @@ public class CUsuario extends CGenerico {
 		id = "";
 		llenarListas(null);
 	}
-	
-	
+
 	public boolean camposEditando() {
 		if (txtApellidoUsuario.getText().compareTo("") != 0
 				|| txtApellido2Usuario.getText().compareTo("") != 0
@@ -395,6 +400,7 @@ public class CUsuario extends CGenerico {
 		} else
 			return false;
 	}
+
 	@Listen("onOpen = #gpxDatos")
 	public void abrirCatalogo() {
 		gpxDatos.setOpen(false);
@@ -446,19 +452,17 @@ public class CUsuario extends CGenerico {
 					msj.mensajeAlerta(Mensaje.telefonoInvalido);
 					return false;
 				} else {
-							if (!txtPasswordUsuario.getValue().equals(
-									txtPassword2Usuario.getValue())) {
-								msj.mensajeAlerta(Mensaje.contrasennasInvalidas);
-								return false;
-							} else
-								return true;
-						}
-					}
+					if (!txtPasswordUsuario.getValue().equals(
+							txtPassword2Usuario.getValue())) {
+						msj.mensajeAlerta(Mensaje.contrasennasInvalidas);
+						return false;
+					} else
+						return true;
 				}
-
 			}
-		
-	
+		}
+
+	}
 
 	/* Valida que los passwords sean iguales */
 	@Listen("onChange = #txtPassword2Usuario")
@@ -484,7 +488,6 @@ public class CUsuario extends CGenerico {
 			msj.mensajeAlerta(Mensaje.correoInvalido);
 		}
 	}
-
 
 	/* LLena las listas dado un usario */
 	public void llenarListas(Usuario usuario) {
@@ -586,7 +589,6 @@ public class CUsuario extends CGenerico {
 		ltbGruposDisponibles.setCheckmark(true);
 	}
 
-
 	/* Abre la pestanna de datos de usuario */
 	@Listen("onClick = #btnSiguientePestanna")
 	public void siguientePestanna() {
@@ -601,10 +603,10 @@ public class CUsuario extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<Usuario> usuario = servicioUsuario.buscarTodos();
-		catalogo = new Catalogo<Usuario>(catalogoUsuario, "Usuario", usuario,false,false,true,
-				"Cedula", "Correo", "Primer Nombre", "Segundo Nombre", 
-				"Primer Apellido", "Segundo Apellido", "Sexo", "Telefono", 
-				"Direccion" ) {
+		catalogo = new Catalogo<Usuario>(catalogoUsuario, "Usuario", usuario,
+				false, false, true, "Cedula", "Correo", "Primer Nombre",
+				"Segundo Nombre", "Primer Apellido", "Segundo Apellido",
+				"Sexo", "Telefono", "Direccion") {
 
 			@Override
 			protected List<Usuario> buscar(List<String> valores) {
@@ -613,7 +615,7 @@ public class CUsuario extends CGenerico {
 
 				for (Usuario actividadord : usuario) {
 					if (actividadord.getCedula().toLowerCase()
-								.startsWith(valores.get(0))
+							.startsWith(valores.get(0))
 							&& actividadord.getEmail().toLowerCase()
 									.startsWith(valores.get(1))
 							&& actividadord.getPrimerNombre().toLowerCase()
@@ -623,21 +625,20 @@ public class CUsuario extends CGenerico {
 							&& actividadord.getPrimerApellido().toLowerCase()
 									.startsWith(valores.get(4))
 							&& actividadord.getSegundoApellido().toLowerCase()
-									.startsWith(valores.get(5)) 
+									.startsWith(valores.get(5))
 							&& actividadord.getSexo().toLowerCase()
 									.startsWith(valores.get(6))
 							&& actividadord.getTelefono().toLowerCase()
 									.startsWith(valores.get(7))
 							&& actividadord.getDireccion().toLowerCase()
-									.startsWith(valores.get(8)))
-							{
-					
+									.startsWith(valores.get(8))) {
+
 						user.add(actividadord);
 					}
 				}
 				return user;
 			}
-			
+
 			@Override
 			protected String[] crearRegistros(Usuario usuarios) {
 				String[] registros = new String[9];
@@ -655,5 +656,23 @@ public class CUsuario extends CGenerico {
 
 		};
 		catalogo.setParent(catalogoUsuario);
+	}
+
+	@Listen("onChange = #txtLoginUsuario")
+	public boolean buscarPorLogin() {
+		Usuario usuario = servicioUsuario.buscarPorLogin(txtLoginUsuario
+				.getValue());
+		if (usuario == null)
+			return true;
+		else {
+			if (usuario.getCedula() == id)
+				return true;
+			else {
+				msj.mensajeAlerta(Mensaje.loginUsado);
+				txtLoginUsuario.setValue("");
+				txtLoginUsuario.setFocus(true);
+				return false;
+			}
+		}
 	}
 }

@@ -24,6 +24,7 @@ import org.zkoss.zul.Textbox;
 import componentes.Botonera;
 import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoUDC;
 
 public class CF0005 extends CGenerico {
 
@@ -58,7 +59,12 @@ public class CF0005 extends CGenerico {
 	private Label lblDescripcionF0004;
 	@Wire
 	private Button btnBuscarF0004;
+	@Wire
+	private Label lblSY;
+	@Wire
+	private Label lblRT;
 
+	String idBoton = "";
 	Botonera botonera;
 	Catalogo<F0005> catalogo;
 	Catalogo<F0004> catalogoF0004;
@@ -426,7 +432,14 @@ public class CF0005 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
+	    List<F0005> listF0005New = new ArrayList<F0005>();
+//		if (sy.equals("") && rt.equals(""))
+	    listF0005New = servicioF0005.buscarTodosOrdenados();
+//		else
+//			 listF0005New = servicioF0005.buscarParaUDCOrdenados(sy, rt);
+		
+		 final List<F0005> listF0005 = listF0005New;
+		
 		catalogo = new Catalogo<F0005>(catalogoF0005, "F0005", listF0005,
 				false, false, false, "SY", "RT", "KY", "Descripcion 01",
 				"Descripcion 02", "Gestion Especial", "Codificacion Fija") {
@@ -473,8 +486,11 @@ public class CF0005 extends CGenerico {
 		catalogo.setParent(catalogoF0005);
 	}
 
-	@Listen("onClick = #btnBuscarF0004")
-	public void mostrarCatalogoF0004() {
+	@Listen("onClick = #btnBuscarF0004, #btnBuscarF0004Filtro")
+	public void mostrarCatalogoF0004(Event evento) {
+		
+		Button boton = (Button) evento.getTarget();
+		idBoton = boton.getId();
 		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
 		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "F0004",
 				listF0004, true, false, false, "SY", "RT", "Descripcion",
@@ -529,10 +545,22 @@ public class CF0005 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF0004")
 	public void seleccion() {
 		F0004 f0004 = catalogoF0004.objetoSeleccionadoDelCatalogo();
-		txtSYF0005.setValue(f0004.getId().getDtsy());
-		txtRTF0005.setValue(f0004.getId().getDtrt());
-		lblDescripcionF0004.setValue(servicioF0004.buscar(
-				f0004.getId().getDtsy(), f0004.getId().getDtrt()).getDtdl01());
+		
+		switch (idBoton) {
+		case "btnBuscarF0004":
+			txtSYF0005.setValue(f0004.getId().getDtsy());
+			txtRTF0005.setValue(f0004.getId().getDtrt());
+			lblDescripcionF0004.setValue(servicioF0004.buscar(
+					f0004.getId().getDtsy(), f0004.getId().getDtrt()).getDtdl01());
+			break;
+		case "btnBuscarF0004Filtro":
+			lblSY.setValue(f0004.getId().getDtsy());
+			lblRT.setValue(f0004.getId().getDtrt());
+		//	mostrarCatalogo(f0004.getId().getDtsy(), f0004.getId().getDtrt());
+			break;
+		default:
+			break;
+		}
 		catalogoF0004.setParent(null);
 	}
 }

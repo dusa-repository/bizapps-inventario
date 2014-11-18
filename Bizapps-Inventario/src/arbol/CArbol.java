@@ -37,6 +37,7 @@ import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabpanel;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.TreeModel;
+import org.zkoss.zul.Treecell;
 import org.zkoss.zul.West;
 import org.zkoss.zul.Window;
 
@@ -224,12 +225,13 @@ public class CArbol extends CGenerico {
 	@Listen("onClick = #arbolMenu")
 	public void selectedNode() {
 		if (arbolMenu.getSelectedItem() != null) {
-			String item = String
-					.valueOf(arbolMenu.getSelectedItem().getValue());
+			Treecell celda = (Treecell) arbolMenu.getSelectedItem()
+					.getChildren().get(0).getChildren().get(0);
+			long item = Long.valueOf(celda.getId());
 			boolean abrir = true;
 			Tab taba = new Tab();
 			// if (arbolMenu.getSelectedItem().getLevel() > 0) {
-			final Arbol arbolItem = servicioArbol.buscarPorNombreArbol(item);
+			final Arbol arbolItem = servicioArbol.buscarPorId(item);
 			mapGeneral.put("titulo", arbolItem.getNombre());
 			if (!arbolItem.getUrl().equals("inicio")) {
 
@@ -403,5 +405,12 @@ public class CArbol extends CGenerico {
 		} else
 			taba.setSelected(true);
 	}
-	
+	@Listen("onClick = #mnuItem")
+	public void cerrarTodas() {
+		for (int i = 0; i < tabs.size(); i++) {
+			tabs.get(i).close();
+			tabs.remove(i);
+			i--;
+		}
+	}
 }

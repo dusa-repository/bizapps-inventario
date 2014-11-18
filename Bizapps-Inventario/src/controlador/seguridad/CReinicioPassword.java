@@ -56,14 +56,11 @@ public class CReinicioPassword extends CGenerico {
 				String password = KeyGenerators.string().generateKey();
 				String correo;
 				if (validar()) {
-					Usuario usuario = servicioUsuario
-							.buscarPorCedula(txtCedulaUsuario.getValue());
+					Usuario usuario = servicioUsuario.buscarPorCedulayCorreo(
+							txtCedulaUsuario.getValue(),
+							txtCorreoUsuario.getValue());
 					if (usuario != null) {
-						if (usuario.getEmail() != null) {
-							correo = usuario.getEmail();
-						} else {
-							correo = txtCorreoUsuario.getValue();
-						}
+						correo = usuario.getEmail();
 						usuario.setPassword(password);
 						servicioUsuario.guardar(usuario);
 						enviarEmailNotificacion(
@@ -73,10 +70,10 @@ public class CReinicioPassword extends CGenerico {
 										+ usuario.getLogin()
 										+ "  " + " Password: " + password);
 						limpiar();
-						msj.mensajeInformacion(Mensaje.reinicioContrasenna);
+						Mensaje.mensajeInformacion(Mensaje.reinicioContrasenna);
 						salir();
 					} else {
-						msj.mensajeError(Mensaje.cedulaNoExiste);
+						Mensaje.mensajeError(Mensaje.cedulaNoExiste);
 					}
 				}
 			}

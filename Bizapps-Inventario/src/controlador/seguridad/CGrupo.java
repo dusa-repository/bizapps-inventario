@@ -29,6 +29,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.TreeModel;
+import org.zkoss.zul.Treecell;
 import org.zkoss.zul.Treechildren;
 import org.zkoss.zul.Treeitem;
 
@@ -400,6 +401,9 @@ public class CGrupo extends CGenerico {
 			Treechildren treeChildren = treeGrupo.getTreechildren();
 			Collection<Treeitem> listaItems = treeChildren.getItems();
 			Treeitem itemSeleccionado = event.getReference();
+			Treecell celda = (Treecell) itemSeleccionado.getChildren().get(0)
+					.getChildren().get(0);
+			long idArbol = Long.valueOf(celda.getContext());
 			List<Long> ids = new ArrayList<Long>();
 			for (int o = 0; o < listaArbol2.size(); o++) {
 				long id = listaArbol2.get(o).getIdArbol();
@@ -430,7 +434,7 @@ public class CGrupo extends CGenerico {
 				ltbFuncionalidadesSeleccionados
 						.setModel(new ListModelList<String>(funcionalidades));
 			}
-			Arbol arbolItem = servicioArbol.buscarPorNombreArbol(nombreItem);
+			Arbol arbolItem = servicioArbol.buscarPorId(idArbol);
 //			listaArbol.remove((int) (long) arbolItem.getIdArbol() - 1);
 			listaArbol.remove(arbolItem);
 			long temp = arbolItem.getPadre();
@@ -523,30 +527,99 @@ public class CGrupo extends CGenerico {
 	
 	public boolean validarNodoHijo(SelectEvent<Treeitem, String> event) {
 		Treeitem itemSeleccionado = event.getReference();
-		Arbol arbol = servicioArbol.buscarPorNombreArbol(itemSeleccionado
-				.getLabel());
-		long padre = arbol.getIdArbol();
-		boolean encontrado = false;
-		List<Arbol> listaArbol = servicioArbol.listarArbol();
-		for (int i = 0; i < listaArbol.size(); i++) {
-			if (padre == listaArbol.get(i).getPadre()) {
-				if (itemSeleccionado.isSelected()) {
-					Messagebox.show("Seleccione las Funcionalidades", "Alerta",
-							Messagebox.OK, Messagebox.INFORMATION);
-					itemSeleccionado.setSelected(false);
-					i = listaArbol.size();
-					encontrado = true;
-				} else {
-					Messagebox.show("Seleccione las Funcionalidades", "Error",
-							Messagebox.OK, Messagebox.INFORMATION);
-					itemSeleccionado.setSelected(true);
-					i = listaArbol.size();
-					encontrado = true;
+		if (itemSeleccionado.isSelected()) {
+			itemSeleccionado.setOpen(true);
+			Treecell celda = (Treecell) itemSeleccionado.getChildren().get(0)
+					.getChildren().get(0);
+			long item = Long.valueOf(celda.getContext());
+			if (itemSeleccionado.getChildren().size() > 1) {
+				Treechildren treeChildren = (Treechildren) itemSeleccionado
+						.getChildren().get(1);
+				Collection<Treeitem> listaItems = treeChildren.getItems();
+				for (Iterator<?> iterator = listaItems.iterator(); iterator
+						.hasNext();) {
+					Treeitem itemTree = (Treeitem) iterator.next();
+					celda = (Treecell) itemTree.getChildren().get(0)
+							.getChildren().get(0);
+					long itemHijo = Long.valueOf(celda.getContext());
+					Arbol arbol = servicioArbol.buscarPorId(itemHijo);
+					if (item == arbol.getPadre()) {
+						itemTree.setSelected(true);
+						// for (Iterator<?> iteratortra = listaItems.iterator();
+						// iterator
+						// .hasNext();) {
+						// Treeitem itemTree2 = (Treeitem) iteratortra.next();
+						// celda = (Treecell) itemTree2.getChildren().get(0)
+						// .getChildren().get(0);
+						// long itemHijo2 = Long.valueOf(celda.getContext());
+						// Arbol arbol2 = servicioArbol.buscarPorId(itemHijo2);
+						// if (itemHijo == arbol2.getPadre()) {
+						// itemTree2.setSelected(true);
+						//
+						// }
+						// }
+					}
+					// Treeitem itemSeleccionado = event.getReference();
+					// Arbol arbol = servicioArbol.buscarPorId(item);
+					// long padre = arbol.getIdArbol();
+					// boolean encontrado = false;
+					// List<Arbol> listaArbol = servicioArbol.listarArbol();
+					// for (int i = 0; i < listaArbol.size(); i++) {
+					// if (padre == listaArbol.get(i).getPadre()) {
+					//
+					// if (itemSeleccionado.isSelected()) {
+					// msj.mensajeAlerta(Mensaje.seleccioneFuncionalidades);
+					// itemSeleccionado.setSelected(false);
+					// i = listaArbol.size();
+					// encontrado = true;
+					// } else {
+					// msj.mensajeAlerta(Mensaje.seleccioneFuncionalidades);
+					// itemSeleccionado.setSelected(true);
+					// i = listaArbol.size();
+					// encontrado = true;
+					// }
+					// return encontrado;
+					// }
+					// }
 				}
-				return encontrado;
+
+			}
+		} else {
+			itemSeleccionado.setOpen(true);
+			Treecell celda = (Treecell) itemSeleccionado.getChildren().get(0)
+					.getChildren().get(0);
+			long item = Long.valueOf(celda.getContext());
+			if (itemSeleccionado.getChildren().size() > 1) {
+				Treechildren treeChildren = (Treechildren) itemSeleccionado
+						.getChildren().get(1);
+				Collection<Treeitem> listaItems = treeChildren.getItems();
+				for (Iterator<?> iterator = listaItems.iterator(); iterator
+						.hasNext();) {
+					Treeitem itemTree = (Treeitem) iterator.next();
+					celda = (Treecell) itemTree.getChildren().get(0)
+							.getChildren().get(0);
+					long itemHijo = Long.valueOf(celda.getContext());
+					Arbol arbol = servicioArbol.buscarPorId(itemHijo);
+					if (item == arbol.getPadre()) {
+						itemTree.setSelected(false);
+						// for (Iterator<?> iteratortra = listaItems.iterator();
+						// iterator
+						// .hasNext();) {
+						// Treeitem itemTree2 = (Treeitem) iteratortra.next();
+						// celda = (Treecell) itemTree2.getChildren().get(0)
+						// .getChildren().get(0);
+						// long itemHijo2 = Long.valueOf(celda.getContext());
+						// Arbol arbol2 = servicioArbol.buscarPorId(itemHijo2);
+						// if (itemHijo == arbol2.getPadre()) {
+						// itemTree2.setSelected(true);
+						//
+						// }
+						// }
+					}
+				}
 			}
 		}
-		return encontrado;
+		return false;
 	}
 	
 	public TreeModel getModel() {

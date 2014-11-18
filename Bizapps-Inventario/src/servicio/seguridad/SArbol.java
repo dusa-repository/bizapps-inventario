@@ -30,11 +30,11 @@ public class SArbol {
 		return arbolDAO.buscarTodos();
 	}
 
-	public Arbol buscarPorNombreArbol(String nombre) {
-		Arbol arbol;
-		arbol = arbolDAO.findByNombre(nombre);
-		return arbol;
-	}
+//	public Arbol buscarPorNombreArbol(String nombre) {
+//		Arbol arbol;
+//		arbol = arbolDAO.findByNombre(nombre);
+//		return arbol;
+//	}
 
 	public List<Arbol> ordenarPorID(ArrayList<Long> ids) {
 
@@ -45,9 +45,7 @@ public class SArbol {
 	}
 
 	public Arbol buscarPorId(Long id) {
-
-		Arbol arbol;
-		arbol = arbolDAO.findOne(id);
+		 Arbol arbol = arbolDAO.findByIdArbol(id);
 		return arbol;
 	}
 

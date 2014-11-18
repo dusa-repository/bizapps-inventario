@@ -6,42 +6,22 @@
 		border="0" apply="arbol.CArbol">
 		<borderlayout height="100%" style="background-color:#fff;">
 			<north height="10%" class="banner">
-				<hbox hflex="1">
-					<separator />
-					<vbox>
+				<hbox width="100%" widths="12%,55%,33%">
+					<vbox width="100%">
 						<separator />
 						<image src="../public/imagenes/generales/LogoDusa.png"
 							height="55px" width="240px" />
 					</vbox>
-					<separator />
-					<separator />
-					<separator />
-					<separator />
 					<div align="center" width="100%">
 						<separator />
 						<separator />
 						<hbox>
-							<separator />
-							<separator />
-							<separator />
-							<separator />
-							<separator />
-							<separator />
-							<separator />
-							<label style="font-size:22px;color:white;font-weight: bold"
+							<label style="font-size:23px;color:white;font-weight: bold"
 								value="SISTEMA DE INVENTARIO" />
 						</hbox>
 					</div>
 					<div align="center" width="100%">
 						<hbox height="100%" width="100%">
-							<separator />
-							<separator />
-							<separator />
-							<separator />
-							<separator />
-							<separator />
-							<separator />
-							<separator />
 							<vbox height="100%" width="100%">
 								<separator />
 								<image id="imagenes" width="60px" height="55px" />
@@ -88,7 +68,7 @@
 					<template name="model">
 						<treeitem context="menupopup">
 							<treerow>
-								<treecell label="${each.label}" />
+								<treecell id="${each.index}" label="${each.label}" />
 							</treerow>
 						</treeitem>
 					</template>
@@ -100,7 +80,7 @@
 						style="background-image: url('../public/imagenes/generales/LogoDusaAgua.png'); background-repeat:no-repeat; "
 						border="none" autoscroll="true">
 						<tabbox width="100%" id="tabBox">
-							<tabs>
+							<tabs context="editPopup">
 								<tab visible="false">Tab A</tab>
 								<tab id="tab" label="+" visible="false">
 								</tab>
@@ -114,18 +94,17 @@
 					</center>
 				</borderlayout>
 			</center>
-			<south class="banner" border="0" height="5%" collapsible="false">
+			<south class="banner" border="0" height="3%" collapsible="false">
 				<div align="center" sclass="footer">
-					<a style="color: white" href="../j_spring_security_logout">
-						<label value="INICIO">
-						</label>
-					</a>
-					<separator></separator>
+					<separator />
 					<label style="padding-center:35%;color: white"
 						value="© 2014 Destilería Unidas S.A | RIF: J-30940783-0 | Todos los derechos reservados | Desarrollado por BIZAPPS,C.A">
 					</label>
 				</div>
 			</south>
 		</borderlayout>
+		<menupopup id="editPopup">
+			<menuitem id="mnuItem" label="Cerrar Todas" apply="arbol.CArbol" />
+		</menupopup>
 	</window>
 </zk>
