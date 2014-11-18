@@ -5,17 +5,18 @@
 			title="Trabajo con Codigos Definidos por Usuario (VF0005)">
 			<div id="botoneraF0005" />
 			<separator />
-			<groupbox id="gpxRegistro" width="auto" class ="azul" title="" open="false">
-				<caption label="Añadir"  style="font-weight:bold; font-size: 13px"
+			<groupbox id="gpxRegistro" width="auto" class="azul" title=""
+				open="false">
+				<caption label="Añadir" style="font-weight:bold; font-size: 13px"
 					tooltiptext="Presione para Registrar un Nuevo Codigo" />
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-							<column label="" width="20%" />
-							<column label="" width="10%" />
-							<column label="" width="25%" />
-							<column label="" width="45%" />
-						</columns>
+						<column label="" width="20%" />
+						<column label="" width="10%" />
+						<column label="" width="25%" />
+						<column label="" width="45%" />
+					</columns>
 					<rows>
 						<row>
 							<hbox>
@@ -27,7 +28,8 @@
 							<textbox id="txtSYF0005" hflex="1" maxlength="100"
 								tooltiptext="Seleccione del Catalogo el Codigo del Producto (DTSY de F0004)" />
 							<button id="btnBuscarF0004" label="Buscar"
-								tooltiptext="Catalogo de Codigos de Producto (F0004)" image="/public/imagenes/botones/buscar.png" class="btn"/>
+								tooltiptext="Catalogo de Codigos de Producto (F0004)" image="/public/imagenes/botones/buscar.png"
+								class="btn" />
 							<hbox />
 						</row>
 						<row>
@@ -101,6 +103,33 @@
 			<groupbox id="gpxDatos" class="azul" width="auto">
 				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
 					tooltiptext="Presione para Visualizar los Codigos Registrados" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="13%" />
+						<column label="" width="15%" />
+						<column label="" width="15%" />
+						<column label="" width="12%" />
+						<column label="" width="10%" />
+						<column label="" width="12%" />
+						<column label="" width="10%" />
+						<column label="" width="13%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox />
+							<label class="etiqueta" value="Filtrar por F0004" />
+							<button id="btnBuscarF0004Filtro" label="Buscar"
+								tooltiptext="Catalogo de Codigos de Producto (F0004)" image="/public/imagenes/botones/buscar.png"
+								class="btn" />
+							<label class="etiqueta" value="Cd Producto:" />
+							<label id="lblSY" />
+							<label class="etiqueta" value="Cd Defin Usuario:" />
+							<label id="lblRT" />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
 				<div id="catalogoF0005" tooltiptext="Seleccione el Codigo para Realizar una Accion" />
 			</groupbox>
 			<separator />

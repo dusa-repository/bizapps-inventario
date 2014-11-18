@@ -21,6 +21,8 @@ public interface IArbolDAO extends JpaRepository<Arbol, Long> {
 
 	public List<Arbol> findByGruposArbol(Grupo grupo);
 
+	public Arbol findByIdArbol(Long id);
+
 		
 	
 }
