@@ -1,7 +1,7 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVF0008" apply="controlador.maestros.CF0008">
-		<groupbox width="auto" mold="3d"
+		<groupbox width="auto" mold="3d" class="azul"
 			title="Trabajo con Patrones de Fecha Fiscal (VF0008)">
 			<div id="botoneraF0008" />
 			<separator />
@@ -27,13 +27,15 @@
 						</row>
 						<row>
 							<hbox>
-								<label class="etiqueta" value="Fecha inicio año fiscal:" />
+								<label class="etiqueta"
+									value="Fecha inicio año fiscal:" />
 								<space />
-								<label value="*" style="font-weight:bold;color:red">
+								<label value="*"
+									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<datebox readonly="true" width="60%" tabindex="3"
-								id="dtbDFYJF0008" format="dd-MM-yyyy"
+							<datebox readonly="true" width="60%"
+								tabindex="3" id="dtbDFYJF0008" format="dd-MM-yyyy"
 								tooltiptext="Ingrese la Fecha de Inicio del año fiscal (CDDFYJ)" />
 							<hbox />
 							<hbox />
@@ -52,89 +54,204 @@
 						<row>
 							<label class="etiqueta" value="Periodo" />
 							<label class="etiqueta" value="Fecha final" />
-							<label class="etiqueta" value="Periodo" style="margin-left:30px" />
+							<label class="etiqueta" value="Periodo"
+								style="margin-left:30px" />
 							<label class="etiqueta" value="Fecha final" />
 						</row>
 						<row>
 							<hbox>
-								<label class="etiqueta" value="1" style="margin-left:25px" />
+								<label class="etiqueta" value="1"
+									style="margin-left:25px" />
 								<space />
-								<label value="*" style="font-weight:bold;color:red">
+								<label value="*"
+									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<datebox readonly="true" width="70%" tabindex="4"
-								id="dtbD01JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 1 (CDD01J)" />
+							<datebox readonly="true" width="70%"
+								tabindex="4" id="dtbD01JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 1 (CDD01J)" />
 
-							<label class="etiqueta" value="8" style="margin-left:65px" />
+							<hbox>
+								<label class="etiqueta" value="8"
+									style="margin-left:65px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 
-							<datebox readonly="true" width="70%" tabindex="11"
-								id="dtbD08JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 8 (CDD08J)" />
+							<datebox readonly="true" width="70%"
+								tabindex="11" id="dtbD08JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 8 (CDD08J)" />
 						</row>
 						<row>
-							<label class="etiqueta" value="2" style="margin-left:25px" />
+							<hbox>
+								<label class="etiqueta" value="2"
+									style="margin-left:25px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
 
-							<datebox readonly="true" width="70%" tabindex="5"
-								id="dtbD02JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 2 (CDD02J)" />
+								</label>
+							</hbox>
 
-							<label class="etiqueta" value="9" style="margin-left:65px" />
+							<datebox readonly="true" width="70%"
+								tabindex="5" id="dtbD02JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 2 (CDD02J)" />
 
-							<datebox readonly="true" width="70%" tabindex="12"
-								id="dtbD09JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 9 (CDD09J)" />
+							<hbox>
+								<label class="etiqueta" value="9"
+									style="margin-left:65px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+
+								</label>
+							</hbox>
+
+							<datebox readonly="true" width="70%"
+								tabindex="12" id="dtbD09JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 9 (CDD09J)" />
 						</row>
 						<row>
-							<label class="etiqueta" value="3" style="margin-left:25px" />
+							<hbox>
+								<label class="etiqueta" value="3"
+									style="margin-left:25px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
 
-							<datebox readonly="true" width="70%" tabindex="6"
-								id="dtbD03JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 3 (CDD03J)" />
+								</label>
+							</hbox>
 
-							<label class="etiqueta" value="10" style="margin-left:65px" />
+							<datebox readonly="true" width="70%"
+								tabindex="6" id="dtbD03JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 3 (CDD03J)" />
 
-							<datebox readonly="true" width="70%" tabindex="13"
-								id="dtbD10JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 10 (CDD10J)" />
+							<hbox>
+								<label class="etiqueta" value="10"
+									style="margin-left:65px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+
+								</label>
+							</hbox>
+
+							<datebox readonly="true" width="70%"
+								tabindex="13" id="dtbD10JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 10 (CDD10J)" />
 						</row>
 						<row>
-							<label class="etiqueta" value="4" style="margin-left:25px" />
+							<hbox>
+								<label class="etiqueta" value="4"
+									style="margin-left:25px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 
-							<datebox readonly="true" width="70%" tabindex="7" 
-								id="dtbD04JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 4 (CDD04J)" />
+							<datebox readonly="true" width="70%"
+								tabindex="7" id="dtbD04JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 4 (CDD04J)" />
 
-							<label class="etiqueta" value="11" style="margin-left:65px" />
+							<hbox>
+								<label class="etiqueta" value="11"
+									style="margin-left:65px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 
-							<datebox readonly="true" width="70%" tabindex="14"
-								id="dtbD11JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 11 (CDD11J)" />
+							<datebox readonly="true" width="70%"
+								tabindex="14" id="dtbD11JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 11 (CDD11J)" />
 						</row>
 						<row>
-							<label class="etiqueta" value="5" style="margin-left:25px" />
+							<hbox>
+								<label class="etiqueta" value="5"
+									style="margin-left:25px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 
-							<datebox readonly="true" width="70%" tabindex="8"
-								id="dtbD05JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 5 (CDD05J)" />
+							<datebox readonly="true" width="70%"
+								tabindex="8" id="dtbD05JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 5 (CDD05J)" />
 
-							<label class="etiqueta" value="12" style="margin-left:65px" />
+							<hbox>
+								<label class="etiqueta" value="12"
+									style="margin-left:65px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 
-							<datebox readonly="true" width="70%" tabindex="15"
-								id="dtbD12JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 12 (CDD12J)" />
+							<datebox readonly="true" width="70%"
+								tabindex="15" id="dtbD12JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 12 (CDD12J)" />
 						</row>
 						<row>
-							<label class="etiqueta" value="6" style="margin-left:25px" />
 
-							<datebox readonly="true" width="70%" tabindex="9"
-								id="dtbD06JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 6 (CDD06J)" />
+							<hbox>
+								<label class="etiqueta" value="6"
+									style="margin-left:25px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 
-							<label class="etiqueta" value="13" style="margin-left:65px" />
+							<datebox readonly="true" width="70%"
+								tabindex="9" id="dtbD06JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 6 (CDD06J)" />
 
-							<datebox readonly="true" width="70%" tabindex="16"
-								id="dtbD13JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 13 (CDD13J)" />
+
+							<hbox>
+								<label class="etiqueta" value="13"
+									style="margin-left:65px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+
+							<datebox readonly="true" width="70%"
+								tabindex="16" id="dtbD13JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 13 (CDD13J)" />
 						</row>
 						<row>
-							<label class="etiqueta" value="7" style="margin-left:25px" />
 
-							<datebox readonly="true" width="70%" tabindex="10"
-								id="dtbD07JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 7 (CDD07J)" />
+							<hbox>
+								<label class="etiqueta" value="7"
+									style="margin-left:25px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
 
-							<label class="etiqueta" value="14" style="margin-left:65px" />
+							<datebox readonly="true" width="70%"
+								tabindex="10" id="dtbD07JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 7 (CDD07J)" />
 
-							<datebox readonly="true" width="70%" tabindex="17"
-								id="dtbD14JF0008" format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Final del Periodo 14 (CDD14J)" />
+							<hbox>
+								<label class="etiqueta" value="14"
+									style="margin-left:65px" />
+								<space />
+								<label value="*"
+									style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+
+							<datebox readonly="true" width="70%"
+								tabindex="17" id="dtbD14JF0008" format="dd-MM-yyyy"
+								tooltiptext="Ingrese la Fecha Final del Periodo 14 (CDD14J)" />
 						</row>
 					</rows>
 				</grid>
