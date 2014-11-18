@@ -33,18 +33,35 @@
 										</label>
 									</hbox>
 									<longbox id="txtDOCOF4301" hflex="1"
-										maxlength="100" tooltiptext="Ingrese el Número de orden (PHDOCO)" />
+										maxlength="100"
+										tooltiptext="Ingrese el Número de orden (PHDOCO)" />
 									<textbox id="txtDCTOF4301" hflex="1"
-										maxlength="100" tooltiptext="Ingrese el Valor OP (PHDCTO)" value="OP" disabled="true" />
+										maxlength="100" tooltiptext="Ingrese el Valor OP (PHDCTO)"
+										value="OP" readonly="true" />
 									<textbox id="txtKCOOF4301" hflex="1"
-										maxlength="100" tooltiptext="Ingrese el Número de orden  (PHKCOO)" />
+										maxlength="100"
+										tooltiptext="Ingrese el Número de orden  (PHKCOO)" />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Orden de cambio:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtSFXOF4301" hflex="1"
+										maxlength="100" tooltiptext="" value="000" readonly="true" />
+									<hbox />
+									<hbox />
 								</row>
 								<row>
 									<hbox>
 										<label class="etiqueta"
 											value="Sucursal/planta:" />
 										<space />
-										<label value="*"
+										<label value=""
 											style="font-weight:bold;color:red">
 										</label>
 									</hbox>
@@ -62,22 +79,25 @@
 										<label class="etiqueta"
 											value="Moneda:" />
 										<space />
-										<label value="*"
+										<label value=""
 											style="font-weight:bold;color:red">
 										</label>
 									</hbox>
 									<textbox id="txtCRCDF4301" hflex="1"
-										maxlength="100" tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
+										maxlength="100"
+										tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
 									<button id="btnBuscarMonedaF0013"
-										label="Buscar" class="btn" tooltiptext="Catalogo de Codigos de Sucursales (F0013)"
+										label="Buscar" class="btn"
+										tooltiptext="Catalogo de Codigos de Sucursales (F0013)"
 										image="/public/imagenes/botones/buscar.png" />
 									<label id="lblMonedaF0013" />
 								</row>
 								<row>
 									<label class="etiqueta"
 										value="Tipo Cambio:" />
-									<textbox id="txtCRRF4301" hflex="1"
-										maxlength="100" tooltiptext="Ingrese el Tipo de Cambio (PHCRR)" />
+									<doublebox id="txtCRRF4301"
+										hflex="1" maxlength="100"
+										tooltiptext="Ingrese el Tipo de Cambio (PHCRR)" />
 									<label id="lblTipoDireccionF0101" />
 									<label id="lblTipoDireccion2F0101" />
 								</row>
@@ -86,408 +106,651 @@
 					</hbox>
 				</groupbox>
 				<separator />
-				<tabbox id="tbOrdenF4301">
-					<tabs id="tabsF4301">
-						<tab id="tbNumerosDireccionF4101"
-							label="Números dirección" />
-						<tab id="tbFechasF4101" label="Fechas" />
-						<tab id="tbDetallesF4101" label="Detalles" />
-					</tabs>
-					<tabpanels>
-						<tabpanel>
-							<groupbox id="gpxNumeroDireccionF4301"
-								width="auto" title="" closable="false">
-								<separator />
-								<hbox>
-									<grid width="100%"
-										style="border:0px">
-										<columns visible="false">
-											<column label=""
-												width="20%" />
-											<column label=""
-												width="25%" />
-											<column label=""
-												width="11%" />
-											<column label=""
-												width="44%" />
-										</columns>
-										<rows>
-											<row>
+				<grid width="100%" style="border:0px">
+					<columns visible="false">
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+						<column label="" width="20%" />
+						<column label="" width="30%" />
+					</columns>
+					<rows>
+						<row>
+							<cell colspan="4">
+								<tabbox id="tbOrdenF4301">
+									<tabs id="tabsF4301">
+										<tab
+											id="tbNumerosDireccionF4301" label="Números dirección" />
+										<tab id="tbFechasF4301"
+											label="Fechas" />
+										<tab id="tbDetallesF4301"
+											label="Detalles" />
+									</tabs>
+									<tabpanels>
+										<tabpanel>
+											<groupbox
+												id="gpxNumeroDireccionF4301" width="auto" title=""
+												closable="false">
+												<separator />
 												<hbox>
-													<label
-														class="etiqueta" value="Proveedor:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
+													<grid width="100%"
+														style="border:0px">
+														<columns
+															visible="false">
+															<column
+																label="" width="20%" />
+															<column
+																label="" width="25%" />
+															<column
+																label="" width="11%" />
+															<column
+																label="" width="44%" />
+														</columns>
+														<rows>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Proveedor:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<longbox
+																	id="txtAN8F4301" hflex="1" maxlength="100"
+																	tooltiptext="Seleccione del Catalogo el Codigo del Proveedores (ABAN8 de F0101)" />
+																<button
+																	id="btnBuscarProveedorF0101" label="Buscar" class="btn"
+																	tooltiptext="Catalogo de Codigos de Proveedores (F0101)"
+																	image="/public/imagenes/botones/buscar.png" />
+																<label
+																	id="lblProveedoresF0101" />
+															</row>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Destino envío:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<longbox
+																	id="txtSHANF4301" hflex="1" maxlength="100"
+																	tooltiptext="Seleccione del Catalogo el Codigo de Direcciones de Envio (ABAN8 de F0101)" />
+																<button
+																	id="btnBuscarDestinoF0101" label="Buscar" class="btn"
+																	tooltiptext="Catalogo de Codigos de Direcciones de Envio (F0101)"
+																	image="/public/imagenes/botones/buscar.png" />
+																<label
+																	id="lblDestinoF0101" />
+															</row>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Comprador:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<longbox
+																	id="txtANBYF4301" hflex="1" maxlength="100"
+																	tooltiptext="Seleccione del Catalogo el Codigo del Comprador (ABAN8 de F0101)" />
+																<button
+																	id="btnBuscarCompradorF0101" label="Buscar" class="btn"
+																	tooltiptext="Catalogo de Codigos de Compradores (F0101)"
+																	image="/public/imagenes/botones/buscar.png" />
+																<label
+																	id="lblCompradorF0101" />
+															</row>
+															<row>
+																<label
+																	class="etiqueta" value="Transportista:" />
+																<longbox
+																	id="txtANCRF4301" hflex="1" maxlength="100"
+																	tooltiptext="Seleccione del Catalogo el Codigo del Transportista (ABAN8 de F0101)" />
+																<button
+																	id="btnBuscarTransportistaF0101" label="Buscar"
+																	class="btn"
+																	tooltiptext="Catalogo de Codigos de Transportistas (F0101)"
+																	image="/public/imagenes/botones/buscar.png" />
+																<label
+																	id="lblTransportistaF0101" />
+																<separator
+																	bar="true" />
+															</row>
+															<row>
+																<label
+																	class="etiqueta" value="Observación pg:" />
+																<textbox
+																	id="txtRMKF4301" hflex="1" maxlength="100"
+																	tooltiptext="Ingrese una observacion (PHRMK)" />
+																<label
+																	id="lblObservacion" />
+																<hbox />
+																<separator
+																	bar="true" />
+															</row>
+															<row>
+																<label
+																	class="etiqueta" value="Descripción:" />
+																<textbox
+																	id="txtDESCF4301" hflex="1" maxlength="100"
+																	tooltiptext="Ingrese la descripción (PHDESC)" />
+																<label
+																	id="lblDescripcion" />
+																<hbox />
+																<separator
+																	bar="true" />
+															</row>
+															<row>
+																<cell
+																	colspan="3">
+																	<div
+																		id="divBuscadorINMG" hflex="1" />
+																</cell>
+																<hbox />
+															</row>
+														</rows>
+													</grid>
 												</hbox>
-												<longbox
-													id="txtAN8F4301" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Codigo del Proveedores (ABAN8 de F0101)" />
-												<button
-													id="btnBuscarProveedorF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Codigos de Proveedores (F0101)"
-													image="/public/imagenes/botones/buscar.png" />
-												<label
-													id="lblProveedoresF0101" />
-											</row>
-											<row>
+											</groupbox>
+										</tabpanel>
+										<tabpanel>
+											<groupbox
+												id="gpxRegistroF43012" width="auto" title="" open="true"
+												closable="false">
+												<separator />
 												<hbox>
-													<label
-														class="etiqueta" value="Destino envío:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
+													<grid width="100%"
+														style="border:0px">
+														<columns
+															visible="false">
+															<column
+																label="" width="20%" />
+															<column
+																label="" width="25%" />
+															<column
+																label="" width="11%" />
+															<column
+																label="" width="44%" />
+														</columns>
+														<rows>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Fecha orden:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<datebox
+																	readonly="true" width="100%" id="dtbTRDJF4301"
+																	format="dd-MM-yyyy"
+																	tooltiptext="Ingrese la Fecha de la orden (PHTRDJ)" />
+																<hbox />
+																<hbox />
+															</row>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Solicitud:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<datebox
+																	readonly="true" width="100%" id="dtbDRQJF4301"
+																	format="dd-MM-yyyy"
+																	tooltiptext="Ingrese la Fecha de la solicitud (PHDRQJ)" />
+																<hbox />
+																<hbox />
+															</row>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Entrega prometida:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<datebox
+																	readonly="true" width="100%" id="dtbPDDJF4301"
+																	format="dd-MM-yyyy"
+																	tooltiptext="Ingrese la Fecha prometida (PHPDDJ)" />
+																<hbox />
+																<hbox />
+															</row>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Fecha de cancelación:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<datebox
+																	readonly="true" width="100%" id="dtbCNDJF4301"
+																	format="dd-MM-yyyy"
+																	tooltiptext="Ingrese la Fecha de cancelación (PHCNDJ)" />
+																<hbox />
+																<hbox />
+															</row>
+														</rows>
+													</grid>
 												</hbox>
-												<longbox
-													id="txtSHANF4301" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Codigo de Direcciones de Envio (ABAN8 de F0101)" />
-												<button
-													id="btnBuscarDestinoF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Codigos de Direcciones de Envio (F0101)"
-													image="/public/imagenes/botones/buscar.png" />
-												<label
-													id="lblDestinoF0101" />
-											</row>
-											<row>
+											</groupbox>
+										</tabpanel>
+										<tabpanel>
+											<groupbox class="azul"
+												id="gpxRegistro2F4301" width="auto" title="" open="true">
+												<separator />
 												<hbox>
-													<label
-														class="etiqueta" value="Comprador:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
+													<grid width="100%"
+														style="border:0px">
+														<columns
+															visible="false">
+															<column
+																label="" width="20%" />
+															<column
+																label="" width="25%" />
+															<column
+																label="" width="11%" />
+															<column
+																label="" width="44%" />
+														</columns>
+														<rows>
+															<row>
+																<cell
+																	colspan="3">
+																	<div
+																		id="divBuscadorEXR1" hflex="1" />
+																</cell>
+																<hbox />
+															</row>
+															<row>
+																<cell
+																	colspan="3">
+																	<div
+																		id="divBuscadorHOLD" hflex="1" />
+																</cell>
+																<hbox />
+															</row>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Tasa/zona fiscal:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<textbox
+																	id="txtTXA1F4301" hflex="1" maxlength="100"
+																	tooltiptext="Seleccione del Catalogo el Codigo la Zona Fiscal (TATXA1 de F4008)" />
+																<button
+																	id="btnBuscarTaxAreasV4008" label="Buscar" class="btn"
+																	tooltiptext="Catalogo de Codigos de Zonas (F4008)"
+																	image="/public/imagenes/botones/buscar.png" />
+																<label
+																	id="lblZonaV4008" />
+															</row>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="Certificado:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<textbox
+																	id="txtTXCTF4301" hflex="1" maxlength="100"
+																	tooltiptext="Ingrese el certificado (PHTXCT)" />
+																<label
+																	id="lblCertificadoF0013" />
+																<hbox />
+															</row>
+															<row>
+																<hbox>
+																	<label
+																		class="etiqueta" value="% de retención:" />
+																	<space />
+																	<label
+																		value="" style="font-weight:bold;color:red">
+																	</label>
+																</hbox>
+																<textbox
+																	id="txtPCRTF4301" hflex="1" maxlength="100"
+																	tooltiptext="Ingrese el porcentaje de retención (PHPCRT)" />
+																<label
+																	id="lblRetencion" />
+																<hbox />
+															</row>
+															<row>
+																<label
+																	class="etiqueta" value="ID fiscal:" />
+																<textbox
+																	id="txtABTAXF4301" hflex="1" maxlength="100"
+																	tooltiptext="Seleccione del Catalogo el Codigo Fiscal (ABTAX de F0101)"
+																	disabled="true" />
+																<button
+																	id="btnBuscarRifF0101" label="Buscar" class="btn"
+																	tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
+																	image="/public/imagenes/botones/buscar.png" />
+																<label
+																	id="lblIdFiscalF0101" />
+															</row>
+															<row>
+																<label
+																	class="etiqueta" value="Orden tomada por:" />
+																<textbox
+																	id="txtTKBYF4301" hflex="1" maxlength="100"
+																	tooltiptext="Ingrese quien tomo la orden (PHTKBY)" />
+																<label
+																	id="lblOrdenPor" />
+																<hbox />
+															</row>
+															<row>
+																<label
+																	class="etiqueta" value="Condicion de pago:" />
+																<textbox
+																	id="txtPTCF4301" hflex="1" maxlength="100"
+																	tooltiptext="Ingrese la condición de pago (PHTKBY)" />
+																<label
+																	id="lblCondicionPagoF0101" value="Sin Crédito" />
+																<hbox />
+															</row>
+															<row>
+																<cell
+																	colspan="3">
+																	<div
+																		id="divBuscadorFUF1" hflex="1" />
+																</cell>
+																<hbox />
+															</row>
+														</rows>
+													</grid>
 												</hbox>
-												<longbox
-													id="txtANBYF4301" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Codigo del Comprador (ABAN8 de F0101)" />
-												<button
-													id="btnBuscarCompradorF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Codigos de Compradores (F0101)"
-													image="/public/imagenes/botones/buscar.png" />
-												<label
-													id="lblCompradorF0101" />
-											</row>
-											<row>
-												<label class="etiqueta"
-													value="Transportista:" />
-												<longbox
-													id="txtANCRF4301" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Codigo del Transportista (ABAN8 de F0101)" />
-												<button
-													id="btnBuscarTransportistaF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Codigos de Transportistas (F0101)"
-													image="/public/imagenes/botones/buscar.png" />
-												<label
-													id="lblTransportistaF0101" />
-												<separator bar="true" />
-											</row>
-											<row>
-												<label class="etiqueta"
-													value="Observación pg:" />
-												<textbox
-													id="txtRMKF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese una observacion (PHRMK)" />
-												<label
-													id="lblObservacion" />
-												<hbox />
-												<separator bar="true" />
-											</row>
-											<row>
-												<label class="etiqueta"
-													value="Descripción:" />
-												<textbox
-													id="txtDESCF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la descripción (PHDESC)" />
-												<label
-													id="lblDescripcion" />
-												<hbox />
-												<separator bar="true" />
-											</row>
-											<row>
-												<label class="etiqueta"
-													value="Mensaje imp:" />
-												<textbox
-													id="txtINMGF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese un mensaje (PHINMG)" />
-												<label id="lblMensaje" />
-												<hbox />
-											</row>
-											<row>
-												<cell colspan="3">
-													<div
-														id="divBuscadorINMG40PM" hflex="1" />
-												</cell>
-												<hbox />
-											</row>
-										</rows>
-									</grid>
-								</hbox>
-							</groupbox>
-						</tabpanel>
-						<tabpanel>
-							<groupbox id="gpxRegistroF43012"
-								width="auto" title="" open="true" closable="false">
-								<separator />
-								<hbox>
-									<grid width="100%"
-										style="border:0px">
-										<columns visible="false">
-											<column label=""
-												width="20%" />
-											<column label=""
-												width="25%" />
-											<column label=""
-												width="11%" />
-											<column label=""
-												width="44%" />
-										</columns>
-										<rows>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="Fecha orden:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<datebox readonly="true"
-													width="100%" id="dtbTRDJF4301" format="dd-MM-yyyy"
-													tooltiptext="Ingrese la Fecha de la orden (PHTRDJ)" />
-												<hbox />
-												<hbox />
-											</row>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="Solicitud:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<datebox readonly="true"
-													width="100%" id="dtbDRQJF4301" format="dd-MM-yyyy"
-													tooltiptext="Ingrese la Fecha de la solicitud (PHDRQJ)" />
-												<hbox />
-												<hbox />
-											</row>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="Entrega prometida:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<datebox readonly="true"
-													width="100%" id="dtbPDDJF4301" format="dd-MM-yyyy"
-													tooltiptext="Ingrese la Fecha prometida (PHPDDJ)" />
-												<hbox />
-												<hbox />
-											</row>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="Fecha de cancelación:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<datebox readonly="true"
-													width="100%" id="dtbCNDJF4301" format="dd-MM-yyyy"
-													tooltiptext="Ingrese la Fecha de cancelación (PHCNDJ)" />
-												<hbox />
-												<hbox />
-											</row>
-											<row>
-												<cell colspan="3">
-													<button
-														id="btnBuscarF0006" label="Buscar" class="btn"
-														tooltiptext="Catalogo de Codigo de Uniddes de Negocio (MCMCU de F0006)"
-														image="/public/imagenes/botones/buscar.png" />
-												</cell>
-												<hbox />
-											</row>
-										</rows>
-									</grid>
-								</hbox>
-							</groupbox>
-						</tabpanel>
-						<tabpanel>
-							<groupbox class="azul"
-								id="gpxRegistro2F4301" width="auto" title="" open="true">
-								<separator />
-								<hbox>
-									<grid width="100%"
-										style="border:0px">
-										<columns visible="false">
-											<column label=""
-												width="20%" />
-											<column label=""
-												width="25%" />
-											<column label=""
-												width="11%" />
-											<column label=""
-												width="44%" />
-										</columns>
-										<rows>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="Código expl fiscal:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<textbox
-													id="txtEXR1F4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese Codigo expl fiscal (PHEXR1)" />
-												<label
-													id="lblCodExpFiscal" />
-												<hbox />
-											</row>
-											<row>
-												<cell colspan="3">
-													<div
-														id="divBuscadorEXR100EX" hflex="1" />
-												</cell>
-												<hbox />
-											</row>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="Código retención:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<textbox
-													id="txtHOLDF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese Código de retención (PHHOLD)" />
-												<label
-													id="lblCodRetencionExp" />
-												<hbox />
-											</row>
-											<row>
-												<cell colspan="3">
-													<div
-														id="divBuscadorHOLD42HC" hflex="1" />
-												</cell>
-												<hbox />
-											</row>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="Tasa/zona fiscal:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<textbox
-													id="txtTXA1F4301" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Codigo la Zona Fiscal (TATXA1 de F4008)" />
-												<button
-													id="btnBuscarTaxAreasV4008" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Codigos de Zonas (F4008)"
-													image="/public/imagenes/botones/buscar.png" />
-												<label
-													id="lblZonaV4008" />
-											</row>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="Certificado:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<textbox
-													id="txtTXCTF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el certificado (PHTXCT)" />
-												<label
-													id="lblCertificadoF0013" />
-												<hbox />
-											</row>
-											<row>
-												<hbox>
-													<label
-														class="etiqueta" value="% de retención:" />
-													<space />
-													<label value="*"
-														style="font-weight:bold;color:red">
-													</label>
-												</hbox>
-												<textbox
-													id="txtPCRTF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el porcentaje de retención (PHPCRT)" />
-												<label
-													id="lblRetencion" />
-												<hbox />
-											</row>
-											<row>
-												<label class="etiqueta"
-													value="ID fiscal:" />
-												<textbox
-													id="txtABTAXF4301" hflex="1" maxlength="100"
-													tooltiptext="Seleccione del Catalogo el Codigo Fiscal (ABTAX de F0101)" disabled="true" />
-												<button
-													id="btnBuscarRifF0101" label="Buscar" class="btn"
-													tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-													image="/public/imagenes/botones/buscar.png" />
-												<label
-													id="lblIdFiscalF0101" />
-											</row>
-											<row>
-												<label class="etiqueta"
-													value="Orden tomada por:" />
-												<textbox
-													id="txtTKBYF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese quien tomo la orden (PHTKBY)" />
-												<label id="lblOrdenPor" />
-												<hbox />
-											</row>
-											<row>
-												<label class="etiqueta"
-													value="Condicion de pago:" />
-												<textbox
-													id="txtPTCF4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese la condición de pago (PHTKBY)" />
-												<label
-													id="lblCondicionPagoF0101" value="Sin Crédito" />
-												<hbox />
-											</row>
-											<row>
-												<label class="etiqueta"
-													value="Doc A\A:" />
-												<textbox
-													id="txtFUF1F4301" hflex="1" maxlength="100"
-													tooltiptext="Ingrese el doc (PHFUF1)" />
-												<label id="lblDocF0101" />
-												<hbox />
-											</row>
-											<row>
-												<cell colspan="3">
-													<div
-														id="divBuscadorFUF1H40FU" hflex="1" />
-												</cell>
-												<hbox />
-											</row>
-										</rows>
-									</grid>
-								</hbox>
-							</groupbox>
-						</tabpanel>
-					</tabpanels>
-				</tabbox>
+											</groupbox>
+										</tabpanel>
+									</tabpanels>
+								</tabbox>
+							</cell>
+						</row>
+						<row id="rowBoton">
+							<cell colspan="3"></cell>
+							<button autodisable="true"
+								id="btnAgregarItems" class="btn" label="Agregar Items"
+								tooltiptext="Catalogo"
+								image="/public/imagenes/botones/annadir.png" width="150px" />
+						</row>
+					</rows>
+				</grid>
+				<div align="center" width="100%">
+					<groupbox id="gpxItems" visible="true"
+						class="blanco" title="" closable="false">
+						<caption label="Detalles Orden"
+							style="font-weight:bold; font-size: 12px" />
+						<separator />
+						<grid width="93%">
+							<columns visible="false">
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+							</columns>
+							<rows>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Numero Articulo:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red" />
+									</hbox>
+									<doublebox id="txtITMF4311"
+										hflex="1" maxlength="19"
+										tooltiptext="Ingrese el numero del articulo" />
+									<button autodisable="true"
+										id="btnBuscarF4101" class="btn" label="Buscar"
+										tooltiptext="Catalogo"
+										image="/public/imagenes/botones/buscar.png" />
+									<label id="lblPDITMF4311" />
+									<hbox>
+										<label id="lblLNIDF4311"
+											class="etiqueta" value="Linea:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublebox id="txtLNIDF4311"
+										hflex="1" maxlength="19"
+										tooltiptext="Ingrese la linea correspondiente"
+										readonly="true" />
+									<hbox />
+									<button label="Agregar"
+										id="btnAgregar" autodisable="true" class="btn"
+										image="/public/imagenes/botones/annadir.png"
+										tooltiptext="Presione para Agregar un Item" />
+								</row>
+								<row>
+									<hbox>
+										<label id="lblDSC1F4311"
+											class="etiqueta" value="Descripcion 1:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtDSC1F4311" hflex="1"
+										maxlength="2" tooltiptext="Ingrese una descripcion" />
+									<label class="etiqueta" value=""
+										visible="false" />
+									<hbox />
+									<hbox>
+										<label id="lblDSC2F4311"
+											class="etiqueta" value="Descripcion 2:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtDSC2F4311" hflex="1"
+										maxlength="2" tooltiptext="Ingrese otra descripcion" />
+									<label class="etiqueta" value=""
+										visible="false" />
+									<hbox />
+								</row>
+								<row>
+									<cell colspan="3">
+										<div id="divBuscadorUOM"
+											hflex="1" />
+									</cell>
+									<hbox />
+									<hbox>
+										<label id="lblUORGF4311"
+											class="etiqueta" value="Cantidad encargada:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublespinner id="spnUORGF4311"
+										buttonVisible="true" width="100%" value="0"
+										constraint="min 0 max 99999999"
+										tooltiptext="Ingrese la cantidad encargada" />
+								</row>
+								<row>
+									<hbox>
+										<label id="lblPRRCF4311"
+											class="etiqueta" value="Precio Unitario:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublebox id="txtPRRCF4311"
+										hflex="1" maxlength="19"
+										tooltiptext="Ingrese el precio unitario" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label id="lblAEXPF4311"
+											class="etiqueta" value="Costo Total:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublebox id="txtAEXPF4311"
+										hflex="1" maxlength="19" tooltiptext="Ingrese el costo total" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label id="lblVR01F4311"
+											class="etiqueta" value="Nº Cuenta:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtVR01F4311" hflex="1"
+										tooltiptext="Ingrese el Nº de Cuenta" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label id="lblOORNF4311"
+											class="etiqueta" value="Orden Original:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtOORNF4311" hflex="1"
+										maxlength="2" tooltiptext="Ingrese la orden original" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<cell colspan="3">
+										<div id="divBuscadorLTTR"
+											hflex="1" />
+									</cell>
+									<hbox />
+									<cell colspan="3">
+										<div id="divBuscadorNXTR"
+											hflex="1" />
+									</cell>
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Unidad de negocio:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red" />
+									</hbox>
+									<textbox id="txtMCUF4311" hflex="1"
+										maxlength="19"
+										tooltiptext="Seleccione Ingrese el numero del articulo" />
+									<button autodisable="true"
+										id="btnBuscarF0011" class="btn" label="Buscar"
+										tooltiptext="Catalogo"
+										image="/public/imagenes/botones/buscar.png" />
+									<label id="lblMCUF4311" />
+								</row>
+							</rows>
+						</grid>
+						<div width="93%">
+							<hbox widths="95%,5%">
+								<listbox id="ltbItems" span="true"
+									height="230px" width="100%">
+									<listhead>
+										<listheader label="Nº Art."
+											hflex="min" />
+										<listheader label="Linea"
+											hflex="min" />
+										<listheader
+											label="Descripcion 1" hflex="min" />
+										<listheader
+											label="Descripcion 2" hflex="min" />
+										<listheader label="UM"
+											hflex="min" />
+										<listheader
+											label="Cant. encargada" hflex="min" />
+										<listheader
+											label="Precio Unitario" hflex="min" />
+										<listheader visible="false"
+											label="Costo Total" hflex="min" />
+										<listheader label="Nº Cuenta"
+											hflex="min" />
+										<listheader
+											label="Orden Original" hflex="min" />
+										<listheader
+											label="Ultimo Estado" hflex="min" />
+										<listheader label="Sig. Estado"
+											hflex="min" />
+										<listheader
+											label="Unid. de Negocio" hflex="min" />
+									</listhead>
+									<template name="model">
+										<listitem>
+											<listcell
+												label="${each.pditm}" />
+											<listcell
+												label="${each.id.pdlnid}" />
+											<listcell
+												label="${each.pddsc1}" />
+											<listcell
+												label="${each.pddsc2}" />
+											<listcell
+												label="${each.pduom}" />
+											<listcell
+												label="${each.pduorg}" />
+											<listcell
+												label="${each.pdprrc}" />
+											<listcell
+												label="${each.pdaexp}" />
+											<listcell
+												label="${each.pdvr01}" />
+											<listcell
+												label="${each.pdoorn}" />
+											<listcell
+												label="${each.pdlttr}" />
+											<listcell
+												label="${each.pdnxtr}" />
+											<listcell
+												label="${each.pdmcu}" />
+										</listitem>
+									</template>
+								</listbox>
+								<vbox width="100%">
+									<button label="Editar" class="btn"
+										id="btnVer" autodisable="true"
+										image="/public/imagenes/botones/generar.png"
+										tooltiptext="Presione para Editar un Item" />
+									<button label="Remover" class="btn"
+										id="btnRemover" autodisable="true"
+										image="/public/imagenes/botones/anular.png"
+										tooltiptext="Presione para Remover un Item" />
+								</vbox>
+							</hbox>
+						</div>
+					</groupbox>
+				</div>
 			</groupbox>
 			<separator />
 			<groupbox class="azul" id="gpxDatosF4301" width="auto"
@@ -506,6 +769,10 @@
 			<div id="divCatalogooLibroDireccionesF0101"
 				tooltiptext="Click para Seleccionar un Codigo" />
 			<div id="divCatalogooTaxAreasV4008"
+				tooltiptext="Click para Seleccionar un Codigo" />
+			<div id="divCatalogoF4101"
+				tooltiptext="Click para Seleccionar un Codigo" />
+			<div id="divCatalogoF0011"
 				tooltiptext="Click para Seleccionar un Codigo" />
 		</groupbox>
 	</div>

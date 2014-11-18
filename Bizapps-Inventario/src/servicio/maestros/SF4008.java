@@ -3,7 +3,6 @@ package servicio.maestros;
 import java.util.List;
 
 import interfacedao.maestros.IF4008DAO;
-
 import modelo.maestros.F4008;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +22,8 @@ public class SF4008 {
 		f4008DAO.save(f408);
 		
 	}
+
+//	public List<F4008> buscarPorTatxa1(String txa1) {
+//		return f4008DAO.findByIdTatxa1(txa1);
+//	}
 }

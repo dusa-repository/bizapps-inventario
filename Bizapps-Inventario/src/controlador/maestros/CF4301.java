@@ -12,8 +12,12 @@ import modelo.maestros.F0013;
 import modelo.maestros.F0101;
 import modelo.maestros.F4008;
 import modelo.maestros.F4101;
+import modelo.maestros.F4105;
 import modelo.maestros.F4301;
+import modelo.maestros.F4311;
+import modelo.pk.F4105PK;
 import modelo.pk.F4301PK;
+import modelo.pk.F4311PK;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -22,14 +26,22 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Doublebox;
+import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Row;
+import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
+import componentes.BuscadorUDC;
 import componentes.Catalogo;
 import componentes.Mensaje;
 
@@ -50,6 +62,8 @@ public class CF4301 extends CGenerico {
 	@Wire
 	private Textbox txtKCOOF4301;
 	@Wire
+	private Textbox txtSFXOF4301;
+	@Wire
 	private Textbox txtMCUF4301;
 	@Wire
 	private Button btnBuscarSucPlantaF0006;
@@ -62,7 +76,7 @@ public class CF4301 extends CGenerico {
 	@Wire
 	private Label lblMonedaF0013;
 	@Wire
-	private Textbox txtCRRF4301;
+	private Doublebox txtCRRF4301;
 	@Wire
 	private Label lblTipoDireccionF0101;
 	@Wire
@@ -102,15 +116,7 @@ public class CF4301 extends CGenerico {
 	@Wire
 	private Label lblDescripcion;
 	@Wire
-	private Label lblDescripcion2;
-	@Wire
-	private Textbox txtINMGF4301;
-	@Wire
-	private Label lblMensaje;
-	@Wire
 	private Label lblMensaje2;
-	@Wire
-	private Div divBuscadorINMG40PM;
 	@Wire
 	private Groupbox gpxRegistroF43012;
 	@Wire
@@ -118,21 +124,7 @@ public class CF4301 extends CGenerico {
 	@Wire
 	private Groupbox gpxRegistro2F4301;
 	@Wire
-	private Textbox txtEXR1F4301;
-	@Wire
-	private Label lblCodExpFiscal;
-	@Wire
-	private Div divBuscadorEXR100EX;
-	@Wire
-	private Textbox txtHOLDF4301;
-	@Wire
-	private Label lblCodRetencionExp;
-	@Wire
-	private Div divBuscadorHOLD42HC;
-	@Wire
 	private Textbox txtTXA1F4301;
-	@Wire
-	private Button btnBuscarTaxAreasV4008;
 	@Wire
 	private Label lblZonaV4008;
 	@Wire
@@ -156,12 +148,6 @@ public class CF4301 extends CGenerico {
 	@Wire
 	private Label lblCondicionPagoF0101;
 	@Wire
-	private Textbox txtFUF1F4301;
-	@Wire
-	private Label lblDocF0101;
-	@Wire
-	private Div divBuscadorFUF1H40FU;
-	@Wire
 	private Groupbox gpxDatosF4301;
 	@Wire
 	private Div catalogoF4301;
@@ -183,6 +169,71 @@ public class CF4301 extends CGenerico {
 	private Datebox dtbCNDJF4301;
 	@Wire
 	private Button btnBuscarRifF0101;
+	@Wire
+	private Button btnBuscarTaxAreasV4008;
+	@Wire
+	private Groupbox gpxItems;
+	@Wire
+	private Row rowBoton;
+	@Wire
+	private Div divBuscadorINMG;
+	BuscadorUDC buscadorINMG;
+	@Wire
+	private Div divBuscadorEXR1;
+	BuscadorUDC buscadorEXR1;
+	@Wire
+	private Div divBuscadorHOLD;
+	BuscadorUDC buscadorHOLD;
+	@Wire
+	private Div divBuscadorFUF1;
+	BuscadorUDC buscadorFUF1;
+	// DETALLE
+	@Wire
+	private Doublebox txtITMF4311;
+	@Wire
+	private Doublebox txtLNIDF4311;
+	@Wire
+	private Textbox txtDSC1F4311;
+	@Wire
+	private Textbox txtDSC2F4311;
+	@Wire
+	private Doublebox txtPRRCF4311;
+	@Wire
+	private Doublebox txtAEXPF4311;
+	@Wire
+	private Textbox txtVR01F4311;
+	@Wire
+	private Textbox txtOORNF4311;
+	@Wire
+	private Textbox txtMCUF4311;
+	@Wire
+	private Label lblPDITMF4311;
+	@Wire
+	private Label lblMCUF4311;
+	@Wire
+	private Doublespinner spnUORGF4311;
+	@Wire
+	private Button btnBuscarF4101;
+	@Wire
+	private Button btnAgregar;
+	@Wire
+	private Button btnBuscarF0011;
+	@Wire
+	private Div divBuscadorUOM;
+	BuscadorUDC buscadorUOM;
+	@Wire
+	private Div divBuscadorLTTR;
+	BuscadorUDC buscadorLTTR;
+	@Wire
+	private Div divBuscadorNXTR;
+	BuscadorUDC buscadorNXTR;
+	@Wire
+	private Div divCatalogoF4101;
+	@Wire
+	private Div divCatalogoF0011;
+	@Wire
+	private Listbox ltbItems;
+	List<F4311> listaDetalle = new ArrayList<F4311>();
 
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -192,6 +243,8 @@ public class CF4301 extends CGenerico {
 	Catalogo<F0006> catalogoF0006;
 	Catalogo<F4008> catalogoF4008;
 	Catalogo<F0101> catalogoF0101;
+	Catalogo<F4101> catalogoF4101;
+	// Catalogo<F0011> catalogoF0011;
 	private F4301PK clave = null;
 	String idBoton = "";
 
@@ -201,13 +254,21 @@ public class CF4301 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
-				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
 		}
-		mostrarCatalogo();
 
+		buscadorINMG = crearCampoUDC(divBuscadorINMG, "Mensaje imprimir", "40", "PM");
+		buscadorEXR1 = crearCampoUDC(divBuscadorEXR1, "Cod expl fiscal", "00", "EX");
+		buscadorHOLD = crearCampoUDC(divBuscadorHOLD, "Cod retencion", "42", "HC");
+		buscadorFUF1 = crearCampoUDC(divBuscadorFUF1, "Doc A\'A", "40", "FU");
+		// Detalles
+		buscadorUOM = crearCampoUDC(divBuscadorUOM, "UM", "00", "UM");
+		buscadorLTTR = crearCampoUDC(divBuscadorLTTR, "Ultimo Estado", "40", "AT");
+		buscadorNXTR = crearCampoUDC(divBuscadorNXTR, "Siguiente Estado", "40", "AT");
+		mostrarCatalogo();
+		txtLNIDF4311.setValue(listaDetalle.size() + 1);
 		botonera = new Botonera() {
 
 			@Override
@@ -215,42 +276,81 @@ public class CF4301 extends CGenerico {
 				if (validarSeleccionEncabezado()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
 						abrirRegistro();
-
 						F4301 f4301 = catalogo.objetoSeleccionadoDelCatalogo();
 						clave = f4301.getId();
-
+						listaDetalle.clear();
+						ltbItems.setModel(new ListModelList<F4311>(listaDetalle));
+						ltbItems.renderAll();
 						txtDCTOF4301.setValue(clave.getPhdcto());
 						txtDOCOF4301.setValue(Math.round(clave.getPhdoco()));
 						txtKCOOF4301.setValue(clave.getPhkcoo());
-
+						txtMCUF4301.setValue(f4301.getPhmcu());
+						if (f4301.getPhmcu().equals("")) {
+							F0006 f0006 = servicioF0006.buscar(f4301.getPhmcu());
+							lblSucPlantaF0006.setValue(f0006.getMcdc());
+						}
+						txtCRCDF4301.setValue(f4301.getPhcrcd());
+						if (!f4301.getPhcrcd().equals("")) {
+							F0013 f0013 = servicioF0013.buscar(f4301.getPhcrcd());
+							lblMonedaF0013.setValue(f0013.getCvdl01());
+						}
+						F0101 f0101;
+						f0101 = servicioF0101.buscar(f4301.getPhan8());
+						if (f0101 != null) {
+							lblProveedoresF0101.setValue(f0101.getAbalph());
+						}
+						f0101 = servicioF0101.buscar(f4301.getPhshan());
+						if (f0101 != null) {
+							lblDestinoF0101.setValue(f0101.getAbalph());
+						}
+						f0101 = servicioF0101.buscar(f4301.getPhanby());
+						if (f0101 != null) {
+							lblCompradorF0101.setValue(f0101.getAbalph());
+						}
+						f0101 = servicioF0101.buscar(f4301.getPhancr());
+						if (f0101 != null) {
+							lblTransportistaF0101.setValue(f0101.getAbalph());
+						}
+						f0101 = servicioF0101.buscar(f4301.getPhan8()); // no
+																		// se
+																		// si
+																		// es
+																		// asi
+						if (f0101 != null) {
+							lblTransportistaF0101.setValue(f0101.getAbalph());
+						}
+						// F4008 f4008 =
+						// servicioF4008.buscarPorTatxa1(f4301.getPhtxa1()).get(0);
+						// lblZonaV4008.setValue(f4008.getId().getTatxa1());
+						buscadorINMG.settearCampo(servicioF0005.buscar("40",
+								"PM", f4301.getPhinmg()));
+						buscadorEXR1.settearCampo(servicioF0005.buscar("00",
+								"EX", f4301.getPhexr1()));
+						buscadorHOLD.settearCampo(servicioF0005.buscar("42",
+								"HC", f4301.getPhhold()));
+						buscadorFUF1.settearCampo(servicioF0005.buscar("40",
+								"FU", f4301.getPhfuf1()));
 						txtAN8F4301.setValue(Math.round(f4301.getPhan8()));
 						txtANBYF4301.setValue(Math.round(f4301.getPhanby()));
 						txtANCRF4301.setValue(Math.round(f4301.getPhancr()));
-						txtCRCDF4301.setValue(f4301.getPhcrcd());
-						txtCRRF4301.setValue(String.valueOf(f4301.getPhcrr()));
+						txtCRRF4301.setValue(f4301.getPhcrr());
 						txtDESCF4301.setValue(f4301.getPhdesc());
-						txtEXR1F4301.setValue(f4301.getPhexr1());
-						txtHOLDF4301.setValue(f4301.getPhhold());
-						txtINMGF4301.setValue(f4301.getPhinmg());
-						txtMCUF4301.setValue(f4301.getPhmcu());
-						txtPCRTF4301
-								.setValue(String.valueOf(f4301.getPhpcrt()));
+						txtPCRTF4301.setValue(String.valueOf(f4301.getPhpcrt()));
 						txtPTCF4301.setValue(f4301.getPhptc());
 						txtRMKF4301.setValue(f4301.getPhrmk());
 						txtSHANF4301.setValue(Math.round(f4301.getPhshan()));
 						txtTKBYF4301.setValue(f4301.getPhtkby());
 						txtTXA1F4301.setValue(f4301.getPhtxa1());
 						txtTXCTF4301.setValue(f4301.getPhtxct());
-						txtFUF1F4301.setValue(f4301.getPhfuf1());
-						dtbCNDJF4301.setValue(transformarJulianaAGregoria(f4301
-								.getPhcndj()));
-						dtbDRQJF4301.setValue(transformarJulianaAGregoria(f4301
-								.getPhdrqj()));
-						dtbPDDJF4301.setValue(transformarJulianaAGregoria(f4301
-								.getPhpddj()));
-						dtbTRDJF4301.setValue(transformarJulianaAGregoria(f4301
-								.getPhtrdj()));
-
+						dtbCNDJF4301.setValue(transformarJulianaAGregoria(f4301.getPhcndj()));
+						dtbDRQJF4301.setValue(transformarJulianaAGregoria(f4301.getPhdrqj()));
+						dtbPDDJF4301.setValue(transformarJulianaAGregoria(f4301.getPhpddj()));
+						dtbTRDJF4301.setValue(transformarJulianaAGregoria(f4301.getPhtrdj()));
+						List<F4311> lista = servicioF4311.buscarPorDocoDctoKcooYSfxo(clave.getPhdoco(),
+								clave.getPhdcto(), clave.getPhkcoo(), clave.getPhsfxo());
+						listaDetalle.addAll(lista);
+						ltbItems.setModel(new ListModelList<F4311>(listaDetalle));
+						ltbItems.renderAll();
 						botonera.getChildren().get(2).setVisible(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -260,8 +360,6 @@ public class CF4301 extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
-				abrirCatalogo();
 
 			}
 
@@ -282,18 +380,14 @@ public class CF4301 extends CGenerico {
 					clavePk.setPhdcto(txtDCTOF4301.getValue());
 					clavePk.setPhdoco(txtDOCOF4301.getValue());
 					clavePk.setPhkcoo(txtKCOOF4301.getValue());
-
+					clavePk.setPhsfxo(txtSFXOF4301.getValue());
 					f4301.setId(clavePk);
-					// txtABTAXF4301;
 					f4301.setPhan8(txtAN8F4301.getValue());
 					f4301.setPhanby(txtANBYF4301.getValue());
 					f4301.setPhancr(txtANCRF4301.getValue());
 					f4301.setPhcrcd(txtCRCDF4301.getValue());
-					f4301.setPhcrr(Double.parseDouble(txtCRRF4301.getValue()));
+					f4301.setPhcrr(txtCRRF4301.getValue());
 					f4301.setPhdesc(txtDESCF4301.getValue());
-					f4301.setPhexr1(txtEXR1F4301.getValue());
-					f4301.setPhhold(txtHOLDF4301.getValue());
-					f4301.setPhinmg(txtINMGF4301.getValue());
 					f4301.setPhmcu(txtMCUF4301.getValue());
 					f4301.setPhpcrt(Double.parseDouble(txtPCRTF4301.getValue()));
 					f4301.setPhptc(txtPTCF4301.getValue());
@@ -302,20 +396,27 @@ public class CF4301 extends CGenerico {
 					f4301.setPhtkby(txtTKBYF4301.getValue());
 					f4301.setPhtxa1(txtTXA1F4301.getValue());
 					f4301.setPhtxct(txtTXCTF4301.getValue());
-					f4301.setPhfuf1(txtFUF1F4301.getValue());
-					f4301.setPhcndj(transformarGregorianoAJulia(dtbCNDJF4301
-							.getValue()));
-					f4301.setPhdrqj(transformarGregorianoAJulia(dtbDRQJF4301
-							.getValue()));
-					f4301.setPhpddj(transformarGregorianoAJulia(dtbPDDJF4301
-							.getValue()));
-					f4301.setPhtrdj(transformarGregorianoAJulia(dtbTRDJF4301
-							.getValue()));
+					f4301.setPhcndj(transformarGregorianoAJulia(dtbCNDJF4301.getValue()));
+					f4301.setPhdrqj(transformarGregorianoAJulia(dtbDRQJF4301.getValue()));
+					f4301.setPhpddj(transformarGregorianoAJulia(dtbPDDJF4301.getValue()));
+					f4301.setPhtrdj(transformarGregorianoAJulia(dtbTRDJF4301.getValue()));
+					f4301.setPhinmg(buscadorINMG.obtenerCaja());
+					f4301.setPhexr1(buscadorEXR1.obtenerCaja());
+					f4301.setPhhold(buscadorHOLD.obtenerCaja());
+					f4301.setPhfuf1(buscadorFUF1.obtenerCaja());
 					servicioF4301.guardar(f4301);
+					for (F4311 modelo : listaDetalle) {
+						modelo.getId().setPddcto(txtDCTOF4301.getValue());
+						modelo.getId().setPddoco(txtDOCOF4301.getValue());
+						modelo.getId().setPdkcoo(txtKCOOF4301.getValue());
+						modelo.getId().setPdsfxo(txtSFXOF4301.getValue());
+						modelo.setPdan8(txtAN8F4301.getValue());
+						modelo.setPdcrcd(txtCRCDF4301.getValue());
+						servicioF4311.guardar(modelo);
+					}
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF4301
-							.buscarTodosOrdenados());
+					catalogo.actualizarLista(servicioF4301.buscarTodosOrdenados());
 				}
 			}
 
@@ -333,7 +434,7 @@ public class CF4301 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4301, titulo , tabs);
+				cerrarVentana(divVF4301, "Orden de Compra Normal", tabs);
 			}
 
 			@Override
@@ -389,34 +490,19 @@ public class CF4301 extends CGenerico {
 	}
 
 	private boolean camposEditando() {
-		if (txtABTAXF4301.getText().compareTo("") != 0
-				|| txtAN8F4301.getText().compareTo("") != 0
-				|| txtANBYF4301.getText().compareTo("") != 0
-				|| txtANCRF4301.getText().compareTo("") != 0
-				|| txtCRCDF4301.getText().compareTo("") != 0
-				|| txtCRRF4301.getText().compareTo("") != 0
-				|| txtDCTOF4301.getText().compareTo("") != 0
-				|| txtDESCF4301.getText().compareTo("") != 0
-				|| txtDOCOF4301.getText().compareTo("") != 0
-				|| txtEXR1F4301.getText().compareTo("") != 0
-				|| txtHOLDF4301.getText().compareTo("") != 0
-				|| txtINMGF4301.getText().compareTo("") != 0
-				|| txtKCOOF4301.getText().compareTo("") != 0
-				|| txtMCUF4301.getText().compareTo("") != 0
-				|| txtPCRTF4301.getText().compareTo("") != 0
-				|| txtPTCF4301.getText().compareTo("") != 0
-				|| txtRMKF4301.getText().compareTo("") != 0
-				|| txtSHANF4301.getText().compareTo("") != 0
-				|| txtTKBYF4301.getText().compareTo("") != 0
-				|| txtTXA1F4301.getText().compareTo("") != 0
-				|| txtTXCTF4301.getText().compareTo("") != 0
-				|| txtFUF1F4301.getText().compareTo("") != 0
-				|| dtbTRDJF4301.getText().compareTo("") != 0
-				|| dtbDRQJF4301.getText().compareTo("") != 0
-				|| dtbPDDJF4301.getText().compareTo("") != 0
+		if (txtABTAXF4301.getText().compareTo("") != 0 || txtAN8F4301.getText().compareTo("") != 0
+				|| txtANBYF4301.getText().compareTo("") != 0 || txtANCRF4301.getText().compareTo("") != 0
+				|| txtCRCDF4301.getText().compareTo("") != 0 || txtCRRF4301.getText().compareTo("") != 0
+				|| txtDESCF4301.getText().compareTo("") != 0 || txtDOCOF4301.getText().compareTo("") != 0
+				|| txtKCOOF4301.getText().compareTo("") != 0 || txtMCUF4301.getText().compareTo("") != 0
+				|| txtPCRTF4301.getText().compareTo("") != 0 || txtPTCF4301.getText().compareTo("") != 0
+				|| txtRMKF4301.getText().compareTo("") != 0 || txtSHANF4301.getText().compareTo("") != 0
+				|| txtTKBYF4301.getText().compareTo("") != 0 || txtTXA1F4301.getText().compareTo("") != 0
+				|| txtTXCTF4301.getText().compareTo("") != 0 || dtbTRDJF4301.getText().compareTo("") != 0
+				|| dtbDRQJF4301.getText().compareTo("") != 0 || dtbPDDJF4301.getText().compareTo("") != 0
 				|| dtbCNDJF4301.getText().compareTo("") != 0)
-			return false;
-		return true;
+			return true;
+		return false;
 	}
 
 	public void limpiarCampos() {
@@ -426,13 +512,9 @@ public class CF4301 extends CGenerico {
 		txtANBYF4301.setValue(null);
 		txtANCRF4301.setValue(null);
 		txtCRCDF4301.setValue("");
-		txtCRRF4301.setValue("");
-		txtDCTOF4301.setValue("");
+		txtCRRF4301.setValue(null);
 		txtDESCF4301.setValue("");
 		txtDOCOF4301.setValue(null);
-		txtEXR1F4301.setValue("");
-		txtHOLDF4301.setValue("");
-		txtINMGF4301.setValue("");
 		txtKCOOF4301.setValue("");
 		txtMCUF4301.setValue("");
 		txtPCRTF4301.setValue("");
@@ -442,17 +524,12 @@ public class CF4301 extends CGenerico {
 		txtTKBYF4301.setValue("");
 		txtTXA1F4301.setValue("");
 		txtTXCTF4301.setValue("");
-		txtFUF1F4301.setValue("");
 		lblCertificadoF0013.setValue("");
-		lblCodExpFiscal.setValue("");
-		lblCodRetencionExp.setValue("");
 		lblCompradorF0101.setValue("");
 		lblCondicionPagoF0101.setValue("");
 		lblDescripcion.setValue("");
 		lblDestinoF0101.setValue("");
-		lblDocF0101.setValue("");
 		lblIdFiscalF0101.setValue("");
-		lblMensaje.setValue("");
 		lblMonedaF0013.setValue("");
 		lblObservacion.setValue("");
 		lblOrdenPor.setValue("");
@@ -463,17 +540,26 @@ public class CF4301 extends CGenerico {
 		lblTipoDireccion2F0101.setValue("");
 		lblTipoDireccionF0101.setValue("");
 		lblTransportistaF0101.setValue("");
+		buscadorEXR1.limpiarCampo();
+		buscadorFUF1.limpiarCampo();
+		buscadorHOLD.limpiarCampo();
+		buscadorINMG.limpiarCampo();
 		dtbTRDJF4301.setValue(null);
 		dtbDRQJF4301.setValue(null);
 		dtbPDDJF4301.setValue(null);
 		dtbCNDJF4301.setValue(null);
 		botonera.getChildren().get(2).setVisible(false);
 		botonera.getChildren().get(0).setVisible(false);
+		listaDetalle.clear();
+		ltbItems.setModel(new ListModelList<F4311>(listaDetalle));
+		ltbItems.renderAll();
+		limpiarCamposItem();
 		catalogo.limpiarSeleccion();
 	}
 
 	public boolean validarSeleccionEncabezado() {
 		List<F4301> seleccionados = catalogo.obtenerSeleccionados();
+		System.out.println(catalogo.obtenerSeleccionados().size());
 		if (seleccionados == null) {
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
@@ -488,38 +574,14 @@ public class CF4301 extends CGenerico {
 	}
 
 	public boolean camposLLenos() {
-		if (txtABTAXF4301.getText().compareTo("") == 0
-				|| txtAN8F4301.getText().compareTo("") == 0
-				|| txtANBYF4301.getText().compareTo("") == 0
-				|| txtANCRF4301.getText().compareTo("") == 0
-				|| txtCRCDF4301.getText().compareTo("") == 0
-				|| txtCRRF4301.getText().compareTo("") == 0
-				|| txtDCTOF4301.getText().compareTo("") == 0
-				|| txtDESCF4301.getText().compareTo("") == 0
-				|| txtDOCOF4301.getText().compareTo("") == 0
-				|| txtEXR1F4301.getText().compareTo("") == 0
-				|| txtHOLDF4301.getText().compareTo("") == 0
-				|| txtINMGF4301.getText().compareTo("") == 0
-				|| txtKCOOF4301.getText().compareTo("") == 0
-				|| txtMCUF4301.getText().compareTo("") == 0
-				|| txtPCRTF4301.getText().compareTo("") == 0
-				|| txtPTCF4301.getText().compareTo("") == 0
-				|| txtRMKF4301.getText().compareTo("") == 0
-				|| txtSHANF4301.getText().compareTo("") == 0
-				|| txtTKBYF4301.getText().compareTo("") == 0
-				|| txtTXA1F4301.getText().compareTo("") == 0
-				|| txtTXCTF4301.getText().compareTo("") == 0
-				|| txtFUF1F4301.getText().compareTo("") == 0
-				|| dtbTRDJF4301.getText().compareTo("") == 0
-				|| dtbDRQJF4301.getText().compareTo("") == 0
-				|| dtbPDDJF4301.getText().compareTo("") == 0
-				|| dtbCNDJF4301.getText().compareTo("") == 0)
+		if (txtDOCOF4301.getText().compareTo("") == 0 || txtDCTOF4301.getText().compareTo("") == 0
+				|| txtKCOOF4301.getText().compareTo("") == 0 || txtSFXOF4301.getText().compareTo("") == 0)
 			return false;
 		return true;
 	}
 
 	public void mostrarBotones(boolean bol) {
-		botonera.getChildren().get(1).setVisible(!bol);
+		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(2).setVisible(bol);
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);
@@ -561,7 +623,7 @@ public class CF4301 extends CGenerico {
 
 			@Override
 			protected String[] crearRegistros(F4301 f4301) {
-				String[] registros = new String[6];
+				String[] registros = new String[14];
 				registros[0] = String.valueOf(f4301.getId().getPhdoco());
 				registros[1] = f4301.getId().getPhdcto();
 				registros[2] = f4301.getId().getPhkcoo();
@@ -695,9 +757,7 @@ public class CF4301 extends CGenerico {
 
 	@Listen("onClick = #btnBuscarTaxAreasV4008")
 	public void mostrarCatalogoZonaFiscal() {
-		System.out.println("hola");
 		final List<F4008> listF4008 = servicioF4008.buscarTodosOrdenados();
-		System.out.println(listF4008.size() + " LIST");
 		catalogoF4008 = new Catalogo<F4008>(divCatalogooTaxAreasV4008, "F4008", listF4008, true, false, false,
 				"Zona/Tipo impositivo", "Descripcion zona fiscal", "Fecha efectiva", "Fecha vto", "Tipo imptvo 1",
 				"Tipo imptvo 2", "Tipo imptvo 3", "Tipo imptvo 4", "Tipo imptvo 5", "Nro corto articulo") {
@@ -828,4 +888,196 @@ public class CF4301 extends CGenerico {
 		}
 		catalogoF0101.setParent(null);
 	}
+
+	// DETALLES
+
+	@Listen("onClick = #btnBuscarF4101")
+	public void mostrarCatalogoF4101() {
+		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
+		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101, "F4101", listF4101, true, false, true, "Codigo",
+				"Descripcion") {
+
+			@Override
+			protected List<F4101> buscar(List<String> valores) {
+
+				List<F4101> lista = new ArrayList<F4101>();
+
+				for (F4101 f4101 : listF4101) {
+					if (String.valueOf(f4101.getImitm()).toLowerCase().contains(valores.get(0).toLowerCase())
+							&& f4101.getImdsc1().toLowerCase().contains(valores.get(1).toLowerCase())) {
+						lista.add(f4101);
+					}
+				}
+				return lista;
+			}
+
+			@Override
+			protected String[] crearRegistros(F4101 f4101) {
+				String[] registros = new String[2];
+				registros[0] = String.valueOf(f4101.getImitm());
+				registros[1] = f4101.getImdsc1();
+				return registros;
+			}
+		};
+		catalogoF4101.setParent(divCatalogoF4101);
+		catalogoF4101.doModal();
+	}
+
+	@Listen("onSeleccion = #divCatalogoF4101")
+	public void seleccionF4101() {
+		F4101 f4101 = catalogoF4101.objetoSeleccionadoDelCatalogo();
+		Double doble = f4101.getImitm();
+		txtITMF4311.setValue(doble.longValue());
+		lblPDITMF4311.setValue(f4101.getImdsc1());
+		catalogoF4101.setParent(null);
+	}
+
+	@Listen("onClick = #btnAgregarItems")
+	public void mostrarGroupbox() {
+		gpxItems.setVisible(true);
+		rowBoton.setVisible(false);
+	}
+
+	private boolean validarItems() {
+		if (buscadorUOM.obtenerCaja().compareTo("") == 0 || buscadorLTTR.obtenerCaja().compareTo("") == 0
+				|| buscadorNXTR.obtenerCaja().compareTo("") == 0 || spnUORGF4311.getValue() == 0)
+			return false;
+		else
+			return true;
+	}
+
+	@Listen("onClick = #btnAgregar")
+	public void annadirLista() {
+		if (validarItems()) {
+			// Cabecera
+			// Double numOrden = Double.valueOf(txtDOCOF4301.getValue());
+			// Double proveedor = Double.valueOf(txtAN8F4301.getValue());
+			// String compania = txtKCOOF4301.getValue();
+			// String moneda = txtCRCDF4301.getValue();
+			// String tipo = txtDCTOF4301.getValue();
+			// Detalle
+			Double num = txtITMF4311.getValue();
+			Double linea = txtLNIDF4311.getValue();
+			String des = txtDSC1F4311.getValue();
+			String des2 = txtDSC2F4311.getValue();
+			Double precio = txtPRRCF4311.getValue();
+			Double costo = txtAEXPF4311.getValue();
+			String cuenta = txtVR01F4311.getValue();
+			String orden = txtOORNF4311.getValue();
+			String unidad = txtMCUF4311.getValue();
+			Double cantidad = spnUORGF4311.getValue();
+			String udcUOM = buscadorUOM.obtenerCaja();
+			String udcLTTR = buscadorLTTR.obtenerCaja();
+			String udcNXTR = buscadorNXTR.obtenerCaja();
+			F4311 f4311 = new F4311();
+			f4311.setPditm(num);
+			f4311.setPddsc1(des);
+			f4311.setPddsc2(des2);
+			f4311.setPdprrc(precio);
+			f4311.setPdaexp(costo);
+			f4311.setPdvr01(cuenta);
+			f4311.setPdoorn(orden);
+			f4311.setPdmcu(unidad);
+			f4311.setPduorg(cantidad);
+			f4311.setPduom(udcUOM);
+			f4311.setPdlttr(udcLTTR);
+			f4311.setPdnxtr(udcNXTR);
+			F4311PK clave = new F4311PK();
+			clave.setPdlnid(linea);
+			f4311.setId(clave);
+			listaDetalle.add(f4311);
+			actualizarLinea();
+			ltbItems.setModel(new ListModelList<F4311>(listaDetalle));
+			ltbItems.renderAll();
+			limpiarCamposItem();
+		} else
+			msj.mensajeAlerta(Mensaje.camposVaciosItem);
+	}
+
+	@Listen("onClick = #btnVer")
+	public void seleccionarItemLista() {
+		if (ltbItems.getItemCount() != 0) {
+			if (ltbItems.getSelectedItems().size() == 1) {
+				Listitem listItem = ltbItems.getSelectedItem();
+				F4311 modelo = listItem.getValue();
+				this.setValoresDetalles(modelo);
+				ltbItems.removeItemAt(listItem.getIndex());
+				listaDetalle.remove(modelo);
+				actualizarLinea();
+				ltbItems.setModel(new ListModelList<F4311>(listaDetalle));
+				ltbItems.renderAll();
+			} else
+				msj.mensajeAlerta(Mensaje.editarSoloUno);
+		} else
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+	}
+
+	public void setValoresDetalles(F4311 modelo) {
+		txtITMF4311.setValue(modelo.getPditm());
+		txtLNIDF4311.setValue(listaDetalle.size() + 1);
+		txtDSC1F4311.setValue(modelo.getPddsc1());
+		txtDSC2F4311.setValue(modelo.getPddsc2());
+		txtPRRCF4311.setValue(modelo.getPdprrc());
+		txtAEXPF4311.setValue(modelo.getPdaexp());
+		txtVR01F4311.setValue(modelo.getPdvr01());
+		txtOORNF4311.setValue(modelo.getPdoorn());
+		txtMCUF4311.setValue(modelo.getPdmcu());
+		spnUORGF4311.setValue(modelo.getPduorg());
+		String udc = modelo.getPduom();
+		F0005 f05 = servicioF0005.buscar("00", "UM", udc);
+		buscadorUOM.settearCampo(f05);
+		udc = modelo.getPdlttr();
+		f05 = servicioF0005.buscar("40", "AT", udc);
+		buscadorLTTR.settearCampo(f05);
+		udc = modelo.getPdnxtr();
+		f05 = servicioF0005.buscar("40", "AT", udc);
+		buscadorNXTR.settearCampo(f05);
+	}
+
+	private void limpiarCamposItem() {
+		txtITMF4311.setValue(null);
+		lblPDITMF4311.setValue("");
+		lblMCUF4311.setValue("");
+		txtDSC1F4311.setValue(null);
+		txtDSC2F4311.setValue(null);
+		txtPRRCF4311.setValue(null);
+		txtAEXPF4311.setValue(null);
+		txtVR01F4311.setValue(null);
+		txtOORNF4311.setValue(null);
+		txtMCUF4311.setValue(null);
+		spnUORGF4311.setValue((double) 0);
+		buscadorUOM.settearCampo(null);
+		buscadorLTTR.settearCampo(null);
+		buscadorNXTR.settearCampo(null);
+		txtLNIDF4311.setValue(listaDetalle.size() + 1);
+	}
+
+	@Listen("onClick = #btnRemover")
+	public void removerItem() {
+		if (ltbItems.getItemCount() != 0) {
+			if (ltbItems.getSelectedItems().size() == 1) {
+				Listitem listItem = ltbItems.getSelectedItem();
+				F4311 modelo = listItem.getValue();
+				ltbItems.removeItemAt(listItem.getIndex());
+				listaDetalle.remove(modelo);
+				actualizarLinea();
+				ltbItems.setModel(new ListModelList<F4311>(listaDetalle));
+				ltbItems.renderAll();
+				txtLNIDF4311.setValue(listaDetalle.size() + 1);
+			} else
+				msj.mensajeAlerta(Mensaje.editarSoloUno);
+		} else
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+	}
+
+	private void actualizarLinea() {
+		double linea = 1;
+		// for (int i =0; i<listaDetalle.size(); i++){
+		// F4311 modelo : listaDetalle.get(i);
+		for (F4311 modelo : listaDetalle) {
+			modelo.getId().setPdlnid(linea);
+			linea++;
+		}
+	}
+
 }
