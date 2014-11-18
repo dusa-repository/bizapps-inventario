@@ -14,6 +14,9 @@ import modelo.maestros.F0004;
 import modelo.seguridad.Arbol;
 import modelo.seguridad.Grupo;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.SelectEvent;
@@ -35,10 +38,10 @@ import org.zkoss.zul.Treeitem;
 
 import arbol.MArbol;
 import arbol.Nodos;
-
 import componentes.Botonera;
 import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.Validador;
 import controlador.maestros.CGenerico;
 
 public class CGrupo extends CGenerico {
@@ -628,73 +631,69 @@ public class CGrupo extends CGenerico {
 		}
 		return _model;
 	}
-	
+
 	private Nodos getFooRoot() {
+
 		Nodos root = new Nodos(null, 0, "");
-		Nodos oneLevelNode = new Nodos(null, 0, "");
-		Nodos twoLevelNode = new Nodos(null, 0, "");
-		Nodos threeLevelNode = new Nodos(null, 0, "");
-		Nodos fourLevelNode = new Nodos(null, 0, "");
-		List<Arbol> listaArbol = servicioArbol.listarArbol();
+
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(
+				auth.getAuthorities());
+
 		ArrayList<Arbol> arbole = new ArrayList<Arbol>();
 		List<Arbol> arboles = new ArrayList<Arbol>();
 		ArrayList<Long> ids = new ArrayList<Long>();
-		for (int k = 0; k < listaArbol.size(); k++) {
+		for (int k = 0; k < authorities.size(); k++) {
+
 			Arbol arbol;
-			long nombre = listaArbol.get(k).getIdArbol();
-			arbol = servicioArbol.buscarPorId(nombre);
-			if (arbol != null)
-				ids.add(arbol.getIdArbol());
-			arbole.add(arbol);
+			String nombre = authorities.get(k).toString();
+			if (Validador.validarNumero(nombre)) {
+				arbol = servicioArbol.buscar(Long.parseLong(nombre));
+				if (arbol != null)
+					ids.add(arbol.getIdArbol());
+				arbole.add(arbol);
+			}
 		}
+
 		Collections.sort(ids);
 		for (int t = 0; t < ids.size(); t++) {
 			Arbol a;
 			a = servicioArbol.buscarPorId(ids.get(t));
 			arboles.add(a);
 		}
-		long temp1, temp2, temp3 = 0;
-		for (int i = 0; i < arboles.size(); i++) {
-			if (arboles.get(i).getPadre() == 0) {
-				oneLevelNode = new Nodos(root, i, arboles.get(i).getNombre());
-				root.appendChild(oneLevelNode);
-				temp1 = arboles.get(i).getIdArbol();
-				arboles.remove(i);
-				for (int j = i; j < arboles.size(); j++) {
-					if (temp1 == arboles.get(j).getPadre()) {
-						twoLevelNode = new Nodos(oneLevelNode, i, arboles
-								.get(j).getNombre());
-						oneLevelNode.appendChild(twoLevelNode);
-						temp2 = arboles.get(j).getIdArbol();
-						arboles.remove(j);
-						for (int k = j; k < arboles.size(); k++) {
-							if (temp2 == arboles.get(k).getPadre()) {
-								threeLevelNode = new Nodos(twoLevelNode, i,
-										arboles.get(k).getNombre());
-								twoLevelNode.appendChild(threeLevelNode);
-								temp3 = arboles.get(k).getIdArbol();
-								arboles.remove(k);
-								for (int z = k; z < arboles.size(); z++) {
-									if (temp3 == arboles.get(z).getPadre()) {
-										fourLevelNode = new Nodos(
-												threeLevelNode, i, arboles.get(
-														z).getNombre());
-										threeLevelNode
-												.appendChild(fourLevelNode);
-										arboles.remove(z);
-										z = z - 1;
-									}
-								}
-								k = k - 1;
-							}
-						}
-						j = j - 1;
+
+		List<Long> idsPadre = new ArrayList<Long>();
+		List<Nodos> nodos = new ArrayList<Nodos>();
+		return crearArbol(root, nodos, arboles, 0, idsPadre);
+
+	}
+
+	private Nodos crearArbol(Nodos roote, List<Nodos> nodos,
+			List<Arbol> arboles, int i, List<Long> idsPadre) {
+		for (int z = 0; z < arboles.size(); z++) {
+			Nodos oneLevelNode = new Nodos(null, 0, "");
+			Nodos two = new Nodos(null, 0, "");
+			if (arboles.get(z).getPadre() == 0) {
+				oneLevelNode = new Nodos(roote, (int) arboles.get(z)
+						.getIdArbol(), arboles.get(z).getNombre());
+				roote.appendChild(oneLevelNode);
+				idsPadre.add(arboles.get(z).getIdArbol());
+				nodos.add(oneLevelNode);
+			} else {
+				for (int j = 0; j < idsPadre.size(); j++) {
+					if (idsPadre.get(j) == arboles.get(z).getPadre()) {
+						oneLevelNode = nodos.get(j);
+						two = new Nodos(oneLevelNode, (int) arboles.get(z)
+								.getIdArbol(), arboles.get(z).getNombre());
+						oneLevelNode.appendChild(two);
+						idsPadre.add(arboles.get(z).getIdArbol());
+						nodos.add(two);
 					}
 				}
-				i = i - 1;
 			}
 		}
-		return root;
+		return roote;
 	}
 
 }
