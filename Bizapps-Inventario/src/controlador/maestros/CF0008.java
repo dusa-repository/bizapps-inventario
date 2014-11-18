@@ -104,8 +104,7 @@ public class CF0008 extends CGenerico {
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
 				"DP");
 		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 255, listaF0005,
-				true, false, false,"H00",
-				"DP") {
+				true, false, false, "H00", "DP") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DP",
@@ -170,7 +169,7 @@ public class CF0008 extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
 
 			}
@@ -190,67 +189,74 @@ public class CF0008 extends CGenerico {
 				if (clave == null)
 					guardar = validar();
 				if (guardar) {
-					long dfyj = Long.valueOf((String
-							.valueOf(transformarGregorianoAJulia(dtbDFYJF0008
-									.getValue()))));
-					String cdfq = "";
-					BigDecimal d01j = transformarGregorianoAJulia(dtbD01JF0008
-							.getValue());
-					BigDecimal d02j = transformarGregorianoAJulia(dtbD02JF0008
-							.getValue());
-					BigDecimal d03j = transformarGregorianoAJulia(dtbD03JF0008
-							.getValue());
-					BigDecimal d04j = transformarGregorianoAJulia(dtbD04JF0008
-							.getValue());
-					BigDecimal d05j = transformarGregorianoAJulia(dtbD05JF0008
-							.getValue());
-					BigDecimal d06j = transformarGregorianoAJulia(dtbD06JF0008
-							.getValue());
-					BigDecimal d07j = transformarGregorianoAJulia(dtbD07JF0008
-							.getValue());
-					BigDecimal d08j = transformarGregorianoAJulia(dtbD08JF0008
-							.getValue());
-					BigDecimal d09j = transformarGregorianoAJulia(dtbD09JF0008
-							.getValue());
-					BigDecimal d10j = transformarGregorianoAJulia(dtbD10JF0008
-							.getValue());
-					BigDecimal d11j = transformarGregorianoAJulia(dtbD11JF0008
-							.getValue());
-					BigDecimal d12j = transformarGregorianoAJulia(dtbD12JF0008
-							.getValue());
-					BigDecimal d13j = transformarGregorianoAJulia(dtbD13JF0008
-							.getValue());
-					BigDecimal d14j = transformarGregorianoAJulia(dtbD14JF0008
-							.getValue());
 
-					F0008PK clave = new F0008PK();
-					clave.setCddtpn(buscadorDPNT.obtenerCaja());
-					clave.setCddfyj(dfyj);
-					clave.setCdfq(cdfq);
-					F0008 fooo8 = new F0008();
-					fooo8.setId(clave);
-					fooo8.setCdd01j(d01j);
-					fooo8.setCdd02j(d02j);
-					fooo8.setCdd03j(d03j);
-					fooo8.setCdd04j(d04j);
-					fooo8.setCdd05j(d05j);
-					fooo8.setCdd06j(d06j);
-					fooo8.setCdd07j(d07j);
-					fooo8.setCdd08j(d08j);
-					fooo8.setCdd09j(d09j);
-					fooo8.setCdd10j(d10j);
-					fooo8.setCdd11j(d11j);
-					fooo8.setCdd12j(d12j);
-					fooo8.setCdd13j(d13j);
-					fooo8.setCdd14j(d14j);
-					fooo8.setCduser("JDE");
-					fooo8.setCdupmj(transformarGregorianoAJulia(new Date()));
-					fooo8.setCdupmt(Double.parseDouble(horaAuditoria));
-					servicioF0008.guardar(fooo8);
-					msj.mensajeInformacion(Mensaje.guardado);
-					limpiar();
-					catalogo.actualizarLista(servicioF0008
-							.buscarTodosOrdenados());
+					if (validarFechas()) {
+
+						long dfyj = Long
+								.valueOf((String
+										.valueOf(transformarGregorianoAJulia(dtbDFYJF0008
+												.getValue()))));
+						String cdfq = "";
+						BigDecimal d01j = transformarGregorianoAJulia(dtbD01JF0008
+								.getValue());
+						BigDecimal d02j = transformarGregorianoAJulia(dtbD02JF0008
+								.getValue());
+						BigDecimal d03j = transformarGregorianoAJulia(dtbD03JF0008
+								.getValue());
+						BigDecimal d04j = transformarGregorianoAJulia(dtbD04JF0008
+								.getValue());
+						BigDecimal d05j = transformarGregorianoAJulia(dtbD05JF0008
+								.getValue());
+						BigDecimal d06j = transformarGregorianoAJulia(dtbD06JF0008
+								.getValue());
+						BigDecimal d07j = transformarGregorianoAJulia(dtbD07JF0008
+								.getValue());
+						BigDecimal d08j = transformarGregorianoAJulia(dtbD08JF0008
+								.getValue());
+						BigDecimal d09j = transformarGregorianoAJulia(dtbD09JF0008
+								.getValue());
+						BigDecimal d10j = transformarGregorianoAJulia(dtbD10JF0008
+								.getValue());
+						BigDecimal d11j = transformarGregorianoAJulia(dtbD11JF0008
+								.getValue());
+						BigDecimal d12j = transformarGregorianoAJulia(dtbD12JF0008
+								.getValue());
+						BigDecimal d13j = transformarGregorianoAJulia(dtbD13JF0008
+								.getValue());
+						BigDecimal d14j = transformarGregorianoAJulia(dtbD14JF0008
+								.getValue());
+
+						F0008PK clave = new F0008PK();
+						clave.setCddtpn(buscadorDPNT.obtenerCaja());
+						clave.setCddfyj(dfyj);
+						clave.setCdfq(cdfq);
+						F0008 fooo8 = new F0008();
+						fooo8.setId(clave);
+						fooo8.setCdd01j(d01j);
+						fooo8.setCdd02j(d02j);
+						fooo8.setCdd03j(d03j);
+						fooo8.setCdd04j(d04j);
+						fooo8.setCdd05j(d05j);
+						fooo8.setCdd06j(d06j);
+						fooo8.setCdd07j(d07j);
+						fooo8.setCdd08j(d08j);
+						fooo8.setCdd09j(d09j);
+						fooo8.setCdd10j(d10j);
+						fooo8.setCdd11j(d11j);
+						fooo8.setCdd12j(d12j);
+						fooo8.setCdd13j(d13j);
+						fooo8.setCdd14j(d14j);
+						fooo8.setCduser("JDE");
+						fooo8.setCdupmj(transformarGregorianoAJulia(new Date()));
+						fooo8.setCdupmt(Double.parseDouble(horaAuditoria));
+						servicioF0008.guardar(fooo8);
+						msj.mensajeInformacion(Mensaje.guardado);
+						limpiar();
+						catalogo.actualizarLista(servicioF0008
+								.buscarTodosOrdenados());
+
+					}
+
 				}
 
 			}
@@ -274,7 +280,7 @@ public class CF0008 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF0008, titulo , tabs);
+				cerrarVentana(divVF0008, titulo, tabs);
 			}
 
 			@Override
@@ -374,6 +380,184 @@ public class CF0008 extends CGenerico {
 	public void habilitarTextClave() {
 
 		buscadorDPNT.habilitarCampos();
+	}
+
+	public boolean validarFechas() {
+
+		if (dtbD01JF0008.getValue().after(dtbD02JF0008.getValue())) {
+
+			Messagebox
+					.show("La fecha del periodo 2 ser posterior a la fecha del periodo 1",
+							"Error", Messagebox.OK, Messagebox.ERROR);
+
+			return false;
+		} else {
+
+			if (dtbD02JF0008.getValue().after(dtbD03JF0008.getValue())) {
+
+				Messagebox
+						.show("La fecha del periodo 3 ser posterior a la fecha del periodo 2",
+								"Error", Messagebox.OK, Messagebox.ERROR);
+
+				return false;
+			} else {
+
+				if (dtbD03JF0008.getValue().after(dtbD04JF0008.getValue())) {
+
+					Messagebox
+							.show("La fecha del periodo 4 ser posterior a la fecha del periodo 3",
+									"Error", Messagebox.OK, Messagebox.ERROR);
+
+					return false;
+				} else {
+
+					if (dtbD04JF0008.getValue().after(dtbD05JF0008.getValue())) {
+
+						Messagebox
+								.show("La fecha del periodo 5 ser posterior a la fecha del periodo 4",
+										"Error", Messagebox.OK,
+										Messagebox.ERROR);
+
+						return false;
+					} else {
+
+						if (dtbD05JF0008.getValue().after(
+								dtbD06JF0008.getValue())) {
+
+							Messagebox
+									.show("La fecha del periodo 6 ser posterior a la fecha del periodo 5",
+											"Error", Messagebox.OK,
+											Messagebox.ERROR);
+
+							return false;
+						} else {
+
+							if (dtbD06JF0008.getValue().after(
+									dtbD07JF0008.getValue())) {
+
+								Messagebox
+										.show("La fecha del periodo 7 ser posterior a la fecha del periodo 6",
+												"Error", Messagebox.OK,
+												Messagebox.ERROR);
+
+								return false;
+							} else {
+
+								if (dtbD07JF0008.getValue().after(
+										dtbD08JF0008.getValue())) {
+
+									Messagebox
+											.show("La fecha del periodo 8 ser posterior a la fecha del periodo 7",
+													"Error", Messagebox.OK,
+													Messagebox.ERROR);
+
+									return false;
+								} else {
+
+									if (dtbD08JF0008.getValue().after(
+											dtbD09JF0008.getValue())) {
+
+										Messagebox
+												.show("La fecha del periodo 9 ser posterior a la fecha del periodo 8",
+														"Error", Messagebox.OK,
+														Messagebox.ERROR);
+
+										return false;
+									} else {
+
+										if (dtbD09JF0008.getValue().after(
+												dtbD10JF0008.getValue())) {
+
+											Messagebox
+													.show("La fecha del periodo 10 ser posterior a la fecha del periodo 9",
+															"Error",
+															Messagebox.OK,
+															Messagebox.ERROR);
+
+											return false;
+										} else {
+
+											if (dtbD10JF0008.getValue().after(
+													dtbD11JF0008.getValue())) {
+
+												Messagebox
+														.show("La fecha del periodo 11 ser posterior a la fecha del periodo 10",
+																"Error",
+																Messagebox.OK,
+																Messagebox.ERROR);
+
+												return false;
+											} else {
+
+												if (dtbD11JF0008.getValue()
+														.after(dtbD12JF0008
+																.getValue())) {
+
+													Messagebox
+															.show("La fecha del periodo 12 ser posterior a la fecha del periodo 11",
+																	"Error",
+																	Messagebox.OK,
+																	Messagebox.ERROR);
+
+													return false;
+												} else {
+
+													if (dtbD12JF0008
+															.getValue()
+															.after(dtbD13JF0008
+																	.getValue())) {
+
+														Messagebox
+																.show("La fecha del periodo 13 ser posterior a la fecha del periodo 12",
+																		"Error",
+																		Messagebox.OK,
+																		Messagebox.ERROR);
+
+														return false;
+													} else {
+
+														if (dtbD13JF0008
+																.getValue()
+																.after(dtbD14JF0008
+																		.getValue())) {
+
+															Messagebox
+																	.show("La fecha del periodo 14 ser posterior a la fecha del periodo 13",
+																			"Error",
+																			Messagebox.OK,
+																			Messagebox.ERROR);
+
+															return false;
+														} else {
+
+															return true;
+
+														}
+
+													}
+
+												}
+
+											}
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
 	}
 
 	public boolean camposLLenos() {
@@ -487,7 +671,7 @@ public class CF0008 extends CGenerico {
 	protected boolean validar() {
 
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -520,59 +704,59 @@ public class CF0008 extends CGenerico {
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd01j())).toLowerCase()
-											.contains(valores.get(2).toLowerCase())
+									.contains(valores.get(2).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd02j())).toLowerCase()
-											.contains(valores.get(3).toLowerCase())
+									.contains(valores.get(3).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd03j())).toLowerCase()
-											.contains(valores.get(4).toLowerCase())
+									.contains(valores.get(4).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd04j())).toLowerCase()
-											.contains(valores.get(5).toLowerCase())
+									.contains(valores.get(5).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd05j())).toLowerCase()
-											.contains(valores.get(6).toLowerCase())
+									.contains(valores.get(6).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd06j())).toLowerCase()
-											.contains(valores.get(7).toLowerCase())
+									.contains(valores.get(7).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd07j())).toLowerCase()
-											.contains(valores.get(8).toLowerCase())
+									.contains(valores.get(8).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd08j())).toLowerCase()
-											.contains(valores.get(9).toLowerCase())
+									.contains(valores.get(9).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd09j())).toLowerCase()
-											.contains(valores.get(10).toLowerCase())
+									.contains(valores.get(10).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd10j())).toLowerCase()
-											.contains(valores.get(11).toLowerCase())
+									.contains(valores.get(11).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd11j())).toLowerCase()
-											.contains(valores.get(12).toLowerCase())
+									.contains(valores.get(12).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd12j())).toLowerCase()
-											.contains(valores.get(13).toLowerCase())
+									.contains(valores.get(13).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd13j())).toLowerCase()
-											.contains(valores.get(14).toLowerCase())
+									.contains(valores.get(14).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0008
 											.getCdd14j())).toLowerCase()
-											.contains(valores.get(15).toLowerCase())) {
+									.contains(valores.get(15).toLowerCase())) {
 						lista.add(f0008);
 					}
 				}
