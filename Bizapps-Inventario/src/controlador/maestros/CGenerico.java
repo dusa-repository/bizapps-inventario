@@ -40,6 +40,7 @@ import org.zkoss.zul.Tab;
 
 import componentes.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.utils.Convertidor;
 import servicio.maestros.SF00021;
 import servicio.maestros.SF0004;
 import servicio.maestros.SF0005;
@@ -214,69 +215,11 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	}
 
 	public Date transformarJulianaAGregoria(BigDecimal valor) {
-		String j = valor.toString();
-		Date date = new Date();
-		String primerValor = "";
-		if (j.length() == 5) {
-			try {
-				date = new SimpleDateFormat("yyD").parse(j);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			primerValor = j.substring(0, 1);
-			if (primerValor.equals("1")) {
-				String anno = j.substring(1, 3);
-				date.setYear(Integer.valueOf("20" + anno) - 1900);
-				String s = j.substring(3);
-				Date fecha = new Date();
-				try {
-					fecha = new SimpleDateFormat("D").parse(s);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				fecha.setYear(date.getYear());
-				return fecha;
-			}
-		}
-
-		return date;
-
+		return Convertidor.transformarJulianaAGregoria(valor);
 	}
 
 	public Date transformarJulianaAGregoriadeLong(Long valor) {
-		String j = valor.toString();
-		Date date = new Date();
-		String primerValor = "";
-		if (j.length() == 5) {
-			try {
-				date = new SimpleDateFormat("yyD").parse(j);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			primerValor = j.substring(0, 1);
-			if (primerValor.equals("1")) {
-				String anno = j.substring(1, 3);
-				date.setYear(Integer.valueOf("20" + anno) - 1900);
-				String s = j.substring(3);
-				Date fecha = new Date();
-				try {
-					fecha = new SimpleDateFormat("D").parse(s);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				fecha.setYear(date.getYear());
-				return fecha;
-			}
-		}
-
-		return date;
-
+		return Convertidor.transformarJulianaAGregoriadeLong(valor);
 	}
 
 	public abstract void inicializar() throws IOException;
@@ -343,14 +286,12 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		}
 	}
 
-
 	class SMTPAuthenticator extends javax.mail.Authenticator {
 		public PasswordAuthentication getPasswordAuthentication() {
 			return new PasswordAuthentication("cdusa", "cartucho");
 		}
 	}
 
-	
 	protected double nextNumber(String numero, String user) {
 		synchronized (this) {
 			while (!nextNumber) {

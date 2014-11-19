@@ -28,17 +28,19 @@
 										<label class="etiqueta"
 											value="Tipo Vehiculo:" />
 										<space />
-										<label value="*"
+										<label value=""
 											style="font-weight:bold;color:red">
 										</label>
 									</hbox>
 									<textbox id="txtVTYPF4931" hflex="1"
-										maxlength="100" tooltiptext="Ingresar el Tipo de Vehiculo (VGVTYP)" />
+										maxlength="100"
+										tooltiptext="Ingresar el Tipo de Vehiculo (VGVTYP)" />
 									<textbox id="txtDL01F4931" hflex="9"
-										maxlength="100" tooltiptext="Ingresar el Tipo de Vehiculo (VGDL01)" />
-									<!--falta el tooltiptext -->
+										maxlength="100"
+										tooltiptext="Ingresar el Tipo de Vehiculo (VGDL01)" />
 									<checkbox label="Transp prod"
-										id="chxCPFGF4931" hflex="5" tooltiptext="Marque Para Seleccionar Esta Opcion (VGCPFG) " />
+										id="chxCPFGF4931" hflex="5"
+										tooltiptext="Marque Para Seleccionar Esta Opcion (VGCPFG) " />
 								</row>
 							</rows>
 						</grid>
@@ -74,21 +76,22 @@
 										</columns>
 										<rows>
 											<row>
-												<cell colspan="2">
+												<cell colspan="3">
 													<div
 														id="divBuscadorWTUMF4931" hflex="1" />
 												</cell>
+												<hbox />
 											</row>
 											<row>
 												<hbox>
 													<label
 														class="etiqueta" value="Vacio:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtWTEMF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Vacio (VGWTEM)" />
 												<hbox />
@@ -99,11 +102,11 @@
 													<label
 														class="etiqueta" value="Capacidad:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtWTCAF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese la capacidad (VGWTCA)" />
 												<hbox />
@@ -114,7 +117,7 @@
 													<label
 														class="etiqueta" value="Bruto maximo:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
@@ -148,27 +151,29 @@
 										</columns>
 										<rows>
 											<row>
-												<cell colspan="2">
+												<cell colspan="3">
 													<div
 														id="divBuscadorLCNTF4931" hflex="1" />
 												</cell>
+												<hbox />
 											</row>
 											<row>
-												<cell colspan="2">
+												<cell colspan="3">
 													<div
 														id="divBuscadorVLUMF4931" hflex="1" />
 												</cell>
+												<hbox />
 											</row>
 											<row>
 												<hbox>
 													<label
 														class="etiqueta" value="Capacidad:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtVLCPF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese la capacidad (VGVLCP)" />
 												<hbox />
@@ -179,11 +184,11 @@
 													<label
 														class="etiqueta" value="Capacidad Secundaria:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtVLCSF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese la capacidad secundaria (VGVLCS)" />
 												<hbox />
@@ -213,23 +218,25 @@
 										</columns>
 										<rows>
 											<row>
-												<cell colspan="2">
+												<cell colspan="3">
 													<div
 														id="divBuscadorCVUMF4931" hflex="1" />
 												</cell>
+												<hbox />
 											</row>
 											<row>
 												<hbox>
 													<label
 														class="etiqueta" value="Capacidad:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtCVOLF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese la capacidad (VGCVOL)" />
+												<hbox />
 												<hbox />
 											</row>
 										</rows>
@@ -256,48 +263,52 @@
 										</columns>
 										<rows>
 											<row>
-												<cell colspan="2">
+												<cell colspan="3">
 													<div
 														id="divBuscadorDSGPF4931" hflex="1" />
 												</cell>
+												<hbox />
 											</row>
 											<row>
-												<cell colspan="2">
+												<cell colspan="3">
 													<div
 														id="divBuscadorDSGSF4931" hflex="1" />
 												</cell>
+												<hbox />
 											</row>
 											<row>
 												<hbox>
 													<label
 														class="etiqueta" value="Nº de compart:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtNCEF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el numero de compartimientos (VGNCE)" />
 												<hbox />
 												<hbox />
 											</row>
 											<row>
-												<cell colspan="2">
+												<cell colspan="3">
 													<div
 														id="divBuscadorMOTF4931" hflex="1" />
 												</cell>
+												<hbox />
 											</row>
 											<row>
-												<cell colspan="2">
+												<cell colspan="3">
 													<div
 														id="divBuscadorBPFGF4931" hflex="1" />
 												</cell>
+												<hbox />
 											</row>
 											<row>
 												<checkbox
 													label="Lineas Multiples" id="chxMLLNF4931" hflex="5"
-													tooltiptext="Marque Para Seleccionar Lineas Miltiples (VGMLLN) " />
+													tooltiptext="Marque Para Seleccionar Lineas Multiples (VGMLLN) " />
 												<hbox />
 												<hbox />
 												<hbox />
@@ -307,11 +318,11 @@
 													<label
 														class="etiqueta" value="Nº de ejes:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtAXLEF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el numero de ejes (VGAXLE)" />
 												<hbox />
@@ -322,11 +333,11 @@
 													<label
 														class="etiqueta" value="Capacidad de peso por eje:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtWTAXF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese la capacidad de peso por eje (VGWTAX)" />
 												<hbox />
@@ -337,11 +348,11 @@
 													<label
 														class="etiqueta" value="Nº de sellos requeridos:" />
 													<space />
-													<label value="*"
+													<label value=""
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<textbox
+												<doublebox
 													id="txtSEALF4931" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Nº de sellos requeridos (VGSEAL)" />
 												<hbox />

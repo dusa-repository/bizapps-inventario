@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.zkoss.zk.ui.Component;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Label;
@@ -39,8 +40,8 @@ public class CatalogoUDC extends Catalogo<F0005> {
 	private Textbox txtRT;
 	private Label labelBuscado;
 
-	public CatalogoUDC(String titulo, List<F0005> lista, String... campos) {
-		super(titulo, lista, true, campos);
+	public CatalogoUDC(Component div, String titulo, List<F0005> lista, String... campos) {
+		super(div, titulo, lista, true, campos);
 	}
 
 	@Override

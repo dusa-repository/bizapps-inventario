@@ -15,6 +15,7 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Doublebox;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
@@ -24,6 +25,7 @@ import componentes.Botonera;
 import componentes.BuscadorUDC;
 import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoF4931;
 
 public class CF4931 extends CGenerico {
 
@@ -43,16 +45,16 @@ public class CF4931 extends CGenerico {
 	private Div divBuscadorWTUMF4931;
 	private BuscadorUDC buscadorWTUMF4931;
 	@Wire
-	private Textbox txtWTEMF4931;
+	private Doublebox txtWTEMF4931;
 	@Wire
-	private Textbox txtWTCAF4931;
+	private Doublebox txtWTCAF4931;
 	@Wire
 	private Textbox txtWTGRF4931;
 	@Wire
 	private Div divBuscadorCVUMF4931;
 	private BuscadorUDC buscadorCVUMF4931;
 	@Wire
-	private Textbox txtCVOLF4931;
+	private Doublebox txtCVOLF4931;
 	@Wire
 	private Div divBuscadorDSGPF4931;
 	private BuscadorUDC buscadorDSGPF4931;
@@ -60,7 +62,7 @@ public class CF4931 extends CGenerico {
 	private Div divBuscadorDSGSF4931;
 	private BuscadorUDC buscadorDSGSF4931;
 	@Wire
-	private Textbox txtNCEF4931;
+	private Doublebox txtNCEF4931;
 	@Wire
 	private Div divBuscadorLCNTF4931;
 	private BuscadorUDC buscadorLCNTF4931;
@@ -68,9 +70,9 @@ public class CF4931 extends CGenerico {
 	private Div divBuscadorVLUMF4931;
 	private BuscadorUDC buscadorVLUMF4931;
 	@Wire
-	private Textbox txtVLCPF4931;
+	private Doublebox txtVLCPF4931;
 	@Wire
-	private Textbox txtVLCSF4931;
+	private Doublebox txtVLCSF4931;
 	@Wire
 	private Div divBuscadorMOTF4931;
 	private BuscadorUDC buscadorMOTF4931;
@@ -78,12 +80,11 @@ public class CF4931 extends CGenerico {
 	private Div divBuscadorBPFGF4931;
 	private BuscadorUDC buscadorBPFGF4931;
 	@Wire
-	private Textbox txtAXLEF4931;
+	private Doublebox txtAXLEF4931;
 	@Wire
-	private Textbox txtWTAXF4931;
+	private Doublebox txtWTAXF4931;
 	@Wire
-	private Textbox txtSEALF4931;
-
+	private Doublebox txtSEALF4931;
 	@Wire
 	private Div divVF4931;
 	@Wire
@@ -182,51 +183,41 @@ public class CF4931 extends CGenerico {
 						chxMLLNF4931.setChecked(f4931.getVgmlln().equals("1"));
 						buscadorWTUMF4931.settearCampo(servicioF0005,
 								f4931.getVgwtum());
-						txtWTEMF4931
-								.setValue(String.valueOf(f4931.getVgwtem()));
-						txtWTCAF4931
-								.setValue(String.valueOf(f4931.getVgwtca()));
+						txtWTEMF4931.setValue(f4931.getVgwtem());
+						txtWTCAF4931.setValue(f4931.getVgwtca());
 						// txtWTGRF4931.setValue(f4931.getVgwtgr());
 						buscadorCVUMF4931.settearCampo(servicioF0005,
 								f4931.getVgcvum());
-						txtCVOLF4931
-								.setValue(String.valueOf(f4931.getVgcvol()));
+						txtCVOLF4931.setValue(f4931.getVgcvol());
 						buscadorDSGPF4931.settearCampo(servicioF0005,
 								f4931.getVgdsgp());
 						buscadorDSGSF4931.settearCampo(servicioF0005,
 								f4931.getVgdsgs());
-						txtNCEF4931.setValue(String.valueOf(f4931.getVgnce()));
-						buscadorLCNTF4931.settearCampo(servicioF0005,
-								String.valueOf(f4931.getVglcnt()));
+						txtNCEF4931.setValue(f4931.getVgnce());
+						String valor = String.valueOf(f4931.getVglcnt());
+						buscadorLCNTF4931.settearCampo(servicioF0005, valor);
 						buscadorVLUMF4931.settearCampo(servicioF0005,
 								f4931.getVgvlum());
-						txtVLCPF4931
-								.setValue(String.valueOf(f4931.getVgvlcp()));
-						txtVLCSF4931
-								.setValue(String.valueOf(f4931.getVgvlcs()));
+						txtVLCPF4931.setValue(f4931.getVgvlcp());
+						txtVLCSF4931.setValue(f4931.getVgvlcs());
 						buscadorMOTF4931.settearCampo(servicioF0005,
 								f4931.getVgmot());
 						buscadorBPFGF4931.settearCampo(servicioF0005,
 								f4931.getVgbpfg());
-						txtAXLEF4931
-								.setValue(String.valueOf(f4931.getVgaxle()));
-						txtWTAXF4931
-								.setValue(String.valueOf(f4931.getVgwtax()));
-						txtSEALF4931
-								.setValue(String.valueOf(f4931.getVgseal()));
+						txtAXLEF4931.setValue(f4931.getVgaxle());
+						txtWTAXF4931.setValue(f4931.getVgwtax());
+						txtSEALF4931.setValue(f4931.getVgseal());
 
 						botonera.getChildren().get(2).setVisible(true);
 					} else
-						msj.mensajeAlerta(Mensaje.editarSoloUno);
+						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 			}
 
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
 				abrirCatalogo();
-
 			}
 
 			@Override
@@ -249,27 +240,28 @@ public class CF4931 extends CGenerico {
 					f4931.setVgcpfg(chxCPFGF4931.isChecked() ? "1" : "0");
 					f4931.setVgmlln(chxMLLNF4931.isChecked() ? "1" : "0");
 					f4931.setVgwtum(buscadorWTUMF4931.obtenerCaja());
-					f4931.setVgwtem(Double.parseDouble(txtWTEMF4931.getValue()));
-					f4931.setVgwtca(Double.parseDouble(txtWTCAF4931.getValue()));
+					f4931.setVgwtem(txtWTEMF4931.getValue());
+					f4931.setVgwtca(txtWTCAF4931.getValue());
 					// f4931.setVgwtgr(Double.parseDouble(txtWTGRF4931.getValue()));
 					f4931.setVgcvum(buscadorCVUMF4931.obtenerCaja());
-					f4931.setVgcvol(Double.parseDouble(txtCVOLF4931.getValue()));
+					f4931.setVgcvol(txtCVOLF4931.getValue());
 					f4931.setVgdsgp(buscadorDSGPF4931.obtenerCaja());
 					f4931.setVgdsgs(buscadorDSGSF4931.obtenerCaja());
-					f4931.setVgnce(Double.parseDouble(txtNCEF4931.getValue()));
-					f4931.setVglcnt(Double.parseDouble(buscadorLCNTF4931
-							.obtenerCaja()));
+					f4931.setVgnce(txtNCEF4931.getValue());
+					if (buscadorLCNTF4931.obtenerCaja() != null) {
+						f4931.setVglcnt(Double.parseDouble(buscadorLCNTF4931
+								.obtenerCaja()));
+					}
 					f4931.setVgvlum(buscadorVLUMF4931.obtenerCaja());
-					f4931.setVgvlcp(Double.parseDouble(txtVLCPF4931.getValue()));
-					f4931.setVgvlcs(Double.parseDouble(txtVLCSF4931.getValue()));
+					f4931.setVgvlcp(txtVLCPF4931.getValue());
+					f4931.setVgvlcs(txtVLCSF4931.getValue());
 					f4931.setVgmot(buscadorMOTF4931.obtenerCaja());
 					f4931.setVgbpfg(buscadorBPFGF4931.obtenerCaja());
-					f4931.setVgaxle(Double.parseDouble(txtAXLEF4931.getValue()));
-					f4931.setVgwtax(Double.parseDouble(txtWTAXF4931.getValue()));
-					f4931.setVgseal(Double.parseDouble(txtSEALF4931.getValue()));
-
+					f4931.setVgaxle(txtAXLEF4931.getValue());
+					f4931.setVgwtax(txtWTAXF4931.getValue());
+					f4931.setVgseal(txtSEALF4931.getValue());
 					servicioF4931.guardar(f4931);
-					msj.mensajeInformacion(Mensaje.guardado);
+					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 					catalogo.actualizarLista(servicioF4931
 							.buscarTodosOrdenados());
@@ -290,12 +282,12 @@ public class CF4931 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4931, titulo , tabs);
+				cerrarVentana(divVF4931, titulo, tabs);
 			}
 
 			@Override
 			public void eliminar() {
-				msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+				Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 			}
 
 			@Override
@@ -360,33 +352,34 @@ public class CF4931 extends CGenerico {
 				|| txtAXLEF4931.getText().compareTo("") != 0
 				|| txtWTAXF4931.getText().compareTo("") != 0
 				|| txtSEALF4931.getText().compareTo("") != 0)
-			return false;
-		return true;
+			return true;
+		return false;
 	}
 
 	public void limpiarCampos() {
 		clave = null;
 		txtVTYPF4931.setValue(clave);
 		txtDL01F4931.setValue("");
-		chxCPFGF4931.setValue("");
+		chxCPFGF4931.setChecked(false);
+		chxMLLNF4931.setChecked(false);
 		buscadorWTUMF4931.limpiarCampo();
-		txtWTEMF4931.setValue("");
-		txtWTCAF4931.setValue("");
+		txtWTEMF4931.setValue(null);
+		txtWTCAF4931.setValue(null);
 		txtWTGRF4931.setValue("");
 		buscadorCVUMF4931.limpiarCampo();
-		txtCVOLF4931.setValue("");
+		txtCVOLF4931.setValue(null);
 		buscadorDSGPF4931.limpiarCampo();
 		buscadorDSGSF4931.limpiarCampo();
-		txtNCEF4931.setValue("");
+		txtNCEF4931.setValue(null);
 		buscadorLCNTF4931.limpiarCampo();
 		buscadorVLUMF4931.limpiarCampo();
-		txtVLCPF4931.setValue("");
-		txtVLCSF4931.setValue("");
+		txtVLCPF4931.setValue(null);
+		txtVLCSF4931.setValue(null);
 		buscadorMOTF4931.limpiarCampo();
 		buscadorBPFGF4931.limpiarCampo();
-		txtAXLEF4931.setValue("");
-		txtWTAXF4931.setValue("");
-		txtSEALF4931.setValue("");
+		txtAXLEF4931.setValue(null);
+		txtWTAXF4931.setValue(null);
+		txtSEALF4931.setValue(null);
 
 		botonera.getChildren().get(2).setVisible(false);
 		botonera.getChildren().get(0).setVisible(false);
@@ -396,11 +389,11 @@ public class CF4931 extends CGenerico {
 	public boolean validarSeleccionEncabezado() {
 		List<F4931> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
 		} else {
 			if (seleccionados.isEmpty()) {
-				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				Mensaje.mensajeAlerta(Mensaje.noSeleccionoItem);
 				return false;
 			} else {
 				return true;
@@ -437,7 +430,7 @@ public class CF4931 extends CGenerico {
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			Mensaje.mensajeAlerta(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -445,70 +438,12 @@ public class CF4931 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F4931> listF4931 = servicioF4931.buscarTodosOrdenados();
-		catalogo = new Catalogo<F4931>(catalogoF4931, "F4931", listF4931,
-				false, true, true, "Tp veh", "Descripción", "Tipo transp",
-				"Grupo dpch", "Grupo 2 de desp", "Cap peso", "UM ps",
+		catalogo = new CatalogoF4931(catalogoF4931, "F4931", listF4931, false,
+				"Tp veh", "Descripción", "Tipo transp", "Grupo dpch",
+				"Grupo 2 de desp", "Cap peso", "UM ps",
 				"Capacidad en vol cúbicos", "UM", "Capacidad de vol a granel",
 				"Cap secundaria de volumen a granel", "UM vol", "N° com",
-				"Lín carga") {
-
-			@Override
-			protected List<F4931> buscar(List<String> valores) {
-				List<F4931> lista = new ArrayList<F4931>();
-				for (F4931 f4931 : listF4931) {
-
-					if (String.valueOf(f4931.getVgvtyp()).toLowerCase()
-							.startsWith(valores.get(0))
-							&& f4931.getVgdl01().toLowerCase()
-									.startsWith(valores.get(2))
-							&& f4931.getVgmot().toLowerCase()
-									.startsWith(valores.get(3))
-							&& f4931.getVgdsgs().toLowerCase()
-									.startsWith(valores.get(4))
-							&& String.valueOf(f4931.getVgwtca()).toLowerCase()
-									.startsWith(valores.get(5))
-							&& f4931.getVgwtum().toLowerCase()
-									.startsWith(valores.get(6))
-							&& String.valueOf(f4931.getVgcvol()).toLowerCase()
-									.startsWith(valores.get(7))
-							&& f4931.getVgcvum().toLowerCase()
-									.startsWith(valores.get(8))
-							&& String.valueOf(f4931.getVgvlcp()).toLowerCase()
-									.startsWith(valores.get(9))
-							&& String.valueOf(f4931.getVgvlcs()).toLowerCase()
-									.startsWith(valores.get(10))
-							&& f4931.getVgvlum().toLowerCase()
-									.startsWith(valores.get(11))
-							&& String.valueOf(f4931.getVgnce()).toLowerCase()
-									.startsWith(valores.get(12))
-							&& String.valueOf(f4931.getVglcnt()).toLowerCase()
-									.startsWith(valores.get(13))) {
-						lista.add(f4931);
-					}
-				}
-				return lista;
-			}
-
-			@Override
-			protected String[] crearRegistros(F4931 f4931) {
-				String[] registros = new String[14];
-				registros[0] = String.valueOf(f4931.getVgvtyp());
-				registros[1] = f4931.getVgdl01();
-				registros[2] = f4931.getVgmot();
-				registros[3] = f4931.getVgdsgp();
-				registros[4] = f4931.getVgdsgs();
-				registros[5] = String.valueOf(f4931.getVgwtca());
-				registros[6] = f4931.getVgwtum();
-				registros[7] = String.valueOf(f4931.getVgcvol());
-				registros[8] = f4931.getVgcvum();
-				registros[9] = String.valueOf(f4931.getVgvlcp());
-				registros[10] = String.valueOf(f4931.getVgvlcs());
-				registros[11] = f4931.getVgvlum();
-				registros[12] = String.valueOf(f4931.getVgnce());
-				registros[13] = String.valueOf(f4931.getVglcnt());
-				return registros;
-			}
-		};
+				"Lín carga");
 		catalogo.setParent(catalogoF4931);
 	}
 
