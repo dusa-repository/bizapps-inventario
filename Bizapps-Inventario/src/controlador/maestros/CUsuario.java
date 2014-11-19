@@ -365,6 +365,7 @@ public class CUsuario extends CGenerico {
 		txtApellidoUsuario.setValue("");
 		txtApellido2Usuario.setValue("");
 		txtCedulaUsuario.setValue("");
+		txtCedulaUsuario.setDisabled(false);
 		txtCorreoUsuario.setValue("");
 		txtDireccionUsuario.setValue("");
 		txtLoginUsuario.setValue("");
@@ -665,7 +666,7 @@ public class CUsuario extends CGenerico {
 		if (usuario == null)
 			return true;
 		else {
-			if (usuario.getCedula() == id)
+			if (usuario.getCedula().equals(id))
 				return true;
 			else {
 				msj.mensajeAlerta(Mensaje.loginUsado);
