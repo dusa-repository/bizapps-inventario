@@ -1,6 +1,10 @@
 package componentes;
 
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.zkoss.zk.ui.Component;
@@ -35,9 +39,9 @@ public abstract class Catalogo<Clase> extends Window {
 	private Button pagineo;
 	private List<Clase> lista;
 
-	public Catalogo(String titulo, List<Clase> lista, boolean emergente,
-			String... campos) {
-		this(null, titulo, lista, emergente, false, true, campos);
+	public Catalogo(Component cGenerico, String titulo, List<Clase> lista,
+			boolean emergente, String... campos) {
+		this(cGenerico, titulo, lista, emergente, false, true, campos);
 	}
 
 	public Catalogo(final Component cGenerico, String titulo,
@@ -52,8 +56,7 @@ public abstract class Catalogo<Clase> extends Window {
 				new EventListener<Event>() {
 					@Override
 					public void onEvent(Event arg0) throws Exception {
-						Events.postEvent(arg0.getTarget(), new Event(
-								"onSeleccion"));
+						Events.postEvent(cGenerico, new Event("onSeleccion"));
 					}
 				});
 	}
@@ -117,7 +120,6 @@ public abstract class Catalogo<Clase> extends Window {
 			cabeceraFila.appendChild(cajaTexto);
 			cabecera.appendChild(cabeceraFila);
 			Listheader listheader = new Listheader(campos[i]);
-
 			lhdEncabezado.appendChild(listheader);
 		}
 		listboxCatalogo.appendChild(cabecera);
@@ -138,6 +140,8 @@ public abstract class Catalogo<Clase> extends Window {
 				}
 			}
 		});
+		listboxCatalogo.setMultiple(emergente);
+		listboxCatalogo.setCheckmark(emergente);
 		listboxCatalogo.setMultiple(!emergente);
 		listboxCatalogo.setCheckmark(!emergente);
 		return listboxCatalogo;
@@ -156,8 +160,7 @@ public abstract class Catalogo<Clase> extends Window {
 				Auxhead cabecera = (Auxhead) cajaTexto.getParent().getParent();
 				Listbox listbox = (Listbox) cabecera.getParent();
 				for (Component component : cabecera.getChildren()) {
-					Textbox texbox = (Textbox) component.getParent()
-							.getChildren().get(0);
+					Textbox texbox = (Textbox) component.getChildren().get(0);
 					valores.add(texbox.getValue());
 				}
 				List<Clase> listaNueva = buscar(valores);
@@ -271,6 +274,8 @@ public abstract class Catalogo<Clase> extends Window {
 
 	public void actualizarLista(List<Clase> lista) {
 		lsbCatalogo.setModel(new ListModelList<Clase>(lista));
+		lsbCatalogo.setMultiple(false);
+		lsbCatalogo.setCheckmark(false);
 		lsbCatalogo.setMultiple(true);
 		lsbCatalogo.setCheckmark(true);
 	}

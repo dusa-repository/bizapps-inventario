@@ -175,7 +175,7 @@ public abstract class BuscadorUDC extends Hbox {
 	}
 
 	private void mostrarCatalogo(String valor1, String valor2) {
-		catalogo = new CatalogoUDC(
+		catalogo = new CatalogoUDC(divCatalogo,
 				"Catalogo de Códigos Definidos por el Usuario (" + valorP1
 						+ "," + valorP2 + ")", lista, "KY", "Descripcion 01",
 				"Descripcion 02", "Gestion Especial", "Codificacion Fija");
