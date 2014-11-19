@@ -9,6 +9,7 @@ import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
@@ -118,6 +119,9 @@ public class CReinicioPassword extends CGenerico {
 		botonera.getChildren().get(4).setVisible(false);
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);
+		
+		Button guardar = (Button) botonera.getChildren().get(3);
+		guardar.setLabel("Enviar");
 		botoneraReinicio.appendChild(botonera);
 	}
 

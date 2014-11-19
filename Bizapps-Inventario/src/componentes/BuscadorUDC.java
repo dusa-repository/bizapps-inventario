@@ -49,7 +49,7 @@ public abstract class BuscadorUDC extends Hbox {
 
 		cajaTexto = new Textbox();
 		cajaTexto
-				.setTooltiptext("Seleccione del Catalogo el Codigo del Producto");
+				.setTooltiptext("Código Definido por el Usuario (DRKY de "+valor1+","+valor2+")");
 		cajaTexto.setHflex("1");
 		cajaTexto.setMaxlength(longitud);
 		cajaTexto.setWidth("8px");
