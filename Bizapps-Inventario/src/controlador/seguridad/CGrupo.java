@@ -41,7 +41,7 @@ import arbol.Nodos;
 import componentes.Botonera;
 import componentes.Catalogo;
 import componentes.Mensaje;
-import componentes.Validador;
+import componentes.utils.Validador;
 import controlador.maestros.CGenerico;
 
 public class CGrupo extends CGenerico {

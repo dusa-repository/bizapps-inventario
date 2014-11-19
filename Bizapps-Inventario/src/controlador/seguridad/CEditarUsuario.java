@@ -28,8 +28,7 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.Mensaje;
-import componentes.Validador;
-
+import componentes.utils.Validador;
 import controlador.maestros.CGenerico;
 
 public class CEditarUsuario extends CGenerico {

@@ -1,11 +1,11 @@
-package componentes;
+package componentes.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.zkoss.util.media.Media;
 
-public abstract class Validador {
+public class Validador {
 
 	/* Valida que lo digitos ingresados sean números */
 	public static boolean validarNumero(String numero) {

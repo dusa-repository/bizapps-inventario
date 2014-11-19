@@ -43,11 +43,10 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import arbol.CArbol;
-
 import componentes.Botonera;
 import componentes.Catalogo;
 import componentes.Mensaje;
-import componentes.Validador;
+import componentes.utils.Validador;
 
 public class CUsuario extends CGenerico {
 

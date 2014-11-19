@@ -43,7 +43,7 @@ import org.zkoss.zul.Window;
 
 import controlador.maestros.CGenerico;
 import componentes.Mensaje;
-import componentes.Validador;
+import componentes.utils.Validador;
 
 public class CArbol extends CGenerico {
 
