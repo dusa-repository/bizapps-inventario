@@ -196,13 +196,13 @@
 										style="border:0px">
 										<columns visible="false">
 											<column label=""
-												width="30%" />
+												width="40%" />
 											<column label=""
 												width="30%" />
 											<column label=""
 												width="10%" />
 											<column label=""
-												width="30%" />
+												width="20%" />
 										</columns>
 										<rows>
 											<row>

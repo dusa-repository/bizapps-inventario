@@ -197,6 +197,7 @@ public class CF4101 extends CGenerico {
 
 	Botonera botonera;
 	double clave = 0;
+	double claveLong = 0;
 	Catalogo<F0005> catalogoF0005;
 	Catalogo<F4101> catalogo;
 
@@ -617,99 +618,161 @@ public class CF4101 extends CGenerico {
 						txtIMDSC1F4101.setValue(f4101.getImdsc1());
 						txtIMDSC2F4101.setValue(f4101.getImdsc2());
 						txtIMSRTXF4101.setValue(f4101.getImsrtx());
+
 						/* UDC IMSTKT (41,I) */
-						buscadorIMSTKT.settearCampo(servicioF0005.buscar("41",
-								"I", f4101.getImstkt()));
+						if (f4101.getImstkt().compareTo("") != 0)
+							buscadorIMSTKT.settearCampo(servicioF0005.buscar(
+									"41", "I", f4101.getImstkt()));
+
 						/* UDC IMGLPT (41,9) */
-						buscadorIMGLPT.settearCampo(servicioF0005.buscar("41",
-								"9", f4101.getImglpt()));
+						if (f4101.getImglpt().compareTo("") != 0)
+							buscadorIMGLPT.settearCampo(servicioF0005.buscar(
+									"41", "9", f4101.getImglpt()));
+
 						/* UDC IMUOM1 (00,UM) */
-						buscadorIMUOM1.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuom1()));
+						if (f4101.getImuom1().compareTo("") != 0)
+							buscadorIMUOM1.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuom1()));
+
 						/* UDC IMBPFG (41B,BF) */
-						buscadorIMBPFG.settearCampo(servicioF0005.buscar("41B",
-								"BF", f4101.getImbpfg()));
+						if (f4101.getImbpfg().compareTo("") != 0)
+							buscadorIMBPFG.settearCampo(servicioF0005.buscar(
+									"41B", "BF", f4101.getImbpfg()));
+
 						/* UDC IMCLEV (H40, CL) */
-						buscadorIMCLEV.settearCampo(servicioF0005.buscar("H40",
-								"CL", f4101.getImclev()));
+						if (f4101.getImclev().compareTo("") != 0)
+							buscadorIMCLEV.settearCampo(servicioF0005.buscar(
+									"H40", "CL", f4101.getImclev()));
+
 						/* UDC IMPLEV (H40, PL) */
-						buscadorIMPLEV.settearCampo(servicioF0005.buscar("H40",
-								"PL", f4101.getImplev()));
+						if (f4101.getImplev().compareTo("") != 0)
+							buscadorIMPLEV.settearCampo(servicioF0005.buscar(
+									"H40", "PL", f4101.getImplev()));
+
 						/* UDC IMPPLV (H40, PP) */
-						buscadorIMPPLV.settearCampo(servicioF0005.buscar("H40",
-								"PP", f4101.getImpplv()));
+						if (f4101.getImpplv().compareTo("") != 0)
+							buscadorIMPPLV.settearCampo(servicioF0005.buscar(
+									"H40", "PP", f4101.getImpplv()));
+
 						/* UDC IMPMTH (H41, PM) */
-						buscadorIMPMTH.settearCampo(servicioF0005.buscar("HP1",
-								"PM", f4101.getImpmth()));
+						if (f4101.getImpmth().compareTo("") != 0)
+							buscadorIMPMTH.settearCampo(servicioF0005.buscar(
+									"H41", "PM", f4101.getImpmth()));
+
 						/* UDC IMCMETH (41, CM) */
-						buscadorIMCMETH.settearCampo(servicioF0005.buscar("41",
-								"CM", f4101.getImcmeth()));
+						if (f4101.getImcmeth().compareTo("") != 0)
+							buscadorIMCMETH.settearCampo(servicioF0005.buscar(
+									"41", "CM", f4101.getImcmeth()));
+
 						/* UDC IMCMGL (H40, CM) */
-						buscadorIMCMGL.settearCampo(servicioF0005.buscar("H40",
-								"CM", f4101.getImcmgl()));
+						if (f4101.getImcmgl().compareTo("") != 0)
+							buscadorIMCMGL.settearCampo(servicioF0005.buscar(
+									"H40", "CM", f4101.getImcmgl()));
+
 						/* UDC IMINMG (40, PM) */
-						buscadorIMINMG.settearCampo(servicioF0005.buscar("40",
-								"PM", f4101.getIminmg()));
+						if (f4101.getIminmg().compareTo("") != 0)
+							buscadorIMINMG.settearCampo(servicioF0005.buscar(
+									"40", "PM", f4101.getIminmg()));
+
 						/* UDC IMIFLA (40, FL) */
-						buscadorIMIFLA.settearCampo(servicioF0005.buscar("40",
-								"FL", f4101.getImifla()));
+						if (f4101.getImifla().compareTo("") != 0)
+							buscadorIMIFLA.settearCampo(servicioF0005.buscar(
+									"40", "FL", f4101.getImifla()));
+
 						/* UDC IMTFLA (H40, ST) */
-						buscadorIMTFLA.settearCampo(servicioF0005.buscar("H40",
-								"ST", f4101.getImtfla()));
+						if (f4101.getImtfla().compareTo("") != 0)
+							buscadorIMTFLA.settearCampo(servicioF0005.buscar(
+									"H40", "ST", f4101.getImtfla()));
+
 						/* UDC IMPRGR (40, PI) */
-						buscadorIMPRGR.settearCampo(servicioF0005.buscar("40",
-								"PI", f4101.getImprgr()));
+						if (f4101.getImprgr().compareTo("") != 0)
+							buscadorIMPRGR.settearCampo(servicioF0005.buscar(
+									"40", "PI", f4101.getImprgr()));
+
 						/* UDC IMRPRC (40, PI) */
-						buscadorIMRPRC.settearCampo(servicioF0005.buscar("40",
-								"PI", f4101.getImrprc()));
+						if (f4101.getImrprc().compareTo("") != 0)
+							buscadorIMRPRC.settearCampo(servicioF0005.buscar(
+									"40", "PI", f4101.getImrprc()));
+
 						/* UDC IMORPR (40, PI) */
-						buscadorIMORPR.settearCampo(servicioF0005.buscar("40",
-								"PI", f4101.getImorpr()));
+						if (f4101.getImorpr().compareTo("") != 0)
+							buscadorIMORPR.settearCampo(servicioF0005.buscar(
+									"40", "PI", f4101.getImorpr()));
+
 						/* UDC IMDSGP (40, PI) */
-						buscadorIMDSGP.settearCampo(servicioF0005.buscar("41B",
-								"DG", f4101.getImdsgp()));
+						if (f4101.getImdsgp().compareTo("") != 0)
+							buscadorIMDSGP.settearCampo(servicioF0005.buscar(
+									"41B", "DG", f4101.getImdsgp()));
+
 						/* UDC IMUOM1 (00, UM) */
-						buscadorPrincipalIMUOM1.settearCampo(servicioF0005
-								.buscar("00", "UM", f4101.getImuom1()));
+						if (f4101.getImuom1().compareTo("") != 0)
+							buscadorPrincipalIMUOM1.settearCampo(servicioF0005
+									.buscar("00", "UM", f4101.getImuom1()));
+
 						/* UDC IMUOM2 (00, UM) */
-						buscadorIMUOM2.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuom2()));
+						if (f4101.getImuom2().compareTo("") != 0)
+							buscadorIMUOM2.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuom2()));
+
 						/* UDC IMUOM3 (00, UM) */
-						buscadorIMUOM3.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuom3()));
+						if (f4101.getImuom3().compareTo("") != 0)
+							buscadorIMUOM3.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuom3()));
+
 						/* UDC IMUOM4 (00, UM) */
-						buscadorIMUOM4.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuom4()));
+						if (f4101.getImuom4().compareTo("") != 0)
+							buscadorIMUOM4.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuom4()));
+
 						/* UDC IMUOM6 (00, UM) */
-						buscadorIMUOM6.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuom6()));
+						if (f4101.getImuom6().compareTo("") != 0)
+							buscadorIMUOM6.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuom6()));
+
 						/* UDC IMUOM8 (00, UM) */
-						buscadorIMUOM8.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuom8()));
+						if (f4101.getImuom8().compareTo("") != 0)
+							buscadorIMUOM8.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuom8()));
+
 						/* UDC IMUOM9 (00, UM) */
-						buscadorIMUOM9.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuom9()));
+						if (f4101.getImuom9().compareTo("") != 0)
+							buscadorIMUOM9.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuom9()));
+
 						/* UDC IMUWUM (00, UM) */
-						buscadorIMUWUM.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuwum()));
+						if (f4101.getImuwum().compareTo("") != 0)
+							buscadorIMUWUM.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuwum()));
+
 						/* UDC IMUVM1 (00, UM) */
-						buscadorIMUVM1.settearCampo(servicioF0005.buscar("00",
-								"UM", f4101.getImuvm1()));
+						if (f4101.getImuvm1().compareTo("") != 0)
+							buscadorIMUVM1.settearCampo(servicioF0005.buscar(
+									"00", "UM", f4101.getImuvm1()));
+
 						/* UDC IMSRNR (H41, NR) */
-						buscadorIMSRNR.settearCampo(servicioF0005.buscar("H41",
-								"NR", f4101.getImsrnr()));
+						if (f4101.getImsrnr().compareTo("") != 0)
+							buscadorIMSRNR.settearCampo(servicioF0005.buscar(
+									"H41", "NR", f4101.getImsrnr()));
+
 						/* UDC IMLOTS (41, L) */
-						buscadorIMLOTS.settearCampo(servicioF0005.buscar("41",
-								"L", f4101.getImlots()));
+						if (f4101.getImlots().compareTo("") != 0)
+							buscadorIMLOTS.settearCampo(servicioF0005.buscar(
+									"41", "L", f4101.getImlots()));
+
 						/* UDC IMSRCE (H41, SR) */
-						buscadorIMSRCE.settearCampo(servicioF0005.buscar("H41",
-								"SR", f4101.getImsrce()));
+						if (f4101.getImsrce().compareTo("") != 0)
+							buscadorIMSRCE.settearCampo(servicioF0005.buscar(
+									"H41", "SR", f4101.getImsrce()));
+
 						/* UDC IMCMDM (H40, CD) */
-						buscadorIMCMDM.settearCampo(servicioF0005.buscar("H40",
-								"CD", f4101.getImcmdm()));
+						if (f4101.getImcmdm().compareTo("") != 0)
+							buscadorIMCMDM.settearCampo(servicioF0005.buscar(
+									"H40", "CD", f4101.getImcmdm()));
+
 						/* UDC IMLECM (H41, EC) */
-						buscadorIMLECM.settearCampo(servicioF0005.buscar("H41",
-								"EC", f4101.getImlecm()));
+						if (f4101.getImlecm().compareTo("") != 0)
+							buscadorIMLECM.settearCampo(servicioF0005.buscar(
+									"H41", "EC", f4101.getImlecm()));
 
 						txtIMLNTYF4101.setValue(f4101.getImlnty());
 
@@ -728,8 +791,9 @@ public class CF4101 extends CGenerico {
 						if (f4101.getImdppo().equals("Y"))
 							chxIMDPPOF4101.setChecked(true);
 
-						txtDLTLF4101
-								.setValue(String.valueOf(f4101.getImdltl()));
+						if (f4101.getImdltl() != null)
+							txtDLTLF4101.setValue(String.valueOf(f4101
+									.getImdltl()));
 
 						if (f4101.getImabcs() != null) {
 							if (f4101.getImabcs().equals("A"))
@@ -761,16 +825,16 @@ public class CF4101 extends CGenerico {
 						}
 						if (f4101.getImabci() != null) {
 							if (f4101.getImabci().equals("A"))
-								rdoIMABCMClasificacionAF4101.setSelected(true);
+								rdoIMABCIClasificacionAF4101.setSelected(true);
 
 							if (f4101.getImabci().equals("B"))
-								rdoIMABCMClasificacionBF4101.setSelected(true);
+								rdoIMABCIClasificacionBF4101.setSelected(true);
 
 							if (f4101.getImabci().equals("C"))
-								rdoIMABCMClasificacionCF4101.setSelected(true);
+								rdoIMABCIClasificacionCF4101.setSelected(true);
 
 							if (f4101.getImabci().equals("D"))
-								rdoIMABCMSinClasificacionF4101
+								rdoIMABCISinClasificacionF4101
 										.setSelected(true);
 						}
 						if (f4101.getImsld() != null)
@@ -815,7 +879,7 @@ public class CF4101 extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
 
 			}
@@ -836,10 +900,13 @@ public class CF4101 extends CGenerico {
 				if (clave == 0)
 					guardar = validar();
 				if (guardar) {
+
 					F4101 f4101 = new F4101();
-					double claveLong = 0;
+
 					synchronized (this) {
+
 						while (!nextNumber) {
+
 							try {
 								wait();
 							} catch (InterruptedException e) {
@@ -852,15 +919,24 @@ public class CF4101 extends CGenerico {
 
 						try {
 							if (clave == claveLong) {
+
+								System.out.println("Entre1");
+
 								double numero = servicioF00021
 										.Numero("4", "JE");
 								if (numero != 0) {
+
+									System.out.println("Entre2");
+
 									clave = numero + 1;
 									F00021 f021 = servicioF00021.buscar("4",
 											"JE");
 									f021.setNln001(clave);
 									servicioF00021.guardar(f021);
 								} else {
+
+									System.out.println("Entre3");
+
 									clave = 1;
 									F00021 f021 = new F00021();
 									F00021PK clave21 = new F00021PK();
@@ -877,10 +953,13 @@ public class CF4101 extends CGenerico {
 							nextNumber = true;
 						}
 					}
+
 					synchronized (this) {
+
 						nextNumber = true;
 						notifyAll();
 					}
+
 					f4101.setImitm(clave);
 					f4101.setImlitm(txtArticuloIMLITMF4101.getValue());
 					f4101.setImdsc1(txtIMDSC1F4101.getValue());
@@ -1318,7 +1397,7 @@ public class CF4101 extends CGenerico {
 	protected boolean validar() {
 
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
