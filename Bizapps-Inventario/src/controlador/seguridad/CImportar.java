@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0010;
@@ -40,8 +41,7 @@ import org.zkoss.zul.Window;
 
 import componentes.Botonera;
 import componentes.Mensaje;
-import componentes.Validador;
-
+import componentes.utils.Validador;
 import controlador.maestros.CGenerico;
 
 public class CImportar extends CGenerico {
