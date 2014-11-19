@@ -25,6 +25,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Radio;
 import org.zkoss.zul.Radiogroup;
@@ -59,7 +60,7 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Datebox dtbEFTF0015;
 	@Wire
-	private Textbox txtAN8F0015;
+	private Longbox txtAN8F0015;
 	@Wire
 	private Radiogroup rdgMetodoCalculoF0015;
 	@Wire
@@ -69,9 +70,9 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Label lblMetodoConversionF0015;
 	@Wire
-	private Textbox txtCRRF0015;
+	private Longbox txtCRRF0015;
 	@Wire
-	private Textbox txtCRRDF0015;
+	private Longbox txtCRRDF0015;
 	@Wire
 	private Tabbox tbTipoCambioF0015;
 	@Wire
@@ -140,6 +141,7 @@ public class CF0015 extends CGenerico {
 							mostrarBotones(false);
 							botonera.getChildren().get(2).setVisible(true);
 							abrirRegistro();
+							rdoMetodoInversionF0015.setSelected(true);
 							F0015 f015 = catalogoEncabezado
 									.objetoSeleccionadoDelCatalogo();
 							clave = f015.getId();
@@ -157,7 +159,8 @@ public class CF0015 extends CGenerico {
 							dtbEFTF0015
 									.setValue((transformarJulianaAGregoria(BigDecimal
 											.valueOf(f015.getId().getCxeft()))));
-							txtAN8F0015.setValue(String.valueOf(f015.getId()
+							dtbEFTF0015.setDisabled(true);
+							txtAN8F0015.setValue(Math.round(f015.getId()
 									.getCxan8()));
 
 							if (f015.getId().getCxan8() != 0) {
@@ -169,12 +172,32 @@ public class CF0015 extends CGenerico {
 							}
 
 							txtCRCMF0015.setValue(f015.getCxcrcm());
-							txtCRRF0015
-									.setValue(String.valueOf(f015.getCxcrr()));
-							txtCRRDF0015.setValue(String.valueOf(f015
-									.getCxcrrd()));
+							
+							if(txtCRCMF0015.getText().compareTo("") != 0){
+								
+								if (txtCRCMF0015.getValue().equalsIgnoreCase("Y")) {
+									lblMetodoConversionF0015.setValue("Metodo Multiplicador");
+								} else {
+
+									if (txtCRCMF0015.getValue().equalsIgnoreCase("Z")) {
+
+										lblMetodoConversionF0015.setValue("Metodo Divisor");
+									}
+
+								}
+								
+								
+							}
+							
+						
+							if (f015.getCxcrr() != null)
+								txtCRRF0015.setValue(Math.round(f015
+										.getCxcrr()));
+							if (f015.getCxcrrd() != null)
+								txtCRRDF0015.setValue(Math.round(f015
+										.getCxcrrd()));
 							botonera.getChildren().get(0).setVisible(false);
-							dtbEFTF0015.setFocus(true);
+							txtCRCMF0015.setFocus(true);
 
 						} else
 							msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -196,14 +219,14 @@ public class CF0015 extends CGenerico {
 							dtbEFTF0015
 									.setValue((transformarJulianaAGregoria(BigDecimal
 											.valueOf(f015.getId().getCxeft()))));
-							txtAN8F0015.setValue(String.valueOf(f015.getId()
+							txtAN8F0015.setValue(Math.round(f015.getId()
 									.getCxan8()));
 							txtAN8F0015.setDisabled(true);
 							btnBuscarF0101.setDisabled(true);
 							txtCRCMF0015.setValue(f015.getCxcrcm());
 							txtCRRF0015
-									.setValue(String.valueOf(f015.getCxcrr()));
-							txtCRRDF0015.setValue(String.valueOf(f015
+									.setValue(Math.round(f015.getCxcrr()));
+							txtCRRDF0015.setValue(Math.round(f015
 									.getCxcrrd()));
 							tbMetodoCalculoF0015.setSelected(true);
 
@@ -218,7 +241,7 @@ public class CF0015 extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
 
 			}
@@ -229,7 +252,7 @@ public class CF0015 extends CGenerico {
 				abrirRegistro();
 				// dtbEFTF0015.setDisabled(true);
 				tbMetodoCalculoF0015.setSelected(true);
-				tbTipoCambioF0015.setVisible(true);
+				// tbTipoCambioF0015.setVisible(true);
 				rdoMetodoInversionF0015.setSelected(true);
 				agregarMetodoCalculo = true;
 				mostrarBotones(false);
@@ -252,29 +275,29 @@ public class CF0015 extends CGenerico {
 					long eft = Long.valueOf((String
 							.valueOf(transformarGregorianoAJulia(dtbEFTF0015
 									.getValue()))));
-
-					double an8 = 0;
-					if (txtAN8F0015.getText().compareTo("") != 0)
-						an8 = Double.parseDouble(txtAN8F0015.getValue());
+					
 					F0015PK clave = new F0015PK();
 					clave.setCxcrcd(crcd);
 					clave.setCxcrdc(crdc);
 					clave.setCxrttyp(rttyp);
 					clave.setCxeft(eft);
-					clave.setCxan8(an8);
+					Long an8 = txtAN8F0015.getValue();
+					if (an8 != null)
+						clave.setCxan8(an8.doubleValue());
 					F0015 foo15 = new F0015();
 					foo15.setId(clave);
 
-					if (agregarMetodoCalculo) {
-						if (txtCRCMF0015.getText().compareTo("") != 0)
-							foo15.setCxcrcm(txtCRCMF0015.getValue());
-						if (txtCRRF0015.getText().compareTo("") != 0)
-							foo15.setCxcrr(Double.parseDouble(txtCRRF0015
-									.getValue()));
-						if (txtCRRDF0015.getText().compareTo("") != 0)
-							foo15.setCxcrrd(Double.parseDouble(txtCRRDF0015
-									.getValue()));
-					}
+					if (txtCRCMF0015.getText().compareTo("") != 0)
+						foo15.setCxcrcm(txtCRCMF0015.getValue());
+					
+					Long cxrr = txtCRRF0015.getValue();
+					if (cxrr != null)
+						foo15.setCxcrr(cxrr.doubleValue());
+					
+					Long cxcrrd = txtCRRDF0015.getValue();
+					if (cxcrrd != null)
+						foo15.setCxcrrd(cxcrrd.doubleValue());
+					
 
 					foo15.setCxuser("JDE");
 					foo15.setCxupmj(transformarGregorianoAJulia(new Date()));
@@ -309,7 +332,7 @@ public class CF0015 extends CGenerico {
 			@Override
 			public void salir() {
 				// TODO Auto-generated method stub
-				cerrarVentana(divVF0015, titulo , tabs);
+				cerrarVentana(divVF0015, titulo, tabs);
 			}
 
 			@Override
@@ -464,17 +487,16 @@ public class CF0015 extends CGenerico {
 		txtCRCDF0015.setValue("");
 		txtCRDCF0015.setValue("");
 		dtbEFTF0015.setValue(null);
-		txtAN8F0015.setValue("");
+		txtAN8F0015.setValue(null);
 		txtCRCDF0015.setFocus(true);
-		rdgMetodoCalculoF0015.setSelectedItem(null);
+		rdoMetodoInversionF0015.setSelected(true);
 		txtCRCMF0015.setValue("");
 		lblMetodoConversionF0015.setValue("");
-		txtCRRF0015.setValue("");
-		txtCRRDF0015.setValue("");
+		txtCRRF0015.setValue(null);
+		txtCRRDF0015.setValue(null);
 		lblMonedaF0013.setValue("");
 		lblMonedaDestinoF0013.setValue("");
 		lblDireccionF0101.setValue("");
-		tbTipoCambioF0015.setVisible(false);
 		botonera.getChildren().get(2).setVisible(false);
 		botonera.getChildren().get(0).setVisible(false);
 		agregarMetodoCalculo = false;
@@ -583,7 +605,8 @@ public class CF0015 extends CGenerico {
 	public boolean camposLLenos() {
 		if (txtCRCDF0015.getText().compareTo("") == 0
 				|| txtCRDCF0015.getText().compareTo("") == 0
-				|| dtbEFTF0015.getText().compareTo("") == 0) {
+				|| dtbEFTF0015.getText().compareTo("") == 0
+				|| txtAN8F0015.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
@@ -677,9 +700,9 @@ public class CF0015 extends CGenerico {
 	public void mostrarCatalogoDetalle() {
 		final List<F0015> listF0015 = servicioF0015.buscarTodosOrdenados();
 		catalogoDetalle = new Catalogo<F0015>(catalogoF0015D, "F0015D",
-				listF0015, false, true, true, "Fecha efectiva",
-				"Método cálculo", "Método conv", "Tipo multiplicador",
-				"Tipo divisor", "Mon Trian", "Cambio al contado") {
+				listF0015, false, true, true, "Método cálculo", "Método conv",
+				"Tipo multiplicador", "Tipo divisor", "Mon Trian",
+				"Cambio al contado") {
 
 			@Override
 			protected List<F0015> buscar(List<String> valores) {
@@ -783,6 +806,26 @@ public class CF0015 extends CGenerico {
 		lblMonedaF0013.setValue(f0013.getCvdl01());
 		catalogoF0013.setParent(null);
 	}
+	
+	
+	@Listen("onChange = #txtCRCDF0015")
+	public void buscarMoneda() {
+		if (txtCRCDF0015.getValue() != null) {
+			F0013 f0013 = servicioF0013.buscar(txtCRCDF0015.getValue());
+			if (f0013 != null) {
+				txtCRCDF0015.setValue(f0013.getCvcrcd());
+				lblMonedaF0013.setValue(f0013.getCvdl01());
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				lblMonedaF0013.setValue("");
+				txtCRCDF0015.setValue("");
+				txtCRCDF0015.setFocus(true);
+			}
+		} else
+			lblMonedaF0013.setValue("");
+	}
+	
+	
 
 	@Listen("onClick = #btnBuscarMonedaDestinoF0013")
 	public void mostrarCatalogoMonedaDestino() {
@@ -833,6 +876,26 @@ public class CF0015 extends CGenerico {
 		lblMonedaDestinoF0013.setValue(f0013.getCvdl01());
 		catalogoMonedaDestino.setParent(null);
 	}
+	
+	
+	@Listen("onChange = #txtCRDCF0015")
+	public void buscarMonedaDestino() {
+		if (txtCRDCF0015.getValue() != null) {
+			F0013 f0013 = servicioF0013.buscar(txtCRDCF0015.getValue());
+			if (f0013 != null) {
+				txtCRDCF0015.setValue(f0013.getCvcrcd());
+				lblMonedaDestinoF0013.setValue(f0013.getCvdl01());
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				lblMonedaDestinoF0013.setValue("");
+				txtCRDCF0015.setValue("");
+				txtCRDCF0015.setFocus(true);
+			}
+		} else
+			lblMonedaDestinoF0013.setValue("");
+	}
+	
+	
 
 	@Listen("onClick = #btnBuscarF0101")
 	public void mostrarCatalogoF0101() {
@@ -885,10 +948,30 @@ public class CF0015 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF0101")
 	public void seleccionCatalogoF0101() {
 		F0101 f0101 = catalogoF0101.objetoSeleccionadoDelCatalogo();
-		txtAN8F0015.setValue(String.valueOf(f0101.getAban8()));
+		txtAN8F0015.setValue(Math.round(f0101.getAban8()));
 		lblDireccionF0101.setValue(f0101.getAbalph());
 		catalogoF0101.setParent(null);
 	}
+	
+	
+	@Listen("onChange = #txtAN8F0015")
+	public void buscarDireccion() {
+		if (txtAN8F0015.getValue() != null) {
+			F0101 f0101 = servicioF0101.buscar(txtAN8F0015.getValue());
+			if (f0101 != null) {
+				Double doble = f0101.getAban8();
+				txtAN8F0015.setValue(doble.longValue());
+				lblDireccionF0101.setValue(f0101.getAbalph());
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				lblDireccionF0101.setValue("");
+				txtAN8F0015.setValue(null);
+				txtAN8F0015.setFocus(true);
+			}
+		} else
+			lblDireccionF0101.setValue("");
+	}
+	
 
 	@Listen("onChange = #txtCRCMF0015")
 	public void metodoConversion() {

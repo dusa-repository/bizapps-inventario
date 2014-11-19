@@ -21,48 +21,72 @@
 						<rows>
 							<row>
 								<hbox>
-									<label class="etiqueta" value="Código Moneda:" />
+									<label class="etiqueta"
+										value="Código Moneda:" />
 									<space />
-									<label value="*" style="font-weight:bold;color:red">
+									<label value="*"
+										style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtCRCDF0015" hflex="1" maxlength="100"
+								<textbox id="txtCRCDF0015" hflex="1"
+									maxlength="100"
 									tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
-								<button id="btnBuscarMonedaF0013" label="Buscar" class="btn"
-									tooltiptext="Catalogo de Codigos de Moneda (F0013)" image="/public/imagenes/botones/buscar.png" />
+								<button id="btnBuscarMonedaF0013" autodisable="self"
+									label="Buscar" class="btn"
+									tooltiptext="Catalogo de Codigos de Moneda (F0013)"
+									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblMonedaF0013" />
 							</row>
 							<row>
 								<hbox>
-									<label class="etiqueta" value="Código Moneda destino:" />
+									<label class="etiqueta"
+										value="Código Moneda destino:" />
 									<space />
-									<label value="*" style="font-weight:bold;color:red">
+									<label value="*"
+										style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtCRDCF0015" hflex="1" maxlength="100"
+								<textbox id="txtCRDCF0015" hflex="1"
+									maxlength="100"
 									tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
-								<button id="btnBuscarMonedaDestinoF0013" label="Buscar"
-									class="btn" tooltiptext="Catalogo de Codigos de Moneda (F0013)" image="/public/imagenes/botones/buscar.png" />
+								<button id="btnBuscarMonedaDestinoF0013" autodisable="self"
+									label="Buscar" class="btn"
+									tooltiptext="Catalogo de Codigos de Moneda (F0013)"
+									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblMonedaDestinoF0013" />
 							</row>
 							<row>
 								<hbox>
-									<label class="etiqueta" value="Fecha efectiva:" />
+									<label class="etiqueta"
+										value="Fecha efectiva:" />
 									<space />
-									<label value="*" style="font-weight:bold;color:red">
+									<label value="*"
+										style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<datebox readonly="true" width="100%" id="dtbEFTF0015"
-									format="dd-MM-yyyy" tooltiptext="Ingrese la Fecha Efectiva (CXEFT)" />
+								<datebox readonly="true" width="100%"
+									id="dtbEFTF0015" format="dd-MM-yyyy"
+									tooltiptext="Ingrese la Fecha Efectiva (CXEFT)" />
 								<hbox />
 								<hbox />
 							</row>
 							<row>
-								<label class="etiqueta" value="Contrato (dirección):" />
-								<textbox id="txtAN8F0015" hflex="1" maxlength="100"
+								<hbox>
+									<label class="etiqueta"
+										value="Contrato (dirección):" />
+									<space />
+									<label value="*"
+										style="font-weight:bold;color:red">
+									</label>
+								</hbox>
+
+								<longbox id="txtAN8F0015" hflex="1"
+									maxlength="100"
 									tooltiptext="Seleccione del Catalogo el Codigo de la Direccion (ABAN8 de F0101)" />
-								<button id="btnBuscarF0101" label="Buscar" class="btn"
-									tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
+								<button id="btnBuscarF0101" autodisable="self"
+									label="Buscar" class="btn"
+									tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
+									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblDireccionF0101" />
 							</row>
 						</rows>
@@ -71,55 +95,73 @@
 				<separator />
 				<separator />
 
-				<tabbox id="tbTipoCambioF0015" visible="false">
+				<tabbox id="tbTipoCambioF0015" visible="true">
 					<tabs id="tabsF0015">
-						<tab id="tbMetodoCalculoF0015" label="Metodo cálculo" />
-						<tab id="tbRevisionTipoCambioF0015" label="Revision de Tipos de Cambio" />
+						<tab id="tbMetodoCalculoF0015"
+							label="Metodo cálculo" />
+						<tab id="tbRevisionTipoCambioF0015"
+							label="Revision de Tipos de Cambio" />
 					</tabs>
 					<tabpanels>
 						<tabpanel>
 							<hbox>
-								<groupbox title="" closable="false" height="135px">
-									<grid width="70%" style="border:0px">
+								<groupbox title="" closable="false"
+									height="135px">
+									<grid width="100%"
+										style="border:0px">
 										<columns visible="false">
-											<column label="" width="100%" />
+											<column label=""
+												width="100%" />
 										</columns>
 										<rows>
 											<row>
-												<radiogroup id="rdgMetodoCalculoF0015">
+												<radiogroup
+													id="rdgMetodoCalculoF0015">
 													<vlayout>
-														<radio id="rdoMetodoInversionF0015"
-															label="Método Inversión" />
+														<radio
+															id="rdoMetodoInversionF0015" label="Método Inversión" value="true" />
 													</vlayout>
 												</radiogroup>
 											</row>
 										</rows>
 									</grid>
 								</groupbox>
-								<groupbox title="" closable="false" height="135px">
-									<grid width="100%" style="border:0px">
+								<groupbox title="" closable="false"
+									height="135px">
+									<grid width="100%"
+										style="border:0px">
 										<columns visible="false">
-											<column label="" width="35%" />
-											<column label="" width="30%" />
-											<column label="" width="35%" />
+											<column label=""
+												width="35%" />
+											<column label=""
+												width="30%" />
+											<column label=""
+												width="35%" />
 										</columns>
 										<rows>
 											<row>
-												<label class="etiqueta" value="Método conversión (Y/Z):" />
-												<textbox id="txtCRCMF0015" hflex="1" maxlength="1"
+												<label class="etiqueta"
+													value="Método conversión (Y/Z):" />
+												<textbox
+													id="txtCRCMF0015" hflex="1" maxlength="1"
 													tooltiptext="Ingrese el Metodo de Conversion (CXCRCM)" />
-												<label id="lblMetodoConversionF0015">
+												<label
+													id="lblMetodoConversionF0015">
 												</label>
 											</row>
 											<row>
-												<label class="etiqueta" value="Tipo multiplicador:" />
-												<textbox id="txtCRRF0015" hflex="1" maxlength="100"
+												<label class="etiqueta"
+													value="Tipo multiplicador:" />
+												<longbox
+													id="txtCRRF0015" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Tipo de Multiplicador (CXCRR)" />
 												<hbox />
 											</row>
 											<row>
-												<label class="etiqueta" value="Tipo divisor:" />
-												<textbox id="txtCRRDF0015" hflex="1" maxlength="100"
+												<label class="etiqueta"
+													value="Tipo divisor:" />
+												<longbox
+													id="txtCRRDF0015" hflex="1" maxlength="100"
 													tooltiptext="Ingrese el Tipo de Divisor (CXCRRD)" />
 												<hbox />
 											</row>
@@ -142,13 +184,17 @@
 				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar los Tipos de Cambio Registrados" />
-				<div id="catalogoF0015H" tooltiptext="Seleccione el Tipo de Cambio Para Realizar una Accion" />
+				<div id="catalogoF0015H"
+					tooltiptext="Seleccione el Tipo de Cambio Para Realizar una Accion" />
 			</groupbox>
 			<separator />
 			<separator />
 		</groupbox>
-		<div id="divCatalogoF0013" tooltiptext="Click para Seleccionar un Codigo" />
-		<div id="divCatalogoMonedaDestino" tooltiptext="Click para Seleccionar un Codigo" />
-		<div id="divCatalogoF0101" tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0013"
+			tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoMonedaDestino"
+			tooltiptext="Click para Seleccionar un Codigo" />
+		<div id="divCatalogoF0101"
+			tooltiptext="Click para Seleccionar un Codigo" />
 	</div>
 </zk>
