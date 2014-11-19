@@ -24,6 +24,6 @@ public class SF4311 {
 	}
 
 	public List<F4311> buscarPorDocoDctoKcooYSfxo(double phdoco, String phdcto, String phkcoo, String phsfxo) {
-		return iF4311DAO.findByIdPddocoAndIdPddctoAndIdPdkcooAndIdPdsfxoOrderByIdPddocoAsc(phdoco, phdcto, phkcoo, phsfxo);
+		return iF4311DAO.findByIdPddocoAndIdPddctoAndIdPdkcooAndIdPdsfxoOrderByIdPddocoAsc(phdoco, phdcto, phkcoo, phsfxo); 
 	}
 }
