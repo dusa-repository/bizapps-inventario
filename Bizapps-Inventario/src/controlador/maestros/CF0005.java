@@ -63,6 +63,8 @@ public class CF0005 extends CGenerico {
 	private Label lblSY;
 	@Wire
 	private Label lblRT;
+	@Wire
+	private Label lblF0004;
 
 	String idBoton = "";
 	Botonera botonera;
@@ -555,6 +557,7 @@ public class CF0005 extends CGenerico {
 		case "btnBuscarF0004Filtro":
 			lblSY.setValue(f0004.getId().getDtsy());
 			lblRT.setValue(f0004.getId().getDtrt());
+			lblF0004.setValue(f0004.getDtdl01());
 		catalogo.actualizarLista(servicioF0005.buscarParaUDCOrdenados(f0004.getId().getDtsy(), f0004.getId().getDtrt()));
 			break;
 		default:
