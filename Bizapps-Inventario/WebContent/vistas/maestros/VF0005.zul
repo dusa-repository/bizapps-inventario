@@ -110,10 +110,10 @@
 						<column label="" width="15%" />
 						<column label="" width="15%" />
 						<column label="" width="12%" />
-						<column label="" width="10%" />
+						<column label="" width="5%" />
 						<column label="" width="12%" />
-						<column label="" width="10%" />
-						<column label="" width="13%" />
+						<column label="" width="5%" />
+						<column label="" width="23%" />
 					</columns>
 					<rows>
 						<row>
@@ -126,7 +126,7 @@
 							<label id="lblSY" />
 							<label class="etiqueta" value="Cd Defin Usuario:" />
 							<label id="lblRT" />
-							<hbox />
+									<label id="lblF0004" />
 						</row>
 					</rows>
 				</grid>
