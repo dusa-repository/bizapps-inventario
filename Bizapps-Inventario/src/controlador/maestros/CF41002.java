@@ -35,7 +35,7 @@ import componentes.Mensaje;
 public class CF41002 extends CGenerico {
 
 	@Wire
-	private Textbox txtUMITMF41002;
+	private Doublebox txtUMITMF41002;
 	@Wire
 	private Div divBuscadorUMF41002;
 	@Wire
@@ -133,11 +133,11 @@ public class CF41002 extends CGenerico {
 
 						F4101 f4101 = servicioF4101.buscar(f41002.getId()
 								.getUmitm());
-						txtUMITMF41002.setValue(String.valueOf(f41002.getId()
-								.getUmitm()));
+						txtUMITMF41002.setValue(f41002.getId().getUmitm());
 						lblDescripcionF4101.setValue(f4101.getImdsc1());
 						txtUMITMF41002.setDisabled(true);
 						txtDescripcionUnidad.setValue(f4101.getImuom1());
+
 						F0005 f05 = servicioF0005.buscar("00", "UM",
 								f4101.getImuom1());
 						if (f05 != null)
@@ -221,7 +221,7 @@ public class CF41002 extends CGenerico {
 					F41002PK clave = new F41002PK();
 					clave.setUmum(buscadorUMF41002.obtenerCaja());
 					clave.setUmrum(buscadorRUMF41002.obtenerCaja());
-					clave.setUmitm(Double.parseDouble(txtUMITMF41002.getValue()));
+					clave.setUmitm(txtUMITMF41002.getValue());
 					clave.setUmmcu("");
 
 					f41002.setId(clave);
@@ -300,9 +300,9 @@ public class CF41002 extends CGenerico {
 
 			@Override
 			public void buscar() {
-				
+
 				abrirCatalogo();
-		
+
 			}
 
 			@Override
@@ -337,7 +337,7 @@ public class CF41002 extends CGenerico {
 
 	public void limpiarCampos() {
 		clave = null;
-		txtUMITMF41002.setValue("");
+		txtUMITMF41002.setValue(null);
 		txtUMITMF41002.setFocus(true);
 		lblDescripcionF4101.setValue("");
 		lblDescripcionUnidad.setValue("");
@@ -380,30 +380,38 @@ public class CF41002 extends CGenerico {
 
 	protected boolean validar() {
 		if (!idArticuloExiste()) {
-			msj.mensajeError(Mensaje.articuloNoExiste);
+			Mensaje.mensajeError(Mensaje.articuloNoExiste);
 			return false;
 		} else {
 			if (!camposLLenos()) {
-				msj.mensajeError(Mensaje.camposVacios);
+				Mensaje.mensajeError(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
 		}
 	}
 
-	@Listen("onChange = #txtUMITMF41002")
+	@Listen("onChange = #txtUMITMF41002; onOK = #txtUMITMF41002")
 	public boolean idArticuloExiste() {
 		if (txtUMITMF41002.getText().compareTo("") != 0) {
 			F4101 f4101 = servicioF4101.buscar(Double
 					.parseDouble(txtUMITMF41002.getText()));
 			if (f4101 != null) {
-				txtUMITMF41002.setValue(String.valueOf(f4101.getImitm()));
+				txtUMITMF41002.setValue(f4101.getImitm());
 				lblDescripcionF4101.setValue(f4101.getImdsc1());
-				// Setear UM Principal
-				lblDescripcionUnidad.setValue("falta");
-				txtDescripcionUnidad.setValue("falta");
+				txtDescripcionUnidad.setValue(f4101.getImuom1());
+				txtDescripcionUnidad.setDisabled(true);
+				F0005 f05 = servicioF0005.buscar("00", "UM", f4101.getImuom1());
+				if (f05 != null)
+					lblDescripcionUnidad.setValue(f05.getDrdl01());
 				return true;
 			} else {
+				txtUMITMF41002.setValue(null);
+				lblDescripcionF4101.setValue("");
+				txtDescripcionUnidad.setValue("");
+				txtDescripcionUnidad.setDisabled(false);
+				lblDescripcionUnidad.setValue("");
+				Mensaje.mensajeError(Mensaje.articuloNoExiste);
 				return false;
 			}
 
@@ -429,7 +437,9 @@ public class CF41002 extends CGenerico {
 				|| txtCONVF41002.getText().compareTo("") != 0
 				|| txtUMITMF41002.getText().compareTo("") != 0
 				|| txtSEPCF41002.getText().compareTo("") != 0
-				|| txtDescripcionUnidad.getText().compareTo("") != 0) {
+				|| txtDescripcionUnidad.getText().compareTo("") != 0
+				|| buscadorRUMF41002.obtenerCaja().compareTo("") != 0
+				|| buscadorUMF41002.obtenerCaja().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
@@ -533,8 +543,14 @@ public class CF41002 extends CGenerico {
 				registros[5] = f41002.getUmustr();
 				registros[6] = f41002.getUmexso();
 				registros[7] = f41002.getUmexpo();
-				registros[8] = String.valueOf(f41002.getUmsepc());
-				registros[9] = String.valueOf(f41002.getUmpupc());
+				if (f41002.getUmsepc() == null)
+					registros[8] = String.valueOf("");
+				else
+					registros[8] = String.valueOf(f41002.getUmsepc());
+				if (f41002.getUmpupc() == null)
+					registros[9] = String.valueOf("");
+				else
+					registros[9] = String.valueOf(f41002.getUmpupc());
 				return registros;
 			}
 		};
@@ -544,8 +560,9 @@ public class CF41002 extends CGenerico {
 	@Listen("onClick = #btnBuscarF4101")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101, "F4101",
-				listF4101, true, false, true, "Codigo", "Descripcion") {
+		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101,
+				"Catalogo de Maestro de Articulos", listF4101, true, false,
+				true, "Codigo", "Descripcion") {
 
 			@Override
 			protected List<F4101> buscar(List<String> valores) {
@@ -579,9 +596,10 @@ public class CF41002 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF4101")
 	public void seleccion() {
 		F4101 f4101 = catalogoF4101.objetoSeleccionadoDelCatalogo();
-		txtUMITMF41002.setValue(String.valueOf(f4101.getImitm()));
+		txtUMITMF41002.setValue(f4101.getImitm());
 		lblDescripcionF4101.setValue(f4101.getImdsc1());
 		txtDescripcionUnidad.setValue(f4101.getImuom1());
+		txtDescripcionUnidad.setDisabled(true);
 		F0005 f05 = servicioF0005.buscar("00", "UM", f4101.getImuom1());
 		if (f05 != null)
 			lblDescripcionUnidad.setValue(f05.getDrdl01());

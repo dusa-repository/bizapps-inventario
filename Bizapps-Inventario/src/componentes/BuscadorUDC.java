@@ -31,6 +31,7 @@ public abstract class BuscadorUDC extends Hbox {
 	private Textbox cajaTexto;
 	private String valorP1;
 	private String valorP2;
+	private Button boton;;
 
 	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
 			boolean requerido, boolean param1, boolean param2,
@@ -51,12 +52,10 @@ public abstract class BuscadorUDC extends Hbox {
 		cajaTexto = new Textbox();
 		cajaTexto
 				.setTooltiptext("Código Definido por el Usuario (DRKY de "+valor1+","+valor2+")");
-//		cajaTexto.setHflex("1");
 		cajaTexto.setWidth("100%");
 		cajaTexto.setMaxlength(longitud);
-//		cajaTexto.setWidth("8px");
 
-		Button boton = new Button();
+		boton = new Button();
 		boton.setAutodisable("true");
 		boton.setTooltiptext("Catalogo de Codigo Definidos por el Usuario"
 				+ " " + "(" + valor1 + "," + valor2 + ")");
@@ -66,7 +65,6 @@ public abstract class BuscadorUDC extends Hbox {
 
 		lblNombre = new Label();
 		lblNombre.setWidth("100%");
-//		lblNombre.setHflex("1");
 
 		divCatalogo = new Div();
 		divCatalogo.setTooltiptext("Click para Seleccionar un Codigo");
@@ -79,23 +77,17 @@ public abstract class BuscadorUDC extends Hbox {
 			caja.appendChild(new Space());
 			caja.appendChild(lbl);
 			caja.setWidth("100%");
-//			caja.setHflex("1");
 			this.appendChild(caja);
 		} else {
 			this.appendChild(label);
 			label.setWidth("100%%o");
-//			label.setHflex("1");
 		}
-//		this.appendChild(new Separator());
 		this.appendChild(cajaTexto);
-//		this.appendChild(new Separator());
 		this.appendChild(boton);
-//		this.appendChild(new Separator());
 		this.appendChild(lblNombre);
 		this.appendChild(divCatalogo);
 		this.setAlign("center");
 		this.setPack("center");
-//		this.setWidths("35%,10%,10%,45%");
 		this.setWidths("30%,7%,7%,40%");
 
 		cajaTexto.addEventListener(Events.ON_OK, new EventListener<Event>() {
@@ -145,6 +137,7 @@ public abstract class BuscadorUDC extends Hbox {
 
 	public void inhabilitarCampo() {
 		cajaTexto.setDisabled(true);
+		boton.setVisible(false);
 	}
 
 	public void focus() {
@@ -154,6 +147,9 @@ public abstract class BuscadorUDC extends Hbox {
 	public void habilitarCampos() {
 		if (cajaTexto.isDisabled()) {
 			cajaTexto.setDisabled(false);
+		}
+		if (!boton.isVisible()) {
+			boton.setVisible(true);
 		}
 	}
 
