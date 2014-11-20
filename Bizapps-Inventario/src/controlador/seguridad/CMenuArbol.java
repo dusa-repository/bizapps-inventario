@@ -218,6 +218,7 @@ public class CMenuArbol extends CGenerico {
 		txtUrl.setValue("");
 		txtNombre.setValue("");
 		txtPadre.setValue(null);
+		catalogo.limpiarSeleccion();
 	}
 
 	public boolean validarSeleccion() {
