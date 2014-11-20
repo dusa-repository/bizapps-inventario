@@ -25,12 +25,13 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtUMITMF41002" hflex="1" maxlength="100"
+							<doublebox id="txtUMITMF41002" hflex="1" maxlength="100"
 								tooltiptext="Seleccione del Catalogo el Codigo del Articulo (IMITM de F4101)" />
 							<cell colspan="2">
 								<hbox>
 									<button id="btnBuscarF4101" label="Buscar" class="btn"
-										tooltiptext="Catalogo de codigos de Articulos (F4101)" image="/public/imagenes/botones/buscar.png" />
+										tooltiptext="Catalogo de codigos de Articulos (F4101)" image="/public/imagenes/botones/buscar.png"
+										autodisable="self" />
 									<space />
 									<label id="lblDescripcionF4101" />
 								</hbox>
@@ -38,7 +39,8 @@
 						</row>
 						<row>
 							<label class="etiqueta" value="UM Principal:" />
-							<textbox id="txtDescripcionUnidad" tooltiptext="Seleccione del Catalogo el codigo de la Unidad Principal del Articulo (IMUOM1 de F4101)" />
+							<textbox id="txtDescripcionUnidad"
+								tooltiptext="Seleccione del Catalogo el codigo de la Unidad Principal del Articulo (IMUOM1 de F4101)" />
 							<cell colspan="2">
 								<label id="lblDescripcionUnidad" />
 							</cell>
