@@ -359,8 +359,10 @@ public class CUsuario extends CGenerico {
 	}
 
 	public void limpiarCampos() {
-		ltbGruposAgregados.getItems().clear();
-		ltbGruposDisponibles.getItems().clear();
+		ltbGruposAgregados.setModel(new ListModelList<Grupo>());
+		ltbGruposDisponibles.setModel(new ListModelList<Grupo>());
+		gruposDisponibles = new ArrayList<Grupo>();
+		gruposOcupados = new ArrayList<Grupo>();
 		txtApellidoUsuario.setValue("");
 		txtApellido2Usuario.setValue("");
 		txtCedulaUsuario.setValue("");
@@ -382,6 +384,8 @@ public class CUsuario extends CGenerico {
 		}
 		id = "";
 		llenarListas(null);
+		catalogo.limpiarSeleccion();
+
 	}
 
 	public boolean camposEditando() {
@@ -441,7 +445,7 @@ public class CUsuario extends CGenerico {
 				|| txtPasswordUsuario.getText().compareTo("") == 0
 				|| (!rdoSexoFUsuario.isChecked() && !rdoSexoMUsuario
 						.isChecked())) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else {
 			if (!Validador.validarCorreo(txtCorreoUsuario.getValue())) {
@@ -524,8 +528,25 @@ public class CUsuario extends CGenerico {
 	/* Permite subir una imagen a la vista */
 	@Listen("onUpload = #fudImagenUsuario")
 	public void processMedia(UploadEvent event) {
+		
 		media = event.getMedia();
-		imagen.setContent((org.zkoss.image.Image) media);
+		if (media != null) {
+
+			if (media.getContentType().equals("image/jpeg")
+					|| media.getContentType().equals("image/png"))
+
+			{
+
+				media = event.getMedia();
+				imagen.setContent((org.zkoss.image.Image) media);
+
+			} else {
+				Messagebox.show(media.getName()
+						+ " No es un tipo de archivo valido!", "Error",
+						Messagebox.OK, Messagebox.ERROR);
+			}
+		}
+		
 
 	}
 
@@ -615,23 +636,23 @@ public class CUsuario extends CGenerico {
 
 				for (Usuario actividadord : usuario) {
 					if (actividadord.getCedula().toLowerCase()
-							.startsWith(valores.get(0))
+							.contains(valores.get(0).toLowerCase())
 							&& actividadord.getEmail().toLowerCase()
-									.startsWith(valores.get(1))
+									.contains(valores.get(1).toLowerCase())
 							&& actividadord.getPrimerNombre().toLowerCase()
-									.startsWith(valores.get(2))
+									.contains(valores.get(2).toLowerCase())
 							&& actividadord.getSegundoNombre().toLowerCase()
-									.startsWith(valores.get(3))
+									.contains(valores.get(3).toLowerCase())
 							&& actividadord.getPrimerApellido().toLowerCase()
-									.startsWith(valores.get(4))
+									.contains(valores.get(4).toLowerCase())
 							&& actividadord.getSegundoApellido().toLowerCase()
-									.startsWith(valores.get(5))
+									.contains(valores.get(5).toLowerCase())
 							&& actividadord.getSexo().toLowerCase()
-									.startsWith(valores.get(6))
+									.contains(valores.get(6).toLowerCase())
 							&& actividadord.getTelefono().toLowerCase()
-									.startsWith(valores.get(7))
+									.contains(valores.get(7).toLowerCase())
 							&& actividadord.getDireccion().toLowerCase()
-									.startsWith(valores.get(8))) {
+									.contains(valores.get(8).toLowerCase())) {
 
 						user.add(actividadord);
 					}

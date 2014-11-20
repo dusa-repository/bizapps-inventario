@@ -303,6 +303,7 @@ public class CGrupo extends CGenerico {
 		funcionalidades.clear();
 		ltbFuncionalidadesSeleccionados.setModel(new ListModelList<String>(
 				funcionalidades));
+		catalogo.limpiarSeleccion();
 	}
 	
 	public void visualizarFuncionalidades() {
