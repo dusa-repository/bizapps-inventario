@@ -6,6 +6,7 @@ import java.util.List;
 import modelo.maestros.F41021;
 import modelo.pk.F41021PK;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,5 +20,10 @@ public interface IF41021DAO extends JpaRepository<F41021, F41021PK> {
 
 	@Query("select f from F41021 f where f.liupmj <= ?1 and f.lipqoh <> 0 order by f.id.limcu asc, f.id.lilocn asc, f.id.liitm asc")
 	List<F41021> findByLiupmjBeforeNowExistencia(BigDecimal hasta);
+
+	List<F41021> findByIdLimcuLikeAndIdLiitm(String planta, Double value, Sort o);
+
+	List<F41021> findByIdLimcuLikeAndIdLiitmAndLipqohNot(String planta,
+			Double value, Double valor, Sort o);
 
 }
