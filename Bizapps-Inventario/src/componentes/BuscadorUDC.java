@@ -11,11 +11,11 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Separator;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Textbox;
 
 import servicio.maestros.SF0005;
-
 import componentes.catalogos.CatalogoUDC;
 
 public abstract class BuscadorUDC extends Hbox {
@@ -44,15 +44,17 @@ public abstract class BuscadorUDC extends Hbox {
 		valorP1 = valor1;
 		valorP2 = valor2;
 		this.setWidth("100%");
+		this.setSpacing("10em");
 		Label label = new Label(etiqueta + " :");
 		label.setClass("etiqueta");
 
 		cajaTexto = new Textbox();
 		cajaTexto
 				.setTooltiptext("Código Definido por el Usuario (DRKY de "+valor1+","+valor2+")");
-		cajaTexto.setHflex("1");
+//		cajaTexto.setHflex("1");
+		cajaTexto.setWidth("100%");
 		cajaTexto.setMaxlength(longitud);
-		cajaTexto.setWidth("8px");
+//		cajaTexto.setWidth("8px");
 
 		Button boton = new Button();
 		boton.setAutodisable("true");
@@ -63,8 +65,8 @@ public abstract class BuscadorUDC extends Hbox {
 		boton.setClass("btn");
 
 		lblNombre = new Label();
-		lblNombre.setWidth("auto");
-		lblNombre.setHflex("1");
+		lblNombre.setWidth("100%");
+//		lblNombre.setHflex("1");
 
 		divCatalogo = new Div();
 		divCatalogo.setTooltiptext("Click para Seleccionar un Codigo");
@@ -76,21 +78,25 @@ public abstract class BuscadorUDC extends Hbox {
 			caja.appendChild(label);
 			caja.appendChild(new Space());
 			caja.appendChild(lbl);
-			caja.setWidth("auto");
-			caja.setHflex("1");
+			caja.setWidth("100%");
+//			caja.setHflex("1");
 			this.appendChild(caja);
 		} else {
 			this.appendChild(label);
-			label.setWidth("auto");
-			label.setHflex("1");
+			label.setWidth("100%%o");
+//			label.setHflex("1");
 		}
+//		this.appendChild(new Separator());
 		this.appendChild(cajaTexto);
+//		this.appendChild(new Separator());
 		this.appendChild(boton);
+//		this.appendChild(new Separator());
 		this.appendChild(lblNombre);
 		this.appendChild(divCatalogo);
 		this.setAlign("center");
 		this.setPack("center");
-		this.setWidths("46%,2%,2%,50%,0%");
+//		this.setWidths("35%,10%,10%,45%");
+		this.setWidths("30%,7%,7%,40%");
 
 		cajaTexto.addEventListener(Events.ON_OK, new EventListener<Event>() {
 			@Override

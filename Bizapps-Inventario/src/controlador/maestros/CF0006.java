@@ -683,8 +683,7 @@ public class CF0006 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0006, titulo,
-						tabs);
+				cerrarVentana(divVF0006, titulo, tabs);
 
 			}
 
@@ -718,7 +717,9 @@ public class CF0006 extends CGenerico {
 					String dl02 = txtDL02F0006.getValue();
 					String dl03 = txtDL03F0006.getValue();
 					String dl04 = txtDL04F0006.getValue();
-					double an8 = Double.parseDouble(txtAN8F0006.getValue());
+					double an8 = 0;
+					if (txtAN8F0006.getValue().compareTo("") != 0)
+						an8 = Double.parseDouble(txtAN8F0006.getValue());
 					String txa1 = txtTXA1F0006.getValue();
 					String mcus = txtMCUSF0006.getValue();
 					String pecc = buscadorPECC.obtenerCaja();
@@ -894,9 +895,8 @@ public class CF0006 extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
-				
 
 			}
 

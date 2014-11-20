@@ -115,7 +115,7 @@ public abstract class Catalogo<Clase> extends Window {
 		lhdEncabezado.setSizable(true);
 		lhdEncabezado.setVisible(true);
 		for (int i = 0; i < campos.length; i++) {
-			Textbox cajaTexto = crearTexboxBusqueda(campos[i]);
+			Textbox cajaTexto = crearTexboxBusqueda(campos[i], emergente);
 			Auxheader cabeceraFila = new Auxheader();
 			cabeceraFila.appendChild(cajaTexto);
 			cabecera.appendChild(cabeceraFila);
@@ -147,7 +147,7 @@ public abstract class Catalogo<Clase> extends Window {
 		return listboxCatalogo;
 	}
 
-	private Textbox crearTexboxBusqueda(String valor) {
+	private Textbox crearTexboxBusqueda(String valor, final boolean emergente) {
 		Textbox cajaTexto = new Textbox();
 		cajaTexto.setContext(valor);
 		cajaTexto.setHflex("1");
@@ -167,6 +167,11 @@ public abstract class Catalogo<Clase> extends Window {
 				listbox.setModel(new ListModelList<Clase>(listaNueva));
 				String valor = cajaTexto.getValue();
 				cajaTexto.setValue(valor);
+				//Agregado para que las listas sean multiples en caso necesario
+				lsbCatalogo.setMultiple(emergente);
+				lsbCatalogo.setCheckmark(emergente);
+				lsbCatalogo.setMultiple(!emergente);
+				lsbCatalogo.setCheckmark(!emergente);
 			}
 		});
 		cajaTexto.setPlaceholder("Buscar....");

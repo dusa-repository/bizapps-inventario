@@ -216,6 +216,9 @@ public class CCF4111 extends CGenerico {
 			}
 		};
 		botonera.getChildren().get(0).setVisible(false);
+		Button guardar = (Button) botonera.getChildren().get(1);
+		guardar.setLabel("Buscar");
+		guardar.setImage("/public/imagenes/botones/buscar.png");
 		botonera.getChildren().get(2).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(4).setVisible(false);
@@ -240,7 +243,7 @@ public class CCF4111 extends CGenerico {
 
 	protected boolean validar() {
 		if (txtItem.getText().compareTo("") == 0) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			Mensaje.mensajeAlerta(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;

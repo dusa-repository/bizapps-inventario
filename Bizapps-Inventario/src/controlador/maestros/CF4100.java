@@ -384,7 +384,7 @@ public class CF4100 extends CGenerico {
 		lblMCUF0006.setValue("");
 		txtLOCNF4100.setValue("");
 		btnBuscarF0006.setVisible(true);
-		dtbUPMJF4100.setValue(null);
+		dtbUPMJF4100.setValue(fecha);
 		buscadorKZONF4100.settearCampo(null);
 		buscadorKZONF4100.habilitarCampos();
 		buscadorPZONF4100.settearCampo(null);
