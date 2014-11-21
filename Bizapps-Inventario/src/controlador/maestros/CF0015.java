@@ -172,27 +172,29 @@ public class CF0015 extends CGenerico {
 							}
 
 							txtCRCMF0015.setValue(f015.getCxcrcm());
-							
-							if(txtCRCMF0015.getText().compareTo("") != 0){
-								
-								if (txtCRCMF0015.getValue().equalsIgnoreCase("Y")) {
-									lblMetodoConversionF0015.setValue("Metodo Multiplicador");
+
+							if (txtCRCMF0015.getText().compareTo("") != 0) {
+
+								if (txtCRCMF0015.getValue().equalsIgnoreCase(
+										"Y")) {
+									lblMetodoConversionF0015
+											.setValue("Metodo Multiplicador");
 								} else {
 
-									if (txtCRCMF0015.getValue().equalsIgnoreCase("Z")) {
+									if (txtCRCMF0015.getValue()
+											.equalsIgnoreCase("Z")) {
 
-										lblMetodoConversionF0015.setValue("Metodo Divisor");
+										lblMetodoConversionF0015
+												.setValue("Metodo Divisor");
 									}
 
 								}
-								
-								
+
 							}
-							
-						
+
 							if (f015.getCxcrr() != null)
-								txtCRRF0015.setValue(Math.round(f015
-										.getCxcrr()));
+								txtCRRF0015
+										.setValue(Math.round(f015.getCxcrr()));
 							if (f015.getCxcrrd() != null)
 								txtCRRDF0015.setValue(Math.round(f015
 										.getCxcrrd()));
@@ -224,10 +226,8 @@ public class CF0015 extends CGenerico {
 							txtAN8F0015.setDisabled(true);
 							btnBuscarF0101.setDisabled(true);
 							txtCRCMF0015.setValue(f015.getCxcrcm());
-							txtCRRF0015
-									.setValue(Math.round(f015.getCxcrr()));
-							txtCRRDF0015.setValue(Math.round(f015
-									.getCxcrrd()));
+							txtCRRF0015.setValue(Math.round(f015.getCxcrr()));
+							txtCRRDF0015.setValue(Math.round(f015.getCxcrrd()));
 							tbMetodoCalculoF0015.setSelected(true);
 
 						} else
@@ -275,7 +275,7 @@ public class CF0015 extends CGenerico {
 					long eft = Long.valueOf((String
 							.valueOf(transformarGregorianoAJulia(dtbEFTF0015
 									.getValue()))));
-					
+
 					F0015PK clave = new F0015PK();
 					clave.setCxcrcd(crcd);
 					clave.setCxcrdc(crdc);
@@ -289,15 +289,14 @@ public class CF0015 extends CGenerico {
 
 					if (txtCRCMF0015.getText().compareTo("") != 0)
 						foo15.setCxcrcm(txtCRCMF0015.getValue());
-					
+
 					Long cxrr = txtCRRF0015.getValue();
 					if (cxrr != null)
 						foo15.setCxcrr(cxrr.doubleValue());
-					
+
 					Long cxcrrd = txtCRRDF0015.getValue();
 					if (cxcrrd != null)
 						foo15.setCxcrrd(cxcrrd.doubleValue());
-					
 
 					foo15.setCxuser("JDE");
 					foo15.setCxupmj(transformarGregorianoAJulia(new Date()));
@@ -636,8 +635,24 @@ public class CF0015 extends CGenerico {
 		if (!camposLLenos()) {
 			msj.mensajeError(Mensaje.camposVacios);
 			return false;
-		} else
-			return true;
+		} else {
+
+			if (buscarDireccion()) {
+
+				if (buscarMonedaDestino()) {
+					if (buscarMoneda()) {
+						return true;
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+
+			} else {
+				return false;
+			}
+		}
 	}
 
 	public void mostrarCatalogoEncabezado() {
@@ -806,26 +821,23 @@ public class CF0015 extends CGenerico {
 		lblMonedaF0013.setValue(f0013.getCvdl01());
 		catalogoF0013.setParent(null);
 	}
-	
-	
+
 	@Listen("onChange = #txtCRCDF0015")
-	public void buscarMoneda() {
+	public boolean buscarMoneda() {
 		if (txtCRCDF0015.getValue() != null) {
 			F0013 f0013 = servicioF0013.buscar(txtCRCDF0015.getValue());
 			if (f0013 != null) {
 				txtCRCDF0015.setValue(f0013.getCvcrcd());
 				lblMonedaF0013.setValue(f0013.getCvdl01());
+				return true;
 			} else {
 				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				lblMonedaF0013.setValue("");
-				txtCRCDF0015.setValue("");
 				txtCRCDF0015.setFocus(true);
+				return false;
 			}
 		} else
-			lblMonedaF0013.setValue("");
+			return false;
 	}
-	
-	
 
 	@Listen("onClick = #btnBuscarMonedaDestinoF0013")
 	public void mostrarCatalogoMonedaDestino() {
@@ -876,26 +888,23 @@ public class CF0015 extends CGenerico {
 		lblMonedaDestinoF0013.setValue(f0013.getCvdl01());
 		catalogoMonedaDestino.setParent(null);
 	}
-	
-	
+
 	@Listen("onChange = #txtCRDCF0015")
-	public void buscarMonedaDestino() {
+	public boolean buscarMonedaDestino() {
 		if (txtCRDCF0015.getValue() != null) {
 			F0013 f0013 = servicioF0013.buscar(txtCRDCF0015.getValue());
 			if (f0013 != null) {
 				txtCRDCF0015.setValue(f0013.getCvcrcd());
 				lblMonedaDestinoF0013.setValue(f0013.getCvdl01());
+				return true;
 			} else {
 				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				lblMonedaDestinoF0013.setValue("");
-				txtCRDCF0015.setValue("");
 				txtCRDCF0015.setFocus(true);
+				return false;
 			}
 		} else
-			lblMonedaDestinoF0013.setValue("");
+			return false;
 	}
-	
-	
 
 	@Listen("onClick = #btnBuscarF0101")
 	public void mostrarCatalogoF0101() {
@@ -952,26 +961,23 @@ public class CF0015 extends CGenerico {
 		lblDireccionF0101.setValue(f0101.getAbalph());
 		catalogoF0101.setParent(null);
 	}
-	
-	
+
 	@Listen("onChange = #txtAN8F0015")
-	public void buscarDireccion() {
+	public boolean buscarDireccion() {
 		if (txtAN8F0015.getValue() != null) {
 			F0101 f0101 = servicioF0101.buscar(txtAN8F0015.getValue());
 			if (f0101 != null) {
 				Double doble = f0101.getAban8();
 				txtAN8F0015.setValue(doble.longValue());
 				lblDireccionF0101.setValue(f0101.getAbalph());
+				return true;
 			} else {
 				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				lblDireccionF0101.setValue("");
-				txtAN8F0015.setValue(null);
-				txtAN8F0015.setFocus(true);
+				return false;
 			}
 		} else
-			lblDireccionF0101.setValue("");
+			return false;
 	}
-	
 
 	@Listen("onChange = #txtCRCMF0015")
 	public void metodoConversion() {
