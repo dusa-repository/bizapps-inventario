@@ -1,7 +1,8 @@
 <zk>
 	<style src="../public/Estilo.css" />
 	<div id="divVF0115" apply="controlador.maestros.CF0115">
-		<groupbox width="auto" mold="3d" title="Numeros Telefonicos (VF0115)">
+		<groupbox width="auto" mold="3d"
+			title="Numeros Telefonicos (VF0115)">
 			<div id="botoneraF0115" />
 			<separator />
 			<groupbox class="azul" id="gpxRegistroF0115" width="auto"
@@ -12,43 +13,52 @@
 				<grid width="100%">
 					<columns visible="false">
 						<column label="" width="20%" />
-						<column label="" width="35%" />
-						<column label="" width="16%" />
-						<column label="" width="30%" />
+						<column label="" width="28%" />
+						<column label="" width="14%" />
+						<column label="" width="38%" />
 					</columns>
 					<rows>
 						<row>
 							<hbox>
-								<label class="etiqueta" value="Numero Direccion:" />
+								<label class="etiqueta"
+									value="Numero Direccion:" />
 								<space />
-								<label value="*" style="font-weight:bold;color:red">
+								<label value="*"
+									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<longbox id="txtAn8F0115" hflex="1" maxlength="19"
+							<longbox id="txtAn8F0115" hflex="1"
+								maxlength="19"
 								tooltiptext="Seleccione del Catalogo el Codigo la Direccion (ABAN8 de F0101)" />
 							<hbox>
-								<button id="btnBuscarDireccionF0115" label="Buscar"
-									class="btn" tooltiptext="Catalogo de Codigos de Producto (F0101)" image="/public/imagenes/botones/buscar.png" />
+								<button id="btnBuscarDireccionF0115"
+									label="Buscar" autodisable="self" class="btn"
+									tooltiptext="Catalogo de Codigos de Producto (F0101)"
+									image="/public/imagenes/botones/buscar.png" />
 							</hbox>
 							<label id="lblAn8F0115" />
 						</row>
 						<row>
-							<label class="etiqueta" value="Numero Telefonico:" />
-							<cell colspan="3">
+							<label class="etiqueta"
+								value="Numero Telefonico:" />
+							<cell colspan="2">
 								<hbox>
-									<textbox id="txtAr01F0115" hflex="1" maxlength="6"
+									<textbox id="txtAr01F0115" hflex="1"
+										maxlength="6"
 										tooltiptext="Ingrese el prefijo del Numero Telefonico. Ejemplo 0412 (WPAR1)" />
 									<label class="etiqueta" value="-" />
-									<textbox id="txtPh1F0115" hflex="1" maxlength="20"
+									<textbox id="txtPh1F0115" hflex="1"
+										maxlength="20"
 										tooltiptext="Ingrese el Numero Telefonico. Ejemplo 1256879 (WPPH1)" />
 								</hbox>
 							</cell>
+							<hbox />
 						</row>
 						<row>
 							<cell colspan="3">
 								<div id="divBuscadorPhtp" hflex="1" />
 							</cell>
-							<hbox/>
+							<hbox />
 						</row>
 					</rows>
 				</grid>
@@ -58,7 +68,8 @@
 				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar los Numeros Telefonicos Registrados" />
-				<div id="catalogoF0115" tooltiptext="Seleccione la Moneda para Realizar una Accion" />
+				<div id="catalogoF0115"
+					tooltiptext="Seleccione la Moneda para Realizar una Accion" />
 			</groupbox>
 			<separator />
 			<separator />

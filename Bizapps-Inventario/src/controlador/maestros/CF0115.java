@@ -16,6 +16,7 @@ import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
@@ -49,6 +50,8 @@ public class CF0115 extends CGenerico {
 	private Div botoneraF0115;
 	@Wire
 	private Div catalogoF0115;
+	@Wire
+	private Button btnBuscarDireccionF0115;
 	@Wire
 	private Div DivCatalogoDireccionF0115;
 	@Wire
@@ -101,6 +104,7 @@ public class CF0115 extends CGenerico {
 						Double doble = f0115.getId().getWpan8();
 						txtAn8F0115.setValue(doble.longValue());
 						txtAn8F0115.setDisabled(true);
+						btnBuscarDireccionF0115.setVisible(false);
 						txtAr01F0115.setValue(f0115.getWpar1());
 						txtPh1F0115.setValue(f0115.getWpph1());
 						buscadorPhtp.settearCampo(servicioF0005.buscar("01",
@@ -314,11 +318,15 @@ public class CF0115 extends CGenerico {
 		txtAr01F0115.setValue("");
 		txtPh1F0115.setValue("");
 		buscadorPhtp.settearCampo(null);
+		btnBuscarDireccionF0115.setVisible(true);
+		txtAn8F0115.setDisabled(false);
+		catalogo.limpiarSeleccion();
 	}
 
 	@Listen("onClick = #gpxRegistroF0115")
 	public void abrirRegistro() {
 		gpxDatosF0115.setOpen(false);
+		btnBuscarDireccionF0115.setVisible(true);
 		gpxRegistroF0115.setOpen(true);
 		mostrarBotones(false);
 	}

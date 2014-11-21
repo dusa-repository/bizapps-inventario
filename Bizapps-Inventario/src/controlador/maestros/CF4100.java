@@ -7,6 +7,7 @@ import java.util.List;
 
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
+import modelo.maestros.F0101;
 import modelo.maestros.F4100;
 import modelo.pk.F4100PK;
 import modelo.transacciones.F4111;
@@ -181,23 +182,30 @@ public class CF4100 extends CGenerico {
 
 						txtLOCNF4100.setValue(f4100.getId().getLmlocn());
 						txtLOCNF4100.setDisabled(true);
-						dtbUPMJF4100.setValue(transformarJulianaAGregoria(f4100
-								.getLmupmj()));
+						if (f4100.getLmupmj() != null)
+							dtbUPMJF4100
+									.setValue(transformarJulianaAGregoria(f4100
+											.getLmupmj()));
 
-						buscadorPZONF4100.settearCampo(servicioF0005.buscar(
-								"46", "ZN", f4100.getLmpzon()));
+						if (f4100.getLmpzon().compareTo("") != 0)
+							buscadorPZONF4100.settearCampo(servicioF0005
+									.buscar("46", "ZN", f4100.getLmpzon()));
 
-						buscadorKZONF4100.settearCampo(servicioF0005.buscar(
-								"46", "ZN", f4100.getLmkzon()));
+						if (f4100.getLmkzon().compareTo("") != 0)
+							buscadorKZONF4100.settearCampo(servicioF0005
+									.buscar("46", "ZN", f4100.getLmkzon()));
 
-						buscadorZONRF4100.settearCampo(servicioF0005.buscar(
-								"46", "ZN", f4100.getLmzonr()));
+						if (f4100.getLmzonr().compareTo("") != 0)
+							buscadorZONRF4100.settearCampo(servicioF0005
+									.buscar("46", "ZN", f4100.getLmzonr()));
 
-						buscadorLLDLF4100.settearCampo(servicioF0005.buscar(
-								"M40", "LL", f4100.getLmlldl()));
+						if (f4100.getLmlldl().compareTo("") != 0)
+							buscadorLLDLF4100.settearCampo(servicioF0005
+									.buscar("M40", "LL", f4100.getLmlldl()));
 
-						buscadorMIXLF4100.settearCampo(servicioF0005.buscar(
-								"41", "ML", f4100.getLmmixl()));
+						if (f4100.getLmmixl().compareTo("") != 0)
+							buscadorMIXLF4100.settearCampo(servicioF0005
+									.buscar("41", "ML", f4100.getLmmixl()));
 
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -206,8 +214,7 @@ public class CF4100 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4100, titulo ,
-						tabs);
+				cerrarVentana(divVF4100, titulo, tabs);
 
 			}
 
@@ -221,6 +228,7 @@ public class CF4100 extends CGenerico {
 				mostrarBotones(false);
 				limpiarCampos();
 				habilitarTextClave();
+				catalogoF4100.limpiarSeleccion();
 			}
 
 			@Override
@@ -235,10 +243,10 @@ public class CF4100 extends CGenerico {
 					clave.setLmmcu(txtMCUF4100.getValue());
 					clave.setLmlocn(txtLOCNF4100.getValue());
 					f4100.setId(clave);
-					//
-					// if (dtbUPMJF4100.getText().compareTo("") != 0)
-					f4100.setLmupmj(transformarGregorianoAJulia(dtbUPMJF4100
-							.getValue()));
+
+					if (dtbUPMJF4100.getText().compareTo("") != 0)
+						f4100.setLmupmj(transformarGregorianoAJulia(dtbUPMJF4100
+								.getValue()));
 					f4100.setLmuser("JDE");
 
 					f4100.setLmpzon(buscadorPZONF4100.obtenerCaja());
@@ -342,9 +350,9 @@ public class CF4100 extends CGenerico {
 
 			@Override
 			public void buscar() {
-				
+
 				abrirCatalogo();
-	
+
 			}
 
 			@Override
@@ -384,7 +392,7 @@ public class CF4100 extends CGenerico {
 		lblMCUF0006.setValue("");
 		txtLOCNF4100.setValue("");
 		btnBuscarF0006.setVisible(true);
-		dtbUPMJF4100.setValue(fecha);
+		dtbUPMJF4100.setValue(null);
 		buscadorKZONF4100.settearCampo(null);
 		buscadorKZONF4100.habilitarCampos();
 		buscadorPZONF4100.settearCampo(null);
@@ -423,16 +431,19 @@ public class CF4100 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		if (!idF0006()) {
-			msj.mensajeError(Mensaje.almacenNoExiste);
+
+		if (!camposLLenos()) {
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else {
-			if (!camposLLenos()) {
-				msj.mensajeError(Mensaje.camposVacios);
-				return false;
-			} else
+
+			if (idF0006()) {
 				return true;
+			} else {
+				return false;
+			}
 		}
+
 	}
 
 	@Listen("onChange = #txtMCUF4100")
@@ -441,9 +452,10 @@ public class CF4100 extends CGenerico {
 			F0006 f0006 = servicioF0006.buscar(txtMCUF4100.getText());
 			if (f0006 != null) {
 				txtMCUF4100.setValue(String.valueOf(f0006.getMcmcu()));
-				lblMCUF0006.setValue(f0006.getMcdc());
+				lblMCUF0006.setValue(f0006.getMcdl01());
 				return true;
 			} else {
+				msj.mensajeError(Mensaje.almacenNoExiste);
 				return false;
 			}
 
@@ -555,12 +567,14 @@ public class CF4100 extends CGenerico {
 						num10 = f4100.getLmla10();
 					if (String.valueOf(f4100.getId().getLmmcu()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
+							&& mcdc.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& String
 									.valueOf(
 											transformarJulianaAGregoria(f4100
 													.getLmupmj()))
-									.toLowerCase().contains(valores.get(2).toLowerCase())
+									.toLowerCase()
+									.contains(valores.get(2).toLowerCase())
 							&& f4100.getId().getLmlocn().toLowerCase()
 									.contains(valores.get(3).toLowerCase())
 							&& f4100.getLmpzon().toLowerCase()
@@ -572,14 +586,22 @@ public class CF4100 extends CGenerico {
 							&& f4100.getLmlldl().toLowerCase()
 									.contains(valores.get(7).toLowerCase())
 							// poner campos pasillo y bin
-							&& num3.toLowerCase().contains(valores.get(10).toLowerCase())
-							&& num4.toLowerCase().contains(valores.get(11).toLowerCase())
-							&& num5.toLowerCase().contains(valores.get(12).toLowerCase())
-							&& num6.toLowerCase().contains(valores.get(13).toLowerCase())
-							&& num7.toLowerCase().contains(valores.get(14).toLowerCase())
-							&& num8.toLowerCase().contains(valores.get(15).toLowerCase())
-							&& num9.toLowerCase().contains(valores.get(16).toLowerCase())
-							&& num10.toLowerCase().contains(valores.get(17).toLowerCase())
+							&& num3.toLowerCase().contains(
+									valores.get(10).toLowerCase())
+							&& num4.toLowerCase().contains(
+									valores.get(11).toLowerCase())
+							&& num5.toLowerCase().contains(
+									valores.get(12).toLowerCase())
+							&& num6.toLowerCase().contains(
+									valores.get(13).toLowerCase())
+							&& num7.toLowerCase().contains(
+									valores.get(14).toLowerCase())
+							&& num8.toLowerCase().contains(
+									valores.get(15).toLowerCase())
+							&& num9.toLowerCase().contains(
+									valores.get(16).toLowerCase())
+							&& num10.toLowerCase().contains(
+									valores.get(17).toLowerCase())
 							&& f4100.getLmmixl().toLowerCase()
 									.contains(valores.get(18).toLowerCase())
 							&& f4100.getLmstag().toLowerCase()
@@ -597,8 +619,12 @@ public class CF4100 extends CGenerico {
 				String[] registros = new String[20];
 				registros[0] = String.valueOf(f4100.getId().getLmmcu());
 				registros[1] = f0006.getMcdc();
-				registros[2] = formatoFecha
-						.format((transformarJulianaAGregoria(f4100.getLmupmj())));
+				if (f4100.getLmupmj() != null)
+					registros[2] = formatoFecha
+							.format((transformarJulianaAGregoria(f4100
+									.getLmupmj())));
+				else
+					registros[2] = "";
 				registros[3] = String.valueOf(f4100.getId().getLmlocn());
 				registros[4] = f4100.getLmpzon();
 				registros[5] = f4100.getLmkzon();
@@ -642,7 +668,8 @@ public class CF4100 extends CGenerico {
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
+							&& mcdc.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
 									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()
@@ -698,7 +725,7 @@ public class CF4100 extends CGenerico {
 	public void seleccionF0006() {
 		F0006 f0006 = catalogoF0006.objetoSeleccionadoDelCatalogo();
 		txtMCUF4100.setValue(String.valueOf(f0006.getMcmcu()));
-		lblMCUF0006.setValue(f0006.getMcdc());
+		lblMCUF0006.setValue(f0006.getMcdl01());
 		catalogoF0006.setParent(null);
 	}
 
