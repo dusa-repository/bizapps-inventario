@@ -153,13 +153,13 @@ public class CF40203 extends CGenerico {
 						buscadorA1TR.obtenerCaja());
 			}
 		};
-		List<F0005> listaF0005A2TR = servicioF0005.buscarParaUDCOrdenados("A0",
+		List<F0005> listaF0005A2TR = servicioF0005.buscarParaUDCOrdenados("40",
 				"AT");
 		buscadorA2TR = new BuscadorUDC("Otros 2", 10, listaF0005A2TR, false,
-				false, false, "A0", "AT") {
+				false, false, "40", "AT") {
 			@Override
 			protected F0005 buscar() {
-				return servicioF0005.buscar("A0", "AT",
+				return servicioF0005.buscar("40", "AT",
 						buscadorA2TR.obtenerCaja());
 			}
 		};
@@ -229,6 +229,18 @@ public class CF40203 extends CGenerico {
 									"AT", f40.getId().getFstrty()));
 							buscadorTRTY.inhabilitarCampo();
 						}
+						
+						
+						buscadorA1TR.settearCampo(servicioF0005.buscar("40",
+									"AT", f40.getFsa1tr()));
+						buscadorA2TR.settearCampo(servicioF0005.buscar("40",
+								"AT", f40.getFsa2tr()));
+						buscadorA3TR.settearCampo(servicioF0005.buscar("40",
+								"AT", f40.getFsa3tr()));
+						buscadorA4TR.settearCampo(servicioF0005.buscar("40",
+								"AT", f40.getFsa4tr()));
+						buscadorA5TR.settearCampo(servicioF0005.buscar("40",
+								"AT", f40.getFsa5tr()));
 						
 						// txtNSF40203.setValue(f40.);
 //						txtDSC1F40203.setValue(f40.getFsstds());

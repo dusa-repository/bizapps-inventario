@@ -139,7 +139,7 @@
 									</row>
 									<row>
 										<label class="etiqueta" value="Número Dirección" />
-										<textbox id="txtAN8F0006" hflex="1" maxlength="100"
+										<longbox id="txtAN8F0006" hflex="1" maxlength="100"
 											tooltiptext="Seleccione del Catalogo el Codigo de la Dirección (ABAN8 de F0101)" />
 										<button id="btnBuscarDireccion" label="Buscar" class="btn"
 											tooltiptext="Catalogo de Codigos de Direcciones (F0101)" image="/public/imagenes/botones/buscar.png" />
@@ -151,6 +151,7 @@
 										<textbox id="txtTXA1F0006" hflex="1"
 											tooltiptext="Ingrese la Zona/Tipo Fiscal (MCTXA1)" />
 										<hbox />
+										<hbox />
 									</row>
 									<row>
 										<label class="etiqueta" value="Nº Proyecto" />
@@ -159,6 +160,7 @@
 										<button id="btnBuscarProyecto" label="Buscar" class="btn"
 											tooltiptext="Catalogo de Codigos de Unidades de Negocio (F0006)" image="/public/imagenes/botones/buscar.png" />
 										<label id="lblDescripcionF0006" />
+										<hbox />
 										<hbox />
 									</row>
 									<row>

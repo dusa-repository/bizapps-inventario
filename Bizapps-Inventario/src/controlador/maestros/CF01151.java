@@ -16,6 +16,7 @@ import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
@@ -57,6 +58,8 @@ public class CF01151 extends CGenerico {
 	private Div DivCatalogoDireccionF01151;
 	@Wire
 	private Groupbox gpxDatosF01151;
+	@Wire
+	private Button btnBuscarDireccionF01151;
 	@Wire
 	private Groupbox gpxRegistroF01151;
 	Botonera botonera;
@@ -116,29 +119,34 @@ public class CF01151 extends CGenerico {
 						Double doble = f0115.getId().getEaan8();
 						txtAn8F01151.setValue(doble.longValue());
 						txtAn8F01151.setDisabled(true);
+						btnBuscarDireccionF01151.setVisible(false);
 						txtEmalF01151.setValue(f0115.getEaemal());
 						String valor = "";
-						switch (f0115.getEaetp()) {
-						case "DirW":
-							valor = "Direccion de Internet";
-							cmbEtpF01151.setContext("DirW");
-							break;
-						case "DirE":
-							valor = "Direccion Electronica";
-							cmbEtpF01151.setContext("DirE");
-							break;
-						case "DirI":
-							valor = "Direccion Interna";
-							cmbEtpF01151.setContext("DirI");
-							break;
-						default:
-							break;
-						}
+						if (f0115.getEaetp() != null)
+							switch (f0115.getEaetp()) {
+							case "DirW":
+								valor = "Direccion de Internet";
+								cmbEtpF01151.setContext("DirW");
+								break;
+							case "DirE":
+								valor = "Direccion Electronica";
+								cmbEtpF01151.setContext("DirE");
+								break;
+							case "DirI":
+								valor = "Direccion Interna";
+								cmbEtpF01151.setContext("DirI");
+								break;
+							default:
+								break;
+							}
 						cmbEtpF01151.setValue(valor);
 						buscadorEclass.settearCampo(servicioF0005.buscar("01",
 								"CF", f0115.getEaeclass()));
+						int ehier = (int) Math.floor(f0115.getEaehier());
+						String ehierMostrar = "0" + String.valueOf(ehier);
+						System.out.println(ehierMostrar);
 						buscadorEhier.settearCampo(servicioF0005.buscar("01",
-								"HI", String.valueOf(f0115.getEaehier())));
+								"HI", ehierMostrar));
 						cmbEtpF01151.setFocus(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -147,8 +155,7 @@ public class CF01151 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF01151,
-						titulo , tabs);
+				cerrarVentana(divVF01151, titulo, tabs);
 			}
 
 			@Override
@@ -190,9 +197,12 @@ public class CF01151 extends CGenerico {
 						f015.setEaetp(cmbEtpF01151.getSelectedItem()
 								.getContext());
 					f015.setEaeclass(buscadorEclass.obtenerCaja());
-					if (buscadorEhier.obtenerCaja().compareTo("") != 0)
-						f015.setEaehier(Double.valueOf(buscadorEhier
-								.obtenerCaja()));
+					if (buscadorEhier.obtenerCaja().compareTo("") != 0) {
+						Double eaehier = Double.parseDouble(buscadorEhier
+								.obtenerCaja());
+						f015.setEaehier(eaehier);
+					}
+
 					f015.setEaupmj(transformarGregorianoAJulia(fecha));
 					f015.setEaupmt(Double.valueOf(horaAuditoria));
 					f015.setEauser("JDE");
@@ -261,7 +271,7 @@ public class CF01151 extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
 
 			}
@@ -288,7 +298,7 @@ public class CF01151 extends CGenerico {
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -351,15 +361,18 @@ public class CF01151 extends CGenerico {
 		txtEmalF01151.setValue("");
 		txtAn8F01151.setValue(null);
 		lblAn8F01151.setValue("");
+		btnBuscarDireccionF01151.setVisible(true);
 		cmbEtpF01151.setValue("");
 		buscadorEclass.settearCampo(null);
 		buscadorEhier.settearCampo(null);
+		catalogo.limpiarSeleccion();
 	}
 
 	@Listen("onClick = #gpxRegistroF01151")
 	public void abrirRegistro() {
 		gpxDatosF01151.setOpen(false);
 		gpxRegistroF01151.setOpen(true);
+		btnBuscarDireccionF01151.setVisible(true);
 		mostrarBotones(false);
 	}
 
@@ -376,7 +389,7 @@ public class CF01151 extends CGenerico {
 	protected boolean validarSeleccion() {
 		List<F01151> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			msj.mensajeError(Mensaje.noHayRegistros);
 			return false;
 		} else {
 			if (seleccionados.isEmpty()) {
@@ -415,16 +428,17 @@ public class CF01151 extends CGenerico {
 					default:
 						break;
 					}
-					if (String.valueOf(f01.getId().getEaan8().longValue()).toLowerCase()
+					if (String.valueOf(f01.getId().getEaan8().longValue())
+							.toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& valor.toLowerCase()
-							.contains(valores.get(1).toLowerCase())
+							&& valor.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& f01.getEaemal().toLowerCase()
-							.contains(valores.get(2).toLowerCase())
+									.contains(valores.get(2).toLowerCase())
 							&& String.valueOf(f01.getEaehier()).toLowerCase()
-							.contains(valores.get(3).toLowerCase())
+									.contains(valores.get(3).toLowerCase())
 							&& f01.getEaeclass().toLowerCase()
-							.contains(valores.get(4).toLowerCase())) {
+									.contains(valores.get(4).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -450,7 +464,8 @@ public class CF01151 extends CGenerico {
 					}
 				}
 				String[] registros = new String[5];
-				registros[0] = String.valueOf(f0115.getId().getEaan8().longValue());
+				registros[0] = String.valueOf(f0115.getId().getEaan8()
+						.longValue());
 				registros[1] = valor;
 				registros[2] = f0115.getEaemal();
 				registros[3] = String.valueOf(f0115.getEaehier());
@@ -478,15 +493,15 @@ public class CF01151 extends CGenerico {
 					if (String.valueOf(f01.getAban8()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f01.getAbalph().toLowerCase()
-							.contains(valores.get(1).toLowerCase())
+									.contains(valores.get(1).toLowerCase())
 							&& f01.getAbalky().toLowerCase()
-							.contains(valores.get(2).toLowerCase())
+									.contains(valores.get(2).toLowerCase())
 							&& f01.getAbsic().toLowerCase()
-							.contains(valores.get(3).toLowerCase())
+									.contains(valores.get(3).toLowerCase())
 							&& f01.getAbat1().toLowerCase()
-							.contains(valores.get(4).toLowerCase())
+									.contains(valores.get(4).toLowerCase())
 							&& f01.getAbtax().toLowerCase()
-							.contains(valores.get(5).toLowerCase())) {
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
