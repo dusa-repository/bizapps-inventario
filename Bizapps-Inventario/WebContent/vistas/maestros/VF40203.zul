@@ -1,100 +1,121 @@
 <zk>
-<style src="../public/Estilo.css" />
+	<style src="../public/Estilo.css" />
 	<div id="divVF40203" apply="controlador.maestros.CF40203">
-		<groupbox width="auto" mold="3d" title="Trabajo con Reglas de Actividad de Órdenes (VF40203)">
-		<div id="botoneraF40203" />
-		<groupbox id="gpxRegistro" width="auto" title="" open="false" class="azul">
+		<groupbox width="auto" mold="3d"
+			title="Trabajo con Reglas de Actividad de Órdenes (VF40203)">
+			<div id="botoneraF40203" />
+			<groupbox id="gpxRegistro" width="auto" title=""
+				open="false" class="azul">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar una Actividad de Orden" />
 				<separator />
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="19%" />
-					<column label="" width="50%" />
-					<column label="" width="36%" />
-				</columns>
-				<rows>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorDCTO" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorNTYF" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Nº Siguiente Tipo Orden" />
-							<textbox id="txtNSF40203" hflex="1" maxlength="100"
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="19%" />
+						<column label="" width="41%" />
+						<column label="" width="20%" />
+						<column label="" width="20%" />
+					</columns>
+					<rows>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorDCTO" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorNTYF" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta"
+								value="Nº Siguiente Tipo Orden" />
+							<textbox id="txtNSF40203" hflex="1"
+								maxlength="100"
 								tooltiptext="Ingrese el Nº Siguiente del Tipo de Orden" />
 							<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorTRTY" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "Descripción último estado" />
-							<textbox id="txtDSC1F40203" hflex="1" maxlength="30"
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorTRTY" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta"
+								value="Descripción último estado" />
+							<textbox id="txtDSC1F40203" hflex="1"
+								maxlength="30"
 								tooltiptext="Ingrese la Descripción del Último Estado (FSSTDS)" />
 							<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorNXTR" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorA1TR" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorA2TR" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorA3TR" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorA4TR" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<cell colspan="2">
-							<div id="divbuscadorA5TR" hflex="1" />
-						</cell>
-						<hbox />
-					</row>
-					<row>
-						<label class="etiqueta" value= "LM (Y/N)" />
-							<textbox id="txtWRTHF40203" hflex="1" maxlength="1"
-								tooltiptext="Ingrese el Valor LM (Y/M) (FSWRTH)" />
 							<hbox />
-					</row>
-				</rows>
-			</grid>
-		</groupbox>	
-		<separator />
-			<groupbox class="azul" id="gpxDatos" width="auto" title="">
-				<caption label="Registros" style="font-weight:bold"
-					tooltiptext="Presione para Visualizar las Actividades de Órdenes"/>
-				<div id="catalogoF40203" tooltiptext="Seleccione la Actividad de Órdenes para Realizar una Accion" />
+						</row>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorNXTR" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorA1TR" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorA2TR" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorA3TR" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorA4TR" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<cell colspan="2">
+								<div id="divbuscadorA5TR" hflex="1" />
+							</cell>
+							<hbox />
+							<hbox />
+						</row>
+						<row>
+							<label class="etiqueta" value="LM (Y/N)" />
+							<textbox id="txtWRTHF40203" hflex="1"
+								maxlength="1" tooltiptext="Ingrese el Valor LM (Y/M) (FSWRTH)" />
+							<hbox />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
 			</groupbox>
-		</groupbox>	
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto"
+				title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las Actividades de Órdenes" />
+				<div id="catalogoF40203"
+					tooltiptext="Seleccione la Actividad de Órdenes para Realizar una Accion" />
+			</groupbox>
+		</groupbox>
 	</div>
 </zk>

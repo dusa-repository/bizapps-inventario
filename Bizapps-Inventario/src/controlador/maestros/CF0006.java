@@ -23,6 +23,7 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
@@ -49,7 +50,7 @@ public class CF0006 extends CGenerico {
 	@Wire
 	private Textbox txtDL04F0006;
 	@Wire
-	private Textbox txtAN8F0006;
+	private Longbox txtAN8F0006;
 	@Wire
 	private Textbox txtTXA1F0006;
 	@Wire
@@ -594,87 +595,176 @@ public class CF0006 extends CGenerico {
 						txtDL01F0006.setValue(f06.getMcdl01());
 						txtDL01F0006.setDisabled(true);
 						txtCOF0006.setValue(f06.getMcco());
+						if (f06.getMcco() != null)
+							lblDescripcionF0010.setValue(servicioF0010.buscar(
+									f06.getMcco()).getCcname());
 						txtCOF0006.setDisabled(true);
-						if (f06.getMcldm() != null)
+						if (f06.getMcldm().compareTo("") != 0)
 							buscadorLDM.settearCampo(servicioF0005.buscar(
 									"H00", "LD", f06.getMcldm()));
 						// txtLDMF0006.setValue(f06.getMcldm());
-						buscadorSTYL.settearCampo(servicioF0005.buscar("00",
-								"MC", f06.getMcstyl()));
-						buscadorSBLI.settearCampo(servicioF0005.buscar("00",
-								"SI", f06.getMcsbli()));
-						buscadorFMOD.settearCampo(servicioF0005.buscar("H09",
-								"MD", f06.getMcfmod()));
-						txtDL02F0006.setValue(f06.getMcdl02());
-						txtDL03F0006.setValue(f06.getMcdl03());
-						txtDL04F0006.setValue(f06.getMcdl04());
-						if (f06.getMcan8() != null)
-							txtAN8F0006
-									.setValue(String.valueOf(f06.getMcan8()));
-						txtTXA1F0006.setValue(f06.getMctxa1());
+
+						if (f06.getMcstyl().compareTo("") != 0)
+							buscadorSTYL.settearCampo(servicioF0005.buscar(
+									"00", "MC", f06.getMcstyl()));
+
+						if (f06.getMcsbli().compareTo("") != 0)
+							buscadorSBLI.settearCampo(servicioF0005.buscar(
+									"00", "SI", f06.getMcsbli()));
+
+						if (f06.getMcfmod().compareTo("") != 0)
+							buscadorFMOD.settearCampo(servicioF0005.buscar(
+									"H09", "MD", f06.getMcfmod()));
+
+						if (f06.getMcdl02().compareTo("") != 0)
+							txtDL02F0006.setValue(f06.getMcdl02());
+
+						if (f06.getMcdl03().compareTo("") != 0)
+							txtDL03F0006.setValue(f06.getMcdl03());
+
+						if (f06.getMcdl04().compareTo("") != 0)
+							txtDL04F0006.setValue(f06.getMcdl04());
+
+						if (f06.getMcan8() != null) {
+							txtAN8F0006.setValue(Math.round(f06.getMcan8()));
+							lblDescripcionF0101.setValue(servicioF0101.buscar(
+									f06.getMcan8()).getAbalph());
+
+						}
+
+						if (f06.getMctxa1().compareTo("") != 0)
+							txtTXA1F0006.setValue(f06.getMctxa1());
+
 						txtMCUSF0006.setValue(f06.getMcmcus());
-						buscadorPECC.settearCampo(servicioF0005.buscar("00",
-								"PF", String.valueOf(f06.getMcpecc())));
-						buscadorCategoria1.settearCampo(servicioF0005.buscar(
-								"00", "01", f06.getMcrp01()));
-						buscadorCategoria2.settearCampo(servicioF0005.buscar(
-								"00", "02", f06.getMcrp02()));
-						buscadorCategoria3.settearCampo(servicioF0005.buscar(
-								"00", "03", f06.getMcrp03()));
-						buscadorCategoria4.settearCampo(servicioF0005.buscar(
-								"00", "04", f06.getMcrp04()));
-						buscadorCategoria5.settearCampo(servicioF0005.buscar(
-								"00", "05", f06.getMcrp05()));
-						buscadorCategoria6.settearCampo(servicioF0005.buscar(
-								"00", "06", f06.getMcrp06()));
-						buscadorCategoria7.settearCampo(servicioF0005.buscar(
-								"00", "07", f06.getMcrp07()));
-						buscadorCategoria8.settearCampo(servicioF0005.buscar(
-								"00", "08", f06.getMcrp08()));
-						buscadorCategoria9.settearCampo(servicioF0005.buscar(
-								"00", "09", f06.getMcrp09()));
-						buscadorCategoria10.settearCampo(servicioF0005.buscar(
-								"00", "10", f06.getMcrp10()));
-						buscadorCategoria11.settearCampo(servicioF0005.buscar(
-								"00", "11", f06.getMcrp11()));
-						buscadorCategoria12.settearCampo(servicioF0005.buscar(
-								"00", "12", f06.getMcrp12()));
-						buscadorCategoria13.settearCampo(servicioF0005.buscar(
-								"00", "13", f06.getMcrp13()));
-						buscadorCategoria14.settearCampo(servicioF0005.buscar(
-								"00", "14", f06.getMcrp14()));
-						buscadorCategoria15.settearCampo(servicioF0005.buscar(
-								"00", "15", f06.getMcrp15()));
-						buscadorCategoria16.settearCampo(servicioF0005.buscar(
-								"00", "16", f06.getMcrp16()));
-						buscadorCategoria17.settearCampo(servicioF0005.buscar(
-								"00", "17", f06.getMcrp17()));
-						buscadorCategoria18.settearCampo(servicioF0005.buscar(
-								"00", "18", f06.getMcrp18()));
-						buscadorCategoria19.settearCampo(servicioF0005.buscar(
-								"00", "19", f06.getMcrp19()));
-						buscadorCategoria20.settearCampo(servicioF0005.buscar(
-								"00", "20", f06.getMcrp20()));
-						buscadorCategoria21.settearCampo(servicioF0005.buscar(
-								"00", "21", f06.getMcrp21()));
-						buscadorCategoria22.settearCampo(servicioF0005.buscar(
-								"00", "22", f06.getMcrp22()));
-						buscadorCategoria23.settearCampo(servicioF0005.buscar(
-								"00", "23", f06.getMcrp23()));
-						buscadorCategoria24.settearCampo(servicioF0005.buscar(
-								"00", "24", f06.getMcrp24()));
-						buscadorCategoria25.settearCampo(servicioF0005.buscar(
-								"00", "25", f06.getMcrp25()));
-						buscadorCategoria26.settearCampo(servicioF0005.buscar(
-								"00", "26", f06.getMcrp26()));
-						buscadorCategoria27.settearCampo(servicioF0005.buscar(
-								"00", "27", f06.getMcrp27()));
-						buscadorCategoria28.settearCampo(servicioF0005.buscar(
-								"00", "28", f06.getMcrp28()));
-						buscadorCategoria29.settearCampo(servicioF0005.buscar(
-								"00", "29", f06.getMcrp29()));
-						buscadorCategoria30.settearCampo(servicioF0005.buscar(
-								"00", "30", f06.getMcrp30()));
+						if (f06.getMcmcus().compareTo("") != 0)
+							lblDescripcionF0006.setValue(f06.getMcdl01());
+
+						if (f06.getMcpecc().compareTo("") != 0)
+							buscadorPECC
+									.settearCampo(servicioF0005.buscar("00",
+											"PF",
+											String.valueOf(f06.getMcpecc())));
+
+						if (f06.getMcrp01().compareTo("") != 0)
+							buscadorCategoria1.settearCampo(servicioF0005
+									.buscar("00", "01", f06.getMcrp01()));
+
+						if (f06.getMcrp02().compareTo("") != 0)
+							buscadorCategoria2.settearCampo(servicioF0005
+									.buscar("00", "02", f06.getMcrp02()));
+
+						if (f06.getMcrp03().compareTo("") != 0)
+							buscadorCategoria3.settearCampo(servicioF0005
+									.buscar("00", "03", f06.getMcrp03()));
+
+						if (f06.getMcrp04().compareTo("") != 0)
+							buscadorCategoria4.settearCampo(servicioF0005
+									.buscar("00", "04", f06.getMcrp04()));
+
+						if (f06.getMcrp05().compareTo("") != 0)
+							buscadorCategoria5.settearCampo(servicioF0005
+									.buscar("00", "05", f06.getMcrp05()));
+
+						if (f06.getMcrp06().compareTo("") != 0)
+							buscadorCategoria6.settearCampo(servicioF0005
+									.buscar("00", "06", f06.getMcrp06()));
+
+						if (f06.getMcrp07().compareTo("") != 0)
+							buscadorCategoria7.settearCampo(servicioF0005
+									.buscar("00", "07", f06.getMcrp07()));
+
+						if (f06.getMcrp08().compareTo("") != 0)
+							buscadorCategoria8.settearCampo(servicioF0005
+									.buscar("00", "08", f06.getMcrp08()));
+
+						if (f06.getMcrp09().compareTo("") != 0)
+							buscadorCategoria9.settearCampo(servicioF0005
+									.buscar("00", "09", f06.getMcrp09()));
+
+						if (f06.getMcrp10().compareTo("") != 0)
+							buscadorCategoria10.settearCampo(servicioF0005
+									.buscar("00", "10", f06.getMcrp10()));
+
+						if (f06.getMcrp11().compareTo("") != 0)
+							buscadorCategoria11.settearCampo(servicioF0005
+									.buscar("00", "11", f06.getMcrp11()));
+
+						if (f06.getMcrp12().compareTo("") != 0)
+							buscadorCategoria12.settearCampo(servicioF0005
+									.buscar("00", "12", f06.getMcrp12()));
+
+						if (f06.getMcrp13().compareTo("") != 0)
+							buscadorCategoria13.settearCampo(servicioF0005
+									.buscar("00", "13", f06.getMcrp13()));
+
+						if (f06.getMcrp14().compareTo("") != 0)
+							buscadorCategoria14.settearCampo(servicioF0005
+									.buscar("00", "14", f06.getMcrp14()));
+
+						if (f06.getMcrp15().compareTo("") != 0)
+							buscadorCategoria15.settearCampo(servicioF0005
+									.buscar("00", "15", f06.getMcrp15()));
+
+						if (f06.getMcrp16().compareTo("") != 0)
+							buscadorCategoria16.settearCampo(servicioF0005
+									.buscar("00", "16", f06.getMcrp16()));
+
+						if (f06.getMcrp17().compareTo("") != 0)
+							buscadorCategoria17.settearCampo(servicioF0005
+									.buscar("00", "17", f06.getMcrp17()));
+
+						if (f06.getMcrp18().compareTo("") != 0)
+							buscadorCategoria18.settearCampo(servicioF0005
+									.buscar("00", "18", f06.getMcrp18()));
+
+						if (f06.getMcrp19().compareTo("") != 0)
+							buscadorCategoria19.settearCampo(servicioF0005
+									.buscar("00", "19", f06.getMcrp19()));
+
+						if (f06.getMcrp20().compareTo("") != 0)
+							buscadorCategoria20.settearCampo(servicioF0005
+									.buscar("00", "20", f06.getMcrp20()));
+
+						if (f06.getMcrp21().compareTo("") != 0)
+							buscadorCategoria21.settearCampo(servicioF0005
+									.buscar("00", "21", f06.getMcrp21()));
+
+						if (f06.getMcrp22().compareTo("") != 0)
+							buscadorCategoria22.settearCampo(servicioF0005
+									.buscar("00", "22", f06.getMcrp22()));
+
+						if (f06.getMcrp23().compareTo("") != 0)
+							buscadorCategoria23.settearCampo(servicioF0005
+									.buscar("00", "23", f06.getMcrp23()));
+
+						if (f06.getMcrp24().compareTo("") != 0)
+							buscadorCategoria24.settearCampo(servicioF0005
+									.buscar("00", "24", f06.getMcrp24()));
+
+						if (f06.getMcrp25().compareTo("") != 0)
+							buscadorCategoria25.settearCampo(servicioF0005
+									.buscar("00", "25", f06.getMcrp25()));
+
+						if (f06.getMcrp26().compareTo("") != 0)
+							buscadorCategoria26.settearCampo(servicioF0005
+									.buscar("00", "26", f06.getMcrp26()));
+
+						if (f06.getMcrp27().compareTo("") != 0)
+							buscadorCategoria27.settearCampo(servicioF0005
+									.buscar("00", "27", f06.getMcrp27()));
+
+						if (f06.getMcrp28().compareTo("") != 0)
+							buscadorCategoria28.settearCampo(servicioF0005
+									.buscar("00", "28", f06.getMcrp28()));
+
+						if (f06.getMcrp29().compareTo("") != 0)
+							buscadorCategoria29.settearCampo(servicioF0005
+									.buscar("00", "29", f06.getMcrp29()));
+
+						if (f06.getMcrp30().compareTo("") != 0)
+							buscadorCategoria30.settearCampo(servicioF0005
+									.buscar("00", "30", f06.getMcrp30()));
+						btnBuscarCompannia.setVisible(false);
 						buscadorLDM.setFocus(true);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -717,9 +807,7 @@ public class CF0006 extends CGenerico {
 					String dl02 = txtDL02F0006.getValue();
 					String dl03 = txtDL03F0006.getValue();
 					String dl04 = txtDL04F0006.getValue();
-					double an8 = 0;
-					if (txtAN8F0006.getValue().compareTo("") != 0)
-						an8 = Double.parseDouble(txtAN8F0006.getValue());
+					Long an8 = txtAN8F0006.getValue();
 					String txa1 = txtTXA1F0006.getValue();
 					String mcus = txtMCUSF0006.getValue();
 					String pecc = buscadorPECC.obtenerCaja();
@@ -764,7 +852,8 @@ public class CF0006 extends CGenerico {
 					fooo6.setMcdl02(dl02);
 					fooo6.setMcdl03(dl03);
 					fooo6.setMcdl04(dl04);
-					fooo6.setMcan8(an8);
+					if (an8 != null)
+						fooo6.setMcan8(an8.doubleValue());
 					fooo6.setMctxa1(txa1);
 					fooo6.setMcmcus(mcus);
 					fooo6.setMcpecc(pecc);
@@ -935,6 +1024,7 @@ public class CF0006 extends CGenerico {
 	public void abrirRegistro() {
 		gpxDatos.setOpen(false);
 		gpxRegistro.setOpen(true);
+		btnBuscarCompannia.setVisible(true);
 		mostrarBotones(false);
 	}
 
@@ -964,16 +1054,16 @@ public class CF0006 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		// if (claveSYExiste()) {
-		// return false;
-		// }
-		// else {
+
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
-		} else
-			return true;
-		// }
+		} else {
+			if (buscarCompania()) {
+				return true;
+			} else
+				return false;
+		}
 	}
 
 	@Listen("onChange = #txtUDCF0006")
@@ -999,7 +1089,7 @@ public class CF0006 extends CGenerico {
 		txtDL02F0006.setValue("");
 		txtDL03F0006.setValue("");
 		txtDL04F0006.setValue("");
-		txtAN8F0006.setValue("");
+		txtAN8F0006.setValue(null);
 		txtTXA1F0006.setValue("");
 		txtMCUSF0006.setValue("");
 		buscadorPECC.settearCampo(null);
@@ -1034,6 +1124,10 @@ public class CF0006 extends CGenerico {
 		buscadorCategoria29.settearCampo(null);
 		buscadorCategoria30.settearCampo(null);
 		lblDescripcionF0010.setValue("");
+		lblDescripcionF0006.setValue("");
+		lblDescripcionF0101.setValue("");
+		catalogo.limpiarSeleccion();
+		btnBuscarCompannia.setVisible(true);
 		txtUDCF0006.setFocus(true);
 	}
 
@@ -1269,6 +1363,23 @@ public class CF0006 extends CGenerico {
 		catalogoF0010.setParent(null);
 	}
 
+	@Listen("onChange = #txtCOF0006")
+	public boolean buscarCompania() {
+		if (txtCOF0006.getValue() != null) {
+			F0010 f0010 = servicioF0010.buscar(txtCOF0006.getValue());
+			if (f0010 != null) {
+				txtCOF0006.setValue(f0010.getCcco());
+				lblDescripcionF0010.setValue(servicioF0010.buscar(
+						f0010.getCcco()).getCcname());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
+	}
+
 	@Listen("onClick = #btnBuscarDireccion")
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
@@ -1320,9 +1431,26 @@ public class CF0006 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF0101")
 	public void seleccionF0101() {
 		F0101 f0101 = catalogoF0101.objetoSeleccionadoDelCatalogo();
-		txtAN8F0006.setValue(String.valueOf(f0101.getAban8()));
+		txtAN8F0006.setValue(Math.round(f0101.getAban8()));
 		lblDescripcionF0101.setValue(f0101.getAbalph());
 		catalogoF0101.setParent(null);
+	}
+
+	@Listen("onChange = #txtAN8F0006")
+	public boolean buscarDireccion() {
+		if (txtAN8F0006.getValue() != null) {
+			F0101 f0101 = servicioF0101.buscar(txtAN8F0006.getValue());
+			if (f0101 != null) {
+				Double doble = f0101.getAban8();
+				txtAN8F0006.setValue(doble.longValue());
+				lblDescripcionF0101.setValue(f0101.getAbalph());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
 	}
 
 	@Listen("onClick = #btnBuscarProyecto")
@@ -1405,4 +1533,21 @@ public class CF0006 extends CGenerico {
 		lblDescripcionF0006.setValue(f0006.getMcdl01());
 		catalogoEmergente.setParent(null);
 	}
+
+	@Listen("onChange = #txtMCUSF0006")
+	public boolean buscarProyecto() {
+		if (txtMCUSF0006.getValue() != null) {
+			F0006 f0006 = servicioF0006.buscar(txtMCUSF0006.getValue());
+			if (f0006 != null) {
+				txtMCUSF0006.setValue(f0006.getMcmcu());
+				lblDescripcionF0006.setValue(f0006.getMcdl01());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
+	}
+
 }
