@@ -12,10 +12,8 @@ import modelo.maestros.F0013;
 import modelo.maestros.F0101;
 import modelo.maestros.F4008;
 import modelo.maestros.F4101;
-import modelo.maestros.F4105;
 import modelo.maestros.F4301;
 import modelo.maestros.F4311;
-import modelo.pk.F4105PK;
 import modelo.pk.F4301PK;
 import modelo.pk.F4311PK;
 
@@ -36,20 +34,20 @@ import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Row;
-import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorF0013;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoF0006;
 import componentes.catalogos.CatalogoF0013;
 import componentes.catalogos.CatalogoF0101;
 import componentes.catalogos.CatalogoF4008;
 import componentes.catalogos.CatalogoF4101;
 import componentes.catalogos.CatalogoF4301;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF4301 extends CGenerico {
 
@@ -75,12 +73,6 @@ public class CF4301 extends CGenerico {
 	private Button btnBuscarSucPlantaF0006;
 	@Wire
 	private Label lblSucPlantaF0006;
-	@Wire
-	private Textbox txtCRCDF4301;
-	@Wire
-	private Button btnBuscarMonedaF0013;
-	@Wire
-	private Label lblMonedaF0013;
 	@Wire
 	private Doublebox txtCRRF4301;
 	@Wire
@@ -231,6 +223,9 @@ public class CF4301 extends CGenerico {
 	private Div divBuscadorLTTR;
 	BuscadorUDC buscadorLTTR;
 	@Wire
+	private Div divBuscadorCRCD;
+	BuscadorF0013 buscadorCRCD;
+	@Wire
 	private Div divBuscadorNXTR;
 	BuscadorUDC buscadorNXTR;
 	@Wire
@@ -245,12 +240,12 @@ public class CF4301 extends CGenerico {
 			"dd-MM-yyyy");
 
 	private Botonera botonera;
-	private Catalogo<F4301> catalogo;
-	Catalogo<F0013> catalogoF0013;
-	Catalogo<F0006> catalogoF0006;
-	Catalogo<F4008> catalogoF4008;
-	Catalogo<F0101> catalogoF0101;
-	Catalogo<F4101> catalogoF4101;
+	private CatalogoGenerico<F4301> catalogo;
+	CatalogoGenerico<F0013> catalogoF0013;
+	CatalogoGenerico<F0006> catalogoF0006;
+	CatalogoGenerico<F4008> catalogoF4008;
+	CatalogoGenerico<F0101> catalogoF0101;
+	CatalogoGenerico<F4101> catalogoF4101;
 	// Catalogo<F0011> catalogoF0011;
 	private F4301PK clave = null;
 	String idBoton = "";
@@ -280,6 +275,14 @@ public class CF4301 extends CGenerico {
 				"AT");
 		buscadorNXTR = crearCampoUDC(divBuscadorNXTR, "Siguiente Estado", "40",
 				"AT");
+
+		buscadorCRCD = new BuscadorF0013(
+				"Moneda",
+				false,
+				"Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)",
+				"Catalogo de Codigos de Monedas (F0013)", "", 100,
+				servicioF0013, "20%", "25%", "11%", "44%");
+		divBuscadorCRCD.appendChild(buscadorCRCD);
 		mostrarCatalogo();
 		txtLNIDF4311.setValue(listaDetalle.size() + 1);
 		botonera = new Botonera() {
@@ -303,12 +306,7 @@ public class CF4301 extends CGenerico {
 									.buscar(f4301.getPhmcu());
 							lblSucPlantaF0006.setValue(f0006.getMcdc());
 						}
-						txtCRCDF4301.setValue(f4301.getPhcrcd());
-						if (!f4301.getPhcrcd().equals("")) {
-							F0013 f0013 = servicioF0013.buscar(f4301
-									.getPhcrcd());
-							lblMonedaF0013.setValue(f0013.getCvdl01());
-						}
+						buscadorCRCD.settearCampo(f4301.getPhcrcd());
 						F0101 f0101;
 						f0101 = servicioF0101.buscar(f4301.getPhan8());
 						if (f0101 != null) {
@@ -337,14 +335,10 @@ public class CF4301 extends CGenerico {
 						// F4008 f4008 =
 						// servicioF4008.buscarPorTatxa1(f4301.getPhtxa1()).get(0);
 						// lblZonaV4008.setValue(f4008.getId().getTatxa1());
-						buscadorINMG.settearCampo(servicioF0005.buscar("40",
-								"PM", f4301.getPhinmg()));
-						buscadorEXR1.settearCampo(servicioF0005.buscar("00",
-								"EX", f4301.getPhexr1()));
-						buscadorHOLD.settearCampo(servicioF0005.buscar("42",
-								"HC", f4301.getPhhold()));
-						buscadorFUF1.settearCampo(servicioF0005.buscar("40",
-								"FU", f4301.getPhfuf1()));
+						buscadorINMG.settearCampo(f4301.getPhinmg());
+						buscadorEXR1.settearCampo(f4301.getPhexr1());
+						buscadorHOLD.settearCampo(f4301.getPhhold());
+						buscadorFUF1.settearCampo(f4301.getPhfuf1());
 						txtAN8F4301.setValue(Math.round(f4301.getPhan8()));
 						txtANBYF4301.setValue(Math.round(f4301.getPhanby()));
 						txtANCRF4301.setValue(Math.round(f4301.getPhancr()));
@@ -407,7 +401,7 @@ public class CF4301 extends CGenerico {
 					f4301.setPhan8(txtAN8F4301.getValue());
 					f4301.setPhanby(txtANBYF4301.getValue());
 					f4301.setPhancr(txtANCRF4301.getValue());
-					f4301.setPhcrcd(txtCRCDF4301.getValue());
+					f4301.setPhcrcd(buscadorCRCD.obtenerCaja());
 					f4301.setPhcrr(txtCRRF4301.getValue());
 					f4301.setPhdesc(txtDESCF4301.getValue());
 					f4301.setPhmcu(txtMCUF4301.getValue());
@@ -437,7 +431,7 @@ public class CF4301 extends CGenerico {
 						modelo.getId().setPdkcoo(txtKCOOF4301.getValue());
 						modelo.getId().setPdsfxo(txtSFXOF4301.getValue());
 						modelo.setPdan8(txtAN8F4301.getValue());
-						modelo.setPdcrcd(txtCRCDF4301.getValue());
+						modelo.setPdcrcd(buscadorCRCD.obtenerCaja());
 						servicioF4311.guardar(modelo);
 					}
 					Mensaje.mensajeInformacion(Mensaje.guardado);
@@ -523,7 +517,7 @@ public class CF4301 extends CGenerico {
 				|| txtAN8F4301.getText().compareTo("") != 0
 				|| txtANBYF4301.getText().compareTo("") != 0
 				|| txtANCRF4301.getText().compareTo("") != 0
-				|| txtCRCDF4301.getText().compareTo("") != 0
+				|| buscadorCRCD.obtenerCaja().compareTo("") != 0
 				|| txtCRRF4301.getText().compareTo("") != 0
 				|| txtDESCF4301.getText().compareTo("") != 0
 				|| txtDOCOF4301.getText().compareTo("") != 0
@@ -550,7 +544,7 @@ public class CF4301 extends CGenerico {
 		txtAN8F4301.setValue(null);
 		txtANBYF4301.setValue(null);
 		txtANCRF4301.setValue(null);
-		txtCRCDF4301.setValue("");
+		buscadorCRCD.limpiarCampo();
 		txtCRRF4301.setValue(null);
 		txtDESCF4301.setValue("");
 		txtDOCOF4301.setValue(null);
@@ -569,7 +563,6 @@ public class CF4301 extends CGenerico {
 		lblDescripcion.setValue("");
 		lblDestinoF0101.setValue("");
 		lblIdFiscalF0101.setValue("");
-		lblMonedaF0013.setValue("");
 		lblObservacion.setValue("");
 		lblOrdenPor.setValue("");
 		lblProveedoresF0101.setValue("");
@@ -667,24 +660,6 @@ public class CF4301 extends CGenerico {
 		txtMCUF4301.setValue(String.valueOf(f0006.getMcmcu()));
 		lblSucPlantaF0006.setValue(f0006.getMcdc());
 		catalogoF0006.setParent(null);
-	}
-
-	@Listen("onClick = #btnBuscarMonedaF0013")
-	public void mostrarCatalogoMoneda() {
-		List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoF0013 = new CatalogoF0013(divCatalogoMonedaF0013, "F0013",
-				listF0013, true, "Codigo moneda", "Descripcion", "Vlslz",
-				"Rutina cheques");
-		catalogoF0013.setParent(divCatalogoMonedaF0013);
-		catalogoF0013.doModal();
-	}
-
-	@Listen("onSeleccion = #divCatalogoMonedaF0013")
-	public void seleccionMoneda() {
-		F0013 f0013 = catalogoF0013.objetoSeleccionadoDelCatalogo();
-		txtCRCDF4301.setValue(f0013.getCvcrcd());
-		lblMonedaF0013.setValue(f0013.getCvdl01());
-		catalogoF0013.setParent(null);
 	}
 
 	@Listen("onClick = #btnBuscarTaxAreasV4008")
@@ -867,13 +842,13 @@ public class CF4301 extends CGenerico {
 		spnUORGF4311.setValue(modelo.getPduorg());
 		String udc = modelo.getPduom();
 		F0005 f05 = servicioF0005.buscar("00", "UM", udc);
-		buscadorUOM.settearCampo(f05);
+		buscadorUOM.settearModelo(f05);
 		udc = modelo.getPdlttr();
 		f05 = servicioF0005.buscar("40", "AT", udc);
-		buscadorLTTR.settearCampo(f05);
+		buscadorLTTR.settearModelo(f05);
 		udc = modelo.getPdnxtr();
 		f05 = servicioF0005.buscar("40", "AT", udc);
-		buscadorNXTR.settearCampo(f05);
+		buscadorNXTR.settearModelo(f05);
 	}
 
 	private void limpiarCamposItem() {

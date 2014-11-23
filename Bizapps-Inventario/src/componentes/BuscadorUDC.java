@@ -11,18 +11,15 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Label;
-import org.zkoss.zul.Separator;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Textbox;
 
 import servicio.maestros.SF0005;
+
 import componentes.catalogos.CatalogoUDC;
 
 public abstract class BuscadorUDC extends Hbox {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private CatalogoUDC catalogo;
 	private Div divCatalogo;
@@ -31,12 +28,25 @@ public abstract class BuscadorUDC extends Hbox {
 	private Textbox cajaTexto;
 	private String valorP1;
 	private String valorP2;
-	private Button boton;;
+	private Button boton;
+	private SF0005 servicio;
+
+	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
+			boolean requerido, boolean param1, boolean param2,
+			final String valor1, final String valor2, SF0005 servicio) {
+		this(etiqueta, longitud, lista2, requerido, valor1, valor2, servicio);
+	}
 
 	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
 			boolean requerido, boolean param1, boolean param2,
 			final String valor1, final String valor2) {
 		this(etiqueta, longitud, lista2, requerido, valor1, valor2);
+	}
+
+	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
+			boolean requerido, String valor1, String valor2, SF0005 servicio) {
+		this(etiqueta, longitud, lista2, requerido, valor1, valor2);
+		this.servicio = servicio;
 	}
 
 	public BuscadorUDC(String etiqueta, int longitud, List<F0005> lista2,
@@ -50,8 +60,8 @@ public abstract class BuscadorUDC extends Hbox {
 		label.setClass("etiqueta");
 
 		cajaTexto = new Textbox();
-		cajaTexto
-				.setTooltiptext("Código Definido por el Usuario (DRKY de "+valor1+","+valor2+")");
+		cajaTexto.setTooltiptext("Código Definido por el Usuario (DRKY de "
+				+ valor1 + "," + valor2 + ")");
 		cajaTexto.setWidth("100%");
 		cajaTexto.setMaxlength(longitud);
 
@@ -126,7 +136,9 @@ public abstract class BuscadorUDC extends Hbox {
 	}
 
 	// Debe contener un servicio que busca un valor de la clave
-	protected abstract F0005 buscar();
+	protected F0005 buscar() {
+		return servicio.buscar(getValorP1(), getValorP2(), obtenerCaja());
+	}
 
 	public void seleccionarItem() {
 		F0005 f0005 = catalogo.objetoSeleccionadoDelCatalogo();
@@ -177,13 +189,20 @@ public abstract class BuscadorUDC extends Hbox {
 	}
 
 	private void mostrarCatalogo(String valor1, String valor2) {
-		catalogo = new CatalogoUDC(divCatalogo,
+		catalogo = new CatalogoUDC(divCatalogo, valor1, valor2,
 				"Catalogo de Códigos Definidos por el Usuario (" + valorP1
 						+ "," + valorP2 + ")", lista, "KY", "Descripcion 01",
 				"Descripcion 02", "Gestion Especial", "Codificacion Fija");
-		catalogo.settearCamposUdc(valor1, valor2);
 		catalogo.setParent(divCatalogo);
 		catalogo.doModal();
+	}
+
+	public String getValorP1() {
+		return valorP1;
+	}
+
+	public String getValorP2() {
+		return valorP2;
 	}
 
 }

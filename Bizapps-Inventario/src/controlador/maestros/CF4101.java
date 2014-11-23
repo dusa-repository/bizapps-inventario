@@ -37,8 +37,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF4101 extends CGenerico {
 
@@ -198,8 +198,8 @@ public class CF4101 extends CGenerico {
 	Botonera botonera;
 	double clave = 0;
 	double claveLong = 0;
-	Catalogo<F0005> catalogoF0005;
-	Catalogo<F4101> catalogo;
+	CatalogoGenerico<F0005> catalogoF0005;
+	CatalogoGenerico<F4101> catalogo;
 
 	BuscadorUDC buscadorIMSTKT, buscadorIMGLPT, buscadorIMUOM1, buscadorIMBPFG,
 			buscadorIMCLEV, buscadorIMPLEV, buscadorIMPPLV, buscadorIMPMTH,
@@ -1468,7 +1468,7 @@ public class CF4101 extends CGenerico {
 
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogo = new Catalogo<F4101>(catalogoF4101, "F4101", listF4101,
+		catalogo = new CatalogoGenerico<F4101>(catalogoF4101, "F4101", listF4101,
 				false, true, true, "Número artículo", "Descripción",
 				"Descripción 2", "Texto búsqueda", "Tipo línea", "Tipo alm",
 				"Código vta 1") {

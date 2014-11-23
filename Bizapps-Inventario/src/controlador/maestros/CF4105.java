@@ -35,8 +35,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
 
 public class CF4105 extends CGenerico {
@@ -90,9 +90,9 @@ public class CF4105 extends CGenerico {
 	private Groupbox gpxItems;
 	
 	Botonera botonera;
-	Catalogo<F4105> catalogo;
-	Catalogo<F4101> catalogoF4101;
-	Catalogo<F0006> catalogoF0006;
+	CatalogoGenerico<F4105> catalogo;
+	CatalogoGenerico<F4101> catalogoF4101;
+	CatalogoGenerico<F0006> catalogoF0006;
 	F4105PK clave = null;
 	List<F4105> listaCosto = new ArrayList<F4105>();
 
@@ -442,7 +442,7 @@ public class CF4105 extends CGenerico {
 	public void mostrarCatalogo() {
 
 		final List<F4105> listF0005 = servicioF4105.buscarTodosOrdenados();
-		catalogo = new Catalogo<F4105>(catalogoF4105, "F0005", listF0005,
+		catalogo = new CatalogoGenerico<F4105>(catalogoF4105, "F0005", listF0005,
 				false, false, false, "Nro Articulo", "Sucursal / Planta",
 				"Nivel Costo") {
 
@@ -480,7 +480,7 @@ public class CF4105 extends CGenerico {
 	@Listen("onClick = #btnBuscarMcu")
 	public void mostrarCatalogoF0006() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new Catalogo<F0006>(divCatalogoF0006, "F0006",
+		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "F0006",
 				unidades, true, false, false, "Unidad Negocio", "Descripcion",
 				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
 				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
@@ -577,7 +577,7 @@ public class CF4105 extends CGenerico {
 	@Listen("onClick = #btnBuscarItm")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101, "F4101",
+		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "F4101",
 				listF4101, true, false, false, "Número artículo",
 				"Descripción", "Descripción 2", "Texto búsqueda", "Tipo línea",
 				"Tipo alm", "Código vta 1") {

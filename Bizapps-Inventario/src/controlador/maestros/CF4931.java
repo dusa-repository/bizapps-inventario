@@ -2,7 +2,6 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,10 +21,10 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoF4931;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF4931 extends CGenerico {
 
@@ -130,7 +129,7 @@ public class CF4931 extends CGenerico {
 			"dd-MM-yyyy");
 
 	private Botonera botonera;
-	private Catalogo<F4931> catalogo;
+	private CatalogoGenerico<F4931> catalogo;
 	private String clave = null;
 	String idBoton = "";
 
@@ -181,29 +180,22 @@ public class CF4931 extends CGenerico {
 						txtDL01F4931.setValue(f4931.getVgdl01());
 						chxCPFGF4931.setChecked(f4931.getVgcpfg().equals("1"));
 						chxMLLNF4931.setChecked(f4931.getVgmlln().equals("1"));
-						buscadorWTUMF4931.settearCampo(servicioF0005,
-								f4931.getVgwtum());
+						buscadorWTUMF4931.settearCampo(f4931.getVgwtum());
 						txtWTEMF4931.setValue(f4931.getVgwtem());
 						txtWTCAF4931.setValue(f4931.getVgwtca());
 						// txtWTGRF4931.setValue(f4931.getVgwtgr());
-						buscadorCVUMF4931.settearCampo(servicioF0005,
-								f4931.getVgcvum());
+						buscadorCVUMF4931.settearCampo(f4931.getVgcvum());
 						txtCVOLF4931.setValue(f4931.getVgcvol());
-						buscadorDSGPF4931.settearCampo(servicioF0005,
-								f4931.getVgdsgp());
-						buscadorDSGSF4931.settearCampo(servicioF0005,
-								f4931.getVgdsgs());
+						buscadorDSGPF4931.settearCampo(f4931.getVgdsgp());
+						buscadorDSGSF4931.settearCampo(f4931.getVgdsgs());
 						txtNCEF4931.setValue(f4931.getVgnce());
 						String valor = String.valueOf(f4931.getVglcnt());
-						buscadorLCNTF4931.settearCampo(servicioF0005, valor);
-						buscadorVLUMF4931.settearCampo(servicioF0005,
-								f4931.getVgvlum());
+						buscadorLCNTF4931.settearCampo(valor);
+						buscadorVLUMF4931.settearCampo(f4931.getVgvlum());
 						txtVLCPF4931.setValue(f4931.getVgvlcp());
 						txtVLCSF4931.setValue(f4931.getVgvlcs());
-						buscadorMOTF4931.settearCampo(servicioF0005,
-								f4931.getVgmot());
-						buscadorBPFGF4931.settearCampo(servicioF0005,
-								f4931.getVgbpfg());
+						buscadorMOTF4931.settearCampo(f4931.getVgmot());
+						buscadorBPFGF4931.settearCampo(f4931.getVgbpfg());
 						txtAXLEF4931.setValue(f4931.getVgaxle());
 						txtWTAXF4931.setValue(f4931.getVgwtax());
 						txtSEALF4931.setValue(f4931.getVgseal());
@@ -437,7 +429,7 @@ public class CF4931 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F4931> listF4931 = servicioF4931.buscarTodosOrdenados();
+		List<F4931> listF4931 = servicioF4931.buscarTodosOrdenados();
 		catalogo = new CatalogoF4931(catalogoF4931, "F4931", listF4931, false,
 				"Tp veh", "Descripción", "Tipo transp", "Grupo dpch",
 				"Grupo 2 de desp", "Cap peso", "UM ps",

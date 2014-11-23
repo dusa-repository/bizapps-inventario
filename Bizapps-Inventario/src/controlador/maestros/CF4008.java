@@ -31,10 +31,9 @@ import modelo.maestros.F40205;
 import modelo.maestros.F4101;
 import modelo.pk.F0004PK;
 import modelo.pk.F4008PK;
-
 import componentes.Botonera;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF4008 extends CGenerico {
 
@@ -129,10 +128,10 @@ public class CF4008 extends CGenerico {
 	@Wire
 	private Button btnBuscarF4101;
 
-	Catalogo<F4008> catalogoF4008;
+	CatalogoGenerico<F4008> catalogoF4008;
 	Botonera botonera;
-	Catalogo<F0101> catalogoF0101;
-	Catalogo<F4101> catalogoF4101;
+	CatalogoGenerico<F0101> catalogoF0101;
+	CatalogoGenerico<F4101> catalogoF4101;
 
 	F4008PK clave = null;
 	String idBoton = "";
@@ -611,7 +610,7 @@ public class CF4008 extends CGenerico {
 		Button boton = (Button) evento.getTarget();
 		idBoton = boton.getId();
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new Catalogo<F0101>(divCatalogoF0101, "CatalogoF0101",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "CatalogoF0101",
 				listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
@@ -758,7 +757,7 @@ public class CF4008 extends CGenerico {
 	@Listen("onClick = #btnBuscarF4101")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101, "F4101",
+		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "F4101",
 				listF4101, true, false, true, "Codigo", "Descripcion") {
 
 			@Override
@@ -800,7 +799,7 @@ public class CF4008 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F4008> listF4008 = servicioF4008.buscarTodosOrdenados();
-		catalogoF4008 = new Catalogo<F4008>(divCatalogoF4008, "F4008",
+		catalogoF4008 = new CatalogoGenerico<F4008>(divCatalogoF4008, "F4008",
 				listF4008, false, false, true, "Zona/Tipo impositivo",
 				"Descripcion zona fiscal", "Fecha efectiva", "Fecha vto",
 				"Tipo imptvo 1", "Tipo imptvo 2", "Tipo imptvo 3",

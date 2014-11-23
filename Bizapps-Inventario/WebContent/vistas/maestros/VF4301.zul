@@ -75,22 +75,11 @@
 									<label id="lblSucPlantaF0006" />
 								</row>
 								<row>
-									<hbox>
-										<label class="etiqueta"
-											value="Moneda:" />
-										<space />
-										<label value=""
-											style="font-weight:bold;color:red">
-										</label>
-									</hbox>
-									<textbox id="txtCRCDF4301" hflex="1"
-										maxlength="100"
-										tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
-									<button id="btnBuscarMonedaF0013"
-										label="Buscar" class="btn"
-										tooltiptext="Catalogo de Codigos de Sucursales (F0013)"
-										image="/public/imagenes/botones/buscar.png" />
-									<label id="lblMonedaF0013" />
+									<cell colspan="3">
+										<div id="divBuscadorCRCD"
+											hflex="1" />
+									</cell>
+									<hbox />
 								</row>
 								<row>
 									<label class="etiqueta"

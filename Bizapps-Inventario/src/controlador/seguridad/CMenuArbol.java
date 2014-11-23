@@ -19,9 +19,8 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.Catalogo;
 import componentes.Mensaje;
-
+import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
 
 public class CMenuArbol extends CGenerico {
@@ -44,7 +43,7 @@ public class CMenuArbol extends CGenerico {
 	private Groupbox gpxRegistro;
 
 	Botonera botonera;
-	Catalogo<Arbol> catalogo;
+	CatalogoGenerico<Arbol> catalogo;
 	long clave = 0;
 
 	@Override
@@ -300,7 +299,7 @@ public class CMenuArbol extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<Arbol> listArbol = servicioArbol.listarArbol();
-		catalogo = new Catalogo<Arbol>(divCatalogoMenuArbol, "Arbol",
+		catalogo = new CatalogoGenerico<Arbol>(divCatalogoMenuArbol, "Arbol",
 				listArbol, false, false, true, "Codigo", "Nombre", "Padre",
 				"Url") {
 

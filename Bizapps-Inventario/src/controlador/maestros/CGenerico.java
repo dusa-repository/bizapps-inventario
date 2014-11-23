@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,7 +22,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import modelo.maestros.F00021;
-import modelo.maestros.F0005;
 import modelo.pk.F00021PK;
 
 import org.springframework.context.ApplicationContext;
@@ -38,9 +36,6 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 
-import componentes.BuscadorUDC;
-import componentes.Mensaje;
-import componentes.utils.Convertidor;
 import servicio.maestros.SF00021;
 import servicio.maestros.SF0004;
 import servicio.maestros.SF0005;
@@ -73,6 +68,10 @@ import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
 import servicio.transacciones.SF4111;
 import servicio.transacciones.SF4211;
+
+import componentes.Mensaje;
+import componentes.buscadores.BuscadorUDC;
+import componentes.utils.Convertidor;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public abstract class CGenerico extends SelectorComposer<Component> {
@@ -340,17 +339,17 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		return Executions.getCurrent().getContextPath() + "/";
 	}
 
+	protected BuscadorUDC crearCampoUDC(Div div, String titulo, String valor1,
+			String valor2) {
+		return crearCampoUDC(div, titulo, false, valor1, valor2);
+	}
+
 	protected BuscadorUDC crearCampoUDC(Div div, String titulo,
-			final String valor1, final String valor2) {
-		BuscadorUDC buscador = new BuscadorUDC(titulo, 10,
-				servicioF0005.buscarParaUDCOrdenados(valor1, valor2), false,
-				valor1, valor2) {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar(valor1, valor2, this.obtenerCaja());
-			}
-		};
+			boolean requerido, String valor1, String valor2) {
+		BuscadorUDC buscador = new BuscadorUDC(titulo, 10, requerido, valor1,
+				valor2, servicioF0005);
 		div.appendChild(buscador);
 		return buscador;
 	}
+
 }

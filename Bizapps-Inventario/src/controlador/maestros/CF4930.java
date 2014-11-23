@@ -40,8 +40,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF4930 extends CGenerico {
 
@@ -109,9 +109,9 @@ public class CF4930 extends CGenerico {
 	String clave = null;
 
 	Botonera botonera;
-	Catalogo<F4930> catalogo;
-	Catalogo<F0101> catalogoF0101;
-	Catalogo<F4931> catalogoF4931;
+	CatalogoGenerico<F4930> catalogo;
+	CatalogoGenerico<F0101> catalogoF0101;
+	CatalogoGenerico<F4931> catalogoF4931;
 
 	// Catalogo<F0011> catalogoF0011; falta crear
 
@@ -389,7 +389,7 @@ public class CF4930 extends CGenerico {
 	public void mostrarCatalogo() {
 
 		final List<F4930> vehiculos = servicioF4930.buscarTodosOrdenados();
-		catalogo = new Catalogo<F4930>(divCatalogoF4930, "F4930", vehiculos,
+		catalogo = new CatalogoGenerico<F4930>(divCatalogoF4930, "F4930", vehiculos,
 				false, false, true, "ID vehículo", "Tip veh", "Descripción",
 				"Sucursal/planta", "N° de prop", "V/F", "N° serie veh",
 				"Cap peso", "UM ps", "Capacidad en vol cúbicos", "UM") {
@@ -456,7 +456,7 @@ public class CF4930 extends CGenerico {
 	@Listen("onClick = #btnBuscarVOWNF0101")
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new Catalogo<F0101>(divCatalogoF0101, "F0101",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "F0101",
 				listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
@@ -513,7 +513,7 @@ public class CF4930 extends CGenerico {
 	@Listen("onClick = #btnBuscarVTYPF4931")
 	public void mostrarCatalogoF4931() {
 		final List<F4931> listF4931 = servicioF4931.buscarTodosOrdenados();
-		catalogoF4931 = new Catalogo<F4931>(divCatalogoF4931, "F4931", listF4931,
+		catalogoF4931 = new CatalogoGenerico<F4931>(divCatalogoF4931, "F4931", listF4931,
 				true, false, false, "Tp veh", "Descripción", "Tipo transp",
 				"Grupo dpch", "Grupo 2 de desp", "Cap peso", "UM ps",
 				"Capacidad en vol cúbicos", "UM", "Capacidad de vol a granel",

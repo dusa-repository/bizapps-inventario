@@ -44,8 +44,8 @@ import org.zkoss.zul.Textbox;
 
 import arbol.CArbol;
 import componentes.Botonera;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 import componentes.utils.Validador;
 
 public class CUsuario extends CGenerico {
@@ -128,7 +128,7 @@ public class CUsuario extends CGenerico {
 	private Groupbox gpxRegistro;
 	private CArbol cArbol = new CArbol();
 	String id = "";
-	Catalogo<Usuario> catalogo;
+	CatalogoGenerico<Usuario> catalogo;
 	List<Grupo> gruposDisponibles = new ArrayList<Grupo>();
 	List<Grupo> gruposOcupados = new ArrayList<Grupo>();
 	URL url = getClass().getResource("usuario.png");
@@ -624,7 +624,7 @@ public class CUsuario extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<Usuario> usuario = servicioUsuario.buscarTodos();
-		catalogo = new Catalogo<Usuario>(catalogoUsuario, "Usuario", usuario,
+		catalogo = new CatalogoGenerico<Usuario>(catalogoUsuario, "Usuario", usuario,
 				false, false, true, "Cedula", "Correo", "Primer Nombre",
 				"Segundo Nombre", "Primer Apellido", "Segundo Apellido",
 				"Sexo", "Telefono", "Direccion") {

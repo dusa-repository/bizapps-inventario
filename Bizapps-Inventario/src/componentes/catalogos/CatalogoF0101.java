@@ -7,9 +7,7 @@ import modelo.maestros.F0101;
 
 import org.zkoss.zk.ui.Component;
 
-import componentes.Catalogo;
-
-public class CatalogoF0101 extends Catalogo<F0101> {
+public class CatalogoF0101 extends CatalogoGenerico<F0101> {
 
 	/**
 	 * 
@@ -29,9 +27,9 @@ public class CatalogoF0101 extends Catalogo<F0101> {
 					.startsWith(valores.get(0))
 					&& f01.getAbalph().toLowerCase().startsWith(valores.get(1))
 					&& f01.getAbalky().toLowerCase().startsWith(valores.get(2))
-					&& f01.getAbsic().toLowerCase().startsWith(valores.get(4))
-					&& f01.getAbat1().toLowerCase().startsWith(valores.get(5))
-					&& f01.getAbtax().toLowerCase().startsWith(valores.get(6))) {
+					&& f01.getAbsic().toLowerCase().startsWith(valores.get(3))
+					&& f01.getAbat1().toLowerCase().startsWith(valores.get(4))
+					&& f01.getAbtax().toLowerCase().startsWith(valores.get(5))) {
 				lista.add(f01);
 			}
 		}

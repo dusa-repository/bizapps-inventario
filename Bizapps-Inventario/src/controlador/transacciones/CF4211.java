@@ -42,9 +42,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
-
+import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
 
 public class CF4211 extends CGenerico {
@@ -132,11 +131,11 @@ public class CF4211 extends CGenerico {
 	F4211PK clave = null;
 	List<F4211> listaPedido = new ArrayList<F4211>();
 	Botonera botonera;
-	Catalogo<F4211> catalogo;
-	Catalogo<F4101> catalogoF4101;
-	Catalogo<F0006> catalogoF0006;
-	Catalogo<F4100> catalogoF4100;
-	Catalogo<F0010> catalogoF0010;
+	CatalogoGenerico<F4211> catalogo;
+	CatalogoGenerico<F4101> catalogoF4101;
+	CatalogoGenerico<F0006> catalogoF0006;
+	CatalogoGenerico<F4100> catalogoF4100;
+	CatalogoGenerico<F0010> catalogoF0010;
 	private String mcu = "";
 	private String idBotonF0010 = "";
 	private String idBotonF0006 = "";
@@ -513,7 +512,7 @@ public class CF4211 extends CGenerico {
 
 	private void mostrarCatalogo() {
 		final List<F4211> listF0005 = servicioF4211.buscarTodosOrdenados();
-		catalogo = new Catalogo<F4211>(catalogoF4211, "F4211", listF0005,
+		catalogo = new CatalogoGenerico<F4211>(catalogoF4211, "F4211", listF0005,
 				false, false, false, "Nº Orden", "Tipo ord", "Cia ord",
 				"Compañia", "Sucursal/Planta", "Articulo", "Cantidad", "Total",
 				"Fecha") {
@@ -574,7 +573,7 @@ public class CF4211 extends CGenerico {
 	public void mostrarCatalogoF4100() {
 		final List<F4100> listF41002 = servicioF4100
 				.buscarTodosOrdenadosPorMcu(mcu);
-		catalogoF4100 = new Catalogo<F4100>(divCatalogoF4100, "F4100",
+		catalogoF4100 = new CatalogoGenerico<F4100>(divCatalogoF4100, "F4100",
 				listF41002, true, false, false, "Cod. Sucursal/planta",
 				"Sucursal/planta", "Fecha acta", "Ubicacion", "Zona alm",
 				"Zona acopio", "Zona reabast", "Detalle", "Pasillo", "Bin",
@@ -704,7 +703,7 @@ public class CF4211 extends CGenerico {
 		else
 			lista = servicioF0006.buscarPorMco(ccoB);
 		final List<F0006> unidades = lista;
-		catalogoF0006 = new Catalogo<F0006>(divCatalogoF0006, "F0006",
+		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "F0006",
 				unidades, true, false, false, "Unidad Negocio", "Descripcion",
 				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
 				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
@@ -833,7 +832,7 @@ public class CF4211 extends CGenerico {
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101
 				.buscarTodosOrdenadosPorMcu(txtPlanta1.getValue());
-		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101, "F4101",
+		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "F4101",
 				listF4101, true, false, false, "Número artículo",
 				"Descripción", "Descripción 2", "Texto búsqueda", "Tipo línea",
 				"Tipo alm", "Código vta 1") {
@@ -937,7 +936,7 @@ public class CF4211 extends CGenerico {
 	public void mostrarCatalogoF0010(Event e) {
 		idBotonF0010 = e.getTarget().getId();
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista,
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010", lista,
 				true, false, false, "Codigo", "Nombre", "Nº Periodo", "Patron",
 				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {

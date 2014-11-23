@@ -1,6 +1,7 @@
 <zk>
 	<style src="../public/Estilo.css" />
-	<div id="divVF0013" apply="controlador.maestros.CF0013">
+	<div id="divVF0013" apply="controlador.maestros.CF0013"
+		width="100%">
 		<groupbox width="auto" mold="3d"
 			title="Trabajo con Codigo de Monedas y Tarifas (VF0013)">
 			<div id="botoneraF0013" />
@@ -20,39 +21,49 @@
 					<rows>
 						<row>
 							<hbox>
-								<label class="etiqueta" value="Codigo Moneda:" />
+								<label class="etiqueta"
+									value="Codigo Moneda:" />
 								<space />
-								<label value="*" style="font-weight:bold;color:red">
+								<label value="*"
+									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtCRCDF0013" hflex="1" maxlength="3"
+							<textbox id="txtCRCDF0013" hflex="1"
+								maxlength="3"
 								tooltiptext="Ingrese el Codigo de la Moneda (CVCRCD)" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
 							<hbox>
-								<label class="etiqueta" value="Descripcion:" />
+								<label class="etiqueta"
+									value="Descripcion:" />
 								<space />
-								<label value="*" style="font-weight:bold;color:red">
+								<label value="*"
+									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
 							<cell colspan="2">
-								<textbox id="txtDL01F0013" hflex="1" maxlength="30"
-									multiline="true" tooltiptext="Ingrese la Descripcion de la Moneda (CVDL01)" />
+								<textbox id="txtDL01F0013" hflex="1"
+									maxlength="30" multiline="true"
+									tooltiptext="Ingrese la Descripcion de la Moneda (CVDL01)" />
 							</cell>
 							<hbox />
 						</row>
 						<row>
-							<label class="etiqueta" value="Visualizacion decimales:" />
-							<textbox id="txtDECF0013" hflex="1" maxlength="1"
+							<label class="etiqueta"
+								value="Visualizacion decimales:" />
+							<textbox id="txtDECF0013" hflex="1"
+								maxlength="1"
 								tooltiptext="Ingrese el numero de decimales de la moneda (CVCDEC)" />
 							<hbox />
 							<hbox />
 						</row>
 						<row>
-							<label class="etiqueta" value="Importe traductor Palabras:" />
-							<textbox id="txtCKRF0013" hflex="1" maxlength="10"
+							<label class="etiqueta"
+								value="Importe traductor Palabras:" />
+							<textbox id="txtCKRF0013" hflex="1"
+								maxlength="10"
 								tooltiptext="Ingrese el Importe del traductor de Palabras (CVCKR)" />
 							<hbox />
 							<hbox />
@@ -65,7 +76,8 @@
 				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar las Monedas Registradas" />
-				<div id="catalogoF0013" tooltiptext="Seleccione la Moneda para Realizar una Accion" />
+				<div id="catalogoF0013"
+					tooltiptext="Seleccione la Moneda para Realizar una Accion" />
 			</groupbox>
 			<separator />
 			<separator />

@@ -7,10 +7,9 @@ import modelo.maestros.F4008;
 
 import org.zkoss.zk.ui.Component;
 
-import componentes.Catalogo;
 import componentes.utils.Convertidor;
 
-public class CatalogoF4008 extends Catalogo<F4008> {
+public class CatalogoF4008 extends CatalogoGenerico<F4008> {
 
 	/**
 	 * 

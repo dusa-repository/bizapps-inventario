@@ -38,8 +38,10 @@ import modelo.pk.F0116PK;
 import modelo.transacciones.F4111;
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoF0006;
+import componentes.catalogos.CatalogoF0101;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF0101 extends CGenerico {
 
@@ -300,9 +302,9 @@ public class CF0101 extends CGenerico {
 	private Div DivCatalogoF0101;
 
 	Botonera botonera;
-	Catalogo<F0101> catalogo;
-	Catalogo<F0101> catalogoDivF0101;
-	Catalogo<F0006> catalogoF0006;
+	CatalogoF0101 catalogo;
+	CatalogoF0101 catalogoDivF0101;
+	CatalogoF0006 catalogoF0006;
 	double clave = 0;
 	String idBoton = "";
 
@@ -551,13 +553,13 @@ public class CF0101 extends CGenerico {
 						else
 							chxSBLIF0101.setChecked(false);
 					} else
-						msj.mensajeAlerta(Mensaje.editarSoloUno);
+						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 			}
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0101, titulo , tabs);
+				cerrarVentana(divVF0101, titulo, tabs);
 
 			}
 
@@ -742,7 +744,7 @@ public class CF0101 extends CGenerico {
 					f0116.setAladds(buscadorADDS.obtenerCaja());
 					servicioF0116.guardar(f0116);
 
-					msj.mensajeInformacion(Mensaje.guardado);
+					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 					catalogo.actualizarLista(servicioF0101
 							.buscarTodosOrdenados());
@@ -793,27 +795,24 @@ public class CF0101 extends CGenerico {
 																.buscarTodosOrdenados());
 														if (cantidad != eliminarLista
 																.size())
-															msj.mensajeInformacion(Mensaje.algunosEliminados);
+															Mensaje.mensajeInformacion(Mensaje.algunosEliminados);
 														else
-															msj.mensajeInformacion(Mensaje.eliminado);
+															Mensaje.mensajeInformacion(Mensaje.eliminado);
 													}
 												}
 											});
 						} else {
-							msj.mensajeAlerta(Mensaje.registroUtilizado);
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
 						}
 					}
 				} else {
 					/* Elimina un solo registro */
 					if (clave != 0) {
-						List<F0115> objeto = servicioF0115
-								.buscarPorAn(clave);
+						List<F0115> objeto = servicioF0115.buscarPorAn(clave);
 						List<F01151> objeto3 = servicioF01151
 								.buscarPorAn(clave);
-						List<F0101> objeto2 = servicioF0101
-								.buscarPorAns(clave);
-						List<F4111> objeto4 = servicioF4111
-								.buscarPorAn(clave);
+						List<F0101> objeto2 = servicioF0101.buscarPorAns(clave);
+						List<F4111> objeto4 = servicioF4111.buscarPorAn(clave);
 						if (objeto.isEmpty() && objeto2.isEmpty()
 								&& objeto3.isEmpty() && objeto4.isEmpty()) {
 							Messagebox
@@ -828,7 +827,7 @@ public class CF0101 extends CGenerico {
 															"onOK")) {
 														servicioF0101
 																.eliminarUno(clave);
-														msj.mensajeInformacion(Mensaje.eliminado);
+														Mensaje.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
 														catalogo.actualizarLista(servicioF0101
 																.buscarTodosOrdenados());
@@ -836,17 +835,17 @@ public class CF0101 extends CGenerico {
 												}
 											});
 						} else {
-							msj.mensajeAlerta(Mensaje.registroUtilizado);
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
 						}
 					} else
-						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+						Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 			}
 
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
 
 			}
@@ -873,7 +872,7 @@ public class CF0101 extends CGenerico {
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			Mensaje.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -931,6 +930,7 @@ public class CF0101 extends CGenerico {
 		txtADD3F0101.setValue("");
 		txtADD4F0101.setValue("");
 		txtCTY1F0101.setValue("");
+		txtNPrincipal.setValue(null);
 		buscadorCTR.settearCampo(null);
 		buscadorADDS.settearCampo(null);
 		buscadorCOUN.settearCampo(null);
@@ -1000,11 +1000,11 @@ public class CF0101 extends CGenerico {
 	protected boolean validarSeleccion() {
 		List<F0101> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
 		} else {
 			if (seleccionados.isEmpty()) {
-				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				Mensaje.mensajeAlerta(Mensaje.noSeleccionoItem);
 				return false;
 			} else {
 				return true;
@@ -1042,53 +1042,90 @@ public class CF0101 extends CGenerico {
 	}
 
 	private boolean camposEditando() {
-		// TODO Auto-generated method stub
+		if (txtAN8F0101.getText().compareTo("") != 0
+				|| txtALPHF0101.getText().compareTo("") != 0
+				|| txtALKYF0101.getText().compareTo("") != 0
+				|| txtTAXF0101.getText().compareTo("") != 0
+				|| txtMCUF0101.getText().compareTo("") != 0
+				|| txtMlnmF0101.getText().compareTo("") != 0
+				|| txtADD1F0101.getText().compareTo("") != 0
+				|| txtCTY1F0101.getText().compareTo("") != 0
+				|| txtADD2F0101.getText().compareTo("") != 0
+				|| txtADD3F0101.getText().compareTo("") != 0
+				|| txtADDZF0101.getText().compareTo("") != 0
+				|| txtADD4F0101.getText().compareTo("") != 0
+				|| txtTX2F0101.getText().compareTo("") != 0
+				|| txtTXCTF0101.getText().compareTo("") != 0
+				|| txtYEARSTARF0101.getText().compareTo("") != 0
+				|| txtDUNS1F0101.getText().compareTo("") != 0
+				|| txtDUNS2F0101.getText().compareTo("") != 0
+				|| txtDUNS3F0101.getText().compareTo("") != 0
+				|| txtTICKERF0101.getText().compareTo("") != 0
+				|| txtEXCHF0101.getText().compareTo("") != 0
+				|| txtNPrincipal.getText().compareTo("") != 0
+				|| txtAN81F0101.getText().compareTo("") != 0
+				|| txtAN82F0101.getText().compareTo("") != 0
+				|| txtAN83F0101.getText().compareTo("") != 0
+				|| txtAN84F0101.getText().compareTo("") != 0
+				|| txtAN85F0101.getText().compareTo("") != 0
+				|| txtFactorF0101.getText().compareTo("") != 0
+				|| buscadorAT1.obtenerCaja().compareTo("") != 0
+				|| buscadorATP.obtenerCaja().compareTo("") != 0
+				|| buscadorMPGP.obtenerCaja().compareTo("") != 0
+				|| buscadorAT2.obtenerCaja().compareTo("") != 0
+				|| buscadorTAXC.obtenerCaja().compareTo("") != 0
+				|| buscadorCM.obtenerCaja().compareTo("") != 0
+				|| buscadorLNGP.obtenerCaja().compareTo("") != 0
+				|| buscadorSIC.obtenerCaja().compareTo("") != 0
+				|| buscadorCLASS01.obtenerCaja().compareTo("") != 0
+				|| buscadorCLASS02.obtenerCaja().compareTo("") != 0
+				|| buscadorCLASS03.obtenerCaja().compareTo("") != 0
+				|| buscadorCLASS04.obtenerCaja().compareTo("") != 0
+				|| buscadorCLASS05.obtenerCaja().compareTo("") != 0
+				|| buscadorCLASS03.obtenerCaja().compareTo("") != 0
+				|| buscadorABREV.obtenerCaja().compareTo("") != 0
+				|| buscadorADDS.obtenerCaja().compareTo("") != 0
+				|| buscadorCTR.obtenerCaja().compareTo("") != 0
+				|| buscadorCOUN.obtenerCaja().compareTo("") != 0
+				|| buscadorAC01.obtenerCaja().compareTo("") != 0
+				|| buscadorAC02.obtenerCaja().compareTo("") != 0
+				|| buscadorAC03.obtenerCaja().compareTo("") != 0
+				|| buscadorAC04.obtenerCaja().compareTo("") != 0
+				|| buscadorAC05.obtenerCaja().compareTo("") != 0
+				|| buscadorAC06.obtenerCaja().compareTo("") != 0
+				|| buscadorAC07.obtenerCaja().compareTo("") != 0
+				|| buscadorAC08.obtenerCaja().compareTo("") != 0
+				|| buscadorAC09.obtenerCaja().compareTo("") != 0
+				|| buscadorAC10.obtenerCaja().compareTo("") != 0
+				|| buscadorAC11.obtenerCaja().compareTo("") != 0
+				|| buscadorAC12.obtenerCaja().compareTo("") != 0
+				|| buscadorAC13.obtenerCaja().compareTo("") != 0
+				|| buscadorAC14.obtenerCaja().compareTo("") != 0
+				|| buscadorAC15.obtenerCaja().compareTo("") != 0
+				|| buscadorAC16.obtenerCaja().compareTo("") != 0
+				|| buscadorAC17.obtenerCaja().compareTo("") != 0
+				|| buscadorAC18.obtenerCaja().compareTo("") != 0
+				|| buscadorAC19.obtenerCaja().compareTo("") != 0
+				|| buscadorAC20.obtenerCaja().compareTo("") != 0
+				|| buscadorAC21.obtenerCaja().compareTo("") != 0
+				|| buscadorAC22.obtenerCaja().compareTo("") != 0
+				|| buscadorAC23.obtenerCaja().compareTo("") != 0
+				|| buscadorAC24.obtenerCaja().compareTo("") != 0
+				|| buscadorAC25.obtenerCaja().compareTo("") != 0
+				|| buscadorAC26.obtenerCaja().compareTo("") != 0
+				|| buscadorAC27.obtenerCaja().compareTo("") != 0
+				|| buscadorAC28.obtenerCaja().compareTo("") != 0
+				|| buscadorAC29.obtenerCaja().compareTo("") != 0
+				|| buscadorAC30.obtenerCaja().compareTo("") != 0)
+			return true;
 		return false;
 	}
 
 	public void mostrarCatalogo() {
-		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0101>(catalogoF0101, "F0013", listF0101,
-				false, false, false, "Nº direccion", "Nombre alfabetico",
-				"Direccion larga", "Clasificacion industria", "Tipo bus",
-				"ID fiscal") {
-
-			@Override
-			protected List<F0101> buscar(List<String> valores) {
-
-				List<F0101> lista = new ArrayList<F0101>();
-
-				for (F0101 f01 : listF0101) {
-					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.contains(valores.get(0).toLowerCase())
-							&& f01.getAbalph().toLowerCase()
-									.contains(valores.get(1).toLowerCase())
-							&& f01.getAbalky().toLowerCase()
-									.contains(valores.get(2).toLowerCase())
-							&& f01.getAbsic().toLowerCase()
-									.contains(valores.get(3).toLowerCase())
-							&& f01.getAbat1().toLowerCase()
-									.contains(valores.get(4).toLowerCase())
-							&& f01.getAbtax().toLowerCase()
-									.contains(valores.get(5).toLowerCase())) {
-						lista.add(f01);
-					}
-				}
-				return lista;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0101 f013) {
-				String[] registros = new String[6];
-				registros[0] = String.valueOf(f013.getAban8().longValue());
-				registros[1] = f013.getAbalph();
-				registros[2] = f013.getAbalky();
-				registros[3] = f013.getAbsic();
-				registros[4] = f013.getAbat1();
-				registros[5] = f013.getAbtax();
-				return registros;
-			}
-		};
+		List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
+		catalogo = new CatalogoF0101(catalogoF0101, "F0013", listF0101, false,
+				"Nº direccion", "Nombre alfabetico", "Direccion larga",
+				"Clasificacion industria", "Tipo bus", "ID fiscal");
 		catalogo.setParent(catalogoF0101);
 	}
 
@@ -1096,48 +1133,11 @@ public class CF0101 extends CGenerico {
 	public void mostrarCatalogoDireccion(Event evento) {
 		Button boton = (Button) evento.getTarget();
 		idBoton = boton.getId();
-		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoDivF0101 = new Catalogo<F0101>(DivCatalogoF0101,
-				"CatalogoF0013", listF0101, true, false, false, "Nº direccion",
-				"Nombre alfabetico", "Direccion larga",
-				"Clasificacion industria", "Tipo bus", "ID fiscal") {
-
-			@Override
-			protected List<F0101> buscar(List<String> valores) {
-
-				List<F0101> lista = new ArrayList<F0101>();
-
-				for (F0101 f01 : listF0101) {
-					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.contains(valores.get(0).toLowerCase())
-							&& f01.getAbalph().toLowerCase()
-									.contains(valores.get(1).toLowerCase())
-							&& f01.getAbalky().toLowerCase()
-									.contains(valores.get(2).toLowerCase())
-							&& f01.getAbsic().toLowerCase()
-									.contains(valores.get(3).toLowerCase())
-							&& f01.getAbat1().toLowerCase()
-									.contains(valores.get(4).toLowerCase())
-							&& f01.getAbtax().toLowerCase()
-									.contains(valores.get(5).toLowerCase())) {
-						lista.add(f01);
-					}
-				}
-				return lista;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0101 f013) {
-				String[] registros = new String[6];
-				registros[0] = String.valueOf(f013.getAban8().longValue());
-				registros[1] = f013.getAbalph();
-				registros[2] = f013.getAbalky();
-				registros[3] = f013.getAbsic();
-				registros[4] = f013.getAbat1();
-				registros[5] = f013.getAbtax();
-				return registros;
-			}
-		};
+		List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
+		catalogoDivF0101 = new CatalogoF0101(DivCatalogoF0101, "CatalogoF0013",
+				listF0101, true, "Nº direccion", "Nombre alfabetico",
+				"Direccion larga", "Clasificacion industria", "Tipo bus",
+				"ID fiscal");
 		catalogoDivF0101.setParent(DivCatalogoF0101);
 		catalogoDivF0101.doModal();
 	}
@@ -1147,7 +1147,7 @@ public class CF0101 extends CGenerico {
 		F0101 f0101 = catalogoDivF0101.objetoSeleccionadoDelCatalogo();
 		switch (idBoton) {
 		case "btnBuscarDireccion0":
-			setearValores(f0101, txtNPrincipal , lblDireccion0F0101);
+			setearValores(f0101, txtNPrincipal, lblDireccion0F0101);
 			break;
 		case "btnBuscarDireccion1":
 			setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
@@ -1182,109 +1182,42 @@ public class CF0101 extends CGenerico {
 	@Listen("onChange = #txtAN81F0101, #txtAN82F0101, #txtAN83F0101, #txtAN84F0101, #txtAN85F0101, #txtFactorF0101")
 	public void buscarNombre(Event evento) {
 		F0101 f0101 = new F0101();
-		if (f0101 != null) {
-			Longbox txt = (Longbox) evento.getTarget();
-			switch (txt.getId()) {
-			case "txtAN81F0101":
-				f0101 = servicioF0101.buscar(txtAN81F0101.getValue());
-				// setearValores(f0101, txtAN81F0101, lblDireccion0F0101);
-				break;
-			case "btnBuscarDireccion1":
-				// setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
-				break;
-			case "btnBuscarDireccion2":
-				setearValores(f0101, txtAN82F0101, lblDireccion2F0101);
-				break;
-			case "btnBuscarDireccion3":
-				setearValores(f0101, txtAN83F0101, lblDireccion3F0101);
-				break;
-			case "btnBuscarDireccion4":
-				setearValores(f0101, txtAN84F0101, lblDireccion4F0101);
-				break;
-			case "btnBuscarDireccion5":
-				setearValores(f0101, txtAN85F0101, lblDireccion5F0101);
-				break;
-			case "btnBuscarFactor":
-				setearValores(f0101, txtFactorF0101, lblFactorF0101);
-				break;
-			default:
-				break;
-			}
-		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
-			txtAN81F0101.setValue((long) 0);
-			txtAN81F0101.setFocus(true);
+		Longbox txt = (Longbox) evento.getTarget();
+		switch (txt.getId()) {
+		case "txtAN81F0101":
+			f0101 = servicioF0101.buscar(txtAN81F0101.getValue());
+			// setearValores(f0101, txtAN81F0101, lblDireccion0F0101);
+			break;
+		case "btnBuscarDireccion1":
+			// setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
+			break;
+		case "btnBuscarDireccion2":
+			setearValores(f0101, txtAN82F0101, lblDireccion2F0101);
+			break;
+		case "btnBuscarDireccion3":
+			setearValores(f0101, txtAN83F0101, lblDireccion3F0101);
+			break;
+		case "btnBuscarDireccion4":
+			setearValores(f0101, txtAN84F0101, lblDireccion4F0101);
+			break;
+		case "btnBuscarDireccion5":
+			setearValores(f0101, txtAN85F0101, lblDireccion5F0101);
+			break;
+		case "btnBuscarFactor":
+			setearValores(f0101, txtFactorF0101, lblFactorF0101);
+			break;
+		default:
+			break;
 		}
 	}
 
 	@Listen("onClick = #btnBuscarUnidades")
 	public void mostrarCatalogoF0004() {
-		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new Catalogo<F0006>(catalogoF0006F0101, "F0006",
-				unidades, true, false, false, "Unidad Negocio", "Descripcion",
-				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
-				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
-				"CAT 06") {
-
-			@Override
-			protected List<F0006> buscar(List<String> valores) {
-
-				List<F0006> unidadnegocio = new ArrayList<F0006>();
-
-				for (F0006 unidad : unidades) {
-					String mcdc = "";
-					if (unidad.getMcdc() != null)
-						mcdc = unidad.getMcdc();
-					if (unidad.getMcmcu().toLowerCase()
-							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
-							&& unidad.getMcldm().toLowerCase()
-									.contains(valores.get(2).toLowerCase())
-							&& unidad.getMcco().toLowerCase()
-									.contains(valores.get(3).toLowerCase())
-							&& unidad.getMcstyl().toLowerCase()
-									.contains(valores.get(4).toLowerCase())
-							&& unidad.getMcfmod().toLowerCase()
-									.contains(valores.get(5).toLowerCase())
-							&& unidad.getMcsbli().toLowerCase()
-									.contains(valores.get(6).toLowerCase())
-							&& unidad.getMcrp01().toLowerCase()
-									.contains(valores.get(7).toLowerCase())
-							&& unidad.getMcrp02().toLowerCase()
-									.contains(valores.get(8).toLowerCase())
-							&& unidad.getMcrp03().toLowerCase()
-									.contains(valores.get(9).toLowerCase())
-							&& unidad.getMcrp04().toLowerCase()
-									.contains(valores.get(10).toLowerCase())
-							&& unidad.getMcrp05().toLowerCase()
-									.contains(valores.get(11).toLowerCase())
-							&& unidad.getMcrp06().toLowerCase()
-									.contains(valores.get(12).toLowerCase())) {
-						unidadnegocio.add(unidad);
-					}
-				}
-				return unidadnegocio;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0006 negocio) {
-				String[] registros = new String[13];
-				registros[0] = negocio.getMcmcu();
-				registros[1] = negocio.getMcdc();
-				registros[2] = negocio.getMcldm();
-				registros[3] = negocio.getMcco();
-				registros[4] = negocio.getMcstyl();
-				registros[5] = negocio.getMcfmod();
-				registros[6] = negocio.getMcsbli();
-				registros[7] = negocio.getMcrp01();
-				registros[8] = negocio.getMcrp02();
-				registros[9] = negocio.getMcrp03();
-				registros[10] = negocio.getMcrp04();
-				registros[11] = negocio.getMcrp05();
-				registros[12] = negocio.getMcrp06();
-				return registros;
-			}
-		};
+		List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
+		catalogoF0006 = new CatalogoF0006(catalogoF0006F0101, "F0006",
+				unidades, true, "Unidad Negocio", "Descripcion", "Nivel det",
+				"Cta", "Tipo UN", "LM Auxiliar Inactivo", "Mto Cons", "CAT 01",
+				"CAT 02", "CAT 03", "CAT 04", "CAT 05", "CAT 06");
 		catalogoF0006.setParent(catalogoF0006F0101);
 		catalogoF0006.doModal();
 	}

@@ -23,8 +23,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF40203 extends CGenerico {
 
@@ -79,7 +79,7 @@ public class CF40203 extends CGenerico {
 	private Div divbuscadorCategoria2;
 	@Wire
 	private Div catalogoF40203;
-	Catalogo<F40203> catalogo;
+	CatalogoGenerico<F40203> catalogo;
 	@Wire
 	private Groupbox gpxDatos;
 	@Wire
@@ -554,7 +554,7 @@ public class CF40203 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F40203> actividades = servicioF40203.buscarTodosOrdenados();
-		catalogo = new Catalogo<F40203>(catalogoF40203, "F40203", actividades,
+		catalogo = new CatalogoGenerico<F40203>(catalogoF40203, "F40203", actividades,
 				false, false, true, "Tipo Orden", "Tipo Línea",
 				"Último estado", "Descripción", "Est sig", "Otros 1",
 				"Otros 2", "Otros 3", "Otros 4", "Otros 5", "LM (Y/M)") {

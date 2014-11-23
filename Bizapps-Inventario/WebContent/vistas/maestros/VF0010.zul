@@ -1,6 +1,7 @@
 <zk>
 	<style src="../public/Estilo.css" />
-	<div id="divVF0010" apply="controlador.maestros.CF0010">
+	<div id="divVF0010" apply="controlador.maestros.CF0010"
+		width="100%">
 		<groupbox width="auto" mold="3d"
 			title="Trabajo con Compañias (VF0010)">
 			<div id="botoneraF0010" />
@@ -95,7 +96,6 @@
 												</hbox>
 												<datebox readonly="true"
 													width="100%" id="dtbFechaGeneralF0010"
-													onCreate="self.value = new Date()"
 													tooltiptext="Ingrese el Inicio del año fiscal (CCDFYJ)" />
 											</row>
 											<row>
@@ -104,13 +104,14 @@
 												<hbox>
 													<longbox
 														id="txtAn8F0010" hflex="1" maxlength="19"
-														tooltiptext="Seleccione del Catalogo el Codigo de la Moneda Nacional (ABAN8 de F0101)"/>
-														<button
-															id="btnBuscarDireccion" label="Buscar" class="btn"
-															tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-															image="/public/imagenes/botones/buscar.png" />
-														<label
-															id="lblDireccionF0010" />
+														tooltiptext="Seleccione del Catalogo el Codigo de la Moneda Nacional (ABAN8 de F0101)" />
+													<button
+														id="btnBuscarDireccion" label="Buscar" class="btn"
+														tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
+														image="/public/imagenes/botones/buscar.png"
+														autodisable="self" />
+													<label
+														id="lblDireccionF0010" />
 												</hbox>
 											</row>
 										</rows>
@@ -142,7 +143,6 @@
 														class="etiqueta" value="Inicio Año Fiscal:" />
 													<datebox
 														readonly="true" width="100%" id="dtbFechaPagarF0010"
-														onCreate="self.value = new Date()"
 														tooltiptext="Ingrese el Inicio del año fiscal (CCAPFJ)" />
 												</row>
 												<row>
@@ -180,7 +180,6 @@
 														class="etiqueta" value="Inicio Año Fiscal:" />
 													<datebox
 														readonly="true" width="100%" id="dtbFechaCobrarF0010"
-														onCreate="self.value = new Date()"
 														tooltiptext="Ingrese el Inicio del año fiscal (CCARFJ)" />
 												</row>
 											</rows>
@@ -233,8 +232,10 @@
 											tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
 										<hbox>
 											<button id="btnBuscarMoneda"
-												label="Buscar" class="btn" tooltiptext="Catalogo de Codigos de Monedas (F0013)"
-												image="/public/imagenes/botones/buscar.png" />
+												label="Buscar" class="btn"
+												tooltiptext="Catalogo de Codigos de Monedas (F0013)"
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label id="lblMonedaF0010" />
 										</hbox>
 									</row>
@@ -258,7 +259,8 @@
 										<label class="etiqueta"
 											value="Contabilizar saldos cuenta p/moneda:" />
 										<checkbox id="chxSaldos"
-											hflex="1" tooltiptext="Marque para contabilizar los saldos (CCDPRC)" />
+											hflex="1"
+											tooltiptext="Marque para contabilizar los saldos (CCDPRC)" />
 										<hbox />
 									</row>
 								</rows>
@@ -277,7 +279,6 @@
 			</groupbox>
 			<separator />
 			<separator />
-
 			<div id="catalogoMonedaF0010" />
 			<div id="catalogoDireccionF0010" />
 		</groupbox>

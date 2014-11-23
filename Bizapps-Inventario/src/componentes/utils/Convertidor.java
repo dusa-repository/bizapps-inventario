@@ -1,11 +1,20 @@
 package componentes.utils;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import org.zkoss.zul.Tab;
 
 public class Convertidor {
+
+	public static SimpleDateFormat formatoFecha = new SimpleDateFormat(
+			"dd-MM-yyyy");
+	public static DateFormat df = new SimpleDateFormat("HH:mm:ss");
 
 	public static Date transformarJulianaAGregoria(BigDecimal valor) {
 		String j = valor.toString();
