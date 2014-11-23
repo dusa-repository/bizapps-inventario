@@ -34,8 +34,8 @@ import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF0015 extends CGenerico {
 
@@ -102,11 +102,11 @@ public class CF0015 extends CGenerico {
 			"dd-MM-yyyy");
 
 	Botonera botonera;
-	Catalogo<F0015> catalogoEncabezado;
-	Catalogo<F0015> catalogoDetalle;
-	Catalogo<F0013> catalogoF0013;
-	Catalogo<F0013> catalogoMonedaDestino;
-	Catalogo<F0101> catalogoF0101;
+	CatalogoGenerico<F0015> catalogoEncabezado;
+	CatalogoGenerico<F0015> catalogoDetalle;
+	CatalogoGenerico<F0013> catalogoF0013;
+	CatalogoGenerico<F0013> catalogoMonedaDestino;
+	CatalogoGenerico<F0101> catalogoF0101;
 	F0015PK clave = null;
 
 	@Override
@@ -657,7 +657,7 @@ public class CF0015 extends CGenerico {
 
 	public void mostrarCatalogoEncabezado() {
 		final List<F0015> listF0015 = servicioF0015.buscarTodosOrdenados();
-		catalogoEncabezado = new Catalogo<F0015>(catalogoF0015H, "F0015",
+		catalogoEncabezado = new CatalogoGenerico<F0015>(catalogoF0015H, "F0015",
 				listF0015, false, true, true, "Moneda origen",
 				"Descripción moneda origen", "Moneda destino",
 				"Descripción moneda destino", "Contrato (dirección)",
@@ -714,7 +714,7 @@ public class CF0015 extends CGenerico {
 
 	public void mostrarCatalogoDetalle() {
 		final List<F0015> listF0015 = servicioF0015.buscarTodosOrdenados();
-		catalogoDetalle = new Catalogo<F0015>(catalogoF0015D, "F0015D",
+		catalogoDetalle = new CatalogoGenerico<F0015>(catalogoF0015D, "F0015D",
 				listF0015, false, true, true, "Método cálculo", "Método conv",
 				"Tipo multiplicador", "Tipo divisor", "Mon Trian",
 				"Cambio al contado") {
@@ -775,7 +775,7 @@ public class CF0015 extends CGenerico {
 	@Listen("onClick = #btnBuscarMonedaF0013")
 	public void mostrarCatalogoMoneda() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoF0013 = new Catalogo<F0013>(divCatalogoF0013, "F0013",
+		catalogoF0013 = new CatalogoGenerico<F0013>(divCatalogoF0013, "F0013",
 				listF0013, true, false, false, "Codigo moneda", "Descripcion",
 				"Vlslz", "Rutina cheques") {
 
@@ -842,7 +842,7 @@ public class CF0015 extends CGenerico {
 	@Listen("onClick = #btnBuscarMonedaDestinoF0013")
 	public void mostrarCatalogoMonedaDestino() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoMonedaDestino = new Catalogo<F0013>(divCatalogoMonedaDestino,
+		catalogoMonedaDestino = new CatalogoGenerico<F0013>(divCatalogoMonedaDestino,
 				"F0013", listF0013, true, false, false, "Codigo moneda",
 				"Descripcion", "Vlslz", "Rutina cheques") {
 
@@ -909,7 +909,7 @@ public class CF0015 extends CGenerico {
 	@Listen("onClick = #btnBuscarF0101")
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new Catalogo<F0101>(divCatalogoF0101, "F0101",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "F0101",
 				listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {

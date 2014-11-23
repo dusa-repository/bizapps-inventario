@@ -49,8 +49,8 @@ import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
 
 public class CF4111 extends CGenerico {
@@ -216,13 +216,13 @@ public class CF4111 extends CGenerico {
 	private Row rowBoton;
 
 	Botonera botonera;
-	Catalogo<F4111> catalogo;
-	Catalogo<F4111> catalogoEmergente;
-	Catalogo<F4211> catalogoF4211;
-	Catalogo<F0006> catalogoF0006;
-	Catalogo<F4100> catalogoF4100;
-	Catalogo<F4101> catalogoF4101;
-	Catalogo<F0101> catalogoF0101;
+	CatalogoGenerico<F4111> catalogo;
+	CatalogoGenerico<F4111> catalogoEmergente;
+	CatalogoGenerico<F4211> catalogoF4211;
+	CatalogoGenerico<F0006> catalogoF0006;
+	CatalogoGenerico<F4100> catalogoF4100;
+	CatalogoGenerico<F4101> catalogoF4101;
+	CatalogoGenerico<F0101> catalogoF0101;
 	private String idBotonF0006 = "";
 	private String idBotonF4100 = "";
 	private List<Generico> lista = new ArrayList<Generico>();
@@ -990,7 +990,7 @@ public class CF4111 extends CGenerico {
 	private void mostrarCatalogo() {
 		final List<F4111> unidades = servicioF4111
 				.buscarTodosOrdenadosPorTipo(tipo);
-		catalogo = new Catalogo<F4111>(catalogoF4111, "F4111", unidades, false,
+		catalogo = new CatalogoGenerico<F4111>(catalogoF4111, "F4111", unidades, false,
 				true, true, "Numero Documento", "Tipo doc", "Fecha LM",
 				"Explicacion", "Sucursal/planta", "Fecha transaccion") {
 
@@ -1046,7 +1046,7 @@ public class CF4111 extends CGenerico {
 			Long l = txtF0101.getValue();
 			final List<F4111> unidades = servicioF4111
 					.buscarTodosOrdenadosPorProveedor("OV", l.doubleValue());
-			catalogoEmergente = new Catalogo<F4111>(catalogoF4111Emergente,
+			catalogoEmergente = new CatalogoGenerico<F4111>(catalogoF4111Emergente,
 					"F4111P", unidades, true, false, false, "Numero Documento",
 					"Tipo doc", "Fecha LM", "Explicacion", "Sucursal/planta",
 					"Fecha transaccion") {
@@ -1135,7 +1135,7 @@ public class CF4111 extends CGenerico {
 			}
 		}
 		final List<F4100> listF41002 = listF4100;
-		catalogoF4100 = new Catalogo<F4100>(catalogoUbicacionF4100, "F4100",
+		catalogoF4100 = new CatalogoGenerico<F4100>(catalogoUbicacionF4100, "F4100",
 				listF41002, true, false, false, "Cod. Sucursal/planta",
 				"Sucursal/planta", "Fecha acta", "Ubicacion", "Zona alm",
 				"Zona acopio", "Zona reabast", "Detalle", "Pasillo", "Bin",
@@ -1279,7 +1279,7 @@ public class CF4111 extends CGenerico {
 		Button boton = (Button) evento.getTarget();
 		idBotonF0006 = boton.getId();
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new Catalogo<F0006>(catalogoSucursalF0006, "F0006",
+		catalogoF0006 = new CatalogoGenerico<F0006>(catalogoSucursalF0006, "F0006",
 				unidades, true, false, false, "Unidad Negocio", "Descripcion",
 				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
 				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
@@ -1429,7 +1429,7 @@ public class CF4111 extends CGenerico {
 			orden = "Nº Orden";
 		else
 			orden = "Nº de Recipe";
-		catalogoF4211 = new Catalogo<F4211>(catalogoPedidoF4211, "F4211",
+		catalogoF4211 = new CatalogoGenerico<F4211>(catalogoPedidoF4211, "F4211",
 				listF0005, true, false, false, orden, "Tipo ord", "Cia ord",
 				"Compañia", "Sucursal/Planta", "Articulo", "Cantidad", "Total",
 				"Fecha") {
@@ -1557,7 +1557,7 @@ public class CF4111 extends CGenerico {
 			else
 				descripcion = "Descripcion";
 		}
-		catalogoF4101 = new Catalogo<F4101>(catalogoItemF4101, "F4101",
+		catalogoF4101 = new CatalogoGenerico<F4101>(catalogoItemF4101, "F4101",
 				listF4101, true, false, false, "Número artículo",
 				"Descripcion", descripcion, "Texto búsqueda", "Tipo línea",
 				"Tipo alm", "Código vta 1") {
@@ -1692,7 +1692,7 @@ public class CF4111 extends CGenerico {
 		else
 			listF41011 = servicioF0101.buscarProveedorConOrden("OV");
 		final List<F0101> listF0101 = listF41011;
-		catalogoF0101 = new Catalogo<F0101>(catalogoDireccionF0101,
+		catalogoF0101 = new CatalogoGenerico<F0101>(catalogoDireccionF0101,
 				"CatalogoF0013", listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {

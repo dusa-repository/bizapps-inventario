@@ -18,9 +18,8 @@ import org.zkoss.zul.impl.XulElement;
 import servicio.maestros.SF0004;
 import modelo.maestros.F0004;
 import modelo.maestros.F0005;
-import componentes.Catalogo;
 
-public class CatalogoUDC extends Catalogo<F0005> {
+public class CatalogoUDC extends CatalogoGenerico<F0005> {
 
 	/**
 	 * 
@@ -40,8 +39,10 @@ public class CatalogoUDC extends Catalogo<F0005> {
 	private Textbox txtRT;
 	private Label labelBuscado;
 
-	public CatalogoUDC(Component div, String titulo, List<F0005> lista, String... campos) {
+	public CatalogoUDC(Component div, String valor1, String valor2,
+			String titulo, List<F0005> lista, String... campos) {
 		super(div, titulo, lista, true, campos);
+		settearCamposUdc(valor1, valor2);
 	}
 
 	@Override
@@ -75,7 +76,7 @@ public class CatalogoUDC extends Catalogo<F0005> {
 		return registros;
 	}
 
-	public void settearCamposUdc(String valor1, String valor2) {
+	private void settearCamposUdc(String valor1, String valor2) {
 		F0004 f004 = getServicioF4().buscar(valor1, valor2);
 		if (f004 != null) {
 			txtSY.setValue(f004.getId().getDtsy());

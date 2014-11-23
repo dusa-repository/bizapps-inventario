@@ -11,9 +11,7 @@ import org.zkoss.zk.ui.Component;
 
 import servicio.maestros.SF0101;
 
-import componentes.Catalogo;
-
-public class CatalogoF4301 extends Catalogo<F4301> {
+public class CatalogoF4301 extends CatalogoGenerico<F4301> {
 
 	/**
 	 * 

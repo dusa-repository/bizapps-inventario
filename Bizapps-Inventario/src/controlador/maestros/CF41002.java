@@ -29,8 +29,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF41002 extends CGenerico {
 
@@ -74,8 +74,8 @@ public class CF41002 extends CGenerico {
 	private Button btnBuscarF4101;
 
 	Botonera botonera;
-	Catalogo<F41002> catalogoF41002;
-	Catalogo<F4101> catalogoF4101;
+	CatalogoGenerico<F41002> catalogoF41002;
+	CatalogoGenerico<F4101> catalogoF4101;
 	F41002PK clave = null;
 	BuscadorUDC buscadorUMF41002;
 	BuscadorUDC buscadorRUMF41002;
@@ -488,7 +488,7 @@ public class CF41002 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F41002> listF41002 = servicioF41002.buscarTodosOrdenados();
-		catalogoF41002 = new Catalogo<F41002>(divCatalogoF41002, "F41002",
+		catalogoF41002 = new CatalogoGenerico<F41002>(divCatalogoF41002, "F41002",
 				listF41002, false, false, true, "Numero articulo",
 				"Descripcion", "De UM", "Cantidad", "A UM",
 				"Codigo estructura", "Excluir de OV", "Excluir de OC",
@@ -560,7 +560,7 @@ public class CF41002 extends CGenerico {
 	@Listen("onClick = #btnBuscarF4101")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new Catalogo<F4101>(divCatalogoF4101,
+		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101,
 				"Catalogo de Maestro de Articulos", listF4101, true, false,
 				true, "Codigo", "Descripcion") {
 

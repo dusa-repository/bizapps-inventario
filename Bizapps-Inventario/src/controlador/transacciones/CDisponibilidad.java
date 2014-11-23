@@ -27,10 +27,10 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.Catalogo;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoF0006;
 import componentes.catalogos.CatalogoF4101;
+import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
 
 public class CDisponibilidad extends CGenerico {
@@ -64,9 +64,9 @@ public class CDisponibilidad extends CGenerico {
 	@Wire
 	private Checkbox chkCeros;
 	Botonera botonera;
-	Catalogo<F0006> catalogoF0006;
-	Catalogo<F4101> catalogoF4101;
-	Catalogo<F41021> catalogo;
+	CatalogoGenerico<F0006> catalogoF0006;
+	CatalogoGenerico<F4101> catalogoF4101;
+	CatalogoGenerico<F41021> catalogo;
 	List<F41021> lista = new ArrayList<F41021>();
 	String mcu = "";
 
@@ -271,7 +271,7 @@ public class CDisponibilidad extends CGenerico {
 	private void mostrarCatalogo() {
 
 		final List<F41021> listObjetos = lista;
-		catalogo = new Catalogo<F41021>(catalogo, "F41021", listObjetos, false,
+		catalogo = new CatalogoGenerico<F41021>(catalogo, "F41021", listObjetos, false,
 				false, false, "Ubicacion", "Sucursal/Almacen",
 				"Existencia Fisica", "Disponible", "Fecha Ultima Recepcion") {
 

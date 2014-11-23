@@ -27,8 +27,8 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF0013 extends CGenerico {
 
@@ -53,7 +53,7 @@ public class CF0013 extends CGenerico {
 	private Groupbox gpxRegistroF0013;
 
 	Botonera botonera;
-	Catalogo<F0013> catalogo;
+	CatalogoGenerico<F0013> catalogo;
 	String clave = null;
 
 	@Override
@@ -364,7 +364,7 @@ public class CF0013 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0013>(catalogoF0013, "F0013", listF0013,
+		catalogo = new CatalogoGenerico<F0013>(catalogoF0013, "F0013", listF0013,
 				false, false, false, "Codigo moneda", "Descripcion", "Vlslz",
 				"Rutina cheques") {
 

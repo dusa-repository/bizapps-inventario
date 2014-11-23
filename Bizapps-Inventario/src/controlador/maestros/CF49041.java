@@ -38,8 +38,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF49041 extends CGenerico {
 
@@ -87,8 +87,8 @@ public class CF49041 extends CGenerico {
 			"dd-MM-yyyy");
 
 	Botonera botonera;
-	Catalogo<F49041> catalogo;
-	Catalogo<F0101> catalogoF0101;
+	CatalogoGenerico<F49041> catalogo;
+	CatalogoGenerico<F0101> catalogoF0101;
 	// Catalogo<F0011> catalogoF0011; falta crear
 
 	BuscadorUDC buscadorSHFT;
@@ -378,7 +378,7 @@ public class CF49041 extends CGenerico {
 	public void mostrarCatalogo() {
 
 		final List<F49041> choferes = servicioF49041.buscarTodosOrdenados();
-		catalogo = new Catalogo<F49041>(divCatalogoF49041, "F49041", choferes,
+		catalogo = new CatalogoGenerico<F49041>(divCatalogoF49041, "F49041", choferes,
 				false, false, true, "N° empleado", "Nombre empleado",
 				"Depósito", "Tipo pto", "Descripción del empleo",
 				"ID vehículo", "turno", "Fecha efectiva", "Fecha vto") {
@@ -451,7 +451,7 @@ public class CF49041 extends CGenerico {
 	@Listen("onClick = #btnBuscarF0101")
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new Catalogo<F0101>(divCatalogoF0101, "F0101",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "F0101",
 				listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {

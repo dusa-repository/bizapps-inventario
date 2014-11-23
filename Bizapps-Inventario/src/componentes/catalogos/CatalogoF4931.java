@@ -7,9 +7,7 @@ import modelo.maestros.F4931;
 
 import org.zkoss.zk.ui.Component;
 
-import componentes.Catalogo;
-
-public class CatalogoF4931 extends Catalogo<F4931> {
+public class CatalogoF4931 extends CatalogoGenerico<F4931> {
 
 	/**
 	 * 

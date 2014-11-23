@@ -1,10 +1,6 @@
-package componentes;
+package componentes.catalogos;
 
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.zkoss.zk.ui.Component;
@@ -15,6 +11,7 @@ import org.zkoss.zk.ui.event.KeyEvent;
 import org.zkoss.zul.Auxhead;
 import org.zkoss.zul.Auxheader;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Cell;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.ListModelList;
@@ -31,27 +28,29 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.impl.XulElement;
 
-public abstract class Catalogo<Clase> extends Window {
+import componentes.Mensaje;
+
+public abstract class CatalogoGenerico<Modelo> extends Window {
 
 	private static final long serialVersionUID = 1L;
 	private Listbox lsbCatalogo;
 	private Button exportador;
 	private Button pagineo;
-	private List<Clase> lista;
+	private List<Modelo> lista;
 
-	public Catalogo(Component cGenerico, String titulo, List<Clase> lista,
-			boolean emergente, String... campos) {
+	public CatalogoGenerico(Component cGenerico, String titulo,
+			List<Modelo> lista, boolean emergente, String... campos) {
 		this(cGenerico, titulo, lista, emergente, false, true, campos);
 	}
 
-	public Catalogo(final Component cGenerico, String titulo,
-			List<Clase> lista, boolean emergente, boolean udc, boolean param2,
+	public CatalogoGenerico(final Component cGenerico, String titulo,
+			List<Modelo> lista, boolean emergente, boolean udc, boolean param2,
 			String... campos) {
 		super("", "2", false);
 		this.lista = lista;
 		this.setId("cmpCatalogo" + titulo);
 		this.setStyle("background-header:#FF7925; background: #f4f2f2");
-		crearLista(titulo, lista, campos, emergente, udc);
+		crearLista(titulo, lista, campos, emergente);
 		lsbCatalogo.addEventListener(Events.ON_SELECT,
 				new EventListener<Event>() {
 					@Override
@@ -61,12 +60,12 @@ public abstract class Catalogo<Clase> extends Window {
 				});
 	}
 
-	private void crearLista(String titulo, List<Clase> lista, String[] campos,
-			boolean emergente, boolean udc) {
+	private void crearLista(String titulo, List<Modelo> lista, String[] campos,
+			boolean emergente) {
 		exportador = crearBotonExportador();
 		pagineo = crearBotonPagineo();
 		this.setClosable(emergente);
-		XulElement componente = crearEncabezadoCatalogo(titulo, emergente, udc);
+		XulElement componente = crearEncabezadoCatalogo(titulo, emergente);
 		if (componente != null)
 			this.appendChild(componente);
 		this.appendChild(new Separator());
@@ -74,8 +73,7 @@ public abstract class Catalogo<Clase> extends Window {
 		this.appendChild(lsbCatalogo);
 	}
 
-	private XulElement crearEncabezadoCatalogo(String titulo,
-			boolean emergente, boolean udc) {
+	private XulElement crearEncabezadoCatalogo(String titulo, boolean emergente) {
 		if (emergente) {
 			this.setWidth("80%");
 			this.setTitle(titulo);
@@ -87,14 +85,22 @@ public abstract class Catalogo<Clase> extends Window {
 			espacio.setHeight("10px");
 			espacio.setStyle("background:white");
 			Hbox box = new Hbox();
-			box.appendChild(espacio);
-			box.appendChild(exportador);
-			box.appendChild(pagineo);
+			Cell c1 = new Cell();
+			c1.setWidth("96%");
+			c1.appendChild(espacio);
+			box.appendChild(c1);
+			Cell c2 = new Cell();
+			c2.setWidth("2%");
+			c2.appendChild(exportador);
+			box.appendChild(c2);
+			Cell c3 = new Cell();
+			c3.setWidth("2%");
+			c3.appendChild(pagineo);
+			box.appendChild(c3);
 			box.setStyle("background:white");
 			box.setWidth("100%");
 			box.setAlign("end");
 			box.setHeight("10px");
-			box.setWidths("96%,2%,2%");
 			return box;
 		}
 	}
@@ -103,7 +109,7 @@ public abstract class Catalogo<Clase> extends Window {
 		return null;
 	}
 
-	private Listbox crearListbox(List<Clase> lista, String[] campos,
+	private Listbox crearListbox(List<Modelo> lista, String[] campos,
 			boolean emergente) {
 		Listbox listboxCatalogo = new Listbox();
 		listboxCatalogo.setMold("paging");
@@ -126,11 +132,11 @@ public abstract class Catalogo<Clase> extends Window {
 		listboxCatalogo.appendChild(lhdEncabezado);
 		listboxCatalogo.setSizedByContent(true);
 		listboxCatalogo.setSpan("true");
-		listboxCatalogo.setModel(new ListModelList<Clase>(lista));
-		listboxCatalogo.setItemRenderer(new ListitemRenderer<Clase>() {
+		listboxCatalogo.setModel(new ListModelList<Modelo>(lista));
+		listboxCatalogo.setItemRenderer(new ListitemRenderer<Modelo>() {
 
 			@Override
-			public void render(Listitem fila, Clase objeto, int arg2)
+			public void render(Listitem fila, Modelo objeto, int arg2)
 					throws Exception {
 				fila.setValue(objeto);
 				String[] registros = crearRegistros(objeto);
@@ -163,11 +169,11 @@ public abstract class Catalogo<Clase> extends Window {
 					Textbox texbox = (Textbox) component.getChildren().get(0);
 					valores.add(texbox.getValue());
 				}
-				List<Clase> listaNueva = buscar(valores);
-				listbox.setModel(new ListModelList<Clase>(listaNueva));
+				List<Modelo> listaNueva = buscar(valores);
+				listbox.setModel(new ListModelList<Modelo>(listaNueva));
 				String valor = cajaTexto.getValue();
 				cajaTexto.setValue(valor);
-				//Agregado para que las listas sean multiples en caso necesario
+				// Agregado para que las listas sean multiples en caso necesario
 				lsbCatalogo.setMultiple(emergente);
 				lsbCatalogo.setCheckmark(emergente);
 				lsbCatalogo.setMultiple(!emergente);
@@ -261,15 +267,15 @@ public abstract class Catalogo<Clase> extends Window {
 	 * busque, es decir que haga un filtro dentro del catalogo, ayudando asi al
 	 * usuario a encontrar el registro buscado con mayor facilidad
 	 */
-	protected abstract List<Clase> buscar(List<String> valores);
+	protected abstract List<Modelo> buscar(List<String> valores);
 
 	/**
 	 * Metodo que permite por cada controlador indicar cuales son los registros
 	 * que quiere mostrar en su catalogo, formando una matriz de String
 	 */
-	protected abstract String[] crearRegistros(Clase objeto);
+	protected abstract String[] crearRegistros(Modelo objeto);
 
-	public Clase objetoSeleccionadoDelCatalogo() {
+	public Modelo objetoSeleccionadoDelCatalogo() {
 		return lsbCatalogo.getSelectedItem().getValue();
 	}
 
@@ -277,22 +283,22 @@ public abstract class Catalogo<Clase> extends Window {
 		return lsbCatalogo;
 	}
 
-	public void actualizarLista(List<Clase> lista) {
-		lsbCatalogo.setModel(new ListModelList<Clase>(lista));
+	public void actualizarLista(List<Modelo> lista) {
+		lsbCatalogo.setModel(new ListModelList<Modelo>(lista));
 		lsbCatalogo.setMultiple(false);
 		lsbCatalogo.setCheckmark(false);
 		lsbCatalogo.setMultiple(true);
 		lsbCatalogo.setCheckmark(true);
 	}
 
-	public List<Clase> obtenerSeleccionados() {
-		List<Clase> valores = new ArrayList<Clase>();
+	public List<Modelo> obtenerSeleccionados() {
+		List<Modelo> valores = new ArrayList<Modelo>();
 		boolean entro = false;
 		if (lsbCatalogo.getItemCount() != 0) {
 			final List<Listitem> list1 = lsbCatalogo.getItems();
 			for (int i = 0; i < list1.size(); i++) {
 				if (list1.get(i).isSelected()) {
-					Clase clase = list1.get(i).getValue();
+					Modelo clase = list1.get(i).getValue();
 					entro = true;
 					valores.add(clase);
 				}
@@ -315,7 +321,7 @@ public abstract class Catalogo<Clase> extends Window {
 
 	}
 
-	public List<Clase> getLista() {
+	public List<Modelo> getLista() {
 		return lista;
 	}
 

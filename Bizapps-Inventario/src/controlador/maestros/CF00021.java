@@ -21,12 +21,12 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
-import arbol.CArbol;
 
+import arbol.CArbol;
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF00021 extends CGenerico {
 
@@ -62,8 +62,8 @@ public class CF00021 extends CGenerico {
 	private Div divbuscadorINCRUS;
 	@Wire
 	private Label lblDescripcionF0010;
-	Catalogo<F00021> catalogo;
-	Catalogo<F0010> catalogoF0010;
+	CatalogoGenerico<F00021> catalogo;
+	CatalogoGenerico<F0010> catalogoF0010;
 	Botonera botonera;
 	F00021PK clave = null;
 	CArbol arbol = new CArbol();
@@ -439,7 +439,7 @@ public class CF00021 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F00021> compannias = servicioF00021.buscarTodosOrdenados();
-		catalogo = new Catalogo<F00021>(catalogoF00021, "F00021", compannias,
+		catalogo = new CatalogoGenerico<F00021>(catalogoF00021, "F00021", compannias,
 				false, true, true, "Compañia Documento", "Tipo Documento",
 				"Igual aTipo Doc", "Digito Incrus", "Digito Verif",
 				"Número Siguiente", "Reinicio Automático") {
@@ -499,7 +499,7 @@ public class CF00021 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista,
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010", lista,
 				true, false, true, "Codigo", "Nombre", "Nº Periodo", "Patron",
 				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {

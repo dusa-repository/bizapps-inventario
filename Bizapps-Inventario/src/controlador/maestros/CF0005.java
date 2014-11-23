@@ -22,8 +22,8 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 import componentes.catalogos.CatalogoUDC;
 
 public class CF0005 extends CGenerico {
@@ -68,8 +68,8 @@ public class CF0005 extends CGenerico {
 
 	String idBoton = "";
 	Botonera botonera;
-	Catalogo<F0005> catalogo;
-	Catalogo<F0004> catalogoF0004;
+	CatalogoGenerico<F0005> catalogo;
+	CatalogoGenerico<F0004> catalogoF0004;
 	F0005PK clave = null;
 
 	@Override
@@ -442,7 +442,7 @@ public class CF0005 extends CGenerico {
 		
 		 final List<F0005> listF0005 = listF0005New;
 		
-		catalogo = new Catalogo<F0005>(catalogoF0005, "F0005", listF0005,
+		catalogo = new CatalogoGenerico<F0005>(catalogoF0005, "F0005", listF0005,
 				false, false, false, "SY", "RT", "KY", "Descripcion 01",
 				"Descripcion 02", "Gestion Especial", "Codificacion Fija") {
 
@@ -494,7 +494,7 @@ public class CF0005 extends CGenerico {
 		Button boton = (Button) evento.getTarget();
 		idBoton = boton.getId();
 		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
-		catalogoF0004 = new Catalogo<F0004>(divCatalogoF0004, "Catalogo de Codigos Definidos por el Usuario",
+		catalogoF0004 = new CatalogoGenerico<F0004>(divCatalogoF0004, "Catalogo de Codigos Definidos por el Usuario",
 				listF0004, true, false, false, "SY", "RT", "Descripcion",
 				"Codigo", "2 Linea", "Numerico") {
 

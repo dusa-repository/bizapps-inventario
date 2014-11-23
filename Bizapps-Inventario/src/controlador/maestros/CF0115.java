@@ -27,8 +27,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF0115 extends CGenerico {
 
@@ -59,8 +59,8 @@ public class CF0115 extends CGenerico {
 	@Wire
 	private Groupbox gpxRegistroF0115;
 	Botonera botonera;
-	Catalogo<F0115> catalogo;
-	Catalogo<F0101> catalogoD;
+	CatalogoGenerico<F0115> catalogo;
+	CatalogoGenerico<F0101> catalogoD;
 	F0115PK clave = null;
 
 	@Override
@@ -358,7 +358,7 @@ public class CF0115 extends CGenerico {
 
 	private void mostrarCatalogo() {
 		final List<F0115> listF0101 = servicioF0115.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0115>(catalogoF0115, "F0115", listF0101,
+		catalogo = new CatalogoGenerico<F0115>(catalogoF0115, "F0115", listF0101,
 				false, false, false, "Nº direccion", "Prefijo",
 				"Numero Telefono", "Tipo", "Descripcion") {
 
@@ -410,7 +410,7 @@ public class CF0115 extends CGenerico {
 	@Listen("onClick = #btnBuscarDireccionF0115")
 	public void mostrarCatalogoDireccion() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoD = new Catalogo<F0101>(DivCatalogoDireccionF0115,
+		catalogoD = new CatalogoGenerico<F0101>(DivCatalogoDireccionF0115,
 				"CatalogoF0013", listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {

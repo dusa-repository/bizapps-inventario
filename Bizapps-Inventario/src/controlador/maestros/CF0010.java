@@ -34,8 +34,11 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoF0010;
+import componentes.catalogos.CatalogoF0013;
+import componentes.catalogos.CatalogoF0101;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF0010 extends CGenerico {
 
@@ -103,9 +106,9 @@ public class CF0010 extends CGenerico {
 	private Groupbox gpxRegistroF0010;
 
 	Botonera botonera;
-	Catalogo<F0010> catalogo;
-	Catalogo<F0013> catalogoM;
-	Catalogo<F0101> catalogoD;
+	CatalogoF0010 catalogo;
+	CatalogoF0013 catalogoM;
+	CatalogoF0101 catalogoD;
 	String clave = null;
 
 	BuscadorUDC buscadorDPNT;
@@ -207,7 +210,7 @@ public class CF0010 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0010, titulo , tabs);
+				cerrarVentana(divVF0010, titulo, tabs);
 			}
 
 			@Override
@@ -309,9 +312,10 @@ public class CF0010 extends CGenerico {
 														catalogo.actualizarLista(servicioF0010
 																.buscarTodosOrdenados());
 
-														if (cantidad != eliminarLista.size())
+														if (cantidad != eliminarLista
+																.size())
 															msj.mensajeInformacion(Mensaje.algunosEliminados);
-														else 
+														else
 															msj.mensajeInformacion(Mensaje.eliminado);
 													}
 												}
@@ -441,7 +445,7 @@ public class CF0010 extends CGenerico {
 			return false;
 		} else {
 			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
+				msj.mensajeError(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
@@ -528,119 +532,21 @@ public class CF0010 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0010>(catalogoF0010, "F0010", lista, false,
-				false, false, "Codigo", "Nombre", "Nº Periodo",
-				"Patron fechas", "Inicio año Fiscal", "Periodo LM",
-				"Inicio año C/P", "Periodo C/P", "Inicio año C/C",
-				"Periodo C/C", "Periodo financiero") {
-
-			@Override
-			protected List<F0010> buscar(List<String> valores) {
-
-				List<F0010> lista2 = new ArrayList<F0010>();
-
-				for (F0010 f0010 : lista) {
-					if (f0010.getCcco().toLowerCase()
-							.contains(valores.get(0).toLowerCase())
-							&& f0010.getCcname().toLowerCase()
-									.contains(valores.get(1).toLowerCase())
-							&& f0010.getCccald().toLowerCase()
-									.contains(valores.get(2).toLowerCase())
-							&& f0010.getCcdtpn().toLowerCase()
-									.contains(valores.get(3).toLowerCase())
-							&& formatoFecha
-									.format(transformarJulianaAGregoria(f0010
-											.getCcdfyj())).toString()
-									.toLowerCase().contains(valores.get(4).toLowerCase())
-							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
-									.contains(valores.get(5).toLowerCase())
-							&& formatoFecha
-									.format(transformarJulianaAGregoria(f0010
-											.getCcapfj())).toString()
-									.toLowerCase().contains(valores.get(6).toLowerCase())
-							&& String.valueOf(f0010.getCcappn()).toLowerCase()
-									.contains(valores.get(7).toLowerCase())
-							&& formatoFecha
-									.format(transformarJulianaAGregoria(f0010
-											.getCcarfj())).toString()
-									.toLowerCase().contains(valores.get(8).toLowerCase())
-							&& String.valueOf(f0010.getCcarpn()).toLowerCase()
-									.contains(valores.get(9).toLowerCase())
-							&& String.valueOf(f0010.getCcpnf()).toLowerCase()
-									.contains(valores.get(10).toLowerCase())) {
-						lista2.add(f0010);
-					}
-				}
-				return lista2;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0010 f0010) {
-				String[] registros = new String[11];
-				registros[0] = f0010.getCcco();
-				registros[1] = f0010.getCcname();
-				registros[2] = f0010.getCccald();
-				registros[3] = f0010.getCcdtpn();
-				registros[4] = formatoFecha
-						.format(transformarJulianaAGregoria(f0010.getCcdfyj()));
-				registros[5] = String.valueOf(f0010.getCcpnc());
-				registros[6] = formatoFecha
-						.format(transformarJulianaAGregoria(f0010.getCcapfj()));
-				registros[7] = String.valueOf(f0010.getCcappn());
-				registros[8] = formatoFecha
-						.format(transformarJulianaAGregoria(f0010.getCcarfj()));
-				registros[9] = String.valueOf(f0010.getCcarpn());
-				registros[10] = String.valueOf(f0010.getCcpnf());
-				return registros;
-			}
-		};
+		catalogo = new CatalogoF0010(catalogoF0010, "F0010", lista, false,
+				"Codigo", "Nombre", "Nº Periodo", "Patron fechas",
+				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
+				"Periodo C/P", "Inicio año C/C", "Periodo C/C",
+				"Periodo financiero");
 		catalogo.setParent(catalogoF0010);
 	}
 
 	@Listen("onClick = #btnBuscarDireccion")
 	public void mostrarCatalogoDireccion() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoD = new Catalogo<F0101>(catalogoDireccionF0010,
-				"CatalogoF0013", listF0101, true, false, false, "Nº direccion",
-				"Nombre alfabetico", "Direccion larga",
-				"Clasificacion industria", "Tipo bus", "ID fiscal") {
-
-			@Override
-			protected List<F0101> buscar(List<String> valores) {
-
-				List<F0101> lista = new ArrayList<F0101>();
-
-				for (F0101 f01 : listF0101) {
-					if (String.valueOf(f01.getAban8()).toLowerCase()
-							.contains(valores.get(0).toLowerCase())
-							&& f01.getAbalph().toLowerCase()
-									.contains(valores.get(1).toLowerCase())
-							&& f01.getAbalky().toLowerCase()
-									.contains(valores.get(2).toLowerCase())
-							&& f01.getAbsic().toLowerCase()
-									.contains(valores.get(3).toLowerCase())
-							&& f01.getAbat1().toLowerCase()
-									.contains(valores.get(4).toLowerCase())
-							&& f01.getAbtax().toLowerCase()
-									.contains(valores.get(5).toLowerCase())) {
-						lista.add(f01);
-					}
-				}
-				return lista;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0101 f013) {
-				String[] registros = new String[6];
-				registros[0] = String.valueOf(f013.getAban8());
-				registros[1] = f013.getAbalph();
-				registros[2] = f013.getAbalky();
-				registros[3] = f013.getAbsic();
-				registros[4] = f013.getAbat1();
-				registros[5] = f013.getAbtax();
-				return registros;
-			}
-		};
+		catalogoD = new CatalogoF0101(catalogoDireccionF0010, "CatalogoF0013",
+				listF0101, true, "Nº direccion", "Nombre alfabetico",
+				"Direccion larga", "Clasificacion industria", "Tipo bus",
+				"ID fiscal");
 		catalogoD.setParent(catalogoDireccionF0010);
 		catalogoD.doModal();
 	}
@@ -676,41 +582,9 @@ public class CF0010 extends CGenerico {
 
 	@Listen("onClick = #btnBuscarMoneda")
 	public void mostrarCatalogoMoneda() throws IOException {
-		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoM = new Catalogo<F0013>(catalogoMonedaF0010, "F0013",
-				listF0013, true, false, false, "Codigo", "Descripcion",
-				"Vlslz", "Rutina Cheques") {
-
-			@Override
-			protected List<F0013> buscar(List<String> valores) {
-
-				List<F0013> lista = new ArrayList<F0013>();
-
-				for (F0013 f0013 : listF0013) {
-					if (f0013.getCvcrcd().toLowerCase()
-							.contains(valores.get(0).toLowerCase())
-							&& f0013.getCvdl01().toLowerCase()
-									.contains(valores.get(1).toLowerCase())
-							&& f0013.getCvcdec().toLowerCase()
-									.contains(valores.get(2).toLowerCase())
-							&& f0013.getCvec().toLowerCase()
-									.contains(valores.get(3).toLowerCase())) {
-						lista.add(f0013);
-					}
-				}
-				return lista;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0013 f0013) {
-				String[] registros = new String[4];
-				registros[0] = f0013.getCvdl01();
-				registros[1] = f0013.getCvdl01();
-				registros[2] = f0013.getCvcdec();
-				registros[3] = f0013.getCvec();
-				return registros;
-			}
-		};
+		List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
+		catalogoM = new CatalogoF0013(catalogoMonedaF0010, "F0013", listF0013,
+				true, "Codigo", "Descripcion", "Vlslz", "Rutina Cheques");
 		catalogoM.setParent(catalogoMonedaF0010);
 		catalogoM.doModal();
 	}

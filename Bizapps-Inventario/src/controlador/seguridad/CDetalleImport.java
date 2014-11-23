@@ -20,9 +20,8 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
-import componentes.Catalogo;
 import componentes.Mensaje;
-
+import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
 
 public class CDetalleImport extends CGenerico {
@@ -54,9 +53,9 @@ public class CDetalleImport extends CGenerico {
 	private String empresa = "";
 	private String almacen = "";
 	private String ubicacion = "";
-	Catalogo<F0006> catalogoF0006;
-	Catalogo<F4100> catalogoF4100;
-	Catalogo<F0010> catalogoF0010;
+	CatalogoGenerico<F0006> catalogoF0006;
+	CatalogoGenerico<F4100> catalogoF4100;
+	CatalogoGenerico<F0010> catalogoF0010;
 	private String mcu = "";
 	private String ccoA = "";
 	private CImportar controlador = new CImportar();
@@ -96,7 +95,7 @@ public class CDetalleImport extends CGenerico {
 	public void mostrarCatalogoF4100() {
 		final List<F4100> listF41002 = servicioF4100
 				.buscarTodosOrdenadosPorMcu(mcu);
-		catalogoF4100 = new Catalogo<F4100>(divCatalogoF4100, "F4100",
+		catalogoF4100 = new CatalogoGenerico<F4100>(divCatalogoF4100, "F4100",
 				listF41002, true, false, false, "Cod. Sucursal/planta",
 				"Sucursal/planta", "Fecha acta", "Ubicacion", "Zona alm",
 				"Zona acopio", "Zona reabast", "Detalle", "Pasillo", "Bin",
@@ -221,7 +220,7 @@ public class CDetalleImport extends CGenerico {
 		List<F0006> lista = new ArrayList<F0006>();
 		lista = servicioF0006.buscarPorMco(ccoA);
 		final List<F0006> unidades = lista;
-		catalogoF0006 = new Catalogo<F0006>(divCatalogoF0006, "F0006",
+		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "F0006",
 				unidades, true, false, false, "Unidad Negocio", "Descripcion",
 				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
 				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
@@ -323,7 +322,7 @@ public class CDetalleImport extends CGenerico {
 	@Listen("onClick = #btnBuscarEmpresa")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista,
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010", lista,
 				true, false, false, "Codigo", "Nombre", "Nº Periodo", "Patron",
 				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {

@@ -27,8 +27,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF40205 extends CGenerico {
 
@@ -97,7 +97,7 @@ public class CF40205 extends CGenerico {
 	@Wire
 	private Groupbox gpxRegistroF40205;
 	Botonera botonera;
-	Catalogo<F40205> catalogo;
+	CatalogoGenerico<F40205> catalogo;
 	String clave = "";
 
 	@Override
@@ -594,7 +594,7 @@ public class CF40205 extends CGenerico {
 
 	private void mostrarCatalogo() {
 		final List<F40205> listF40205 = servicioF40205.buscarTodosOrdenados();
-		catalogo = new Catalogo<F40205>(catalogoF40205, "F40205", listF40205,
+		catalogo = new CatalogoGenerico<F40205>(catalogoF40205, "F40205", listF40205,
 				false, false, false, "Tipo Linea", "Descripcion", "Interf Inv",
 				"C/P", "C/C", "LM", "AS/G", "Compensacion LM") {
 

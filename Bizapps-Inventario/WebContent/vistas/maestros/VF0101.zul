@@ -1,6 +1,7 @@
 <zk>
 	<style src="../public/Estilo.css" />
-	<div id="divVF0101" apply="controlador.maestros.CF0101">
+	<div id="divVF0101" apply="controlador.maestros.CF0101"
+		width="100%">
 		<groupbox width="auto" mold="3d"
 			title="Trabajo con Direcciones (VF0101)">
 			<div id="botoneraF0101" />
@@ -28,7 +29,7 @@
 							</hbox>
 							<textbox id="txtAN8F0101" disabled="true"
 								hflex="1" maxlength="18"
-								tooltiptext="Ingrese Numero de la direccion (ABAN8)" />
+								tooltiptext="Numero de la direccion (ABAN8)" />
 							<hbox />
 						</row>
 					</rows>
@@ -103,7 +104,8 @@
 										<button id="btnBuscarUnidades"
 											label="Buscar" class="btn"
 											tooltiptext="Catalogo de Codigos de Unidades de Negocio (F0006)"
-											image="/public/imagenes/botones/buscar.png" />
+											image="/public/imagenes/botones/buscar.png"
+											autodisable="self" />
 										<label id="lblMCUF0101" />
 									</row>
 								</rows>
@@ -167,7 +169,8 @@
 											<button
 												id="btnBuscarCodigoPostal" label="Buscar" class="btn"
 												tooltiptext="Catalogo de Codigos de Direcciones ()"
-												image="/public/imagenes/botones/buscar.png" />
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label
 												id="lblCodigoPostal1F0101" />
 										</hbox>
@@ -258,6 +261,7 @@
 										<textbox id="txtTXCTF0101"
 											hflex="1" maxlength="40"
 											tooltiptext="Ingrese la tercera linea de la direccion (ABTXCT)" />
+										<hbox />
 										<hbox />
 									</row>
 									<row>
@@ -439,7 +443,7 @@
 													value="Ticker" />
 												<textbox
 													id="txtTICKERF0101" hflex="1" maxlength="10"
-													tooltiptext="IIngrese el ticker de la direccion (ABTICKER)" />
+													tooltiptext="Ingrese el ticker de la direccion (ABTICKER)" />
 												<hbox />
 											</row>
 											<row>
@@ -447,7 +451,7 @@
 													value="Mercado valores" />
 												<textbox
 													id="txtEXCHF0101" hflex="1" maxlength="10"
-													tooltiptext="IIngrese el cambio de la direccion (ABEXCHG)" />
+													tooltiptext="Ingrese el cambio de la direccion (ABEXCHG)" />
 												<hbox />
 											</row>
 										</rows>
@@ -473,7 +477,8 @@
 											<button
 												id="btnBuscarDireccion0" label="Buscar" class="btn"
 												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png" />
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label
 												id="lblDireccion0F0101" />
 										</hbox>
@@ -488,7 +493,8 @@
 											<button
 												id="btnBuscarDireccion1" label="Buscar" class="btn"
 												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png" />
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label
 												id="lblDireccion1F0101" />
 										</hbox>
@@ -503,7 +509,8 @@
 											<button
 												id="btnBuscarDireccion2" label="Buscar" class="btn"
 												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png" />
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label
 												id="lblDireccion2F0101" />
 										</hbox>
@@ -518,7 +525,8 @@
 											<button
 												id="btnBuscarDireccion3" label="Buscar" class="btn"
 												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png" />
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label
 												id="lblDireccion3F0101" />
 										</hbox>
@@ -533,7 +541,8 @@
 											<button
 												id="btnBuscarDireccion4" label="Buscar" class="btn"
 												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png" />
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label
 												id="lblDireccion4F0101" />
 										</hbox>
@@ -548,7 +557,8 @@
 											<button
 												id="btnBuscarDireccion5" label="Buscar" class="btn"
 												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png" />
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label
 												id="lblDireccion5F0101" />
 										</hbox>
@@ -563,7 +573,8 @@
 											<button id="btnBuscarFactor"
 												label="Buscar" class="btn"
 												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png" />
+												image="/public/imagenes/botones/buscar.png"
+												autodisable="self" />
 											<label id="lblFactorF0101" />
 										</hbox>
 									</row>

@@ -28,10 +28,11 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Button;
+
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF0006 extends CGenerico {
 
@@ -159,13 +160,13 @@ public class CF0006 extends CGenerico {
 	private Label lblDescripcionF0006;
 	@Wire
 	private Label lblDescripcionF0101;
-	Catalogo<F0006> catalogo;
-	Catalogo<F0006> catalogoEmergente;
+	CatalogoGenerico<F0006> catalogo;
+	CatalogoGenerico<F0006> catalogoEmergente;
 	Botonera botonera;
 	String clave = null;
-	Catalogo<F0005> catalogoF0005;
-	Catalogo<F0010> catalogoF0010;
-	Catalogo<F0101> catalogoF0101;
+	CatalogoGenerico<F0005> catalogoF0005;
+	CatalogoGenerico<F0010> catalogoF0010;
+	CatalogoGenerico<F0101> catalogoF0101;
 
 	BuscadorUDC buscadorCategoria1, buscadorCategoria2, buscadorCategoria3,
 			buscadorCategoria4, buscadorCategoria5, buscadorCategoria6,
@@ -1222,7 +1223,7 @@ public class CF0006 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0006>(catalogoF0006, "F0006", unidades, false,
+		catalogo = new CatalogoGenerico<F0006>(catalogoF0006, "F0006", unidades, false,
 				true, true, "Unidad Negocio", "Descripcion", "Nivel det",
 				"Cta", "Tipo UN", "LM Auxiliar Inactivo", "Mto Cons", "CAT 01",
 				"CAT 02", "CAT 03", "CAT 04", "CAT 05", "CAT 06") {
@@ -1293,7 +1294,7 @@ public class CF0006 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new Catalogo<F0010>(divCatalogoF0010, "F0010", lista,
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010", lista,
 				true, false, false, "Codigo", "Nombre", "Nº Periodo", "Patron",
 				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {
@@ -1383,7 +1384,7 @@ public class CF0006 extends CGenerico {
 	@Listen("onClick = #btnBuscarDireccion")
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new Catalogo<F0101>(divCatalogoF0101, "F0101",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "F0101",
 				listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
@@ -1456,7 +1457,7 @@ public class CF0006 extends CGenerico {
 	@Listen("onClick = #btnBuscarProyecto")
 	public void mostrarCatalogoProyecto() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoEmergente = new Catalogo<F0006>(divCatalogoF0006Emergente,
+		catalogoEmergente = new CatalogoGenerico<F0006>(divCatalogoF0006Emergente,
 				"F0006Emergente", unidades, true, false, false,
 				"Unidad Negocio", "Descripcion", "Nivel det", "Cta", "Tipo UN",
 				"LM Auxiliar Inactivo", "Mto Cons", "CAT 01", "CAT 02",

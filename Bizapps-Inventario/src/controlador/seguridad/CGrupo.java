@@ -39,8 +39,8 @@ import org.zkoss.zul.Treeitem;
 import arbol.MArbol;
 import arbol.Nodos;
 import componentes.Botonera;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 import componentes.utils.Validador;
 import controlador.maestros.CGenerico;
 
@@ -65,7 +65,7 @@ public class CGrupo extends CGenerico {
 	private Groupbox gpxRegistro;
 	
 	TreeModel _model;
-	Catalogo<Grupo> catalogo;
+	CatalogoGenerico<Grupo> catalogo;
 	public static List<String> funcionalidades = new ArrayList<String>();
 	Botonera botonera;
 
@@ -244,7 +244,7 @@ public class CGrupo extends CGenerico {
 
 	private void mostrarCatalogo() {
 		final List<Grupo> grupos = servicioGrupo.buscarTodosOrdenados();
-		catalogo = new Catalogo<Grupo>(divCatalogoGrupo, "Catalogo de Grupos",
+		catalogo = new CatalogoGenerico<Grupo>(divCatalogoGrupo, "Catalogo de Grupos",
 				grupos, false,false,false,"Nombre") {
 			@Override
 			protected String[] crearRegistros(Grupo grupo) {

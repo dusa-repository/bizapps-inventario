@@ -29,8 +29,8 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.BuscadorUDC;
-import componentes.Catalogo;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoGenerico;
 
 public class CF0008 extends CGenerico {
 
@@ -80,7 +80,7 @@ public class CF0008 extends CGenerico {
 			"dd-MM-yyyy");
 
 	Botonera botonera;
-	Catalogo<F0008> catalogo;
+	CatalogoGenerico<F0008> catalogo;
 	F0008PK clave = null;
 
 	BuscadorUDC buscadorDPNT;
@@ -681,7 +681,7 @@ public class CF0008 extends CGenerico {
 	public void mostrarCatalogo() {
 
 		final List<F0008> listF0008 = servicioF0008.buscarTodosOrdenados();
-		catalogo = new Catalogo<F0008>(catalogoF0008, "F0008", listF0008,
+		catalogo = new CatalogoGenerico<F0008>(catalogoF0008, "F0008", listF0008,
 				false, true, true, "Patrón fecha", "Fecha inicial",
 				"Fin periodo 01", "Fin periodo 02", "Fin periodo 03",
 				"Fin periodo 04", "Fin periodo 05", "Fin periodo 06",
