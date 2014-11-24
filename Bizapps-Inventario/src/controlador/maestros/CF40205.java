@@ -98,7 +98,7 @@ public class CF40205 extends CGenerico {
 	private Groupbox gpxRegistroF40205;
 	Botonera botonera;
 	CatalogoGenerico<F40205> catalogo;
-	String clave = "";
+	String clave = null;
 
 	@Override
 	public void inicializar() throws IOException {
@@ -127,14 +127,22 @@ public class CF40205 extends CGenerico {
 						txtLntyF40205.setValue(f0115.getLflnty());
 						txtLndsF40205.setValue(f0115.getLflnds());
 						txtLnd2F40205.setValue(f0115.getLflnd2());
-						buscadorIvi.settearCampo(servicioF0005.buscar("H40",
-								"IV", f0115.getLfivi()));
-						buscadorGltp.settearCampo(servicioF0005.buscar("41",
-								"9", f0115.getLfglc()));
-						buscadorTx01.settearCampo(servicioF0005.buscar("H00",
-								"TV", f0115.getLftx01()));
-						buscadorCsj.settearCampo(servicioF0005.buscar("H41",
-								"CS", f0115.getLfcsj()));
+
+						if (f0115.getLfivi().compareTo("") != 0)
+							buscadorIvi.settearCampo(servicioF0005.buscar(
+									"H40", "IV", f0115.getLfivi()));
+
+						if (f0115.getLfglc().compareTo("") != 0)
+							buscadorGltp.settearCampo(servicioF0005.buscar(
+									"41", "9", f0115.getLfglc()));
+
+						if (f0115.getLftx01().compareTo("") != 0)
+							buscadorTx01.settearCampo(servicioF0005.buscar(
+									"H00", "TV", f0115.getLftx01()));
+
+						if (f0115.getLfcsj().compareTo("") != 0)
+							buscadorCsj.settearCampo(servicioF0005.buscar(
+									"H41", "CS", f0115.getLfcsj()));
 						if (f0115.getLfgli().equals("Y"))
 							chxGliF40205.setChecked(true);
 						else
@@ -227,7 +235,7 @@ public class CF40205 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF40205, titulo , tabs);
+				cerrarVentana(divVF40205, titulo, tabs);
 			}
 
 			@Override
@@ -241,7 +249,7 @@ public class CF40205 extends CGenerico {
 				mostrarBotones(false);
 				limpiarCampos();
 				habilitarTextClave();
-				clave = "";
+				clave = null;
 			}
 
 			@Override
@@ -413,7 +421,7 @@ public class CF40205 extends CGenerico {
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
 
 			}
@@ -475,26 +483,38 @@ public class CF40205 extends CGenerico {
 				|| buscadorCsj.obtenerCaja().compareTo("") != 0
 				|| buscadorGltp.obtenerCaja().compareTo("") != 0
 				|| buscadorIvi.obtenerCaja().compareTo("") != 0
-				|| buscadorTx01.obtenerCaja().compareTo("") != 0) {
+				|| buscadorTx01.obtenerCaja().compareTo("") != 0
+				|| chxAftF40205.isChecked() || chxApiF40205.isChecked()
+				|| chxAriF40205.isChecked() || chxAriF40205.isChecked()
+				|| chxArtF40205.isChecked() || chxCdscF40205.isChecked()
+				|| chxCmiF40205.isChecked() || chxGliF40205.isChecked()
+				|| chxIdc1F40205.isChecked() || chxPdc1F40205.isChecked()
+				|| chxPdc2F40205.isChecked() || chxPdc3F40205.isChecked()
+				|| chxPdc4F40205.isChecked() || chxPrftF40205.isChecked()
+				|| chxPrrqF40205.isChecked() || chxRsgnF40205.isChecked()
+				|| chxTxynF40205.isChecked())
+
+		{
 			return true;
 		} else
 			return false;
 	}
 
 	protected boolean validar() {
-		if (claveSYExiste()) {
+		if (!camposLLenos()) {
 			return false;
-		} else {
-			if (!camposLLenos()) {
-				msj.mensajeAlerta(Mensaje.camposVacios);
+		} else
+			if (claveSYExiste()) {
 				return false;
-			} else
+			}else{
 				return true;
-		}
+			}
+
 	}
 
 	private boolean camposLLenos() {
 		if (txtLntyF40205.getText().compareTo("") == 0) {
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -558,6 +578,7 @@ public class CF40205 extends CGenerico {
 		if (chxTxynF40205.isChecked())
 			chxTxynF40205.setChecked(false);
 		txtLntyF40205.setFocus(true);
+		catalogo.limpiarSeleccion();
 	}
 
 	@Listen("onClick = #gpxRegistroF40205")
@@ -594,9 +615,9 @@ public class CF40205 extends CGenerico {
 
 	private void mostrarCatalogo() {
 		final List<F40205> listF40205 = servicioF40205.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F40205>(catalogoF40205, "F40205", listF40205,
-				false, false, false, "Tipo Linea", "Descripcion", "Interf Inv",
-				"C/P", "C/C", "LM", "AS/G", "Compensacion LM") {
+		catalogo = new CatalogoGenerico<F40205>(catalogoF40205, "F40205",
+				listF40205, false, false, false, "Tipo Linea", "Descripcion",
+				"Interf Inv", "C/P", "C/C", "LM", "AS/G", "Compensacion LM") {
 
 			@Override
 			protected List<F40205> buscar(List<String> valores) {
@@ -607,19 +628,19 @@ public class CF40205 extends CGenerico {
 					if (f01.getLflnty().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f01.getLflnds().toLowerCase()
-							.contains(valores.get(1).toLowerCase())
+									.contains(valores.get(1).toLowerCase())
 							&& f01.getLfivi().toLowerCase()
-							.contains(valores.get(2).toLowerCase())
+									.contains(valores.get(2).toLowerCase())
 							&& f01.getLfapi().toLowerCase()
-							.contains(valores.get(3).toLowerCase())
+									.contains(valores.get(3).toLowerCase())
 							&& f01.getLfari().toLowerCase()
-							.contains(valores.get(4).toLowerCase())
+									.contains(valores.get(4).toLowerCase())
 							&& f01.getLfgli().toLowerCase()
-							.contains(valores.get(5).toLowerCase())
+									.contains(valores.get(5).toLowerCase())
 							&& f01.getLfpdc2().toLowerCase()
-							.contains(valores.get(6).toLowerCase())
+									.contains(valores.get(6).toLowerCase())
 							&& f01.getLfglc().toLowerCase()
-							.contains(valores.get(7).toLowerCase())) {
+									.contains(valores.get(7).toLowerCase())) {
 						lista.add(f01);
 					}
 				}
@@ -647,8 +668,7 @@ public class CF40205 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005.buscarParaUDCOrdenados("H40",
 				"IV");
 		buscadorIvi = new BuscadorUDC("Interfaz Inventario", 1, listF0005,
-				false, false, false,"H40",
-				"IV") {
+				false, false, false, "H40", "IV") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "IV",
@@ -659,7 +679,7 @@ public class CF40205 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("41", "9");
 		buscadorGltp = new BuscadorUDC("Compensacion LM", 4, listF0005, false,
-				false, false,"41", "9") {
+				false, false, "41", "9") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "9",
@@ -670,7 +690,7 @@ public class CF40205 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "TV");
 		buscadorTx01 = new BuscadorUDC("Incluir en impto 1", 1, listF0005,
-				false, false, false,"H00", "TV") {
+				false, false, false, "H00", "TV") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "TV",
@@ -681,7 +701,7 @@ public class CF40205 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "CS");
 		buscadorCsj = new BuscadorUDC("Col diario ventas", 1, listF0005, false,
-				false, false,"H41", "CS") {
+				false, false, "H41", "CS") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "CS",
