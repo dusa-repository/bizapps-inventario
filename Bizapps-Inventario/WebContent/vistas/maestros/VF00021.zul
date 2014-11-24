@@ -12,10 +12,10 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="19.5%" />
-						<column label="" width="50%" />
-						<column label="" width="15%" />
-						<column label="" width="15.5%" />
+						<column label="" width="20%" />
+						<column label="" width="44%" />
+						<column label="" width="16%" />
+						<column label="" width="20%" />
 					</columns>
 					<rows>
 						<row>
@@ -27,7 +27,7 @@
 							</hbox>
 							<textbox id="txtKCOF00021" hflex="1" maxlength="5" width="45%"
 								tooltiptext="Seleccione del Catalogo el Codigo de la Compañia Documento (CCCO de F0010)" />
-							<button id="btnBuscarCompannia" label="Buscar" class="btn"
+							<button id="btnBuscarCompannia" label="Buscar" class="btn" autodisable="self"
 								tooltiptext="Catalogo de Codigos de Compañias (F0010)" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblDescripcionF0010" />
 							<hbox />
@@ -66,7 +66,7 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtCTRYF00021" hflex="1" width="45%"
+							<doublebox id="txtCTRYF00021" hflex="1" width="45%"
 								tooltiptext="Ingrese el Sigio (NLCTRY)" />
 							<hbox />
 							<hbox />
@@ -78,7 +78,7 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtFYF00021" hflex="1" width="45%"
+							<doublebox id="txtFYF00021" hflex="1" width="45%"
 								tooltiptext="Ingrese el año fiscal (NLFY)" />
 							<hbox />
 							<hbox />
@@ -92,7 +92,7 @@
 						</row>
 						<row>
 							<label class="etiqueta" value=" Número Siguiente" />
-							<textbox id="txtN001F00021" hflex="1" width="45%"
+							<doublebox id="txtN001F00021" hflex="1" width="45%"
 								tooltiptext="Número Siguiente (NLN001)" />
 							<hbox />
 							<hbox />

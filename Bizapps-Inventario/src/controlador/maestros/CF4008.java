@@ -261,6 +261,8 @@ public class CF4008 extends CGenerico {
 							chxTT4F4008.setChecked(true);
 						else
 							chxTT4F4008.setChecked(false);
+						
+						sumar();
 
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -323,8 +325,10 @@ public class CF4008 extends CGenerico {
 					Long art = txtTAITMF4008.getValue();
 					clave.setTaitm(art.doubleValue());
 
-					f408.setTaeftj(transformarGregorianoAJulia(dtbTAEFTJF4008
-							.getValue()));
+					if (dtbTAEFTJF4008.getText().compareTo("") != 0)
+						f408.setTaeftj(transformarGregorianoAJulia(dtbTAEFTJF4008
+								.getValue()));
+
 					f408.setTataxa(txtTATAXAF4008.getValue());
 
 					Long id = txtTA1F4008.getValue();
@@ -450,8 +454,8 @@ public class CF4008 extends CGenerico {
 	public boolean camposLLenos() {
 		if (txtTATXA1F4008.getText().compareTo("") == 0
 				|| txtTAITMF4008.getText().compareTo("") == 0
-				|| dtbTAEFTJF4008.getText().compareTo("") == 0) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+				|| dtbTAEFDJF4008.getText().compareTo("") == 0) {
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -480,8 +484,8 @@ public class CF4008 extends CGenerico {
 		txtGL03F4008.setValue("");
 		txtGL04F4008.setValue("");
 		txtGL05F4008.setValue("");
-		dtbTAEFDJF4008.setValue(fechaHora);
-		dtbTAEFTJF4008.setValue(fechaHora);
+		dtbTAEFDJF4008.setValue(null);
+		dtbTAEFTJF4008.setValue(null);
 		txtMTAXF4008.setValue(null);
 		txtSumaF4008.setValue(null);
 		txtTA1F4008.setValue(null);
@@ -515,6 +519,7 @@ public class CF4008 extends CGenerico {
 
 		clave = null;
 		btnBuscarF4101.setVisible(true);
+		catalogoF4008.limpiarSeleccion();
 
 	}
 
@@ -610,8 +615,8 @@ public class CF4008 extends CGenerico {
 		Button boton = (Button) evento.getTarget();
 		idBoton = boton.getId();
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "CatalogoF0101",
-				listF0101, true, false, false, "Nº direccion",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101,
+				"CatalogoF0101", listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
 
@@ -851,16 +856,35 @@ public class CF4008 extends CGenerico {
 				String[] registros = new String[10];
 				registros[0] = f4008.getId().getTatxa1();
 				registros[1] = f4008.getTataxa();
-				registros[2] = formatoFecha
-						.format(transformarJulianaAGregoria(f4008.getTaeftj()));
+				if (f4008.getTaeftj() != null)
+					registros[2] = formatoFecha
+							.format(transformarJulianaAGregoria(f4008
+									.getTaeftj()));
+				else
+					registros[2] = "";
 				registros[3] = formatoFecha
 						.format(transformarJulianaAGregoriadeLong(f4008.getId()
 								.getTaefdj()));
-				registros[4] = String.valueOf(f4008.getTatxr1());
-				registros[5] = String.valueOf(f4008.getTatxr2());
-				registros[6] = String.valueOf(f4008.getTatxr3());
-				registros[7] = String.valueOf(f4008.getTatxr4());
-				registros[8] = String.valueOf(f4008.getTatxr5());
+				if (f4008.getTatxr1() != null)
+					registros[4] = String.valueOf(f4008.getTatxr1());
+				else
+					registros[4] = "";
+				if (f4008.getTatxr2() != null)
+					registros[5] = String.valueOf(f4008.getTatxr2());
+				else
+					registros[5] = "";
+				if (f4008.getTatxr3() != null)
+					registros[6] = String.valueOf(f4008.getTatxr3());
+				else
+					registros[6] = "";
+				if (f4008.getTatxr4() != null)
+					registros[7] = String.valueOf(f4008.getTatxr4());
+				else
+					registros[7] = "";
+				if (f4008.getTatxr5() != null)
+					registros[8] = String.valueOf(f4008.getTatxr5());
+				else
+					registros[8] = "";
 				registros[9] = String.valueOf(f4008.getId().getTaitm());
 				return registros;
 			}

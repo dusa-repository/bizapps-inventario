@@ -73,7 +73,7 @@
 					<separator />
 				<div align="right" width="100%">
 					<hbox>
-						<button autodisable="true" id="btnAgregarItems" class="btn"
+						<button autodisable="self" id="btnAgregarItems" class="btn"
 							label="Agregar Costos" tooltiptext="Catalogo"
 							image="/public/imagenes/botones/annadir.png" width="150px" />
 					</hbox>

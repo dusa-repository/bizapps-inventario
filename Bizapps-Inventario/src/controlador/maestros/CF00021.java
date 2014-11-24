@@ -16,6 +16,7 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Doublebox;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
@@ -35,11 +36,11 @@ public class CF00021 extends CGenerico {
 	@Wire
 	private Textbox txtDESF00021;
 	@Wire
-	private Textbox txtCTRYF00021;
+	private Doublebox txtCTRYF00021;
 	@Wire
-	private Textbox txtFYF00021;
+	private Doublebox txtFYF00021;
 	@Wire
-	private Textbox txtN001F00021;
+	private Doublebox txtN001F00021;
 	@Wire
 	private Div divVF00021;
 	@Wire
@@ -128,7 +129,10 @@ public class CF00021 extends CGenerico {
 						abrirRegistro();
 						F00021 f21 = catalogo.objetoSeleccionadoDelCatalogo();
 						txtKCOF00021.setValue(f21.getId().getNlkco());
+						lblDescripcionF0010.setValue(servicioF0010.buscar(
+								f21.getId().getNlkco()).getCcname());
 						txtKCOF00021.setDisabled(true);
+						btnBuscarCompannia.setVisible(false);
 						if (f21.getId() != null) {
 							buscadorDCT.settearCampo(servicioF0005.buscar("00",
 									"DT", f21.getId().getNldct()));
@@ -137,14 +141,12 @@ public class CF00021 extends CGenerico {
 							// txtDCTF00021.setDisabled(true);
 						}
 						buscadorSMAS.settearCampo(servicioF0005.buscar("00",
-								"DT", f21.getId().getNldct()));
+								"DT", f21.getNlsmas()));
 						buscadorINCRUS.settearCampo(servicioF0005.buscar("H00",
 								"IM", f21.getNlimb()));
-						txtCTRYF00021.setValue(String.valueOf(f21.getId()
-								.getNlctry()));
-						txtFYF00021.setValue(String.valueOf(f21.getId()
-								.getNlfy()));
-						txtN001F00021.setValue(String.valueOf(f21.getNln001()));
+						txtCTRYF00021.setValue(f21.getId().getNlctry());
+						txtFYF00021.setValue(f21.getId().getNlfy());
+						txtN001F00021.setValue(f21.getNln001());
 						txtN001F00021.setDisabled(true);
 						txtDESF00021.setFocus(true);
 					} else
@@ -186,11 +188,11 @@ public class CF00021 extends CGenerico {
 					String smas = buscadorSMAS.obtenerCaja();
 					// donde se guarda la descripcion
 					String des = txtDESF00021.getValue();
-					double ctry = Double.parseDouble(txtCTRYF00021.getValue());
-					double fy = Double.parseDouble(txtFYF00021.getValue());
+					double ctry = txtCTRYF00021.getValue();
+					double fy = txtFYF00021.getValue();
 					double n001 = 0;
 					if (txtN001F00021.getText().compareTo("") != 0)
-						n001 = Double.parseDouble(txtN001F00021.getValue());
+						n001 = txtN001F00021.getValue();
 					String imb = buscadorINCRUS.obtenerCaja();
 					F00021PK clave = new F00021PK();
 					clave.setNlkco(kco);
@@ -340,7 +342,7 @@ public class CF00021 extends CGenerico {
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
-			msj.mensajeAlerta(Mensaje.camposVacios);
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -353,7 +355,7 @@ public class CF00021 extends CGenerico {
 		if (servicioF00021.Numero(a, b) >= 0) {
 			double numero = servicioF00021.Numero(a, b);
 			if (numero != 0)
-				txtN001F00021.setValue(String.valueOf(numero + 1));
+				txtN001F00021.setValue(numero + 1);
 			return true;
 		} else
 			return false;
@@ -366,7 +368,7 @@ public class CF00021 extends CGenerico {
 		if (servicioF00021.Numero(a, b) >= 0) {
 			double numero = servicioF00021.Numero(a, b);
 			if (numero != 0)
-				txtN001F00021.setValue(String.valueOf(numero + 1));
+				txtN001F00021.setValue(numero + 1);
 			return true;
 		} else
 			return false;
@@ -377,12 +379,13 @@ public class CF00021 extends CGenerico {
 		buscadorDCT.settearCampo(null);
 		buscadorSMAS.settearCampo(null);
 		txtDESF00021.setValue("");
-		txtCTRYF00021.setValue("");
-		txtFYF00021.setValue("");
-		txtN001F00021.setValue("");
+		txtCTRYF00021.setValue(null);
+		txtFYF00021.setValue(null);
+		txtN001F00021.setValue(null);
 		lblDescripcionF0010.setValue("");
 		buscadorINCRUS.settearCampo(null);
 		txtKCOF00021.setFocus(true);
+		btnBuscarCompannia.setVisible(true);
 	}
 
 	public void habilitarCampos() {
@@ -439,10 +442,10 @@ public class CF00021 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		final List<F00021> compannias = servicioF00021.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F00021>(catalogoF00021, "F00021", compannias,
-				false, true, true, "Compañia Documento", "Tipo Documento",
-				"Igual aTipo Doc", "Digito Incrus", "Digito Verif",
-				"Número Siguiente", "Reinicio Automático") {
+		catalogo = new CatalogoGenerico<F00021>(catalogoF00021, "F00021",
+				compannias, false, true, true, "Compañia Documento",
+				"Tipo Documento", "Igual a Tipo Doc", "Digito Incrus",
+				"Digito Verif", "Número Siguiente", "Reinicio Automático") {
 
 			@Override
 			protected List<F00021> buscar(List<String> valores) {
@@ -480,7 +483,10 @@ public class CF00021 extends CGenerico {
 				String[] registros = new String[7];
 				registros[0] = numerosiguiente.getId().getNlkco();
 				registros[1] = numerosiguiente.getId().getNldct();
-				registros[2] = numerosiguiente.getNlsmas();
+				if (numerosiguiente.getNlsmas() != null)
+					registros[2] = numerosiguiente.getNlsmas();
+				else
+					registros[2] = "";
 				registros[3] = numerosiguiente.getNlimb();
 				registros[4] = numerosiguiente.getNlck01();
 				registros[5] = String.valueOf(numerosiguiente.getNln001());
@@ -499,9 +505,9 @@ public class CF00021 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010", lista,
-				true, false, true, "Codigo", "Nombre", "Nº Periodo", "Patron",
-				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010",
+				lista, true, false, true, "Codigo", "Nombre", "Nº Periodo",
+				"Patron", "Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {
 
 			@Override

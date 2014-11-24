@@ -109,6 +109,7 @@ public class CF4105 extends CGenerico {
 			}
 		}
 		mostrarCatalogo();
+		btnAgregarItems.setVisible(true);
 		// Faltan 2 UDC POR PREGUNTAR
 		cargarBuscadores();
 		botonera = new Botonera() {
@@ -143,8 +144,8 @@ public class CF4105 extends CGenerico {
 						ltbCostos.renderAll();
 						txtItm.setDisabled(true);
 						txtMcu.setDisabled(true);
-						btnBuscarItm.setDisabled(true);
-						btnBuscarMcu.setDisabled(true);
+						btnBuscarItm.setVisible(false);
+						btnBuscarMcu.setVisible(false);
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -352,11 +353,10 @@ public class CF4105 extends CGenerico {
 		if (txtLitm.getText().compareTo("") != 0
 				|| txtMcu.getText().compareTo("") != 0
 				|| txtItm.getText().compareTo("") != 0
-				|| ltbCostos.getItemCount() != 0 || listaCosto.size() != 0
-				|| spnCosto.getValue() != 0) {
-			return false;
-		} else
+				|| ltbCostos.getItemCount() != 0 || listaCosto.size() != 0) {
 			return true;
+		} else
+			return false;
 	}
 
 	protected boolean validar() {
@@ -378,14 +378,22 @@ public class CF4105 extends CGenerico {
 
 	protected void limpiarCampos() {
 		txtLitm.setValue("");
+		lblItm.setValue("");
 		txtMcu.setValue("");
+		lblMcu.setValue("");
 		txtItm.setValue(null);
-		ltbCostos.getItems().clear();
-		listaCosto.clear();
+		ltbCostos.setModel(new ListModelList<F4105>());
+		listaCosto = new ArrayList<F4105>();
 		spnCosto.setValue((double) 0);
 		buscadorCSMT.settearCampo(null);
 		buscadorLEDG.settearCampo(null);
 		buscadorPCSM.settearCampo(null);
+		gpxItems.setVisible(false);
+		btnAgregarItems.setVisible(true);
+		btnBuscarItm.setVisible(true);
+		btnBuscarMcu.setVisible(true);
+		
+		
 	}
 
 	protected boolean validarSeleccion() {
