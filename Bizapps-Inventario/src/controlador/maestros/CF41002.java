@@ -28,8 +28,8 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoGenerico;
 
 public class CF41002 extends CGenerico {
@@ -98,8 +98,9 @@ public class CF41002 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("00", "UM");
 
-		buscadorUMF41002 = new BuscadorUDC("De UM", 3, listF0005, true, true,
-				true, "00", "UM") {
+		buscadorUMF41002 = new BuscadorUDC("De UM", 3,
+				true, "00", "UM",servicioF0005 , "25%",
+				"10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -107,8 +108,9 @@ public class CF41002 extends CGenerico {
 			}
 		};
 
-		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, listF0005, true, true,
-				true, "00", "UM") {
+		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, 
+				true, "00", "UM",servicioF0005 , "25%",
+				"10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -158,11 +160,11 @@ public class CF41002 extends CGenerico {
 
 						txtCONVF41002.setValue(f41002.getUmconv());
 
-						buscadorUMF41002.settearCampo(servicioF0005.buscar(
+						buscadorUMF41002.settearModelo(servicioF0005.buscar(
 								"00", "UM", f41002.getId().getUmum()));
 						buscadorUMF41002.inhabilitarCampo();
 
-						buscadorRUMF41002.settearCampo(servicioF0005.buscar(
+						buscadorRUMF41002.settearModelo(servicioF0005.buscar(
 								"00", "UM", f41002.getId().getUmrum()));
 						buscadorRUMF41002.inhabilitarCampo();
 

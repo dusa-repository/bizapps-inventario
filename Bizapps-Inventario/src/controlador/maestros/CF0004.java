@@ -53,6 +53,7 @@ public class CF0004 extends CGenerico {
 	Botonera botonera;
 	CatalogoGenerico<F0004> catalogo;
 	F0004PK clave = null;
+	protected List<F0004> listaGeneral = new ArrayList<F0004>();
 
 	@Override
 	public void inicializar() throws IOException {
@@ -116,7 +117,9 @@ public class CF0004 extends CGenerico {
 			@Override
 			public void guardar() {
 				boolean guardar = true;
-				if (clave == null)
+				if (clave == null && (claveSYExiste() || claveRTExiste()))
+					guardar = false;
+				else
 					guardar = validar();
 				if (guardar) {
 
@@ -150,8 +153,8 @@ public class CF0004 extends CGenerico {
 					servicioF0004.guardar(fooo4);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF0004
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF0004.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -177,8 +180,9 @@ public class CF0004 extends CGenerico {
 													servicioF0004
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF0004
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF0004
+															.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -200,8 +204,9 @@ public class CF0004 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF0004
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF0004
+															.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -281,15 +286,11 @@ public class CF0004 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		if (claveSYExiste() || claveRTExiste()) {
+		if (!camposLLenos()) {
+			msj.mensajeError(Mensaje.camposVacios);
 			return false;
-		} else {
-			if (!camposLLenos()) {
-				msj.mensajeError(Mensaje.camposVacios);
-				return false;
-			} else
-				return true;
-		}
+		} else
+			return true;
 	}
 
 	@Listen("onChange = #txtSYF0004")
@@ -371,17 +372,17 @@ public class CF0004 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F0004> listF0004 = servicioF0004.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F0004>(catalogoF0004, "F0004", listF0004,
-				false, false, true, "SY", "RT", "Descripcion", "Codigo",
-				"2 Linea", "Numerico") {
+		listaGeneral = servicioF0004.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F0004>(catalogoF0004, "F0004",
+				listaGeneral, false, false, true, "SY", "RT", "Descripcion",
+				"Codigo", "2 Linea", "Numerico") {
 
 			@Override
 			protected List<F0004> buscar(List<String> valores) {
 
 				List<F0004> lista = new ArrayList<F0004>();
 
-				for (F0004 f0004 : listF0004) {
+				for (F0004 f0004 : listaGeneral) {
 					if (f0004.getId().getDtsy().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f0004.getId().getDtrt().toLowerCase()
