@@ -44,6 +44,7 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 		cargarCampo(longitud, tooltipCajaTexto, ancho2);
 		cargarBoton(tooltipBoton, ancho3);
 		cargarLabelNombre(ancho4);
+		setWidths(ancho1 + "," + ancho2 + "," + ancho3 + "," + ancho4);
 		cargarDivCatalogo(tooltipCatalogo);
 
 		this.setAlign("center");
@@ -62,10 +63,11 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 			asterisco.setStyle("font-weight:bold;color:red");
 			hbox.appendChild(asterisco);
 		}
-		Cell cell = new Cell();
-		cell.setWidth(ancho);
-		cell.appendChild(hbox);
-		this.appendChild(cell);
+//		Cell cell = new Cell();
+//		cell.setWidth(ancho);
+//		cell.appendChild(hbox);
+//		this.appendChild(cell);
+		this.appendChild(hbox);
 	}
 
 	private void cargarCampo(int longitud, String tooltipCajaTexto, String ancho) {
@@ -79,10 +81,18 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 				buscarPorTexto();
 			}
 		});
-		Cell cell = new Cell();
-		cell.setWidth(ancho);
-		cell.appendChild(cajaTexto);
-		this.appendChild(cell);
+		cajaTexto.addEventListener(Events.ON_CHANGE,
+				new EventListener<Event>() {
+					@Override
+					public void onEvent(Event event) throws Exception {
+						buscarPorTexto();
+					}
+				});
+//		Cell cell = new Cell();
+//		cell.setWidth(ancho);
+//		cell.appendChild(cajaTexto);
+//		this.appendChild(cell);
+		this.appendChild(cajaTexto);
 	}
 
 	protected void buscarPorTexto() {
@@ -117,10 +127,11 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 				mostrarCatalogo();
 			}
 		});
-		Cell cell = new Cell();
-		cell.setWidth(ancho);
-		cell.appendChild(boton);
-		this.appendChild(cell);
+//		Cell cell = new Cell();
+//		cell.setWidth(ancho);
+//		cell.appendChild(boton);
+//		this.appendChild(cell);
+		this.appendChild(boton);
 	}
 
 	private void mostrarCatalogo() {
@@ -134,10 +145,11 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 	private void cargarLabelNombre(String ancho) {
 		lblNombre = new Label();
 		lblNombre.setWidth("100%");
-		Cell cell = new Cell();
-		cell.setWidth(ancho);
-		cell.appendChild(lblNombre);
-		this.appendChild(cell);
+//		Cell cell = new Cell();
+//		cell.setWidth(ancho);
+//		cell.appendChild(lblNombre);
+//		this.appendChild(cell);
+		this.appendChild(lblNombre);
 	}
 
 	private void cargarDivCatalogo(String tooltipCatalogo) {
