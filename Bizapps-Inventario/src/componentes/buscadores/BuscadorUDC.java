@@ -20,12 +20,21 @@ public class BuscadorUDC extends
 
 	public BuscadorUDC(String etiqueta, int longitud, boolean requerido,
 			String valor1, String valor2, SF0005 servicio) {
+		this(etiqueta, longitud, requerido, valor1, valor2, servicio, "30%",
+				"7%", "7%", "40%");
+		this.valorP1 = valor1;
+		this.valorP2 = valor2;
+	}
+
+	public BuscadorUDC(String etiqueta, int longitud, boolean requerido,
+			String valor1, String valor2, SF0005 servicio, String ancho1,
+			String ancho2, String ancho3, String ancho4) {
 		super(etiqueta, requerido, "Código Definido por el Usuario (DRKY de "
 				+ valor1 + "," + valor2 + ")",
 				"Catalogo de Codigo Definidos por el Usuario" + " " + "("
 						+ valor1 + "," + valor2 + ")",
-				"Click para Seleccionar un Codigo", longitud, servicio, "30%",
-				"7%", "7%", "40%");
+				"Click para Seleccionar un Codigo", longitud, servicio, ancho1,
+				ancho2, ancho3, ancho4);
 		this.valorP1 = valor1;
 		this.valorP2 = valor2;
 	}
