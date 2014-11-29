@@ -41,6 +41,7 @@ public class CMenuArbol extends CGenerico {
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
+	protected List<Arbol> listaGeneral = new ArrayList<Arbol>();
 
 	Botonera botonera;
 	CatalogoGenerico<Arbol> catalogo;
@@ -100,10 +101,8 @@ public class CMenuArbol extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == 0)
-					guardar = validar();
-				if (guardar) {
+			
+				if (validar()) {
 					String url = txtUrl.getValue();
 					String nombre = txtNombre.getValue();
 					Long padre = txtPadre.getValue();
@@ -115,7 +114,8 @@ public class CMenuArbol extends CGenerico {
 					servicioArbol.guardar(arbol);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioArbol.listarArbol());
+					listaGeneral = servicioArbol.listarArbol();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -141,8 +141,8 @@ public class CMenuArbol extends CGenerico {
 													servicioArbol
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioArbol
-															.listarArbol());
+													listaGeneral = servicioArbol.listarArbol();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -164,8 +164,8 @@ public class CMenuArbol extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioArbol
-															.listarArbol());
+													listaGeneral = servicioArbol.listarArbol();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -298,9 +298,9 @@ public class CMenuArbol extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<Arbol> listArbol = servicioArbol.listarArbol();
+		listaGeneral = servicioArbol.listarArbol();
 		catalogo = new CatalogoGenerico<Arbol>(divCatalogoMenuArbol, "Arbol",
-				listArbol, false, false, true, "Codigo", "Nombre", "Padre",
+				listaGeneral, false, false, true, "Codigo", "Nombre", "Padre",
 				"Url") {
 
 			@Override
@@ -308,7 +308,7 @@ public class CMenuArbol extends CGenerico {
 
 				List<Arbol> lista = new ArrayList<Arbol>();
 
-				for (Arbol arbol : listArbol) {
+				for (Arbol arbol : listaGeneral) {
 					if (String.valueOf(arbol.getIdArbol()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& arbol.getNombre().toLowerCase()

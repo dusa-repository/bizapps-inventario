@@ -5,15 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F0004;
-import modelo.maestros.F0005;
-import modelo.maestros.F0005;
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0010;
 import modelo.maestros.F0101;
 import modelo.maestros.F4100;
-import modelo.pk.F0005PK;
 import modelo.transacciones.F4111;
 
 import org.zkoss.zk.ui.Sessions;
@@ -167,6 +163,7 @@ public class CF0006 extends CGenerico {
 	CatalogoGenerico<F0005> catalogoF0005;
 	CatalogoGenerico<F0010> catalogoF0010;
 	CatalogoGenerico<F0101> catalogoF0101;
+	protected List<F0006> listaGeneral = new ArrayList<F0006>();
 
 	BuscadorUDC buscadorCategoria1, buscadorCategoria2, buscadorCategoria3,
 			buscadorCategoria4, buscadorCategoria5, buscadorCategoria6,
@@ -794,10 +791,8 @@ public class CF0006 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				
+				if (validar()) {
 					String MCMCU = txtUDCF0006.getValue();
 					String dl01 = txtDL01F0006.getValue();
 					String co = txtCOF0006.getValue();
@@ -893,8 +888,8 @@ public class CF0006 extends CGenerico {
 
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF0006
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF0006.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -933,8 +928,9 @@ public class CF0006 extends CGenerico {
 															"onOK")) {
 														servicioF0006
 																.eliminarVarios(eliminarLista);
-														catalogo.actualizarLista(servicioF0006
-																.buscarTodosOrdenados());
+														listaGeneral = servicioF0006
+																.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
 														if (cantidad != eliminarLista
 																.size())
 															msj.mensajeInformacion(Mensaje.algunosEliminados);
@@ -968,8 +964,9 @@ public class CF0006 extends CGenerico {
 																.eliminarUno(clave);
 														msj.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
-														catalogo.actualizarLista(servicioF0006
-																.buscarTodosOrdenados());
+														listaGeneral = servicioF0006
+																.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
 													}
 												}
 											});
@@ -1222,8 +1219,8 @@ public class CF0006 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F0006>(catalogoF0006, "F0006", unidades, false,
+		listaGeneral = servicioF0006.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F0006>(catalogoF0006, "F0006", listaGeneral, false,
 				true, true, "Unidad Negocio", "Descripcion", "Nivel det",
 				"Cta", "Tipo UN", "LM Auxiliar Inactivo", "Mto Cons", "CAT 01",
 				"CAT 02", "CAT 03", "CAT 04", "CAT 05", "CAT 06") {
@@ -1233,7 +1230,7 @@ public class CF0006 extends CGenerico {
 
 				List<F0006> unidadnegocio = new ArrayList<F0006>();
 
-				for (F0006 unidad : unidades) {
+				for (F0006 unidad : listaGeneral) {
 					String mcdc = "";
 					if (unidad.getMcdc() != null)
 						mcdc = unidad.getMcdc();
@@ -1294,7 +1291,7 @@ public class CF0006 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010", lista,
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "Catalogo de Compañías", lista,
 				true, false, false, "Codigo", "Nombre", "Nº Periodo", "Patron",
 				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {
@@ -1364,7 +1361,7 @@ public class CF0006 extends CGenerico {
 		catalogoF0010.setParent(null);
 	}
 
-	@Listen("onChange = #txtCOF0006")
+	@Listen("onChange = #txtCOF0006; onOK = #txtCOF0006")
 	public boolean buscarCompania() {
 		if (txtCOF0006.getValue() != null) {
 			F0010 f0010 = servicioF0010.buscar(txtCOF0006.getValue());
@@ -1384,7 +1381,7 @@ public class CF0006 extends CGenerico {
 	@Listen("onClick = #btnBuscarDireccion")
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "F0101",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "Catalogo de Direcciones",
 				listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
@@ -1437,7 +1434,7 @@ public class CF0006 extends CGenerico {
 		catalogoF0101.setParent(null);
 	}
 
-	@Listen("onChange = #txtAN8F0006")
+	@Listen("onChange = #txtAN8F0006; onOk = #txtAN8F0006 ")
 	public boolean buscarDireccion() {
 		if (txtAN8F0006.getValue() != null) {
 			F0101 f0101 = servicioF0101.buscar(txtAN8F0006.getValue());
@@ -1458,7 +1455,7 @@ public class CF0006 extends CGenerico {
 	public void mostrarCatalogoProyecto() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
 		catalogoEmergente = new CatalogoGenerico<F0006>(divCatalogoF0006Emergente,
-				"F0006Emergente", unidades, true, false, false,
+				"Catalogo de Unidades de Negocio", unidades, true, false, false,
 				"Unidad Negocio", "Descripcion", "Nivel det", "Cta", "Tipo UN",
 				"LM Auxiliar Inactivo", "Mto Cons", "CAT 01", "CAT 02",
 				"CAT 03", "CAT 04", "CAT 05", "CAT 06") {
@@ -1535,7 +1532,7 @@ public class CF0006 extends CGenerico {
 		catalogoEmergente.setParent(null);
 	}
 
-	@Listen("onChange = #txtMCUSF0006")
+	@Listen("onChange = #txtMCUSF0006; onOk = #txtMCUSF0006")
 	public boolean buscarProyecto() {
 		if (txtMCUSF0006.getValue() != null) {
 			F0006 f0006 = servicioF0006.buscar(txtMCUSF0006.getValue());

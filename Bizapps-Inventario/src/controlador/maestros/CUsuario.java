@@ -13,9 +13,6 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import modelo.maestros.F00021;
-import modelo.maestros.F40203;
-import modelo.seguridad.Arbol;
 import modelo.seguridad.Grupo;
 import modelo.seguridad.Usuario;
 
@@ -129,6 +126,7 @@ public class CUsuario extends CGenerico {
 	private CArbol cArbol = new CArbol();
 	String id = "";
 	CatalogoGenerico<Usuario> catalogo;
+	protected List<Usuario> listaGeneral = new ArrayList<Usuario>();
 	List<Grupo> gruposDisponibles = new ArrayList<Grupo>();
 	List<Grupo> gruposOcupados = new ArrayList<Grupo>();
 	URL url = getClass().getResource("usuario.png");
@@ -260,7 +258,8 @@ public class CUsuario extends CGenerico {
 						servicioUsuario.guardar(usuario);
 						limpiar();
 						msj.mensajeInformacion(Mensaje.guardado);
-						catalogo.actualizarLista(servicioUsuario.buscarTodos());
+						listaGeneral = servicioUsuario.buscarTodos();
+						catalogo.actualizarLista(listaGeneral);
 					}
 				}
 			}
@@ -280,8 +279,8 @@ public class CUsuario extends CGenerico {
 										servicioUsuario.eliminar(usuario);
 										limpiar();
 										msj.mensajeInformacion(Mensaje.eliminado);
-										catalogo.actualizarLista(servicioUsuario
-												.buscarTodos());
+										listaGeneral = servicioUsuario.buscarTodos();
+										catalogo.actualizarLista(listaGeneral);
 
 									}
 								}
@@ -623,8 +622,8 @@ public class CUsuario extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<Usuario> usuario = servicioUsuario.buscarTodos();
-		catalogo = new CatalogoGenerico<Usuario>(catalogoUsuario, "Usuario", usuario,
+		listaGeneral = servicioUsuario.buscarTodos();
+		catalogo = new CatalogoGenerico<Usuario>(catalogoUsuario, "Usuario", listaGeneral,
 				false, false, true, "Cedula", "Correo", "Primer Nombre",
 				"Segundo Nombre", "Primer Apellido", "Segundo Apellido",
 				"Sexo", "Telefono", "Direccion") {
@@ -634,7 +633,7 @@ public class CUsuario extends CGenerico {
 
 				List<Usuario> user = new ArrayList<Usuario>();
 
-				for (Usuario actividadord : usuario) {
+				for (Usuario actividadord : listaGeneral) {
 					if (actividadord.getCedula().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& actividadord.getEmail().toLowerCase()

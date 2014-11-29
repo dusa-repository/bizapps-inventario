@@ -10,9 +10,6 @@ import java.util.List;
 
 import modelo.maestros.F00021;
 import modelo.maestros.F0005;
-import modelo.maestros.F0010;
-import modelo.maestros.F0013;
-import modelo.maestros.F0015;
 import modelo.maestros.F41002;
 import modelo.maestros.F4101;
 import modelo.pk.F00021PK;
@@ -194,6 +191,7 @@ public class CF4101 extends CGenerico {
 	private Div catalogoF4101;
 	@Wire
 	private Div divCatalogoF40205;
+	protected List<F4101> listaGeneral = new ArrayList<F4101>();
 
 	Botonera botonera;
 	double clave = 0;
@@ -896,10 +894,7 @@ public class CF4101 extends CGenerico {
 			public void guardar() {
 				// TODO Auto-generated method stub
 
-				boolean guardar = true;
-				if (clave == 0)
-					guardar = validar();
-				if (guardar) {
+				if (validar()) {
 
 					F4101 f4101 = new F4101();
 
@@ -1124,8 +1119,8 @@ public class CF4101 extends CGenerico {
 					servicioF4101.guardar(f4101);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF4101
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF4101.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 
 				}
 
@@ -1467,8 +1462,8 @@ public class CF4101 extends CGenerico {
 	}
 
 	public void mostrarCatalogoF4101() {
-		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F4101>(catalogoF4101, "F4101", listF4101,
+		listaGeneral = servicioF4101.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F4101>(catalogoF4101, "F4101", listaGeneral,
 				false, true, true, "Número artículo", "Descripción",
 				"Descripción 2", "Texto búsqueda", "Tipo línea", "Tipo alm",
 				"Código vta 1") {
@@ -1477,7 +1472,7 @@ public class CF4101 extends CGenerico {
 			protected List<F4101> buscar(List<String> valores) {
 
 				List<F4101> lista = new ArrayList<F4101>();
-				for (F4101 f4101 : listF4101) {
+				for (F4101 f4101 : listaGeneral) {
 					String imsrp1 = "";
 					if (f4101.getImsrp1() != null)
 						imsrp1 = f4101.getImsrp1();

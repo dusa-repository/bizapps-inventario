@@ -70,6 +70,7 @@ public class CF0005 extends CGenerico {
 	Botonera botonera;
 	CatalogoGenerico<F0005> catalogo;
 	CatalogoGenerico<F0004> catalogoF0004;
+	protected List<F0005> listaGeneral = new ArrayList<F0005>();
 	F0005PK clave = null;
 
 	@Override
@@ -167,8 +168,9 @@ public class CF0005 extends CGenerico {
 					servicioF0005.guardar(fooo5);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF0005
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF0005.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
+					
 				}
 
 			}
@@ -194,8 +196,9 @@ public class CF0005 extends CGenerico {
 													servicioF0005
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF0005
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF0005
+															.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -217,8 +220,9 @@ public class CF0005 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF0005
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF0005
+															.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -433,13 +437,13 @@ public class CF0005 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		List<F0005> listF0005New = new ArrayList<F0005>();
+		listaGeneral = new ArrayList<F0005>();
 		// if (sy.equals("") && rt.equals(""))
-		listF0005New = servicioF0005.buscarTodosOrdenados();
+		listaGeneral = servicioF0005.buscarTodosOrdenados();
 		// else
 		// listF0005New = servicioF0005.buscarParaUDCOrdenados(sy, rt);
 
-		final List<F0005> listF0005 = listF0005New;
+		final List<F0005> listF0005 = listaGeneral;
 
 		catalogo = new CatalogoGenerico<F0005>(catalogoF0005, "F0005",
 				listF0005, false, false, false, "SY", "RT", "KY",

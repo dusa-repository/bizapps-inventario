@@ -94,7 +94,7 @@
 														style="font-weight:bold;color:red">
 													</label>
 												</hbox>
-												<datebox readonly="true"
+												<datebox readonly="true" format="dd-MM-yyyy"
 													width="100%" id="dtbFechaGeneralF0010"
 													tooltiptext="Ingrese el Inicio del año fiscal (CCDFYJ)" />
 											</row>
@@ -142,7 +142,7 @@
 													<label
 														class="etiqueta" value="Inicio Año Fiscal:" />
 													<datebox
-														readonly="true" width="100%" id="dtbFechaPagarF0010"
+														readonly="true" width="100%" id="dtbFechaPagarF0010" format="dd-MM-yyyy"
 														tooltiptext="Ingrese el Inicio del año fiscal (CCAPFJ)" />
 												</row>
 												<row>
@@ -178,7 +178,7 @@
 												<row>
 													<label
 														class="etiqueta" value="Inicio Año Fiscal:" />
-													<datebox
+													<datebox format="dd-MM-yyyy"
 														readonly="true" width="100%" id="dtbFechaCobrarF0010"
 														tooltiptext="Ingrese el Inicio del año fiscal (CCARFJ)" />
 												</row>

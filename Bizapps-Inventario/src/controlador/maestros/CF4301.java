@@ -42,7 +42,6 @@ import componentes.Mensaje;
 import componentes.buscadores.BuscadorF0013;
 import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoF0006;
-import componentes.catalogos.CatalogoF0013;
 import componentes.catalogos.CatalogoF0101;
 import componentes.catalogos.CatalogoF4008;
 import componentes.catalogos.CatalogoF4101;
@@ -235,6 +234,7 @@ public class CF4301 extends CGenerico {
 	@Wire
 	private Listbox ltbItems;
 	List<F4311> listaDetalle = new ArrayList<F4311>();
+	protected List<F4301> listaGeneral = new ArrayList<F4301>();
 
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
@@ -257,6 +257,7 @@ public class CF4301 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -387,10 +388,8 @@ public class CF4301 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+
+				if (validar()) {
 					F4301 f4301 = new F4301();
 					F4301PK clavePk = new F4301PK();
 					clavePk.setPhdcto(txtDCTOF4301.getValue());
@@ -436,8 +435,8 @@ public class CF4301 extends CGenerico {
 					}
 					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF4301
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF4301.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 			}
 
@@ -455,7 +454,7 @@ public class CF4301 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4301, "Orden de Compra Normal", tabs);
+				cerrarVentana(divVF4301, titulo, tabs);
 			}
 
 			@Override
@@ -633,9 +632,9 @@ public class CF4301 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		List<F4301> listF4301 = servicioF4301.buscarTodosOrdenados();
-		catalogo = new CatalogoF4301(catalogoF4301, "F4301", listF4301, false,
-				"N° orden", "Tp ord", "Cía orden", "NP",
+		listaGeneral = servicioF4301.buscarTodosOrdenados();
+		catalogo = new CatalogoF4301(catalogoF4301, "F4301", listaGeneral,
+				false, "N° orden", "Tp ord", "Cía orden", "NP",
 				"Descripción del proveedor", "Fecha orden", "Dir de entrg",
 				"Comprador", "Cd rtn", "Importe", "Mon base",
 				"Impte en mon ext", "Mon", "Suc/planta");
@@ -646,27 +645,43 @@ public class CF4301 extends CGenerico {
 	public void mostrarCatalogoF0006() {
 		List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
 		catalogoF0006 = new CatalogoF0006(divCatalogoSucPlantaF0006,
-				"F0006Emergente", unidades, true, "Unidad Negocio",
-				"Descripcion", "Nivel det", "Cta", "Tipo UN",
+				"Catalogo de Unidades de Negocio", unidades, true,
+				"Unidad Negocio", "Descripcion", "Nivel det", "Cta", "Tipo UN",
 				"LM Auxiliar Inactivo", "Mto Cons", "CAT 01", "CAT 02",
 				"CAT 03", "CAT 04", "CAT 05", "CAT 06");
 		catalogoF0006.setParent(divCatalogoSucPlantaF0006);
 		catalogoF0006.doModal();
 	}
 
+	@Listen("onChange = #txtMCUF4301; onOk = #txtMCUF4301")
+	public boolean buscarUnidades() {
+		if (txtMCUF4301.getValue() != null) {
+			F0006 f0006 = servicioF0006.buscar(txtMCUF4301.getValue());
+			if (f0006 != null) {
+				txtMCUF4301.setValue(String.valueOf(f0006.getMcmcu()));
+				lblSucPlantaF0006.setValue(f0006.getMcldm());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
+	}
+
 	@Listen("onSeleccion = #divCatalogoSucPlantaF0006")
 	public void seleccionF0006() {
 		F0006 f0006 = catalogoF0006.objetoSeleccionadoDelCatalogo();
 		txtMCUF4301.setValue(String.valueOf(f0006.getMcmcu()));
-		lblSucPlantaF0006.setValue(f0006.getMcdc());
+		lblSucPlantaF0006.setValue(f0006.getMcldm());
 		catalogoF0006.setParent(null);
 	}
 
 	@Listen("onClick = #btnBuscarTaxAreasV4008")
 	public void mostrarCatalogoZonaFiscal() {
 		final List<F4008> listF4008 = servicioF4008.buscarTodosOrdenados();
-		catalogoF4008 = new CatalogoF4008(divCatalogooTaxAreasV4008, "F4008",
-				listF4008, true, "Zona/Tipo impositivo",
+		catalogoF4008 = new CatalogoF4008(divCatalogooTaxAreasV4008,
+				"Catalogo de Zonas", listF4008, true, "Zona/Tipo impositivo",
 				"Descripcion zona fiscal", "Fecha efectiva", "Fecha vto",
 				"Tipo imptvo 1", "Tipo imptvo 2", "Tipo imptvo 3",
 				"Tipo imptvo 4", "Tipo imptvo 5", "Nro corto articulo");
@@ -681,6 +696,25 @@ public class CF4301 extends CGenerico {
 		lblZonaV4008.setValue(f4008.getTataxa());
 		catalogoF4008.setParent(null);
 	}
+
+	/*
+	@Listen("onChange = #txtMCUF4301; onOk = #txtMCUF4301")
+	public boolean buscarZonas() {
+		if (txtTXA1F4301.getValue() != null) {
+			List<F4008> f4008 = servicioF4008.buscarPorTatxa1(txtTXA1F4301
+					.getValue());
+			if (f4008.size() != 0) {
+				txtTXA1F4301.setValue(f4008.get(0).getId().getTatxa1());
+				lblZonaV4008.setValue(f4008.get(0).getTataxa());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
+	}
+	*/
 
 	@Listen("onClick = #btnBuscarProveedorF0101,#btnBuscarDestinoF0101,#btnBuscarCompradorF0101,#btnBuscarTransportistaF0101,#btnBuscarRifF0101")
 	public void mostrarCatalogoDireccion(Event evento) {
@@ -727,12 +761,60 @@ public class CF4301 extends CGenerico {
 		catalogoF0101.setParent(null);
 	}
 
+	@Listen("onChange = #txtAN8F4301, #txtSHANF4301, #txtANBYF4301, #txtANCRF4301, #txtABTAXF4301 ; onOk = #txtAN8F4301, #txtSHANF4301, #txtANBYF4301, #txtANCRF4301, #txtABTAXF4301")
+	public void buscarNombre(Event evento) {
+		F0101 f0101 = new F0101();
+		Longbox txt = (Longbox) evento.getTarget();
+		switch (txt.getId()) {
+		case "txtAN8F4301":
+			f0101 = servicioF0101.buscar(txtAN8F4301.getValue());
+			if (f0101 != null)
+				setearValores(f0101, txtAN8F4301, lblProveedoresF0101);
+			else
+				noEstaBien(txtAN8F4301);
+			break;
+		case "txtSHANF4301":
+			f0101 = servicioF0101.buscar(txtSHANF4301.getValue());
+			if (f0101 != null)
+				setearValores(f0101, txtSHANF4301, lblDestinoF0101);
+			else
+				noEstaBien(txtSHANF4301);
+			break;
+		case "txtANBYF4301":
+			f0101 = servicioF0101.buscar(txtANBYF4301.getValue());
+			if (f0101 != null)
+				setearValores(f0101, txtANBYF4301, lblCompradorF0101);
+			else
+				noEstaBien(txtANBYF4301);
+			break;
+		case "txtANCRF4301":
+			f0101 = servicioF0101.buscar(txtANCRF4301.getValue());
+			if (f0101 != null)
+				setearValores(f0101, txtANCRF4301, lblTransportistaF0101);
+			else
+				noEstaBien(txtANCRF4301);
+			break;
+		case "txtABTAXF4301":
+			txtABTAXF4301.setValue(f0101.getAbtax());
+			lblIdFiscalF0101.setValue(f0101.getAbalph());
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void noEstaBien(Longbox txt) {
+		msj.mensajeAlerta(Mensaje.noHayRegistros);
+		txt.setValue(null);
+		txt.setFocus(true);
+	}
+
 	// DETALLES
 
 	@Listen("onClick = #btnBuscarF4101")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new CatalogoF4101(divCatalogoF4101, "F4101", listF4101,
+		catalogoF4101 = new CatalogoF4101(divCatalogoF4101, "Catalogo de Articulos", listF4101,
 				true, "Codigo", "Descripcion");
 		catalogoF4101.setParent(divCatalogoF4101);
 		catalogoF4101.doModal();
@@ -745,6 +827,24 @@ public class CF4301 extends CGenerico {
 		txtITMF4311.setValue(doble.longValue());
 		lblPDITMF4311.setValue(f4101.getImdsc1());
 		catalogoF4101.setParent(null);
+	}
+	
+	@Listen("onChange = #txtITMF4311; onOk = #txtITMF4311")
+	public boolean buscarArticulos() {
+		if (txtITMF4311.getValue() != null) {
+			F4101 f4101 = servicioF4101.buscar(txtITMF4311
+					.getValue());
+			if (f4101 != null) {
+				Double doble = f4101.getImitm();
+				txtITMF4311.setValue(doble.longValue());
+				lblPDITMF4311.setValue(f4101.getImdsc1());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
 	}
 
 	@Listen("onClick = #btnAgregarItems")

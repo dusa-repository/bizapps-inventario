@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F0006;
 import modelo.maestros.F0015;
 import modelo.maestros.F0013;
 import modelo.maestros.F0101;
@@ -96,6 +95,8 @@ public class CF0015 extends CGenerico {
 	@Wire
 	private Div divCatalogoF0101;
 
+	protected List<F0015> listaGeneral = new ArrayList<F0015>();
+	protected List<F0015> listaDetalle = new ArrayList<F0015>();
 	private static F0013 F0013;
 	private static boolean agregarMetodoCalculo = false;
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
@@ -265,10 +266,8 @@ public class CF0015 extends CGenerico {
 			@Override
 			public void guardar() {
 				// TODO Auto-generated method stub
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				
+				if (validar()) {
 					String crcd = txtCRCDF0015.getValue();
 					String crdc = txtCRDCF0015.getValue();
 					String rttyp = "";
@@ -304,10 +303,10 @@ public class CF0015 extends CGenerico {
 					servicioF0015.guardar(foo15);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogoEncabezado.actualizarLista(servicioF0015
-							.buscarTodosOrdenados());
-					catalogoDetalle.actualizarLista(servicioF0015
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF0015.buscarTodosOrdenados();
+					catalogoEncabezado.actualizarLista(listaGeneral);
+					listaDetalle = servicioF0015.buscarTodosOrdenados();
+					catalogoDetalle.actualizarLista(listaDetalle);
 				}
 
 			}
@@ -360,12 +359,10 @@ public class CF0015 extends CGenerico {
 														servicioF0015
 																.eliminarVarios(eliminarLista);
 														msj.mensajeInformacion(Mensaje.eliminado);
-														catalogoEncabezado
-																.actualizarLista(servicioF0015
-																		.buscarTodosOrdenados());
-														catalogoDetalle
-																.actualizarLista(servicioF0015
-																		.buscarTodosOrdenados());
+														listaGeneral = servicioF0015.buscarTodosOrdenados();
+														catalogoEncabezado.actualizarLista(listaGeneral);
+														listaDetalle = servicioF0015.buscarTodosOrdenados();
+														catalogoDetalle.actualizarLista(listaDetalle);
 													}
 												}
 											});
@@ -387,12 +384,10 @@ public class CF0015 extends CGenerico {
 																.eliminarUno(clave);
 														msj.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
-														catalogoEncabezado
-																.actualizarLista(servicioF0015
-																		.buscarTodosOrdenados());
-														catalogoDetalle
-																.actualizarLista(servicioF0015
-																		.buscarTodosOrdenados());
+														listaGeneral = servicioF0015.buscarTodosOrdenados();
+														catalogoEncabezado.actualizarLista(listaGeneral);
+														listaDetalle = servicioF0015.buscarTodosOrdenados();
+														catalogoDetalle.actualizarLista(listaDetalle);
 													}
 												}
 											});
@@ -656,9 +651,9 @@ public class CF0015 extends CGenerico {
 	}
 
 	public void mostrarCatalogoEncabezado() {
-		final List<F0015> listF0015 = servicioF0015.buscarTodosOrdenados();
+		listaGeneral = servicioF0015.buscarTodosOrdenados();
 		catalogoEncabezado = new CatalogoGenerico<F0015>(catalogoF0015H, "F0015",
-				listF0015, false, true, true, "Moneda origen",
+				listaGeneral, false, true, true, "Moneda origen",
 				"Descripción moneda origen", "Moneda destino",
 				"Descripción moneda destino", "Contrato (dirección)",
 				"Descripción contrato (dirección)") {
@@ -668,7 +663,7 @@ public class CF0015 extends CGenerico {
 
 				List<F0015> lista = new ArrayList<F0015>();
 
-				for (F0015 f0015 : listF0015) {
+				for (F0015 f0015 : listaGeneral) {
 					if (f0015.getId().getCxcrcd().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& (servicioF0013.buscar(f0015.getId().getCxcrcd()))
@@ -713,9 +708,9 @@ public class CF0015 extends CGenerico {
 	}
 
 	public void mostrarCatalogoDetalle() {
-		final List<F0015> listF0015 = servicioF0015.buscarTodosOrdenados();
+		listaDetalle = servicioF0015.buscarTodosOrdenados();
 		catalogoDetalle = new CatalogoGenerico<F0015>(catalogoF0015D, "F0015D",
-				listF0015, false, true, true, "Método cálculo", "Método conv",
+				listaDetalle, false, true, true, "Método cálculo", "Método conv",
 				"Tipo multiplicador", "Tipo divisor", "Mon Trian",
 				"Cambio al contado") {
 
@@ -724,7 +719,7 @@ public class CF0015 extends CGenerico {
 
 				List<F0015> lista = new ArrayList<F0015>();
 
-				for (F0015 f0015 : listF0015) {
+				for (F0015 f0015 : listaDetalle) {
 					if (formatoFecha
 							.format(transformarJulianaAGregoria(BigDecimal
 									.valueOf(f0015.getId().getCxeft())))
@@ -775,7 +770,7 @@ public class CF0015 extends CGenerico {
 	@Listen("onClick = #btnBuscarMonedaF0013")
 	public void mostrarCatalogoMoneda() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoF0013 = new CatalogoGenerico<F0013>(divCatalogoF0013, "F0013",
+		catalogoF0013 = new CatalogoGenerico<F0013>(divCatalogoF0013, "Catalogo de Monedas y Tarifas",
 				listF0013, true, false, false, "Codigo moneda", "Descripcion",
 				"Vlslz", "Rutina cheques") {
 
@@ -822,7 +817,7 @@ public class CF0015 extends CGenerico {
 		catalogoF0013.setParent(null);
 	}
 
-	@Listen("onChange = #txtCRCDF0015")
+	@Listen("onChange = #txtCRCDF0015; onOk = #txtCRCDF0015")
 	public boolean buscarMoneda() {
 		if (txtCRCDF0015.getValue() != null) {
 			F0013 f0013 = servicioF0013.buscar(txtCRCDF0015.getValue());
@@ -843,7 +838,7 @@ public class CF0015 extends CGenerico {
 	public void mostrarCatalogoMonedaDestino() {
 		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
 		catalogoMonedaDestino = new CatalogoGenerico<F0013>(divCatalogoMonedaDestino,
-				"F0013", listF0013, true, false, false, "Codigo moneda",
+				"Catalogo de Monedas y Tarifas", listF0013, true, false, false, "Codigo moneda",
 				"Descripcion", "Vlslz", "Rutina cheques") {
 
 			@Override
@@ -889,7 +884,7 @@ public class CF0015 extends CGenerico {
 		catalogoMonedaDestino.setParent(null);
 	}
 
-	@Listen("onChange = #txtCRDCF0015")
+	@Listen("onChange = #txtCRDCF0015; onOk = #txtCRDCF0015")
 	public boolean buscarMonedaDestino() {
 		if (txtCRDCF0015.getValue() != null) {
 			F0013 f0013 = servicioF0013.buscar(txtCRDCF0015.getValue());
@@ -909,7 +904,7 @@ public class CF0015 extends CGenerico {
 	@Listen("onClick = #btnBuscarF0101")
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "F0101",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "Catalogo de Direcciones",
 				listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
@@ -962,7 +957,7 @@ public class CF0015 extends CGenerico {
 		catalogoF0101.setParent(null);
 	}
 
-	@Listen("onChange = #txtAN8F0015")
+	@Listen("onChange = #txtAN8F0015; onOk = #txtAN8F0015")
 	public boolean buscarDireccion() {
 		if (txtAN8F0015.getValue() != null) {
 			F0101 f0101 = servicioF0101.buscar(txtAN8F0015.getValue());

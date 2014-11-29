@@ -7,10 +7,8 @@ import java.util.List;
 
 import modelo.maestros.F0005;
 import modelo.maestros.F0101;
-import modelo.maestros.F0115;
 import modelo.maestros.F01151;
 import modelo.pk.F01151PK;
-import modelo.pk.F0115PK;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -62,6 +60,7 @@ public class CF01151 extends CGenerico {
 	private Button btnBuscarDireccionF01151;
 	@Wire
 	private Groupbox gpxRegistroF01151;
+	protected List<F01151> listaGeneral = new ArrayList<F01151>();
 	Botonera botonera;
 	CatalogoGenerico<F01151> catalogo;
 	CatalogoGenerico<F0101> catalogoD;
@@ -174,10 +173,8 @@ public class CF01151 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				
+				if (validar()) {
 					Long lon;
 					lon = txtAn8F01151.getValue();
 					F01151 f015 = new F01151();
@@ -207,10 +204,10 @@ public class CF01151 extends CGenerico {
 					f015.setEaupmt(Double.valueOf(horaAuditoria));
 					f015.setEauser("JDE");
 					servicioF01151.guardar(f015);
-					catalogo.actualizarLista(servicioF01151
-							.buscarTodosOrdenados());
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
+					listaGeneral = servicioF01151.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 			}
 
@@ -235,8 +232,8 @@ public class CF01151 extends CGenerico {
 													servicioF01151
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF01151
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF01151.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -258,8 +255,8 @@ public class CF01151 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF01151
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF01151.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -402,8 +399,8 @@ public class CF01151 extends CGenerico {
 	}
 
 	private void mostrarCatalogo() {
-		final List<F01151> listF01151 = servicioF01151.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F01151>(catalogoF01151, "F01151", listF01151,
+		listaGeneral = servicioF01151.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F01151>(catalogoF01151, "F01151", listaGeneral,
 				false, false, false, "Nº direccion", "Tipo Direccion",
 				"Direccion Correo-e", "Indicador Mensajes",
 				"Cat Direccion Electronica") {
@@ -413,7 +410,7 @@ public class CF01151 extends CGenerico {
 
 				List<F01151> lista = new ArrayList<F01151>();
 
-				for (F01151 f01 : listF01151) {
+				for (F01151 f01 : listaGeneral) {
 					String valor = "";
 					switch (f01.getEaetp()) {
 					case "DirW":
@@ -480,7 +477,7 @@ public class CF01151 extends CGenerico {
 	public void mostrarCatalogoDireccion() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
 		catalogoD = new CatalogoGenerico<F0101>(DivCatalogoDireccionF01151,
-				"CatalogoF0013", listF0101, true, false, false, "Nº direccion",
+				"Catalogo de Direcciones", listF0101, true, false, false, "Nº direccion",
 				"Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
 
@@ -524,7 +521,7 @@ public class CF01151 extends CGenerico {
 		catalogoD.doModal();
 	}
 
-	@Listen("onChange = #txtAn8F01151")
+	@Listen("onChange = #txtAn8F01151; onOk = #txtAn8F01151")
 	public void buscarDireccion() {
 		if (txtAn8F01151.getValue() != null) {
 			F0101 f0101 = servicioF0101.buscar(txtAn8F01151.getValue());

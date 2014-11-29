@@ -23,7 +23,9 @@ public class SF4008 {
 		
 	}
 
-//	public List<F4008> buscarPorTatxa1(String txa1) {
-//		return f4008DAO.findByIdTatxa1(txa1);
-//	}
+	/*
+	public List<F4008> buscarPorTatxa1(String txa1) {
+		return f4008DAO.findByIdTatxa1(txa1);
+	}
+	*/
 }

@@ -6,14 +6,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import modelo.generico.Generico;
-import modelo.maestros.F0004;
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F4101;
 import modelo.maestros.F4105;
 import modelo.pk.F4105PK;
-import modelo.transacciones.F4111;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -88,6 +85,7 @@ public class CF4105 extends CGenerico {
 	private Button btnAgregarItems;
 	@Wire
 	private Groupbox gpxItems;
+	protected List<F4105> listaGeneral = new ArrayList<F4105>();
 	
 	Botonera botonera;
 	CatalogoGenerico<F4105> catalogo;
@@ -173,10 +171,8 @@ public class CF4105 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				
+				if (validar()) {
 					F4105 f4105 = new F4105();
 					if (clave == null) {
 						clave = new F4105PK();
@@ -206,8 +202,8 @@ public class CF4105 extends CGenerico {
 					}
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF4105
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF4105.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 			}
 
@@ -233,8 +229,8 @@ public class CF4105 extends CGenerico {
 													servicioF4105
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF4105
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF4105.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -256,8 +252,8 @@ public class CF4105 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF4105
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF4105.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -449,8 +445,8 @@ public class CF4105 extends CGenerico {
 
 	public void mostrarCatalogo() {
 
-		final List<F4105> listF0005 = servicioF4105.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F4105>(catalogoF4105, "F0005", listF0005,
+		listaGeneral = servicioF4105.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F4105>(catalogoF4105, "F0005", listaGeneral,
 				false, false, false, "Nro Articulo", "Sucursal / Planta",
 				"Nivel Costo") {
 
@@ -459,7 +455,7 @@ public class CF4105 extends CGenerico {
 
 				List<F4105> listF0005_2 = new ArrayList<F4105>();
 
-				for (F4105 f0005 : listF0005) {
+				for (F4105 f0005 : listaGeneral) {
 					if (String.valueOf(f0005.getId().getCoitm().longValue()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f0005.getId().getComcu().toLowerCase()
@@ -488,7 +484,7 @@ public class CF4105 extends CGenerico {
 	@Listen("onClick = #btnBuscarMcu")
 	public void mostrarCatalogoF0006() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "F0006",
+		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "Catalogo de Unidades de Negocio",
 				unidades, true, false, false, "Unidad Negocio", "Descripcion",
 				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
 				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
@@ -564,7 +560,7 @@ public class CF4105 extends CGenerico {
 		catalogoF0006.setParent(null);
 	}
 
-	@Listen("onChange = #txtMcu")
+	@Listen("onChange = #txtMcu; onOk = #txtMcu")
 	public void buscarNombreSucursal() {
 		F0006 f06 = servicioF0006.buscar(txtMcu.getValue());
 		if (f06 != null) {
@@ -585,7 +581,7 @@ public class CF4105 extends CGenerico {
 	@Listen("onClick = #btnBuscarItm")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "F4101",
+		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "Catalogo de Artículos",
 				listF4101, true, false, false, "Número artículo",
 				"Descripción", "Descripción 2", "Texto búsqueda", "Tipo línea",
 				"Tipo alm", "Código vta 1") {
@@ -640,7 +636,7 @@ public class CF4105 extends CGenerico {
 		catalogoF4101.setParent(null);
 	}
 
-	@Listen("onChange = #txtItm")
+	@Listen("onChange = #txtItm; onOk = #txtItm")
 	public void buscarNombreItem() {
 		F4101 f4101 = servicioF4101.buscar(txtItm.getValue());
 		if (f4101 != null) {

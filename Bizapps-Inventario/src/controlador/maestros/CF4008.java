@@ -23,13 +23,9 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
-import modelo.maestros.F0004;
-import modelo.maestros.F0006;
 import modelo.maestros.F0101;
 import modelo.maestros.F4008;
-import modelo.maestros.F40205;
 import modelo.maestros.F4101;
-import modelo.pk.F0004PK;
 import modelo.pk.F4008PK;
 import componentes.Botonera;
 import componentes.Mensaje;
@@ -127,6 +123,7 @@ public class CF4008 extends CGenerico {
 	private Textbox txtGL05F4008;
 	@Wire
 	private Button btnBuscarF4101;
+	protected List<F4008> listaGeneral = new ArrayList<F4008>();
 
 	CatalogoGenerico<F4008> catalogoF4008;
 	Botonera botonera;
@@ -261,7 +258,7 @@ public class CF4008 extends CGenerico {
 							chxTT4F4008.setChecked(true);
 						else
 							chxTT4F4008.setChecked(false);
-						
+
 						sumar();
 
 					} else
@@ -290,10 +287,7 @@ public class CF4008 extends CGenerico {
 			@Override
 			public void guardar() {
 
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				if (validar()) {
 
 					F4008 f408 = new F4008();
 
@@ -380,10 +374,10 @@ public class CF4008 extends CGenerico {
 					// Falta Guardar la Suma
 
 					servicioF4008.guardar(f408);
-					catalogoF4008.actualizarLista(servicioF4008
-							.buscarTodosOrdenados());
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiarCampos();
+					listaGeneral = servicioF4008.buscarTodosOrdenados();
+					catalogoF4008.actualizarLista(listaGeneral);
 
 				}
 
@@ -432,7 +426,7 @@ public class CF4008 extends CGenerico {
 
 	}
 
-	@Listen("onChange = #txtTAITMF4008")
+	@Listen("onChange = #txtTAITMF4008; onOk = #txtTAITMF4008")
 	public boolean validarArticulo() {
 		Long articulo = txtTAITMF4008.getValue();
 		if (articulo != null) {
@@ -616,8 +610,8 @@ public class CF4008 extends CGenerico {
 		idBoton = boton.getId();
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
 		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101,
-				"CatalogoF0101", listF0101, true, false, false, "Nº direccion",
-				"Nombre alfabetico", "Direccion larga",
+				"Catalogo de Direcciones", listF0101, true, false, false,
+				"Nº direccion", "Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
 
 			@Override
@@ -691,7 +685,7 @@ public class CF4008 extends CGenerico {
 		catalogoF0101.setParent(null);
 	}
 
-	@Listen("onChange = #txtTXR1F4008, #txtTXR2F4008, #txtTXR3F4008, #txtTXR4F4008, #txtTXR5F4008")
+	@Listen("onChange = #txtTXR1F4008, #txtTXR2F4008, #txtTXR3F4008, #txtTXR4F4008, #txtTXR5F4008; onOk = #txtTXR1F4008, #txtTXR2F4008, #txtTXR3F4008, #txtTXR4F4008, #txtTXR5F4008")
 	public void sumar() {
 		double uno = 0, dos = 0, tres = 0, cuatro = 0, cinco = 0;
 		if (txtTXR1F4008.getValue() != null)
@@ -708,7 +702,7 @@ public class CF4008 extends CGenerico {
 		txtSumaF4008.setValue(uno + dos + tres + cuatro + cinco);
 	}
 
-	@Listen("onChange = #txtTA1F4008, #txtTA2F4008, #txtTA3F4008, #txtTA4F4008, #txtTA5F4008")
+	@Listen("onChange = #txtTA1F4008, #txtTA2F4008, #txtTA3F4008, #txtTA4F4008, #txtTA5F4008; onOk = #txtTA1F4008, #txtTA2F4008, #txtTA3F4008, #txtTA4F4008, #txtTA5F4008 ")
 	public void buscarNombre(Event evento) {
 		F0101 f0101 = new F0101();
 		Longbox txt = (Longbox) evento.getTarget();
@@ -762,7 +756,7 @@ public class CF4008 extends CGenerico {
 	@Listen("onClick = #btnBuscarF4101")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "F4101",
+		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "Catalogo de Artículos",
 				listF4101, true, false, true, "Codigo", "Descripcion") {
 
 			@Override
@@ -803,9 +797,9 @@ public class CF4008 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F4008> listF4008 = servicioF4008.buscarTodosOrdenados();
+		listaGeneral = servicioF4008.buscarTodosOrdenados();
 		catalogoF4008 = new CatalogoGenerico<F4008>(divCatalogoF4008, "F4008",
-				listF4008, false, false, true, "Zona/Tipo impositivo",
+				listaGeneral, false, false, true, "Zona/Tipo impositivo",
 				"Descripcion zona fiscal", "Fecha efectiva", "Fecha vto",
 				"Tipo imptvo 1", "Tipo imptvo 2", "Tipo imptvo 3",
 				"Tipo imptvo 4", "Tipo imptvo 5", "Nro corto articulo") {
@@ -815,7 +809,7 @@ public class CF4008 extends CGenerico {
 
 				List<F4008> lista = new ArrayList<F4008>();
 
-				for (F4008 f4008 : listF4008) {
+				for (F4008 f4008 : listaGeneral) {
 					if (f4008.getId().getTatxa1().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f4008.getTataxa().toLowerCase()

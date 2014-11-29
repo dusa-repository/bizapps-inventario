@@ -7,7 +7,6 @@ import java.util.List;
 
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
-import modelo.maestros.F0101;
 import modelo.maestros.F4100;
 import modelo.pk.F4100PK;
 import modelo.transacciones.F4111;
@@ -66,6 +65,7 @@ public class CF4100 extends CGenerico {
 	private Label lblMCUF0006;
 	@Wire
 	private Button btnBuscarF0006;
+	protected List<F4100> listaGeneral = new ArrayList<F4100>();
 
 	Botonera botonera;
 	CatalogoGenerico<F4100> catalogoF4100;
@@ -233,10 +233,8 @@ public class CF4100 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				
+				if (validar()) {
 
 					F4100 f4100 = new F4100();
 					F4100PK clave = new F4100PK();
@@ -259,8 +257,8 @@ public class CF4100 extends CGenerico {
 					servicioF4100.guardar(f4100);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogoF4100.actualizarLista(servicioF4100
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF4100.buscarTodosOrdenados();
+					catalogoF4100.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -298,9 +296,8 @@ public class CF4100 extends CGenerico {
 															"onOK")) {
 														servicioF4100
 																.eliminarVarios(eliminarLista);
-														catalogoF4100
-																.actualizarLista(servicioF4100
-																		.buscarTodosOrdenados());
+														listaGeneral = servicioF4100.buscarTodosOrdenados();
+														catalogoF4100.actualizarLista(listaGeneral);
 														if (cantidad != eliminarLista
 																.size())
 															msj.mensajeInformacion(Mensaje.algunosEliminados);
@@ -333,9 +330,8 @@ public class CF4100 extends CGenerico {
 																.eliminarUno(clave);
 														msj.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
-														catalogoF4100
-																.actualizarLista(servicioF4100
-																		.buscarTodosOrdenados());
+														listaGeneral = servicioF4100.buscarTodosOrdenados();
+														catalogoF4100.actualizarLista(listaGeneral);
 													}
 												}
 											});
@@ -446,7 +442,7 @@ public class CF4100 extends CGenerico {
 
 	}
 
-	@Listen("onChange = #txtMCUF4100")
+	@Listen("onChange = #txtMCUF4100; onOk =  #txtMCUF4100")
 	public boolean idF0006() {
 		if (txtMCUF4100.getText().compareTo("") != 0) {
 			F0006 f0006 = servicioF0006.buscar(txtMCUF4100.getText());
@@ -529,9 +525,9 @@ public class CF4100 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F4100> listF4100 = servicioF4100.buscarTodosOrdenados();
+		listaGeneral = servicioF4100.buscarTodosOrdenados();
 		catalogoF4100 = new CatalogoGenerico<F4100>(divCatalogoF4100, "F4100",
-				listF4100, false, false, true, "Cod. Sucursal/planta",
+				listaGeneral, false, false, true, "Cod. Sucursal/planta",
 				"Sucursal/planta", "Fecha acta", "Ubicacion", "Zona alm",
 				"Zona acopio", "Zona reabast", "Detalle", "Pasillo", "Bin",
 				"Ubic 3", "Ubic 4", "Ubic 5", "Ubic 6", "Ubic 7", "Ubic 8",
@@ -542,7 +538,7 @@ public class CF4100 extends CGenerico {
 
 				List<F4100> listF4100_2 = new ArrayList<F4100>();
 
-				for (F4100 f4100 : listF4100) {
+				for (F4100 f4100 : listaGeneral) {
 					F0006 f0006 = servicioF0006
 							.buscar(f4100.getId().getLmmcu());
 					String mcdc = "";
@@ -651,7 +647,7 @@ public class CF4100 extends CGenerico {
 	@Listen("onClick = #btnBuscarF0006")
 	public void mostrarCatalogoF0006() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "F0006Emergente",
+		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "Catalogo de Unidades de Negocio",
 				unidades, true, false, false, "Unidad Negocio", "Descripcion",
 				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
 				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
