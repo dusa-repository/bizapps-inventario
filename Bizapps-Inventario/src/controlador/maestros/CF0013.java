@@ -5,15 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F0004;
 import modelo.maestros.F0010;
 import modelo.maestros.F0013;
 import modelo.maestros.F0015;
-import modelo.maestros.F0101;
-import modelo.maestros.F0115;
-import modelo.maestros.F01151;
-import modelo.pk.F0004PK;
-import modelo.transacciones.F4111;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -51,6 +45,7 @@ public class CF0013 extends CGenerico {
 	private Groupbox gpxDatosF0013;
 	@Wire
 	private Groupbox gpxRegistroF0013;
+	protected List<F0013> listaGeneral = new ArrayList<F0013>();
 
 	Botonera botonera;
 	CatalogoGenerico<F0013> catalogo;
@@ -113,10 +108,8 @@ public class CF0013 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				
+				if (validar()) {
 					F0013 f0013 = new F0013();
 					f0013.setCvcdec(txtDECF0013.getValue());
 					f0013.setCvckr(txtCKRF0013.getValue());
@@ -128,8 +121,8 @@ public class CF0013 extends CGenerico {
 					servicioF0013.guardar(f0013);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF0013
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF0013.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -168,8 +161,8 @@ public class CF0013 extends CGenerico {
 															"onOK")) {
 														servicioF0013
 																.eliminarVarios(eliminarLista);
-														catalogo.actualizarLista(servicioF0013
-																.buscarTodosOrdenados());
+														listaGeneral = servicioF0013.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
 														if (cantidad != eliminarLista
 																.size())
 															msj.mensajeInformacion(Mensaje.algunosEliminados);
@@ -204,8 +197,8 @@ public class CF0013 extends CGenerico {
 																.eliminarUno(clave);
 														msj.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
-														catalogo.actualizarLista(servicioF0013
-																.buscarTodosOrdenados());
+														listaGeneral = servicioF0013.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
 													}
 												}
 											});
@@ -363,8 +356,8 @@ public class CF0013 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F0013>(catalogoF0013, "F0013", listF0013,
+		listaGeneral = servicioF0013.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F0013>(catalogoF0013, "F0013", listaGeneral,
 				false, false, false, "Codigo moneda", "Descripcion", "Vlslz",
 				"Rutina cheques") {
 
@@ -373,7 +366,7 @@ public class CF0013 extends CGenerico {
 
 				List<F0013> lista = new ArrayList<F0013>();
 
-				for (F0013 f0013 : listF0013) {
+				for (F0013 f0013 : listaGeneral) {
 					if (f0013.getCvcrcd().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f0013.getCvdl01().toLowerCase()

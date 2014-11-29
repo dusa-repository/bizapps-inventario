@@ -2,6 +2,7 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -124,6 +125,7 @@ public class CF4931 extends CGenerico {
 	private Div divCatalogooTaxAreasV4008;
 	@Wire
 	private Button btnBuscarRifF0101;
+	protected List<F4931> listaGeneral = new ArrayList<F4931>();
 
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
@@ -220,10 +222,8 @@ public class CF4931 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+			
+				if (validar()) {
 					F4931 f4931 = new F4931();
 					String clavePk = txtVTYPF4931.getValue();
 
@@ -255,8 +255,8 @@ public class CF4931 extends CGenerico {
 					servicioF4931.guardar(f4931);
 					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF4931
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF4931.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 			}
 
@@ -429,8 +429,8 @@ public class CF4931 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		List<F4931> listF4931 = servicioF4931.buscarTodosOrdenados();
-		catalogo = new CatalogoF4931(catalogoF4931, "F4931", listF4931, false,
+		listaGeneral = servicioF4931.buscarTodosOrdenados();
+		catalogo = new CatalogoF4931(catalogoF4931, "F4931", listaGeneral, false,
 				"Tp veh", "Descripción", "Tipo transp", "Grupo dpch",
 				"Grupo 2 de desp", "Cap peso", "UM ps",
 				"Capacidad en vol cúbicos", "UM", "Capacidad de vol a granel",

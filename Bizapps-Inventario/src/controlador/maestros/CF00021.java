@@ -8,6 +8,7 @@ import java.util.List;
 import modelo.maestros.F00021;
 import modelo.maestros.F0005;
 import modelo.maestros.F0010;
+import modelo.maestros.F0101;
 import modelo.pk.F00021PK;
 
 import org.zkoss.zk.ui.Sessions;
@@ -65,6 +66,7 @@ public class CF00021 extends CGenerico {
 	private Label lblDescripcionF0010;
 	CatalogoGenerico<F00021> catalogo;
 	CatalogoGenerico<F0010> catalogoF0010;
+	protected List<F00021> listaGeneral = new ArrayList<F00021>();
 	Botonera botonera;
 	F00021PK clave = null;
 	CArbol arbol = new CArbol();
@@ -179,10 +181,7 @@ public class CF00021 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				if (validar()) {
 					String kco = txtKCOF00021.getValue();
 					String dct = buscadorDCT.obtenerCaja();
 					String smas = buscadorSMAS.obtenerCaja();
@@ -207,8 +206,8 @@ public class CF00021 extends CGenerico {
 					servicioF00021.guardar(f00021);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF00021
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF00021.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -234,8 +233,9 @@ public class CF00021 extends CGenerico {
 													servicioF00021
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF00021
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF00021
+															.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -257,8 +257,9 @@ public class CF00021 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF00021
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF00021
+															.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -441,9 +442,9 @@ public class CF00021 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F00021> compannias = servicioF00021.buscarTodosOrdenados();
+		listaGeneral = servicioF00021.buscarTodosOrdenados();
 		catalogo = new CatalogoGenerico<F00021>(catalogoF00021, "F00021",
-				compannias, false, true, true, "Compañia Documento",
+				listaGeneral, false, true, true, "Compañia Documento",
 				"Tipo Documento", "Igual a Tipo Doc", "Digito Incrus",
 				"Digito Verif", "Número Siguiente", "Reinicio Automático") {
 
@@ -452,7 +453,7 @@ public class CF00021 extends CGenerico {
 
 				List<F00021> compannia = new ArrayList<F00021>();
 
-				for (F00021 companniadoc : compannias) {
+				for (F00021 companniadoc : listaGeneral) {
 					String ck = "";
 					if (companniadoc.getNlck01() != null)
 						ck = companniadoc.getNlck01();
@@ -505,7 +506,7 @@ public class CF00021 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010",
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "Catalogo de Compañías",
 				lista, true, false, true, "Codigo", "Nombre", "Nº Periodo",
 				"Patron", "Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {
@@ -571,4 +572,25 @@ public class CF00021 extends CGenerico {
 				.getCcname());
 		catalogoF0010.setParent(null);
 	}
+	
+	
+	@Listen("onChange = #txtKCOF00021; onOK = #txtKCOF00021")
+	public boolean buscarCompania() {
+		if (txtKCOF00021.getValue() != null) {
+			F0010 f0010 = servicioF0010.buscar(txtKCOF00021.getValue());
+			if (f0010 != null) {
+				txtKCOF00021.setValue(f0010.getCcco());
+				lblDescripcionF0010.setValue(servicioF0010.buscar(f0010.getCcco())
+						.getCcname());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
+	}
+	
+	
+	
 }

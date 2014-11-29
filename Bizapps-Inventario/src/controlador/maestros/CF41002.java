@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F0004;
 import modelo.maestros.F0005;
 import modelo.maestros.F41002;
 import modelo.maestros.F4101;
-import modelo.pk.F0005PK;
 import modelo.pk.F41002PK;
 
 import org.zkoss.zk.ui.Sessions;
@@ -73,6 +71,7 @@ public class CF41002 extends CGenerico {
 	@Wire
 	private Button btnBuscarF4101;
 
+	protected List<F41002> listaGeneral = new ArrayList<F41002>();
 	Botonera botonera;
 	CatalogoGenerico<F41002> catalogoF41002;
 	CatalogoGenerico<F4101> catalogoF4101;
@@ -98,9 +97,8 @@ public class CF41002 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("00", "UM");
 
-		buscadorUMF41002 = new BuscadorUDC("De UM", 3,
-				true, "00", "UM",servicioF0005 , "25%",
-				"10%", "7%", "42%") {
+		buscadorUMF41002 = new BuscadorUDC("De UM", 3, true, "00", "UM",
+				servicioF0005, "25%", "10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -108,9 +106,8 @@ public class CF41002 extends CGenerico {
 			}
 		};
 
-		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, 
-				true, "00", "UM",servicioF0005 , "25%",
-				"10%", "7%", "42%") {
+		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, true, "00", "UM",
+				servicioF0005, "25%", "10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -193,10 +190,8 @@ public class CF41002 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+			
+				if (validar()) {
 					String expo = txtEXPOF41002.getValue();
 					String ustr = txtUSTRF41002.getValue();
 					String exso = txtEXSOF41002.getValue();
@@ -237,8 +232,8 @@ public class CF41002 extends CGenerico {
 					servicioF41002.guardar(f41002);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogoF41002.actualizarLista(servicioF41002
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF41002.buscarTodosOrdenados();
+					catalogoF41002.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -264,9 +259,8 @@ public class CF41002 extends CGenerico {
 													servicioF41002
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogoF41002
-															.actualizarLista(servicioF41002
-																	.buscarTodosOrdenados());
+													listaGeneral = servicioF41002.buscarTodosOrdenados();
+													catalogoF41002.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -288,9 +282,8 @@ public class CF41002 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogoF41002
-															.actualizarLista(servicioF41002
-																	.buscarTodosOrdenados());
+													listaGeneral = servicioF41002.buscarTodosOrdenados();
+													catalogoF41002.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -489,9 +482,9 @@ public class CF41002 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F41002> listF41002 = servicioF41002.buscarTodosOrdenados();
-		catalogoF41002 = new CatalogoGenerico<F41002>(divCatalogoF41002, "F41002",
-				listF41002, false, false, true, "Numero articulo",
+		listaGeneral = servicioF41002.buscarTodosOrdenados();
+		catalogoF41002 = new CatalogoGenerico<F41002>(divCatalogoF41002,
+				"F41002", listaGeneral, false, false, true, "Numero articulo",
 				"Descripcion", "De UM", "Cantidad", "A UM",
 				"Codigo estructura", "Excluir de OV", "Excluir de OC",
 				"Sec UM ventas", "Sec UM compras") {
@@ -501,7 +494,7 @@ public class CF41002 extends CGenerico {
 
 				List<F41002> listF41002_2 = new ArrayList<F41002>();
 
-				for (F41002 f41002 : listF41002) {
+				for (F41002 f41002 : listaGeneral) {
 					F4101 f4101 = servicioF4101.buscar(f41002.getId()
 							.getUmitm());
 					if (String.valueOf(f41002.getId().getUmitm().longValue())
@@ -563,7 +556,7 @@ public class CF41002 extends CGenerico {
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
 		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101,
-				"Catalogo de Maestro de Articulos", listF4101, true, false,
+				"Catalogo de Artículos", listF4101, true, false,
 				true, "Codigo", "Descripcion") {
 
 			@Override

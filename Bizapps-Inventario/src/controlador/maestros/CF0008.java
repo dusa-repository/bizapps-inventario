@@ -8,10 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F0004;
 import modelo.maestros.F0005;
 import modelo.maestros.F0008;
-import modelo.pk.F0004PK;
 import modelo.pk.F0008PK;
 
 import org.zkoss.zk.ui.Sessions;
@@ -76,6 +74,7 @@ public class CF0008 extends CGenerico {
 	private Groupbox gpxDatosF0008;
 	@Wire
 	private Div catalogoF0008;
+	protected List<F0008> listaGeneral = new ArrayList<F0008>();
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
 
@@ -185,10 +184,8 @@ public class CF0008 extends CGenerico {
 			@Override
 			public void guardar() {
 				// TODO Auto-generated method stub
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+			
+				if (validar()) {
 
 					if (validarFechas()) {
 
@@ -252,8 +249,8 @@ public class CF0008 extends CGenerico {
 						servicioF0008.guardar(fooo8);
 						msj.mensajeInformacion(Mensaje.guardado);
 						limpiar();
-						catalogo.actualizarLista(servicioF0008
-								.buscarTodosOrdenados());
+						listaGeneral = servicioF0008.buscarTodosOrdenados();
+						catalogo.actualizarLista(listaGeneral);
 
 					}
 
@@ -305,8 +302,8 @@ public class CF0008 extends CGenerico {
 													servicioF0008
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF0008
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF0008.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -328,8 +325,8 @@ public class CF0008 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF0008
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF0008.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -680,8 +677,8 @@ public class CF0008 extends CGenerico {
 
 	public void mostrarCatalogo() {
 
-		final List<F0008> listF0008 = servicioF0008.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F0008>(catalogoF0008, "F0008", listF0008,
+		listaGeneral = servicioF0008.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F0008>(catalogoF0008, "F0008", listaGeneral,
 				false, true, true, "Patrón fecha", "Fecha inicial",
 				"Fin periodo 01", "Fin periodo 02", "Fin periodo 03",
 				"Fin periodo 04", "Fin periodo 05", "Fin periodo 06",
@@ -693,7 +690,7 @@ public class CF0008 extends CGenerico {
 			protected List<F0008> buscar(List<String> valores) {
 				List<F0008> lista = new ArrayList<F0008>();
 
-				for (F0008 f0008 : listF0008) {
+				for (F0008 f0008 : listaGeneral) {
 					if (f0008.getId().getCddtpn().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& formatoFecha

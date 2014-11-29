@@ -8,22 +8,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F0005;
-import modelo.maestros.F0006;
-import modelo.maestros.F0008;
-import modelo.maestros.F0010;
-import modelo.maestros.F0013;
 import modelo.maestros.F0101;
-import modelo.maestros.F40203;
-import modelo.maestros.F4100;
-import modelo.maestros.F4105;
-import modelo.maestros.F49041;
 import modelo.maestros.F4930;
 import modelo.maestros.F4931;
-import modelo.pk.F0005PK;
-import modelo.pk.F0008PK;
-import modelo.pk.F49041PK;
-import modelo.transacciones.F4111;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -105,6 +92,7 @@ public class CF4930 extends CGenerico {
 
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
+	protected List<F4930> listaGeneral = new ArrayList<F4930>();
 
 	String clave = null;
 
@@ -185,10 +173,7 @@ public class CF4930 extends CGenerico {
 			@Override
 			public void guardar() {
 
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				if (validar()) {
 
 					F4930 f4930 = new F4930();
 					f4930.setVmvehi(txtVEHIF4930.getValue());
@@ -207,8 +192,8 @@ public class CF4930 extends CGenerico {
 					servicioF4930.guardar(f4930);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF4930
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF4930.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -234,8 +219,8 @@ public class CF4930 extends CGenerico {
 													servicioF4930
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF4930
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF4930.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -257,8 +242,8 @@ public class CF4930 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF4930
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF4930.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});

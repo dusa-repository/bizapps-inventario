@@ -7,8 +7,6 @@ import java.util.List;
 
 import modelo.maestros.F0005;
 import modelo.maestros.F40203;
-import modelo.maestros.F40203;
-import modelo.pk.F40203PK;
 import modelo.pk.F40203PK;
 
 import org.zkoss.zk.ui.Sessions;
@@ -84,6 +82,7 @@ public class CF40203 extends CGenerico {
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
+	protected List<F40203> listaGeneral = new ArrayList<F40203>();
 
 	Botonera botonera;
 	F40203PK clave = null;
@@ -281,10 +280,8 @@ public class CF40203 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+			
+				if (validar()) {
 					String dcto = buscadorDCTO.obtenerCaja();
 					String lnty = buscadorNTYF.obtenerCaja();
 					String trty = buscadorTRTY.obtenerCaja();
@@ -316,8 +313,8 @@ public class CF40203 extends CGenerico {
 					servicioF40203.guardar(f40203);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF40203
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF40203.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -343,8 +340,8 @@ public class CF40203 extends CGenerico {
 													servicioF40203
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF40203
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF40203.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -366,8 +363,8 @@ public class CF40203 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF40203
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF40203.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -553,8 +550,8 @@ public class CF40203 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F40203> actividades = servicioF40203.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F40203>(catalogoF40203, "F40203", actividades,
+		listaGeneral = servicioF40203.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F40203>(catalogoF40203, "F40203", listaGeneral,
 				false, false, true, "Tipo Orden", "Tipo Línea",
 				"Último estado", "Descripción", "Est sig", "Otros 1",
 				"Otros 2", "Otros 3", "Otros 4", "Otros 5", "LM (Y/M)") {
@@ -564,7 +561,7 @@ public class CF40203 extends CGenerico {
 
 				List<F40203> actividad = new ArrayList<F40203>();
 
-				for (F40203 actividadord : actividades) {
+				for (F40203 actividadord : listaGeneral) {
 					if (actividadord.getId().getFsdcto().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& actividadord.getId().getFslnty().toLowerCase()

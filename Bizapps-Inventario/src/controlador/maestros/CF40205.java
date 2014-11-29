@@ -6,11 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0005;
-import modelo.maestros.F0010;
-import modelo.maestros.F0101;
-import modelo.maestros.F0115;
 import modelo.maestros.F40205;
-import modelo.pk.F0115PK;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -98,6 +94,7 @@ public class CF40205 extends CGenerico {
 	private Groupbox gpxRegistroF40205;
 	Botonera botonera;
 	CatalogoGenerico<F40205> catalogo;
+	protected List<F40205> listaGeneral = new ArrayList<F40205>();
 	String clave = null;
 
 	@Override
@@ -254,10 +251,8 @@ public class CF40205 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+			
+				if (validar()) {
 
 					F40205 f40 = new F40205();
 					f40.setLflnty(txtLntyF40205.getValue());
@@ -356,10 +351,10 @@ public class CF40205 extends CGenerico {
 						f40.setLftxyn("N");
 
 					servicioF40205.guardar(f40);
-					catalogo.actualizarLista(servicioF40205
-							.buscarTodosOrdenados());
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
+					listaGeneral = servicioF40205.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 
 				}
 			}
@@ -385,8 +380,8 @@ public class CF40205 extends CGenerico {
 													servicioF40205
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF40205
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF40205.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -408,8 +403,8 @@ public class CF40205 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF40205
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF40205.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -614,9 +609,9 @@ public class CF40205 extends CGenerico {
 	}
 
 	private void mostrarCatalogo() {
-		final List<F40205> listF40205 = servicioF40205.buscarTodosOrdenados();
+		listaGeneral = servicioF40205.buscarTodosOrdenados();
 		catalogo = new CatalogoGenerico<F40205>(catalogoF40205, "F40205",
-				listF40205, false, false, false, "Tipo Linea", "Descripcion",
+				listaGeneral, false, false, false, "Tipo Linea", "Descripcion",
 				"Interf Inv", "C/P", "C/C", "LM", "AS/G", "Compensacion LM") {
 
 			@Override
@@ -624,7 +619,7 @@ public class CF40205 extends CGenerico {
 
 				List<F40205> lista = new ArrayList<F40205>();
 
-				for (F40205 f01 : listF40205) {
+				for (F40205 f01 : listaGeneral) {
 					if (f01.getLflnty().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f01.getLflnds().toLowerCase()

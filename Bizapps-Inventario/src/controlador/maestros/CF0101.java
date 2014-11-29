@@ -22,16 +22,13 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import modelo.maestros.F00021;
-import modelo.maestros.F0004;
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
-import modelo.maestros.F0013;
 import modelo.maestros.F0101;
 import modelo.maestros.F0111;
 import modelo.maestros.F0115;
 import modelo.maestros.F01151;
 import modelo.maestros.F0116;
-import modelo.maestros.F4100;
 import modelo.pk.F00021PK;
 import modelo.pk.F0111PK;
 import modelo.pk.F0116PK;
@@ -41,7 +38,6 @@ import componentes.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoF0006;
 import componentes.catalogos.CatalogoF0101;
-import componentes.catalogos.CatalogoGenerico;
 
 public class CF0101 extends CGenerico {
 
@@ -300,6 +296,7 @@ public class CF0101 extends CGenerico {
 	private Div catalogoF0006F0101;
 	@Wire
 	private Div DivCatalogoF0101;
+	protected List<F0101> listaGeneral = new ArrayList<F0101>();
 
 	Botonera botonera;
 	CatalogoF0101 catalogo;
@@ -578,10 +575,8 @@ public class CF0101 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == 0)
-					guardar = validar();
-				if (guardar) {
+			
+				if (validar()) {
 					F0101 f01 = new F0101();
 					double claveLong = 0;
 					synchronized (this) {
@@ -746,8 +741,8 @@ public class CF0101 extends CGenerico {
 
 					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF0101
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF0101.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 			}
 
@@ -791,8 +786,8 @@ public class CF0101 extends CGenerico {
 															"onOK")) {
 														servicioF0101
 																.eliminarVarios(eliminarLista);
-														catalogo.actualizarLista(servicioF0101
-																.buscarTodosOrdenados());
+														listaGeneral = servicioF0101.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
 														if (cantidad != eliminarLista
 																.size())
 															Mensaje.mensajeInformacion(Mensaje.algunosEliminados);
@@ -829,8 +824,8 @@ public class CF0101 extends CGenerico {
 																.eliminarUno(clave);
 														Mensaje.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
-														catalogo.actualizarLista(servicioF0101
-																.buscarTodosOrdenados());
+														listaGeneral = servicioF0101.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
 													}
 												}
 											});
@@ -1122,8 +1117,8 @@ public class CF0101 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogo = new CatalogoF0101(catalogoF0101, "F0013", listF0101, false,
+		listaGeneral = servicioF0101.buscarTodosOrdenados();
+		catalogo = new CatalogoF0101(catalogoF0101, "F0013", listaGeneral, false,
 				"Nº direccion", "Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal");
 		catalogo.setParent(catalogoF0101);
@@ -1134,7 +1129,7 @@ public class CF0101 extends CGenerico {
 		Button boton = (Button) evento.getTarget();
 		idBoton = boton.getId();
 		List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoDivF0101 = new CatalogoF0101(DivCatalogoF0101, "CatalogoF0013",
+		catalogoDivF0101 = new CatalogoF0101(DivCatalogoF0101, "Catalogo de Direcciones",
 				listF0101, true, "Nº direccion", "Nombre alfabetico",
 				"Direccion larga", "Clasificacion industria", "Tipo bus",
 				"ID fiscal");
@@ -1179,31 +1174,37 @@ public class CF0101 extends CGenerico {
 		label.setValue(f0101.getAbalph());
 	}
 
-	@Listen("onChange = #txtAN81F0101, #txtAN82F0101, #txtAN83F0101, #txtAN84F0101, #txtAN85F0101, #txtFactorF0101")
+	@Listen("onChange = #txtNPrincipal, #txtAN81F0101, #txtAN82F0101, #txtAN83F0101, #txtAN84F0101, #txtAN85F0101, #txtFactorF0101; onOk = #txtNPrincipal, #txtAN81F0101, #txtAN82F0101, #txtAN83F0101, #txtAN84F0101, #txtAN85F0101, #txtFactorF0101")
 	public void buscarNombre(Event evento) {
 		F0101 f0101 = new F0101();
 		Longbox txt = (Longbox) evento.getTarget();
 		switch (txt.getId()) {
+		case "txtNPrincipal":
+			f0101 = servicioF0101.buscar(txtNPrincipal.getValue());
+			setearValores(f0101, txtNPrincipal, lblDireccion0F0101);
+			break;
 		case "txtAN81F0101":
 			f0101 = servicioF0101.buscar(txtAN81F0101.getValue());
-			// setearValores(f0101, txtAN81F0101, lblDireccion0F0101);
+			setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
 			break;
-		case "btnBuscarDireccion1":
-			// setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
-			break;
-		case "btnBuscarDireccion2":
+		case "txtAN82F0101":
+			f0101 = servicioF0101.buscar(txtAN82F0101.getValue());
 			setearValores(f0101, txtAN82F0101, lblDireccion2F0101);
 			break;
-		case "btnBuscarDireccion3":
+		case "txtAN83F0101":
+			f0101 = servicioF0101.buscar(txtAN83F0101.getValue());
 			setearValores(f0101, txtAN83F0101, lblDireccion3F0101);
 			break;
-		case "btnBuscarDireccion4":
+		case "txtAN84F0101":
+			f0101 = servicioF0101.buscar(txtAN84F0101.getValue());
 			setearValores(f0101, txtAN84F0101, lblDireccion4F0101);
 			break;
-		case "btnBuscarDireccion5":
+		case "txtAN85F0101":
+			f0101 = servicioF0101.buscar(txtAN85F0101.getValue());
 			setearValores(f0101, txtAN85F0101, lblDireccion5F0101);
 			break;
-		case "btnBuscarFactor":
+		case "txtFactorF0101":
+			f0101 = servicioF0101.buscar(txtFactorF0101.getValue());
 			setearValores(f0101, txtFactorF0101, lblFactorF0101);
 			break;
 		default:
@@ -1214,7 +1215,7 @@ public class CF0101 extends CGenerico {
 	@Listen("onClick = #btnBuscarUnidades")
 	public void mostrarCatalogoF0004() {
 		List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new CatalogoF0006(catalogoF0006F0101, "F0006",
+		catalogoF0006 = new CatalogoF0006(catalogoF0006F0101, "Catalogo de Unidades de Negocio",
 				unidades, true, "Unidad Negocio", "Descripcion", "Nivel det",
 				"Cta", "Tipo UN", "LM Auxiliar Inactivo", "Mto Cons", "CAT 01",
 				"CAT 02", "CAT 03", "CAT 04", "CAT 05", "CAT 06");
@@ -1229,6 +1230,24 @@ public class CF0101 extends CGenerico {
 		lblMCUF0101.setValue(f0006.getMcdl01());
 		catalogoF0006.setParent(null);
 	}
+	
+	
+	@Listen("onChange = #txtMCUF0101; onOk = #txtMCUF0101")
+	public boolean buscarUnidades() {
+		if (txtMCUF0101.getValue() != null) {
+			F0006 f0006 = servicioF0006.buscar(txtMCUF0101.getValue());
+			if (f0006 != null) {
+				txtMCUF0101.setValue(f0006.getMcmcu());
+				lblMCUF0101.setValue(f0006.getMcdl01());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
+	}
+	
 
 	private void cargarBuscadores() {
 

@@ -72,14 +72,23 @@ public class CatalogoF0010 extends CatalogoGenerico<F0010> {
 		registros[1] = f0010.getCcname();
 		registros[2] = f0010.getCccald();
 		registros[3] = f0010.getCcdtpn();
-		registros[4] = Convertidor.formatoFecha.format(Convertidor
-				.transformarJulianaAGregoria(f0010.getCcdfyj()));
+		if (f0010.getCcdfyj() != null)
+			registros[4] = Convertidor.formatoFecha.format(Convertidor
+					.transformarJulianaAGregoria(f0010.getCcdfyj()));
+		else
+			registros[4] = "";
 		registros[5] = String.valueOf(f0010.getCcpnc());
-		registros[6] = Convertidor.formatoFecha.format(Convertidor
-				.transformarJulianaAGregoria(f0010.getCcapfj()));
+		if (f0010.getCcapfj() != null)
+			registros[6] = Convertidor.formatoFecha.format(Convertidor
+					.transformarJulianaAGregoria(f0010.getCcapfj()));
+		else
+			registros[6] = "";
 		registros[7] = String.valueOf(f0010.getCcappn());
-		registros[8] = Convertidor.formatoFecha.format(Convertidor
-				.transformarJulianaAGregoria(f0010.getCcarfj()));
+		if (f0010.getCcarfj() != null)
+			registros[8] = Convertidor.formatoFecha.format(Convertidor
+					.transformarJulianaAGregoria(f0010.getCcarfj()));
+		else
+			registros[8] = "";
 		registros[9] = String.valueOf(f0010.getCcarpn());
 		registros[10] = String.valueOf(f0010.getCcpnf());
 		return registros;

@@ -9,19 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F0005;
-import modelo.maestros.F0006;
-import modelo.maestros.F0008;
-import modelo.maestros.F0010;
-import modelo.maestros.F0013;
 import modelo.maestros.F0101;
-import modelo.maestros.F40203;
-import modelo.maestros.F4100;
-import modelo.maestros.F4105;
 import modelo.maestros.F49041;
-import modelo.pk.F0005PK;
-import modelo.pk.F0008PK;
 import modelo.pk.F49041PK;
-import modelo.transacciones.F4111;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -85,6 +75,7 @@ public class CF49041 extends CGenerico {
 
 	private static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
+	protected List<F49041> listaGeneral = new ArrayList<F49041>();
 
 	Botonera botonera;
 	CatalogoGenerico<F49041> catalogo;
@@ -179,10 +170,7 @@ public class CF49041 extends CGenerico {
 			@Override
 			public void guardar() {
 
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				if (validar()) {
 
 					double stfn = Double.valueOf(txtSTFNF49041.getValue());
 					String shft = buscadorSHFT.obtenerCaja();
@@ -205,8 +193,8 @@ public class CF49041 extends CGenerico {
 					servicioF49041.guardar(f49041);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioF49041
-							.buscarTodosOrdenados());
+					listaGeneral = servicioF49041.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -232,8 +220,8 @@ public class CF49041 extends CGenerico {
 													servicioF49041
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF49041
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF49041.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -255,8 +243,8 @@ public class CF49041 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF49041
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF49041.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -377,8 +365,8 @@ public class CF49041 extends CGenerico {
 
 	public void mostrarCatalogo() {
 
-		final List<F49041> choferes = servicioF49041.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F49041>(divCatalogoF49041, "F49041", choferes,
+		listaGeneral = servicioF49041.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F49041>(divCatalogoF49041, "F49041", listaGeneral ,
 				false, false, true, "N° empleado", "Nombre empleado",
 				"Depósito", "Tipo pto", "Descripción del empleo",
 				"ID vehículo", "turno", "Fecha efectiva", "Fecha vto") {
@@ -388,7 +376,7 @@ public class CF49041 extends CGenerico {
 
 				List<F49041> chofer = new ArrayList<F49041>();
 
-				for (F49041 choferesv : choferes) {
+				for (F49041 choferesv : listaGeneral) {
 					if (String.valueOf(choferesv.getId().getVsstfn())
 							.toLowerCase()
 							.contains(valores.get(0).toLowerCase())

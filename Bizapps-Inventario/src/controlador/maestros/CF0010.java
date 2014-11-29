@@ -7,13 +7,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F0004;
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0010;
 import modelo.maestros.F0013;
 import modelo.maestros.F0101;
-import modelo.pk.F0004PK;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -104,6 +102,7 @@ public class CF0010 extends CGenerico {
 	private Groupbox gpxDatosF0010;
 	@Wire
 	private Groupbox gpxRegistroF0010;
+	protected List<F0010> listaGeneral = new ArrayList<F0010>();
 
 	Botonera botonera;
 	CatalogoF0010 catalogo;
@@ -185,15 +184,18 @@ public class CF0010 extends CGenerico {
 						dpnPeriodoCobrarF0010.setValue(f010.getCcarpn());
 						dpnPeriodoInformeF0010.setValue(f010.getCcpnf());
 						dpnAnnoInformeF0010.setValue(f010.getCcfry());
-						dtbFechaCobrarF0010
-								.setValue(transformarJulianaAGregoria(f010
-										.getCcarfj()));
-						dtbFechaGeneralF0010
-								.setValue(transformarJulianaAGregoria(f010
-										.getCcdfyj()));
-						dtbFechaPagarF0010
-								.setValue(transformarJulianaAGregoria(f010
-										.getCcapfj()));
+						if (f010.getCcarfj() != null)
+							dtbFechaCobrarF0010
+									.setValue(transformarJulianaAGregoria(f010
+											.getCcarfj()));
+						if (f010.getCcdfyj() != null)
+							dtbFechaGeneralF0010
+									.setValue(transformarJulianaAGregoria(f010
+											.getCcdfyj()));
+						if (f010.getCcapfj() != null)
+							dtbFechaPagarF0010
+									.setValue(transformarJulianaAGregoria(f010
+											.getCcapfj()));
 						if (f010.getCcdprc().equals("1"))
 							chxTransitoria.setChecked(true);
 						else
@@ -228,10 +230,8 @@ public class CF0010 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+
+				if (validar()) {
 
 					F0010 f010 = new F0010();
 					Long lon;
@@ -251,12 +251,15 @@ public class CF0010 extends CGenerico {
 					f010.setCcarpn(dpnPeriodoCobrarF0010.getValue());
 					f010.setCcpnf(dpnPeriodoInformeF0010.getValue());
 					f010.setCcfry(dpnAnnoInformeF0010.getValue());
-					f010.setCcarfj(transformarGregorianoAJulia(dtbFechaCobrarF0010
-							.getValue()));
-					f010.setCcdfyj(transformarGregorianoAJulia(dtbFechaGeneralF0010
-							.getValue()));
-					f010.setCcapfj(transformarGregorianoAJulia(dtbFechaPagarF0010
-							.getValue()));
+					if (dtbFechaCobrarF0010.getValue() != null)
+						f010.setCcarfj(transformarGregorianoAJulia(dtbFechaCobrarF0010
+								.getValue()));
+					if (dtbFechaGeneralF0010.getValue() != null)
+						f010.setCcdfyj(transformarGregorianoAJulia(dtbFechaGeneralF0010
+								.getValue()));
+					if (dtbFechaPagarF0010.getValue() != null)
+						f010.setCcapfj(transformarGregorianoAJulia(dtbFechaPagarF0010
+								.getValue()));
 					f010.setCcupmj(transformarGregorianoAJulia(fecha));
 					f010.setCcupmt(Double.valueOf(horaAuditoria));
 					f010.setCcuser("JDE");
@@ -269,10 +272,10 @@ public class CF0010 extends CGenerico {
 					else
 						f010.setCcabin("0");
 					servicioF0010.guardar(f010);
-					catalogo.actualizarLista(servicioF0010
-							.buscarTodosOrdenados());
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
+					listaGeneral = servicioF0010.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 
 				}
 			}
@@ -309,8 +312,9 @@ public class CF0010 extends CGenerico {
 															"onOK")) {
 														servicioF0010
 																.eliminarVarios(eliminarLista);
-														catalogo.actualizarLista(servicioF0010
-																.buscarTodosOrdenados());
+														listaGeneral = servicioF0010
+																.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
 
 														if (cantidad != eliminarLista
 																.size())
@@ -343,8 +347,9 @@ public class CF0010 extends CGenerico {
 																.eliminarUno(clave);
 														msj.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
-														catalogo.actualizarLista(servicioF0010
-																.buscarTodosOrdenados());
+														listaGeneral = servicioF0010
+																.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
 													}
 												}
 											});
@@ -413,9 +418,9 @@ public class CF0010 extends CGenerico {
 		dpnPeriodoCobrarF0010.setValue((double) 0);
 		dpnPeriodoInformeF0010.setValue((double) 0);
 		dpnAnnoInformeF0010.setValue((double) 0);
-		dtbFechaCobrarF0010.setValue(fecha);
-		dtbFechaGeneralF0010.setValue(fecha);
-		dtbFechaPagarF0010.setValue(fecha);
+		dtbFechaCobrarF0010.setValue(null);
+		dtbFechaGeneralF0010.setValue(null);
+		dtbFechaPagarF0010.setValue(null);
 		txtCCCOF0010.setFocus(true);
 		lblMonedaF0010.setValue("");
 	}
@@ -531,9 +536,9 @@ public class CF0010 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogo = new CatalogoF0010(catalogoF0010, "F0010", lista, false,
-				"Codigo", "Nombre", "Nº Periodo", "Patron fechas",
+		listaGeneral = servicioF0010.buscarTodosOrdenados();
+		catalogo = new CatalogoF0010(catalogoF0010, "F0010", listaGeneral,
+				false, "Codigo", "Nombre", "Nº Periodo", "Patron fechas",
 				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C",
 				"Periodo financiero");
@@ -543,15 +548,15 @@ public class CF0010 extends CGenerico {
 	@Listen("onClick = #btnBuscarDireccion")
 	public void mostrarCatalogoDireccion() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoD = new CatalogoF0101(catalogoDireccionF0010, "CatalogoF0013",
-				listF0101, true, "Nº direccion", "Nombre alfabetico",
-				"Direccion larga", "Clasificacion industria", "Tipo bus",
-				"ID fiscal");
+		catalogoD = new CatalogoF0101(catalogoDireccionF0010,
+				"Catalogo de Direcciones", listF0101, true, "Nº direccion",
+				"Nombre alfabetico", "Direccion larga",
+				"Clasificacion industria", "Tipo bus", "ID fiscal");
 		catalogoD.setParent(catalogoDireccionF0010);
 		catalogoD.doModal();
 	}
 
-	@Listen("onChange = #txtAn8F0010")
+	@Listen("onChange = #txtAn8F0010; onOk= #txtAn8F0010 ")
 	public void buscarDireccion() {
 		if (txtAn8F0010.getValue() != null) {
 			F0101 f0101 = servicioF0101.buscar(txtAn8F0010.getValue());
@@ -583,8 +588,9 @@ public class CF0010 extends CGenerico {
 	@Listen("onClick = #btnBuscarMoneda")
 	public void mostrarCatalogoMoneda() throws IOException {
 		List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoM = new CatalogoF0013(catalogoMonedaF0010, "F0013", listF0013,
-				true, "Codigo", "Descripcion", "Vlslz", "Rutina Cheques");
+		catalogoM = new CatalogoF0013(catalogoMonedaF0010,
+				"Catalogo de Monedas y Tarifas", listF0013, true, "Codigo",
+				"Descripcion", "Vlslz", "Rutina Cheques");
 		catalogoM.setParent(catalogoMonedaF0010);
 		catalogoM.doModal();
 	}
@@ -597,7 +603,7 @@ public class CF0010 extends CGenerico {
 		catalogoM.setParent(null);
 	}
 
-	@Listen("onChange = #txtCCCRCDF0010")
+	@Listen("onChange = #txtCCCRCDF0010; onOk = #txtCCCRCDF0010")
 	public void buscarNombre() {
 		F0013 f0013 = servicioF0013.buscar(txtCCCRCDF0010.getValue());
 		if (f0013 != null) {

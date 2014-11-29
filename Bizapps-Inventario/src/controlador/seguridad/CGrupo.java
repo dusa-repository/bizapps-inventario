@@ -67,6 +67,7 @@ public class CGrupo extends CGenerico {
 	TreeModel _model;
 	CatalogoGenerico<Grupo> catalogo;
 	public static List<String> funcionalidades = new ArrayList<String>();
+	protected List<Grupo> listaGeneral = new ArrayList<Grupo>();
 	Botonera botonera;
 
 	@Override
@@ -125,10 +126,7 @@ public class CGrupo extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (id ==0)
-					guardar = validar();
-				if (guardar) {				
+				if (validar()) {				
 					List<Arbol> listaArbol = servicioArbol.listarArbol();
 					Set<Arbol> arboles = new HashSet<Arbol>();
 					Treechildren treeChildren = treeGrupo.getTreechildren();
@@ -154,8 +152,8 @@ public class CGrupo extends CGenerico {
 						servicioGrupo.guardarGrupo(grupo1);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					catalogo.actualizarLista(servicioGrupo
-							.buscarTodosOrdenados());
+					listaGeneral = servicioGrupo.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 
 			}
@@ -181,8 +179,8 @@ public class CGrupo extends CGenerico {
 													servicioGrupo
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioGrupo
-															.buscarTodosOrdenados());
+													listaGeneral = servicioGrupo.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -204,8 +202,8 @@ public class CGrupo extends CGenerico {
 															.eliminarUno(id);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioGrupo
-															.buscarTodosOrdenados());
+													listaGeneral = servicioGrupo.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -243,9 +241,9 @@ public class CGrupo extends CGenerico {
 	}
 
 	private void mostrarCatalogo() {
-		final List<Grupo> grupos = servicioGrupo.buscarTodosOrdenados();
+		listaGeneral = servicioGrupo.buscarTodosOrdenados();
 		catalogo = new CatalogoGenerico<Grupo>(divCatalogoGrupo, "Catalogo de Grupos",
-				grupos, false,false,false,"Nombre") {
+				listaGeneral, false,false,false,"Nombre") {
 			@Override
 			protected String[] crearRegistros(Grupo grupo) {
 				String[] registros = new String[1];
@@ -256,7 +254,7 @@ public class CGrupo extends CGenerico {
 			protected List<Grupo> buscar(List<String> valores) {
 				List<Grupo> lista = new ArrayList<Grupo>();
 
-				for (Grupo grupo : grupos) {
+				for (Grupo grupo : listaGeneral) {
 					if (grupo.getNombre().toLowerCase()
 							.contains(valores.get(0).toLowerCase())) {
 						lista.add(grupo);
