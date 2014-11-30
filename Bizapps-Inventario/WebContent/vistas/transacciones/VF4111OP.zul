@@ -1,0 +1,394 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF4111OP">
+		<groupbox width="auto" mold="3d"
+			title="Por OP (VF4111OP)">
+			<div id="botoneraF4111OP" />
+			<separator />
+			<groupbox class="azul" id="gpxRegistroF4111OP" width="auto"
+				title="" open="true">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para Registrar un Nuevo Encabezado de ordenes" />
+				<separator />
+				<separator />
+				<groupbox class="azul" id="gpxRegistro1F4111OP"
+					width="auto" title="" open="true">
+					<separator />
+					<hbox>
+						<grid>
+							<columns visible="false">
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+							</columns>
+							<rows>
+								<row>
+									<cell colspan="4">
+										<div id="divBuscadorDOCO"
+											hflex="1" />
+									</cell>
+									<cell colspan="4">
+										<div id="divBuscadorSUB"
+											hflex="1" />
+									</cell>
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Fecha documento:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<datebox width="100%"
+										id="dtbDGLF4111OP" format="dd-MM-yyyy"
+										tooltiptext="Ingrese la Fecha del documento (ILDGL)" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label class="etiqueta"
+											value="Enviado a Sap?:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<radio id="ra1" label="SI"
+										radiogroup="rdoREF4111OP" disabled="true" />
+									<radio id="ra2" label="NO"
+										checked="true" radiogroup="rdoREF4111OP" disabled="true" />
+									<radiogroup id="rdoREF4111OP" />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Fecha Vencimiento:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<datebox width="100%"
+										id="dtbVPEJF4111OP" format="dd-MM-yyyy"
+										tooltiptext="Ingrese la Fecha de vencimiento (ILVPEJ)" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label class="etiqueta"
+											value="Proveedor:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublebox id="txtAN8F4111OP"
+										hflex="1" maxlength="100"
+										tooltiptext="Ingrese el proveedor (ILAN8)" readonly="true" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Fecha licores/Caleta:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<datebox width="100%"
+										id="dtbHDGJF4111OP" format="dd-MM-yyyy"
+										tooltiptext="Ingrese la Fecha licores/Caleta: (ILHDGJ)" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label class="etiqueta"
+											value="Bill of Loading (B/L):" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtASIDF4111OP"
+										hflex="1" maxlength="100"
+										tooltiptext="Ingrese el Bill of Loading (ILASID)" value="" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Fecha contabilizacion" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<datebox readonly="true"
+										width="100%" id="dtbTRDJF4111OP" format="dd-MM-yyyy"
+										tooltiptext="(ILTRDJ)" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label class="etiqueta"
+											value="IDOC:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublebox id="txtSHANF4111OP"
+										hflex="1" maxlength="100" readonly="true"
+										tooltiptext="Ingrese IDOC (ILSHAN)" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Nº Documento:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublebox id="txtDOCF4111OP"
+										hflex="1" maxlength="100" tooltiptext="(ILDOC)"
+										readonly="true" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label class="etiqueta"
+											value="STO:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublebox id="txtOPSQF4111OP"
+										hflex="1" maxlength="100" tooltiptext="(ILOPSQ)"
+										readonly="true" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Lote Produccion:" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtTREXF4111OP"
+										hflex="1" maxlength="100" tooltiptext="(ILTREX)" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label class="etiqueta"
+											value="DELIVERY" />
+										<space />
+										<label value="*"
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<doublebox id="txtRFLNF4111OP"
+										hflex="1" maxlength="100" tooltiptext="(ILRFLN)"
+										readonly="true" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<cell colspan="4">
+										<div id="divBuscadorSBL"
+											hflex="1" />
+									</cell>
+									<hbox />
+									<hbox />
+									<hbox />
+									<hbox />
+								</row>
+							</rows>
+						</grid>
+					</hbox>
+				</groupbox>
+				<separator />
+				<div align="center" width="100%">
+					<hbox widths="95%,5%">
+						<listbox id="ltbItems" span="true"
+							height="230px" width="100%">
+							<listhead>
+								<listheader label="Linea" hflex="min" />
+								<listheader label="Articulo"
+									hflex="min" />
+								<listheader label="Descripcion"
+									hflex="min" />
+								<listheader label="UM" hflex="min" />
+								<listheader label="Cantidad Original"
+									hflex="min" />
+								<listheader
+									label="Cantidad Recepcionada" hflex="min" />
+								<listheader label="Cantidad Pendiente"
+									hflex="min" />
+								<listheader label="Fecha Orden"
+									hflex="min" />
+								<listheader label="Almacen Original"
+									hflex="min" />
+							</listhead>
+							<template name="model">
+								<listitem>
+									<listcell label="${each.id.pdlnid}" />
+									<!-- PK F4311PK PDLNID  -->
+									<listcell label="${each.pdlitm}" />
+									<!-- F4311 PDLITM  -->
+									<listcell label="${each.pddsc1}" />
+									<!-- F4311 PDDSC1 -->
+									<listcell label="${each.pduom}" />
+									<!-- F4311 PDUOM-->
+									<listcell label="${each.pdpqor}" />
+									<!-- F4311 PDPQOR -->
+									<listcell label="Cant.Resepcionada" />
+									<!-- PENDIENTE -->
+									<listcell label="Cant. Pendiente" />
+									<!-- PENDIENTE -->
+									<listcell label="${each.pdtrdj}" />
+									<!-- F4311 PDTRDJ -->
+									<listcell label="Almacen Original" />
+									<!-- NO LO CONSEGUI EN EL MODELO F4311-->
+								</listitem>
+							</template>
+						</listbox>
+					</hbox>
+				</div>
+				<div align="center" width="100%">
+					<groupbox id="gpxItems" visible="true"
+						class="blanco" title="" closable="false">
+						<caption label="Detalle"
+							style="font-weight:bold; font-size: 12px" />
+						<separator />
+						<grid width="93%">
+							<columns visible="false">
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+								<column label="" width="12.5%" />
+							</columns>
+							<rows>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Linea:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red" />
+									</hbox>
+									<doublebox id="txtLNIDF4111OP"
+										hflex="1" maxlength="19"
+										tooltiptext="Numero del articulo (LILNID)" readonly="true" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label id="lblLITMF4111OP"
+											class="etiqueta" value="Articulo:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red">
+										</label>
+									</hbox>
+									<textbox id="txtLITMF4111OP"
+										hflex="1" maxlength="19" tooltiptext="" readonly="true" />
+									<textbox id="txtLITM2F4111OP"
+										hflex="1" maxlength="19" tooltiptext="" readonly="true" />
+									<hbox />
+								</row>
+								<row>
+									<cell colspan="4">
+										<div id="divBuscadorMCU"
+											hflex="1" />
+									</cell>
+									<hbox>
+										<label class="etiqueta"
+											value="Tipo Movimiento" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red" />
+									</hbox>
+									<textbox id="txtDCTF4111OP"
+										hflex="1" maxlength="19" tooltiptext="(ILDCT)" readonly="true"
+										value="OV" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<cell colspan="4">
+										<div id="divBuscadorLOCN"
+											hflex="1" />
+									</cell>
+									<hbox>
+										<label class="etiqueta"
+											value="Tipo de Stock" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red" />
+									</hbox>
+									<textbox id="txtXF4111OP" hflex="1"
+										maxlength="19" tooltiptext="(PENDIENTE)" readonly="true"
+										value="APR" />
+									<hbox />
+									<hbox />
+								</row>
+								<row>
+									<hbox>
+										<label class="etiqueta"
+											value="Cantidad:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red" />
+									</hbox>
+									<doublebox id="txtTRQTF4111OP"
+										hflex="1" maxlength="19"
+										tooltiptext="Ingrese la cantidad (ILTRQT)" readonly="true" />
+									<hbox />
+									<hbox />
+									<hbox>
+										<label class="etiqueta"
+											value="Costo Unitario:" />
+										<space />
+										<label value=""
+											style="font-weight:bold;color:red" />
+									</hbox>
+									<doublebox id="txtUNCSF4111OP"
+										hflex="1" maxlength="19"
+										tooltiptext="Ingrese el costo unitario (ILUNCS)"
+										readonly="true" />
+									<hbox />
+									<hbox />
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+				</div>
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatosF4111OP" width="auto"
+				title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para Visualizar las entradas por OP" />
+				<div id="catalogoF4111OP"
+					tooltiptext="Seleccione el Registro Para Realizar una Accion" />
+			</groupbox>
+			<separator />
+			<separator />
+		</groupbox>
+	</div>
+</zk>
