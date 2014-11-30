@@ -116,10 +116,10 @@
 								"
 								style="border:0px">
 								<columns visible="false">
-									<column label="" width="25%" />
+									<column label="" width="18%" />
 									<column label="" width="25%" />
 									<column label="" width="13%" />
-									<column label="" width="37%" />
+									<column label="" width="44%" />
 								</columns>
 								<rows>
 									<row>

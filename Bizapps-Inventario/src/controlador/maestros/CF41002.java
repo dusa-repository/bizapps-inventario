@@ -98,7 +98,7 @@ public class CF41002 extends CGenerico {
 				.buscarParaUDCOrdenados("00", "UM");
 
 		buscadorUMF41002 = new BuscadorUDC("De UM", 3, true, "00", "UM",
-				servicioF0005, "25%", "10%", "7%", "42%") {
+				servicioF0005, "27%", "10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",
@@ -107,7 +107,7 @@ public class CF41002 extends CGenerico {
 		};
 
 		buscadorRUMF41002 = new BuscadorUDC("A UM", 3, true, "00", "UM",
-				servicioF0005, "25%", "10%", "7%", "42%") {
+				servicioF0005, "27%", "10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "UM",

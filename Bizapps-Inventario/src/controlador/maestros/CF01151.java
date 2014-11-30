@@ -25,7 +25,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -81,8 +81,8 @@ public class CF01151 extends CGenerico {
 		mostrarCatalogo();
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("01", "HI");
-		buscadorEhier = new BuscadorUDC("Indicador Mensajes", 19, listF0005,
-				false, false, false, "01", "HI") {
+		buscadorEhier = new BuscadorUDC("Indicador Mensajes", 19,
+				false,"01", "HI", servicioF0005,"31%", "7%", "7%", "41%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "HI",
@@ -93,7 +93,7 @@ public class CF01151 extends CGenerico {
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CF");
 		buscadorEclass = new BuscadorUDC("Cat. Direccion Electronica", 3,
-				listF0005, false, false, false, "01", "CF") {
+				false,"01", "CF", servicioF0005,"31%", "7%", "7%", "41%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "CF",
@@ -139,12 +139,12 @@ public class CF01151 extends CGenerico {
 								break;
 							}
 						cmbEtpF01151.setValue(valor);
-						buscadorEclass.settearCampo(servicioF0005.buscar("01",
+						buscadorEclass.settearModelo(servicioF0005.buscar("01",
 								"CF", f0115.getEaeclass()));
 						int ehier = (int) Math.floor(f0115.getEaehier());
 						String ehierMostrar = "0" + String.valueOf(ehier);
 						System.out.println(ehierMostrar);
-						buscadorEhier.settearCampo(servicioF0005.buscar("01",
+						buscadorEhier.settearModelo(servicioF0005.buscar("01",
 								"HI", ehierMostrar));
 						cmbEtpF01151.setFocus(true);
 					} else

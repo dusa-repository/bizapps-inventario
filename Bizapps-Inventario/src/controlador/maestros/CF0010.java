@@ -31,7 +31,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoF0010;
 import componentes.catalogos.CatalogoF0013;
@@ -129,8 +129,8 @@ public class CF0010 extends CGenerico {
 		mostrarCatalogo();
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
 				"DP");
-		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10, listaF0005,
-				true, false, false, "H00", "DP") {
+		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10,
+				true,"H00", "DP",servicioF0005, "34%", "4%", "12%", "32%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DP",
@@ -138,8 +138,8 @@ public class CF0010 extends CGenerico {
 			}
 		};
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "DA");
-		buscadorCALD = new BuscadorUDC("Numero periodos", 2, listaF0005, false,
-				false, false, "H00", "DA") {
+		buscadorCALD = new BuscadorUDC("Numero periodos", 2, false,
+				"H00", "DA", servicioF0005, "34%", "4%", "12%", "32%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DA",
@@ -173,11 +173,11 @@ public class CF0010 extends CGenerico {
 										.buscar(f010.getCcan8()).getAbalph());
 							}
 						}
-						buscadorDPNT.settearCampo(servicioF0005.buscar("H00",
+						buscadorDPNT.settearModelo(servicioF0005.buscar("H00",
 								"DP", f010.getCcdtpn()));
 						txtRMF0010.setValue(f010.getCcbktx());
 						txtDot2F0010.setValue(f010.getCcdot2());
-						buscadorCALD.settearCampo(servicioF0005.buscar("H00",
+						buscadorCALD.settearModelo(servicioF0005.buscar("H00",
 								"DA", f010.getCccald()));
 						dpnPeriodoActualGeneralF0010.setValue(f010.getCcpnc());
 						dpnPeriodoPagarF0010.setValue(f010.getCcappn());

@@ -13,10 +13,10 @@
 				<hbox width="100%" widths="50%,50%">
 					<grid style="border:0px">
 						<columns visible="false">
-							<column label="" width="17%" />
+							<column label="" width="20%" />
 							<column label="" width="20%" />
 							<column label="" width="25%" />
-							<column label="" width="38%" />
+							<column label="" width="35%" />
 						</columns>
 						<rows>
 							<row>
@@ -85,16 +85,18 @@
 						<separator />
 						<grid  width="93%">
 							<columns visible="false">
-								<column label="" width="20%" />
+								<column label="" width="15%" />
 								<column label="" width="30%" />
 								<column label="" width="30%" />
-								<column label="" width="20%" />
+								<column label="" width="25%" />
 							</columns>
 							<rows>
 								<row>
-									<cell colspan="4">
+									<cell colspan="2">
 										<div id="divBuscadorLEDG" hflex="1" />
 									</cell>
+									<hbox/>
+									<hbox/>
 								</row>
 								<row>
 									<label class="etiqueta" value="Descripcion:" />

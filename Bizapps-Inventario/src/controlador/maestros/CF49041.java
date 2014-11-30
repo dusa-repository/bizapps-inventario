@@ -27,7 +27,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -105,8 +105,8 @@ public class CF49041 extends CGenerico {
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("06",
 				"SH");
 
-		buscadorSHFT = new BuscadorUDC("Cd turno", 10, listaF0005, true, false,
-				false, "06", "SH") {
+		buscadorSHFT = new BuscadorUDC("Cd turno", 10, true,
+				"06", "SH", servicioF0005, "27%", "10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("06", "SH",
@@ -136,7 +136,7 @@ public class CF49041 extends CGenerico {
 						dtbEFTJF49041
 								.setValue((transformarJulianaAGregoria(BigDecimal
 										.valueOf(f49041.getId().getVseftj()))));
-						buscadorSHFT.settearCampo(servicioF0005.buscar("06",
+						buscadorSHFT.settearModelo(servicioF0005.buscar("06",
 								"SH", f49041.getId().getVsshft()));
 						txtMCU49041.setValue(f49041.getVsmcu());
 						lblF0011.setValue("");

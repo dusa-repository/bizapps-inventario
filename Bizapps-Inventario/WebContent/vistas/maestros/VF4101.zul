@@ -153,6 +153,7 @@
 														id="txtIMLNTYF4101" hflex="1" maxlength="2"
 														style="margin-left:0px"
 														tooltiptext="Ingrese el Tipo de Linea (IMLNTY)" />
+													<hbox/>
 												</row>
 												<row>
 													<cell colspan="4">

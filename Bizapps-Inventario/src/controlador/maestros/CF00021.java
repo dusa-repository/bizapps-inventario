@@ -26,7 +26,7 @@ import org.zkoss.zul.Textbox;
 
 import arbol.CArbol;
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -90,18 +90,19 @@ public class CF00021 extends CGenerico {
 		mostrarCatalogo();
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
 				"DT");
-		buscadorDCT = new BuscadorUDC("Tipo Documento", 10, listaF0005, true,
-				false, false, "00", "DT") {
+		buscadorDCT = new BuscadorUDC("Tipo Documento", 10, true, "00", "DT",
+				servicioF0005, "30%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
 						buscadorDCT.obtenerCaja());
 			}
 		};
+
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("00", "DT");
-		buscadorSMAS = new BuscadorUDC("Igual a tipo doc", 10, listF0005,
-				false, false, false, "00", "DT") {
+		buscadorSMAS = new BuscadorUDC("Igual a tipo doc", 10, false, "00",
+				"DT", servicioF0005, "30%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
@@ -110,8 +111,8 @@ public class CF00021 extends CGenerico {
 		};
 		List<F0005> lisF0005 = servicioF0005
 				.buscarParaUDCOrdenados("H00", "IM");
-		buscadorINCRUS = new BuscadorUDC("Digito Incrus", 10, lisF0005, false,
-				false, false, "H00", "IM") {
+		buscadorINCRUS = new BuscadorUDC("Digito Incrus", 10, false,
+				"H00", "IM" , servicioF0005, "30%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "IM",
@@ -136,16 +137,16 @@ public class CF00021 extends CGenerico {
 						txtKCOF00021.setDisabled(true);
 						btnBuscarCompannia.setVisible(false);
 						if (f21.getId() != null) {
-							buscadorDCT.settearCampo(servicioF0005.buscar("00",
-									"DT", f21.getId().getNldct()));
+							buscadorDCT.settearModelo(servicioF0005.buscar(
+									"00", "DT", f21.getId().getNldct()));
 							buscadorDCT.inhabilitarCampo();
 							// txtDCTF00021.setValue(f21.getId().getNldct());
 							// txtDCTF00021.setDisabled(true);
 						}
-						buscadorSMAS.settearCampo(servicioF0005.buscar("00",
+						buscadorSMAS.settearModelo(servicioF0005.buscar("00",
 								"DT", f21.getNlsmas()));
-						buscadorINCRUS.settearCampo(servicioF0005.buscar("H00",
-								"IM", f21.getNlimb()));
+						buscadorINCRUS.settearModelo(servicioF0005.buscar(
+								"H00", "IM", f21.getNlimb()));
 						txtCTRYF00021.setValue(f21.getId().getNlctry());
 						txtFYF00021.setValue(f21.getId().getNlfy());
 						txtN001F00021.setValue(f21.getNln001());
@@ -506,10 +507,11 @@ public class CF00021 extends CGenerico {
 	@Listen("onClick = #btnBuscarCompannia")
 	public void mostrarCatalogoF0010() {
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "Catalogo de Compañías",
-				lista, true, false, true, "Codigo", "Nombre", "Nº Periodo",
-				"Patron", "Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
-				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010,
+				"Catalogo de Compañías", lista, true, false, true, "Codigo",
+				"Nombre", "Nº Periodo", "Patron", "Inicio año Fiscal",
+				"Periodo LM", "Inicio año C/P", "Periodo C/P",
+				"Inicio año C/C", "Periodo C/C") {
 
 			@Override
 			protected List<F0010> buscar(List<String> valores) {
@@ -572,16 +574,15 @@ public class CF00021 extends CGenerico {
 				.getCcname());
 		catalogoF0010.setParent(null);
 	}
-	
-	
+
 	@Listen("onChange = #txtKCOF00021; onOK = #txtKCOF00021")
 	public boolean buscarCompania() {
 		if (txtKCOF00021.getValue() != null) {
 			F0010 f0010 = servicioF0010.buscar(txtKCOF00021.getValue());
 			if (f0010 != null) {
 				txtKCOF00021.setValue(f0010.getCcco());
-				lblDescripcionF0010.setValue(servicioF0010.buscar(f0010.getCcco())
-						.getCcname());
+				lblDescripcionF0010.setValue(servicioF0010.buscar(
+						f0010.getCcco()).getCcname());
 				return true;
 			} else {
 				msj.mensajeAlerta(Mensaje.noHayRegistros);
@@ -590,7 +591,5 @@ public class CF00021 extends CGenerico {
 		} else
 			return false;
 	}
-	
-	
-	
+
 }
