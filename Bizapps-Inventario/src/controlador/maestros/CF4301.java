@@ -282,7 +282,7 @@ public class CF4301 extends CGenerico {
 				false,
 				"Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)",
 				"Catalogo de Codigos de Monedas (F0013)", "", 100,
-				servicioF0013, "20%", "25%", "11%", "44%");
+				servicioF0013, "36%", "5%", "7%", "36%");
 		divBuscadorCRCD.appendChild(buscadorCRCD);
 		mostrarCatalogo();
 		txtLNIDF4311.setValue(listaDetalle.size() + 1);

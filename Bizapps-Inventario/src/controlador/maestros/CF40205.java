@@ -22,7 +22,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -126,19 +126,19 @@ public class CF40205 extends CGenerico {
 						txtLnd2F40205.setValue(f0115.getLflnd2());
 
 						if (f0115.getLfivi().compareTo("") != 0)
-							buscadorIvi.settearCampo(servicioF0005.buscar(
+							buscadorIvi.settearModelo(servicioF0005.buscar(
 									"H40", "IV", f0115.getLfivi()));
 
 						if (f0115.getLfglc().compareTo("") != 0)
-							buscadorGltp.settearCampo(servicioF0005.buscar(
+							buscadorGltp.settearModelo(servicioF0005.buscar(
 									"41", "9", f0115.getLfglc()));
 
 						if (f0115.getLftx01().compareTo("") != 0)
-							buscadorTx01.settearCampo(servicioF0005.buscar(
+							buscadorTx01.settearModelo(servicioF0005.buscar(
 									"H00", "TV", f0115.getLftx01()));
 
 						if (f0115.getLfcsj().compareTo("") != 0)
-							buscadorCsj.settearCampo(servicioF0005.buscar(
+							buscadorCsj.settearModelo(servicioF0005.buscar(
 									"H41", "CS", f0115.getLfcsj()));
 						if (f0115.getLfgli().equals("Y"))
 							chxGliF40205.setChecked(true);
@@ -662,8 +662,8 @@ public class CF40205 extends CGenerico {
 	private void cargarUdc() {
 		List<F0005> listF0005 = servicioF0005.buscarParaUDCOrdenados("H40",
 				"IV");
-		buscadorIvi = new BuscadorUDC("Interfaz Inventario", 1, listF0005,
-				false, false, false, "H40", "IV") {
+		buscadorIvi = new BuscadorUDC("Interfaz Inventario", 1,
+				false,"H40", "IV", servicioF0005, "33%", "5%", "7%", "37%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H40", "IV",
@@ -673,8 +673,8 @@ public class CF40205 extends CGenerico {
 		divBuscadorIvi.appendChild(buscadorIvi);
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("41", "9");
-		buscadorGltp = new BuscadorUDC("Compensacion LM", 4, listF0005, false,
-				false, false, "41", "9") {
+		buscadorGltp = new BuscadorUDC("Compensacion LM", 4,
+				false,"41", "9", servicioF0005, "33%", "5%", "7%", "37%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "9",
@@ -684,8 +684,8 @@ public class CF40205 extends CGenerico {
 		divBuscadorGltp.appendChild(buscadorGltp);
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "TV");
-		buscadorTx01 = new BuscadorUDC("Incluir en impto 1", 1, listF0005,
-				false, false, false, "H00", "TV") {
+		buscadorTx01 = new BuscadorUDC("Incluir en impto 1", 1,
+				false,"H00", "TV", servicioF0005, "33%", "5%", "7%", "37%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "TV",
@@ -695,8 +695,8 @@ public class CF40205 extends CGenerico {
 		divBuscadorTx01.appendChild(buscadorTx01);
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("H41", "CS");
-		buscadorCsj = new BuscadorUDC("Col diario ventas", 1, listF0005, false,
-				false, false, "H41", "CS") {
+		buscadorCsj = new BuscadorUDC("Col diario ventas", 1,
+				false,"H41", "CS", servicioF0005, "33%", "5%", "7%", "37%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H41", "CS",

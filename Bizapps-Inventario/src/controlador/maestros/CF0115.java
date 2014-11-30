@@ -24,7 +24,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -77,8 +77,8 @@ public class CF0115 extends CGenerico {
 		mostrarCatalogo();
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("01", "PM");
-		buscadorPhtp = new BuscadorUDC("Tipo telefono", 4, listF0005, false,
-				false, false,"01", "PM") {
+		buscadorPhtp = new BuscadorUDC("Tipo telefono", 4,false,
+				"01", "PM", servicioF0005, "26%", "9%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "PM",
@@ -106,7 +106,7 @@ public class CF0115 extends CGenerico {
 						btnBuscarDireccionF0115.setVisible(false);
 						txtAr01F0115.setValue(f0115.getWpar1());
 						txtPh1F0115.setValue(f0115.getWpph1());
-						buscadorPhtp.settearCampo(servicioF0005.buscar("01",
+						buscadorPhtp.settearModelo(servicioF0005.buscar("01",
 								"PM", f0115.getWpphtp()));
 						txtAr01F0115.setFocus(true);
 					} else

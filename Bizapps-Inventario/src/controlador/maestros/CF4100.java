@@ -25,7 +25,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -96,8 +96,8 @@ public class CF4100 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("46", "ZN");
 
-		buscadorPZONF4100 = new BuscadorUDC("Zona alm", 255, listF0005, false,
-				true, true, "46", "ZN") {
+		buscadorPZONF4100 = new BuscadorUDC("Zona alm", 255, false,
+				"46", "ZN", servicioF0005, "27%", "8%", "7%", "41%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("46", "ZN",
@@ -105,8 +105,8 @@ public class CF4100 extends CGenerico {
 			}
 		};
 
-		buscadorKZONF4100 = new BuscadorUDC("Zona acopio", 255, listF0005,
-				false, true, true, "46", "ZN") {
+		buscadorKZONF4100 = new BuscadorUDC("Zona acopio", 255,
+				false,"46", "ZN", servicioF0005, "27%", "8%", "7%", "41%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("46", "ZN",
@@ -114,8 +114,8 @@ public class CF4100 extends CGenerico {
 			}
 		};
 
-		buscadorZONRF4100 = new BuscadorUDC("Zona reabast", 255, listF0005,
-				false, true, true, "46", "ZN") {
+		buscadorZONRF4100 = new BuscadorUDC("Zona reabast", 255,
+				false,"46", "ZN", servicioF0005, "27%", "8%", "7%", "41%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("46", "ZN",
@@ -125,8 +125,8 @@ public class CF4100 extends CGenerico {
 
 		List<F0005> listF0005LLDL = servicioF0005.buscarParaUDCOrdenados("M40",
 				"LL");
-		buscadorLLDLF4100 = new BuscadorUDC("Detalle", 255, listF0005LLDL,
-				false, true, true, "M40", "LL") {
+		buscadorLLDLF4100 = new BuscadorUDC("Detalle", 255,
+				false,"M40", "LL", servicioF0005, "27%", "8%", "7%", "41%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("M40", "LL",
@@ -137,7 +137,7 @@ public class CF4100 extends CGenerico {
 		List<F0005> listF0005MIXL = servicioF0005.buscarParaUDCOrdenados("41",
 				"ML");
 		buscadorMIXLF4100 = new BuscadorUDC("Art/Lotes mixtos", 255,
-				listF0005MIXL, false, true, true, "41", "ML") {
+				false,"41", "ML", servicioF0005, "27%", "8%", "7%", "41%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("41", "ML",
@@ -147,8 +147,8 @@ public class CF4100 extends CGenerico {
 
 		List<F0005> listF0005STAG = servicioF0005.buscarParaUDCOrdenados("Y",
 				"N");
-		buscadorSTAGF4100 = new BuscadorUDC("Ubic temp", 255, listF0005STAG,
-				false, true, true, "Y", "N") {
+		buscadorSTAGF4100 = new BuscadorUDC("Ubic temp", 255,
+				false,"Y", "N", servicioF0005, "27%", "8%", "7%", "41%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("Y", "N",
@@ -188,23 +188,23 @@ public class CF4100 extends CGenerico {
 											.getLmupmj()));
 
 						if (f4100.getLmpzon().compareTo("") != 0)
-							buscadorPZONF4100.settearCampo(servicioF0005
+							buscadorPZONF4100.settearModelo(servicioF0005
 									.buscar("46", "ZN", f4100.getLmpzon()));
 
 						if (f4100.getLmkzon().compareTo("") != 0)
-							buscadorKZONF4100.settearCampo(servicioF0005
+							buscadorKZONF4100.settearModelo(servicioF0005
 									.buscar("46", "ZN", f4100.getLmkzon()));
 
 						if (f4100.getLmzonr().compareTo("") != 0)
-							buscadorZONRF4100.settearCampo(servicioF0005
+							buscadorZONRF4100.settearModelo(servicioF0005
 									.buscar("46", "ZN", f4100.getLmzonr()));
 
 						if (f4100.getLmlldl().compareTo("") != 0)
-							buscadorLLDLF4100.settearCampo(servicioF0005
+							buscadorLLDLF4100.settearModelo(servicioF0005
 									.buscar("M40", "LL", f4100.getLmlldl()));
 
 						if (f4100.getLmmixl().compareTo("") != 0)
-							buscadorMIXLF4100.settearCampo(servicioF0005
+							buscadorMIXLF4100.settearModelo(servicioF0005
 									.buscar("41", "ML", f4100.getLmmixl()));
 
 					} else

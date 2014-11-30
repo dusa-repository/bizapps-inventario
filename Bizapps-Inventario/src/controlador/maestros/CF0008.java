@@ -26,7 +26,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -102,8 +102,8 @@ public class CF0008 extends CGenerico {
 		List<F0005> listF0005 = servicioF0005.buscarTodosOrdenados();
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
 				"DP");
-		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 255, listaF0005,
-				true, false, false, "H00", "DP") {
+		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 255,
+				true,"H00", "DP", servicioF0005, "25%", "5%", "7%", "37%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("H00", "DP",
@@ -124,7 +124,7 @@ public class CF0008 extends CGenerico {
 						clave = f08.getId();
 						// Se supone que aqui se pasaran los parametros que
 						// definiremos luego sy, rt, ky
-						buscadorDPNT.settearCampo(servicioF0005.buscar("H00",
+						buscadorDPNT.settearModelo(servicioF0005.buscar("H00",
 								"DP", f08.getId().getCddtpn()));
 						buscadorDPNT.inhabilitarCampo();
 						dtbDFYJF0008

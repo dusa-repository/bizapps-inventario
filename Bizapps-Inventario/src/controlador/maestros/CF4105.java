@@ -31,7 +31,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
@@ -410,8 +410,8 @@ public class CF4105 extends CGenerico {
 	public void cargarBuscadores() {
 		List<F0005> listF0005 = servicioF0005
 				.buscarParaUDCOrdenados("01", "ST");
-		buscadorCSMT = new BuscadorUDC("Ventas/Inventario", 10, listF0005,
-				false, false, false, "01", "ST") {
+		buscadorCSMT = new BuscadorUDC("Ventas/Inventario", 10,
+				false,"01", "ST", servicioF0005, "23%", "8%", "7%", "39%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("01", "ST",
@@ -421,8 +421,8 @@ public class CF4105 extends CGenerico {
 		divBuscadorCSMT.appendChild(buscadorCSMT);
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("40", "CM");
-		buscadorLEDG = new BuscadorUDC("Metodo Calculo", 2, listF0005, true,
-				false, false, "40", "CM") {
+		buscadorLEDG = new BuscadorUDC("Metodo Calculo", 2,true,
+				"40", "CM", servicioF0005, "32%", "5%", "7%", "31%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "CM",
@@ -432,8 +432,8 @@ public class CF4105 extends CGenerico {
 		divBuscadorLEDG.appendChild(buscadorLEDG);
 
 		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CT");
-		buscadorPCSM = new BuscadorUDC("Compras", 25, listF0005, false, false,
-				false, "00", "CT") {
+		buscadorPCSM = new BuscadorUDC("Compras", 25,
+				false, "00", "CT", servicioF0005, "23%", "8%", "7%", "39%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "CT",
@@ -703,7 +703,7 @@ public class CF4105 extends CGenerico {
 				String descripcion = modelo.getColitm();
 				String udc = modelo.getId().getColedg();
 				F0005 f05 = servicioF0005.buscar("40", "CM", udc);
-				buscadorLEDG.settearCampo(f05);
+				buscadorLEDG.settearModelo(f05);
 				txtLitm.setValue(descripcion);
 				spnCosto.setValue(costo);
 				ltbCostos.removeItemAt(listItem.getIndex());

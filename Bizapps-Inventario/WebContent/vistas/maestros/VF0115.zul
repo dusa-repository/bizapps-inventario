@@ -12,10 +12,10 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="20%" />
+						<column label="" width="15%" />
 						<column label="" width="28%" />
 						<column label="" width="14%" />
-						<column label="" width="38%" />
+						<column label="" width="43%" />
 					</columns>
 					<rows>
 						<row>

@@ -20,7 +20,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -105,8 +105,8 @@ public class CF40203 extends CGenerico {
 		mostrarCatalogo();
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
 				"DT");
-		buscadorDCTO = new BuscadorUDC("Tipo Orden", 10, listaF0005, true,
-				false, false, "00", "DT") {
+		buscadorDCTO = new BuscadorUDC("Tipo Orden", 10, true,
+				 "00", "DT", servicioF0005, "31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
@@ -114,8 +114,8 @@ public class CF40203 extends CGenerico {
 			}
 		};
 		listaF0005 = servicioF0005.buscarParaUDCOrdenados("00", "00");
-		buscadorNTYF = new BuscadorUDC("Tipo Línea", 10, listaF0005, true,
-				false, false, "00", "00") {
+		buscadorNTYF = new BuscadorUDC("Tipo Línea", 10, true,
+				 "00", "00", servicioF0005,"31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "00",
@@ -124,8 +124,8 @@ public class CF40203 extends CGenerico {
 		};
 		List<F0005> listaF0005TRTY = servicioF0005.buscarParaUDCOrdenados("40",
 				"AT");
-		buscadorTRTY = new BuscadorUDC("Último Estado", 10, listaF0005TRTY,
-				true, false, false, "40", "AT") {
+		buscadorTRTY = new BuscadorUDC("Último Estado", 10,
+				true, "40", "AT", servicioF0005,"31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
@@ -134,8 +134,8 @@ public class CF40203 extends CGenerico {
 		};
 		List<F0005> listaF0005NXTR = servicioF0005.buscarParaUDCOrdenados("40",
 				"AT");
-		buscadorNXTR = new BuscadorUDC("Estado Siguiente", 10, listaF0005NXTR,
-				false, false, false, "40", "AT") {
+		buscadorNXTR = new BuscadorUDC("Estado Siguiente", 10,
+				false, "40", "AT", servicioF0005,"31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
@@ -144,8 +144,8 @@ public class CF40203 extends CGenerico {
 		};
 		List<F0005> listaF0005A1TR = servicioF0005.buscarParaUDCOrdenados("40",
 				"AT");
-		buscadorA1TR = new BuscadorUDC("Otros 1", 10, listaF0005A1TR, false,
-				false, false, "40", "AT") {
+		buscadorA1TR = new BuscadorUDC("Otros 1", 10,false,
+				"40", "AT", servicioF0005,"31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
@@ -154,8 +154,8 @@ public class CF40203 extends CGenerico {
 		};
 		List<F0005> listaF0005A2TR = servicioF0005.buscarParaUDCOrdenados("40",
 				"AT");
-		buscadorA2TR = new BuscadorUDC("Otros 2", 10, listaF0005A2TR, false,
-				false, false, "40", "AT") {
+		buscadorA2TR = new BuscadorUDC("Otros 2", 10, false,
+				"40", "AT", servicioF0005,"31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
@@ -164,8 +164,8 @@ public class CF40203 extends CGenerico {
 		};
 		List<F0005> listaF0005A3TR = servicioF0005.buscarParaUDCOrdenados("40",
 				"AT");
-		buscadorA3TR = new BuscadorUDC("Otros 3", 10, listaF0005A3TR, false,
-				false, false, "40", "AT") {
+		buscadorA3TR = new BuscadorUDC("Otros 3", 10, false,
+				"40", "AT", servicioF0005,"31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
@@ -174,8 +174,8 @@ public class CF40203 extends CGenerico {
 		};
 		List<F0005> listaF0005A4TR = servicioF0005.buscarParaUDCOrdenados("40",
 				"AT");
-		buscadorA4TR = new BuscadorUDC("Otros 4", 10, listaF0005A4TR, false,
-				false, false, "40", "AT") {
+		buscadorA4TR = new BuscadorUDC("Otros 4", 10, false,
+				 "40", "AT", servicioF0005,"31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
@@ -184,8 +184,8 @@ public class CF40203 extends CGenerico {
 		};
 		List<F0005> listaF0005A5TR = servicioF0005.buscarParaUDCOrdenados("40",
 				"AT");
-		buscadorA5TR = new BuscadorUDC("Otros 1", 10, listaF0005A5TR, false,
-				false, false, "40", "AT") {
+		buscadorA5TR = new BuscadorUDC("Otros 1", 10, false,
+				"40", "AT", servicioF0005,"31%", "7%", "10%", "40%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("40", "AT",
@@ -212,33 +212,33 @@ public class CF40203 extends CGenerico {
 						F40203 f40 = catalogo.objetoSeleccionadoDelCatalogo();
 						clave = f40.getId();
 						// txtDCTOF40203.setValue(f40.getId().getFsdcto());
-						buscadorDCTO.settearCampo(servicioF0005.buscar("00",
+						buscadorDCTO.settearModelo(servicioF0005.buscar("00",
 								"DT", f40.getId().getFsdcto()));
 						buscadorDCTO.inhabilitarCampo();
-						buscadorNTYF.settearCampo(servicioF0005.buscar("00",
+						buscadorNTYF.settearModelo(servicioF0005.buscar("00",
 								"00", f40.getId().getFslnty()));
-						buscadorNXTR.settearCampo(servicioF0005.buscar("40",
+						buscadorNXTR.settearModelo(servicioF0005.buscar("40",
 								"AT", f40.getFsnxtr()));
 						buscadorNTYF.inhabilitarCampo();
 						// txtLNTYF40203.setValue(f40.getId().getFslnty());
 						if (f40.getId().getFstrty() != null) {
 //							txtTRTYF40203.setValue(f40.getId().getFstrty());
 //							txtTRTYF40203.setDisabled(true);
-							buscadorTRTY.settearCampo(servicioF0005.buscar("40",
+							buscadorTRTY.settearModelo(servicioF0005.buscar("40",
 									"AT", f40.getId().getFstrty()));
 							buscadorTRTY.inhabilitarCampo();
 						}
 						
 						
-						buscadorA1TR.settearCampo(servicioF0005.buscar("40",
+						buscadorA1TR.settearModelo(servicioF0005.buscar("40",
 									"AT", f40.getFsa1tr()));
-						buscadorA2TR.settearCampo(servicioF0005.buscar("40",
+						buscadorA2TR.settearModelo(servicioF0005.buscar("40",
 								"AT", f40.getFsa2tr()));
-						buscadorA3TR.settearCampo(servicioF0005.buscar("40",
+						buscadorA3TR.settearModelo(servicioF0005.buscar("40",
 								"AT", f40.getFsa3tr()));
-						buscadorA4TR.settearCampo(servicioF0005.buscar("40",
+						buscadorA4TR.settearModelo(servicioF0005.buscar("40",
 								"AT", f40.getFsa4tr()));
-						buscadorA5TR.settearCampo(servicioF0005.buscar("40",
+						buscadorA5TR.settearModelo(servicioF0005.buscar("40",
 								"AT", f40.getFsa5tr()));
 						
 						// txtNSF40203.setValue(f40.);

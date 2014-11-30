@@ -32,7 +32,7 @@
 								maxlength="255"
 								tooltiptext="Ingrese la Zona/tp fiscal (TATXA1)" />
 							<label class="etiqueta"
-								value="f efectiva: aaaaaa" />
+								value="f efectiva:" />
 							<datebox readonly="true" width="100%" format="dd-MM-yyyy"
 								id="dtbTAEFTJF4008"
 								tooltiptext="Ingrese la Fecha efectiva (TAEFTJ)" />
