@@ -31,6 +31,11 @@ public class SF4930 {
 	public void eliminarUno(String clave) {
 		f4930DAO.delete(clave);
 	}
+	
+	public F4930 buscar(String clave){
+		return f4930DAO.findByVmvehi(clave);
+
+	}
 
 	
 }

@@ -77,10 +77,10 @@
 
 							<textbox id="txtMCU49041" hflex="1"
 								maxlength="12" tooltiptext="Seleccione del Catalogo el Codigo del Deposito (MCMCU de F0006)"/>
-							<button id="btnBuscarF0011" label="Buscar"
+							<button id="btnBuscarF0006" label="Buscar"
 								class="btn" tooltiptext="Catalogo de Codigos de Depositos (F0006)"
 								image="/public/imagenes/botones/buscar.png" />
-							<label id="lblF0011" />
+							<label id="lblF0006" />
 						</row>
 					</rows>
 				</grid>
@@ -100,7 +100,7 @@
 			tooltiptext="Click para Seleccionar un Codigo" />
 		<div id="divCatalogoF4930"
 			tooltiptext="Click para Seleccionar un Codigo" />
-		<div id="divCatalogoF0011"
+		<div id="divCatalogoF0006"
 			tooltiptext="Click para Seleccionar un Codigo" />
 
 	</div>
