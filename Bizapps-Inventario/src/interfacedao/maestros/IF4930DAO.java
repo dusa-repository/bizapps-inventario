@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface  IF4930DAO extends JpaRepository<F4930, String> {
 
+	F4930 findByVmvehi(String clave);
+
 
 
 }
