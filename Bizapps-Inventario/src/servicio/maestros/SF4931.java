@@ -4,6 +4,7 @@ import interfacedao.maestros.IF4931DAO;
 
 import java.util.List;
 
+import modelo.maestros.F4930;
 import modelo.maestros.F4931;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class SF4931 {
 
 	public List<F4931> buscarTodosOrdenados() {
 		return iF4931DAO.findAllOrderByIdVgvtyp();
+	}
+	
+	public F4931 buscar(String clave){
+		return iF4931DAO.findByVgvtyp(clave);
+
 	}
 
 }
