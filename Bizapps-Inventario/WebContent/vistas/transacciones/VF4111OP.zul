@@ -1,14 +1,13 @@
 <zk>
 	<style src="../public/Estilo.css" />
-	<div id="divVF4111OP">
-		<groupbox width="auto" mold="3d"
-			title="Por OP (VF4111OP)">
+	<div id="divVF4111OP" apply="controlador.transacciones.CF4111OP">
+		<groupbox width="auto" mold="3d" title="Por OP (VF4111OP)">
 			<div id="botoneraF4111OP" />
 			<separator />
 			<groupbox class="azul" id="gpxRegistroF4111OP" width="auto"
 				title="" open="true">
 				<caption label="Nuevo" style="font-weight:bold"
-					tooltiptext="Presione para Registrar un Nuevo Encabezado de ordenes" />
+					tooltiptext="Presione para ..." />
 				<separator />
 				<separator />
 				<groupbox class="azul" id="gpxRegistro1F4111OP"
@@ -357,7 +356,7 @@
 									</hbox>
 									<doublebox id="txtTRQTF4111OP"
 										hflex="1" maxlength="19"
-										tooltiptext="Ingrese la cantidad (ILTRQT)" readonly="true" />
+										tooltiptext="Ingrese la cantidad (ILTRQT)" />
 									<hbox />
 									<hbox />
 									<hbox>
@@ -369,8 +368,7 @@
 									</hbox>
 									<doublebox id="txtUNCSF4111OP"
 										hflex="1" maxlength="19"
-										tooltiptext="Ingrese el costo unitario (ILUNCS)"
-										readonly="true" />
+										tooltiptext="Ingrese el costo unitario (ILUNCS)" />
 									<hbox />
 									<hbox />
 								</row>

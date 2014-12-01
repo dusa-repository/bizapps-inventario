@@ -30,6 +30,7 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 	private List<Modelo> lista;
 	private Button boton;
 	protected Servicio servicio;
+	private Modelo modelo;
 
 	public BuscadorGenerico(String etiqueta, boolean requerido,
 			String tooltipCajaTexto, String tooltipBoton,
@@ -63,10 +64,10 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 			asterisco.setStyle("font-weight:bold;color:red");
 			hbox.appendChild(asterisco);
 		}
-//		Cell cell = new Cell();
-//		cell.setWidth(ancho);
-//		cell.appendChild(hbox);
-//		this.appendChild(cell);
+		// Cell cell = new Cell();
+		// cell.setWidth(ancho);
+		// cell.appendChild(hbox);
+		// this.appendChild(cell);
 		this.appendChild(hbox);
 	}
 
@@ -88,10 +89,10 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 						buscarPorTexto();
 					}
 				});
-//		Cell cell = new Cell();
-//		cell.setWidth(ancho);
-//		cell.appendChild(cajaTexto);
-//		this.appendChild(cell);
+		// Cell cell = new Cell();
+		// cell.setWidth(ancho);
+		// cell.appendChild(cajaTexto);
+		// this.appendChild(cell);
 		this.appendChild(cajaTexto);
 	}
 
@@ -127,10 +128,10 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 				mostrarCatalogo();
 			}
 		});
-//		Cell cell = new Cell();
-//		cell.setWidth(ancho);
-//		cell.appendChild(boton);
-//		this.appendChild(cell);
+		// Cell cell = new Cell();
+		// cell.setWidth(ancho);
+		// cell.appendChild(boton);
+		// this.appendChild(cell);
 		this.appendChild(boton);
 	}
 
@@ -145,10 +146,10 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 	private void cargarLabelNombre(String ancho) {
 		lblNombre = new Label();
 		lblNombre.setWidth("100%");
-//		Cell cell = new Cell();
-//		cell.setWidth(ancho);
-//		cell.appendChild(lblNombre);
-//		this.appendChild(cell);
+		// Cell cell = new Cell();
+		// cell.setWidth(ancho);
+		// cell.appendChild(lblNombre);
+		// this.appendChild(cell);
 		this.appendChild(lblNombre);
 	}
 
@@ -166,6 +167,7 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 
 	public void seleccionarItem() {
 		Modelo modelo = catalogo.objetoSeleccionadoDelCatalogo();
+		this.modelo = modelo;
 		cajaTexto.setText(valorAMostrarEnCajaTexto(modelo));
 		lblNombre.setValue(valorAMostrarEnLabel(modelo));
 		catalogo.setParent(null);
@@ -198,10 +200,11 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 			cajaTexto.setText("");
 			lblNombre.setValue("");
 		}
+		this.modelo = modelo;
 	}
 
 	public void limpiarCampo() {
-		settearCampo(null);
+		settearModelo(null);
 	}
 
 	public abstract TipoSalida obtenerCaja();
@@ -222,6 +225,22 @@ public abstract class BuscadorGenerico<Modelo, TipoSalida, Servicio, Campo exten
 		if (!boton.isVisible()) {
 			boton.setVisible(true);
 		}
+	}
+
+	public TipoCatalogo getCatalogo() {
+		return catalogo;
+	}
+
+	public Campo getCajaTexto() {
+		return cajaTexto;
+	}
+
+	public Button getBoton() {
+		return boton;
+	}
+	
+	public Modelo getModelo(){
+		return modelo;
 	}
 
 }

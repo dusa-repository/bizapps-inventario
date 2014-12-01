@@ -60,21 +60,21 @@
 										style="border:0px">
 										<columns visible="false">
 											<column label=""
-												width="35%" />
+												width="30%" />
 											<column label=""
-												width="65%" />
+												width="70%" />
 										</columns>
 										<rows>
 											<row>
 												<cell colspan="2">
 													<div
-														id="divbuscadorDPNT" hflex="1" />
+														id="divBuscadorDPNT" hflex="1" />
 												</cell>
 											</row>
 											<row>
 												<cell colspan="2">
 													<div
-														id="divbuscadorCALD" hflex="1" />
+														id="divBuscadorCALD" hflex="1" />
 												</cell>
 											</row>
 											<row>
@@ -99,20 +99,10 @@
 													tooltiptext="Ingrese el Inicio del año fiscal (CCDFYJ)" />
 											</row>
 											<row>
-												<label class="etiqueta"
-													value="Nº Direccion Compañia:" />
-												<hbox>
-													<longbox
-														id="txtAn8F0010" hflex="1" maxlength="19"
-														tooltiptext="Seleccione del Catalogo el Codigo de la Moneda Nacional (ABAN8 de F0101)" />
-													<button
-														id="btnBuscarDireccion" label="Buscar" class="btn"
-														tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-														image="/public/imagenes/botones/buscar.png"
-														autodisable="self" />
-													<label
-														id="lblDireccionF0010" />
-												</hbox>
+												<cell colspan="2">
+													<div
+														id="divBuscadorAN8" hflex="1" />
+												</cell>
 											</row>
 										</rows>
 									</grid>
@@ -219,25 +209,16 @@
 						<tabpanel>
 							<grid width="100%" style="border:0px">
 								<columns visible="false">
-									<column label="" width="20%" />
+									<column label="" width="25%" />
 									<column label="" width="50%" />
-									<column label="" width="30%" />
+									<column label="" width="25%" />
 								</columns>
 								<rows>
 									<row>
-										<label class="etiqueta"
-											value="Moneda Nacional:" />
-										<textbox id="txtCCCRCDF0010"
-											hflex="1" maxlength="3"
-											tooltiptext="Seleccione del Catalogo el Codigo de la Moneda (CVCRCD de F0013)" />
-										<hbox>
-											<button id="btnBuscarMoneda"
-												label="Buscar" class="btn"
-												tooltiptext="Catalogo de Codigos de Monedas (F0013)"
-												image="/public/imagenes/botones/buscar.png"
-												autodisable="self" />
-											<label id="lblMonedaF0010" />
-										</hbox>
+										<cell colspan="2">
+											<div id="divBuscadorCRCD"
+												hflex="1" />
+										</cell>
 									</row>
 									<row>
 										<label class="etiqueta"
@@ -279,8 +260,6 @@
 			</groupbox>
 			<separator />
 			<separator />
-			<div id="catalogoMonedaF0010" />
-			<div id="catalogoDireccionF0010" />
 		</groupbox>
 
 	</div>

@@ -1,28 +1,10 @@
 package controlador.maestros;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.zkoss.zk.ui.Sessions;
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.select.annotation.Listen;
-import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Button;
-import org.zkoss.zul.Checkbox;
-import org.zkoss.zul.Datebox;
-import org.zkoss.zul.Div;
-import org.zkoss.zul.Doublespinner;
-import org.zkoss.zul.Groupbox;
-import org.zkoss.zul.Label;
-import org.zkoss.zul.Longbox;
-import org.zkoss.zul.Messagebox;
-import org.zkoss.zul.Tab;
-import org.zkoss.zul.Textbox;
-
 import modelo.maestros.F00021;
-import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0101;
 import modelo.maestros.F0111;
@@ -33,9 +15,27 @@ import modelo.pk.F00021PK;
 import modelo.pk.F0111PK;
 import modelo.pk.F0116PK;
 import modelo.transacciones.F4111;
+
+import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
+import org.zkoss.zul.Checkbox;
+import org.zkoss.zul.Div;
+import org.zkoss.zul.Doublespinner;
+import org.zkoss.zul.Groupbox;
+import org.zkoss.zul.Label;
+import org.zkoss.zul.Longbox;
+import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Tab;
+import org.zkoss.zul.Textbox;
+
 import componentes.Botonera;
-import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorF0006;
+import componentes.buscadores.BuscadorF0101;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoF0006;
 import componentes.catalogos.CatalogoF0101;
 
@@ -53,11 +53,8 @@ public class CF0101 extends CGenerico {
 	private Div divBuscadorAT1;
 	BuscadorUDC buscadorAT1;
 	@Wire
-	private Textbox txtMCUF0101;
-	@Wire
-	private Button btnBuscarUnidades;
-	@Wire
-	private Label lblMCUF0101;
+	private Div divBuscadorMCU;
+	BuscadorF0006 buscadorMCU;
 	@Wire
 	private Div divBuscadorATP;
 	BuscadorUDC buscadorATP;
@@ -106,6 +103,29 @@ public class CF0101 extends CGenerico {
 	@Wire
 	private Div divBuscadorCLASS05;
 	BuscadorUDC buscadorCLASS05;
+
+	BuscadorF0101 buscadorPrincipal;
+	@Wire
+	Div divBuscadorPrincipal;
+	BuscadorF0101 buscadorDireccion1;
+	@Wire
+	Div divBuscadorDireccion1;
+	BuscadorF0101 buscadorDireccion2;
+	@Wire
+	Div divBuscadorDireccion2;
+	BuscadorF0101 buscadorDireccion3;
+	@Wire
+	Div divBuscadorDireccion3;
+	BuscadorF0101 buscadorDireccion4;
+	@Wire
+	Div divBuscadorDireccion4;
+	BuscadorF0101 buscadorDireccion5;
+	@Wire
+	Div divBuscadorDireccion5;
+	BuscadorF0101 buscadorFactor;
+	@Wire
+	Div divBuscadorFactor;
+
 	@Wire
 	private Textbox txtYEARSTARF0101;
 	@Wire
@@ -119,48 +139,6 @@ public class CF0101 extends CGenerico {
 	private Textbox txtTICKERF0101;
 	@Wire
 	private Textbox txtEXCHF0101;
-	@Wire
-	private Button btnBuscarDireccion0;
-	@Wire
-	private Label lblDireccion0F0101;
-	@Wire
-	private Longbox txtAN81F0101;
-	@Wire
-	private Longbox txtNPrincipal;
-	@Wire
-	private Button btnBuscarDireccion1;
-	@Wire
-	private Label lblDireccion1F0101;
-	@Wire
-	private Longbox txtAN82F0101;
-	@Wire
-	private Button btnBuscarDireccion2;
-	@Wire
-	private Label lblDireccion2F0101;
-	@Wire
-	private Longbox txtAN83F0101;
-	@Wire
-	private Button btnBuscarDireccion3;
-	@Wire
-	private Label lblDireccion3F0101;
-	@Wire
-	private Longbox txtAN84F0101;
-	@Wire
-	private Button btnBuscarDireccion4;
-	@Wire
-	private Label lblDireccion4F0101;
-	@Wire
-	private Longbox txtAN85F0101;
-	@Wire
-	private Button btnBuscarDireccion5;
-	@Wire
-	private Label lblDireccion5F0101;
-	@Wire
-	private Longbox txtFactorF0101;
-	@Wire
-	private Button btnBuscarFactor;
-	@Wire
-	private Label lblFactorF0101;
 	@Wire
 	private Textbox txtMlnmF0101;
 	@Wire
@@ -296,7 +274,6 @@ public class CF0101 extends CGenerico {
 	private Div catalogoF0006F0101;
 	@Wire
 	private Div DivCatalogoF0101;
-	protected List<F0101> listaGeneral = new ArrayList<F0101>();
 
 	Botonera botonera;
 	CatalogoF0101 catalogo;
@@ -356,10 +333,7 @@ public class CF0101 extends CGenerico {
 							}
 						}
 						if (!f01.getAbmcu().equals("")) {
-							txtMCUF0101.setValue(f01.getAbmcu());
-							if (servicioF0006.buscar(f01.getAbmcu()) != null)
-								lblMCUF0101.setValue(servicioF0006.buscar(
-										f01.getAbmcu()).getMcdl01());
+							buscadorMCU.settearCampo(f01.getAbmcu());
 						}
 						txtTAXF0101.setValue(f01.getAbtax());
 						txtTX2F0101.setValue(f01.getAbtx2());
@@ -374,49 +348,41 @@ public class CF0101 extends CGenerico {
 						if (doble != null) {
 							f0101 = servicioF0101.buscar(doble);
 							if (f0101 != null) {
-								lblDireccion1F0101.setValue(f0101.getAbalph());
-								txtAN81F0101.setValue(doble.longValue());
+								buscadorDireccion1.settearModelo(f0101);
 							}
 						}
 						Double doble1 = f01.getAban82();
 						if (doble1 != null) {
 							f0101 = servicioF0101.buscar(doble1);
 							if (f0101 != null) {
-								lblDireccion2F0101.setValue(f0101.getAbalph());
-								txtAN82F0101.setValue(doble1.longValue());
+								buscadorDireccion2.settearModelo(f0101);
 							}
 						}
 						Double doble2 = f01.getAban83();
 						if (doble2 != null) {
 							f0101 = servicioF0101.buscar(doble2);
 							if (f0101 != null) {
-								lblDireccion3F0101.setValue(f0101.getAbalph());
-								txtAN83F0101.setValue(doble2.longValue());
+								buscadorDireccion3.settearModelo(f0101);
 							}
 						}
 						Double doble3 = f01.getAban84();
 						if (doble3 != null) {
 							f0101 = servicioF0101.buscar(doble3);
 							if (f0101 != null) {
-								lblDireccion4F0101.setValue(f0101.getAbalph());
-								txtAN84F0101.setValue(doble3.longValue());
+								buscadorDireccion4.settearModelo(f0101);
 							}
 						}
 						Double doble4 = f01.getAban85();
 						if (doble4 != null) {
 							f0101 = servicioF0101.buscar(doble4);
 							if (f0101 != null) {
-								lblDireccion5F0101.setValue(f0101.getAbalph());
-								txtAN85F0101.setValue(doble4.longValue());
+								buscadorDireccion5.settearModelo(f0101);
 							}
 						}
 						Double doble5 = f01.getAban86();
 						if (doble5 != null) {
 							f0101 = servicioF0101.buscar(doble5);
-							if (f0101 != null) {
-								lblFactorF0101.setValue(f0101.getAbalph());
-								txtFactorF0101.setValue(doble5.longValue());
-							}
+							buscadorFactor.settearModelo(f0101);
 						}
 						F0111PK clave2 = new F0111PK();
 						Long val2 = (long) 1;
@@ -432,12 +398,9 @@ public class CF0101 extends CGenerico {
 						clave.setAleftb(val);
 						F0116 f0116 = servicioF0116.buscar(clave);
 						if (f0116 != null) {
-							buscadorCTR.settearModelo(servicioF0005.buscar(
-									"00", "CN", f0116.getAlctr()));
-							buscadorADDS.settearModelo(servicioF0005.buscar(
-									"00", "S", f0116.getAladds()));
-							buscadorCOUN.settearModelo(servicioF0005.buscar(
-									"00", "CT", f0116.getAlcoun()));
+							buscadorCTR.settearCampo(f0116.getAlctr());
+							buscadorADDS.settearCampo(f0116.getAladds());
+							buscadorCOUN.settearCampo(f0116.getAlcoun());
 							txtADD1F0101.setValue(f0116.getAladd1());
 							txtADD2F0101.setValue(f0116.getAladd2());
 							txtADD3F0101.setValue(f0116.getAladd3());
@@ -445,94 +408,50 @@ public class CF0101 extends CGenerico {
 							txtCTY1F0101.setValue(f0116.getAlcty1());
 						}
 
-						buscadorAT1.settearModelo(servicioF0005.buscar("01",
-								"ST", f01.getAbat1()));
-						buscadorAT2.settearModelo(servicioF0005.buscar("H01",
-								"AV", f01.getAbat2()));
-						buscadorATP.settearModelo(servicioF0005.buscar("H01",
-								"AS", f01.getAbatp()));
-						buscadorCM.settearModelo(servicioF0005.buscar("00",
-								"CM", f01.getAbcm()));
-						buscadorLNGP.settearModelo(servicioF0005.buscar("01",
-								"LP", f01.getAblngp()));
-						buscadorMPGP.settearModelo(servicioF0005.buscar("43E",
-								"AA", f01.getAbaempgp()));
-						buscadorSIC.settearModelo(servicioF0005.buscar("01",
-								"SC", f01.getAbsic()));
-						buscadorTAXC.settearModelo(servicioF0005.buscar("H00",
-								"TA", f01.getAbtax()));
-						buscadorABREV.settearModelo(servicioF0005.buscar("01",
-								"RR", f01.getAbrevrng()));
-						buscadorCLASS01.settearModelo(servicioF0005.buscar(
-								"01", "CA", f01.getAbclass01()));
-						buscadorCLASS02.settearModelo(servicioF0005.buscar(
-								"01", "CB", f01.getAbclass02()));
-						buscadorCLASS03.settearModelo(servicioF0005.buscar(
-								"01", "CC", f01.getAbclass03()));
-						buscadorCLASS05.settearModelo(servicioF0005.buscar(
-								"01", "CE", f01.getAbclass05()));
-						buscadorCLASS04.settearModelo(servicioF0005.buscar(
-								"01", "CD", f01.getAbclass04()));
-						buscadorAC01.settearModelo(servicioF0005.buscar("01",
-								"01", f01.getAbac01()));
-						buscadorAC02.settearModelo(servicioF0005.buscar("01",
-								"02", f01.getAbac02()));
-						buscadorAC03.settearModelo(servicioF0005.buscar("01",
-								"03", f01.getAbac03()));
-						buscadorAC04.settearModelo(servicioF0005.buscar("01",
-								"04", f01.getAbac04()));
-						buscadorAC05.settearModelo(servicioF0005.buscar("01",
-								"05", f01.getAbac05()));
-						buscadorAC06.settearModelo(servicioF0005.buscar("01",
-								"06", f01.getAbac06()));
-						buscadorAC07.settearModelo(servicioF0005.buscar("01",
-								"07", f01.getAbac07()));
-						buscadorAC08.settearModelo(servicioF0005.buscar("01",
-								"08", f01.getAbac08()));
-						buscadorAC09.settearModelo(servicioF0005.buscar("01",
-								"09", f01.getAbac09()));
-						buscadorAC10.settearModelo(servicioF0005.buscar("01",
-								"10", f01.getAbac10()));
-						buscadorAC11.settearModelo(servicioF0005.buscar("01",
-								"11", f01.getAbac11()));
-						buscadorAC12.settearModelo(servicioF0005.buscar("01",
-								"12", f01.getAbac12()));
-						buscadorAC13.settearModelo(servicioF0005.buscar("01",
-								"13", f01.getAbac13()));
-						buscadorAC14.settearModelo(servicioF0005.buscar("01",
-								"14", f01.getAbac14()));
-						buscadorAC15.settearModelo(servicioF0005.buscar("01",
-								"15", f01.getAbac15()));
-						buscadorAC16.settearModelo(servicioF0005.buscar("01",
-								"16", f01.getAbac16()));
-						buscadorAC17.settearModelo(servicioF0005.buscar("01",
-								"17", f01.getAbac17()));
-						buscadorAC18.settearModelo(servicioF0005.buscar("01",
-								"18", f01.getAbac18()));
-						buscadorAC19.settearModelo(servicioF0005.buscar("01",
-								"19", f01.getAbac19()));
-						buscadorAC20.settearModelo(servicioF0005.buscar("01",
-								"20", f01.getAbac20()));
-						buscadorAC21.settearModelo(servicioF0005.buscar("01",
-								"21", f01.getAbac21()));
-						buscadorAC22.settearModelo(servicioF0005.buscar("01",
-								"22", f01.getAbac22()));
-						buscadorAC23.settearModelo(servicioF0005.buscar("01",
-								"23", f01.getAbac23()));
-						buscadorAC24.settearModelo(servicioF0005.buscar("01",
-								"24", f01.getAbac24()));
-						buscadorAC25.settearModelo(servicioF0005.buscar("01",
-								"25", f01.getAbac25()));
-						buscadorAC26.settearModelo(servicioF0005.buscar("01",
-								"26", f01.getAbac26()));
-						buscadorAC27.settearModelo(servicioF0005.buscar("01",
-								"27", f01.getAbac27()));
-						buscadorAC28.settearModelo(servicioF0005.buscar("01",
-								"28", f01.getAbac28()));
-						buscadorAC29.settearModelo(servicioF0005.buscar("01",
-								"29", f01.getAbac29()));
-						buscadorAC30.settearModelo(servicioF0005.buscar("01",
-								"30", f01.getAbac30()));
+						buscadorAT1.settearCampo(f01.getAbat1());
+						buscadorAT2.settearCampo(f01.getAbat2());
+						buscadorATP.settearCampo(f01.getAbatp());
+						buscadorCM.settearCampo(f01.getAbcm());
+						buscadorLNGP.settearCampo(f01.getAblngp());
+						buscadorMPGP.settearCampo(f01.getAbaempgp());
+						buscadorSIC.settearCampo(f01.getAbsic());
+						buscadorTAXC.settearCampo(f01.getAbtax());
+						buscadorABREV.settearCampo(f01.getAbrevrng());
+						buscadorCLASS01.settearCampo(f01.getAbclass01());
+						buscadorCLASS02.settearCampo(f01.getAbclass02());
+						buscadorCLASS03.settearCampo(f01.getAbclass03());
+						buscadorCLASS05.settearCampo(f01.getAbclass05());
+						buscadorCLASS04.settearCampo(f01.getAbclass04());
+						buscadorAC01.settearCampo(f01.getAbac01());
+						buscadorAC02.settearCampo(f01.getAbac02());
+						buscadorAC03.settearCampo(f01.getAbac03());
+						buscadorAC04.settearCampo(f01.getAbac04());
+						buscadorAC05.settearCampo(f01.getAbac05());
+						buscadorAC06.settearCampo(f01.getAbac06());
+						buscadorAC07.settearCampo(f01.getAbac07());
+						buscadorAC08.settearCampo(f01.getAbac08());
+						buscadorAC09.settearCampo(f01.getAbac09());
+						buscadorAC10.settearCampo(f01.getAbac10());
+						buscadorAC11.settearCampo(f01.getAbac11());
+						buscadorAC12.settearCampo(f01.getAbac12());
+						buscadorAC13.settearCampo(f01.getAbac13());
+						buscadorAC14.settearCampo(f01.getAbac14());
+						buscadorAC15.settearCampo(f01.getAbac15());
+						buscadorAC16.settearCampo(f01.getAbac16());
+						buscadorAC17.settearCampo(f01.getAbac17());
+						buscadorAC18.settearCampo(f01.getAbac18());
+						buscadorAC19.settearCampo(f01.getAbac19());
+						buscadorAC20.settearCampo(f01.getAbac20());
+						buscadorAC21.settearCampo(f01.getAbac21());
+						buscadorAC22.settearCampo(f01.getAbac22());
+						buscadorAC23.settearCampo(f01.getAbac23());
+						buscadorAC24.settearCampo(f01.getAbac24());
+						buscadorAC25.settearCampo(f01.getAbac25());
+						buscadorAC26.settearCampo(f01.getAbac26());
+						buscadorAC27.settearCampo(f01.getAbac27());
+						buscadorAC28.settearCampo(f01.getAbac28());
+						buscadorAC29.settearCampo(f01.getAbac29());
+						buscadorAC30.settearCampo(f01.getAbac30());
 						if (f01.getAbate().equals("1"))
 							chxATEF0101.setChecked(true);
 						else
@@ -575,8 +494,10 @@ public class CF0101 extends CGenerico {
 
 			@Override
 			public void guardar() {
-
-				if (validar()) {
+				boolean guardar = true;
+				if (clave == 0)
+					guardar = validar();
+				if (guardar) {
 					F0101 f01 = new F0101();
 					double claveLong = 0;
 					synchronized (this) {
@@ -627,7 +548,7 @@ public class CF0101 extends CGenerico {
 					f01.setAbduns(txtDUNS1F0101.getValue()
 							+ txtDUNS2F0101.getValue()
 							+ txtDUNS3F0101.getValue());
-					f01.setAbmcu(txtMCUF0101.getValue());
+					f01.setAbmcu(buscadorMCU.obtenerCaja());
 					f01.setAbtax(txtTAXF0101.getValue());
 					f01.setAbtx2(txtTX2F0101.getValue());
 					f01.setAbtxct(txtTXCTF0101.getValue());
@@ -644,22 +565,22 @@ public class CF0101 extends CGenerico {
 					f01.setAbaempgp(buscadorMPGP.obtenerCaja());
 					f01.setAbsic(buscadorSIC.obtenerCaja());
 					f01.setAbtax(buscadorTAXC.obtenerCaja());
-					Long valor = txtAN81F0101.getValue();
+					Long valor = buscadorDireccion1.obtenerCaja();
 					if (valor != null)
 						f01.setAban81(valor.doubleValue());
-					Long valor2 = txtAN82F0101.getValue();
+					Long valor2 = buscadorDireccion2.obtenerCaja();
 					if (valor2 != null)
 						f01.setAban82(valor2.doubleValue());
-					Long valor3 = txtAN83F0101.getValue();
+					Long valor3 = buscadorDireccion3.obtenerCaja();
 					if (valor3 != null)
 						f01.setAban83(valor3.doubleValue());
-					Long valor4 = txtAN84F0101.getValue();
+					Long valor4 = buscadorDireccion4.obtenerCaja();
 					if (valor4 != null)
 						f01.setAban84(valor4.doubleValue());
-					Long valor5 = txtAN85F0101.getValue();
+					Long valor5 = buscadorDireccion5.obtenerCaja();
 					if (valor5 != null)
 						f01.setAban85(valor5.doubleValue());
-					Long valor6 = txtFactorF0101.getValue();
+					Long valor6 = buscadorFactor.obtenerCaja();
 					if (valor6 != null)
 						f01.setAban86(valor6.doubleValue());
 					f01.setAbrevrng(buscadorABREV.obtenerCaja());
@@ -741,8 +662,8 @@ public class CF0101 extends CGenerico {
 
 					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					listaGeneral = servicioF0101.buscarTodosOrdenados();
-					catalogo.actualizarLista(listaGeneral);
+					catalogo.actualizarLista(servicioF0101
+							.buscarTodosOrdenados());
 				}
 			}
 
@@ -786,9 +707,8 @@ public class CF0101 extends CGenerico {
 															"onOK")) {
 														servicioF0101
 																.eliminarVarios(eliminarLista);
-														listaGeneral = servicioF0101
-																.buscarTodosOrdenados();
-														catalogo.actualizarLista(listaGeneral);
+														catalogo.actualizarLista(servicioF0101
+																.buscarTodosOrdenados());
 														if (cantidad != eliminarLista
 																.size())
 															Mensaje.mensajeInformacion(Mensaje.algunosEliminados);
@@ -825,9 +745,8 @@ public class CF0101 extends CGenerico {
 																.eliminarUno(clave);
 														Mensaje.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
-														listaGeneral = servicioF0101
-																.buscarTodosOrdenados();
-														catalogo.actualizarLista(listaGeneral);
+														catalogo.actualizarLista(servicioF0101
+																.buscarTodosOrdenados());
 													}
 												}
 											});
@@ -867,6 +786,165 @@ public class CF0101 extends CGenerico {
 		botoneraF0101.appendChild(botonera);
 	}
 
+	private void cargarBuscadores() {
+		String ancho1P1 = "29%";
+		String ancho2P1 = "23%";
+		String ancho3P1 = "25%";
+		String ancho4P1 = "23%";
+		buscadorAT1 = crearCampoUDC(divBuscadorAT1, "Tipo busqueda", true,
+				"01", "ST", ancho1P1, ancho2P1, ancho3P1, ancho4P1);
+		buscadorMCU = new BuscadorF0006("UN:", false, "", "", "", 10,
+				servicioF0006, ancho1P1, ancho2P1, ancho3P1, ancho4P1);
+		divBuscadorMCU.appendChild(buscadorMCU);
+
+		String ancho1P2 = "27%";
+		String ancho2P2 = "23%";
+		String ancho3P2 = "25%";
+		String ancho4P2 = "25%";
+		buscadorCTR = crearCampoUDC(divBuscadorCTR, "Pais", false, "00", "CN",
+				ancho1P2, ancho2P2, ancho3P2, ancho4P2);
+		buscadorCOUN = crearCampoUDC(divBuscadorCOUN, "Condado", false, "00",
+				"CT", ancho1P2, ancho2P2, ancho3P2, ancho4P2);
+		buscadorADDS = crearCampoUDC(divBuscadorADDS, "Estado", false, "00",
+				"S", ancho1P2, ancho2P2, ancho3P2, ancho4P2);
+		// Cd postal
+
+		String ancho1P3 = "29%";
+		String ancho2P3 = "23%";
+		String ancho3P3 = "23%";
+		String ancho4P3 = "25%";
+		buscadorAT2 = crearCampoUDC(divBuscadorAT2, "Compen c/c y c/p", false,
+				"H01", "AV", ancho1P3, ancho2P3, ancho3P3, ancho4P3);
+		buscadorATP = crearCampoUDC(divBuscadorATP, "Cuentas por Pagar Y/N/M",
+				false, "H01", "AS", ancho1P3, ancho2P3, ancho3P3, ancho4P3);
+		buscadorCM = crearCampoUDC(divBuscadorCM, "Mensaje credito", false,
+				"00", "CM", ancho1P3, ancho2P3, ancho3P3, ancho4P3);
+		buscadorLNGP = crearCampoUDC(divBuscadorLNGP, "Mensaje credito", false,
+				"01", "LP", ancho1P3, ancho2P3, ancho3P3, ancho4P3);
+		buscadorMPGP = crearCampoUDC(divBuscadorMPGP,
+				"Aprobaciones Grupo Empl", false, "43E", "AA", ancho1P3,
+				ancho2P3, ancho3P3, ancho4P3);
+		buscadorSIC = crearCampoUDC(divBuscadorSIC, "Clasificacion industrial",
+				false, "01", "SC", ancho1P3, ancho2P3, ancho3P3, ancho4P3);
+		buscadorTAXC = crearCampoUDC(divBuscadorTAXC, "Cd persona/compañia",
+				false, "H00", "TA", ancho1P3, ancho2P3, ancho3P3, ancho4P3);
+
+		String ancho1P4 = "25%";
+		String ancho2P4 = "25%";
+		String ancho3P4 = "25%";
+		String ancho4P4 = "25%";
+		buscadorCLASS01 = crearCampoUDC(divBuscadorCLASS01,
+				"Cd Clasificacion 01", false, "01", "CA", ancho1P4, ancho2P4,
+				ancho3P4, ancho4P4);
+		buscadorCLASS02 = crearCampoUDC(divBuscadorCLASS02,
+				"Cd Clasificacion 02", false, "01", "CB", ancho1P4, ancho2P4,
+				ancho3P4, ancho4P4);
+		buscadorCLASS03 = crearCampoUDC(divBuscadorCLASS03,
+				"Cd Clasificacion 03", false, "01", "CC", ancho1P4, ancho2P4,
+				ancho3P4, ancho4P4);
+		buscadorCLASS04 = crearCampoUDC(divBuscadorCLASS04,
+				"Cd Clasificacion 04", false, "01", "CD", ancho1P4, ancho2P4,
+				ancho3P4, ancho4P4);
+		buscadorCLASS05 = crearCampoUDC(divBuscadorCLASS05,
+				"Cd Clasificacion 05", false, "01", "CE", ancho1P4, ancho2P4,
+				ancho3P4, ancho4P4);
+		buscadorABREV = crearCampoUDC(divBuscadorABREV, "Rango ingresos",
+				false, "01", "RR", ancho1P4, ancho2P4, ancho3P4, ancho4P4);
+
+		buscadorPrincipal = new BuscadorF0101("Nº Principal", false, "", "",
+				"", 10, servicioF0101, ancho1P4, ancho2P4, ancho3P4, ancho4P4);
+		divBuscadorPrincipal.appendChild(buscadorPrincipal);
+		buscadorDireccion1 = new BuscadorF0101("1º Nº direccion", false, "",
+				"", "", 10, servicioF0101, ancho1P4, ancho2P4, ancho3P4,
+				ancho4P4);
+		divBuscadorDireccion1.appendChild(buscadorDireccion1);
+		buscadorDireccion2 = new BuscadorF0101("2º Nº direccion", false, "",
+				"", "", 10, servicioF0101, ancho1P4, ancho2P4, ancho3P4,
+				ancho4P4);
+		divBuscadorDireccion2.appendChild(buscadorDireccion2);
+		buscadorDireccion3 = new BuscadorF0101("3º Nº direccion", false, "",
+				"", "", 10, servicioF0101, ancho1P4, ancho2P4, ancho3P4,
+				ancho4P4);
+		divBuscadorDireccion3.appendChild(buscadorDireccion3);
+		buscadorDireccion4 = new BuscadorF0101("4º Nº direccion", false, "",
+				"", "", 10, servicioF0101, ancho1P4, ancho2P4, ancho3P4,
+				ancho4P4);
+		divBuscadorDireccion4.appendChild(buscadorDireccion4);
+		buscadorDireccion5 = new BuscadorF0101("5º Nº direccion", false, "",
+				"", "", 10, servicioF0101, ancho1P4, ancho2P4, ancho3P4,
+				ancho4P4);
+		divBuscadorDireccion5.appendChild(buscadorDireccion5);
+		buscadorFactor = new BuscadorF0101("Factor/Beneficiario especial",
+				false, "", "", "", 10, servicioF0101, ancho1P4, ancho2P4,
+				ancho3P4, ancho4P4);
+		divBuscadorFactor.appendChild(buscadorFactor);
+
+		String ancho1P5 = "25%";
+		String ancho2P5 = "25%";
+		String ancho3P5 = "25%";
+		String ancho4P5 = "25%";
+		buscadorAC01 = crearCampoUDC(divBuscadorAC01, "Cd Categoria 01", false,
+				"01", "01", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC02 = crearCampoUDC(divBuscadorAC02, "Cd Categoria 02", false,
+				"01", "02", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC03 = crearCampoUDC(divBuscadorAC03, "Cd Categoria 03", false,
+				"01", "03", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC04 = crearCampoUDC(divBuscadorAC04, "Cd Categoria 04", false,
+				"01", "04", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC05 = crearCampoUDC(divBuscadorAC05, "Cd Categoria 05", false,
+				"01", "05", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC06 = crearCampoUDC(divBuscadorAC06, "Cd Categoria 06", false,
+				"01", "06", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC07 = crearCampoUDC(divBuscadorAC07, "Cd Categoria 07", false,
+				"01", "07", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC08 = crearCampoUDC(divBuscadorAC08, "Cd Categoria 08", false,
+				"01", "08", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC09 = crearCampoUDC(divBuscadorAC09, "Cd Categoria 09", false,
+				"01", "09", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC10 = crearCampoUDC(divBuscadorAC10, "Cd Categoria 10", false,
+				"01", "10", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC11 = crearCampoUDC(divBuscadorAC11, "Cd Categoria 11", false,
+				"01", "11", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC12 = crearCampoUDC(divBuscadorAC12, "Cd Categoria 12", false,
+				"01", "12", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC13 = crearCampoUDC(divBuscadorAC13, "Cd Categoria 13", false,
+				"01", "13", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC14 = crearCampoUDC(divBuscadorAC14, "Cd Categoria 14", false,
+				"01", "14", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC15 = crearCampoUDC(divBuscadorAC15, "Cd Categoria 15", false,
+				"01", "15", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC16 = crearCampoUDC(divBuscadorAC16, "Cd Categoria 16", false,
+				"01", "16", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC17 = crearCampoUDC(divBuscadorAC17, "Cd Categoria 17", false,
+				"01", "17", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC18 = crearCampoUDC(divBuscadorAC18, "Cd Categoria 18", false,
+				"01", "18", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC19 = crearCampoUDC(divBuscadorAC19, "Cd Categoria 19", false,
+				"01", "19", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC20 = crearCampoUDC(divBuscadorAC20, "Cd Categoria 20", false,
+				"01", "20", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC21 = crearCampoUDC(divBuscadorAC21, "Cd Categoria 21", false,
+				"01", "21", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC22 = crearCampoUDC(divBuscadorAC22, "Cd Categoria 22", false,
+				"01", "22", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC23 = crearCampoUDC(divBuscadorAC23, "Cd Categoria 23", false,
+				"01", "23", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC24 = crearCampoUDC(divBuscadorAC24, "Cd Categoria 24", false,
+				"01", "24", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC25 = crearCampoUDC(divBuscadorAC25, "Cd Categoria 25", false,
+				"01", "25", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC26 = crearCampoUDC(divBuscadorAC26, "Cd Categoria 26", false,
+				"01", "26", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC27 = crearCampoUDC(divBuscadorAC27, "Cd Categoria 27", false,
+				"01", "27", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC28 = crearCampoUDC(divBuscadorAC28, "Cd Categoria 28", false,
+				"01", "28", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC29 = crearCampoUDC(divBuscadorAC29, "Cd Categoria 29", false,
+				"01", "29", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+		buscadorAC30 = crearCampoUDC(divBuscadorAC30, "Cd Categoria 30", false,
+				"01", "30", ancho1P5, ancho2P5, ancho3P5, ancho4P5);
+	}
+
 	protected boolean validar() {
 		if (!camposLLenos()) {
 			Mensaje.mensajeError(Mensaje.camposVacios);
@@ -893,7 +971,8 @@ public class CF0101 extends CGenerico {
 		txtDUNS1F0101.setValue("");
 		txtDUNS2F0101.setValue("");
 		txtDUNS3F0101.setValue("");
-		txtMCUF0101.setValue("");
+		buscadorMCU.limpiarCampo();
+		;
 		txtTAXF0101.setValue("");
 		txtTX2F0101.setValue("");
 		txtTXCTF0101.setValue("");
@@ -902,21 +981,13 @@ public class CF0101 extends CGenerico {
 		dspNOE0101.setValue(0.0);
 		txtEXCHF0101.setValue("");
 		txtTICKERF0101.setValue("");
-		txtAN81F0101.setValue(null);
-		txtAN82F0101.setValue(null);
-		txtAN83F0101.setValue(null);
-		txtAN84F0101.setValue(null);
-		txtAN85F0101.setValue(null);
-		txtFactorF0101.setValue(null);
-		lblDireccion0F0101.setValue("");
-		lblDireccion1F0101.setValue("");
-		lblDireccion2F0101.setValue("");
-		lblDireccion3F0101.setValue("");
-		lblDireccion4F0101.setValue("");
-		lblDireccion5F0101.setValue("");
-		lblDireccion5F0101.setValue("");
-		lblFactorF0101.setValue("");
-		lblMCUF0101.setValue("");
+		buscadorPrincipal.limpiarCampo();
+		buscadorDireccion1.limpiarCampo();
+		buscadorDireccion2.limpiarCampo();
+		buscadorDireccion3.limpiarCampo();
+		buscadorDireccion4.limpiarCampo();
+		buscadorDireccion5.limpiarCampo();
+		buscadorFactor.limpiarCampo();
 		chxATEF0101.setChecked(false);
 		chxATPRF0101.setChecked(false);
 		chxATRF0101.setChecked(false);
@@ -927,7 +998,6 @@ public class CF0101 extends CGenerico {
 		txtADD3F0101.setValue("");
 		txtADD4F0101.setValue("");
 		txtCTY1F0101.setValue("");
-		txtNPrincipal.setValue(null);
 		buscadorCTR.settearCampo(null);
 		buscadorADDS.settearCampo(null);
 		buscadorCOUN.settearCampo(null);
@@ -1043,7 +1113,7 @@ public class CF0101 extends CGenerico {
 				|| txtALPHF0101.getText().compareTo("") != 0
 				|| txtALKYF0101.getText().compareTo("") != 0
 				|| txtTAXF0101.getText().compareTo("") != 0
-				|| txtMCUF0101.getText().compareTo("") != 0
+				|| buscadorMCU.getCajaTexto().getText().compareTo("") != 0
 				|| txtMlnmF0101.getText().compareTo("") != 0
 				|| txtADD1F0101.getText().compareTo("") != 0
 				|| txtCTY1F0101.getText().compareTo("") != 0
@@ -1059,13 +1129,13 @@ public class CF0101 extends CGenerico {
 				|| txtDUNS3F0101.getText().compareTo("") != 0
 				|| txtTICKERF0101.getText().compareTo("") != 0
 				|| txtEXCHF0101.getText().compareTo("") != 0
-				|| txtNPrincipal.getText().compareTo("") != 0
-				|| txtAN81F0101.getText().compareTo("") != 0
-				|| txtAN82F0101.getText().compareTo("") != 0
-				|| txtAN83F0101.getText().compareTo("") != 0
-				|| txtAN84F0101.getText().compareTo("") != 0
-				|| txtAN85F0101.getText().compareTo("") != 0
-				|| txtFactorF0101.getText().compareTo("") != 0
+				|| buscadorPrincipal.getCajaTexto().getText().compareTo("") != 0
+				|| buscadorDireccion1.getCajaTexto().getText().compareTo("") != 0
+				|| buscadorDireccion2.getCajaTexto().getText().compareTo("") != 0
+				|| buscadorDireccion3.getCajaTexto().getText().compareTo("") != 0
+				|| buscadorDireccion4.getCajaTexto().getText().compareTo("") != 0
+				|| buscadorDireccion5.getCajaTexto().getText().compareTo("") != 0
+				|| buscadorFactor.getCajaTexto().getText().compareTo("") != 0
 				|| buscadorAT1.obtenerCaja().compareTo("") != 0
 				|| buscadorATP.obtenerCaja().compareTo("") != 0
 				|| buscadorMPGP.obtenerCaja().compareTo("") != 0
@@ -1119,656 +1189,11 @@ public class CF0101 extends CGenerico {
 	}
 
 	public void mostrarCatalogo() {
-		listaGeneral = servicioF0101.buscarTodosOrdenados();
-		catalogo = new CatalogoF0101(catalogoF0101, "F0013", listaGeneral,
-				false, "Nº direccion", "Nombre alfabetico", "Direccion larga",
+		List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
+		catalogo = new CatalogoF0101(catalogoF0101, "F0013", listF0101, false,
+				"Nº direccion", "Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal");
 		catalogo.setParent(catalogoF0101);
-	}
-
-	@Listen("onClick = #btnBuscarDireccion0,#btnBuscarDireccion1,#btnBuscarDireccion2,#btnBuscarDireccion3,#btnBuscarDireccion4,#btnBuscarDireccion5,#btnBuscarFactor")
-	public void mostrarCatalogoDireccion(Event evento) {
-		Button boton = (Button) evento.getTarget();
-		idBoton = boton.getId();
-		List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoDivF0101 = new CatalogoF0101(DivCatalogoF0101,
-				"Catalogo de Direcciones", listF0101, true, "Nº direccion",
-				"Nombre alfabetico", "Direccion larga",
-				"Clasificacion industria", "Tipo bus", "ID fiscal");
-		catalogoDivF0101.setParent(DivCatalogoF0101);
-		catalogoDivF0101.doModal();
-	}
-
-	@Listen("onSeleccion = #DivCatalogoF0101")
-	public void seleccionarCatalogo() {
-		F0101 f0101 = catalogoDivF0101.objetoSeleccionadoDelCatalogo();
-		switch (idBoton) {
-		case "btnBuscarDireccion0":
-			setearValores(f0101, txtNPrincipal, lblDireccion0F0101);
-			break;
-		case "btnBuscarDireccion1":
-			setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
-			break;
-		case "btnBuscarDireccion2":
-			setearValores(f0101, txtAN82F0101, lblDireccion2F0101);
-			break;
-		case "btnBuscarDireccion3":
-			setearValores(f0101, txtAN83F0101, lblDireccion3F0101);
-			break;
-		case "btnBuscarDireccion4":
-			setearValores(f0101, txtAN84F0101, lblDireccion4F0101);
-			break;
-		case "btnBuscarDireccion5":
-			setearValores(f0101, txtAN85F0101, lblDireccion5F0101);
-			break;
-		case "btnBuscarFactor":
-			setearValores(f0101, txtFactorF0101, lblFactorF0101);
-			break;
-		default:
-			break;
-		}
-		catalogoDivF0101.setParent(null);
-	}
-
-	public void setearValores(F0101 f0101, Longbox txt, Label label) {
-		Double doble = f0101.getAban8();
-		txt.setValue(doble.longValue());
-		label.setValue(f0101.getAbalph());
-	}
-
-	@Listen("onChange = #txtNPrincipal, #txtAN81F0101, #txtAN82F0101, #txtAN83F0101, #txtAN84F0101, #txtAN85F0101, #txtFactorF0101; onOk = #txtNPrincipal, #txtAN81F0101, #txtAN82F0101, #txtAN83F0101, #txtAN84F0101, #txtAN85F0101, #txtFactorF0101")
-	public void buscarNombre(Event evento) {
-		F0101 f0101 = new F0101();
-		Longbox txt = (Longbox) evento.getTarget();
-		switch (txt.getId()) {
-		case "txtNPrincipal":
-			f0101 = servicioF0101.buscar(txtNPrincipal.getValue());
-			setearValores(f0101, txtNPrincipal, lblDireccion0F0101);
-			break;
-		case "txtAN81F0101":
-			f0101 = servicioF0101.buscar(txtAN81F0101.getValue());
-			setearValores(f0101, txtAN81F0101, lblDireccion1F0101);
-			break;
-		case "txtAN82F0101":
-			f0101 = servicioF0101.buscar(txtAN82F0101.getValue());
-			setearValores(f0101, txtAN82F0101, lblDireccion2F0101);
-			break;
-		case "txtAN83F0101":
-			f0101 = servicioF0101.buscar(txtAN83F0101.getValue());
-			setearValores(f0101, txtAN83F0101, lblDireccion3F0101);
-			break;
-		case "txtAN84F0101":
-			f0101 = servicioF0101.buscar(txtAN84F0101.getValue());
-			setearValores(f0101, txtAN84F0101, lblDireccion4F0101);
-			break;
-		case "txtAN85F0101":
-			f0101 = servicioF0101.buscar(txtAN85F0101.getValue());
-			setearValores(f0101, txtAN85F0101, lblDireccion5F0101);
-			break;
-		case "txtFactorF0101":
-			f0101 = servicioF0101.buscar(txtFactorF0101.getValue());
-			setearValores(f0101, txtFactorF0101, lblFactorF0101);
-			break;
-		default:
-			break;
-		}
-	}
-
-	@Listen("onClick = #btnBuscarUnidades")
-	public void mostrarCatalogoF0004() {
-		List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new CatalogoF0006(catalogoF0006F0101,
-				"Catalogo de Unidades de Negocio", unidades, true,
-				"Unidad Negocio", "Descripcion", "Nivel det", "Cta", "Tipo UN",
-				"LM Auxiliar Inactivo", "Mto Cons", "CAT 01", "CAT 02",
-				"CAT 03", "CAT 04", "CAT 05", "CAT 06");
-		catalogoF0006.setParent(catalogoF0006F0101);
-		catalogoF0006.doModal();
-	}
-
-	@Listen("onSeleccion = #catalogoF0006F0101")
-	public void seleccion() {
-		F0006 f0006 = catalogoF0006.objetoSeleccionadoDelCatalogo();
-		txtMCUF0101.setValue(f0006.getMcmcu());
-		lblMCUF0101.setValue(f0006.getMcdl01());
-		catalogoF0006.setParent(null);
-	}
-
-	@Listen("onChange = #txtMCUF0101; onOk = #txtMCUF0101")
-	public boolean buscarUnidades() {
-		if (txtMCUF0101.getValue() != null) {
-			F0006 f0006 = servicioF0006.buscar(txtMCUF0101.getValue());
-			if (f0006 != null) {
-				txtMCUF0101.setValue(f0006.getMcmcu());
-				lblMCUF0101.setValue(f0006.getMcdl01());
-				return true;
-			} else {
-				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				return false;
-			}
-		} else
-			return false;
-	}
-
-	private void cargarBuscadores() {
-
-		List<F0005> listF0005 = servicioF0005
-				.buscarParaUDCOrdenados("01", "ST");
-		buscadorAT1 = new BuscadorUDC("Tipo busqueda", 10, true, "01", "ST",
-				servicioF0005, "28%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "ST",
-						buscadorAT1.obtenerCaja());
-			}
-		};
-		divBuscadorAT1.appendChild(buscadorAT1);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CN");
-		buscadorCTR = new BuscadorUDC("Pais", 3, false, "00", "CN",
-				servicioF0005, "21%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "CN",
-						buscadorCTR.obtenerCaja());
-			}
-		};
-		divBuscadorCTR.appendChild(buscadorCTR);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CT");
-		buscadorCOUN = new BuscadorUDC("Condado", 25, false, "00", "CT",
-				servicioF0005, "21%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "CT",
-						buscadorCOUN.obtenerCaja());
-			}
-		};
-		divBuscadorCOUN.appendChild(buscadorCOUN);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "S");
-		buscadorADDS = new BuscadorUDC("Estado", 3, false, "00", "S",
-				servicioF0005, "21%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "S",
-						buscadorADDS.obtenerCaja());
-			}
-		};
-		divBuscadorADDS.appendChild(buscadorADDS);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("H01", "AV");
-		buscadorAT2 = new BuscadorUDC("Compen c/c y c/p", 1, false, "H01",
-				"AV", servicioF0005, "27%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("H01", "AV",
-						buscadorAT2.obtenerCaja());
-			}
-		};
-		divBuscadorAT2.appendChild(buscadorAT2);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("H01", "AS");
-		buscadorATP = new BuscadorUDC("Cuentas por Pagar Y/N/M", 1, false,
-				"H01", "AS", servicioF0005, "27%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("H01", "AS",
-						buscadorATP.obtenerCaja());
-			}
-		};
-		divBuscadorATP.appendChild(buscadorATP);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("00", "CM");
-		buscadorCM = new BuscadorUDC("Mensaje credito", 2, false, "00", "CM",
-				servicioF0005, "27%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("00", "CM",
-						buscadorCM.obtenerCaja());
-			}
-		};
-		divBuscadorCM.appendChild(buscadorCM);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "LP");
-		buscadorLNGP = new BuscadorUDC("Idioma", 2, false, "01", "LP",
-				servicioF0005, "27%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "LP",
-						buscadorLNGP.obtenerCaja());
-			}
-		};
-		divBuscadorLNGP.appendChild(buscadorLNGP);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("43E", "AA");
-		buscadorMPGP = new BuscadorUDC("Aprobaciones Grupo Empl", 5, false,
-				"43E", "AA", servicioF0005, "27%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("43E", "AA",
-						buscadorMPGP.obtenerCaja());
-			}
-		};
-		divBuscadorMPGP.appendChild(buscadorMPGP);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "SC");
-		buscadorSIC = new BuscadorUDC("Clasificacion industrial", 10, false,
-				"01", "SC", servicioF0005, "27%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "SC",
-						buscadorSIC.obtenerCaja());
-			}
-		};
-		divBuscadorSIC.appendChild(buscadorSIC);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "TA");
-		buscadorTAXC = new BuscadorUDC("Cd persona/compañia", 1, false, "H00",
-				"TA", servicioF0005, "27%", "10%", "7%", "42%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("H00", "TA",
-						buscadorTAXC.obtenerCaja());
-			}
-		};
-		divBuscadorTAXC.appendChild(buscadorTAXC);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CA");
-		buscadorCLASS01 = new BuscadorUDC("Cd Clasificacion 01", 3,
-				false,"01", "CA",servicioF0005, "25%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "CA",
-						buscadorCLASS01.obtenerCaja());
-			}
-		};
-		divBuscadorCLASS01.appendChild(buscadorCLASS01);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CB");
-		buscadorCLASS02 = new BuscadorUDC("Cd Clasificacion 02", 3,
-				false, "01", "CB",servicioF0005, "25%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "CB",
-						buscadorCLASS02.obtenerCaja());
-			}
-		};
-		divBuscadorCLASS02.appendChild(buscadorCLASS02);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CC");
-		buscadorCLASS03 = new BuscadorUDC("Cd Clasificacion 03", 3,
-				false, "01", "CC",servicioF0005, "25%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "CC",
-						buscadorCLASS03.obtenerCaja());
-			}
-		};
-		divBuscadorCLASS03.appendChild(buscadorCLASS03);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CD");
-		buscadorCLASS04 = new BuscadorUDC("Cd Clasificacion 04", 3,
-				false,"01", "CD",servicioF0005, "25%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "CD",
-						buscadorCLASS04.obtenerCaja());
-			}
-		};
-		divBuscadorCLASS04.appendChild(buscadorCLASS04);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "CE");
-		buscadorCLASS05 = new BuscadorUDC("Cd Clasificacion 05", 3,
-				false,"01", "CE",servicioF0005, "25%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "CE",
-						buscadorCLASS05.obtenerCaja());
-			}
-		};
-		divBuscadorCLASS05.appendChild(buscadorCLASS05);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "RR");
-		buscadorABREV = new BuscadorUDC("Rango ingresos", 5,
-				false,"01", "RR",servicioF0005, "25%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "RR",
-						buscadorABREV.obtenerCaja());
-			}
-		};
-		divBuscadorABREV.appendChild(buscadorABREV);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "01");
-		buscadorAC01 = new BuscadorUDC("Cd Categoria 1", 3,
-				false,"01", "01", servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "01",
-						buscadorAC01.obtenerCaja());
-			}
-		};
-		divBuscadorAC01.appendChild(buscadorAC01);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "02");
-		buscadorAC02 = new BuscadorUDC("Cd Categoria 02", 3,
-				false,"01", "02",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "02",
-						buscadorAC02.obtenerCaja());
-			}
-		};
-		divBuscadorAC02.appendChild(buscadorAC02);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "03");
-		buscadorAC03 = new BuscadorUDC("Cd Categoria 03", 3,false,
-				"01", "03",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "03",
-						buscadorAC03.obtenerCaja());
-			}
-		};
-		divBuscadorAC03.appendChild(buscadorAC03);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "04");
-		buscadorAC04 = new BuscadorUDC("Cd Categoria 04", 3,false,
-				"01", "04",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "04",
-						buscadorAC04.obtenerCaja());
-			}
-		};
-		divBuscadorAC04.appendChild(buscadorAC04);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "05");
-		buscadorAC05 = new BuscadorUDC("Cd Categoria 05", 3,
-				false,"01", "05",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "05",
-						buscadorAC05.obtenerCaja());
-			}
-		};
-		divBuscadorAC05.appendChild(buscadorAC05);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "06");
-		buscadorAC06 = new BuscadorUDC("Cd Categoria 06", 3,
-				false,"01", "06",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "06",
-						buscadorAC06.obtenerCaja());
-			}
-		};
-		divBuscadorAC06.appendChild(buscadorAC06);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "07");
-		buscadorAC07 = new BuscadorUDC("Cd Categoria 07", 3,
-				false,"01", "07",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "07",
-						buscadorAC07.obtenerCaja());
-			}
-		};
-		divBuscadorAC07.appendChild(buscadorAC07);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "08");
-		buscadorAC08 = new BuscadorUDC("Cd Categoria 08", 3,
-				false, "01", "08",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "08",
-						buscadorAC08.obtenerCaja());
-			}
-		};
-		divBuscadorAC08.appendChild(buscadorAC08);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "09");
-		buscadorAC09 = new BuscadorUDC("Cd Categoria 09", 3,
-				false,"01", "09",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "09",
-						buscadorAC09.obtenerCaja());
-			}
-		};
-		divBuscadorAC09.appendChild(buscadorAC09);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "10");
-		buscadorAC10 = new BuscadorUDC("Cd Categoria 10", 3,
-				false, "01", "10",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "10",
-						buscadorAC10.obtenerCaja());
-			}
-		};
-		divBuscadorAC10.appendChild(buscadorAC10);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "11");
-		buscadorAC11 = new BuscadorUDC("Cd Categoria 11", 3,
-				false,"01", "11",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "11",
-						buscadorAC11.obtenerCaja());
-			}
-		};
-		divBuscadorAC11.appendChild(buscadorAC11);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "12");
-		buscadorAC12 = new BuscadorUDC("Cd Categoria 12", 3,
-				false,"01", "12",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "12",
-						buscadorAC12.obtenerCaja());
-			}
-		};
-		divBuscadorAC12.appendChild(buscadorAC12);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "13");
-		buscadorAC13 = new BuscadorUDC("Cd Categoria 13", 3,
-				false,"01", "13",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "13",
-						buscadorAC13.obtenerCaja());
-			}
-		};
-		divBuscadorAC13.appendChild(buscadorAC13);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "14");
-		buscadorAC14 = new BuscadorUDC("Cd Categoria 14", 3,
-				false,"01", "14",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "14",
-						buscadorAC14.obtenerCaja());
-			}
-		};
-		divBuscadorAC14.appendChild(buscadorAC14);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "15");
-		buscadorAC15 = new BuscadorUDC("Cd Categoria 15", 3,
-				false,"01", "15",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "15",
-						buscadorAC15.obtenerCaja());
-			}
-		};
-		divBuscadorAC15.appendChild(buscadorAC15);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "16");
-		buscadorAC16 = new BuscadorUDC("Cd Categoria 16", 3,
-				false,"01", "16",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "16",
-						buscadorAC16.obtenerCaja());
-			}
-		};
-		divBuscadorAC16.appendChild(buscadorAC16);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "17");
-		buscadorAC17 = new BuscadorUDC("Cd Categoria 17", 3,
-				false,"01", "17",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "17",
-						buscadorAC17.obtenerCaja());
-			}
-		};
-		divBuscadorAC17.appendChild(buscadorAC17);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "18");
-		buscadorAC18 = new BuscadorUDC("Cd Categoria 18", 3,
-				false,"01", "18",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "18",
-						buscadorAC18.obtenerCaja());
-			}
-		};
-		divBuscadorAC18.appendChild(buscadorAC18);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "19");
-		buscadorAC19 = new BuscadorUDC("Cd Categoria 19", 3,
-				false,"01", "19",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "19",
-						buscadorAC19.obtenerCaja());
-			}
-		};
-		divBuscadorAC19.appendChild(buscadorAC19);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "20");
-		buscadorAC20 = new BuscadorUDC("Cd Categoria 20", 3,
-				false,"01", "20",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "20",
-						buscadorAC20.obtenerCaja());
-			}
-		};
-		divBuscadorAC20.appendChild(buscadorAC20);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "21");
-		buscadorAC21 = new BuscadorUDC("Cd Categoria 21", 3,
-				false,"01", "21",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "21",
-						buscadorAC21.obtenerCaja());
-			}
-		};
-		divBuscadorAC21.appendChild(buscadorAC21);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "22");
-		buscadorAC22 = new BuscadorUDC("Cd Categoria 22", 3,false,
-				"01", "22",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "22",
-						buscadorAC22.obtenerCaja());
-			}
-		};
-		divBuscadorAC22.appendChild(buscadorAC22);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "23");
-		buscadorAC23 = new BuscadorUDC("Cd Categoria 23", 3,
-				false,"01", "23",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "23",
-						buscadorAC23.obtenerCaja());
-			}
-		};
-		divBuscadorAC23.appendChild(buscadorAC23);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "24");
-		buscadorAC24 = new BuscadorUDC("Cd Categoria 24", 3,
-				false,"01", "24",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "24",
-						buscadorAC24.obtenerCaja());
-			}
-		};
-		divBuscadorAC24.appendChild(buscadorAC24);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "25");
-		buscadorAC25 = new BuscadorUDC("Cd Categoria 25", 3,false,
-				"01", "25",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "25",
-						buscadorAC25.obtenerCaja());
-			}
-		};
-		divBuscadorAC25.appendChild(buscadorAC25);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "26");
-		buscadorAC26 = new BuscadorUDC("Cd Categoria 26", 3,
-				false,"01", "26",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "26",
-						buscadorAC26.obtenerCaja());
-			}
-		};
-		divBuscadorAC26.appendChild(buscadorAC26);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "27");
-		buscadorAC27 = new BuscadorUDC("Cd Categoria 27", 3,
-				false,"01", "27",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "27",
-						buscadorAC27.obtenerCaja());
-			}
-		};
-		divBuscadorAC27.appendChild(buscadorAC27);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "28");
-		buscadorAC28 = new BuscadorUDC("Cd Categoria 28", 3,
-				false,"01", "28",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "28",
-						buscadorAC28.obtenerCaja());
-			}
-		};
-		divBuscadorAC28.appendChild(buscadorAC28);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "29");
-		buscadorAC29 = new BuscadorUDC("Cd Categoria 29", 3,
-				false,"01", "29",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "29",
-						buscadorAC29.obtenerCaja());
-			}
-		};
-		divBuscadorAC29.appendChild(buscadorAC29);
-
-		listF0005 = servicioF0005.buscarParaUDCOrdenados("01", "30");
-		buscadorAC30 = new BuscadorUDC("Cd Categoria 30", 3,false,
-				"01", "30",servicioF0005, "27%", "5%", "7%", "40%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("01", "30",
-						buscadorAC30.obtenerCaja());
-			}
-		};
-		divBuscadorAC30.appendChild(buscadorAC30);
 	}
 
 }

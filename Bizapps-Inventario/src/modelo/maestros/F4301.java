@@ -21,13 +21,13 @@ public class F4301 implements Serializable {
 	private BigDecimal phaddj;
 
 	@Column(name = "PHAN8")
-	private double phan8;
+	private Double phan8;
 
 	@Column(name = "PHANBY")
 	private double phanby;
 
 	@Column(name = "PHANCR")
-	private double phancr;
+	private Double phancr;
 
 	@Column(name = "PHARTG")
 	private String phartg;
@@ -291,11 +291,11 @@ public class F4301 implements Serializable {
 		this.phaddj = phaddj;
 	}
 
-	public double getPhan8() {
+	public Double getPhan8() {
 		return this.phan8;
 	}
 
-	public void setPhan8(double phan8) {
+	public void setPhan8(Double phan8) {
 		this.phan8 = phan8;
 	}
 
@@ -307,11 +307,11 @@ public class F4301 implements Serializable {
 		this.phanby = phanby;
 	}
 
-	public double getPhancr() {
+	public Double getPhancr() {
 		return this.phancr;
 	}
 
-	public void setPhancr(double phancr) {
+	public void setPhancr(Double phancr) {
 		this.phancr = phancr;
 	}
 

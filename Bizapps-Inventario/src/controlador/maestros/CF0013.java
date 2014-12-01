@@ -14,7 +14,6 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
-import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
@@ -22,6 +21,7 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.Mensaje;
+import componentes.catalogos.CatalogoF0013;
 import componentes.catalogos.CatalogoGenerico;
 
 public class CF0013 extends CGenerico {
@@ -82,13 +82,13 @@ public class CF0013 extends CGenerico {
 						txtDL01F0013.setValue(f013.getCvdl01());
 						txtCRCDF0013.setFocus(true);
 					} else
-						msj.mensajeAlerta(Mensaje.editarSoloUno);
+						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 			}
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF0013, titulo , tabs);
+				cerrarVentana(divVF0013, titulo, tabs);
 
 			}
 
@@ -108,7 +108,7 @@ public class CF0013 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				
+
 				if (validar()) {
 					F0013 f0013 = new F0013();
 					f0013.setCvcdec(txtDECF0013.getValue());
@@ -119,7 +119,7 @@ public class CF0013 extends CGenerico {
 					f0013.setCvupmt(Double.valueOf(horaAuditoria));
 					f0013.setCvuser("JDE");
 					servicioF0013.guardar(f0013);
-					msj.mensajeInformacion(Mensaje.guardado);
+					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 					listaGeneral = servicioF0013.buscarTodosOrdenados();
 					catalogo.actualizarLista(listaGeneral);
@@ -161,27 +161,26 @@ public class CF0013 extends CGenerico {
 															"onOK")) {
 														servicioF0013
 																.eliminarVarios(eliminarLista);
-														listaGeneral = servicioF0013.buscarTodosOrdenados();
+														listaGeneral = servicioF0013
+																.buscarTodosOrdenados();
 														catalogo.actualizarLista(listaGeneral);
 														if (cantidad != eliminarLista
 																.size())
-															msj.mensajeInformacion(Mensaje.algunosEliminados);
+															Mensaje.mensajeInformacion(Mensaje.algunosEliminados);
 														else
-															msj.mensajeInformacion(Mensaje.eliminado);
+															Mensaje.mensajeInformacion(Mensaje.eliminado);
 													}
 												}
 											});
 						} else {
-							msj.mensajeAlerta(Mensaje.registroUtilizado);
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
 						}
 					}
 				} else {
 					/* Elimina un solo registro */
 					if (clave != null) {
-						List<F0010> objeto = servicioF0010
-								.buscarPorDrdc(clave);
-						List<F0015> objeto2 = servicioF0015
-								.buscarCRCD(clave);
+						List<F0010> objeto = servicioF0010.buscarPorDrdc(clave);
+						List<F0015> objeto2 = servicioF0015.buscarCRCD(clave);
 						if (objeto.isEmpty() && objeto2.isEmpty()) {
 							Messagebox
 									.show(Mensaje.deseaEliminar,
@@ -195,25 +194,26 @@ public class CF0013 extends CGenerico {
 															"onOK")) {
 														servicioF0013
 																.eliminarUno(clave);
-														msj.mensajeInformacion(Mensaje.eliminado);
+														Mensaje.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
-														listaGeneral = servicioF0013.buscarTodosOrdenados();
+														listaGeneral = servicioF0013
+																.buscarTodosOrdenados();
 														catalogo.actualizarLista(listaGeneral);
 													}
 												}
 											});
 						} else {
-							msj.mensajeAlerta(Mensaje.registroUtilizado);
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
 						}
 					} else
-						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+						Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 			}
 
 			@Override
 			public void buscar() {
 				// TODO Auto-generated method stub
-				
+
 				abrirCatalogo();
 
 			}
@@ -266,11 +266,11 @@ public class CF0013 extends CGenerico {
 	public boolean validarSeleccion() {
 		List<F0013> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
 		} else {
 			if (seleccionados.isEmpty()) {
-				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				Mensaje.mensajeAlerta(Mensaje.noSeleccionoItem);
 				return false;
 			} else {
 				return true;
@@ -283,7 +283,7 @@ public class CF0013 extends CGenerico {
 			return false;
 		} else {
 			if (!camposLLenos()) {
-				msj.mensajeError(Mensaje.camposVacios);
+				Mensaje.mensajeError(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
@@ -292,8 +292,9 @@ public class CF0013 extends CGenerico {
 
 	@Listen("onChange = #txtCRCDF0013")
 	public boolean claveSYExiste() {
-		if (servicioF0013.buscar(txtCRCDF0013.getValue()) != null) {
-			msj.mensajeAlerta(Mensaje.claveUsada);
+		if (servicioF0013.buscar(txtCRCDF0013.getValue()) != null
+				&& (clave == null || !clave.equals(txtCRCDF0013.getValue()))) {
+			Mensaje.mensajeAlerta(Mensaje.claveUsada);
 			txtCRCDF0013.setFocus(true);
 			return true;
 		} else
@@ -357,40 +358,9 @@ public class CF0013 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		listaGeneral = servicioF0013.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F0013>(catalogoF0013, "F0013", listaGeneral,
-				false, false, false, "Codigo moneda", "Descripcion", "Vlslz",
-				"Rutina cheques") {
-
-			@Override
-			protected List<F0013> buscar(List<String> valores) {
-
-				List<F0013> lista = new ArrayList<F0013>();
-
-				for (F0013 f0013 : listaGeneral) {
-					if (f0013.getCvcrcd().toLowerCase()
-							.contains(valores.get(0).toLowerCase())
-							&& f0013.getCvdl01().toLowerCase()
-							.contains(valores.get(1).toLowerCase())
-							&& f0013.getCvcdec().toLowerCase()
-							.contains(valores.get(2).toLowerCase())
-							&& f0013.getCvckr().toLowerCase()
-							.contains(valores.get(3).toLowerCase())) {
-						lista.add(f0013);
-					}
-				}
-				return lista;
-			}
-
-			@Override
-			protected String[] crearRegistros(F0013 f013) {
-				String[] registros = new String[4];
-				registros[0] = f013.getCvcrcd();
-				registros[1] = f013.getCvdl01();
-				registros[2] = f013.getCvcdec();
-				registros[3] = f013.getCvckr();
-				return registros;
-			}
-		};
+		catalogo = new CatalogoF0013(catalogoF0013, "F0013", listaGeneral,
+				false, "Codigo moneda", "Descripcion", "Vlslz",
+				"Rutina cheques");
 		catalogo.setParent(catalogoF0013);
 	}
 }

@@ -2,41 +2,34 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0010;
-import modelo.maestros.F0013;
-import modelo.maestros.F0101;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
-import org.zkoss.zul.Label;
-import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
-import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorF0013;
+import componentes.buscadores.BuscadorF0101;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoF0010;
 import componentes.catalogos.CatalogoF0013;
 import componentes.catalogos.CatalogoF0101;
-import componentes.catalogos.CatalogoGenerico;
 
 public class CF0010 extends CGenerico {
 
@@ -47,29 +40,19 @@ public class CF0010 extends CGenerico {
 	@Wire
 	private Textbox txtNameF0010;
 	@Wire
-	private Label lblMonedaF0010;
-	// @Wire
-	// private Textbox txtPatronF0010;
-	// @Wire
-	// private Textbox txtDireccionF0010;
-	@Wire
-	private Textbox txtCCCRCDF0010;
-	@Wire
 	private Textbox txtRMF0010;
 	@Wire
 	private Textbox txtDot2F0010;
 	@Wire
-	private Longbox txtAn8F0010;
+	private Div divBuscadorDPNT;
 	@Wire
-	private Label lblDireccionF0010;
+	private Div divBuscadorCALD;
 	@Wire
-	private Div catalogoDireccionF0010;
-	// @Wire
-	// private Textbox txtCaldF0010;
+	private Div divBuscadorAN8;
+	private BuscadorF0101 buscadorAN8;
 	@Wire
-	private Div divbuscadorDPNT;
-	@Wire
-	private Div divbuscadorCALD;
+	private Div divBuscadorCRCD;
+	private BuscadorF0013 buscadorCRCD;
 	@Wire
 	private Doublespinner dpnPeriodoActualGeneralF0010;
 	@Wire
@@ -96,8 +79,6 @@ public class CF0010 extends CGenerico {
 	private Div botoneraF0010;
 	@Wire
 	private Div catalogoF0010;
-	@Wire
-	private Div catalogoMonedaF0010;
 	@Wire
 	private Groupbox gpxDatosF0010;
 	@Wire
@@ -127,28 +108,33 @@ public class CF0010 extends CGenerico {
 		}
 		txtCCCOF0010.setFocus(true);
 		mostrarCatalogo();
-		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00",
-				"DP");
-		buscadorDPNT = new BuscadorUDC("Patron fecha fiscal", 10,
-				true,"H00", "DP",servicioF0005, "34%", "4%", "12%", "32%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("H00", "DP",
-						buscadorDPNT.obtenerCaja());
-			}
-		};
-		listaF0005 = servicioF0005.buscarParaUDCOrdenados("H00", "DA");
-		buscadorCALD = new BuscadorUDC("Numero periodos", 2, false,
-				"H00", "DA", servicioF0005, "34%", "4%", "12%", "32%") {
-			@Override
-			protected F0005 buscar() {
-				return servicioF0005.buscar("H00", "DA",
-						buscadorCALD.obtenerCaja());
-			}
-		};
-		divbuscadorDPNT.appendChild(buscadorDPNT);
-		divbuscadorCALD.appendChild(buscadorCALD);
+		String ancho1 = "31%";
+		String ancho2 = "14%";
+		String ancho3 = "23%";
+		String ancho4 = "34%";
+		buscadorDPNT = crearCampoUDC(divBuscadorDPNT, "Patron fecha fiscal",
+				true, "H00", "DP", ancho1, ancho2, ancho3, ancho4);
+		buscadorCALD = crearCampoUDC(divBuscadorCALD, "Numero periodos", true,
+				"H00", "DA", ancho1, ancho2, ancho3, ancho4);
+		buscadorAN8 = new BuscadorF0101("Nº Direccion Compañia", false, "", "",
+				"", 10, servicioF0101, ancho1, ancho2, ancho3, ancho4);
+		divBuscadorAN8.appendChild(buscadorAN8);
+		
+		String ancho1P2 = "34%";
+		String ancho2P2 = "15%";
+		String ancho3P2 = "25%";
+		String ancho4P2 = "26%";
+		buscadorCRCD = new BuscadorF0013("Moneda Nacional", false, "", "",
+				"", 10, servicioF0013, ancho1P2, ancho2P2, ancho3P2, ancho4P2);
+		divBuscadorCRCD.appendChild(buscadorCRCD);
+		
+
 		botonera = new Botonera() {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void seleccionar() {
@@ -160,17 +146,13 @@ public class CF0010 extends CGenerico {
 						clave = f010.getCcco();
 						txtCCCOF0010.setValue(f010.getCcco());
 						txtCCCOF0010.setDisabled(true);
-						txtCCCRCDF0010.setValue(f010.getCccrcd());
-						if (!f010.getCccrcd().equals(""))
-							lblMonedaF0010.setValue(servicioF0013.buscar(
-									f010.getCccrcd()).getCvdl01());
+						buscadorCRCD.settearCampo(f010.getCccrcd());
 						txtNameF0010.setValue(f010.getCcname());
 						Double a = f010.getCcan8();
 						if (a != null) {
 							if (a != 0) {
-								txtAn8F0010.setValue(a.longValue());
-								lblDireccionF0010.setValue(servicioF0101
-										.buscar(f010.getCcan8()).getAbalph());
+								buscadorAN8.settearModelo(servicioF0101
+										.buscar(f010.getCcan8()));
 							}
 						}
 						buscadorDPNT.settearModelo(servicioF0005.buscar("H00",
@@ -206,7 +188,7 @@ public class CF0010 extends CGenerico {
 							chxSaldos.setChecked(false);
 
 					} else
-						msj.mensajeAlerta(Mensaje.editarSoloUno);
+						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 			}
 
@@ -234,13 +216,11 @@ public class CF0010 extends CGenerico {
 				if (validar()) {
 
 					F0010 f010 = new F0010();
-					Long lon;
-					if (txtAn8F0010.getText().compareTo("") != 0) {
-						lon = txtAn8F0010.getValue();
-						f010.setCcan8(lon.doubleValue());
+					if (buscadorAN8.obtenerCaja() == null) {
+						f010.setCcan8(buscadorAN8.obtenerCaja());
 					}
 					f010.setCcco(txtCCCOF0010.getValue());
-					f010.setCccrcd(txtCCCRCDF0010.getValue());
+					f010.setCccrcd(buscadorCRCD.obtenerCaja());
 					f010.setCcname(txtNameF0010.getValue());
 					f010.setCcdtpn(buscadorDPNT.obtenerCaja());
 					f010.setCcbktx(txtRMF0010.getValue());
@@ -272,7 +252,7 @@ public class CF0010 extends CGenerico {
 					else
 						f010.setCcabin("0");
 					servicioF0010.guardar(f010);
-					msj.mensajeInformacion(Mensaje.guardado);
+					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 					listaGeneral = servicioF0010.buscarTodosOrdenados();
 					catalogo.actualizarLista(listaGeneral);
@@ -318,14 +298,14 @@ public class CF0010 extends CGenerico {
 
 														if (cantidad != eliminarLista
 																.size())
-															msj.mensajeInformacion(Mensaje.algunosEliminados);
+															Mensaje.mensajeInformacion(Mensaje.algunosEliminados);
 														else
-															msj.mensajeInformacion(Mensaje.eliminado);
+															Mensaje.mensajeInformacion(Mensaje.eliminado);
 													}
 												}
 											});
 						} else {
-							msj.mensajeAlerta(Mensaje.registroUtilizado);
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
 						}
 					}
 				} else {
@@ -345,7 +325,7 @@ public class CF0010 extends CGenerico {
 															"onOK")) {
 														servicioF0010
 																.eliminarUno(clave);
-														msj.mensajeInformacion(Mensaje.eliminado);
+														Mensaje.mensajeInformacion(Mensaje.eliminado);
 														limpiar();
 														listaGeneral = servicioF0010
 																.buscarTodosOrdenados();
@@ -354,10 +334,10 @@ public class CF0010 extends CGenerico {
 												}
 											});
 						} else {
-							msj.mensajeAlerta(Mensaje.registroUtilizado);
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
 						}
 					} else
-						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+						Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 			}
 
@@ -404,10 +384,9 @@ public class CF0010 extends CGenerico {
 			chxTransitoria.setChecked(false);
 		if (chxSaldos.isChecked())
 			chxSaldos.setChecked(false);
-		txtAn8F0010.setValue(null);
-		lblDireccionF0010.setValue("");
+		buscadorAN8.limpiarCampo();
 		txtCCCOF0010.setValue("");
-		txtCCCRCDF0010.setValue("");
+		buscadorCRCD.limpiarCampo();
 		txtNameF0010.setValue("");
 		buscadorDPNT.settearCampo(null);
 		txtRMF0010.setValue("");
@@ -422,7 +401,6 @@ public class CF0010 extends CGenerico {
 		dtbFechaGeneralF0010.setValue(null);
 		dtbFechaPagarF0010.setValue(null);
 		txtCCCOF0010.setFocus(true);
-		lblMonedaF0010.setValue("");
 	}
 
 	public void habilitarTextClave() {
@@ -433,11 +411,11 @@ public class CF0010 extends CGenerico {
 	public boolean validarSeleccion() {
 		List<F0010> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
 		} else {
 			if (seleccionados.isEmpty()) {
-				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				Mensaje.mensajeAlerta(Mensaje.noSeleccionoItem);
 				return false;
 			} else {
 				return true;
@@ -450,7 +428,7 @@ public class CF0010 extends CGenerico {
 			return false;
 		} else {
 			if (!camposLLenos()) {
-				msj.mensajeError(Mensaje.camposVacios);
+				Mensaje.mensajeError(Mensaje.camposVacios);
 				return false;
 			} else
 				return true;
@@ -460,7 +438,7 @@ public class CF0010 extends CGenerico {
 	@Listen("onChange = #txtCCCOF0010")
 	public boolean claveSYExiste() {
 		if (servicioF0010.buscar(txtCCCOF0010.getValue()) != null) {
-			msj.mensajeAlerta(Mensaje.claveUsada);
+			Mensaje.mensajeAlerta(Mensaje.claveUsada);
 			txtCCCOF0010.setFocus(true);
 			return true;
 		} else
@@ -479,7 +457,7 @@ public class CF0010 extends CGenerico {
 
 	public boolean camposEditando() {
 		if (txtCCCOF0010.getText().compareTo("") != 0
-				|| txtCCCRCDF0010.getText().compareTo("") != 0
+				|| buscadorCRCD.getCajaTexto().getText().compareTo("") != 0
 				|| txtNameF0010.getText().compareTo("") != 0
 				|| buscadorDPNT.obtenerCaja().compareTo("") != 0
 				|| txtRMF0010.getText().compareTo("") != 0
@@ -545,74 +523,4 @@ public class CF0010 extends CGenerico {
 		catalogo.setParent(catalogoF0010);
 	}
 
-	@Listen("onClick = #btnBuscarDireccion")
-	public void mostrarCatalogoDireccion() {
-		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoD = new CatalogoF0101(catalogoDireccionF0010,
-				"Catalogo de Direcciones", listF0101, true, "Nº direccion",
-				"Nombre alfabetico", "Direccion larga",
-				"Clasificacion industria", "Tipo bus", "ID fiscal");
-		catalogoD.setParent(catalogoDireccionF0010);
-		catalogoD.doModal();
-	}
-
-	@Listen("onChange = #txtAn8F0010; onOk= #txtAn8F0010 ")
-	public void buscarDireccion() {
-		if (txtAn8F0010.getValue() != null) {
-			F0101 f0101 = servicioF0101.buscar(txtAn8F0010.getValue());
-			if (f0101 != null) {
-				Double doble = f0101.getAban8();
-				txtAn8F0010.setValue(doble.longValue());
-				lblDireccionF0010.setValue(f0101.getAbalph());
-			} else {
-				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				lblDireccionF0010.setValue("");
-				txtAn8F0010.setValue(null);
-				txtAn8F0010.setFocus(true);
-			}
-		} else
-			lblDireccionF0010.setValue("");
-	}
-
-	@Listen("onSeleccion = #catalogoDireccionF0010")
-	public void seleccionarCatalogo() {
-		F0101 f0101 = catalogoD.objetoSeleccionadoDelCatalogo();
-		if (f0101 != null) {
-			Double doble = f0101.getAban8();
-			txtAn8F0010.setValue(doble.longValue());
-			lblDireccionF0010.setValue(f0101.getAbalph());
-		}
-		catalogoD.setParent(null);
-	}
-
-	@Listen("onClick = #btnBuscarMoneda")
-	public void mostrarCatalogoMoneda() throws IOException {
-		List<F0013> listF0013 = servicioF0013.buscarTodosOrdenados();
-		catalogoM = new CatalogoF0013(catalogoMonedaF0010,
-				"Catalogo de Monedas y Tarifas", listF0013, true, "Codigo",
-				"Descripcion", "Vlslz", "Rutina Cheques");
-		catalogoM.setParent(catalogoMonedaF0010);
-		catalogoM.doModal();
-	}
-
-	@Listen("onSeleccion = #catalogoMonedaF0010")
-	public void seleccion() {
-		F0013 f0013 = catalogoM.objetoSeleccionadoDelCatalogo();
-		txtCCCRCDF0010.setValue(f0013.getCvcrcd());
-		lblMonedaF0010.setValue(f0013.getCvdl01());
-		catalogoM.setParent(null);
-	}
-
-	@Listen("onChange = #txtCCCRCDF0010; onOk = #txtCCCRCDF0010")
-	public void buscarNombre() {
-		F0013 f0013 = servicioF0013.buscar(txtCCCRCDF0010.getValue());
-		if (f0013 != null) {
-			txtCCCRCDF0010.setValue(f0013.getCvcrcd());
-			lblMonedaF0010.setValue(f0013.getCvdl01());
-		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
-			txtCCCRCDF0010.setValue("");
-			txtCCCRCDF0010.setFocus(true);
-		}
-	}
 }

@@ -339,9 +339,13 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		return Executions.getCurrent().getContextPath() + "/";
 	}
 
-	protected BuscadorUDC crearCampoUDC(Div div, String titulo, String valor1,
-			String valor2) {
-		return crearCampoUDC(div, titulo, false, valor1, valor2);
+	protected BuscadorUDC crearCampoUDC(Div div, String titulo,
+			boolean requerido, String valor1, String valor2, String ancho1,
+			String ancho2, String ancho3, String ancho4) {
+		BuscadorUDC buscador = new BuscadorUDC(titulo, 10, requerido, valor1,
+				valor2, servicioF0005, ancho1, ancho2, ancho3, ancho4);
+		div.appendChild(buscador);
+		return buscador;
 	}
 
 	protected BuscadorUDC crearCampoUDC(Div div, String titulo,
@@ -351,5 +355,4 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		div.appendChild(buscador);
 		return buscador;
 	}
-
 }

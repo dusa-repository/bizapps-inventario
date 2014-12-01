@@ -23,13 +23,10 @@ public class CatalogoF0013 extends CatalogoGenerico<F0013> {
 	protected List<F0013> buscar(List<String> valores) {
 		List<F0013> lista = new ArrayList<F0013>();
 		for (F0013 f0013 : getLista()) {
-			if (f0013.getCvcrcd().toLowerCase().startsWith(valores.get(0))
-					&& f0013.getCvdl01().toLowerCase()
-							.startsWith(valores.get(1))
-					&& f0013.getCvcdec().toLowerCase()
-							.startsWith(valores.get(2))
-					&& f0013.getCvckr().toLowerCase()
-							.startsWith(valores.get(4))) {
+			if (f0013.getCvcrcd().toLowerCase().contains(valores.get(0))
+					&& f0013.getCvdl01().toLowerCase().contains(valores.get(1))
+					&& f0013.getCvcdec().toLowerCase().contains(valores.get(2))
+					&& f0013.getCvckr().toLowerCase().contains(valores.get(4))) {
 				lista.add(f0013);
 			}
 		}

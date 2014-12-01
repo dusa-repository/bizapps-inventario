@@ -26,33 +26,32 @@ public class CatalogoF4008 extends CatalogoGenerico<F4008> {
 		List<F4008> lista = new ArrayList<F4008>();
 		for (F4008 f4008 : getLista()) {
 			if (f4008.getId().getTatxa1().toLowerCase()
-					.startsWith(valores.get(0))
-					&& f4008.getTataxa().toLowerCase()
-							.startsWith(valores.get(1))
+					.contains(valores.get(0))
+					&& f4008.getTataxa().toLowerCase().contains(valores.get(1))
 					&& String
 							.valueOf(
 									Convertidor
 											.transformarJulianaAGregoria(f4008
 													.getTaeftj()))
-							.toLowerCase().startsWith(valores.get(2))
+							.toLowerCase().contains(valores.get(2))
 					&& String
 							.valueOf(
 									Convertidor
 											.transformarJulianaAGregoriadeLong(f4008
 													.getId().getTaefdj()))
-							.toLowerCase().startsWith(valores.get(3))
+							.toLowerCase().contains(valores.get(3))
 					&& String.valueOf(f4008.getTatxr1()).toLowerCase()
-							.startsWith(valores.get(4))
+							.contains(valores.get(4))
 					&& String.valueOf(f4008.getTatxr2()).toLowerCase()
-							.startsWith(valores.get(5))
+							.contains(valores.get(5))
 					&& String.valueOf(f4008.getTatxr3()).toLowerCase()
-							.startsWith(valores.get(6))
+							.contains(valores.get(6))
 					&& String.valueOf(f4008.getTatxr4()).toLowerCase()
-							.startsWith(valores.get(7))
+							.contains(valores.get(7))
 					&& String.valueOf(f4008.getTatxr5()).toLowerCase()
-							.startsWith(valores.get(8))
+							.contains(valores.get(8))
 					&& String.valueOf(f4008.getId().getTaitm()).toLowerCase()
-							.startsWith(valores.get(9))) {
+							.contains(valores.get(9))) {
 				lista.add(f4008);
 			}
 		}

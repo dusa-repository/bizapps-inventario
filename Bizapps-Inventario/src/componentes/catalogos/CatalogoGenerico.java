@@ -167,7 +167,7 @@ public abstract class CatalogoGenerico<Modelo> extends Window {
 				Listbox listbox = (Listbox) cabecera.getParent();
 				for (Component component : cabecera.getChildren()) {
 					Textbox texbox = (Textbox) component.getChildren().get(0);
-					valores.add(texbox.getValue());
+					valores.add(texbox.getValue().toLowerCase());
 				}
 				List<Modelo> listaNueva = buscar(valores);
 				listbox.setModel(new ListModelList<Modelo>(listaNueva));
