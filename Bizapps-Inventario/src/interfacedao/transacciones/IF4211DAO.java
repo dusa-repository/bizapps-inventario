@@ -24,10 +24,14 @@ public interface IF4211DAO extends JpaRepository<F4211, F4211PK> {
 	List<F4211> findByIdSddocoAndIdSddctoAndSdspattnOrderBySditmAsc(
 			Double sddoco, String sddcto, String string);
 
+	@Query(value="select * from F4211 f where f.sddrqj between ?1 and ?2 and f.sdspattn=?3 order by f.sddcto asc, "
+			+ "f.sddoc asc, (select a.IMDSC1 from F4101 a where a.imitm = f.sditm) asc", nativeQuery = true)
 	List<F4211> findBySddrqjBetweenAndSdspattn(BigDecimal desde,
-			BigDecimal hasta, String string, Sort o);
+			BigDecimal hasta, String string);
 
+	@Query(value="select * from F4211 f where f.sddrqj between ?1 and ?2 and f.sdspattn=?3 and f.sddcto = ?4 order by f.sddcto asc, "
+			+ "f.sddoc asc, (select a.IMDSC1 from F4101 a where a.imitm = f.sditm) asc", nativeQuery = true)
 	List<F4211> findBySddrqjBetweenAndSdspattnAndIdSddcto(BigDecimal desde,
-			BigDecimal hasta, String string, String tipo, Sort o);
+			BigDecimal hasta, String string, String tipo);
 
 }

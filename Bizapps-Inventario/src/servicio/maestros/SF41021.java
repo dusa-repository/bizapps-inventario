@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import interfacedao.maestros.IF41021DAO;
+import modelo.maestros.F4101;
 import modelo.maestros.F41021;
 import modelo.pk.F41021PK;
 
@@ -27,6 +28,12 @@ public class SF41021 {
 	}
 
 	public List<F41021> buscarHastaFecha2(BigDecimal desde) {
+
+		List<String> ordenar = new ArrayList<String>();
+		ordenar.add("id.limcu");
+		ordenar.add("id.lilocn");
+		ordenar.add("id.liitm");
+		Sort o = new Sort(Sort.Direction.ASC, ordenar);
 		return iF41021DAO.findByLiupmjBeforeNow(desde);
 	}
 

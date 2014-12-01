@@ -63,7 +63,7 @@ public class SF4211 {
 		ordenar.add("sddoc");
 		ordenar.add("sditm");
 		Sort o = new Sort(Sort.Direction.ASC, ordenar);
-		return f4211DAO.findBySddrqjBetweenAndSdspattn(desde, hasta, string, o);
+		return f4211DAO.findBySddrqjBetweenAndSdspattn(desde, hasta, string);
 	}
 
 	public List<F4211> buscarEntreFechasYEstadoYTipo(BigDecimal desde,
@@ -74,6 +74,6 @@ public class SF4211 {
 		ordenar.add("sditm");
 		Sort o = new Sort(Sort.Direction.ASC, ordenar);
 		return f4211DAO.findBySddrqjBetweenAndSdspattnAndIdSddcto(desde, hasta,
-				string, tipo, o);
+				string, tipo);
 	}
 }
