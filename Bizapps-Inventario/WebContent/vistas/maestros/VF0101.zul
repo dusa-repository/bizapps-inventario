@@ -96,17 +96,10 @@
 										<hbox />
 									</row>
 									<row>
-										<label class="etiqueta"
-											value="UN:" />
-										<textbox id="txtMCUF0101"
-											hflex="1" maxlength="12"
-											tooltiptext="Seleccione del Catalogo el Codigo de la Unidad de Negocio (MCMCU de F0006)" />
-										<button id="btnBuscarUnidades"
-											label="Buscar" class="btn"
-											tooltiptext="Catalogo de Codigos de Unidades de Negocio (F0006)"
-											image="/public/imagenes/botones/buscar.png"
-											autodisable="self" />
-										<label id="lblMCUF0101" />
+										<cell colspan="3">
+											<div id="divBuscadorMCU"
+												hflex="1" />
+										</cell>
 									</row>
 								</rows>
 							</grid>
@@ -353,9 +346,9 @@
 										style="border:0px">
 										<columns visible="false">
 											<column label=""
-												width="30%" />
+												width="28%" />
 											<column label=""
-												width="45%" />
+												width="47%" />
 											<column label=""
 												width="40%" />
 										</columns>
@@ -468,115 +461,46 @@
 								</columns>
 								<rows>
 									<row>
-										<label class="etiqueta"
-											value="Nº Principal:" />
-										<longbox id="txtNPrincipal"
-											hflex="1"
-											tooltiptext="Seleccione del Catalogo el Codigo de la direccion (ABAN8 de F0101)" />
-										<hbox>
-											<button
-												id="btnBuscarDireccion0" label="Buscar" class="btn"
-												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png"
-												autodisable="self" />
-											<label
-												id="lblDireccion0F0101" />
-										</hbox>
+										<cell colspan="3">
+											<div
+												id="divBuscadorPrincipal" hflex="1" />
+										</cell>
 									</row>
 									<row>
-										<label class="etiqueta"
-											value="1º Nº direccion:" />
-										<longbox id="txtAN81F0101"
-											hflex="1"
-											tooltiptext="Seleccione del Catalogo el Codigo de la direccion (ABAN81 de F0101)" />
-										<hbox>
-											<button
-												id="btnBuscarDireccion1" label="Buscar" class="btn"
-												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png"
-												autodisable="self" />
-											<label
-												id="lblDireccion1F0101" />
-										</hbox>
+										<cell colspan="3">
+											<div
+												id="divBuscadorDireccion1" hflex="1" />
+										</cell>
 									</row>
 									<row>
-										<label class="etiqueta"
-											value="2º Nº direccion:" />
-										<longbox id="txtAN82F0101"
-											hflex="1"
-											tooltiptext="Seleccione del Catalogo el Codigo de la direccion (ABAN82 de F0101)" />
-										<hbox>
-											<button
-												id="btnBuscarDireccion2" label="Buscar" class="btn"
-												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png"
-												autodisable="self" />
-											<label
-												id="lblDireccion2F0101" />
-										</hbox>
+										<cell colspan="3">
+											<div
+												id="divBuscadorDireccion2" hflex="1" />
+										</cell>
 									</row>
 									<row>
-										<label class="etiqueta"
-											value="3º Nº direccion:" />
-										<longbox id="txtAN83F0101"
-											hflex="1"
-											tooltiptext="Seleccione del Catalogo el Codigo de la direccion (ABAN83 de F0101)" />
-										<hbox>
-											<button
-												id="btnBuscarDireccion3" label="Buscar" class="btn"
-												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png"
-												autodisable="self" />
-											<label
-												id="lblDireccion3F0101" />
-										</hbox>
+										<cell colspan="3">
+											<div
+												id="divBuscadorDireccion3" hflex="1" />
+										</cell>
 									</row>
 									<row>
-										<label class="etiqueta"
-											value="4º Nº direccion:" />
-										<longbox id="txtAN84F0101"
-											hflex="1"
-											tooltiptext="Seleccione del Catalogo el Codigo de la direccion (ABAN84 de F0101)" />
-										<hbox>
-											<button
-												id="btnBuscarDireccion4" label="Buscar" class="btn"
-												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png"
-												autodisable="self" />
-											<label
-												id="lblDireccion4F0101" />
-										</hbox>
+										<cell colspan="3">
+											<div
+												id="divBuscadorDireccion4" hflex="1" />
+										</cell>
 									</row>
 									<row>
-										<label class="etiqueta"
-											value="5º Nº direccion:" />
-										<longbox id="txtAN85F0101"
-											hflex="1"
-											tooltiptext="Seleccione del Catalogo el Codigo de la direccion (ABAN85 de F0101)" />
-										<hbox>
-											<button
-												id="btnBuscarDireccion5" label="Buscar" class="btn"
-												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png"
-												autodisable="self" />
-											<label
-												id="lblDireccion5F0101" />
-										</hbox>
+										<cell colspan="3">
+											<div
+												id="divBuscadorDireccion5" hflex="1" />
+										</cell>
 									</row>
 									<row>
-										<label class="etiqueta"
-											value="Factor/Beneficiario especial:" />
-										<longbox id="txtFactorF0101"
-											hflex="1"
-											tooltiptext="Seleccione del Catalogo el Codigo de la direccion (ABAN86 de F0101)" />
-										<hbox>
-											<button id="btnBuscarFactor"
-												label="Buscar" class="btn"
-												tooltiptext="Catalogo de Codigos de Direcciones (F0101)"
-												image="/public/imagenes/botones/buscar.png"
-												autodisable="self" />
-											<label id="lblFactorF0101" />
-										</hbox>
+										<cell colspan="3">
+											<div id="divBuscadorFactor"
+												hflex="1" />
+										</cell>
 									</row>
 								</rows>
 							</grid>

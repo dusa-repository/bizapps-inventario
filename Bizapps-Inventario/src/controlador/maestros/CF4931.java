@@ -150,21 +150,21 @@ public class CF4931 extends CGenerico {
 		mostrarCatalogo();
 
 		buscadorBPFGF4931 = crearCampoUDC(divBuscadorBPFGF4931,
-				"Prod granel/emb", "41B", "BF");
-		buscadorCVUMF4931 = crearCampoUDC(divBuscadorCVUMF4931, "UM", "00",
-				"UM");
+				"Prod granel/emb", false, "41B", "BF");
+		buscadorCVUMF4931 = crearCampoUDC(divBuscadorCVUMF4931, "UM", false,
+				"00", "UM");
 		buscadorDSGPF4931 = crearCampoUDC(divBuscadorDSGPF4931,
-				"Grupo despacho", "41B", "DG");
+				"Grupo despacho", false, "41B", "DG");
 		buscadorDSGSF4931 = crearCampoUDC(divBuscadorDSGSF4931,
-				"Grupo despacho secundario", "41B", "DG");
+				"Grupo despacho secundario", false, "41B", "DG");
 		buscadorLCNTF4931 = crearCampoUDC(divBuscadorLCNTF4931,
-				"Lineas de Carga", "49", "LC");
+				"Lineas de Carga", false, "49", "LC");
 		buscadorMOTF4931 = crearCampoUDC(divBuscadorMOTF4931, "Tipo transp",
-				"00", "TM");
-		buscadorVLUMF4931 = crearCampoUDC(divBuscadorVLUMF4931, "UM", "00",
-				"UM");
-		buscadorWTUMF4931 = crearCampoUDC(divBuscadorWTUMF4931, "UM", "00",
-				"UM");
+				false, "00", "TM");
+		buscadorVLUMF4931 = crearCampoUDC(divBuscadorVLUMF4931, "UM", false,
+				"00", "UM");
+		buscadorWTUMF4931 = crearCampoUDC(divBuscadorWTUMF4931, "UM", false,
+				"00", "UM");
 
 		botonera = new Botonera() {
 
@@ -210,7 +210,6 @@ public class CF4931 extends CGenerico {
 
 			@Override
 			public void buscar() {
-				// TODO Auto-generated method stub
 				abrirCatalogo();
 			}
 

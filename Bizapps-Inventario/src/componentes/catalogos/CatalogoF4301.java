@@ -35,19 +35,18 @@ public class CatalogoF4301 extends CatalogoGenerico<F4301> {
 		List<F4301> lista = new ArrayList<F4301>();
 		for (F4301 f4301 : getLista()) {
 			if (String.valueOf(f4301.getId().getPhdoco()).toLowerCase()
-					.startsWith(valores.get(0))
+					.contains(valores.get(0))
 					&& f4301.getId().getPhkcoo().toLowerCase()
-							.startsWith(valores.get(2))
+							.contains(valores.get(2))
 					&& String.valueOf(f4301.getPhan8()).toLowerCase()
-							.startsWith(valores.get(3))
+							.contains(valores.get(3))
 					&& String.valueOf(f4301.getPhtrdj()).toLowerCase()
-							.startsWith(valores.get(5))
+							.contains(valores.get(5))
 					&& String.valueOf(f4301.getPhshan()).toLowerCase()
-							.startsWith(valores.get(6))
+							.contains(valores.get(6))
 					&& String.valueOf(f4301.getPhanby()).toLowerCase()
-							.startsWith(valores.get(7))
-					&& f4301.getPhhold().toLowerCase()
-							.startsWith(valores.get(8))) {
+							.contains(valores.get(7))
+					&& f4301.getPhhold().toLowerCase().contains(valores.get(8))) {
 				lista.add(f4301);
 			}
 		}
@@ -66,11 +65,11 @@ public class CatalogoF4301 extends CatalogoGenerico<F4301> {
 		registros[6] = String.valueOf(f4301.getPhshan());
 		registros[7] = String.valueOf(f4301.getPhanby());
 		registros[8] = f4301.getPhhold();
-		registros[9] = "";
-		registros[10] = "";
-		registros[11] = "";
-		registros[12] = "";
-		registros[13] = "";
+//		registros[9] = "";
+//		registros[10] = "";
+//		registros[11] = "";
+//		registros[12] = "";
+//		registros[13] = "";
 		return registros;
 	}
 

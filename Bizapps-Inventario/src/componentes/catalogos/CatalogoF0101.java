@@ -23,13 +23,13 @@ public class CatalogoF0101 extends CatalogoGenerico<F0101> {
 	protected List<F0101> buscar(List<String> valores) {
 		List<F0101> lista = new ArrayList<F0101>();
 		for (F0101 f01 : getLista()) {
-			if (String.valueOf(f01.getAban8()).toLowerCase()
-					.startsWith(valores.get(0))
-					&& f01.getAbalph().toLowerCase().startsWith(valores.get(1))
-					&& f01.getAbalky().toLowerCase().startsWith(valores.get(2))
-					&& f01.getAbsic().toLowerCase().startsWith(valores.get(3))
-					&& f01.getAbat1().toLowerCase().startsWith(valores.get(4))
-					&& f01.getAbtax().toLowerCase().startsWith(valores.get(5))) {
+			if (String.valueOf(String.format("%.0f", f01.getAban8()))
+					.toLowerCase().contains(valores.get(0))
+					&& f01.getAbalph().toLowerCase().contains(valores.get(1))
+					&& f01.getAbalky().toLowerCase().contains(valores.get(2))
+					&& f01.getAbsic().toLowerCase().contains(valores.get(3))
+					&& f01.getAbat1().toLowerCase().contains(valores.get(4))
+					&& f01.getAbtax().toLowerCase().contains(valores.get(5))) {
 				lista.add(f01);
 			}
 		}
@@ -39,7 +39,7 @@ public class CatalogoF0101 extends CatalogoGenerico<F0101> {
 	@Override
 	protected String[] crearRegistros(F0101 f0101) {
 		String[] registros = new String[6];
-		registros[0] = String.valueOf(f0101.getAban8());
+		registros[0] = String.format("%.0f", f0101.getAban8());
 		registros[1] = f0101.getAbalph();
 		registros[2] = f0101.getAbalky();
 		registros[3] = f0101.getAbsic();
