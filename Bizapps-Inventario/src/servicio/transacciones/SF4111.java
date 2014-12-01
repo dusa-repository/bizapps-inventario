@@ -108,6 +108,6 @@ public class SF4111 {
 		ordenar.add("ilitm");
 		Sort o = new Sort(Sort.Direction.ASC, ordenar);
 		return iF4111DAO
-				.findByIlvpejBetweenAndIldct(desde,hasta,tipo,o);
+				.findByIlvpejBetweenAndIldct(desde,hasta,tipo);
 	}
 }

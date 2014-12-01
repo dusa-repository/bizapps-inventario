@@ -40,9 +40,9 @@ public interface IF4111DAO extends JpaRepository<F4111, Double> {
 
 	@Query("select f from F4111 f where f.ilvpej <= ?1 order by f.ilmcu asc, f.illocn asc, f.ilitm asc")
 	List<F4111> findByIlvpejBeforeOrderByMcuAsc(BigDecimal hasta);
-	
 
-	@Query("select f from F4111 f where f.ilvpej between ?1 and ?2 order by  f.ildct asc, f.ildoc asc, f.ilitm asc")
+	@Query(value = "select * from F4111 f where f.ilvpej between ?1 and ?2 order by  f.ildct asc, f.ildoc asc, "
+			+ "(select a.IMDSC1 from F4101 a where a.imitm = f.ilitm) asc", nativeQuery = true)
 	List<F4111> findByIlvpejBetweenOrderByIldocAsc(BigDecimal desde,
 			BigDecimal hasta);
 
@@ -53,6 +53,8 @@ public interface IF4111DAO extends JpaRepository<F4111, Double> {
 			BigDecimal ilvpej1, BigDecimal ilvpej2, Double item, String planta,
 			String ubicacion, String lote, String tipo);
 
+	@Query(value = "select * from F4111 f where f.ilvpej between ?1 and ?2 and f.ildct=?3 "
+			+ "order by f.ildct asc, f.ildoc asc, (select a.IMDSC1 from F4101 a where a.imitm = f.ilitm) asc", nativeQuery = true)
 	List<F4111> findByIlvpejBetweenAndIldct(BigDecimal desde, BigDecimal hasta,
-			String tipo, Sort o);
+			String tipo);
 }
