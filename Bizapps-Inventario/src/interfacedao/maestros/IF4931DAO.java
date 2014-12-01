@@ -12,4 +12,6 @@ public interface IF4931DAO extends JpaRepository<F4931, String> {
 	@Query("Select f from F4931 f order by f.vgvtyp asc")
 	List<F4931> findAllOrderByIdVgvtyp();
 
+	F4931 findByVgvtyp(String clave);
+
 }

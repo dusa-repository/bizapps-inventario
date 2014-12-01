@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import modelo.maestros.F0005;
+import modelo.maestros.F0006;
 import modelo.maestros.F0101;
 import modelo.maestros.F4930;
 import modelo.maestros.F4931;
@@ -26,7 +28,7 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
+import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 
@@ -42,9 +44,9 @@ public class CF4930 extends CGenerico {
 	@Wire
 	private Textbox txtMCUF4930;
 	@Wire
-	private Button btnBuscarMCUF0011;
+	private Button btnBuscarMCUF0006;
 	@Wire
-	private Label lblF0011;
+	private Label lblF0006;
 	@Wire
 	private Textbox txtDL01F4930;
 	@Wire
@@ -64,7 +66,8 @@ public class CF4930 extends CGenerico {
 	@Wire
 	private Groupbox gpxPeso;
 	@Wire
-	private Textbox txtWTUMF4930;
+	private Div divBuscadorWTUMF;
+	BuscadorUDC buscadorWtumf;
 	@Wire
 	private Textbox txtWTEMF4930;
 	@Wire
@@ -74,7 +77,8 @@ public class CF4930 extends CGenerico {
 	@Wire
 	private Groupbox gpxVolumen;
 	@Wire
-	private Textbox txtCVUMF4930;
+	private Div divBuscadorCVUMF;
+	BuscadorUDC buscadorCvumf;
 	@Wire
 	private Textbox txtCapacidadVolumenF4930;
 	@Wire
@@ -84,7 +88,7 @@ public class CF4930 extends CGenerico {
 	@Wire
 	private Div divCatalogoF0101;
 	@Wire
-	private Div divCatalogoF0011;
+	private Div divCatalogoF0006;
 	@Wire
 	private Groupbox gpxDatos;
 	@Wire
@@ -100,8 +104,7 @@ public class CF4930 extends CGenerico {
 	CatalogoGenerico<F4930> catalogo;
 	CatalogoGenerico<F0101> catalogoF0101;
 	CatalogoGenerico<F4931> catalogoF4931;
-
-	// Catalogo<F0011> catalogoF0011; falta crear
+	CatalogoGenerico<F0006> catalogoF0006;
 
 	@Override
 	public void inicializar() throws IOException {
@@ -116,6 +119,29 @@ public class CF4930 extends CGenerico {
 			}
 		}
 
+		List<F0005> listF0005 = servicioF0005
+				.buscarParaUDCOrdenados("UM", "00");
+		buscadorWtumf = new BuscadorUDC("UM", 19, false, "UM", "00",
+				servicioF0005, "26%", "7%", "7%", "41%") {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("01", "HI",
+						buscadorWtumf.obtenerCaja());
+			}
+		};
+		divBuscadorWTUMF.appendChild(buscadorWtumf);
+
+		listF0005 = servicioF0005.buscarParaUDCOrdenados("UM", "00");
+		buscadorCvumf = new BuscadorUDC("UM", 3, false, "UM", "00",
+				servicioF0005, "26%", "7%", "7%", "41%") {
+			@Override
+			protected F0005 buscar() {
+				return servicioF0005.buscar("01", "CF",
+						buscadorCvumf.obtenerCaja());
+			}
+		};
+		divBuscadorCVUMF.appendChild(buscadorCvumf);
+
 		txtVEHIF4930.setFocus(true);
 		mostrarCatalogo();
 		botonera = new Botonera() {
@@ -125,26 +151,61 @@ public class CF4930 extends CGenerico {
 
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
-						
+
 						mostrarBotones(false);
 						abrirRegistro();
-						gpxPeso.setVisible(true);
-						gpxVolumen.setVisible(true);
-						F4930 f4930 = catalogo
-								.objetoSeleccionadoDelCatalogo();
+						F4930 f4930 = catalogo.objetoSeleccionadoDelCatalogo();
 						clave = f4930.getVmvehi();
-						
+
+						F0101 f0101 = servicioF0101.buscar(f4930.getVmvown());
+						F0006 f0006 = servicioF0006.buscar(f4930.getVmmcu());
+						F4931 f4931 = servicioF4931.buscar(f4930.getVmvtyp());
+
 						txtVEHIF4930.setValue(f4930.getVmvehi());
+
+						if (f4931 != null) {
+							txtVTYPF4931.setValue(f4931.getVgvtyp());
+							lblF4931.setValue(f4931.getVgdl01());
+							txtCapacidadPesoF4930.setValue(String.valueOf(Math
+									.round(f4931.getVgwtca())));
+							txtBrutoF4930.setValue(String.valueOf(Math
+									.round(f4931.getVgwtem())));
+							txtCapacidadVolumenF4930
+									.setValue(f4931.getVgdsgp());
+
+						}
+
 						txtMCUF4930.setValue(f4930.getVmmcu());
+
+						if (f0006 != null) {
+							if (f0006.getMcdl01() != null)
+								lblF0006.setValue(f0006.getMcdl01());
+
+						}
+
 						txtDL01F4930.setValue(f4930.getVmdl01());
 						txtVEHSF4930.setValue(f4930.getVmvehs());
-						txtVTYPF4931.setValue(f4930.getVmvtyp());
-						txtVOWNF0101.setValue(String.valueOf(f4930.getVmvown()));	
-						txtWTUMF4930.setValue(f4930.getVmwtum());
-						txtWTEMF4930.setValue(String.valueOf(f4930.getVmwtem()));
-						txtCVUMF4930.setValue(f4930.getVmcvum());
+						txtVOWNF0101.setValue(String.valueOf(Math.round(f4930
+								.getVmvown())));
+
+						if (f0101 != null) {
+							if (f0101.getAbalph() != null)
+								lblF0101.setValue(f0101.getAbalph());
+						}
+
+						txtWTEMF4930
+								.setValue(String.valueOf(f4930.getVmwtem()));
+
+						if (f4930.getVmwtum().compareTo("") != 0)
+							buscadorWtumf.settearModelo(servicioF0005.buscar(
+									"UM", "00", f4930.getVmwtum()));
+						
+						if (f4930.getVmcvum().compareTo("") != 0)
+							buscadorCvumf.settearModelo(servicioF0005.buscar(
+									"UM", "00", f4930.getVmcvum()));
+						
+
 						txtVEHIF4930.setFocus(true);
-					
 
 					} else
 						msj.mensajeAlerta(Mensaje.editarSoloUno);
@@ -154,7 +215,7 @@ public class CF4930 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4930, titulo , tabs);
+				cerrarVentana(divVF4930, titulo, tabs);
 
 			}
 
@@ -183,10 +244,10 @@ public class CF4930 extends CGenerico {
 					f4930.setVmvtyp(txtVTYPF4931.getValue());
 					if (txtVOWNF0101.getText().compareTo("") != 0)
 						f4930.setVmvown(Double.valueOf(txtVOWNF0101.getValue()));
-					f4930.setVmwtum(txtWTUMF4930.getValue());
+					f4930.setVmwtum(buscadorWtumf.obtenerCaja());
 					if (txtWTEMF4930.getText().compareTo("") != 0)
-					f4930.setVmwtem(Double.valueOf(txtWTEMF4930.getValue()));
-					f4930.setVmcvum(txtCVUMF4930.getValue());
+						f4930.setVmwtem(Double.valueOf(txtWTEMF4930.getValue()));
+					f4930.setVmcvum(buscadorCvumf.obtenerCaja());
 					f4930.setVmuser("JDE");
 					f4930.setVmupmj(transformarGregorianoAJulia(new Date()));
 					servicioF4930.guardar(f4930);
@@ -219,7 +280,8 @@ public class CF4930 extends CGenerico {
 													servicioF4930
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													listaGeneral = servicioF4930.buscarTodosOrdenados();
+													listaGeneral = servicioF4930
+															.buscarTodosOrdenados();
 													catalogo.actualizarLista(listaGeneral);
 												}
 											}
@@ -242,7 +304,8 @@ public class CF4930 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													listaGeneral = servicioF4930.buscarTodosOrdenados();
+													listaGeneral = servicioF4930
+															.buscarTodosOrdenados();
 													catalogo.actualizarLista(listaGeneral);
 												}
 											}
@@ -254,9 +317,9 @@ public class CF4930 extends CGenerico {
 
 			@Override
 			public void buscar() {
-				
+
 				abrirCatalogo();
-				
+
 			}
 
 			@Override
@@ -294,20 +357,18 @@ public class CF4930 extends CGenerico {
 		clave = null;
 		txtVEHIF4930.setValue("");
 		txtMCUF4930.setValue("");
-		lblF0011.setValue("");
+		lblF0006.setValue("");
 		txtDL01F4930.setValue("");
 		txtVEHSF4930.setValue("");
 		txtVTYPF4931.setValue("");
 		lblF4931.setValue("");
 		txtVOWNF0101.setValue("");
 		lblF0101.setValue("");
-		gpxPeso.setVisible(false);
-		txtWTUMF4930.setValue("");
+		buscadorWtumf.settearCampo(null);
 		txtWTEMF4930.setValue("");
 		txtCapacidadPesoF4930.setValue("");
 		txtBrutoF4930.setValue("");
-		gpxVolumen.setVisible(false);
-		txtCVUMF4930.setValue("");
+		buscadorCvumf.settearCampo(null);
 		txtCapacidadVolumenF4930.setValue("");
 		catalogo.limpiarSeleccion();
 		txtVEHIF4930.setFocus(true);
@@ -374,9 +435,9 @@ public class CF4930 extends CGenerico {
 	public void mostrarCatalogo() {
 
 		final List<F4930> vehiculos = servicioF4930.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F4930>(divCatalogoF4930, "F4930", vehiculos,
-				false, false, true, "ID vehículo", "Tip veh", "Descripción",
-				"Sucursal/planta", "N° de prop", "V/F", "N° serie veh",
+		catalogo = new CatalogoGenerico<F4930>(divCatalogoF4930, "F4930",
+				vehiculos, false, false, true, "ID vehículo", "Tip veh",
+				"Descripción", "Sucursal/planta", "N° de prop", "N° serie veh",
 				"Cap peso", "UM ps", "Capacidad en vol cúbicos", "UM") {
 
 			@Override
@@ -396,20 +457,18 @@ public class CF4930 extends CGenerico {
 							&& String.valueOf(tvehiculos.getVmvown())
 									.toLowerCase()
 									.contains(valores.get(4).toLowerCase())
-							&& tvehiculos.getVmdumv().toLowerCase()
-									.contains(valores.get(5).toLowerCase())
 							&& tvehiculos.getVmvehs().toLowerCase()
-									.contains(valores.get(6).toLowerCase())
+									.contains(valores.get(5).toLowerCase())
 							&& String.valueOf(tvehiculos.getVmwtca())
 									.toLowerCase()
-									.contains(valores.get(7).toLowerCase())
+									.contains(valores.get(6).toLowerCase())
 							&& tvehiculos.getVmwtum().toLowerCase()
-									.contains(valores.get(8).toLowerCase())
+									.contains(valores.get(7).toLowerCase())
 							&& String.valueOf(tvehiculos.getVmcvol())
 									.toLowerCase()
-									.contains(valores.get(9).toLowerCase())
+									.contains(valores.get(8).toLowerCase())
 							&& tvehiculos.getVmcvum().toLowerCase()
-									.contains(valores.get(10).toLowerCase())) {
+									.contains(valores.get(9).toLowerCase())) {
 						tvehiculo.add(tvehiculos);
 					}
 				}
@@ -418,18 +477,17 @@ public class CF4930 extends CGenerico {
 
 			@Override
 			protected String[] crearRegistros(F4930 f4930) {
-				String[] registros = new String[11];
+				String[] registros = new String[10];
 				registros[0] = f4930.getVmvehi();
 				registros[1] = f4930.getVmvtyp();
 				registros[2] = f4930.getVmdl01();
 				registros[3] = f4930.getVmmcu();
 				registros[4] = String.valueOf(f4930.getVmvown());
-				registros[5] = f4930.getVmdumv();
-				registros[6] = f4930.getVmvehs();
-				registros[7] = String.valueOf(f4930.getVmwtca());
-				registros[8] = f4930.getVmwtum();
-				registros[9] = String.valueOf(f4930.getVmcvol());
-				registros[10] = f4930.getVmcvum();
+				registros[5] = f4930.getVmvehs();
+				registros[6] = String.valueOf(f4930.getVmwtca());
+				registros[7] = f4930.getVmwtum();
+				registros[8] = String.valueOf(f4930.getVmcvol());
+				registros[9] = f4930.getVmcvum();
 
 				return registros;
 			}
@@ -441,9 +499,9 @@ public class CF4930 extends CGenerico {
 	@Listen("onClick = #btnBuscarVOWNF0101")
 	public void mostrarCatalogoF0101() {
 		final List<F0101> listF0101 = servicioF0101.buscarTodosOrdenados();
-		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101, "F0101",
-				listF0101, true, false, false, "Nº direccion",
-				"Nombre alfabetico", "Direccion larga",
+		catalogoF0101 = new CatalogoGenerico<F0101>(divCatalogoF0101,
+				"Catalogo de Direcciones", listF0101, true, false, false,
+				"Nº direccion", "Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
 
 			@Override
@@ -489,19 +547,37 @@ public class CF4930 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF0101")
 	public void seleccionF0101() {
 		F0101 f0101 = catalogoF0101.objetoSeleccionadoDelCatalogo();
-		txtVOWNF0101.setValue(String.valueOf(f0101.getAban8()));
+		txtVOWNF0101.setValue(String.valueOf(Math.round(f0101.getAban8())));
 		lblF0101.setValue(f0101.getAbalph());
 		catalogoF0101.setParent(null);
 	}
-	
-	
+
+	@Listen("onChange = #txtVOWNF0101; onOk = #txtVOWNF0101")
+	public boolean buscarDireccion() {
+		if (txtVOWNF0101.getValue() != null) {
+			F0101 f0101 = servicioF0101.buscar(Double.valueOf(txtVOWNF0101
+					.getValue()));
+			if (f0101 != null) {
+				txtVOWNF0101.setValue(String.valueOf(Math.round(f0101
+						.getAban8())));
+				lblF0101.setValue(f0101.getAbalph());
+				return true;
+			} else {
+				msj.mensajeAlerta(Mensaje.noHayRegistros);
+				return false;
+			}
+		} else
+			return false;
+	}
+
 	@Listen("onClick = #btnBuscarVTYPF4931")
 	public void mostrarCatalogoF4931() {
 		final List<F4931> listF4931 = servicioF4931.buscarTodosOrdenados();
-		catalogoF4931 = new CatalogoGenerico<F4931>(divCatalogoF4931, "F4931", listF4931,
-				true, false, false, "Tp veh", "Descripción", "Tipo transp",
-				"Grupo dpch", "Grupo 2 de desp", "Cap peso", "UM ps",
-				"Capacidad en vol cúbicos", "UM", "Capacidad de vol a granel",
+		catalogoF4931 = new CatalogoGenerico<F4931>(divCatalogoF4931, "F4931",
+				listF4931, true, false, false, "Tp veh", "Descripción",
+				"Tipo transp", "Grupo dpch", "Grupo 2 de desp", "Cap peso",
+				"UM ps", "Capacidad en vol cúbicos", "UM",
+				"Capacidad de vol a granel",
 				"Cap secundaria de volumen a granel", "UM vol", "N° com",
 				"Lín carga") {
 
@@ -569,12 +645,129 @@ public class CF4930 extends CGenerico {
 	@Listen("onSeleccion = #divCatalogoF4931")
 	public void seleccionF4931() {
 		F4931 f4931 = catalogoF4931.objetoSeleccionadoDelCatalogo();
-		txtVOWNF0101.setValue(f4931.getVgvtyp());
-		lblF4931.setValue("");
+		txtVTYPF4931.setValue(f4931.getVgvtyp());
+		lblF4931.setValue(f4931.getVgdl01());
+		txtCapacidadPesoF4930.setValue(String.valueOf(Math.round(f4931
+				.getVgwtca())));
+		txtBrutoF4930.setValue(String.valueOf(Math.round(f4931.getVgwtem())));
+		txtCapacidadVolumenF4930.setValue(f4931.getVgdsgp());
 		catalogoF4931.setParent(null);
 	}
-	
-	
+
+	@Listen("onChange = #txtVTYPF4931; onOk =  #txtVTYPF4931")
+	public boolean buscarTipoVehiculo() {
+		if (txtVTYPF4931.getText().compareTo("") != 0) {
+			F4931 f4931 = servicioF4931.buscar(txtVTYPF4931.getText());
+			if (f4931 != null) {
+				txtVTYPF4931.setValue(f4931.getVgvtyp());
+				lblF4931.setValue(f4931.getVgdl01());
+				return true;
+			} else {
+				msj.mensajeError(Mensaje.almacenNoExiste);
+				return false;
+			}
+
+		} else
+			return false;
+	}
+
+	@Listen("onClick = #btnBuscarMCUF0006")
+	public void mostrarCatalogoF0006() {
+		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
+		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006,
+				"Catalogo de Unidades de Negocio", unidades, true, false,
+				false, "Unidad Negocio", "Descripcion", "Nivel det", "Cta",
+				"Tipo UN", "LM Auxiliar Inactivo", "Mto Cons", "CAT 01",
+				"CAT 02", "CAT 03", "CAT 04", "CAT 05", "CAT 06") {
+
+			@Override
+			protected List<F0006> buscar(List<String> valores) {
+
+				List<F0006> unidadnegocio = new ArrayList<F0006>();
+
+				for (F0006 unidad : unidades) {
+					String mcdc = "";
+					if (unidad.getMcdc() != null)
+						mcdc = unidad.getMcdc();
+					if (unidad.getMcmcu().toLowerCase()
+							.contains(valores.get(0).toLowerCase())
+							&& mcdc.toLowerCase().contains(
+									valores.get(1).toLowerCase())
+							&& unidad.getMcldm().toLowerCase()
+									.contains(valores.get(2).toLowerCase())
+							&& unidad.getMcco().toLowerCase()
+									.contains(valores.get(3).toLowerCase())
+							&& unidad.getMcstyl().toLowerCase()
+									.contains(valores.get(4).toLowerCase())
+							&& unidad.getMcfmod().toLowerCase()
+									.contains(valores.get(5).toLowerCase())
+							&& unidad.getMcsbli().toLowerCase()
+									.contains(valores.get(6).toLowerCase())
+							&& unidad.getMcrp01().toLowerCase()
+									.contains(valores.get(7).toLowerCase())
+							&& unidad.getMcrp02().toLowerCase()
+									.contains(valores.get(8).toLowerCase())
+							&& unidad.getMcrp03().toLowerCase()
+									.contains(valores.get(9).toLowerCase())
+							&& unidad.getMcrp04().toLowerCase()
+									.contains(valores.get(10).toLowerCase())
+							&& unidad.getMcrp05().toLowerCase()
+									.contains(valores.get(11).toLowerCase())
+							&& unidad.getMcrp06().toLowerCase()
+									.contains(valores.get(12).toLowerCase())) {
+						unidadnegocio.add(unidad);
+					}
+				}
+				return unidadnegocio;
+			}
+
+			@Override
+			protected String[] crearRegistros(F0006 negocio) {
+				String[] registros = new String[13];
+				registros[0] = negocio.getMcmcu();
+				registros[1] = negocio.getMcdc();
+				registros[2] = negocio.getMcldm();
+				registros[3] = negocio.getMcco();
+				registros[4] = negocio.getMcstyl();
+				registros[5] = negocio.getMcfmod();
+				registros[6] = negocio.getMcsbli();
+				registros[7] = negocio.getMcrp01();
+				registros[8] = negocio.getMcrp02();
+				registros[9] = negocio.getMcrp03();
+				registros[10] = negocio.getMcrp04();
+				registros[11] = negocio.getMcrp05();
+				registros[12] = negocio.getMcrp06();
+				return registros;
+			}
+		};
+		catalogoF0006.setParent(divCatalogoF0006);
+		catalogoF0006.doModal();
+	}
+
+	@Listen("onSeleccion = #divCatalogoF0006")
+	public void seleccionF0006() {
+		F0006 f0006 = catalogoF0006.objetoSeleccionadoDelCatalogo();
+		txtMCUF4930.setValue(String.valueOf(f0006.getMcmcu()));
+		lblF0006.setValue(f0006.getMcdl01());
+		catalogoF0006.setParent(null);
+	}
+
+	@Listen("onChange = #txtMCUF4930; onOk =  #txtMCUF4930")
+	public boolean idF0006() {
+		if (txtMCUF4930.getText().compareTo("") != 0) {
+			F0006 f0006 = servicioF0006.buscar(txtMCUF4930.getText());
+			if (f0006 != null) {
+				txtMCUF4930.setValue(String.valueOf(f0006.getMcmcu()));
+				lblF0006.setValue(f0006.getMcdl01());
+				return true;
+			} else {
+				msj.mensajeError(Mensaje.almacenNoExiste);
+				return false;
+			}
+
+		} else
+			return false;
+	}
 
 	public boolean camposLLenos() {
 		if (txtVEHIF4930.getText().compareTo("") == 0
@@ -592,9 +785,9 @@ public class CF4930 extends CGenerico {
 				|| txtVEHSF4930.getText().compareTo("") != 0
 				|| txtVTYPF4931.getText().compareTo("") != 0
 				|| txtVOWNF0101.getText().compareTo("") != 0
-				|| txtWTUMF4930.getText().compareTo("") != 0
+				|| buscadorWtumf.obtenerCaja().compareTo("") != 0
 				|| txtWTEMF4930.getText().compareTo("") != 0
-				|| txtCVUMF4930.getText().compareTo("") != 0) {
+				|| buscadorCvumf.obtenerCaja().compareTo("") != 0) {
 			return true;
 		} else
 			return false;

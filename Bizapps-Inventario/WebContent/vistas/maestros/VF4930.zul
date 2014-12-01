@@ -5,7 +5,7 @@
 			title="Trabajo con vehiculos (VF4930)">
 			<div id="botoneraF4930" />
 			<separator />
-			<groupbox class="blanco" id="gpxRegistro" width="auto"
+			<groupbox class="azul" id="gpxRegistro" width="auto"
 				title="" open="false">
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para Registrar un Nuevo Vehiculo" />
@@ -13,9 +13,9 @@
 				<grid width="100%" style="border:0px">
 					<columns visible="false">
 						<column label="" width="15%" />
-						<column label="" width="25%" />
+						<column label="" width="30%" />
 						<column label="" width="15%" />
-						<column label="" width="25%" />
+						<column label="" width="20%" />
 						<column label="" width="20%" />
 					</columns>
 					<rows>
@@ -29,7 +29,8 @@
 								</label>
 							</hbox>
 							<textbox id="txtVEHIF4930" hflex="1"
-								maxlength="12" tooltiptext="Ingrese el id del vehiculo (VMVEHI)" />
+								maxlength="12"
+								tooltiptext="Ingrese el id del vehiculo (VMVEHI)" />
 							<hbox>
 								<label class="etiqueta"
 									style="margin-left:15px" value="Sucursal/planta:" />
@@ -38,15 +39,18 @@
 									style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<textbox id="txtMCUF4930" hflex="1"
-								maxlength="12"
-								tooltiptext="Seleccione del Catalogo el Codigo de la Sucursal (MCMCU de F0006)" />
 							<hbox>
-								<button id="btnBuscarMCUF0011"
-									label="Buscar" class="btn" tooltiptext="Catalogo de Codigos de Sucursales (F0006)"
+								<textbox id="txtMCUF4930" hflex="1"
+									maxlength="12"
+									tooltiptext="Seleccione del Catalogo el Codigo de la Sucursal (MCMCU de F0006)" />
+
+								<button id="btnBuscarMCUF0006"
+									label="Buscar" class="btn"
+									tooltiptext="Catalogo de Codigos de Sucursales (F0006)"
 									image="/public/imagenes/botones/buscar.png" />
-								<label id="lblF0011" />
 							</hbox>
+							<label id="lblF0006" />
+
 						</row>
 						<row>
 
@@ -64,7 +68,8 @@
 								</label>
 							</hbox>
 							<textbox id="txtVEHSF4930" hflex="1"
-								maxlength="25" tooltiptext="Ingrese el numero de serie (VMVEHS)" />
+								maxlength="25"
+								tooltiptext="Ingrese el numero de serie (VMVEHS)" />
 							<hbox />
 							<hbox />
 						</row>
@@ -73,11 +78,12 @@
 								value="Tpo vehículo:" />
 
 							<hbox>
-								<textbox id="txtVTYPF4931" hflex="1"
-									maxlength="30" tooltiptext="Seleccione del Catalogo el Codigo del Tipo de Vehiculo (VGVTYP de F4931)" />
+								<textbox id="txtVTYPF4931" width="80px"
+									maxlength="30"
+									tooltiptext="Seleccione del Catalogo el Codigo del Tipo de Vehiculo (VGVTYP de F4931)" />
 
 								<button id="btnBuscarVTYPF4931"
-									label="Buscar" class="btn"
+									style="margin-left:10px" label="Buscar" class="btn"
 									tooltiptext="Catalogo de Codigos de Tipos de Vehiculos (F4931)"
 									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblF4931" />
@@ -86,14 +92,18 @@
 							<label class="etiqueta"
 								style="margin-left:15px" value="N° de propietario:" />
 
-							<textbox id="txtVOWNF0101" hflex="1"
-								maxlength="30" tooltiptext="Seleccione del Catalogo el Codigo del Propietario (ABAN8 de F0101)" />
+							<hbox>
+								<textbox id="txtVOWNF0101" hflex="1"
+									maxlength="30"
+									tooltiptext="Seleccione del Catalogo el Codigo del Propietario (ABAN8 de F0101)" />
 
-							<button id="btnBuscarVOWNF0101"
-								label="Buscar" class="btn"
-								tooltiptext="Catalogo de Codigos de Propietarios (F0101)"
-								image="/public/imagenes/botones/buscar.png" />
+								<button id="btnBuscarVOWNF0101"
+									label="Buscar" class="btn"
+									tooltiptext="Catalogo de Codigos de Propietarios (F0101)"
+									image="/public/imagenes/botones/buscar.png" />
+							</hbox>
 							<label id="lblF0101" />
+
 						</row>
 					</rows>
 				</grid>
@@ -112,12 +122,10 @@
 						</columns>
 						<rows>
 							<row>
-								<label class="etiqueta" value="UM:" />
-
-								<textbox id="txtWTUMF4930" hflex="1"
-									maxlength="2" tooltiptext="Ingrese el UM (VMWTUM)" />
-
-								<hbox />
+								<cell colspan="3">
+									<div id="divBuscadorWTUMF"
+										hflex="1" />
+								</cell>
 								<hbox />
 							</row>
 							<row>
@@ -133,8 +141,9 @@
 								<label class="etiqueta"
 									value="Capacidad:" />
 
-								<textbox id="txtCapacidadPesoF4930" tooltiptext="Ingrese la Capacidad (VMWTCA)"
-									hflex="1" disabled="true" />
+								<textbox id="txtCapacidadPesoF4930"
+									tooltiptext="Ingrese la Capacidad (VMWTCA)" hflex="1"
+									disabled="true" />
 
 								<hbox />
 								<hbox />
@@ -143,7 +152,8 @@
 								<label class="etiqueta"
 									value="Bruto máximo:" />
 
-								<textbox id="txtBrutoF4930" tooltiptext="Ingrese el Bruto Maximo (VMWTCA)" hflex="1"
+								<textbox id="txtBrutoF4930"
+									tooltiptext="Ingrese el Bruto Maximo (VMWTCA)" hflex="1"
 									disabled="true" />
 
 								<hbox />
@@ -169,12 +179,10 @@
 						</columns>
 						<rows>
 							<row>
-								<label class="etiqueta" value="UM:" />
-
-								<textbox id="txtCVUMF4930" hflex="1"
-									maxlength="2" tooltiptext="Ingrese el UM" />
-
-								<hbox />
+								<cell colspan="3">
+									<div id="divBuscadorCVUMF"
+										hflex="1" />
+								</cell>
 								<hbox />
 							</row>
 							<row>
@@ -196,7 +204,7 @@
 				<separator />
 			</groupbox>
 			<separator />
-			<groupbox class="blanco" id="gpxDatos" width="auto"
+			<groupbox class="azul" id="gpxDatos" width="auto"
 				title="">
 				<caption label="Registros" style="font-weight:bold"
 					tooltiptext="Presione para Visualizar los vehiculos" />
