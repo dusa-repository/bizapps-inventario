@@ -39,6 +39,7 @@ import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorF0006;
 import componentes.buscadores.BuscadorF0013;
 import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoF0006;
@@ -50,6 +51,10 @@ import componentes.catalogos.CatalogoGenerico;
 
 public class CF4301 extends CGenerico {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Wire
 	private Div divVF4301;
 	@Wire
@@ -202,11 +207,7 @@ public class CF4301 extends CGenerico {
 	@Wire
 	private Textbox txtOORNF4311;
 	@Wire
-	private Textbox txtMCUF4311;
-	@Wire
 	private Label lblPDITMF4311;
-	@Wire
-	private Label lblMCUF4311;
 	@Wire
 	private Doublespinner spnUORGF4311;
 	@Wire
@@ -215,6 +216,9 @@ public class CF4301 extends CGenerico {
 	private Button btnAgregar;
 	@Wire
 	private Button btnBuscarF0011;
+	@Wire
+	private Div divBuscadorMCU;
+	BuscadorF0006 buscadorMCU;
 	@Wire
 	private Div divBuscadorUOM;
 	BuscadorUDC buscadorUOM;
@@ -263,19 +267,23 @@ public class CF4301 extends CGenerico {
 			}
 		}
 
-		buscadorINMG = crearCampoUDC(divBuscadorINMG, "Mensaje imprimir", "40",
-				"PM");
-		buscadorEXR1 = crearCampoUDC(divBuscadorEXR1, "Cod expl fiscal", "00",
-				"EX");
-		buscadorHOLD = crearCampoUDC(divBuscadorHOLD, "Cod retencion", "42",
-				"HC");
-		buscadorFUF1 = crearCampoUDC(divBuscadorFUF1, "Doc A\'A", "40", "FU");
-		// Detalles
-		buscadorUOM = crearCampoUDC(divBuscadorUOM, "UM", "00", "UM");
-		buscadorLTTR = crearCampoUDC(divBuscadorLTTR, "Ultimo Estado", "40",
-				"AT");
-		buscadorNXTR = crearCampoUDC(divBuscadorNXTR, "Siguiente Estado", "40",
-				"AT");
+		String ancho1 ="25%"; 
+		String ancho2 ="25%";
+		String ancho3 ="25%";
+		String ancho4 ="25%";
+		buscadorINMG = crearCampoUDC(divBuscadorINMG, "Mensaje imprimir",
+				false, "40", "PM");
+		buscadorEXR1 = crearCampoUDC(divBuscadorEXR1, "Cod expl fiscal", false,
+				"00", "EX");
+		buscadorHOLD = crearCampoUDC(divBuscadorHOLD, "Cod retencion", false,
+				"42", "HC");
+		buscadorFUF1 = crearCampoUDC(divBuscadorFUF1, "Doc A\'A", false, "40",
+				"FU");
+		buscadorUOM = crearCampoUDC(divBuscadorUOM, "UM", false, "00", "UM");
+		buscadorLTTR = crearCampoUDC(divBuscadorLTTR, "Ultimo Estado", false,
+				"40", "AT");
+		buscadorNXTR = crearCampoUDC(divBuscadorNXTR, "Siguiente Estado",
+				false, "40", "AT");
 
 		buscadorCRCD = new BuscadorF0013(
 				"Moneda",
@@ -284,6 +292,9 @@ public class CF4301 extends CGenerico {
 				"Catalogo de Codigos de Monedas (F0013)", "", 100,
 				servicioF0013, "36%", "5%", "7%", "36%");
 		divBuscadorCRCD.appendChild(buscadorCRCD);
+		buscadorMCU = new BuscadorF0006("Unidad de negocio", false, "", "", "", 10, servicioF0006, ancho1, ancho2, ancho3, ancho4);
+		divBuscadorMCU.appendChild(buscadorMCU);
+		
 		mostrarCatalogo();
 		txtLNIDF4311.setValue(listaDetalle.size() + 1);
 		botonera = new Botonera() {
@@ -397,9 +408,9 @@ public class CF4301 extends CGenerico {
 					clavePk.setPhkcoo(txtKCOOF4301.getValue());
 					clavePk.setPhsfxo(txtSFXOF4301.getValue());
 					f4301.setId(clavePk);
-					f4301.setPhan8(txtAN8F4301.getValue());
+					f4301.setPhan8(txtAN8F4301.getValue().doubleValue());
 					f4301.setPhanby(txtANBYF4301.getValue());
-					f4301.setPhancr(txtANCRF4301.getValue());
+					f4301.setPhancr(txtANCRF4301.getValue().doubleValue());
 					f4301.setPhcrcd(buscadorCRCD.obtenerCaja());
 					f4301.setPhcrr(txtCRRF4301.getValue());
 					f4301.setPhdesc(txtDESCF4301.getValue());
@@ -698,23 +709,15 @@ public class CF4301 extends CGenerico {
 	}
 
 	/*
-	@Listen("onChange = #txtMCUF4301; onOk = #txtMCUF4301")
-	public boolean buscarZonas() {
-		if (txtTXA1F4301.getValue() != null) {
-			List<F4008> f4008 = servicioF4008.buscarPorTatxa1(txtTXA1F4301
-					.getValue());
-			if (f4008.size() != 0) {
-				txtTXA1F4301.setValue(f4008.get(0).getId().getTatxa1());
-				lblZonaV4008.setValue(f4008.get(0).getTataxa());
-				return true;
-			} else {
-				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				return false;
-			}
-		} else
-			return false;
-	}
-	*/
+	 * @Listen("onChange = #txtMCUF4301; onOk = #txtMCUF4301") public boolean
+	 * buscarZonas() { if (txtTXA1F4301.getValue() != null) { List<F4008> f4008
+	 * = servicioF4008.buscarPorTatxa1(txtTXA1F4301 .getValue()); if
+	 * (f4008.size() != 0) {
+	 * txtTXA1F4301.setValue(f4008.get(0).getId().getTatxa1());
+	 * lblZonaV4008.setValue(f4008.get(0).getTataxa()); return true; } else {
+	 * msj.mensajeAlerta(Mensaje.noHayRegistros); return false; } } else return
+	 * false; }
+	 */
 
 	@Listen("onClick = #btnBuscarProveedorF0101,#btnBuscarDestinoF0101,#btnBuscarCompradorF0101,#btnBuscarTransportistaF0101,#btnBuscarRifF0101")
 	public void mostrarCatalogoDireccion(Event evento) {
@@ -814,8 +817,9 @@ public class CF4301 extends CGenerico {
 	@Listen("onClick = #btnBuscarF4101")
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
-		catalogoF4101 = new CatalogoF4101(divCatalogoF4101, "Catalogo de Articulos", listF4101,
-				true, "Codigo", "Descripcion");
+		catalogoF4101 = new CatalogoF4101(divCatalogoF4101,
+				"Catalogo de Articulos", listF4101, true, "Codigo",
+				"Descripcion");
 		catalogoF4101.setParent(divCatalogoF4101);
 		catalogoF4101.doModal();
 	}
@@ -828,12 +832,11 @@ public class CF4301 extends CGenerico {
 		lblPDITMF4311.setValue(f4101.getImdsc1());
 		catalogoF4101.setParent(null);
 	}
-	
+
 	@Listen("onChange = #txtITMF4311; onOk = #txtITMF4311")
 	public boolean buscarArticulos() {
 		if (txtITMF4311.getValue() != null) {
-			F4101 f4101 = servicioF4101.buscar(txtITMF4311
-					.getValue());
+			F4101 f4101 = servicioF4101.buscar(txtITMF4311.getValue());
 			if (f4101 != null) {
 				Double doble = f4101.getImitm();
 				txtITMF4311.setValue(doble.longValue());
@@ -881,7 +884,7 @@ public class CF4301 extends CGenerico {
 			Double costo = txtAEXPF4311.getValue();
 			String cuenta = txtVR01F4311.getValue();
 			String orden = txtOORNF4311.getValue();
-			String unidad = txtMCUF4311.getValue();
+			String unidad = buscadorMCU.obtenerCaja();
 			Double cantidad = spnUORGF4311.getValue();
 			String udcUOM = buscadorUOM.obtenerCaja();
 			String udcLTTR = buscadorLTTR.obtenerCaja();
@@ -938,7 +941,7 @@ public class CF4301 extends CGenerico {
 		txtAEXPF4311.setValue(modelo.getPdaexp());
 		txtVR01F4311.setValue(modelo.getPdvr01());
 		txtOORNF4311.setValue(modelo.getPdoorn());
-		txtMCUF4311.setValue(modelo.getPdmcu());
+		buscadorMCU.settearCampo(modelo.getPdmcu());
 		spnUORGF4311.setValue(modelo.getPduorg());
 		String udc = modelo.getPduom();
 		F0005 f05 = servicioF0005.buscar("00", "UM", udc);
@@ -954,14 +957,14 @@ public class CF4301 extends CGenerico {
 	private void limpiarCamposItem() {
 		txtITMF4311.setValue(null);
 		lblPDITMF4311.setValue("");
-		lblMCUF4311.setValue("");
 		txtDSC1F4311.setValue(null);
 		txtDSC2F4311.setValue(null);
 		txtPRRCF4311.setValue(null);
 		txtAEXPF4311.setValue(null);
 		txtVR01F4311.setValue(null);
 		txtOORNF4311.setValue(null);
-		txtMCUF4311.setValue(null);
+		buscadorMCU.limpiarCampo();
+		;
 		spnUORGF4311.setValue((double) 0);
 		buscadorUOM.settearCampo(null);
 		buscadorLTTR.settearCampo(null);

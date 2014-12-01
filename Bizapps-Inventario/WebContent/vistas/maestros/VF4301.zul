@@ -57,22 +57,11 @@
 									<hbox />
 								</row>
 								<row>
-									<hbox>
-										<label class="etiqueta"
-											value="Sucursal/planta:" />
-										<space />
-										<label value=""
-											style="font-weight:bold;color:red">
-										</label>
-									</hbox>
-									<textbox id="txtMCUF4301" hflex="1"
-										maxlength="100"
-										tooltiptext="Seleccione del Catalogo el Codigo de la Sucursal (MCMCU de F0006)" />
-									<button id="btnBuscarSucPlantaF0006"
-										label="Buscar" class="btn"
-										tooltiptext="Catalogo de Codigos de Sucursales (F0006)"
-										image="/public/imagenes/botones/buscar.png" />
-									<label id="lblSucPlantaF0006" />
+									<cell colspan="3">
+										<div id="divBuscadorMCU"
+											hflex="1" />
+
+									</cell>
 								</row>
 								<row>
 									<cell colspan="3">
