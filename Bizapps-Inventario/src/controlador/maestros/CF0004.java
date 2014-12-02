@@ -161,59 +161,6 @@ public class CF0004 extends CGenerico {
 
 			@Override
 			public void eliminar() {
-				if (gpxDatos.isOpen()) {
-					/* Elimina Varios Registros */
-					if (validarSeleccion()) {
-						final List<F0004> eliminarLista = catalogo
-								.obtenerSeleccionados();
-						Messagebox
-								.show("¿Desea Eliminar los "
-										+ eliminarLista.size() + " Registros?",
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0004
-															.eliminarVarios(eliminarLista);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													listaGeneral = servicioF0004
-															.buscarTodosOrdenados();
-													catalogo.actualizarLista(listaGeneral);
-												}
-											}
-										});
-					}
-				} else {
-					/* Elimina un solo registro */
-					if (clave != null) {
-						Messagebox
-								.show(Mensaje.deseaEliminar,
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF0004
-															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													limpiar();
-													listaGeneral = servicioF0004
-															.buscarTodosOrdenados();
-													catalogo.actualizarLista(listaGeneral);
-												}
-											}
-										});
-					} else
-						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
-				}
-
 			}
 
 			@Override
@@ -235,6 +182,7 @@ public class CF0004 extends CGenerico {
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);
+		botonera.getChildren().get(4).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
 		botoneraF0004.appendChild(botonera);
@@ -244,6 +192,7 @@ public class CF0004 extends CGenerico {
 	public void mostrarBotones(boolean bol) {
 		botonera.getChildren().get(1).setVisible(!bol);
 		botonera.getChildren().get(2).setVisible(bol);
+		botonera.getChildren().get(4).setVisible(false);
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);
 		botonera.getChildren().get(0).setVisible(bol);
