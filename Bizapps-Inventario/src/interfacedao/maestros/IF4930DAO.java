@@ -11,6 +11,10 @@ public interface  IF4930DAO extends JpaRepository<F4930, String> {
 
 	F4930 findByVmvehi(String clave);
 
+	List<F4930> findByVmmcu(String vmmcu);
+
+	List<F4930> findByVmvown(double vmvown);
+
 
 
 }

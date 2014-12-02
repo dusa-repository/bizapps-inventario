@@ -73,6 +73,12 @@ public class SF4105 {
 	public List<F4105> buscarPorMcuEItem(String comcu, Double coitm) {
 		return iF4105DAO.findByIdCoitmAndIdComcuOrderByIdCoitmAsc(coitm, comcu);
 	}
+	
+	public List<F4105> buscarPorMcu(String comcu) {
+		return iF4105DAO.findByIdComcu(comcu);
+	}
+	
+	
 
 	public void guardarVarios(List<F4105> guardados) {
 		iF4105DAO.save(guardados);

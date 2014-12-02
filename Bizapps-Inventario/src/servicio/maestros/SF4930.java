@@ -36,6 +36,15 @@ public class SF4930 {
 		return f4930DAO.findByVmvehi(clave);
 
 	}
+	
+	public List<F4930> buscarPorMcu(String vmmcu) {
+		return f4930DAO.findByVmmcu(vmmcu);
+	}
+	
+	public List<F4930> buscarPorVmvown(double vmvown) {
+		return f4930DAO.findByVmvown(vmvown);
+	}
+	
 
 	
 }

@@ -6,11 +6,15 @@ import java.util.List;
 
 import modelo.maestros.F00021;
 import modelo.maestros.F0006;
+import modelo.maestros.F0010;
 import modelo.maestros.F0101;
 import modelo.maestros.F0111;
 import modelo.maestros.F0115;
 import modelo.maestros.F01151;
 import modelo.maestros.F0116;
+import modelo.maestros.F4008;
+import modelo.maestros.F49041;
+import modelo.maestros.F4930;
 import modelo.pk.F00021PK;
 import modelo.pk.F0111PK;
 import modelo.pk.F0116PK;
@@ -678,16 +682,36 @@ public class CF0101 extends CGenerico {
 						final int cantidad = eliminarLista.size();
 						for (int i = 0; i < eliminarLista.size(); i++) {
 							F0101 valor = eliminarLista.get(i);
-							List<F0115> objeto = servicioF0115
+							List<F0006> objetoF0006 = servicioF0006
+									.buscarPorMcan8(valor.getAban8());
+							List<F0010> objetoF0010 = servicioF0010
+									.buscarPorCcan8(valor.getAban8());
+							// List<F0015> objetoF0015 = servicioF0015
+							// .buscarCxan8(valor.getAban8());
+							List<F0115> objetoF0115 = servicioF0115
 									.buscarPorAn(valor.getAban8());
-							List<F01151> objeto3 = servicioF01151
+							List<F01151> objetoF01151 = servicioF01151
 									.buscarPorAn(valor.getAban8());
-							List<F0101> objeto2 = servicioF0101
+							List<F0101> objetoF0101 = servicioF0101
 									.buscarPorAns(valor.getAban8());
-							List<F4111> objeto4 = servicioF4111
+							List<F4111> objetoF4111 = servicioF4111
 									.buscarPorAn(valor.getAban8());
-							if (!objeto.isEmpty() || !objeto2.isEmpty()
-									|| !objeto3.isEmpty() || !objeto4.isEmpty()) {
+							List<F4008> objetoF4008 = servicioF4008
+									.buscarPorTata1(valor.getAban8());
+							List<F4930> objetoF4930 = servicioF4930
+									.buscarPorVmvown(valor.getAban8());
+							List<F49041> objetoF49041 = servicioF49041
+									.buscarPorVsstfn(valor.getAban8());
+							if (!objetoF0006.isEmpty()
+									|| !objetoF0010.isEmpty()
+									// || !objetoF0015.isEmpty()
+									|| !objetoF0115.isEmpty()
+									|| !objetoF01151.isEmpty()
+									|| !objetoF0101.isEmpty()
+									|| !objetoF4111.isEmpty()
+									|| !objetoF4008.isEmpty()
+									|| !objetoF4930.isEmpty()
+									|| !objetoF49041.isEmpty()) {
 								eliminarLista.remove(valor);
 								i--;
 							}
@@ -724,13 +748,36 @@ public class CF0101 extends CGenerico {
 				} else {
 					/* Elimina un solo registro */
 					if (clave != 0) {
-						List<F0115> objeto = servicioF0115.buscarPorAn(clave);
-						List<F01151> objeto3 = servicioF01151
+						List<F0006> objetoF0006 = servicioF0006
+								.buscarPorMcan8(clave);
+						List<F0010> objetoF0010 = servicioF0010
+								.buscarPorCcan8(clave);
+						// List<F0015> objetoF0015 = servicioF0015
+						// .buscarCxan8(clave);
+						List<F0115> objetoF0115 = servicioF0115
 								.buscarPorAn(clave);
-						List<F0101> objeto2 = servicioF0101.buscarPorAns(clave);
-						List<F4111> objeto4 = servicioF4111.buscarPorAn(clave);
-						if (objeto.isEmpty() && objeto2.isEmpty()
-								&& objeto3.isEmpty() && objeto4.isEmpty()) {
+						List<F01151> objetoF01151 = servicioF01151
+								.buscarPorAn(clave);
+						List<F0101> objetoF0101 = servicioF0101
+								.buscarPorAns(clave);
+						List<F4111> objetoF4111 = servicioF4111
+								.buscarPorAn(clave);
+						List<F4008> objetoF4008 = servicioF4008
+								.buscarPorTata1(clave);
+						List<F4930> objetoF4930 = servicioF4930
+								.buscarPorVmvown(clave);
+						List<F49041> objetoF49041 = servicioF49041
+								.buscarPorVsstfn(clave);
+						if (objetoF0006.isEmpty()
+								&& objetoF0010.isEmpty()
+								// && objetoF0015.isEmpty()
+								&& objetoF0115.isEmpty()
+								&& objetoF01151.isEmpty()
+								&& objetoF0101.isEmpty()
+								&& objetoF4111.isEmpty()
+								&& objetoF4008.isEmpty()
+								&& objetoF4930.isEmpty()
+								&& objetoF49041.isEmpty()) {
 							Messagebox
 									.show(Mensaje.deseaEliminar,
 											"Alerta",

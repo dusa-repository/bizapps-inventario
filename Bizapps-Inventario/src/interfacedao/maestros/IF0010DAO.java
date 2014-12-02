@@ -14,4 +14,8 @@ public interface IF0010DAO extends JpaRepository<F0010, String> {
 
 	List<F0010> findByCccrcd(String cvcrcd);
 
+	List<F0010> findByCcco(String ccco);
+
+	List<F0010> findByCcan8(double ccan8);
+
 }

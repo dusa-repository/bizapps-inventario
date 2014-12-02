@@ -16,4 +16,6 @@ public interface IF0006DAO extends JpaRepository<F0006, String> {
 	List<F0006> findByMcmcu(String value);
 
 	List<F0006> findByMcco(String ccco);
+
+	List<F0006> findByMcan8(double mcan8);
 }

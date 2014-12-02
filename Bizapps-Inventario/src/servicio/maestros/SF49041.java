@@ -44,6 +44,14 @@ public class SF49041 {
 	public void eliminarUno(F49041PK clave) {
 		f49041DAO.delete(clave);
 	}
-
 	
+	public List<F49041> buscarPorMcu(String vsmcu) {
+		return f49041DAO.findByVsmcu(vsmcu);
+	}
+	
+	public List<F49041> buscarPorVsstfn(double vsstfn) {
+		return f49041DAO.findByIdVsstfn(vsstfn);
+	}
+	
+
 }

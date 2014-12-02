@@ -13,6 +13,8 @@ public interface IF4008DAO extends JpaRepository<F4008, F4008PK> {
 	@Query("Select f from F4008 f order by f.id.tatxa1 asc, f.tataxa asc")
 	List<F4008> findAllOrderById();
 
+	List<F4008> findByTata1(double tata1);
+
 	//List<F4008> findByIdTatxa1(String txa1);
 
 

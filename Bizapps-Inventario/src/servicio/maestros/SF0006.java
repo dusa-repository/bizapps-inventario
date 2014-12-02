@@ -48,6 +48,12 @@ public class SF0006 {
 	public List<F0006> buscarPorMco(String ccco) {
 		return f0006DAO.findByMcco(ccco);
 	}
+	
+	public List<F0006> buscarPorMcan8(double mcan8) {
+		return f0006DAO.findByMcan8(mcan8);
+	}
+	
+	
 
 	public void guardarVarios(List<F0006> almacenes) {
 		f0006DAO.save(almacenes);
