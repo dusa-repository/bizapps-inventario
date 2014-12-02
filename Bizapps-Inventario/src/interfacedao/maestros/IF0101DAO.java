@@ -20,4 +20,7 @@ public interface IF0101DAO extends JpaRepository<F0101, Double> {
 	@Query("select distinct fa.ilan8 from F4111 fa where fa.ildct=?1")
 	List<Double> buscarProveedorConOrden(String string);
 
+	List<F0101> findByAbmcu(String abmcu);
+
+
 }

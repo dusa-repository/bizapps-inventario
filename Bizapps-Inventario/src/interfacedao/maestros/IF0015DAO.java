@@ -16,5 +16,7 @@ public interface IF0015DAO extends JpaRepository<F0015, F0015PK> {
 	
 	List<F0015> findByIdCxcrcd(String value);
 
+	//public List<F0015> findByIdCxan8(double cxan8);
+
 
 }

@@ -190,7 +190,7 @@ public class CF41002 extends CGenerico {
 
 			@Override
 			public void guardar() {
-			
+
 				if (validar()) {
 					String expo = txtEXPOF41002.getValue();
 					String ustr = txtUSTRF41002.getValue();
@@ -259,8 +259,10 @@ public class CF41002 extends CGenerico {
 													servicioF41002
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													listaGeneral = servicioF41002.buscarTodosOrdenados();
-													catalogoF41002.actualizarLista(listaGeneral);
+													listaGeneral = servicioF41002
+															.buscarTodosOrdenados();
+													catalogoF41002
+															.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -282,8 +284,10 @@ public class CF41002 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													listaGeneral = servicioF41002.buscarTodosOrdenados();
-													catalogoF41002.actualizarLista(listaGeneral);
+													listaGeneral = servicioF41002
+															.buscarTodosOrdenados();
+													catalogoF41002
+															.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -389,8 +393,7 @@ public class CF41002 extends CGenerico {
 	@Listen("onChange = #txtUMITMF41002; onOK = #txtUMITMF41002")
 	public boolean idArticuloExiste() {
 		if (txtUMITMF41002.getText().compareTo("") != 0) {
-			F4101 f4101 = servicioF4101.buscar(Double
-					.parseDouble(txtUMITMF41002.getText()));
+			F4101 f4101 = servicioF4101.buscar(txtUMITMF41002.getValue());
 			if (f4101 != null) {
 				txtUMITMF41002.setValue(f4101.getImitm());
 				lblDescripcionF4101.setValue(f4101.getImdsc1());
@@ -556,8 +559,8 @@ public class CF41002 extends CGenerico {
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101.buscarTodosOrdenados();
 		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101,
-				"Catalogo de Artículos", listF4101, true, false,
-				true, "Codigo", "Descripcion") {
+				"Catalogo de Artículos", listF4101, true, false, true,
+				"Codigo", "Descripcion") {
 
 			@Override
 			protected List<F4101> buscar(List<String> valores) {

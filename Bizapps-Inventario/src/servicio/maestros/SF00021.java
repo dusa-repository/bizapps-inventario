@@ -57,4 +57,8 @@ public class SF00021 {
 	public List<F00021> buscarSY(String value) {
 		return f00021DAO.findByIdNlkco(value);
 	}
+	
+	
+	
 }
+

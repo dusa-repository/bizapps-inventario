@@ -10,6 +10,10 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface  IF49041DAO extends JpaRepository<F49041, F49041PK> {
 
+	List<F49041> findByVsmcu(String vsmcu);
+
+	List<F49041> findByIdVsstfn(double vsstfn);
+
 
 
 }

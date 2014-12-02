@@ -16,4 +16,6 @@ public interface IF4105DAO extends JpaRepository<F4105, F4105PK> {
 	List<F4105> findByIdCoitmAndIdComcuOrderByIdCoitmAsc(Double coitm,
 			String comcu);
 
+	List<F4105> findByIdComcu(String comcu);
+
 }

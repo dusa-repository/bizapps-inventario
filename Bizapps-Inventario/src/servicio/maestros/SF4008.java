@@ -22,6 +22,11 @@ public class SF4008 {
 		f4008DAO.save(f408);
 		
 	}
+	
+	public List<F4008> buscarPorTata1(double tata1) {
+		return f4008DAO.findByTata1(tata1);
+	}
+
 
 	/*
 	public List<F4008> buscarPorTatxa1(String txa1) {

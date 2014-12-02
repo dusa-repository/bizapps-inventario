@@ -38,7 +38,15 @@ public class SF0010 {
 	public List<F0010> buscarPorDrdc(String cvcrcd) {
 		return f0010DAO.findByCccrcd(cvcrcd);
 	}
-
+	
+	public List<F0010> buscarPorCcco(String ccco) {
+		return f0010DAO.findByCcco(ccco);
+	}
+	
+	public List<F0010> buscarPorCcan8(double ccan8) {
+		return f0010DAO.findByCcan8(ccan8);
+	}
+	
 	public void guardarVarios(List<F0010> empresas) {
 		f0010DAO.save(empresas);
 	}

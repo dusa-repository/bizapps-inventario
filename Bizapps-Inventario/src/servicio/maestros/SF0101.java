@@ -41,7 +41,12 @@ public class SF0101 {
 		return f0101DAO.findByAban81OrAban82OrAban83OrAban84OrAban85OrAban86(
 				aban8, aban8, aban8, aban8, aban8, aban8);
 	}
-
+	
+	public List<F0101> buscarPorAbmcu(String abmcu) {
+		return f0101DAO.findByAbmcu(abmcu);
+	}
+	
+	
 	public List<F0101> buscarProveedorConOrden(String string) {
 		List<Double> codigosAn8 = f0101DAO.buscarProveedorConOrden(string);
 		List<F0101> fs = new ArrayList<F0101>();

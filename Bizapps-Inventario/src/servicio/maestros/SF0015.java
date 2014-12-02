@@ -34,10 +34,16 @@ public class SF0015 {
 	public List<F0015> buscarCRCD(String value) {
 		return f0015DAO.findByIdCxcrcd(value);
 	}
-	
+	 
 	public List<F0015> buscarTodosOrdenados() {
 		return f0015DAO.findAllOrderByIdCxcrcd();
 	}
+	
+	/*
+	public List<F0015> buscarCxan8(double cxan8) {
+		return f0015DAO.findByIdCxan8(cxan8);
+	}
+	*/
 	
 	
 }

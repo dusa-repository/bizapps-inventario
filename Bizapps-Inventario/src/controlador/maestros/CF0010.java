@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import modelo.maestros.F00021;
 import modelo.maestros.F0006;
 import modelo.maestros.F0010;
 
@@ -270,9 +271,12 @@ public class CF0010 extends CGenerico {
 						final int cantidad = eliminarLista.size();
 						for (int i = 0; i < eliminarLista.size(); i++) {
 							F0010 valor = eliminarLista.get(i);
-							List<F0006> objeto = servicioF0006
+							List<F00021> objetoF00021 = servicioF00021
+									.buscarSY(valor.getCcco());
+							List<F0006> objetoF0006 = servicioF0006
 									.buscarPorMco(valor.getCcco());
-							if (!objeto.isEmpty()) {
+							if (!objetoF0006.isEmpty()
+									|| !objetoF00021.isEmpty()) {
 								eliminarLista.remove(valor);
 								i--;
 							}
@@ -311,8 +315,11 @@ public class CF0010 extends CGenerico {
 				} else {
 					/* Elimina un solo registro */
 					if (clave != null) {
-						List<F0006> objeto = servicioF0006.buscarPorMco(clave);
-						if (objeto.isEmpty()) {
+						List<F00021> objetoF00021 = servicioF00021
+								.buscarSY(clave);
+						List<F0006> objetoF0006 = servicioF0006
+								.buscarPorMco(clave);
+						if (objetoF00021.isEmpty() && objetoF0006.isEmpty()) {
 							Messagebox
 									.show(Mensaje.deseaEliminar,
 											"Alerta",
@@ -340,6 +347,7 @@ public class CF0010 extends CGenerico {
 						Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 			}
+			
 
 			@Override
 			public void buscar() {
