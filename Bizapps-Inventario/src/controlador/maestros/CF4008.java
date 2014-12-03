@@ -26,6 +26,7 @@ import org.zkoss.zul.Textbox;
 import modelo.maestros.F0101;
 import modelo.maestros.F4008;
 import modelo.maestros.F4101;
+import modelo.maestros.F4105;
 import modelo.pk.F4008PK;
 import componentes.Botonera;
 import componentes.Mensaje;
@@ -386,6 +387,56 @@ public class CF4008 extends CGenerico {
 			@Override
 			public void eliminar() {
 
+				if (gpxDatos.isOpen()) {
+					/* Elimina Varios Registros */
+					if (validarSeleccion()) {
+						final List<F4008> eliminarLista = catalogoF4008
+								.obtenerSeleccionados();
+						Messagebox
+								.show("¿Desea Eliminar los "
+										+ eliminarLista.size() + " Registros?",
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF4008
+															.eliminarVarios(eliminarLista);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													listaGeneral = servicioF4008.buscarTodosOrdenados();
+													catalogoF4008.actualizarLista(listaGeneral);
+												}
+											}
+										});
+					}
+				} else {
+					/* Elimina un solo registro */
+					if (clave != null) {
+						Messagebox
+								.show(Mensaje.deseaEliminar,
+										"Alerta",
+										Messagebox.OK | Messagebox.CANCEL,
+										Messagebox.QUESTION,
+										new org.zkoss.zk.ui.event.EventListener<Event>() {
+											public void onEvent(Event evt)
+													throws InterruptedException {
+												if (evt.getName()
+														.equals("onOK")) {
+													servicioF4008
+															.eliminarUno(clave);
+													msj.mensajeInformacion(Mensaje.eliminado);
+													limpiar();
+													listaGeneral = servicioF4008.buscarTodosOrdenados();
+													catalogoF4008.actualizarLista(listaGeneral);
+												}
+											}
+										});
+					} else
+						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+				}
 			}
 
 			@Override

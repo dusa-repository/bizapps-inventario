@@ -28,5 +28,14 @@ public class SF4931 {
 		return iF4931DAO.findByVgvtyp(clave);
 
 	}
+	
+	public void eliminarVarios(List<F4931> eliminar) {
+		iF4931DAO.delete(eliminar);
+	}
+
+	public void eliminarUno(String clave) {
+		iF4931DAO.delete(clave);
+	}
+	
 
 }

@@ -78,7 +78,9 @@ public class SF4105 {
 		return iF4105DAO.findByIdComcu(comcu);
 	}
 	
-	
+	public List<F4105> buscarPorCoitm(double coitm) {
+		return iF4105DAO.findByIdCoitm(coitm);
+	}
 
 	public void guardarVarios(List<F4105> guardados) {
 		iF4105DAO.save(guardados);

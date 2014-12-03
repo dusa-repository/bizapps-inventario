@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import modelo.maestros.F0010;
+import modelo.maestros.F0013;
+import modelo.maestros.F0015;
+import modelo.maestros.F4930;
 import modelo.maestros.F4931;
 
 import org.zkoss.zk.ui.Sessions;
@@ -221,7 +225,7 @@ public class CF4931 extends CGenerico {
 
 			@Override
 			public void guardar() {
-			
+
 				if (validar()) {
 					F4931 f4931 = new F4931();
 					String clavePk = txtVTYPF4931.getValue();
@@ -278,7 +282,84 @@ public class CF4931 extends CGenerico {
 
 			@Override
 			public void eliminar() {
-				Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+				if (gpxDatosF4931.isOpen()) {
+					/* Elimina Varios Registros */
+					if (validarSeleccionEncabezado()) {
+						final List<F4931> eliminarLista = catalogo
+								.obtenerSeleccionados();
+						final int cantidad = eliminarLista.size();
+						for (int i = 0; i < eliminarLista.size(); i++) {
+							F4931 valor = eliminarLista.get(i);
+							List<F4930> objeto = servicioF4930
+									.buscarPorVmvtyp(valor.getVgvtyp());
+
+							if (!objeto.isEmpty()) {
+								eliminarLista.remove(valor);
+								i--;
+							}
+						}
+						if (!eliminarLista.isEmpty()) {
+							Messagebox
+									.show("¿Desea Eliminar los "
+											+ eliminarLista.size()
+											+ " Registros?",
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF4931
+																.eliminarVarios(eliminarLista);
+														listaGeneral = servicioF4931
+																.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
+														if (cantidad != eliminarLista
+																.size())
+															Mensaje.mensajeInformacion(Mensaje.algunosEliminados);
+														else
+															Mensaje.mensajeInformacion(Mensaje.eliminado);
+													}
+												}
+											});
+						} else {
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
+						}
+					}
+				} else {
+					/* Elimina un solo registro */
+					if (clave != null) {
+						List<F4930> objeto = servicioF4930
+								.buscarPorVmvtyp(clave);
+						if (objeto.isEmpty()) {
+							Messagebox
+									.show(Mensaje.deseaEliminar,
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF4931
+																.eliminarUno(clave);
+														Mensaje.mensajeInformacion(Mensaje.eliminado);
+														limpiar();
+														listaGeneral = servicioF4931
+																.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
+													}
+												}
+											});
+						} else {
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
+						}
+					} else
+						Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+				}
 			}
 
 			@Override
@@ -429,8 +510,8 @@ public class CF4931 extends CGenerico {
 
 	public void mostrarCatalogo() {
 		listaGeneral = servicioF4931.buscarTodosOrdenados();
-		catalogo = new CatalogoF4931(catalogoF4931, "F4931", listaGeneral, false,
-				"Tp veh", "Descripción", "Tipo transp", "Grupo dpch",
+		catalogo = new CatalogoF4931(catalogoF4931, "F4931", listaGeneral,
+				false, "Tp veh", "Descripción", "Tipo transp", "Grupo dpch",
 				"Grupo 2 de desp", "Cap peso", "UM ps",
 				"Capacidad en vol cúbicos", "UM", "Capacidad de vol a granel",
 				"Cap secundaria de volumen a granel", "UM vol", "N° com",
