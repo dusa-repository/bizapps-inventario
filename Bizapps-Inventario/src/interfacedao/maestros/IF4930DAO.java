@@ -15,6 +15,8 @@ public interface  IF4930DAO extends JpaRepository<F4930, String> {
 
 	List<F4930> findByVmvown(double vmvown);
 
+	List<F4930> findByVmvtyp(String vmvtyp);
+
 
 
 }

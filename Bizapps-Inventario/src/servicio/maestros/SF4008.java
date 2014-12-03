@@ -4,6 +4,9 @@ import java.util.List;
 
 import interfacedao.maestros.IF4008DAO;
 import modelo.maestros.F4008;
+import modelo.maestros.F4105;
+import modelo.pk.F4008PK;
+import modelo.pk.F4105PK;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +29,19 @@ public class SF4008 {
 	public List<F4008> buscarPorTata1(double tata1) {
 		return f4008DAO.findByTata1(tata1);
 	}
+	
+	public void eliminarUno(F4008PK clave) {
+		f4008DAO.delete(clave);
+	}
+
+	public void eliminarVarios(List<F4008> eliminarLista) {
+		f4008DAO.delete(eliminarLista);
+	}
+	
+	public List<F4008> buscarPorTaitm(double taitm) {
+		return f4008DAO.findByIdTaitm(taitm);
+	}
+	
 
 
 	/*

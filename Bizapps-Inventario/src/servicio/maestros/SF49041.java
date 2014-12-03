@@ -53,5 +53,10 @@ public class SF49041 {
 		return f49041DAO.findByIdVsstfn(vsstfn);
 	}
 	
+	
+	public List<F49041> buscarPorVsvehi(String vsvehi) {
+		return f49041DAO.findByVsvehi(vsvehi);
+	}
+
 
 }

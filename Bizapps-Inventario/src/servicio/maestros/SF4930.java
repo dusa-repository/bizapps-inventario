@@ -45,6 +45,9 @@ public class SF4930 {
 		return f4930DAO.findByVmvown(vmvown);
 	}
 	
+	public List<F4930> buscarPorVmvtyp(String vmvtyp) {
+		return f4930DAO.findByVmvtyp(vmvtyp);
+	}
 
 	
 }

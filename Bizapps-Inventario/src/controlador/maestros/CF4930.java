@@ -10,7 +10,11 @@ import java.util.List;
 
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
+import modelo.maestros.F0010;
+import modelo.maestros.F0013;
+import modelo.maestros.F0015;
 import modelo.maestros.F0101;
+import modelo.maestros.F49041;
 import modelo.maestros.F4930;
 import modelo.maestros.F4931;
 
@@ -199,11 +203,10 @@ public class CF4930 extends CGenerico {
 						if (f4930.getVmwtum().compareTo("") != 0)
 							buscadorWtumf.settearModelo(servicioF0005.buscar(
 									"UM", "00", f4930.getVmwtum()));
-						
+
 						if (f4930.getVmcvum().compareTo("") != 0)
 							buscadorCvumf.settearModelo(servicioF0005.buscar(
 									"UM", "00", f4930.getVmcvum()));
-						
 
 						txtVEHIF4930.setFocus(true);
 
@@ -266,52 +269,78 @@ public class CF4930 extends CGenerico {
 					if (validarSeleccion()) {
 						final List<F4930> eliminarLista = catalogo
 								.obtenerSeleccionados();
-						Messagebox
-								.show("¿Desea Eliminar los "
-										+ eliminarLista.size() + " Registros?",
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF4930
-															.eliminarVarios(eliminarLista);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													listaGeneral = servicioF4930
-															.buscarTodosOrdenados();
-													catalogo.actualizarLista(listaGeneral);
+						final int cantidad = eliminarLista.size();
+						for (int i = 0; i < eliminarLista.size(); i++) {
+							F4930 valor = eliminarLista.get(i);
+							List<F49041> objeto = servicioF49041
+									.buscarPorVsvehi(valor.getVmvehi());
+
+							if (!objeto.isEmpty()) {
+								eliminarLista.remove(valor);
+								i--;
+							}
+						}
+						if (!eliminarLista.isEmpty()) {
+							Messagebox
+									.show("¿Desea Eliminar los "
+											+ eliminarLista.size()
+											+ " Registros?",
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF4930
+																.eliminarVarios(eliminarLista);
+														listaGeneral = servicioF4930
+																.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
+														if (cantidad != eliminarLista
+																.size())
+															Mensaje.mensajeInformacion(Mensaje.algunosEliminados);
+														else
+															Mensaje.mensajeInformacion(Mensaje.eliminado);
+													}
 												}
-											}
-										});
+											});
+						} else {
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					}
 				} else {
 					/* Elimina un solo registro */
 					if (clave != null) {
-						Messagebox
-								.show(Mensaje.deseaEliminar,
-										"Alerta",
-										Messagebox.OK | Messagebox.CANCEL,
-										Messagebox.QUESTION,
-										new org.zkoss.zk.ui.event.EventListener<Event>() {
-											public void onEvent(Event evt)
-													throws InterruptedException {
-												if (evt.getName()
-														.equals("onOK")) {
-													servicioF4930
-															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
-													limpiar();
-													listaGeneral = servicioF4930
-															.buscarTodosOrdenados();
-													catalogo.actualizarLista(listaGeneral);
+						List<F49041> objeto = servicioF49041
+								.buscarPorVsvehi(clave);
+						if (objeto.isEmpty()) {
+							Messagebox
+									.show(Mensaje.deseaEliminar,
+											"Alerta",
+											Messagebox.OK | Messagebox.CANCEL,
+											Messagebox.QUESTION,
+											new org.zkoss.zk.ui.event.EventListener<Event>() {
+												public void onEvent(Event evt)
+														throws InterruptedException {
+													if (evt.getName().equals(
+															"onOK")) {
+														servicioF0013
+																.eliminarUno(clave);
+														Mensaje.mensajeInformacion(Mensaje.eliminado);
+														limpiar();
+														listaGeneral = servicioF4930
+																.buscarTodosOrdenados();
+														catalogo.actualizarLista(listaGeneral);
+													}
 												}
-											}
-										});
+											});
+						} else {
+							Mensaje.mensajeAlerta(Mensaje.registroUtilizado);
+						}
 					} else
-						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+						Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 			}
 
