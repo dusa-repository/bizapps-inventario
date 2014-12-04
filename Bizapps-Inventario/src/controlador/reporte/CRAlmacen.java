@@ -158,101 +158,7 @@ public class CRAlmacen extends CGenerico {
 		botonera.getChildren().get(8).setVisible(false);
 		botoneraVAlmacen.appendChild(botonera);
 	}
-
-	// public byte[] reporte(String part2) {
-	// byte[] fichero = null;
-	// SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-	// Date fecha1 = null;
-	// try {
-	// fecha1 = formato.parse(part2);
-	// } catch (ParseException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// BigDecimal desde = transformarGregorianoAJulia(fecha1);
-	// // List<F4111> ordenes = getServicioF4111().buscarHastaFecha(desde);
-	// List<F4111> ordenes = getServicioF4111().buscarHastaFecha2(desde);
-	// List<F4111> finales = new ArrayList<F4111>();
-	// // Date fechaMa =
-	// // transformarJulianaAGregoria(ordenes.get(0).getIlcrdj());
-	// Date fechaMa = transformarJulianaAGregoria(ordenes.get(0).getIlvpej());
-	// ordenes.get(0).setIlasid(formatoFecha.format(fechaMa));
-	// F4101 f = new F4101();
-	// if (ordenes.get(0).getIlitm() != null) {
-	// f = getServicioF4101().buscar(ordenes.get(0).getIlitm());
-	// ordenes.get(0).setIltrex(f.getImdsc1());
-	// ordenes.get(0).setIlplot(f.getImuom1());
-	// } else {
-	// ordenes.get(0).setIlplot("");
-	// ordenes.get(0).setIltrex("");
-	// }
-	// finales.add(ordenes.get(0));
-	// double valor = ordenes.get(0).getIlitm();
-	// String mcu = ordenes.get(0).getIlmcu();
-	// String lcon2 = ordenes.get(0).getIllocn();
-	// for (int i = 0; i < ordenes.size(); i++) {
-	// Date fechaM = transformarJulianaAGregoria(ordenes.get(i)
-	// .getIlvpej());
-	// ordenes.get(i).setIlasid(formatoFecha.format(fechaM));
-	// f = new F4101();
-	// if (ordenes.get(i).getIlitm() != null) {
-	// f = getServicioF4101().buscar(ordenes.get(i).getIlitm());
-	// ordenes.get(i).setIltrex(f.getImdsc1());
-	// ordenes.get(i).setIlplot(f.getImuom1());
-	// } else {
-	// ordenes.get(i).setIlplot("");
-	// ordenes.get(i).setIltrex("");
-	// }
-	// if (ordenes.get(i).getIlitm() != valor) {
-	// finales.add(ordenes.get(i));
-	// valor = ordenes.get(i).getIlitm();
-	// mcu = ordenes.get(i).getIlmcu();
-	// lcon2 = ordenes.get(0).getIllocn();
-	// }
-	// }
-	//
-	// F4105 costo = new F4105();
-	// F4105PK claveCostoUnitario = new F4105PK();
-	//
-	// for (int i = 0; i < finales.size(); i++) {
-	// costo = new F4105();
-	// claveCostoUnitario = new F4105PK();
-	// double item = finales.get(i).getIlitm();
-	// String mcu2 = finales.get(i).getIlmcu();
-	// String locn = finales.get(i).getIllocn();
-	// claveCostoUnitario.setCoitm(item);
-	// claveCostoUnitario.setComcu(mcu2);
-	// claveCostoUnitario.setColocn(locn);
-	// claveCostoUnitario.setColotn("");
-	// claveCostoUnitario.setColedg("");
-	// costo = getServicioF4105().buscar(claveCostoUnitario);
-	// Double costoUnitario = (double) 0;
-	// if (costo != null)
-	// costoUnitario = costo.getCouncs();
-	// Double cantidad = getServicioF4111().sumar(item, mcu2, locn);
-	// finales.get(i).setIluncs(costoUnitario);
-	// finales.get(i).setIltrqt(cantidad);
-	// Double total = costoUnitario * cantidad;
-	// finales.get(i).setIlpaid(total);
-	// }
-	// Map p = new HashMap();
-	// p.put("fecha", fecha1);
-	// JasperReport repor = null;
-	// try {
-	// repor = (JasperReport) JRLoader.loadObject(getClass().getResource(
-	// "/reporte/RAlmacen.jasper"));
-	// } catch (JRException e1) {
-	// e1.printStackTrace();
-	// }
-	// try {
-	// fichero = JasperRunManager.runReportToPdf(repor, p,
-	// new JRBeanCollectionDataSource(finales));
-	// } catch (JRException e) {
-	// msj.mensajeError(Mensaje.errorEnReporte);
-	// }
-	// return fichero;
-	// }
-
+	
 	public byte[] reporte2(String part2, String part4, String tipoReporte) {
 		byte[] fichero = null;
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
@@ -322,14 +228,12 @@ public class CRAlmacen extends CGenerico {
 			
 			exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.FALSE);
 			exporter.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
-			exporter.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.FALSE);
+			exporter.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
 			exporter.setParameter(JRXlsExporterParameter.IS_COLLAPSE_ROW_SPAN, Boolean.FALSE);
 			exporter.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_COLUMNS, Boolean.TRUE);
 			exporter.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.TRUE);
 			exporter.setParameter(JRXlsExporterParameter.IS_FONT_SIZE_FIX_ENABLED, Boolean.TRUE);
-			
-	        
-//			exporter.setIgnoreAnchors(false);
+			exporter.setIgnoreAnchors(true);
 			exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
 
 			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, xlsReport);

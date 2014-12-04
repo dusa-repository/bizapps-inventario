@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RAlmacen" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e630ce25-dfa6-45f4-9695-dd1336e9d4bf">
-	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.zoom" value="1.207882500000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fecha" class="java.util.Date"/>
@@ -37,7 +37,7 @@
 					</graphicElement>
 				</rectangle>
 				<textField>
-					<reportElement x="100" y="2" width="356" height="18" uuid="5db4024b-7876-4d3a-af89-8bf08d6b794b"/>
+					<reportElement x="100" y="2" width="338" height="18" uuid="5db4024b-7876-4d3a-af89-8bf08d6b794b"/>
 					<textElement>
 						<font fontName="SansSerif" size="11"/>
 					</textElement>
@@ -62,7 +62,7 @@
 		<groupFooter>
 			<band height="20">
 				<textField isStretchWithOverflow="true" pattern="###0;-###0">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="498" y="0" width="62" height="20" uuid="ae8d064b-67db-4a22-be6d-a6dab4575469"/>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="474" y="0" width="77" height="20" uuid="ae8d064b-67db-4a22-be6d-a6dab4575469"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -72,14 +72,14 @@
 					<textFieldExpression><![CDATA[$V{sumAlmacen}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="403" y="0" width="90" height="20" uuid="d66ffc7b-c06f-4a47-831c-9475dfba4cc2"/>
+					<reportElement x="374" y="0" width="90" height="20" uuid="d66ffc7b-c06f-4a47-831c-9475dfba4cc2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="SansSerif" size="11" isBold="true" isUnderline="false"/>
 					</textElement>
 					<text><![CDATA[Total Almacen:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="664" y="0" width="62" height="20" uuid="52692109-fc31-4ddf-8f9b-74a3fc0fe564"/>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="673" y="0" width="62" height="20" uuid="52692109-fc31-4ddf-8f9b-74a3fc0fe564"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -88,6 +88,13 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$V{totalAlmacen}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="573" y="0" width="75" height="20" uuid="5f8cee72-0666-4b4b-b14b-65f470caffb5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[--]]></text>
+				</staticText>
 			</band>
 		</groupFooter>
 	</group>
@@ -102,7 +109,7 @@
 					</graphicElement>
 				</rectangle>
 				<textField>
-					<reportElement x="114" y="2" width="342" height="20" uuid="ee211482-6602-4360-b533-5f78bf9ce8cd"/>
+					<reportElement x="114" y="2" width="324" height="20" uuid="ee211482-6602-4360-b533-5f78bf9ce8cd"/>
 					<textElement>
 						<font fontName="SansSerif" size="11"/>
 					</textElement>
@@ -127,7 +134,7 @@
 		<groupFooter>
 			<band height="20">
 				<textField isStretchWithOverflow="true" pattern="###0;-###0">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="498" y="0" width="62" height="20" uuid="afaf36d3-68f9-41c1-8499-b6318f9f48d7"/>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="474" y="0" width="77" height="20" uuid="afaf36d3-68f9-41c1-8499-b6318f9f48d7"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -137,14 +144,14 @@
 					<textFieldExpression><![CDATA[$V{sumGrupo}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="403" y="0" width="90" height="20" uuid="c4231e5e-b168-4be9-ab3a-7047e2bfbf34"/>
+					<reportElement x="374" y="0" width="90" height="20" uuid="c4231e5e-b168-4be9-ab3a-7047e2bfbf34"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="SansSerif" size="11" isBold="true" isUnderline="false"/>
 					</textElement>
 					<text><![CDATA[Total Ubicacion:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="664" y="0" width="62" height="20" uuid="32adb47d-65d8-4c34-8d69-9f7ef4a80265"/>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="673" y="0" width="62" height="20" uuid="32adb47d-65d8-4c34-8d69-9f7ef4a80265"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 					</box>
@@ -153,6 +160,13 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$V{totalGrupo}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="573" y="0" width="75" height="20" uuid="4ae757bc-419e-4d2a-9b68-4cbf418b8aa9"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[--]]></text>
+				</staticText>
 			</band>
 		</groupFooter>
 	</group>
@@ -173,7 +187,7 @@
 				<text><![CDATA[EXISTENCIA POR ALMACEN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="542" y="44" width="106" height="20" uuid="a5f2f4f4-9cf0-4ce0-bdcc-4fc640d8018a"/>
+				<reportElement x="523" y="44" width="125" height="20" uuid="a5f2f4f4-9cf0-4ce0-bdcc-4fc640d8018a"/>
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="11"/>
 				</textElement>
@@ -197,49 +211,49 @@
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="0" width="65" height="17" uuid="5b96c9dd-f5fc-469e-9574-da2ad9f00cea"/>
+				<reportElement x="0" y="0" width="52" height="17" uuid="5b96c9dd-f5fc-469e-9574-da2ad9f00cea"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Item]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="65" y="0" width="316" height="17" uuid="ab9e8563-cd74-469a-a58b-b359f4c57a4a"/>
+				<reportElement x="52" y="0" width="285" height="17" uuid="ab9e8563-cd74-469a-a58b-b359f4c57a4a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Descripcion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="0" width="27" height="17" uuid="aa179580-de5f-4cd3-b46f-bb18e822714d"/>
+				<reportElement x="337" y="0" width="34" height="17" uuid="aa179580-de5f-4cd3-b46f-bb18e822714d"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[UM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="0" width="83" height="17" uuid="d5d42983-7d1f-49ed-8b2c-9f143af9a88e"/>
+				<reportElement x="371" y="0" width="93" height="17" uuid="d5d42983-7d1f-49ed-8b2c-9f143af9a88e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="489" y="0" width="74" height="17" uuid="74010703-3339-4df4-bc5b-f84c15c2b9e1"/>
+				<reportElement x="467" y="0" width="91" height="17" uuid="74010703-3339-4df4-bc5b-f84c15c2b9e1"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Existencia]]></text>
+				<text><![CDATA[Exist.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="562" y="0" width="71" height="17" uuid="91bcc231-8203-4280-8d2f-c80b77e12b8b"/>
+				<reportElement x="562" y="0" width="98" height="17" uuid="91bcc231-8203-4280-8d2f-c80b77e12b8b"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Valor Unitario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="631" y="0" width="121" height="17" uuid="590f6d19-0e6c-4dcf-9c2f-f91a2bd97e23"/>
+				<reportElement x="660" y="0" width="92" height="17" uuid="590f6d19-0e6c-4dcf-9c2f-f91a2bd97e23"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
@@ -250,49 +264,49 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="381" y="0" width="27" height="20" uuid="c40e45a8-fbba-4e71-aeb2-96161bc8974a"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="337" y="0" width="34" height="20" uuid="c40e45a8-fbba-4e71-aeb2-96161bc8974a"/>
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{liglpt}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###0;-###0">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="489" y="0" width="74" height="20" uuid="f11ce646-c393-4721-bbd3-037a985226e7"/>
-				<textElement textAlignment="Center">
-					<font fontName="SansSerif" size="10"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="464" y="0" width="98" height="20" uuid="f11ce646-c393-4721-bbd3-037a985226e7"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lipqoh}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="407" y="0" width="83" height="20" uuid="ff4f3189-9e65-41f6-8982-0295d172f89b"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="371" y="0" width="93" height="20" uuid="ff4f3189-9e65-41f6-8982-0295d172f89b"/>
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{licfgsid}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="0" width="316" height="20" uuid="c62b4758-8e06-4191-a3b9-82578245b3b5"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="52" y="0" width="285" height="20" uuid="c62b4758-8e06-4191-a3b9-82578245b3b5"/>
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lichdf}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###0;-###0">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="65" height="20" uuid="38ea6c4c-64f7-483e-95e3-20be2e390868"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="52" height="20" uuid="38ea6c4c-64f7-483e-95e3-20be2e390868"/>
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id.liitm}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="562" y="0" width="71" height="20" uuid="4d2e82e5-eb97-488c-8538-0690cf5cb489"/>
+				<reportElement x="562" y="0" width="98" height="20" uuid="4d2e82e5-eb97-488c-8538-0690cf5cb489"/>
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lisqwo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;###0.00-">
-				<reportElement x="631" y="0" width="121" height="20" uuid="42f9c18c-43d0-4c22-924d-057b10c44add"/>
+				<reportElement x="660" y="0" width="92" height="20" uuid="42f9c18c-43d0-4c22-924d-057b10c44add"/>
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
