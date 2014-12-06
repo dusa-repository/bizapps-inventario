@@ -24,10 +24,9 @@
 			<north height="2%" class="banner">
 			</north>
 			<east width="75%" border="none">
-				<vbox height="100%" width="48%" align="end" pack="center">
+				<vbox height="100%" width="50%" align="end" pack="center">
 					<div width="100%" height="100%" align="right">
-						<image src="/public/imagenes/generales/LogoDusa.png" height="55px"
-							width="240px" />
+						<image src="/public/imagenes/generales/LogoIndex.jpg" />
 					</div>
 					<separator />
 					<separator />
