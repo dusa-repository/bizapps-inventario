@@ -251,9 +251,9 @@ public class CCF4111 extends CGenerico {
 
 	private void mostrarCatalogo() {
 		final List<F4111> objetos = lista;
-		catalogo = new CatalogoGenerico<F4111>(catalogoCF4111, "CF4111", objetos,
-				false, true, true, "Numero Documento", "Tipo doc", "Fecha",
-				"Sucursal/planta", "Cantidad", "UM", "Costo Unitario",
+		catalogo = new CatalogoGenerico<F4111>(catalogoCF4111, "CF4111",
+				objetos, false, true, true, "Numero Documento", "Tipo doc",
+				"Fecha", "Sucursal/planta", "Cantidad", "UM", "Costo Unitario",
 				"Costo Total", "Ubicacion", "Lote") {
 
 			@Override
@@ -314,11 +314,11 @@ public class CCF4111 extends CGenerico {
 	@Listen("onClick = #btnBuscarPlanta")
 	public void mostrarCatalogoF0006() {
 		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "F0006",
-				unidades, true, false, false, "Unidad Negocio", "Descripcion",
-				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
-				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
-				"CAT 06") {
+		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006,
+				"Catalogo de Sucursales (F0006)", unidades, true, false, false,
+				"Unidad Negocio", "Descripcion", "Nivel det", "Cta", "Tipo UN",
+				"LM Auxiliar Inactivo", "Mto Cons", "CAT 01", "CAT 02",
+				"CAT 03", "CAT 04", "CAT 05", "CAT 06") {
 
 			@Override
 			protected List<F0006> buscar(List<String> valores) {
@@ -331,8 +331,8 @@ public class CCF4111 extends CGenerico {
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(
-									valores.get(1).toLowerCase())
+							&& unidad.getMcdl01().toLowerCase()
+									.contains(valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
 									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()
@@ -365,7 +365,7 @@ public class CCF4111 extends CGenerico {
 			protected String[] crearRegistros(F0006 negocio) {
 				String[] registros = new String[13];
 				registros[0] = negocio.getMcmcu();
-				registros[1] = negocio.getMcdc();
+				registros[1] = negocio.getMcdl01();
 				registros[2] = negocio.getMcldm();
 				registros[3] = negocio.getMcco();
 				registros[4] = negocio.getMcstyl();
@@ -418,12 +418,13 @@ public class CCF4111 extends CGenerico {
 	public void mostrarCatalogoF4100() {
 		final List<F4100> listF41002 = servicioF4100
 				.buscarTodosOrdenadosPorMcu(mcu);
-		catalogoF4100 = new CatalogoGenerico<F4100>(divCatalogoF4100, "F4100",
-				listF41002, true, false, false, "Cod. Sucursal/planta",
-				"Sucursal/planta", "Fecha acta", "Ubicacion", "Zona alm",
-				"Zona acopio", "Zona reabast", "Detalle", "Pasillo", "Bin",
-				"Ubic 3", "Ubic 4", "Ubic 5", "Ubic 6", "Ubic 7", "Ubic 8",
-				"Ubic 9", "Ubic 10", "Art/Lote mixtos", "Ubic temp") {
+		catalogoF4100 = new CatalogoGenerico<F4100>(divCatalogoF4100,
+				"Catalogo de Ubicaciones (F4100)", listF41002, true, false,
+				false, "Cod. Sucursal/planta", "Sucursal/planta", "Fecha acta",
+				"Ubicacion", "Zona alm", "Zona acopio", "Zona reabast",
+				"Detalle", "Pasillo", "Bin", "Ubic 3", "Ubic 4", "Ubic 5",
+				"Ubic 6", "Ubic 7", "Ubic 8", "Ubic 9", "Ubic 10",
+				"Art/Lote mixtos", "Ubic temp") {
 
 			@Override
 			protected List<F4100> buscar(List<String> valores) {
@@ -432,8 +433,8 @@ public class CCF4111 extends CGenerico {
 					F0006 f0006 = servicioF0006
 							.buscar(f4100.getId().getLmmcu());
 					String mcdc = "";
-					if (f0006.getMcdc() != null)
-						mcdc = f0006.getMcdc();
+					if (f0006.getMcdl01() != null)
+						mcdc = f0006.getMcdl01();
 					String num3 = "", num4 = "", num5 = "", num6 = "", num7 = "", num8 = "", num9 = "", num10 = "";
 					if (f4100.getLmla03() != null)
 						num3 = f4100.getLmla03();
@@ -502,20 +503,23 @@ public class CCF4111 extends CGenerico {
 			protected String[] crearRegistros(F4100 f4100) {
 
 				F0006 f0006 = servicioF0006.buscar(f4100.getId().getLmmcu());
-				BigDecimal a = null;
-				if (f4100.getLmupmj() != null)
-					a = f4100.getLmupmj();
 				String[] registros = new String[20];
 				registros[0] = String.valueOf(f4100.getId().getLmmcu());
-				registros[1] = f0006.getMcdc();
-				registros[2] = String.valueOf(transformarJulianaAGregoria(a));
+				if (f0006 != null)
+					registros[1] = f0006.getMcdl01();
+				if (f4100.getLmupmj() != null)
+					registros[2] = formatoFecha
+							.format((transformarJulianaAGregoria(f4100
+									.getLmupmj())));
+				else
+					registros[2] = "";
 				registros[3] = String.valueOf(f4100.getId().getLmlocn());
 				registros[4] = f4100.getLmpzon();
 				registros[5] = f4100.getLmkzon();
 				registros[6] = f4100.getLmzonr();
 				registros[7] = f4100.getLmlldl();
-				registros[8] = "no se";
-				registros[9] = "no se";
+				registros[8] = "";
+				registros[9] = "";
 				registros[10] = f4100.getLmla03();
 				registros[11] = f4100.getLmla04();
 				registros[12] = f4100.getLmla05();
@@ -569,10 +573,10 @@ public class CCF4111 extends CGenerico {
 		else
 			listF41011 = servicioF4101.buscarTodosOrdenados();
 		final List<F4101> listF4101 = listF41011;
-		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "F4101",
-				listF4101, true, false, false, "Número artículo",
-				"Descripcion", "Texto búsqueda", "Tipo línea", "Tipo alm",
-				"Código vta 1") {
+		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101,
+				"Catalogo de Articulos (F4101)", listF4101, true, false, false,
+				"Número artículo", "Descripcion", "Texto búsqueda",
+				"Tipo línea", "Tipo alm", "Código vta 1") {
 
 			@Override
 			protected List<F4101> buscar(List<String> valores) {

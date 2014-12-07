@@ -599,9 +599,15 @@ public class CF0006 extends CGenerico {
 						txtDL01F0006.setDisabled(true);
 						txtCOF0006.setValue(f06.getMcco());
 						if (f06.getMcco() != null)
+						{
+							if (servicioF0010.buscar(
+									f06.getMcco()).getCcname()!=null)
+							{
 							lblDescripcionF0010.setValue(servicioF0010.buscar(
 									f06.getMcco()).getCcname());
 						txtCOF0006.setDisabled(true);
+							}
+						}
 						if (f06.getMcldm().compareTo("") != 0)
 							buscadorLDM.settearModelo(servicioF0005.buscar(
 									"H00", "LD", f06.getMcldm()));
@@ -1263,7 +1269,7 @@ public class CF0006 extends CGenerico {
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(
+							&& unidad.getMcdl01().toLowerCase().contains(
 									valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
 									.contains(valores.get(2).toLowerCase())
@@ -1297,7 +1303,7 @@ public class CF0006 extends CGenerico {
 			protected String[] crearRegistros(F0006 negocio) {
 				String[] registros = new String[13];
 				registros[0] = negocio.getMcmcu();
-				registros[1] = negocio.getMcdc();
+				registros[1] = negocio.getMcdl01();
 				registros[2] = negocio.getMcldm();
 				registros[3] = negocio.getMcco();
 				registros[4] = negocio.getMcstyl();

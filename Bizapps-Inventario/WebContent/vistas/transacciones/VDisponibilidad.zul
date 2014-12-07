@@ -12,9 +12,9 @@
 					<columns visible="false">
 						<column label="" width="19.5%" />
 						<column label="" width="20.5%" />
-						<column label="" width="10%" />
+						<column label="" width="15%" />
 						<column label="" width="20%" />
-						<column label="" width="30%" />
+						<column label="" width="25%" />
 					</columns>
 					<rows>
 						<row>

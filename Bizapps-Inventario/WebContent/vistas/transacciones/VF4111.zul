@@ -109,7 +109,7 @@
 								<label value="**" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<longbox id="txtF4111P" hflex="1" maxlength="19"
+							<longbox readonly="true" id="txtF4111P" hflex="1" maxlength="19"
 								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
 							<button autodisable="self" id="btnBuscarF4111P" class="btn"
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />

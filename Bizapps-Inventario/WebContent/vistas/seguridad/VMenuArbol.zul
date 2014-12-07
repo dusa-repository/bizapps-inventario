@@ -36,7 +36,7 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<longbox id="txtPadre" hflex="1" maxlength="3"
+							<longbox id="txtPadre" hflex="1" maxlength="5"
 								tooltiptext="Ingrese el Padre del Item (padre)" width="100%"/>
 							<hbox />
 							<hbox />
