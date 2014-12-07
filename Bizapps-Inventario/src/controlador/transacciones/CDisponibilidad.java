@@ -271,9 +271,10 @@ public class CDisponibilidad extends CGenerico {
 	private void mostrarCatalogo() {
 
 		final List<F41021> listObjetos = lista;
-		catalogo = new CatalogoGenerico<F41021>(catalogo, "F41021", listObjetos, false,
-				false, false, "Ubicacion", "Sucursal/Almacen",
-				"Existencia Fisica", "Disponible", "Fecha Ultima Recepcion") {
+		catalogo = new CatalogoGenerico<F41021>(catalogo, "F41021",
+				listObjetos, false, false, false, "Ubicacion",
+				"Sucursal/Almacen", "Existencia Fisica", "Disponible",
+				"Fecha Ultima Recepcion") {
 
 			@Override
 			protected List<F41021> buscar(List<String> valores) {
@@ -324,7 +325,7 @@ public class CDisponibilidad extends CGenerico {
 	@Listen("onClick = #btnBuscarPlanta")
 	public void mostrarCatalogoF0006() {
 		List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
-		catalogoF0006 = new CatalogoF0006(divCatalogoF0006, "F0006Emergente",
+		catalogoF0006 = new CatalogoF0006(divCatalogoF0006, "Catalogo de Sucursales (F0006)",
 				unidades, true, "Unidad Negocio", "Descripcion", "Nivel det",
 				"Cta", "Tipo UN", "LM Auxiliar Inactivo", "Mto Cons", "CAT 01",
 				"CAT 02", "CAT 03", "CAT 04", "CAT 05", "CAT 06");
@@ -339,7 +340,7 @@ public class CDisponibilidad extends CGenerico {
 		if (f06 != null) {
 			mcu = f06.getMcmcu();
 			txtPlanta.setValue(String.valueOf(f06.getMcmcu()));
-			lblPlanta.setValue(f06.getMcdc());
+			lblPlanta.setValue(f06.getMcdl01());
 		} else {
 			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			mcu = "";
@@ -367,16 +368,17 @@ public class CDisponibilidad extends CGenerico {
 		else
 			listF41011 = servicioF4101.buscarTodosOrdenados();
 		final List<F4101> listF4101 = listF41011;
-		catalogoF4101 = new CatalogoF4101(divCatalogoF4101, "F4101", listF4101,
-				true, "Codigo", "Descripcion");
+		catalogoF4101 = new CatalogoF4101(divCatalogoF4101,
+				"Catalogo de Articulos (F4101)", listF4101, true, "Codigo",
+				"Descripcion");
 		catalogoF4101.setParent(divCatalogoF4101);
 		catalogoF4101.doModal();
 	}
 
 	@Listen("onChange = #txtItem; onOK = #txtItem")
 	public void buscarNombreItem() {
-		F4101 f4101 = servicioF4101.buscar(txtItem.getValue());
-		if (f4101 != null) {
+		if (servicioF4101.buscar(txtItem.getValue()) != null) {
+			F4101 f4101 = servicioF4101.buscar(txtItem.getValue());
 			Double doble = f4101.getImitm();
 			txtItem.setValue(doble.longValue());
 			lblItem.setValue(f4101.getImdsc1());

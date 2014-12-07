@@ -11,16 +11,16 @@
 					tooltiptext="Presione para Registrar un Nuevo Pedido" />
 				<separator />
 				<hbox width="100%" widths="50%,50%">
-					<grid >
+					<grid>
 						<columns visible="false">
+							<column label="" width="17%" />
+							<column label="" width="15%" />
+							<column label="" width="12.5%" />
+							<column label="" width="18%" />
+							<column label="" width="11.5%" />
 							<column label="" width="12.5%" />
 							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
-							<column label="" width="12.5%" />
+							<column label="" width="1%" />
 						</columns>
 						<rows>
 							<row>
@@ -36,18 +36,10 @@
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
 								<doublebox disabled="true" id="txtLnid" hflex="1"
 									maxlength="15" tooltiptext="Ingrese el Numero del Item" />
-								<hbox>
-									<label class="etiqueta" value="Pedido a Sucursal/planta:" />
-									<space />
-									<label value="*" style="font-weight:bold;color:red">
-									</label>
-								</hbox>
-								<textbox id="txtPlanta1" hflex="1" maxlength="12"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="self" id="btnBuscarPlanta1"
-									tooltiptext="Catalogo" class="btn" label="Buscar"
-									image="/public/imagenes/botones/buscar.png" />
-								<label id="lblPlanta1" />
+								<hbox />
+								<hbox />
+								<hbox />
+								<hbox />
 							</row>
 							<row>
 								<hbox>
@@ -58,8 +50,8 @@
 								</hbox>
 								<textbox id="txtEmpresa1" hflex="1" maxlength="5"
 									tooltiptext="Ingrese la Compañia" />
-								<button autodisable="self" id="btnBuscarEmpresa1" class="btn" label="Buscar"
-									image="/public/imagenes/botones/buscar.png" />
+								<button autodisable="self" id="btnBuscarEmpresa1" class="btn"
+									label="Buscar" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa1" />
 								<label class="etiqueta" value="Fecha Orden:" />
 								<datebox readonly="true" width="100%" id="dtbFecha"
@@ -76,8 +68,8 @@
 								</hbox>
 								<textbox id="txtEmpresa2" hflex="1" maxlength="5"
 									tooltiptext="Ingrese la Compañia" />
-								<button autodisable="self" id="btnBuscarEmpresa2" class="btn" label="Buscar"
-									image="/public/imagenes/botones/buscar.png" />
+								<button autodisable="self" id="btnBuscarEmpresa2" class="btn"
+									label="Buscar" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa2" />
 								<label class="etiqueta" value="O.C. Cliente:" />
 								<doublebox id="txtDoc" hflex="1" maxlength="15"
@@ -85,11 +77,29 @@
 								<hbox />
 								<hbox />
 							</row>
+							<row>
+								<hbox>
+									<label class="etiqueta" value="Pedido a Sucursal/planta:" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red">
+									</label>
+								</hbox>
+								<textbox id="txtPlanta1" hflex="1" maxlength="12"
+									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+								<button autodisable="self" id="btnBuscarPlanta1"
+									tooltiptext="Catalogo" class="btn" label="Buscar"
+									image="/public/imagenes/botones/buscar.png" />
+								<label id="lblPlanta1" />
+								<hbox />
+								<hbox />
+								<hbox />
+								<hbox />
+							</row>
 							<row id="rowBoton">
-								<cell colspan="6">
+								<cell colspan="5">
 									<hbox />
 								</cell>
-								<cell colspan="2">
+								<cell colspan="3">
 									<button autodisable="self" id="btnAgregarItems" class="btn"
 										label="Agregar Items" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/annadir.png" width="150px" />
@@ -102,8 +112,8 @@
 					<groupbox id="gpxItems" visible="false" class="blanco"
 						title="" closable="false">
 						<caption label="Agregar Items de la Operacion" style="font-weight:bold; font-size: 12px" />
-								<separator />
-						<grid width="93%" >
+						<separator />
+						<grid width="93%">
 							<columns visible="false">
 								<column label="" width="12%" />
 								<column label="" width="18%" />
@@ -219,7 +229,7 @@
 								</listbox>
 								<vbox width="100%">
 									<button label="Editar" class="btn" id="btnVer"
-									autodisable="self" image="/public/imagenes/botones/generar.png" />
+										autodisable="self" image="/public/imagenes/botones/generar.png" />
 									<button label="Remover" class="btn" id="btnRemover"
 										autodisable="self" image="/public/imagenes/botones/anular.png" />
 								</vbox>

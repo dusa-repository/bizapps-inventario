@@ -614,7 +614,8 @@ public class CF4100 extends CGenerico {
 				F0006 f0006 = servicioF0006.buscar(f4100.getId().getLmmcu());
 				String[] registros = new String[20];
 				registros[0] = String.valueOf(f4100.getId().getLmmcu());
-				registros[1] = f0006.getMcdc();
+				if(f0006!=null)
+				registros[1] = f0006.getMcdl01();
 				if (f4100.getLmupmj() != null)
 					registros[2] = formatoFecha
 							.format((transformarJulianaAGregoria(f4100

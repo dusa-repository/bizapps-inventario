@@ -28,7 +28,7 @@ public class CatalogoF0006 extends CatalogoGenerico<F0006> {
 				mcdc = unidad.getMcdc();
 			if (unidad.getMcmcu().toLowerCase()
 					.contains(valores.get(0).toLowerCase())
-					&& mcdc.toLowerCase()
+					&& unidad.getMcdl01().toLowerCase()
 							.contains(valores.get(1).toLowerCase())
 					&& unidad.getMcldm().toLowerCase()
 							.contains(valores.get(2).toLowerCase())
@@ -62,7 +62,7 @@ public class CatalogoF0006 extends CatalogoGenerico<F0006> {
 	protected String[] crearRegistros(F0006 negocio) {
 		String[] registros = new String[13];
 		registros[0] = negocio.getMcmcu();
-		registros[1] = negocio.getMcdc();
+		registros[1] = negocio.getMcdl01();
 		registros[2] = negocio.getMcldm();
 		registros[3] = negocio.getMcco();
 		registros[4] = negocio.getMcstyl();

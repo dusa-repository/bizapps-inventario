@@ -127,7 +127,7 @@ public class CF4211 extends CGenerico {
 	private Groupbox gpxItems;
 	@Wire
 	private Row rowBoton;
-	
+
 	F4211PK clave = null;
 	List<F4211> listaPedido = new ArrayList<F4211>();
 	Botonera botonera;
@@ -164,7 +164,7 @@ public class CF4211 extends CGenerico {
 			public void seleccionar() {
 				if (validarSeleccion()) {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
-						
+
 						mostrarGroupbox();
 						mostrarBotones(false);
 						F4211 f4211 = catalogo.objetoSeleccionadoDelCatalogo();
@@ -239,10 +239,9 @@ public class CF4211 extends CGenerico {
 						clave.setSddcto(txtDcto.getValue());
 						clave.setSddoco(numeroSiguiente());
 						clave.setSdkcoo(txtEmpresa1.getValue());
-					}else {
+					} else {
 						List<F4211> lista = servicioF4211.buscarPorDocoYDcto(
-								clave.getSddoco(), clave
-										.getSddcto());
+								clave.getSddoco(), clave.getSddcto());
 						servicioF4211.eliminarVarios(lista);
 					}
 					f4211.setSdmcu(txtPlanta1.getValue());
@@ -279,9 +278,8 @@ public class CF4211 extends CGenerico {
 						}
 					}
 					msj.mensajeInformacion(Mensaje.guardado);
-					limpiar();					
-					listaGeneral = servicioF4211
-							.buscarTodosOrdenados();
+					limpiar();
+					listaGeneral = servicioF4211.buscarTodosOrdenados();
 					catalogo.actualizarLista(listaGeneral);
 				}
 			}
@@ -310,7 +308,7 @@ public class CF4211 extends CGenerico {
 													listaGeneral = servicioF4211
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(listaGeneral);
-											
+
 												}
 											}
 										});
@@ -439,7 +437,7 @@ public class CF4211 extends CGenerico {
 		lblItm.setValue("");
 	}
 
-	public void mostrarBotones(boolean bol) {		
+	public void mostrarBotones(boolean bol) {
 		botonera.getChildren().get(1).setVisible(!bol);
 		botonera.getChildren().get(2).setVisible(bol);
 		botonera.getChildren().get(6).setVisible(false);
@@ -524,10 +522,10 @@ public class CF4211 extends CGenerico {
 
 	private void mostrarCatalogo() {
 		listaGeneral = servicioF4211.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F4211>(catalogoF4211, "F4211", listaGeneral,
-				false, false, false, "Nº Orden", "Tipo ord", "Cia ord",
-				"Compañia", "Sucursal/Planta", "Articulo", "Cantidad", "Total",
-				"Fecha") {
+		catalogo = new CatalogoGenerico<F4211>(catalogoF4211,
+				"Catalogo de Pedidos (F4211)", listaGeneral, false, false,
+				false, "Nº Orden", "Tipo ord", "Cia ord", "Compañia",
+				"Sucursal/Planta", "Articulo", "Cantidad", "Total", "Fecha") {
 
 			@Override
 			protected List<F4211> buscar(List<String> valores) {
@@ -535,21 +533,28 @@ public class CF4211 extends CGenerico {
 				List<F4211> listF0005_2 = new ArrayList<F4211>();
 
 				for (F4211 f0005 : listaGeneral) {
-					if (String.valueOf(f0005.getId().getSddoco().longValue()).toLowerCase()
+					if (String.valueOf(f0005.getId().getSddoco().longValue())
+							.toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f0005.getId().getSddcto().toLowerCase()
 									.contains(valores.get(1).toLowerCase())
-							&& String.valueOf(f0005.getId().getSdlnid().longValue())
-									.toLowerCase().contains(valores.get(2).toLowerCase())
+							&& String
+									.valueOf(
+											f0005.getId().getSdlnid()
+													.longValue()).toLowerCase()
+									.contains(valores.get(2).toLowerCase())
 							&& f0005.getId().getSdkcoo().toLowerCase()
 									.contains(valores.get(3).toLowerCase())
 							&& f0005.getSdmcu().toLowerCase()
 									.contains(valores.get(4).toLowerCase())
-							&& String.valueOf(f0005.getSditm().longValue()).toLowerCase()
+							&& String.valueOf(f0005.getSditm().longValue())
+									.toLowerCase()
 									.contains(valores.get(5).toLowerCase())
-							&& String.valueOf(f0005.getSdpqor().longValue()).toLowerCase()
+							&& String.valueOf(f0005.getSdpqor().longValue())
+									.toLowerCase()
 									.contains(valores.get(6).toLowerCase())
-							&& String.valueOf(f0005.getSdecst().longValue()).toLowerCase()
+							&& String.valueOf(f0005.getSdecst().longValue())
+									.toLowerCase()
 									.contains(valores.get(7).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(f0005
@@ -564,9 +569,11 @@ public class CF4211 extends CGenerico {
 			@Override
 			protected String[] crearRegistros(F4211 f0005) {
 				String[] registros = new String[9];
-				registros[0] = String.valueOf(f0005.getId().getSddoco().longValue());
+				registros[0] = String.valueOf(f0005.getId().getSddoco()
+						.longValue());
 				registros[1] = f0005.getId().getSddcto();
-				registros[2] = String.valueOf(f0005.getId().getSdlnid().longValue());
+				registros[2] = String.valueOf(f0005.getId().getSdlnid()
+						.longValue());
 				registros[3] = f0005.getId().getSdkcoo();
 				registros[4] = f0005.getSdmcu();
 				registros[5] = String.valueOf(f0005.getSditm().longValue());
@@ -585,12 +592,13 @@ public class CF4211 extends CGenerico {
 	public void mostrarCatalogoF4100() {
 		final List<F4100> listF41002 = servicioF4100
 				.buscarTodosOrdenadosPorMcu(mcu);
-		catalogoF4100 = new CatalogoGenerico<F4100>(divCatalogoF4100, "F4100",
-				listF41002, true, false, false, "Cod. Sucursal/planta",
-				"Sucursal/planta", "Fecha acta", "Ubicacion", "Zona alm",
-				"Zona acopio", "Zona reabast", "Detalle", "Pasillo", "Bin",
-				"Ubic 3", "Ubic 4", "Ubic 5", "Ubic 6", "Ubic 7", "Ubic 8",
-				"Ubic 9", "Ubic 10", "Art/Lote mixtos", "Ubic temp") {
+		catalogoF4100 = new CatalogoGenerico<F4100>(divCatalogoF4100,
+				"Catalogo de Ubicaciones (F4100)", listF41002, true, false,
+				false, "Cod. Sucursal/planta", "Sucursal/planta", "Fecha acta",
+				"Ubicacion", "Zona alm", "Zona acopio", "Zona reabast",
+				"Detalle", "Pasillo", "Bin", "Ubic 3", "Ubic 4", "Ubic 5",
+				"Ubic 6", "Ubic 7", "Ubic 8", "Ubic 9", "Ubic 10",
+				"Art/Lote mixtos", "Ubic temp") {
 
 			@Override
 			protected List<F4100> buscar(List<String> valores) {
@@ -600,8 +608,8 @@ public class CF4211 extends CGenerico {
 					F0006 f0006 = servicioF0006
 							.buscar(f4100.getId().getLmmcu());
 					String mcdc = "";
-					if (f0006.getMcdc() != null)
-						mcdc = f0006.getMcdc();
+					if (f0006.getMcdl01() != null)
+						mcdc = f0006.getMcdl01();
 					String num3 = "", num4 = "", num5 = "", num6 = "", num7 = "", num8 = "", num9 = "", num10 = "";
 					if (f4100.getLmla03() != null)
 						num3 = f4100.getLmla03();
@@ -621,12 +629,14 @@ public class CF4211 extends CGenerico {
 						num10 = f4100.getLmla10();
 					if (String.valueOf(f4100.getId().getLmmcu()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
+							&& mcdc.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& String
 									.valueOf(
 											transformarJulianaAGregoria(f4100
 													.getLmupmj()))
-									.toLowerCase().contains(valores.get(2).toLowerCase())
+									.toLowerCase()
+									.contains(valores.get(2).toLowerCase())
 							&& f4100.getId().getLmlocn().toLowerCase()
 									.contains(valores.get(3).toLowerCase())
 							&& f4100.getLmpzon().toLowerCase()
@@ -638,14 +648,22 @@ public class CF4211 extends CGenerico {
 							&& f4100.getLmlldl().toLowerCase()
 									.contains(valores.get(7).toLowerCase())
 							// poner campos pasillo y bin
-							&& num3.toLowerCase().contains(valores.get(10).toLowerCase())
-							&& num4.toLowerCase().contains(valores.get(11).toLowerCase())
-							&& num5.toLowerCase().contains(valores.get(12).toLowerCase())
-							&& num6.toLowerCase().contains(valores.get(13).toLowerCase())
-							&& num7.toLowerCase().contains(valores.get(14).toLowerCase())
-							&& num8.toLowerCase().contains(valores.get(15).toLowerCase())
-							&& num9.toLowerCase().contains(valores.get(16).toLowerCase())
-							&& num10.toLowerCase().contains(valores.get(17).toLowerCase())
+							&& num3.toLowerCase().contains(
+									valores.get(10).toLowerCase())
+							&& num4.toLowerCase().contains(
+									valores.get(11).toLowerCase())
+							&& num5.toLowerCase().contains(
+									valores.get(12).toLowerCase())
+							&& num6.toLowerCase().contains(
+									valores.get(13).toLowerCase())
+							&& num7.toLowerCase().contains(
+									valores.get(14).toLowerCase())
+							&& num8.toLowerCase().contains(
+									valores.get(15).toLowerCase())
+							&& num9.toLowerCase().contains(
+									valores.get(16).toLowerCase())
+							&& num10.toLowerCase().contains(
+									valores.get(17).toLowerCase())
 							&& f4100.getLmmixl().toLowerCase()
 									.contains(valores.get(18).toLowerCase())
 							&& f4100.getLmstag().toLowerCase()
@@ -660,20 +678,23 @@ public class CF4211 extends CGenerico {
 			protected String[] crearRegistros(F4100 f4100) {
 
 				F0006 f0006 = servicioF0006.buscar(f4100.getId().getLmmcu());
-				BigDecimal a = null;
-				if (f4100.getLmupmj() != null)
-					a = f4100.getLmupmj();
 				String[] registros = new String[20];
 				registros[0] = String.valueOf(f4100.getId().getLmmcu());
-				registros[1] = f0006.getMcdc();
-				registros[2] = String.valueOf(transformarJulianaAGregoria(a));
+				if (f0006 != null)
+					registros[1] = f0006.getMcdl01();
+				if (f4100.getLmupmj() != null)
+					registros[2] = formatoFecha
+							.format((transformarJulianaAGregoria(f4100
+									.getLmupmj())));
+				else
+					registros[2] = "";
 				registros[3] = String.valueOf(f4100.getId().getLmlocn());
 				registros[4] = f4100.getLmpzon();
 				registros[5] = f4100.getLmkzon();
 				registros[6] = f4100.getLmzonr();
 				registros[7] = f4100.getLmlldl();
-				registros[8] = "no se";
-				registros[9] = "no se";
+				registros[8] = "";
+				registros[9] = "";
 				registros[10] = f4100.getLmla03();
 				registros[11] = f4100.getLmla04();
 				registros[12] = f4100.getLmla05();
@@ -715,11 +736,11 @@ public class CF4211 extends CGenerico {
 		else
 			lista = servicioF0006.buscarPorMco(ccoB);
 		final List<F0006> unidades = lista;
-		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006, "F0006",
-				unidades, true, false, false, "Unidad Negocio", "Descripcion",
-				"Nivel det", "Cta", "Tipo UN", "LM Auxiliar Inactivo",
-				"Mto Cons", "CAT 01", "CAT 02", "CAT 03", "CAT 04", "CAT 05",
-				"CAT 06") {
+		catalogoF0006 = new CatalogoGenerico<F0006>(divCatalogoF0006,
+				"Catalogo de Sucursales (F0006)", unidades, true, false, false,
+				"Unidad Negocio", "Descripcion", "Nivel det", "Cta", "Tipo UN",
+				"LM Auxiliar Inactivo", "Mto Cons", "CAT 01", "CAT 02",
+				"CAT 03", "CAT 04", "CAT 05", "CAT 06") {
 
 			@Override
 			protected List<F0006> buscar(List<String> valores) {
@@ -732,7 +753,8 @@ public class CF4211 extends CGenerico {
 						mcdc = unidad.getMcdc();
 					if (unidad.getMcmcu().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& mcdc.toLowerCase().contains(valores.get(1).toLowerCase())
+							&& unidad.getMcdl01().toLowerCase()
+									.contains(valores.get(1).toLowerCase())
 							&& unidad.getMcldm().toLowerCase()
 									.contains(valores.get(2).toLowerCase())
 							&& unidad.getMcco().toLowerCase()
@@ -765,7 +787,7 @@ public class CF4211 extends CGenerico {
 			protected String[] crearRegistros(F0006 negocio) {
 				String[] registros = new String[13];
 				registros[0] = negocio.getMcmcu();
-				registros[1] = negocio.getMcdc();
+				registros[1] = negocio.getMcdl01();
 				registros[2] = negocio.getMcldm();
 				registros[3] = negocio.getMcco();
 				registros[4] = negocio.getMcstyl();
@@ -803,6 +825,7 @@ public class CF4211 extends CGenerico {
 
 		catalogoF0006.setParent(null);
 	}
+
 	@Listen("onChange = #txtPlanta1 ; onOK=#txtPlanta1")
 	public void buscar() {
 		F0006 f06 = new F0006();
@@ -820,16 +843,16 @@ public class CF4211 extends CGenerico {
 	@Listen("onChange = #txtPlanta2 ; onOK=#txtPlanta2")
 	public void buscarNombreSucursal(Event evento) {
 		F0006 f06 = new F0006();
-			f06 = servicioF0006.buscar(txtPlanta2.getValue());
-			if (f06 != null) {
-				setearPlanta(f06, txtPlanta2, lblPlanta2);
-				mcu = f06.getMcmcu();
-			} else {
-				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				txtPlanta2.setValue("");
-				txtPlanta2.setFocus(true);
-				lblPlanta2.setValue("");
-			}
+		f06 = servicioF0006.buscar(txtPlanta2.getValue());
+		if (f06 != null) {
+			setearPlanta(f06, txtPlanta2, lblPlanta2);
+			mcu = f06.getMcmcu();
+		} else {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			txtPlanta2.setValue("");
+			txtPlanta2.setFocus(true);
+			lblPlanta2.setValue("");
+		}
 	}
 
 	private void setearPlanta(F0006 f06, Textbox txtPlanta12, Label lblPlanta12) {
@@ -841,10 +864,10 @@ public class CF4211 extends CGenerico {
 	public void mostrarCatalogoF4101() {
 		final List<F4101> listF4101 = servicioF4101
 				.buscarTodosOrdenadosPorMcu(txtPlanta1.getValue());
-		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101, "F4101",
-				listF4101, true, false, false, "Número artículo",
-				"Descripción", "Descripción 2", "Texto búsqueda", "Tipo línea",
-				"Tipo alm", "Código vta 1") {
+		catalogoF4101 = new CatalogoGenerico<F4101>(divCatalogoF4101,
+				"Catalogo de Articulos (F4101)", listF4101, true, false, false,
+				"Número artículo", "Descripción", "Descripción 2",
+				"Texto búsqueda", "Tipo línea", "Tipo alm", "Código vta 1") {
 
 			@Override
 			protected List<F4101> buscar(List<String> valores) {
@@ -853,7 +876,7 @@ public class CF4211 extends CGenerico {
 
 				for (F4101 f4101 : listF4101) {
 					String valor = "";
-					if(f4101.getImsrp1()!=null)
+					if (f4101.getImsrp1() != null)
 						valor = f4101.getImsrp1();
 					if (f4101.getImlitm().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
@@ -867,8 +890,8 @@ public class CF4211 extends CGenerico {
 									.contains(valores.get(4).toLowerCase())
 							&& f4101.getImstkt().toLowerCase()
 									.contains(valores.get(5).toLowerCase())
-							&& valor.toLowerCase()
-									.contains(valores.get(6).toLowerCase())) {
+							&& valor.toLowerCase().contains(
+									valores.get(6).toLowerCase())) {
 						lista.add(f4101);
 					}
 				}
@@ -945,8 +968,9 @@ public class CF4211 extends CGenerico {
 	public void mostrarCatalogoF0010(Event e) {
 		idBotonF0010 = e.getTarget().getId();
 		final List<F0010> lista = servicioF0010.buscarTodosOrdenados();
-		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010, "F0010", lista,
-				true, false, false, "Codigo", "Nombre", "Nº Periodo", "Patron",
+		catalogoF0010 = new CatalogoGenerico<F0010>(divCatalogoF0010,
+				"Catalogo de Empresas (F0010)", lista, true, false, false,
+				"Codigo", "Nombre", "Nº Periodo", "Patron",
 				"Inicio año Fiscal", "Periodo LM", "Inicio año C/P",
 				"Periodo C/P", "Inicio año C/C", "Periodo C/C") {
 
@@ -965,7 +989,8 @@ public class CF4211 extends CGenerico {
 									.contains(valores.get(1).toLowerCase())
 							&& String.valueOf(f0010.getCcpnc()).toLowerCase()
 									.contains(valores.get(2).toLowerCase())
-							&& ccdot.toLowerCase().contains(valores.get(3).toLowerCase())
+							&& ccdot.toLowerCase().contains(
+									valores.get(3).toLowerCase())
 							&& f0010.getCcarfj().toString().toLowerCase()
 									.contains(valores.get(4).toLowerCase())
 							&& String.valueOf(f0010.getCctxbm()).toLowerCase()
@@ -1016,6 +1041,8 @@ public class CF4211 extends CGenerico {
 		case "btnBuscarEmpresa2":
 			setteaEmpresa(f0010, txtEmpresa2, lblEmpresa2);
 			ccoA = f0010.getCcco();
+			txtPlanta1.setValue("");
+			lblPlanta1.setValue("");
 			break;
 		}
 		catalogoF0010.setParent(null);
@@ -1028,6 +1055,8 @@ public class CF4211 extends CGenerico {
 		if (f06 != null) {
 			setteaEmpresa(f06, txtEmpresa1, lblEmpresa1);
 			ccoA = f06.getCcco();
+			txtPlanta1.setValue("");
+			lblPlanta1.setValue("");
 		} else {
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
 			txtEmpresa1.setValue("");
@@ -1035,19 +1064,21 @@ public class CF4211 extends CGenerico {
 			lblEmpresa1.setValue("");
 		}
 	}
+
 	@Listen("onChange = #txtEmpresa2 ; onOK = #txtEmpresa2")
 	public void buscarNombreEmpresa(Event evento) {
 		F0010 f06 = new F0010();
-			f06 = servicioF0010.buscar(txtEmpresa2.getValue());
-			if (f06 != null) {
-				setteaEmpresa(f06, txtEmpresa2, lblEmpresa2);
-				ccoB = f06.getCcco();
-			} else {
-				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				txtEmpresa2.setValue("");
-				txtEmpresa2.setFocus(true);
-				lblEmpresa2.setValue("");
-			}
+		f06 = servicioF0010.buscar(txtEmpresa2.getValue());
+		if (f06 != null) {
+			setteaEmpresa(f06, txtEmpresa2, lblEmpresa2);
+			ccoB = f06.getCcco();
+
+		} else {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			txtEmpresa2.setValue("");
+			txtEmpresa2.setFocus(true);
+			lblEmpresa2.setValue("");
+		}
 	}
 
 	private void setteaEmpresa(F0010 f0010, Textbox txtEmpresa12,
@@ -1146,7 +1177,7 @@ public class CF4211 extends CGenerico {
 		} else
 			msj.mensajeAlerta(Mensaje.noHayRegistros);
 	}
-	
+
 	@Listen("onClick = #btnAgregarItems")
 	public void mostrarGroupbox() {
 		gpxItems.setVisible(true);
