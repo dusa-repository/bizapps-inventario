@@ -44,7 +44,7 @@
 								</hbox>
 								<textbox id="txtPlanta1" hflex="1" maxlength="12"
 									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-								<button autodisable="true" id="btnBuscarPlanta1"
+								<button autodisable="self" id="btnBuscarPlanta1"
 									tooltiptext="Catalogo" class="btn" label="Buscar"
 									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblPlanta1" />
@@ -58,7 +58,7 @@
 								</hbox>
 								<textbox id="txtEmpresa1" hflex="1" maxlength="5"
 									tooltiptext="Ingrese la Compañia" />
-								<button id="btnBuscarEmpresa1" class="btn" label="Buscar"
+								<button autodisable="self" id="btnBuscarEmpresa1" class="btn" label="Buscar"
 									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa1" />
 								<label class="etiqueta" value="Fecha Orden:" />
@@ -76,7 +76,7 @@
 								</hbox>
 								<textbox id="txtEmpresa2" hflex="1" maxlength="5"
 									tooltiptext="Ingrese la Compañia" />
-								<button id="btnBuscarEmpresa2" class="btn" label="Buscar"
+								<button autodisable="self" id="btnBuscarEmpresa2" class="btn" label="Buscar"
 									image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa2" />
 								<label class="etiqueta" value="O.C. Cliente:" />
@@ -90,7 +90,7 @@
 									<hbox />
 								</cell>
 								<cell colspan="2">
-									<button autodisable="true" id="btnAgregarItems" class="btn"
+									<button autodisable="self" id="btnAgregarItems" class="btn"
 										label="Agregar Items" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/annadir.png" width="150px" />
 								</cell>
@@ -122,14 +122,14 @@
 									</hbox>
 									<doublebox id="txtItm" hflex="1" maxlength="19"
 										tooltiptext="Ingrese el Numero del Item" />
-									<button autodisable="true" id="btnBuscarItm" class="btn"
+									<button autodisable="self" id="btnBuscarItm" class="btn"
 										label="Buscar" tooltiptext="Catalogo Items"
 										image="/public/imagenes/botones/buscar.png" />
 									<cell colspan="2">
 										<label id="lblItm" />
 									</cell>
 									<hbox />
-									<button label="Agregar" id="btnAgregar" autodisable="true"
+									<button label="Agregar" id="btnAgregar" autodisable="self"
 										image="/public/imagenes/botones/annadir.png" class="btn" />
 								</row>
 								<row>
@@ -161,7 +161,7 @@
 									</hbox>
 									<textbox id="txtPlanta2" hflex="1" maxlength="12"
 										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-									<button autodisable="true" id="btnBuscarPlanta2" class="btn"
+									<button autodisable="self" id="btnBuscarPlanta2" class="btn"
 										label="Buscar" tooltiptext="Catalogo Monedas"
 										image="/public/imagenes/botones/buscar.png" />
 									<cell colspan="2">
@@ -180,7 +180,7 @@
 									<textbox readonly="true" id="txtUbicacion" hflex="1"
 										maxlength="20"
 										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-									<button autodisable="true" id="btnBuscarUbicacion"
+									<button autodisable="self" id="btnBuscarUbicacion"
 										class="btn" label="Buscar" tooltiptext="Catalogo Monedas"
 										image="/public/imagenes/botones/buscar.png" />
 									<cell colspan="2">
@@ -219,9 +219,9 @@
 								</listbox>
 								<vbox width="100%">
 									<button label="Editar" class="btn" id="btnVer"
-										autodisable="true" image="/public/imagenes/botones/generar.png" />
+									autodisable="self" image="/public/imagenes/botones/generar.png" />
 									<button label="Remover" class="btn" id="btnRemover"
-										autodisable="true" image="/public/imagenes/botones/anular.png" />
+										autodisable="self" image="/public/imagenes/botones/anular.png" />
 								</vbox>
 							</hbox>
 						</div>
