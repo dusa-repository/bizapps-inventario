@@ -72,7 +72,7 @@
 							</hbox>
 							<doublebox id="txtPedido" hflex="1" maxlength="12"
 								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-							<button autodisable="true" id="btnBuscarPedido" class="btn"
+							<button autodisable="self" id="btnBuscarPedido" class="btn"
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPedido" />
 						</row>
@@ -85,7 +85,7 @@
 							</hbox>
 							<textbox id="txtPlanta1" hflex="1" maxlength="12"
 								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-							<button autodisable="true" id="btnBuscarPlanta1" class="btn"
+							<button autodisable="self" id="btnBuscarPlanta1" class="btn"
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPlanta1" />
 						</row>
@@ -98,7 +98,7 @@
 							</hbox>
 							<longbox id="txtF0101" hflex="1" maxlength="19"
 								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-							<button autodisable="true" id="btnBuscarF0101" class="btn"
+							<button autodisable="self" id="btnBuscarF0101" class="btn"
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblF0101" />
 						</row>
@@ -111,7 +111,7 @@
 							</hbox>
 							<longbox id="txtF4111P" hflex="1" maxlength="19"
 								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-							<button autodisable="true" id="btnBuscarF4111P" class="btn"
+							<button autodisable="self" id="btnBuscarF4111P" class="btn"
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblF4111P" />
 						</row>
@@ -124,7 +124,7 @@
 							</hbox>
 							<textbox id="txtPlanta2" hflex="1" maxlength="12"
 								tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
-							<button autodisable="true" id="btnBuscarPlanta2" class="btn"
+							<button autodisable="self" id="btnBuscarPlanta2" class="btn"
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPlanta2" />
 						</row>
@@ -132,7 +132,7 @@
 							<cell colspan="3">
 								<hbox />
 							</cell>
-							<button autodisable="true" id="btnAgregarItems" class="btn"
+							<button autodisable="self" id="btnAgregarItems" class="btn"
 								label="Agregar Items" tooltiptext="Catalogo"
 								image="/public/imagenes/botones/annadir.png" width="150px" />
 						</row>
@@ -163,7 +163,7 @@
 									</hbox>
 									<doublebox id="txtItem" hflex="1" maxlength="19"
 										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-									<button autodisable="true" id="btnBuscarItem" class="btn"
+									<button autodisable="self" id="btnBuscarItem" class="btn"
 										label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />
 									<label id="lblItem" />
@@ -176,7 +176,7 @@
 									<spinner id="spnCantidad" width="100%" step="1" value="0"
 										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
 									<hbox />
-									<button label="Agregar" id="btnAgregar" autodisable="true"
+									<button label="Agregar" id="btnAgregar" autodisable="self"
 										class="btn" image="/public/imagenes/botones/annadir.png"
 										tooltiptext="Presione para Agregar un Item" />
 								</row>
@@ -184,7 +184,7 @@
 									<label class="etiqueta" value="UM:" />
 									<textbox disabled="true" id="txtUM" hflex="1"
 										maxlength="2"
-										tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
+										tooltiptext="Unidad de Medida" />
 									<label class="etiqueta" value="UM sec:" visible="false" />
 									<textbox id="txtUM2" hflex="1" maxlength="2"
 										tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion"
@@ -215,7 +215,7 @@
 									<textbox readonly="true" id="txtUbicacion1" hflex="1"
 										maxlength="20"
 										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-									<button autodisable="true" id="btnBuscarUbicacion1"
+									<button autodisable="self" id="btnBuscarUbicacion1"
 										class="btn" label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />
 									<label id="lblUbicacion1" />
@@ -228,7 +228,7 @@
 									<textbox readonly="true" id="txtUbicacion2" hflex="1"
 										maxlength="20"
 										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-									<button autodisable="true" id="btnBuscarUbicacion2"
+									<button autodisable="self" id="btnBuscarUbicacion2"
 										class="btn" label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />
 									<label id="lblUbicacion2" />
@@ -288,10 +288,10 @@
 								</listbox>
 								<vbox width="100%">
 									<button label="Editar" class="btn" id="btnVer"
-										autodisable="true" image="/public/imagenes/botones/generar.png"
+										autodisable="self" image="/public/imagenes/botones/generar.png"
 										tooltiptext="Presione para Editar un Item" />
 									<button label="Remover" class="btn" id="btnRemover"
-										autodisable="true" image="/public/imagenes/botones/anular.png"
+										autodisable="self" image="/public/imagenes/botones/anular.png"
 										tooltiptext="Presione para Remover un Item" />
 								</vbox>
 							</hbox>

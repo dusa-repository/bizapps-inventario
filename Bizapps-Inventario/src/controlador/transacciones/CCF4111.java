@@ -243,7 +243,7 @@ public class CCF4111 extends CGenerico {
 
 	protected boolean validar() {
 		if (txtItem.getText().compareTo("") == 0) {
-			Mensaje.mensajeAlerta(Mensaje.camposVacios);
+			Mensaje.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -394,7 +394,7 @@ public class CCF4111 extends CGenerico {
 		catalogoF0006.setParent(null);
 	}
 
-	@Listen("onChange = #txtPlanta")
+	@Listen("onChange = #txtPlanta; onOK= #txtPlanta ")
 	public void buscarNombreSucursal() {
 		F0006 f06 = new F0006();
 		f06 = servicioF0006.buscar(txtPlanta.getValue());
@@ -540,7 +540,7 @@ public class CCF4111 extends CGenerico {
 		catalogoF4100.setParent(null);
 	}
 
-	@Listen("onChange = #txtUbicacion")
+	@Listen("onChange = #txtUbicacion; onOK=#txtUbicacion")
 	public void buscarNombreUbicacion() {
 		F4100 f4100 = servicioF4100.buscarPorMcuYLoc(mcu,
 				txtUbicacion.getValue());
@@ -627,7 +627,7 @@ public class CCF4111 extends CGenerico {
 		catalogoF4101.setParent(null);
 	}
 
-	@Listen("onChange = #txtItem")
+	@Listen("onChange = #txtItem; onOK=#txtItem")
 	public void buscarNombreItem() {
 		F4101 f4101 = servicioF4101.buscar(txtItem.getValue());
 		if (f4101 != null) {

@@ -142,6 +142,7 @@ public class CF4211 extends CGenerico {
 	private String ccoA = "";
 	private String ccoB = "";
 	double id = (double) 0;
+	protected List<F4211> listaGeneral = new ArrayList<F4211>();
 
 	@Override
 	public void inicializar() throws IOException {
@@ -150,6 +151,7 @@ public class CF4211 extends CGenerico {
 		if (map != null) {
 			if (map.get("tabsGenerales") != null) {
 				tabs = (List<Tab>) map.get("tabsGenerales");
+				titulo = (String) map.get("titulo");
 				map.clear();
 				map = null;
 			}
@@ -208,7 +210,7 @@ public class CF4211 extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divVF4211, "Pedidos", tabs);
+				cerrarVentana(divVF4211, titulo, tabs);
 			}
 
 			@Override
@@ -277,9 +279,10 @@ public class CF4211 extends CGenerico {
 						}
 					}
 					msj.mensajeInformacion(Mensaje.guardado);
-					limpiar();
-					catalogo.actualizarLista(servicioF4211
-							.buscarTodosOrdenados());
+					limpiar();					
+					listaGeneral = servicioF4211
+							.buscarTodosOrdenados();
+					catalogo.actualizarLista(listaGeneral);
 				}
 			}
 
@@ -304,8 +307,10 @@ public class CF4211 extends CGenerico {
 													servicioF4211
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													catalogo.actualizarLista(servicioF4211
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF4211
+															.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
+											
 												}
 											}
 										});
@@ -327,8 +332,9 @@ public class CF4211 extends CGenerico {
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													catalogo.actualizarLista(servicioF4211
-															.buscarTodosOrdenados());
+													listaGeneral = servicioF4211
+															.buscarTodosOrdenados();
+													catalogo.actualizarLista(listaGeneral);
 												}
 											}
 										});
@@ -339,7 +345,7 @@ public class CF4211 extends CGenerico {
 
 			@Override
 			public void buscar() {
-				// TODO Auto-generated method stub
+				abrirCatalogo();
 
 			}
 
@@ -425,10 +431,16 @@ public class CF4211 extends CGenerico {
 		ltbPedidos.getItems().clear();
 		listaPedido.clear();
 		spnCantidad.setValue(0);
+		lblPlanta1.setValue("");
+		lblPlanta2.setValue("");
+		lblUbicacion.setValue("");
+		lblEmpresa1.setValue("");
+		lblEmpresa2.setValue("");
+		lblItm.setValue("");
 	}
 
 	public void mostrarBotones(boolean bol) {		
-		botonera.getChildren().get(1).setVisible(false);
+		botonera.getChildren().get(1).setVisible(!bol);
 		botonera.getChildren().get(2).setVisible(bol);
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);
@@ -511,8 +523,8 @@ public class CF4211 extends CGenerico {
 	}
 
 	private void mostrarCatalogo() {
-		final List<F4211> listF0005 = servicioF4211.buscarTodosOrdenados();
-		catalogo = new CatalogoGenerico<F4211>(catalogoF4211, "F4211", listF0005,
+		listaGeneral = servicioF4211.buscarTodosOrdenados();
+		catalogo = new CatalogoGenerico<F4211>(catalogoF4211, "F4211", listaGeneral,
 				false, false, false, "Nº Orden", "Tipo ord", "Cia ord",
 				"Compañia", "Sucursal/Planta", "Articulo", "Cantidad", "Total",
 				"Fecha") {
@@ -522,7 +534,7 @@ public class CF4211 extends CGenerico {
 
 				List<F4211> listF0005_2 = new ArrayList<F4211>();
 
-				for (F4211 f0005 : listF0005) {
+				for (F4211 f0005 : listaGeneral) {
 					if (String.valueOf(f0005.getId().getSddoco().longValue()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& f0005.getId().getSddcto().toLowerCase()
@@ -791,24 +803,23 @@ public class CF4211 extends CGenerico {
 
 		catalogoF0006.setParent(null);
 	}
+	@Listen("onChange = #txtPlanta1 ; onOK=#txtPlanta1")
+	public void buscar() {
+		F0006 f06 = new F0006();
+		f06 = servicioF0006.buscar(txtPlanta1.getValue());
+		if (f06 != null) {
+			setearPlanta(f06, txtPlanta1, lblPlanta1);
+		} else {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			txtPlanta1.setValue("");
+			txtPlanta1.setFocus(true);
+			lblPlanta1.setValue("");
+		}
+	}
 
-	@Listen("onChange = #txtPlanta1, #txtPlanta2")
+	@Listen("onChange = #txtPlanta2 ; onOK=#txtPlanta2")
 	public void buscarNombreSucursal(Event evento) {
 		F0006 f06 = new F0006();
-		Textbox txt = (Textbox) evento.getTarget();
-		switch (txt.getId()) {
-		case "txtPlanta1":
-			f06 = servicioF0006.buscar(txtPlanta1.getValue());
-			if (f06 != null) {
-				setearPlanta(f06, txtPlanta1, lblPlanta1);
-			} else {
-				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				txtPlanta1.setValue("");
-				txtPlanta1.setFocus(true);
-				lblPlanta1.setValue("");
-			}
-			break;
-		case "txtPlanta2":
 			f06 = servicioF0006.buscar(txtPlanta2.getValue());
 			if (f06 != null) {
 				setearPlanta(f06, txtPlanta2, lblPlanta2);
@@ -819,8 +830,6 @@ public class CF4211 extends CGenerico {
 				txtPlanta2.setFocus(true);
 				lblPlanta2.setValue("");
 			}
-			break;
-		}
 	}
 
 	private void setearPlanta(F0006 f06, Textbox txtPlanta12, Label lblPlanta12) {
@@ -890,7 +899,7 @@ public class CF4211 extends CGenerico {
 		catalogoF4101.setParent(null);
 	}
 
-	@Listen("onChange = #txtItm")
+	@Listen("onChange = #txtItm ; onOK= #txtItm")
 	public void buscarNombreItem() {
 		F4101 f4101 = servicioF4101.buscar(txtItm.getValue());
 		if (f4101 != null) {
@@ -1012,24 +1021,23 @@ public class CF4211 extends CGenerico {
 		catalogoF0010.setParent(null);
 	}
 
-	@Listen("onChange = #txtEmpresa1, #txtEmpresa2")
+	@Listen("onChange = #txtEmpresa1 ; onOK = #txtEmpresa1")
+	public void buscar2() {
+		F0010 f06 = new F0010();
+		f06 = servicioF0010.buscar(txtEmpresa1.getValue());
+		if (f06 != null) {
+			setteaEmpresa(f06, txtEmpresa1, lblEmpresa1);
+			ccoA = f06.getCcco();
+		} else {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			txtEmpresa1.setValue("");
+			txtEmpresa1.setFocus(true);
+			lblEmpresa1.setValue("");
+		}
+	}
+	@Listen("onChange = #txtEmpresa2 ; onOK = #txtEmpresa2")
 	public void buscarNombreEmpresa(Event evento) {
 		F0010 f06 = new F0010();
-		Textbox txt = (Textbox) evento.getTarget();
-		switch (txt.getId()) {
-		case "txtEmpresa1":
-			f06 = servicioF0010.buscar(txtEmpresa1.getValue());
-			if (f06 != null) {
-				setteaEmpresa(f06, txtEmpresa1, lblEmpresa1);
-				ccoA = f06.getCcco();
-			} else {
-				msj.mensajeAlerta(Mensaje.noHayRegistros);
-				txtEmpresa1.setValue("");
-				txtEmpresa1.setFocus(true);
-				lblEmpresa1.setValue("");
-			}
-			break;
-		case "txtEmpresa2":
 			f06 = servicioF0010.buscar(txtEmpresa2.getValue());
 			if (f06 != null) {
 				setteaEmpresa(f06, txtEmpresa2, lblEmpresa2);
@@ -1040,8 +1048,6 @@ public class CF4211 extends CGenerico {
 				txtEmpresa2.setFocus(true);
 				lblEmpresa2.setValue("");
 			}
-			break;
-		}
 	}
 
 	private void setteaEmpresa(F0010 f0010, Textbox txtEmpresa12,
@@ -1093,9 +1099,9 @@ public class CF4211 extends CGenerico {
 				ltbPedidos.renderAll();
 				limpiarCamposItem();
 			} else
-				msj.mensajeAlerta(Mensaje.itemRepetido);
+				msj.mensajeError(Mensaje.itemRepetido);
 		} else
-			msj.mensajeAlerta(Mensaje.camposVaciosItem);
+			msj.mensajeError(Mensaje.camposVaciosItem);
 	}
 
 	@Listen("onClick = #btnVer")
