@@ -10,8 +10,8 @@
 				<separator />
 				<grid>
 					<columns visible="false">
-						<column label="" width="19.5%" />
 						<column label="" width="20.5%" />
+						<column label="" width="19.5%" />
 						<column label="" width="13%" />
 						<column label="" width="20%" />
 						<column label="" width="27%" />

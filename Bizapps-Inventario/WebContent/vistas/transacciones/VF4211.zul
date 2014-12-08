@@ -115,11 +115,11 @@
 						<separator />
 						<grid width="93%">
 							<columns visible="false">
-								<column label="" width="12%" />
-								<column label="" width="18%" />
+								<column label="" width="14%" />
+								<column label="" width="17%" />
 								<column label="" width="12.6%" />
 								<column label="" width="18%" />
-								<column label="" width="12.6%" />
+								<column label="" width="11.6%" />
 								<column label="" width="13.4%" />
 								<column label="" width="13.4%" />
 							</columns>
@@ -128,7 +128,7 @@
 									<hbox>
 										<label class="etiqueta" value="Articulo a solicitar:" />
 										<space />
-										<label value="*" style="font-weight:bold;color:red" />
+										<label value="**" style="font-weight:bold;color:red" />
 									</hbox>
 									<doublebox id="txtItm" hflex="1" maxlength="19"
 										tooltiptext="Ingrese el Numero del Item" />
@@ -155,10 +155,10 @@
 									<hbox>
 										<label id="lblCantidad" class="etiqueta" value="Cantidad:" />
 										<space />
-										<label value="*" style="font-weight:bold;color:red">
+										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<spinner id="spnCantidad" width="100%" step="10" value="0"
+									<spinner id="spnCantidad" width="100%" step="1" value="0"
 										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
 									<hbox />
 								</row>
@@ -166,7 +166,7 @@
 									<hbox>
 										<label class="etiqueta" value="Pedido desde Sucursal/planta:" />
 										<space />
-										<label value="*" style="font-weight:bold;color:red">
+										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
 									<textbox id="txtPlanta2" hflex="1" maxlength="12"
@@ -184,7 +184,7 @@
 									<hbox>
 										<label class="etiqueta" value="Pedido desde Ubicacion:" />
 										<space />
-										<label value="*" style="font-weight:bold;color:red">
+										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
 									<textbox readonly="true" id="txtUbicacion" hflex="1"

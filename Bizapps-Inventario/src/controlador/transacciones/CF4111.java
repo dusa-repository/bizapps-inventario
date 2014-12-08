@@ -402,31 +402,58 @@ public class CF4111 extends CGenerico {
 						txtDoc.setValue(f4111.getIldoc());
 						if (f4111.getIldoco() != null)
 							txtOrden.setValue(f4111.getIldoco());
-						if (f4111.getIlan8() != null)
+						if (f4111.getIlan8() != null) {
 							txtF0101.setValue(f4111.getIlan8().longValue());
+							lblF0101.setValue(servicioF0101.buscar(
+									f4111.getIlan8().longValue()).getAbalph());
+						}
 						txtPlanta1.setValue(f4111.getIlmcu());
+						if (servicioF0006.buscar(f4111.getIlmcu()) != null)
+							lblPlanta1.setValue(servicioF0006.buscar(
+									f4111.getIlmcu()).getMcdl01());
 						txtPlanta2.setValue(f4111.getIlmmcu());
+						if (servicioF0006.buscar(f4111.getIlmmcu()) != null)
+							lblPlanta1.setValue(servicioF0006.buscar(
+									f4111.getIlmmcu()).getMcdl01());
 						txtExplicacion.setValue(f4111.getIltrex());
 						dtbFechaLm.setValue(transformarJulianaAGregoria(f4111
 								.getIltrdj()));
 						dtbFechaTransaccion
 								.setValue(transformarJulianaAGregoria(f4111
 										.getIlcrdj()));
-						for (int i = 0; i < listF4111.size(); i++) {
-							F4101 f4101 = servicioF4101.buscar(listF4111.get(i)
-									.getIlitm());
-							Generico generico = new Generico(listF4111.get(i)
-									.getIlitm(), f4101.getImdsc1(),
-									f4101.getImuom1(), listF4111.get(i)
-											.getIlmcu(), "", listF4111.get(i)
-											.getIlmmcu(), "", listF4111.get(i)
-											.getIltrqt().intValue(), listF4111
-											.get(i).getIluncs());
-							generico.setValor11(listF4111.get(i).getIlpaid());
-							lista.add(generico);
+
+						if (f4111.getIldoc() != null) {
+							Double codigo = f4111.getIldoc();
+							txtF4111P.setValue(codigo.longValue());
+							lblF4111P.setValue(f4111.getIltrex());
 						}
-						ltbItems.setModel(new ListModelList<Generico>(lista));
-						ltbItems.renderAll();
+
+						if (!listF4111.isEmpty()) {
+							for (int i = 0; i < listF4111.size(); i++) {
+								if (listF4111.get(i).getIlitm() != null) {
+
+									F4101 f4101 = servicioF4101
+											.buscar(listF4111.get(i).getIlitm());
+									if (f4101 != null) {
+										Generico generico = new Generico(
+												listF4111.get(i).getIlitm(),
+												f4101.getImdsc1(),
+												f4101.getImuom1(), listF4111
+														.get(i).getIlmcu(), "",
+												listF4111.get(i).getIlmmcu(),
+												"",
+												listF4111.get(i).getIltrqt()
+														.intValue(), listF4111
+														.get(i).getIluncs());
+										generico.setValor11(listF4111.get(i)
+												.getIlpaid());
+										lista.add(generico);
+									}
+								}
+							}
+							ltbItems.setModel(new ListModelList<Generico>(lista));
+							ltbItems.renderAll();
+						}
 						mostrarBotones(false);
 						abrirRegistro();
 						botonera.getChildren().get(3).setVisible(false);
@@ -453,10 +480,7 @@ public class CF4111 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (id == 0)
-					guardar = validar();
-				if (guardar) {
+				if (validar()) {
 
 					synchronized (this) {
 						while (!nextNumber) {
@@ -904,6 +928,8 @@ public class CF4111 extends CGenerico {
 		lblF0101.setValue("");
 		txtF4111P.setValue(null);
 		txtF4111P.setDisabled(false);
+		txtPedido.setValue(null);
+		lblPedido.setValue("");
 	}
 
 	protected void mostrarBotones(boolean bol) {
@@ -971,7 +997,11 @@ public class CF4111 extends CGenerico {
 				|| txtUbicacion1.getText().compareTo("") != 0
 				|| txtUbicacion2.getText().compareTo("") != 0
 				|| txtUM.getText().compareTo("") != 0
-				|| txtUM2.getText().compareTo("") != 0) {
+				|| txtUM2.getText().compareTo("") != 0
+				|| txtPedido.getText().compareTo("") != 0
+				|| txtF0101.getText().compareTo("") != 0
+				|| txtF4111P.getText().compareTo("") != 0
+				|| txtOrden.getText().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
@@ -1053,9 +1083,10 @@ public class CF4111 extends CGenerico {
 			final List<F4111> unidades = servicioF4111
 					.buscarTodosOrdenadosPorProveedor("OV", l.doubleValue());
 			catalogoEmergente = new CatalogoGenerico<F4111>(
-					catalogoF4111Emergente, "Catalogo de Ordenes (F4111P)", unidades, true, false,
-					false, "Numero Documento", "Tipo doc", "Fecha LM",
-					"Explicacion", "Sucursal/planta", "Fecha transaccion") {
+					catalogoF4111Emergente, "Catalogo de Ordenes (F4111P)",
+					unidades, true, false, false, "Numero Documento",
+					"Tipo doc", "Fecha LM", "Explicacion", "Sucursal/planta",
+					"Fecha transaccion") {
 
 				@Override
 				protected List<F4111> buscar(List<String> valores) {
@@ -1260,55 +1291,56 @@ public class CF4111 extends CGenerico {
 		catalogoF4100.setParent(catalogoUbicacionF4100);
 		catalogoF4100.doModal();
 	}
-//
-//	@Listen("onChange = #txtUbicacion1; onOK = #txtUbicacion1")
-//	public void seleccionarUbicacion1() {
-//		if (tipo.equals("OV")) {
-//			if (txtUbicacion1.getText().compareTo("") != 0
-//					&& txtPlanta2.getText().compareTo("") != 0) {
-//				if (servicioF4100.buscarPorMcuYLoc(txtPlanta2.getValue(),
-//						txtUbicacion1.getValue()) != null) {
-//					lblUbicacion1.setValue(txtUbicacion1.getValue());
-//				} else {
-//					msj.mensajeAlerta(Mensaje.noHayRegistros);
-//					txtUbicacion1.setValue("");
-//					txtUbicacion1.setFocus(true);
-//					lblUbicacion1.setValue("");
-//				}
-//			}
-//		} else {
-//			if (txtUbicacion1.getText().compareTo("") != 0
-//					&& txtPlanta1.getText().compareTo("") != 0) {
-//				if (servicioF4100.buscarPorMcuYLoc(txtPlanta1.getValue(),
-//						txtUbicacion1.getValue()) != null) {
-//					lblUbicacion1.setValue(txtUbicacion1.getValue());
-//				} else {
-//					msj.mensajeAlerta(Mensaje.noHayRegistros);
-//					txtUbicacion1.setValue("");
-//					txtUbicacion1.setFocus(true);
-//					lblUbicacion1.setValue("");
-//				}
-//			}
-//		}
-//
-//	}
-//
-//	@Listen("onChange = #txtUbicacion2; onOK = #txtUbicacion2")
-//	public void seleccionarUbicacion2() {
-//		if (txtUbicacion2.getText().compareTo("") != 0
-//				&& txtPlanta1.getText().compareTo("") != 0) {
-//			if (servicioF4100.buscarPorMcuYLoc(txtPlanta1.getValue(),
-//					txtUbicacion2.getValue()) != null) {
-//				lblUbicacion2.setValue(txtUbicacion2.getValue());
-//			} else {
-//				msj.mensajeAlerta(Mensaje.noHayRegistros);
-//				txtUbicacion2.setValue("");
-//				txtUbicacion2.setFocus(true);
-//				lblUbicacion2.setValue("");
-//			}
-//		}
-//
-//	}
+
+	//
+	// @Listen("onChange = #txtUbicacion1; onOK = #txtUbicacion1")
+	// public void seleccionarUbicacion1() {
+	// if (tipo.equals("OV")) {
+	// if (txtUbicacion1.getText().compareTo("") != 0
+	// && txtPlanta2.getText().compareTo("") != 0) {
+	// if (servicioF4100.buscarPorMcuYLoc(txtPlanta2.getValue(),
+	// txtUbicacion1.getValue()) != null) {
+	// lblUbicacion1.setValue(txtUbicacion1.getValue());
+	// } else {
+	// msj.mensajeAlerta(Mensaje.noHayRegistros);
+	// txtUbicacion1.setValue("");
+	// txtUbicacion1.setFocus(true);
+	// lblUbicacion1.setValue("");
+	// }
+	// }
+	// } else {
+	// if (txtUbicacion1.getText().compareTo("") != 0
+	// && txtPlanta1.getText().compareTo("") != 0) {
+	// if (servicioF4100.buscarPorMcuYLoc(txtPlanta1.getValue(),
+	// txtUbicacion1.getValue()) != null) {
+	// lblUbicacion1.setValue(txtUbicacion1.getValue());
+	// } else {
+	// msj.mensajeAlerta(Mensaje.noHayRegistros);
+	// txtUbicacion1.setValue("");
+	// txtUbicacion1.setFocus(true);
+	// lblUbicacion1.setValue("");
+	// }
+	// }
+	// }
+	//
+	// }
+	//
+	// @Listen("onChange = #txtUbicacion2; onOK = #txtUbicacion2")
+	// public void seleccionarUbicacion2() {
+	// if (txtUbicacion2.getText().compareTo("") != 0
+	// && txtPlanta1.getText().compareTo("") != 0) {
+	// if (servicioF4100.buscarPorMcuYLoc(txtPlanta1.getValue(),
+	// txtUbicacion2.getValue()) != null) {
+	// lblUbicacion2.setValue(txtUbicacion2.getValue());
+	// } else {
+	// msj.mensajeAlerta(Mensaje.noHayRegistros);
+	// txtUbicacion2.setValue("");
+	// txtUbicacion2.setFocus(true);
+	// lblUbicacion2.setValue("");
+	// }
+	// }
+	//
+	// }
 
 	@Listen("onSeleccion = #catalogoUbicacionF4100")
 	public void seleccionarCatalogo() {
@@ -1488,9 +1520,9 @@ public class CF4111 extends CGenerico {
 		else
 			orden = "Nº de Recipe";
 		catalogoF4211 = new CatalogoGenerico<F4211>(catalogoPedidoF4211,
-				"Catalogo de Pedidos (F4211)", listF0005, true, false, false, orden, "Tipo ord",
-				"Cia ord", "Compañia", "Sucursal/Planta", "Articulo",
-				"Cantidad", "Total", "Fecha") {
+				"Catalogo de Pedidos (F4211)", listF0005, true, false, false,
+				orden, "Tipo ord", "Cia ord", "Compañia", "Sucursal/Planta",
+				"Articulo", "Cantidad", "Total", "Fecha") {
 
 			@Override
 			protected List<F4211> buscar(List<String> valores) {
@@ -2047,21 +2079,28 @@ public class CF4111 extends CGenerico {
 			txtPlanta1.setValue(f4111.getIlmcu());
 			txtPlanta2.setValue(f4111.getIlmmcu());
 			txtExplicacion.setValue(f4111.getIltrex());
-			dtbFechaLm.setValue(transformarJulianaAGregoria(f4111.getIltrdj()));
-			dtbFechaTransaccion.setValue(transformarJulianaAGregoria(f4111
-					.getIlcrdj()));
+			if (f4111.getIltrdj() != null)
+				dtbFechaLm.setValue(transformarJulianaAGregoria(f4111
+						.getIltrdj()));
+			if (f4111.getIlcrdj() != null)
+				dtbFechaTransaccion.setValue(transformarJulianaAGregoria(f4111
+						.getIlcrdj()));
 			for (int i = 0; i < lista2.size(); i++) {
-				F4101 f4101 = servicioF4101.buscar(lista2.get(i).getIlitm());
-				Generico generico = new Generico(lista2.get(i).getIlitm(),
-						f4101.getImdsc1(), f4101.getImuom1(), lista2.get(i)
-								.getIlmcu(), "", lista2.get(i).getIlmmcu(), "",
-						lista2.get(i).getIltrqt().intValue(), lista2.get(i)
-								.getIluncs());
-				generico.setValor11(lista2.get(i).getIlpaid());
-				lista.add(generico);
+				if (lista2.get(i).getIlitm() != null) {
+
+					F4101 f4101 = servicioF4101
+							.buscar(lista2.get(i).getIlitm());
+					Generico generico = new Generico(lista2.get(i).getIlitm(),
+							f4101.getImdsc1(), f4101.getImuom1(), lista2.get(i)
+									.getIlmcu(), "", lista2.get(i).getIlmmcu(),
+							"", lista2.get(i).getIltrqt().intValue(), lista2
+									.get(i).getIluncs());
+					generico.setValor11(lista2.get(i).getIlpaid());
+					lista.add(generico);
+				}
+				ltbItems.setModel(new ListModelList<Generico>(lista));
+				ltbItems.renderAll();
 			}
-			ltbItems.setModel(new ListModelList<Generico>(lista));
-			ltbItems.renderAll();
 			mostrarBotones(false);
 			abrirRegistro();
 			botonera.getChildren().get(3).setVisible(false);
