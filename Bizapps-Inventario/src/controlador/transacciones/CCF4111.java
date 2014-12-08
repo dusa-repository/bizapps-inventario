@@ -31,8 +31,8 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
 
@@ -230,8 +230,8 @@ public class CCF4111 extends CGenerico {
 	private void cargarBuscador() {
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
 				"DT");
-		buscadorTipo = new BuscadorUDC("Tipo Documento", 2, listaF0005, false,
-				false, false, "00", "DT") {
+		buscadorTipo = new BuscadorUDC("Tipo Documento", 2, false,
+				"00", "DT" ,servicioF0005, "27%", "10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",

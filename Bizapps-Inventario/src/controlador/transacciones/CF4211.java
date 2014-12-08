@@ -187,7 +187,12 @@ public class CF4211 extends CGenerico {
 						dtbFecha.setValue(transformarJulianaAGregoria(f4211
 								.getSddrqj()));
 						txtDoc.setValue(f4211.getSddoc());
+						if(f4211.getSdmcu()!=null)
+						{
 						txtPlanta1.setValue(f4211.getSdmcu());
+						lblPlanta1.setValue(servicioF0006.buscar(f4211.getSdmcu()).getMcdl01());
+						}
+						
 						List<F4211> lista = servicioF4211.buscarPorDocoYDcto(
 								f4211.getId().getSddoco(), f4211.getId()
 										.getSddcto());
@@ -229,10 +234,7 @@ public class CF4211 extends CGenerico {
 
 			@Override
 			public void guardar() {
-				boolean guardar = true;
-				if (clave == null)
-					guardar = validar();
-				if (guardar) {
+				if (validar()) {
 					F4211 f4211 = new F4211();
 					if (clave == null) {
 						clave = new F4211PK();
@@ -494,23 +496,24 @@ public class CF4211 extends CGenerico {
 
 	private boolean camposEditando() {
 		if (txtCosto.getText().compareTo("") != 0
-				|| txtDcto.getText().compareTo("") != 0
+//				|| txtLnid.getText().compareTo("") != 0
+//				|| txtDcto.getText().compareTo("") != 0
 				|| txtItm.getText().compareTo("") != 0
 				|| txtItm.getText().compareTo("") != 0
 				|| txtDoc.getText().compareTo("") != 0
 				|| txtDoco.getText().compareTo("") != 0
 				|| txtEmpresa1.getText().compareTo("") != 0
 				|| txtEmpresa2.getText().compareTo("") != 0
-				|| txtLnid.getText().compareTo("") != 0
 				|| txtPlanta1.getText().compareTo("") != 0
 				|| txtPlanta2.getText().compareTo("") != 0
 				|| txtUbicacion.getText().compareTo("") != 0
 				|| txtUM.getText().compareTo("") != 0
 				|| ltbPedidos.getItemCount() != 0 || listaPedido.size() != 0
-				|| spnCantidad.getValue() != 0) {
-			return false;
-		} else
+				|| spnCantidad.getValue() != 0
+				|| txtDoc.getText().compareTo("") != 0) {
 			return true;
+		} else
+			return false;
 	}
 
 	@Listen("onClick = #gpxRegistroF4211")
@@ -576,12 +579,26 @@ public class CF4211 extends CGenerico {
 						.longValue());
 				registros[3] = f0005.getId().getSdkcoo();
 				registros[4] = f0005.getSdmcu();
-				registros[5] = String.valueOf(f0005.getSditm().longValue());
-				registros[6] = String.valueOf(f0005.getSdpqor().longValue());
-				registros[7] = String.valueOf(f0005.getSdecst().longValue());
-				registros[8] = formatoFecha
-						.format(transformarJulianaAGregoria(f0005.getSddrqj()));
-				;
+				if (f0005.getSditm() != null)
+					registros[5] = String.valueOf(f0005.getSditm().longValue());
+				else
+					registros[5] = "";
+				if (f0005.getSdpqor() != null)
+					registros[6] = String
+							.valueOf(f0005.getSdpqor().longValue());
+				else
+					registros[6] = "";
+				if (f0005.getSdecst() != null)
+					registros[7] = String
+							.valueOf(f0005.getSdecst().longValue());
+				else
+					registros[7] = "";
+				if (f0005.getSddrqj() != null)
+					registros[8] = formatoFecha
+							.format(transformarJulianaAGregoria(f0005
+									.getSddrqj()));
+				else
+					registros[8] = "";
 				return registros;
 			}
 		};
