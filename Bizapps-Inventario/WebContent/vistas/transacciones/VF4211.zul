@@ -30,12 +30,11 @@
 									<label value="*" style="font-weight:bold;color:red" />
 								</hbox>
 								<doublebox disabled="true" id="txtDoco" hflex="1"
-									maxlength="15" tooltiptext="Ingrese el Numero del Item" />
+									maxlength="15" />
 								<textbox disabled="true" id="txtDcto" hflex="1"
-									maxlength="2"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									maxlength="2" />
 								<doublebox disabled="true" id="txtLnid" hflex="1"
-									maxlength="15" tooltiptext="Ingrese el Numero del Item" />
+									maxlength="15" />
 								<hbox />
 								<hbox />
 								<hbox />
@@ -48,14 +47,14 @@
 									<label value="*" style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtEmpresa1" hflex="1" maxlength="5"
-									tooltiptext="Ingrese la Compañia" />
+								<textbox id="txtEmpresa1" hflex="1" maxlength="5" />
 								<button autodisable="self" id="btnBuscarEmpresa1" class="btn"
+									tooltiptext="Seleccione la compañia desde la cual se realiza el pedido"
 									label="Buscar" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa1" />
 								<label class="etiqueta" value="Fecha Orden:" />
 								<datebox readonly="true" width="100%" id="dtbFecha"
-									onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion LM" />
+									onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Orden" />
 								<hbox />
 								<hbox />
 							</row>
@@ -66,14 +65,14 @@
 									<label value="*" style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtEmpresa2" hflex="1" maxlength="5"
-									tooltiptext="Ingrese la Compañia" />
+								<textbox id="txtEmpresa2" hflex="1" maxlength="5" />
 								<button autodisable="self" id="btnBuscarEmpresa2" class="btn"
+									tooltiptext="Seleccione la compañia a la cual realiza el pedido"
 									label="Buscar" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblEmpresa2" />
 								<label class="etiqueta" value="O.C. Cliente:" />
 								<doublebox id="txtDoc" hflex="1" maxlength="15"
-									tooltiptext="Ingrese el Numero del Item" />
+									tooltiptext="Ingrese el numero de la orden de compra" />
 								<hbox />
 								<hbox />
 							</row>
@@ -84,11 +83,10 @@
 									<label value="*" style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtPlanta1" hflex="1" maxlength="12"
-									tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+								<textbox id="txtPlanta1" hflex="1" maxlength="12" />
 								<button autodisable="self" id="btnBuscarPlanta1"
-									tooltiptext="Catalogo" class="btn" label="Buscar"
-									image="/public/imagenes/botones/buscar.png" />
+									tooltiptext="Debe seleccionar la compañia a la cual realizara el pedido para visualizar las Sucursales"
+									class="btn" label="Buscar" image="/public/imagenes/botones/buscar.png" />
 								<label id="lblPlanta1" />
 								<hbox />
 								<hbox />
@@ -130,10 +128,10 @@
 										<space />
 										<label value="**" style="font-weight:bold;color:red" />
 									</hbox>
-									<doublebox id="txtItm" hflex="1" maxlength="19"
-										tooltiptext="Ingrese el Numero del Item" />
+									<doublebox id="txtItm" hflex="1" maxlength="19" />
 									<button autodisable="self" id="btnBuscarItm" class="btn"
-										label="Buscar" tooltiptext="Catalogo Items"
+										label="Buscar"
+										tooltiptext="Debe seleccionar la Sucursal a la cual se realiza el pedido para visualizar los Items"
 										image="/public/imagenes/botones/buscar.png" />
 									<cell colspan="2">
 										<label id="lblItm" />
@@ -145,13 +143,12 @@
 								<row>
 									<label class="etiqueta" value="UM:" />
 									<textbox disabled="true" id="txtUM" hflex="1"
-										maxlength="2"
-										tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion" />
+										maxlength="2" tooltiptext="Unidad de Medida del Item" />
 
 									<label class="etiqueta" value="Costo Unitario:" />
 
 									<doublebox disabled="true" id="txtCosto" hflex="1"
-										maxlength="19" tooltiptext="Ingrese el Numero del Item" />
+										maxlength="19" tooltiptext="Costo unitario del Item" />
 									<hbox>
 										<label id="lblCantidad" class="etiqueta" value="Cantidad:" />
 										<space />
@@ -159,7 +156,7 @@
 										</label>
 									</hbox>
 									<spinner id="spnCantidad" width="100%" step="1" value="0"
-										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
+										constraint="min 0 max 99999999" tooltiptext="Ingrese la Cantidad de Items" />
 									<hbox />
 								</row>
 								<row>
@@ -169,10 +166,10 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<textbox id="txtPlanta2" hflex="1" maxlength="12"
-										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<textbox id="txtPlanta2" hflex="1" maxlength="12" />
 									<button autodisable="self" id="btnBuscarPlanta2" class="btn"
-										label="Buscar" tooltiptext="Catalogo Monedas"
+										label="Buscar"
+										tooltiptext="Debe seleccionar la compañia desde la cual se realiza el pedido para visualizar las Sucursales"
 										image="/public/imagenes/botones/buscar.png" />
 									<cell colspan="2">
 										<label id="lblPlanta2" />
@@ -187,11 +184,10 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<textbox readonly="true" id="txtUbicacion" hflex="1"
-										maxlength="20"
-										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<textbox id="txtUbicacion" hflex="1" maxlength="20" />
 									<button autodisable="self" id="btnBuscarUbicacion"
-										class="btn" label="Buscar" tooltiptext="Catalogo Monedas"
+										class="btn" label="Buscar"
+										tooltiptext="Debe seleccionar la Sucursal a la cual se realiza el pedido para visualizar las Ubicaciones"
 										image="/public/imagenes/botones/buscar.png" />
 									<cell colspan="2">
 										<label id="lblUbicacion" />

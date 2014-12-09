@@ -237,6 +237,7 @@ public class CF4111 extends CGenerico {
 	private Double clave41 = null;
 	private String versionCronica = null;
 	protected List<F4111> listaGeneral = new ArrayList<F4111>();
+	private String loc = "";
 
 	public String getTitulo() {
 		return titulo;
@@ -254,8 +255,14 @@ public class CF4111 extends CGenerico {
 				map = null;
 			}
 		}
+		btnBuscarUbicacion1
+				.setTooltiptext("Debe seleccionar una Sucursal para visualizar las ubicaciones");
 		switch (titulo) {
 		case "Entre Localidades":
+			btnBuscarItem
+					.setTooltiptext("Debe seleccionar una Sucursal para visualizar los items");
+			btnBuscarUbicacion2
+					.setTooltiptext("Debe seleccionar una Sucursal para visualizar las ubicaciones");
 			rowF0101.setVisible(false);
 			rowPlanta2.setVisible(false);
 			txtTipo.setValue("IT");
@@ -265,6 +272,10 @@ public class CF4111 extends CGenerico {
 			cabeza1.setVisible(true);
 			break;
 		case "Entre Almacenes":
+			btnBuscarUbicacion1
+					.setTooltiptext("Debe seleccionar un Pedido para visualizar las ubicaciones");
+			btnBuscarItem
+					.setTooltiptext("Debe seleccionar un Pedido para visualizar los items");
 			rowF0101.setVisible(false);
 			txtTipo.setValue("ET");
 			tipo = "ET";
@@ -280,6 +291,8 @@ public class CF4111 extends CGenerico {
 			txtUbicacion2.setDisabled(true);
 			break;
 		case "De Cantidad":
+			btnBuscarItem
+					.setTooltiptext("Debe seleccionar una Sucursal para visualizar los items");
 			rowF0101.setVisible(false);
 			boxUbicacion2.setVisible(false);
 			txtUbicacion2.setVisible(false);
@@ -292,6 +305,8 @@ public class CF4111 extends CGenerico {
 			tipo = "IA";
 			break;
 		case "De Costo":
+			btnBuscarItem
+					.setTooltiptext("Debe seleccionar una Sucursal para visualizar los items");
 			rowF0101.setVisible(false);
 			boxCosto.setVisible(true);
 			lblCosto.setVisible(true);
@@ -311,6 +326,8 @@ public class CF4111 extends CGenerico {
 			tipo = "I4";
 			break;
 		case "Despacho a Paciente":
+			btnBuscarItem
+					.setTooltiptext("Debe seleccionar un Pedido para visualizar los items");
 			rowPedido.setVisible(true);
 			lblExplicacion.setValue("Datos Paciente");
 			lblExplicacionRequerida.setVisible(true);
@@ -326,6 +343,8 @@ public class CF4111 extends CGenerico {
 			tipo = "MK";
 			break;
 		case "Despacho a Paciente Cronico":
+			btnBuscarItem
+					.setTooltiptext("Debe seleccionar una Sucursal para visualizar los items");
 			lblExplicacion.setValue("Datos Paciente");
 			lblExplicacionRequerida.setVisible(true);
 			lblF0101Dynamic.setValue("Paciente");
@@ -340,6 +359,8 @@ public class CF4111 extends CGenerico {
 			tipo = "MC";
 			break;
 		case "Devolucion a Proveedor":
+			btnBuscarItem
+					.setTooltiptext("Debe seleccionar ua Orden y una Ubicacion para visualizar los itemsn");
 			rowF4111P.setVisible(true);
 			lblF0101Dynamic.setValue("Proveedor");
 			boxCosto.setVisible(true);
@@ -458,7 +479,7 @@ public class CF4111 extends CGenerico {
 						abrirRegistro();
 						botonera.getChildren().get(3).setVisible(false);
 					} else
-						msj.mensajeAlerta(Mensaje.editarSoloUno);
+						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 			}
 
@@ -782,11 +803,11 @@ public class CF4111 extends CGenerico {
 							.buscarTodosOrdenadosPorTipo(tipo);
 					catalogo.actualizarLista(listaGeneral);
 
-					msj.mensajeInformacion(Mensaje.guardado);
+					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 
 				} else
-					msj.mensajeError(Mensaje.camposVacios);
+					Mensaje.mensajeError(Mensaje.camposVacios);
 			}
 
 			@Override
@@ -907,6 +928,9 @@ public class CF4111 extends CGenerico {
 	}
 
 	protected void limpiarCampos() {
+		mcu = "";
+		mcu2 = "";
+		loc = "";
 		versionCronica = null;
 		txtDoc.setValue(null);
 		txtOrden.setValue(null);
@@ -1010,11 +1034,11 @@ public class CF4111 extends CGenerico {
 	protected boolean validarSeleccion() {
 		List<F4111> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
 		} else {
 			if (seleccionados.isEmpty()) {
-				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				Mensaje.mensajeAlerta(Mensaje.noSeleccionoItem);
 				return false;
 			} else {
 				return true;
@@ -1084,7 +1108,7 @@ public class CF4111 extends CGenerico {
 					.buscarTodosOrdenadosPorProveedor("OV", l.doubleValue());
 			catalogoEmergente = new CatalogoGenerico<F4111>(
 					catalogoF4111Emergente, "Catalogo de Ordenes (F4111P)",
-					unidades, true, false, false, "Numero Documento",
+					unidades, true, false, false, "Numero de Orden",
 					"Tipo doc", "Fecha LM", "Explicacion", "Sucursal/planta",
 					"Fecha transaccion") {
 
@@ -1137,7 +1161,7 @@ public class CF4111 extends CGenerico {
 			catalogoEmergente.setParent(catalogoF4111Emergente);
 			catalogoEmergente.doModal();
 		} else
-			msj.mensajeAlerta(Mensaje.seleccionarProveedor);
+			Mensaje.mensajeAlerta(Mensaje.seleccionarProveedor);
 	}
 
 	@Listen("onSeleccion = #catalogoF4111Emergente")
@@ -1163,7 +1187,11 @@ public class CF4111 extends CGenerico {
 			listF4100 = servicioF4100.buscarTodosOrdenadosPorMcu(mcu);
 		else {
 			if (idBotonF4100.equals("btnBuscarUbicacion1"))
-				listF4100 = servicioF4100.buscarTodosOrdenadosPorMcu(mcu);
+				if (tipo.equals("DP"))
+					listF4100 = servicioF4100.buscarTodosOrdenadosPorDoc("OV",
+							claveDoc, mcu);
+				else
+					listF4100 = servicioF4100.buscarTodosOrdenadosPorMcu(mcu);
 			else {
 				if (tipo.equalsIgnoreCase("IT"))
 					listF4100 = servicioF4100.buscarTodosOrdenadosPorMcu(mcu);
@@ -1289,58 +1317,17 @@ public class CF4111 extends CGenerico {
 			}
 		};
 		catalogoF4100.setParent(catalogoUbicacionF4100);
+		Listbox list = (Listbox) catalogoF4100.getChildren().get(1);
+		if (tipo.equals("ET"))
+			list.setEmptyMessage("Debe seleccionar un Pedido para visualizar las ubicaciones");
+		else {
+			if (tipo.equals("DP"))
+				list.setEmptyMessage("Debe seleccionar una Orden y una Sucursal para visualizar las ubicaciones");
+			else
+				list.setEmptyMessage("Debe seleccionar una Sucursal para visualizar las ubicaciones");
+		}
 		catalogoF4100.doModal();
 	}
-
-	//
-	// @Listen("onChange = #txtUbicacion1; onOK = #txtUbicacion1")
-	// public void seleccionarUbicacion1() {
-	// if (tipo.equals("OV")) {
-	// if (txtUbicacion1.getText().compareTo("") != 0
-	// && txtPlanta2.getText().compareTo("") != 0) {
-	// if (servicioF4100.buscarPorMcuYLoc(txtPlanta2.getValue(),
-	// txtUbicacion1.getValue()) != null) {
-	// lblUbicacion1.setValue(txtUbicacion1.getValue());
-	// } else {
-	// msj.mensajeAlerta(Mensaje.noHayRegistros);
-	// txtUbicacion1.setValue("");
-	// txtUbicacion1.setFocus(true);
-	// lblUbicacion1.setValue("");
-	// }
-	// }
-	// } else {
-	// if (txtUbicacion1.getText().compareTo("") != 0
-	// && txtPlanta1.getText().compareTo("") != 0) {
-	// if (servicioF4100.buscarPorMcuYLoc(txtPlanta1.getValue(),
-	// txtUbicacion1.getValue()) != null) {
-	// lblUbicacion1.setValue(txtUbicacion1.getValue());
-	// } else {
-	// msj.mensajeAlerta(Mensaje.noHayRegistros);
-	// txtUbicacion1.setValue("");
-	// txtUbicacion1.setFocus(true);
-	// lblUbicacion1.setValue("");
-	// }
-	// }
-	// }
-	//
-	// }
-	//
-	// @Listen("onChange = #txtUbicacion2; onOK = #txtUbicacion2")
-	// public void seleccionarUbicacion2() {
-	// if (txtUbicacion2.getText().compareTo("") != 0
-	// && txtPlanta1.getText().compareTo("") != 0) {
-	// if (servicioF4100.buscarPorMcuYLoc(txtPlanta1.getValue(),
-	// txtUbicacion2.getValue()) != null) {
-	// lblUbicacion2.setValue(txtUbicacion2.getValue());
-	// } else {
-	// msj.mensajeAlerta(Mensaje.noHayRegistros);
-	// txtUbicacion2.setValue("");
-	// txtUbicacion2.setFocus(true);
-	// lblUbicacion2.setValue("");
-	// }
-	// }
-	//
-	// }
 
 	@Listen("onSeleccion = #catalogoUbicacionF4100")
 	public void seleccionarCatalogo() {
@@ -1358,8 +1345,36 @@ public class CF4111 extends CGenerico {
 		catalogoF4100.setParent(null);
 	}
 
+	@Listen("onChange = #txtUbicacion1; onOK=#txtUbicacion1; #txtUbicacion2; onOK=#txtUbicacion2")
+	public void buscarNombreUbicacion(Event e) {
+		Textbox boton = (Textbox) e.getTarget();
+		String idText = boton.getId();
+		String sucursal = mcu;
+		F4100 f4100 = servicioF4100
+				.buscarPorMcuYLoc(sucursal, boton.getValue());
+		if (f4100 != null) {
+			if (idText.equals("txtUbicacion2"))
+				setearUbicacion(f4100, txtUbicacion2, lblUbicacion2);
+			else
+				setearUbicacion(f4100, txtUbicacion1, lblUbicacion1);
+		} else {
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
+			if (idText.equals("txtUbicacion2")) {
+				txtUbicacion2.setValue("");
+				txtUbicacion2.setFocus(true);
+				lblUbicacion2.setValue("");
+
+			} else {
+				txtUbicacion1.setValue("");
+				txtUbicacion1.setFocus(true);
+				lblUbicacion1.setValue("");
+			}
+		}
+	}
+
 	private void setearUbicacion(F4100 f4100, Textbox txtUbicacion22,
 			Label lblUbicacion22) {
+		loc = f4100.getId().getLmlocn();
 		txtUbicacion22.setValue(f4100.getId().getLmlocn());
 		lblUbicacion22.setValue(f4100.getId().getLmlocn());
 
@@ -1369,7 +1384,13 @@ public class CF4111 extends CGenerico {
 	public void mostrarCatalogoF0006(Event evento) {
 		Button boton = (Button) evento.getTarget();
 		idBotonF0006 = boton.getId();
-		final List<F0006> unidades = servicioF0006.buscarTodosOrdenados();
+		List<F0006> sucursales = new ArrayList<F0006>();
+		if (tipo.equals("DP"))
+			sucursales = servicioF0006.buscarTodosOrdenadosPorDoc("OV",
+					claveDoc);
+		else
+			sucursales = servicioF0006.buscarTodosOrdenados();
+		final List<F0006> unidades = sucursales;
 		catalogoF0006 = new CatalogoGenerico<F0006>(catalogoSucursalF0006,
 				"Catalogo de Sucursales (F0006)", unidades, true, false, false,
 				"Unidad Negocio", "Descripcion", "Nivel det", "Cta", "Tipo UN",
@@ -1437,6 +1458,11 @@ public class CF4111 extends CGenerico {
 			}
 		};
 		catalogoF0006.setParent(catalogoSucursalF0006);
+		Listbox list = (Listbox) catalogoF0006.getChildren().get(1);
+		if (!tipo.equals("DP"))
+			list.setEmptyMessage("No existen registros");
+		else
+			list.setEmptyMessage("Debe seleccionar una Orden para visualizar las Sucursales");
 		catalogoF0006.doModal();
 	}
 
@@ -1476,7 +1502,7 @@ public class CF4111 extends CGenerico {
 		if (f06 != null) {
 			setearPlanta(f06, txtPlanta1, lblPlanta1);
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtPlanta1.setValue("");
 			txtPlanta1.setFocus(true);
 			lblPlanta1.setValue("");
@@ -1491,7 +1517,7 @@ public class CF4111 extends CGenerico {
 		if (f06 != null) {
 			setearPlanta(f06, txtPlanta2, lblPlanta2);
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtPlanta2.setValue("");
 			txtPlanta2.setFocus(true);
 			lblPlanta2.setValue("");
@@ -1500,6 +1526,7 @@ public class CF4111 extends CGenerico {
 
 	private void setearPlanta(F0006 f06, Textbox txtPlanta12, Label lblPlanta12) {
 		limpiarCamposItem();
+		loc = "";
 		txtPlanta12.setValue(f06.getMcmcu());
 		lblPlanta12.setValue(f06.getMcdl01());
 	}
@@ -1586,6 +1613,8 @@ public class CF4111 extends CGenerico {
 			}
 		};
 		catalogoF4211.setParent(catalogoPedidoF4211);
+		Listbox list = (Listbox) catalogoF4211.getChildren().get(1);
+		list.setEmptyMessage("No existen registros");
 		catalogoF4211.doModal();
 	}
 
@@ -1632,7 +1661,7 @@ public class CF4111 extends CGenerico {
 							listF41011 = servicioF4101.buscarTodosOrdenados();
 					else
 						listF41011 = servicioF4101.buscarTodosOrdenadosPorDoc(
-								"OV", claveDoc);
+								"OV", claveDoc, loc);
 				}
 			}
 		} else
@@ -1670,9 +1699,12 @@ public class CF4111 extends CGenerico {
 					} else {
 						if (tipo.equals("DP")) {
 							v = servicioF4111.buscarTodosOrdenadosPorDoc("OV",
-									claveDoc, f4101.getImitm());
-							cantidad = String
-									.valueOf(v.getIltrqt().longValue());
+									claveDoc, f4101.getImitm(), loc);
+							if (v != null)
+								cantidad = String.valueOf(v.getIltrqt()
+										.longValue());
+							else
+								cantidad = f4101.getImdsc2();
 						} else
 							cantidad = f4101.getImdsc2();
 					}
@@ -1701,18 +1733,23 @@ public class CF4111 extends CGenerico {
 
 			@Override
 			protected String[] crearRegistros(F4101 f4101) {
-				F4211 f = servicioF4211.buscarPorDocoEItem(
-						txtPedido.getValue(), f4101.getImitm());
+				F4211 f = new F4211();
 				F4111 v = new F4111();
 				String cantidad = "";
 				if (tipo.equals("ET") || tipo.equals("MK")
 						|| versionCronica != null) {
+					f = servicioF4211.buscarPorDocoEItem(txtPedido.getValue(),
+							f4101.getImitm());
 					cantidad = f.getSdpqor().toString();
 				} else {
 					if (tipo.equals("DP")) {
 						v = servicioF4111.buscarTodosOrdenadosPorDoc("OV",
-								claveDoc, f4101.getImitm());
-						cantidad = String.valueOf(v.getIltrqt().longValue());
+								claveDoc, f4101.getImitm(), loc);
+						if (v != null)
+							cantidad = String
+									.valueOf(v.getIltrqt().longValue());
+						else
+							cantidad = f4101.getImdsc2();
 					} else
 						cantidad = f4101.getImdsc2();
 				}
@@ -1728,6 +1765,32 @@ public class CF4111 extends CGenerico {
 			}
 		};
 		catalogoF4101.setParent(catalogoItemF4101);
+		Listbox list = (Listbox) catalogoF4101.getChildren().get(1);
+		switch (tipo) {
+		case "ET":
+		case "MK":
+			list.setEmptyMessage("Debe seleccionar un Pedido para visualizar los items");
+			break;
+		case "DP":
+			if (claveDoc == null)
+				list.setEmptyMessage("Debe seleccionar una Orden para visualizar los items");
+			else {
+				if (loc.equals(""))
+					list.setEmptyMessage("Debe seleccionar una Ubicacion para visualizar los items");
+				else
+					list.setEmptyMessage("No existen registros");
+			}
+			break;
+		case "IA":
+		case "I4":
+		case "IT":
+		case "MC":
+			list.setEmptyMessage("Debe seleccionar una Sucursal para visualizar los items");
+			break;
+		default:
+			list.setEmptyMessage("No existen registros");
+			break;
+		}
 		catalogoF4101.doModal();
 	}
 
@@ -1744,7 +1807,7 @@ public class CF4111 extends CGenerico {
 		if (f4101 != null) {
 			llenarCamposItem(f4101);
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtItem.setValue(null);
 			txtItem.setFocus(true);
 			txtUM.setValue("");
@@ -1768,7 +1831,7 @@ public class CF4111 extends CGenerico {
 		}
 		if (clave41 != null) {
 			F4111 f = servicioF4111.buscarTodosOrdenadosPorDoc("OV", claveDoc,
-					f4101.getImitm());
+					f4101.getImitm(), loc);
 			spnCosto.setValue(f.getIluncs());
 			spnCantidad.setValue(f.getIltrqt().intValue());
 		}
@@ -1825,6 +1888,8 @@ public class CF4111 extends CGenerico {
 			}
 		};
 		catalogoF0101.setParent(catalogoDireccionF0101);
+		Listbox list = (Listbox) catalogoF0101.getChildren().get(1);
+		list.setEmptyMessage("No existen registros");
 		catalogoF0101.doModal();
 	}
 
@@ -1847,6 +1912,7 @@ public class CF4111 extends CGenerico {
 			ltbItems.renderAll();
 			lista.clear();
 		}
+		loc = "";
 		limpiarCamposItem();
 		Double doble = f0101.getAban8();
 		txtF0101.setValue(doble.longValue());
@@ -1859,7 +1925,7 @@ public class CF4111 extends CGenerico {
 		if (f0101 != null) {
 			setearValores(f0101);
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtF0101.setValue(null);
 			txtF0101.setFocus(true);
 			lblF0101.setValue("");
@@ -1970,7 +2036,7 @@ public class CF4111 extends CGenerico {
 				limpiarCamposItem();
 			}
 		} else
-			msj.mensajeError(Mensaje.camposVaciosItem);
+			Mensaje.mensajeError(Mensaje.camposVaciosItem);
 	}
 
 	@Listen("onClick = #btnVer")
@@ -1998,18 +2064,20 @@ public class CF4111 extends CGenerico {
 				lista.remove(modelo);
 				ltbItems.renderAll();
 			} else
-				msj.mensajeAlerta(Mensaje.editarSoloUno);
+				Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 		} else
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 	}
 
 	private void limpiarCamposItem() {
 		txtItem.setValue(null);
 		lblItem.setValue("");
-		txtUbicacion1.setValue("");
 		txtUbicacion2.setValue("");
-		lblUbicacion1.setValue("");
 		lblUbicacion2.setValue("");
+		if (!tipo.equals("DP")) {
+			txtUbicacion1.setValue("");
+			lblUbicacion1.setValue("");
+		}
 		txtUM.setValue("");
 		txtUM2.setValue("");
 		spnCantidad.setValue(0);
@@ -2028,9 +2096,9 @@ public class CF4111 extends CGenerico {
 				lista.remove(modelo);
 				ltbItems.renderAll();
 			} else
-				msj.mensajeAlerta(Mensaje.editarSoloUno);
+				Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 		} else
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 	}
 
 	public boolean calcular(Textbox txtPlanta22) {
@@ -2050,7 +2118,7 @@ public class CF4111 extends CGenerico {
 			if (suma - cantidad < 0) {
 				spnCantidad.setValue(Double.valueOf(suma).intValue());
 				spnCantidad.setFocus(true);
-				msj.mensajeError(Mensaje.noPoseeExistencia);
+				Mensaje.mensajeError(Mensaje.noPoseeExistencia);
 				return false;
 			} else
 				return true;

@@ -34,7 +34,8 @@ import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
 
 public class CDisponibilidad extends CGenerico {
-
+	
+	private static final long serialVersionUID = 3977613268049701768L;
 	@Wire
 	private Doublebox txtItem;
 	@Wire
@@ -330,6 +331,8 @@ public class CDisponibilidad extends CGenerico {
 				"Cta", "Tipo UN", "LM Auxiliar Inactivo", "Mto Cons", "CAT 01",
 				"CAT 02", "CAT 03", "CAT 04", "CAT 05", "CAT 06");
 		catalogoF0006.setParent(divCatalogoF0006);
+		Listbox list = (Listbox) catalogoF0006.getChildren().get(1);
+		list.setEmptyMessage("No existen registros");
 		catalogoF0006.doModal();
 	}
 
@@ -372,6 +375,11 @@ public class CDisponibilidad extends CGenerico {
 				"Catalogo de Articulos (F4101)", listF4101, true, "Codigo",
 				"Descripcion");
 		catalogoF4101.setParent(divCatalogoF4101);
+		Listbox list = (Listbox) catalogoF4101.getChildren().get(1);
+		if (!mcu.equals(""))
+			list.setEmptyMessage("No existen Items asociados a la Sucursal seleccionada");
+		else
+			list.setEmptyMessage("No existen registros");
 		catalogoF4101.doModal();
 	}
 

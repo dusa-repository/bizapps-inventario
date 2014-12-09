@@ -33,7 +33,7 @@ public interface IF4111DAO extends JpaRepository<F4111, Double> {
 	@Query("select f from F4111 f where f.iltrdj < ?1 order by f.ilmcu asc, f.illocn asc, f.ilitm asc")
 	List<F4111> findByIltrdjBeforeOrderByMcuAsc(BigDecimal hasta);
 
-	List<F4111> findByIlan8AndIldct(Double value, String string);
+	List<F4111> findByIlan8AndIldct(Double value, String string, Sort o);
 
 	@Query("select distinct fa.ildoc from F4111 fa where fa.ildct=?2 and fa.ilan8=?1")
 	List<Double> findByIlan8AndIldctOrderByIldocAsc(Double value, String string);
@@ -57,4 +57,17 @@ public interface IF4111DAO extends JpaRepository<F4111, Double> {
 			+ "order by f.ildct asc, f.ildoc asc, (select a.IMDSC1 from F4101 a where a.imitm = f.ilitm) asc", nativeQuery = true)
 	List<F4111> findByIlvpejBetweenAndIldct(BigDecimal desde, BigDecimal hasta,
 			String tipo);
+
+	F4111 findByIldocAndIldctAndIlitmAndIllocn(Double claveDoc, String string,
+			Double double1, String loc);
+
+	List<F4111> findByIldocAndIldctAndIllocn(Double claveDoc, String string,
+			String loc);
+
+	@Query("select distinct(f.ilmcu) from F4111 f where f.ildct = ?2  and f.ildoc = ?1")
+	List<String> findDisctincMcuByIldocAndIldct(Double claveDoc,
+			String string);
+
+	List<F4111> findByIldocAndIldctAndIlmcu(Double claveDoc, String string,
+			String mcu);
 }

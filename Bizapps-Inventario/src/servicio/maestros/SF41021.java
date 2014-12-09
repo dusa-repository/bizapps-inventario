@@ -57,4 +57,20 @@ public class SF41021 {
 		Sort o = new Sort(Sort.Direction.ASC, ordenar);
 		return iF41021DAO.findByIdLimcuLikeAndIdLiitm(planta, value, o);
 	}
+
+	public List<F41021> buscarExistenciaMaxima(String company) {
+		return iF41021DAO.findByMaxExistence(company);
+	}
+
+	public List<F41021> buscarExistenciaMinima(String company) {
+		return iF41021DAO.findByMinExistence(company);
+	}
+
+	public List<F41021> buscarOrdenMinimo(String company) {
+		return iF41021DAO.findByMinOrder(company);
+	}
+
+	public List<F41021> buscarSeguridadMinimo(String company) {
+		return iF41021DAO.findByMinSecurityStock(company);
+	}
 }

@@ -33,6 +33,7 @@ public class Generador extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		CROrden cOrden = new CROrden();
 		CRAlmacen cAlmacen = new CRAlmacen();
+		CRStock cStock = new CRStock();
 		ServletOutputStream out;
 		String par1 = request.getParameter("valor");
 		String part2 = request.getParameter("valor2");
@@ -47,6 +48,9 @@ public class Generador extends HttpServlet {
 			break;
 		case "2":
 			fichero = cAlmacen.reporte2(part2, part4, tipo);
+			break;
+		case "3":
+			fichero = cStock.reportOfStock(part2, part3, tipo);
 			break;
 		default:
 			break;

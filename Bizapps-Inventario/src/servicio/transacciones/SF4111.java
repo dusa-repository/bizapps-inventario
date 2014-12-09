@@ -60,6 +60,10 @@ public class SF4111 {
 
 	public List<F4111> buscarTodosOrdenadosPorProveedor(String string,
 			Double value) {
+//		List<String> ordenar = new ArrayList<String>();
+//		ordenar.add("ildoc");
+//		ordenar.add("ilitm");
+//		Sort o = new Sort(Sort.Direction.ASC, ordenar);
 		List<F4111> lista = new ArrayList<F4111>();
 		List<Double> lista2 = iF4111DAO.findByIlan8AndIldctOrderByIldocAsc(
 				value, string);
@@ -88,8 +92,8 @@ public class SF4111 {
 	}
 
 	public F4111 buscarTodosOrdenadosPorDoc(String string, Double claveDoc,
-			Double double1) {
-		return iF4111DAO.findByIldocAndIldctAndIlitm(claveDoc, string, double1);
+			Double double1, String loc) {
+		return iF4111DAO.findByIldocAndIldctAndIlitmAndIllocn(claveDoc, string, double1, loc);
 	}
 
 	public List<F4111> buscarEntreFechasItemMcuLocnDct(BigDecimal ilvpej1,

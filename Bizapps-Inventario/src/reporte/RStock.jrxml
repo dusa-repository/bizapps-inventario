@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RStock" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="005a0cbe-71f4-467f-a794-eac044fa34e4">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<field name="id.limcu" class="java.lang.String"/>
+	<field name="id.lilocn" class="java.lang.String"/>
+	<field name="id.liitm" class="java.lang.Double"/>
+	<field name="licfgsid" class="java.lang.String"/>
+	<field name="lipqoh" class="java.lang.Double"/>
+	<field name="lifcom" class="java.lang.Double"/>
+	<group name="planta">
+		<groupExpression><![CDATA[$F{id.limcu}]]></groupExpression>
+		<groupHeader>
+			<band height="29">
+				<rectangle>
+					<reportElement x="0" y="5" width="752" height="20" backcolor="#DBD7D7" uuid="dc2dd1dd-0eb8-4dbb-87da-ae2ea09c0c0a"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="9" y="5" width="91" height="20" uuid="798477a7-16e2-443c-a04c-599cfab6673f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[>> Almacen:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="5" width="476" height="20" uuid="b7953d21-64e7-47cf-9210-a8ae8e2c7beb"/>
+					<textElement>
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id.limcu}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="ubicacion">
+		<groupExpression><![CDATA[$F{id.lilocn}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<rectangle>
+					<reportElement x="0" y="5" width="752" height="20" backcolor="#F1EDED" uuid="c659bbb8-10f1-4cad-94bd-bce91779bf3f"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="19" y="5" width="81" height="20" uuid="04173763-4ef1-417c-a6fa-7975c5551996"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[> Ubicacion:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="5" width="476" height="20" uuid="74a48f6d-7ee9-43d6-9c21-e8cfcc460244"/>
+					<textElement>
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id.lilocn}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="131" y="15" width="508" height="20" uuid="b223f21e-31f7-4cfb-b108-d9394e7fdeb4"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="634" y="50" width="118" height="20" uuid="dbe0fd54-c0d0-4713-affe-fc4cafa00ab8"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="576" y="50" width="58" height="20" uuid="98ee2d24-1242-4cda-bc3c-ddc0ed1dc06a"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[A la fecha:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="12" y="8" width="100" height="50" uuid="7493445f-40f0-4801-a528-05fb32a4db71"/>
+				<imageExpression><![CDATA["/reporte/LogoDusa.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="3" width="752" height="20" backcolor="#CCCCCC" uuid="1530c100-c85c-4c96-8076-53b2296fbf8f"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="3" width="100" height="20" uuid="ccf438fd-3ddf-400c-8763-a5d047973cee"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="3" width="301" height="20" uuid="ee39f57a-ad67-430f-85ad-43260c3c3597"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion de Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="3" width="175" height="20" uuid="99fbfa04-2eb3-4d28-adff-89daea6cdc04"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Existencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="576" y="3" width="176" height="20" uuid="b4699e5c-6b92-48c3-b7e4-5812af766856"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Stock]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="1ac7b5ad-171f-406c-83d6-86f1d4a3ba51"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{id.liitm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="301" height="20" uuid="4469e48d-6685-44e8-bbf4-28ec90ef1872"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{licfgsid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="0" width="175" height="20" uuid="1abd29d4-bce6-4489-a69c-8e03290f76c4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{lipqoh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="576" y="0" width="176" height="20" uuid="ecf2f24d-f5f0-4780-98e4-ab99bd168dc8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{lifcom}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="364" y="0" width="25" height="20" uuid="ae1e5809-8745-49ef-8382-92389dc5afae"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Pag.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="389" y="0" width="29" height="20" uuid="76d7d912-17b3-4f1f-a5aa-a48fdb195ba0"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="512" y="0" width="34" height="20" uuid="9602b84b-5580-457b-b044-2311aea81d27"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="546" y="0" width="100" height="20" uuid="c5ae7e0a-7b79-4583-a7e3-a453f78c1126"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="656" y="0" width="27" height="20" uuid="da4892a2-09fc-4531-8276-4d8911c46c92"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Hora:]]></text>
+			</staticText>
+			<textField pattern="h.mm a">
+				<reportElement x="683" y="0" width="69" height="20" uuid="5b405d26-68d4-4e9b-9488-801d0857e2be"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

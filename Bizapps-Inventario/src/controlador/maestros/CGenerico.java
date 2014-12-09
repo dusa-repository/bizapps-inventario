@@ -55,6 +55,7 @@ import servicio.maestros.SF40205;
 import servicio.maestros.SF4100;
 import servicio.maestros.SF41002;
 import servicio.maestros.SF4101;
+import servicio.maestros.SF4102;
 import servicio.maestros.SF41021;
 import servicio.maestros.SF4105;
 import servicio.maestros.SF4108;
@@ -68,7 +69,6 @@ import servicio.seguridad.SGrupo;
 import servicio.seguridad.SUsuario;
 import servicio.transacciones.SF4111;
 import servicio.transacciones.SF4211;
-
 import componentes.Mensaje;
 import componentes.buscadores.BuscadorUDC;
 import componentes.utils.Convertidor;
@@ -118,6 +118,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF4211 servicioF4211;
 	@WireVariable("SF4101")
 	protected SF4101 servicioF4101;
+	@WireVariable("SF4102")
+	protected SF4102 servicioF4102;
 	@WireVariable("SF41002")
 	protected SF41002 servicioF41002;
 	@WireVariable("SF4111")
@@ -168,6 +170,10 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 
 	public static SF41021 getServicioF41021() {
 		return applicationContext.getBean(SF41021.class);
+	}
+
+	public static SF4102 getServicioF4102() {
+		return applicationContext.getBean(SF4102.class);
 	}
 
 	public static SF4105 getServicioF4105() {

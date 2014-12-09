@@ -1,0 +1,109 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVF4102" apply="controlador.maestros.CF4102">
+		<groupbox width="auto" mold="3d" title="Revision de Articulo (VF4102)">
+			<div id="botoneraF4102" />
+			<separator />
+			<groupbox id="gpxRegistro" width="auto" class="azul" title=""
+				open="false">
+				<caption label="Añadir" style="font-weight:bold; font-size: 13px"
+					tooltiptext="Presione para Registrar una Nuevo Operacion" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="12.5%" />
+						<column label="" width="12.5%" />
+						<column label="" width="12.5%" />
+						<column label="" width="12.5%" />
+						<column label="" width="12.5%" />
+						<column label="" width="12.5%" />
+						<column label="" width="12.5%" />
+						<column label="" width="12.5%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Suc/planta:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<textbox id="txtPlanta" hflex="1" maxlength="12"
+								tooltiptext="Ingrese la Sucursal de planta a la que pertenece el Item" />
+							<button autodisable="true" id="btnBuscarPlanta" class="btn"
+								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
+							<cell colspan="2">
+								<label id="lblPlanta" />
+							</cell>
+							<cell colspan="3">
+								<hbox />
+							</cell>
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Numero Articulo:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<doublebox id="txtItem" hflex="1" maxlength="19"
+								tooltiptext="Ingrese el Item" />
+							<button autodisable="true" id="btnBuscarItem" class="btn"
+								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
+							<cell colspan="2">
+								<label id="lblItem" />
+							</cell>
+							<cell colspan="3">
+								<hbox />
+							</cell>
+						</row>
+						<row>
+							<label class="etiqueta" value="Cantidad punto Orden:" />
+							<doublespinner value="0" id="spnOrden" hflex="1"
+								constraint="no negative: No se Admiten numeros negativos"
+								tooltiptext="Ingrese la cantidad correspondiente" />
+							<label class="etiqueta" value="Cantidad orden Minima:" />
+							<doublespinner value="0" id="spnMinimo" hflex="1"
+								constraint="no negative: No se Admiten numeros negativos"
+								tooltiptext="Ingrese la cantidad correspondiente" />
+							<label class="etiqueta" value="Cantidad orden Maximo:" />
+							<doublespinner value="0" id="spnMaximo" hflex="1"
+								constraint="no negative: No se Admiten numeros negativos"
+								tooltiptext="Ingrese la cantidad correspondiente" />
+							<label class="etiqueta" value="Punto Orden:" />
+							<doublespinner value="0" id="spnPunto" hflex="1"
+								constraint="no negative: No se Admiten numeros negativos"
+								tooltiptext="Ingrese la cantidad correspondiente" />
+						</row>
+						<row>
+							<label class="etiqueta" value="Cantidad orden Multiple:" />
+							<doublespinner value="0" id="spnMultiple" hflex="1"
+								constraint="no negative: No se Admiten numeros negativos"
+								tooltiptext="Ingrese la cantidad correspondiente" />
+							<label class="etiqueta" value="Unidades por Contenedor:" />
+							<doublespinner value="0" id="spnContenedor" hflex="1"
+								constraint="no negative: No se Admiten numeros negativos"
+								tooltiptext="Ingrese la cantidad correspondiente" />
+							<label class="etiqueta" value="Stock seguridad:" />
+							<doublespinner value="0" id="spnSeguridad" hflex="1"
+								constraint="no negative: No se Admiten numeros negativos"
+								tooltiptext="Ingrese la cantidad correspondiente" />
+							<cell colspan="2">
+								<hbox />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox id="gpxDatos" width="auto" class="azul">
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
+					tooltiptext="Presione para Visualizar las Operaciones Registradas" />
+				<div id="catalogoF4102" tooltiptext="Seleccione el item para cambiar sus valores de stock" />
+			</groupbox>
+			<separator />
+			<separator />
+			<div id="divCatalogoF0006" />
+			<div id="divCatalogoF4101" />
+		</groupbox>
+	</div>
+</zk>

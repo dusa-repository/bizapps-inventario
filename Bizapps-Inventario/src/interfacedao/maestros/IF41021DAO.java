@@ -30,4 +30,24 @@ public interface IF41021DAO extends JpaRepository<F41021, F41021PK> {
 	List<F41021> findByIdLimcuLikeAndIdLiitmAndLipqohNot(String planta,
 			Double value, Double valor, Sort o);
 
+	@Query("select v from F41021 v where v.id.limcu like ?1 and v.lipqoh > "
+			+ "(select f.ibanpl from F4102 f where f.id.ibmcu = v.id.limcu and f.id.ibitm = v.id.liitm) "
+			+ "order by v.id.limcu asc, v.id.lilocn asc")
+	List<F41021> findByMaxExistence(String company);
+	
+	@Query("select v from F41021 v where v.id.limcu like ?1 and v.lipqoh < "
+			+ "(select f.ibavrt from F4102 f where f.id.ibmcu = v.id.limcu and f.id.ibitm = v.id.liitm) "
+			+ "order by v.id.limcu asc, v.id.lilocn asc")
+	List<F41021> findByMinExistence(String company);
+
+	@Query("select v from F41021 v where v.id.limcu like ?1 and v.lipqoh < "
+			+ "(select f.ibbqty from F4102 f where f.id.ibmcu = v.id.limcu and f.id.ibitm = v.id.liitm) "
+			+ "order by v.id.limcu asc, v.id.lilocn asc")
+	List<F41021> findByMinOrder(String company);
+
+	@Query("select v from F41021 v where v.id.limcu like ?1 and v.lipqoh < "
+			+ "(select f.ibcarp from F4102 f where f.id.ibmcu = v.id.limcu and f.id.ibitm = v.id.liitm) "
+			+ "order by v.id.limcu asc, v.id.lilocn asc")
+	List<F41021> findByMinSecurityStock(String company);
+
 }

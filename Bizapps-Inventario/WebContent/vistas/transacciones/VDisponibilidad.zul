@@ -45,7 +45,7 @@
 						<row>
 							<label class="etiqueta" value="UM:" />
 							<textbox id="txtUM" hflex="1" disabled="true"
-								tooltiptext="Ingrese el Numero del Item que desea consultar" />
+								tooltiptext="Unidad de Medida del Item" />
 							<hbox />
 							<hbox />
 							<hbox />
@@ -54,8 +54,10 @@
 							<hbox />
 							<hbox />
 							<label class="etiqueta" value="Opciones de Visualizacion:" />
-							<checkbox id="chkResumen" label="Solo Resumen" />
-							<checkbox id="chkCeros" label="Omision Cantidad Cero" />
+							<checkbox id="chkResumen" label="Solo Resumen"
+								tooltiptext="Marque esta opcion para Visualizar las existencias solo por Sucursal y el total general" />
+							<checkbox id="chkCeros" label="Omision Cantidad Cero"
+								tooltiptext="Marque esta opcion para omitir las existencias con valor 0" />
 						</row>
 					</rows>
 				</grid>
