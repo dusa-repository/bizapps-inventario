@@ -25,7 +25,7 @@
 								</label>
 							</hbox>
 							<doublebox id="txtDoc" hflex="1" maxlength="14"
-								tooltiptext="Ingrese el Codigo de la Compañia" />
+								tooltiptext="Ingrese el numero de la operacion" />
 							<hbox id="boxOrden" visible="false">
 								<label class="etiqueta" value="Orden de Compra:" />
 								<space />
@@ -33,7 +33,7 @@
 								</label>
 							</hbox>
 							<doublebox visible="false" id="txtOrden" hflex="1"
-								maxlength="14" tooltiptext="Orden de Compra" />
+								maxlength="14" tooltiptext="Ingrese la Orden de Compra" />
 						</row>
 						<row>
 							<!-- <cell colspan="2"> <div id="divbuscadorTipo" hflex="1" /> </cell> -->
@@ -70,11 +70,37 @@
 								<label value="*" style="font-weight:bold;color:red">
 								</label>
 							</hbox>
-							<doublebox readonly="true" id="txtPedido" hflex="1" maxlength="12"
-								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+							<doublebox readonly="true" id="txtPedido" hflex="1"
+								maxlength="12" tooltiptext="Ingrese el Numero del Pedido" />
 							<button autodisable="self" id="btnBuscarPedido" class="btn"
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPedido" />
+						</row><row id="rowF0101">
+							<hbox>
+								<label id="lblF0101Dynamic" class="etiqueta" value="" />
+								<space />
+								<label value="**" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<longbox id="txtF0101" hflex="1" maxlength="19"
+								tooltiptext="Ingrese el Proveedor para realizar una operacion" />
+							<button autodisable="self" id="btnBuscarF0101" class="btn"
+								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
+							<label id="lblF0101" />
+						</row>
+						<row id="rowF4111P" visible="false">
+							<hbox>
+								<label class="etiqueta" value="Orden asociada al Proveedor" />
+								<space />
+								<label value="**" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<longbox readonly="true" id="txtF4111P" hflex="1"
+								maxlength="19"
+								tooltiptext="Ingrese la orden asociada al proveedor para realizar una operacion" />
+							<button autodisable="self" id="btnBuscarF4111P" class="btn"
+								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
+							<label id="lblF4111P" />
 						</row>
 						<row id="rowPlanta1">
 							<hbox>
@@ -88,32 +114,6 @@
 							<button autodisable="self" id="btnBuscarPlanta1" class="btn"
 								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPlanta1" />
-						</row>
-						<row id="rowF0101">
-							<hbox>
-								<label id="lblF0101Dynamic" class="etiqueta" value="" />
-								<space />
-								<label value="**" style="font-weight:bold;color:red">
-								</label>
-							</hbox>
-							<longbox id="txtF0101" hflex="1" maxlength="19"
-								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-							<button autodisable="self" id="btnBuscarF0101" class="btn"
-								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
-							<label id="lblF0101" />
-						</row>
-						<row id="rowF4111P" visible="false">
-							<hbox>
-								<label class="etiqueta" value="Orden asociada al Proveedor" />
-								<space />
-								<label value="**" style="font-weight:bold;color:red">
-								</label>
-							</hbox>
-							<longbox readonly="true" id="txtF4111P" hflex="1" maxlength="19"
-								tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
-							<button autodisable="self" id="btnBuscarF4111P" class="btn"
-								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
-							<label id="lblF4111P" />
 						</row>
 						<row id="rowPlanta2">
 							<hbox>
@@ -162,7 +162,7 @@
 										<label value="**" style="font-weight:bold;color:red" />
 									</hbox>
 									<doublebox id="txtItem" hflex="1" maxlength="19"
-										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+										tooltiptext="Ingrese el numero del Item" />
 									<button autodisable="self" id="btnBuscarItem" class="btn"
 										label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />
@@ -174,7 +174,7 @@
 										</label>
 									</hbox>
 									<spinner id="spnCantidad" width="100%" step="1" value="0"
-										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
+										constraint="min 0 max 99999999" tooltiptext="Ingrese la cantidad de Items" />
 									<hbox />
 									<button label="Agregar" id="btnAgregar" autodisable="self"
 										class="btn" image="/public/imagenes/botones/annadir.png"
@@ -183,8 +183,7 @@
 								<row>
 									<label class="etiqueta" value="UM:" />
 									<textbox disabled="true" id="txtUM" hflex="1"
-										maxlength="2"
-										tooltiptext="Unidad de Medida" />
+										maxlength="2" tooltiptext="Unidad de Medida del Item" />
 									<label class="etiqueta" value="UM sec:" visible="false" />
 									<textbox id="txtUM2" hflex="1" maxlength="2"
 										tooltiptext="Ingrese la Sucursal de planta hacia donde donde se realiza la operacion"
@@ -198,11 +197,12 @@
 									</hbox>
 									<doublespinner width="100%" visible="false" id="spnCosto"
 										step="1" value="0" format="#.##" constraint="min 0 max 99999999"
-										tooltiptext="Ingrese el periodo Actual" />
-									<label id="lblCantidad2" class="etiqueta" value="Existencia:" visible="false"/>
-									<spinner id="spnCantidad2" buttonVisible="false" visible="false"
-										readonly="true" width="100%" step="10" value="0"
-										constraint="min 0 max 99999999" tooltiptext="Ingrese el periodo Actual" />
+										tooltiptext="Costo Unitario del Item" />
+									<label id="lblCantidad2" class="etiqueta" value="Existencia:"
+										visible="false" />
+									<spinner id="spnCantidad2" buttonVisible="false"
+										visible="false" readonly="true" width="100%" step="10" value="0"
+										constraint="min 0 max 99999999" tooltiptext="Ingrese la cantidad de Items" />
 								</row>
 								<row>
 									<hbox>
@@ -212,9 +212,8 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<textbox readonly="true" id="txtUbicacion1" hflex="1"
-										maxlength="20"
-										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<textbox id="txtUbicacion1" hflex="1" maxlength="20"
+										tooltiptext="Ingrese la Ubicacion para realizar la operacion" />
 									<button autodisable="self" id="btnBuscarUbicacion1"
 										class="btn" label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />
@@ -225,9 +224,8 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<textbox readonly="true" id="txtUbicacion2" hflex="1"
-										maxlength="20"
-										tooltiptext="Ingrese la Sucursal de planta desde donde se realiza la operacion" />
+									<textbox id="txtUbicacion2" hflex="1" maxlength="20"
+										tooltiptext="Ingrese la Ubicacion para realizar la operacion" />
 									<button autodisable="self" id="btnBuscarUbicacion2"
 										class="btn" label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />

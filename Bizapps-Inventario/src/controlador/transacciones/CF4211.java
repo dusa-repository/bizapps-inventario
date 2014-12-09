@@ -187,12 +187,12 @@ public class CF4211 extends CGenerico {
 						dtbFecha.setValue(transformarJulianaAGregoria(f4211
 								.getSddrqj()));
 						txtDoc.setValue(f4211.getSddoc());
-						if(f4211.getSdmcu()!=null)
-						{
-						txtPlanta1.setValue(f4211.getSdmcu());
-						lblPlanta1.setValue(servicioF0006.buscar(f4211.getSdmcu()).getMcdl01());
+						if (f4211.getSdmcu() != null) {
+							txtPlanta1.setValue(f4211.getSdmcu());
+							lblPlanta1.setValue(servicioF0006.buscar(
+									f4211.getSdmcu()).getMcdl01());
 						}
-						
+
 						List<F4211> lista = servicioF4211.buscarPorDocoYDcto(
 								f4211.getId().getSddoco(), f4211.getId()
 										.getSddcto());
@@ -209,7 +209,7 @@ public class CF4211 extends CGenerico {
 						txtEmpresa1.setDisabled(true);
 						btnBuscarEmpresa1.setDisabled(true);
 					} else
-						msj.mensajeAlerta(Mensaje.editarSoloUno);
+						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
 			}
 
@@ -279,7 +279,7 @@ public class CF4211 extends CGenerico {
 							servicioF4211.guardar(f4211);
 						}
 					}
-					msj.mensajeInformacion(Mensaje.guardado);
+					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 					listaGeneral = servicioF4211.buscarTodosOrdenados();
 					catalogo.actualizarLista(listaGeneral);
@@ -306,7 +306,7 @@ public class CF4211 extends CGenerico {
 														.equals("onOK")) {
 													servicioF4211
 															.eliminarVarios(eliminarLista);
-													msj.mensajeInformacion(Mensaje.eliminado);
+													Mensaje.mensajeInformacion(Mensaje.eliminado);
 													listaGeneral = servicioF4211
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(listaGeneral);
@@ -330,7 +330,7 @@ public class CF4211 extends CGenerico {
 														.equals("onOK")) {
 													servicioF4211
 															.eliminarUno(clave);
-													msj.mensajeInformacion(Mensaje.eliminado);
+													Mensaje.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
 													listaGeneral = servicioF4211
 															.buscarTodosOrdenados();
@@ -339,7 +339,7 @@ public class CF4211 extends CGenerico {
 											}
 										});
 					} else
-						msj.mensajeAlerta(Mensaje.noSeleccionoRegistro);
+						Mensaje.mensajeAlerta(Mensaje.noSeleccionoRegistro);
 				}
 			}
 
@@ -393,7 +393,7 @@ public class CF4211 extends CGenerico {
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
-			msj.mensajeError(Mensaje.camposVacios);
+			Mensaje.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
 			return true;
@@ -416,6 +416,9 @@ public class CF4211 extends CGenerico {
 	}
 
 	protected void limpiarCampos() {
+		mcu = "";
+		ccoA = "";
+		ccoB = "";
 		txtCosto.setValue(null);
 		txtDoc.setValue(null);
 		txtDoco.setValue(null);
@@ -452,11 +455,11 @@ public class CF4211 extends CGenerico {
 	public boolean validarSeleccion() {
 		List<F4211> seleccionados = catalogo.obtenerSeleccionados();
 		if (seleccionados == null) {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
 		} else {
 			if (seleccionados.isEmpty()) {
-				msj.mensajeAlerta(Mensaje.noSeleccionoItem);
+				Mensaje.mensajeAlerta(Mensaje.noSeleccionoItem);
 				return false;
 			} else {
 				return true;
@@ -496,8 +499,8 @@ public class CF4211 extends CGenerico {
 
 	private boolean camposEditando() {
 		if (txtCosto.getText().compareTo("") != 0
-//				|| txtLnid.getText().compareTo("") != 0
-//				|| txtDcto.getText().compareTo("") != 0
+				// || txtLnid.getText().compareTo("") != 0
+				// || txtDcto.getText().compareTo("") != 0
 				|| txtItm.getText().compareTo("") != 0
 				|| txtItm.getText().compareTo("") != 0
 				|| txtDoc.getText().compareTo("") != 0
@@ -726,6 +729,8 @@ public class CF4211 extends CGenerico {
 			}
 		};
 		catalogoF4100.setParent(divCatalogoF4100);
+		Listbox list = (Listbox) catalogoF4100.getChildren().get(1);
+		list.setEmptyMessage("Debe seleccionar la Sucursal a la cual se realiza el pedido para visualizar las Ubicaciones");
 		catalogoF4100.doModal();
 	}
 
@@ -734,6 +739,20 @@ public class CF4211 extends CGenerico {
 		F4100 f4100 = catalogoF4100.objetoSeleccionadoDelCatalogo();
 		setearUbicacion(f4100, txtUbicacion, lblUbicacion);
 		catalogoF4100.setParent(null);
+	}
+	
+	@Listen("onChange = #txtUbicacion; onOK=#txtUbicacion")
+	public void buscarNombreUbicacion() {
+		F4100 f4100 = servicioF4100.buscarPorMcuYLoc(mcu,
+				txtUbicacion.getValue());
+		if (f4100 != null) {
+			setearUbicacion(f4100, txtUbicacion, lblUbicacion);
+		} else {
+			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			txtUbicacion.setValue("");
+			txtUbicacion.setFocus(true);
+			lblUbicacion.setValue("");
+		}
 	}
 
 	private void setearUbicacion(F4100 f4100, Textbox txtUbicacion22,
@@ -820,6 +839,11 @@ public class CF4211 extends CGenerico {
 			}
 		};
 		catalogoF0006.setParent(divCatalogoF0006);
+		Listbox list = (Listbox) catalogoF0006.getChildren().get(1);
+		if (idBotonF0006.equals("btnBuscarPlanta1"))
+			list.setEmptyMessage("Debe seleccionar la compañia a la cual realizara el pedido para visualizar las Sucursales");
+		else
+			list.setEmptyMessage("Debe seleccionar la compañia desde la cual se realiza el pedido para visualizar las Sucursales");
 		catalogoF0006.doModal();
 	}
 
@@ -850,7 +874,7 @@ public class CF4211 extends CGenerico {
 		if (f06 != null) {
 			setearPlanta(f06, txtPlanta1, lblPlanta1);
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtPlanta1.setValue("");
 			txtPlanta1.setFocus(true);
 			lblPlanta1.setValue("");
@@ -865,7 +889,7 @@ public class CF4211 extends CGenerico {
 			setearPlanta(f06, txtPlanta2, lblPlanta2);
 			mcu = f06.getMcmcu();
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtPlanta2.setValue("");
 			txtPlanta2.setFocus(true);
 			lblPlanta2.setValue("");
@@ -929,6 +953,8 @@ public class CF4211 extends CGenerico {
 			}
 		};
 		catalogoF4101.setParent(divCatalogoF4101);
+		Listbox list = (Listbox) catalogoF4101.getChildren().get(1);
+		list.setEmptyMessage("Debe seleccionar la Sucursal a la cual se realiza el pedido para visualizar los Items");
 		catalogoF4101.doModal();
 	}
 
@@ -945,7 +971,7 @@ public class CF4211 extends CGenerico {
 		if (f4101 != null) {
 			llenarCamposItem(f4101);
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtItm.setValue(null);
 			txtItm.setFocus(true);
 			txtUM.setValue("");
@@ -1044,6 +1070,8 @@ public class CF4211 extends CGenerico {
 			}
 		};
 		catalogoF0010.setParent(divCatalogoF0010);
+		Listbox list = (Listbox) catalogoF0010.getChildren().get(1);
+		list.setEmptyMessage("No existen registros");
 		catalogoF0010.doModal();
 	}
 
@@ -1075,7 +1103,7 @@ public class CF4211 extends CGenerico {
 			txtPlanta1.setValue("");
 			lblPlanta1.setValue("");
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtEmpresa1.setValue("");
 			txtEmpresa1.setFocus(true);
 			lblEmpresa1.setValue("");
@@ -1091,7 +1119,7 @@ public class CF4211 extends CGenerico {
 			ccoB = f06.getCcco();
 
 		} else {
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			txtEmpresa2.setValue("");
 			txtEmpresa2.setFocus(true);
 			lblEmpresa2.setValue("");
@@ -1147,9 +1175,9 @@ public class CF4211 extends CGenerico {
 				ltbPedidos.renderAll();
 				limpiarCamposItem();
 			} else
-				msj.mensajeError(Mensaje.itemRepetido);
+				Mensaje.mensajeError(Mensaje.itemRepetido);
 		} else
-			msj.mensajeError(Mensaje.camposVaciosItem);
+			Mensaje.mensajeError(Mensaje.camposVaciosItem);
 	}
 
 	@Listen("onClick = #btnVer")
@@ -1174,9 +1202,9 @@ public class CF4211 extends CGenerico {
 				listaPedido.remove(modelo);
 				ltbPedidos.renderAll();
 			} else
-				msj.mensajeAlerta(Mensaje.editarSoloUno);
+				Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 		} else
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 	}
 
 	@Listen("onClick = #btnRemover")
@@ -1190,9 +1218,9 @@ public class CF4211 extends CGenerico {
 				listaPedido.remove(modelo);
 				ltbPedidos.renderAll();
 			} else
-				msj.mensajeAlerta(Mensaje.editarSoloUno);
+				Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 		} else
-			msj.mensajeAlerta(Mensaje.noHayRegistros);
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 	}
 
 	@Listen("onClick = #btnAgregarItems")

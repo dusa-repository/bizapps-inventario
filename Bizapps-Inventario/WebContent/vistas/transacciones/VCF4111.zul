@@ -44,10 +44,12 @@
 						</row>
 						<row>
 							<label class="etiqueta" value="Ubicacion:" />
-							<textbox id="txtUbicacion" hflex="1"
-								maxlength="20" tooltiptext="Ingrese la Ubicacion desde donde desea consultar" />
+							<textbox id="txtUbicacion" hflex="1" maxlength="20"
+								tooltiptext="Ingrese la Ubicacion desde donde desea consultar" />
 							<button autodisable="self" id="btnBuscarUbicacion" class="btn"
-								label="Buscar" tooltiptext="Catalogo Ubicaciones" image="/public/imagenes/botones/buscar.png" />
+								label="Buscar"
+								tooltiptext="Debe seleccionar una Sucursal para visualizar las ubicaciones"
+								image="/public/imagenes/botones/buscar.png" />
 							<cell colspan="2">
 								<label id="lblUbicacion" />
 							</cell>
@@ -99,9 +101,8 @@
 			</groupbox>
 			<separator />
 			<groupbox id="gpxDatos" class="azul" width="auto" closable="false">
-				<caption label="Registros" style="font-weight:bold; font-size: 13px;"
-					tooltiptext="Presione para Visualizar los Codigos Registrados" />
-				<div id="catalogoCF4111" tooltiptext="Seleccione el Codigo para Realizar una Accion" />
+				<caption label="Registros" style="font-weight:bold; font-size: 13px;" />
+				<div id="catalogoCF4111" />
 			</groupbox>
 			<separator />
 			<separator />

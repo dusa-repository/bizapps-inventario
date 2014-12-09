@@ -26,6 +26,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublebox;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
@@ -132,6 +133,7 @@ public class CCF4111 extends CGenerico {
 
 			@Override
 			public void limpiar() {
+				mcu = "";
 				lblItem.setValue("");
 				lblLote.setValue("");
 				lblPlanta.setValue("");
@@ -230,8 +232,8 @@ public class CCF4111 extends CGenerico {
 	private void cargarBuscador() {
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
 				"DT");
-		buscadorTipo = new BuscadorUDC("Tipo Documento", 2, false,
-				"00", "DT" ,servicioF0005, "27%", "10%", "7%", "42%") {
+		buscadorTipo = new BuscadorUDC("Tipo Documento", 2, false, "00", "DT",
+				servicioF0005, "27%", "10%", "7%", "42%") {
 			@Override
 			protected F0005 buscar() {
 				return servicioF0005.buscar("00", "DT",
@@ -534,6 +536,8 @@ public class CCF4111 extends CGenerico {
 			}
 		};
 		catalogoF4100.setParent(divCatalogoF4100);
+		Listbox list = (Listbox) catalogoF4100.getChildren().get(1);
+		list.setEmptyMessage("Debe seleccionar una Sucursal para visualizar las Ubicaciones");
 		catalogoF4100.doModal();
 	}
 
@@ -621,6 +625,11 @@ public class CCF4111 extends CGenerico {
 			}
 		};
 		catalogoF4101.setParent(divCatalogoF4101);
+		Listbox list = (Listbox) catalogoF4101.getChildren().get(1);
+		if (!mcu.equals(""))
+			list.setEmptyMessage("No existen Items asociados a la Sucursal seleccionada");
+		else
+			list.setEmptyMessage("No existen registros");
 		catalogoF4101.doModal();
 	}
 

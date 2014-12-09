@@ -52,8 +52,8 @@ public class SF4101 {
 		return f4101DAO.findAllAndOrderByIMDSC1();
 	}
 
-	public List<F4101> buscarTodosOrdenadosPorDoc(String string, Double claveDoc) {
-		List<F4111> lista = f4111DAO.findByIldocAndIldct(claveDoc, string);
+	public List<F4101> buscarTodosOrdenadosPorDoc(String string, Double claveDoc, String loc) {
+		List<F4111> lista = f4111DAO.findByIldocAndIldctAndIllocn(claveDoc, string, loc);
 		List<F4101> retorna = new ArrayList<F4101>();
 		for (int i = 0; i < lista.size(); i++) {
 			F4101 f = buscar(lista.get(i).getIlitm());

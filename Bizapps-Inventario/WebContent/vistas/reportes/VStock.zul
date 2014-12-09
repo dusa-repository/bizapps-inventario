@@ -1,0 +1,91 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div id="divVStock" apply="controlador.reporte.CRStock">
+		<groupbox width="100%" mold="3d" title="Reporte de Stock">
+			<div id="botoneraVStock" />
+			<separator />
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="25%" />
+					<column label="" width="25%" />
+					<column label="" width="25%" />
+				</columns>
+				<rows>
+					<row>
+						<hbox>
+							<label class="etiqueta" value="Suc/planta:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red">
+							</label>
+						</hbox>
+						<textbox id="txtCompany" hflex="1" maxlength="12"
+							tooltiptext="Ingrese la Sucursal de Planta" />
+						<button autodisable="true" id="btnFindCompany" class="btn"
+							label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
+						<cell colspan="2">
+							<label id="lblCompany" />
+						</cell>
+					</row>
+					<row>
+						<hbox>
+							<label class="etiqueta" value="Reporte de Tipo:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<combobox id="cmbReportType" readonly="true" tabindex="1"
+							value="PDF" width="100%" tooltiptext="Seleccione un Tipo"
+							placeholder="Seleccione un Tipo">
+							<comboitem label="PDF" />
+							<comboitem label="EXCEL" />
+						</combobox>
+						<hbox />
+						<hbox />
+					</row>
+				</rows>
+			</grid>
+			<hbox>
+				<groupbox class="blanco" title="Por encima de:" style="font-weight:bold;" closable="false">
+					<grid width="100%" style="border:1px">
+						<columns visible="false">
+							<column label="" width="100%" />
+						</columns>
+						<rows>
+							<row>
+								<radiogroup>
+									<vbox>
+										<radio label="Stock Maximo" id="rdoMaximo" />
+									</vbox>
+								</radiogroup>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+				<groupbox class="blanco" title="Por debajo de:" style="font-weight:bold;" closable="false">
+					<grid width="100%" style="border:1px">
+						<columns visible="false">
+							<column label="" width="100%" />
+						</columns>
+						<rows>
+							<row>
+								<radiogroup>
+									<vbox>
+										<radio label="Punto de Reorden" id="rdoOrden" />
+										<separator />
+										<separator />
+										<radio label="Stock Minimo" id="rdoMinimo" />
+										<separator />
+										<separator />
+										<radio label="Stock de Seguridad" id="rdoSeguridad" />
+									</vbox>
+								</radiogroup>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+			</hbox>
+			<separator />
+			<div id="catalogoCompanyF0006" />
+		</groupbox>
+	</div>
+</zk>
