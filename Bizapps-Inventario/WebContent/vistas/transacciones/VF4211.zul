@@ -83,7 +83,8 @@
 									<label value="*" style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtPlanta1" hflex="1" maxlength="12" />
+								<textbox id="txtPlanta1" hflex="1" maxlength="12"
+									readonly="true" tooltiptext="Seleccione la Sucursal desde el Catalogo" />
 								<button autodisable="self" id="btnBuscarPlanta1"
 									tooltiptext="Debe seleccionar la compañia a la cual realizara el pedido para visualizar las Sucursales"
 									class="btn" label="Buscar" image="/public/imagenes/botones/buscar.png" />
@@ -99,7 +100,7 @@
 								</cell>
 								<cell colspan="3">
 									<button autodisable="self" id="btnAgregarItems" class="btn"
-										label="Agregar Items" tooltiptext="Catalogo"
+										label="Agregar Items" tooltiptext="Agregar items a la operacion"
 										image="/public/imagenes/botones/annadir.png" width="150px" />
 								</cell>
 							</row>
@@ -128,7 +129,8 @@
 										<space />
 										<label value="**" style="font-weight:bold;color:red" />
 									</hbox>
-									<doublebox id="txtItm" hflex="1" maxlength="19" />
+									<doublebox id="txtItm" hflex="1" maxlength="19"
+										readonly="true" tooltiptext="Seleccione el Item desde el Catalogo" />
 									<button autodisable="self" id="btnBuscarItm" class="btn"
 										label="Buscar"
 										tooltiptext="Debe seleccionar la Sucursal a la cual se realiza el pedido para visualizar los Items"
@@ -166,7 +168,8 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<textbox id="txtPlanta2" hflex="1" maxlength="12" />
+									<textbox id="txtPlanta2" hflex="1" maxlength="12"
+										readonly="true" tooltiptext="Seleccione la Sucursal desde el Catalogo" />
 									<button autodisable="self" id="btnBuscarPlanta2" class="btn"
 										label="Buscar"
 										tooltiptext="Debe seleccionar la compañia desde la cual se realiza el pedido para visualizar las Sucursales"
@@ -184,7 +187,8 @@
 										<label value="**" style="font-weight:bold;color:red">
 										</label>
 									</hbox>
-									<textbox id="txtUbicacion" hflex="1" maxlength="20" />
+									<textbox id="txtUbicacion" hflex="1" maxlength="20"
+										readonly="true" tooltiptext="Seleccione la ubicacion desde el catalogo" />
 									<button autodisable="self" id="btnBuscarUbicacion"
 										class="btn" label="Buscar"
 										tooltiptext="Debe seleccionar la Sucursal a la cual se realiza el pedido para visualizar las Ubicaciones"

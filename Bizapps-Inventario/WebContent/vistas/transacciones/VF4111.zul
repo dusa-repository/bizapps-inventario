@@ -71,11 +71,12 @@
 								</label>
 							</hbox>
 							<doublebox readonly="true" id="txtPedido" hflex="1"
-								maxlength="12" tooltiptext="Ingrese el Numero del Pedido" />
+								maxlength="12" tooltiptext="Seleccione el pedido desde el Catalogo" />
 							<button autodisable="self" id="btnBuscarPedido" class="btn"
-								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
+								label="Buscar" tooltiptext="Catalogo de Pedidos" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblPedido" />
-						</row><row id="rowF0101">
+						</row>
+						<row id="rowF0101">
 							<hbox>
 								<label id="lblF0101Dynamic" class="etiqueta" value="" />
 								<space />
@@ -97,9 +98,9 @@
 							</hbox>
 							<longbox readonly="true" id="txtF4111P" hflex="1"
 								maxlength="19"
-								tooltiptext="Ingrese la orden asociada al proveedor para realizar una operacion" />
+								tooltiptext="Seleccione la orden desde el catalogo" />
 							<button autodisable="self" id="btnBuscarF4111P" class="btn"
-								label="Buscar" tooltiptext="Catalogo" image="/public/imagenes/botones/buscar.png" />
+								label="Buscar" tooltiptext="Debe seleccionar un proveedor para visualizar las ordenes" image="/public/imagenes/botones/buscar.png" />
 							<label id="lblF4111P" />
 						</row>
 						<row id="rowPlanta1">
@@ -133,7 +134,7 @@
 								<hbox />
 							</cell>
 							<button autodisable="self" id="btnAgregarItems" class="btn"
-								label="Agregar Items" tooltiptext="Catalogo"
+								label="Agregar Items" tooltiptext="Agregar items a la operacion"
 								image="/public/imagenes/botones/annadir.png" width="150px" />
 						</row>
 					</rows>
@@ -162,7 +163,7 @@
 										<label value="**" style="font-weight:bold;color:red" />
 									</hbox>
 									<doublebox id="txtItem" hflex="1" maxlength="19"
-										tooltiptext="Ingrese el numero del Item" />
+										readonly="true" tooltiptext="Seleccione el Item desde el Catalogo" />
 									<button autodisable="self" id="btnBuscarItem" class="btn"
 										label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />
@@ -213,7 +214,7 @@
 										</label>
 									</hbox>
 									<textbox id="txtUbicacion1" hflex="1" maxlength="20"
-										tooltiptext="Ingrese la Ubicacion para realizar la operacion" />
+										readonly="true" tooltiptext="Seleccione la ubicacion desde el catalogo" />
 									<button autodisable="self" id="btnBuscarUbicacion1"
 										class="btn" label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />
@@ -225,7 +226,7 @@
 										</label>
 									</hbox>
 									<textbox id="txtUbicacion2" hflex="1" maxlength="20"
-										tooltiptext="Ingrese la Ubicacion para realizar la operacion" />
+										readonly="true" tooltiptext="Seleccione la ubicacion desde el catalogo" />
 									<button autodisable="self" id="btnBuscarUbicacion2"
 										class="btn" label="Buscar" tooltiptext="Catalogo"
 										image="/public/imagenes/botones/buscar.png" />
