@@ -22,7 +22,7 @@
 							<textbox id="txtPlanta" hflex="1" maxlength="12"
 								tooltiptext="Ingrese la Planta/Sucursal desde donde desea consultar" />
 							<button autodisable="true" id="btnBuscarPlanta"
-								tooltiptext="Catalogo Plantas/Sucursales" class="btn" label="Buscar"
+								tooltiptext="Catalogo de Sucursales" class="btn" label="Buscar"
 								image="/public/imagenes/botones/buscar.png" />
 							<cell colspan="2">
 								<label id="lblPlanta" />
@@ -37,7 +37,7 @@
 							<doublebox id="txtItem" hflex="1" maxlength="19"
 								tooltiptext="Ingrese el Numero del Item que desea consultar" />
 							<button autodisable="true" id="btnBuscarItem" class="btn"
-								label="Buscar" tooltiptext="Catalogo Items" image="/public/imagenes/botones/buscar.png" />
+								label="Buscar" tooltiptext="Catalogo de Items" image="/public/imagenes/botones/buscar.png" />
 							<cell colspan="2">
 								<label id="lblItem" />
 							</cell>

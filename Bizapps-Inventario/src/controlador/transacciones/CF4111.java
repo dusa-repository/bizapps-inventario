@@ -1,23 +1,19 @@
 package controlador.transacciones;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import modelo.generico.Generico;
 import modelo.maestros.F00021;
-import modelo.maestros.F0004;
 import modelo.maestros.F0006;
-import modelo.maestros.F0010;
 import modelo.maestros.F0101;
 import modelo.maestros.F4100;
 import modelo.maestros.F4101;
 import modelo.maestros.F41021;
 import modelo.maestros.F4105;
 import modelo.pk.F00021PK;
-import modelo.pk.F4100PK;
 import modelo.pk.F41021PK;
 import modelo.pk.F4105PK;
 import modelo.transacciones.F4111;
@@ -37,7 +33,6 @@ import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listheader;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Longbox;
@@ -47,10 +42,7 @@ import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
-import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
-
 import componentes.Botonera;
-import componentes.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 import controlador.maestros.CGenerico;
@@ -62,9 +54,6 @@ public class CF4111 extends CGenerico {
 	private Doublebox txtDoc;
 	@Wire
 	private Datebox dtbFechaTransaccion;
-	// @Wire
-	// private Div divbuscadorTipo;
-	// BuscadorUDC buscadorTipo;
 	@Wire
 	private Textbox txtTipo;
 	@Wire
@@ -103,12 +92,6 @@ public class CF4111 extends CGenerico {
 	private Button btnBuscarUbicacion1;
 	@Wire
 	private Label lblUbicacion1;
-	// @Wire
-	// private Textbox txtLote1;
-	// @Wire
-	// private Button btnBuscarLote1;
-	// @Wire
-	// private Label lblLote1;
 	@Wire
 	private Textbox txtUbicacion2;
 	@Wire
@@ -117,10 +100,6 @@ public class CF4111 extends CGenerico {
 	private Button btnBuscarUbicacion2;
 	@Wire
 	private Label lblUbicacion2;
-	// @Wire
-	// private Textbox txtLote2;
-	// @Wire
-	// private Button btnBuscarLote2;
 	@Wire
 	private Label lblF0101;
 	@Wire
@@ -129,8 +108,6 @@ public class CF4111 extends CGenerico {
 	private Longbox txtF0101;
 	@Wire
 	private Button btnBuscarF0101;
-	// @Wire
-	// private Label lblLote2;
 	@Wire
 	private Listbox ltbItems;
 	@Wire
@@ -228,7 +205,6 @@ public class CF4111 extends CGenerico {
 	private String idBotonF0006 = "";
 	private String idBotonF4100 = "";
 	private List<Generico> lista = new ArrayList<Generico>();
-	// private String titulo = "";
 	private String tipo = "";
 	double id = (double) 0;
 	private String mcu = "";
@@ -257,6 +233,12 @@ public class CF4111 extends CGenerico {
 		}
 		btnBuscarUbicacion1
 				.setTooltiptext("Debe seleccionar una Sucursal para visualizar las ubicaciones");
+		btnBuscarItem.setTooltiptext("Catalogo de Items");
+		btnBuscarF0101.setTooltiptext("Catalogo de Direcciones");
+		btnBuscarF4111P.setTooltiptext("Catalogo de Ordenes");
+		btnBuscarPedido.setTooltiptext("Catalogo de Pedidos");
+		btnBuscarPlanta1.setTooltiptext("Catalogo de Sucursales");
+		btnBuscarPlanta2.setTooltiptext("Catalogo de Sucursales");
 		switch (titulo) {
 		case "Entre Localidades":
 			btnBuscarItem
@@ -276,6 +258,12 @@ public class CF4111 extends CGenerico {
 					.setTooltiptext("Debe seleccionar un Pedido para visualizar las ubicaciones");
 			btnBuscarItem
 					.setTooltiptext("Debe seleccionar un Pedido para visualizar los items");
+			txtPlanta1
+					.setTooltiptext("Debe seleccionar un Pedido para visualizar la Sucursal");
+			txtPlanta2
+					.setTooltiptext("Debe seleccionar un Pedido para visualizar la Sucursal");
+			txtUbicacion2
+					.setTooltiptext("Debe seleccionar un Pedido para visualizar la Ubicacion");
 			rowF0101.setVisible(false);
 			txtTipo.setValue("ET");
 			tipo = "ET";
@@ -317,8 +305,6 @@ public class CF4111 extends CGenerico {
 			lblCantidad.setVisible(false);
 			spnCantidad.setVisible(false);
 			boxCantidad.setVisible(false);
-			// lblCantidad2.setVisible(false);
-			// spnCantidad2.setVisible(false);
 			lblNombreUbicacion2.setVisible(false);
 			btnBuscarUbicacion2.setVisible(false);
 			lblNombreUbicacion.setValue("Ubicacion");
@@ -359,8 +345,14 @@ public class CF4111 extends CGenerico {
 			tipo = "MC";
 			break;
 		case "Devolucion a Proveedor":
+			btnBuscarUbicacion1
+					.setTooltiptext("Debe seleccionar una Orden y una Sucursal para visualizar las ubicaciones");
 			btnBuscarItem
-					.setTooltiptext("Debe seleccionar ua Orden y una Ubicacion para visualizar los itemsn");
+					.setTooltiptext("Debe seleccionar una Orden y una Ubicacion para visualizar los items");
+			txtPlanta1.setReadonly(true);
+			txtPlanta1.setTooltiptext("Seleccione una Sucursal del Catalogo");
+			btnBuscarPlanta1
+					.setTooltiptext("Debe seleccionar una Orden para visualizar las sucursales");
 			rowF4111P.setVisible(true);
 			lblF0101Dynamic.setValue("Proveedor");
 			boxCosto.setVisible(true);
@@ -396,19 +388,6 @@ public class CF4111 extends CGenerico {
 		}
 		txtDoc.setFocus(true);
 		mostrarCatalogo();
-		// List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
-		// "DT");
-		// ----------------------------- Acomodar UDC
-		// buscadorTipo = new BuscadorUDC("Tipo Documento", 10, listaF0005,
-		// true,
-		// false, false, "00", "DT") {
-		// @Override
-		// protected F0005 buscar() {
-		// return servicioF0005.buscar("00", "DT",
-		// buscadorTipo.obtenerCaja());
-		// }
-		// };
-		// divbuscadorTipo.appendChild(buscadorTipo);
 		botonera = new Botonera() {
 
 			@Override
@@ -434,8 +413,14 @@ public class CF4111 extends CGenerico {
 									f4111.getIlmcu()).getMcdl01());
 						txtPlanta2.setValue(f4111.getIlmmcu());
 						if (servicioF0006.buscar(f4111.getIlmmcu()) != null)
-							lblPlanta1.setValue(servicioF0006.buscar(
+							lblPlanta2.setValue(servicioF0006.buscar(
 									f4111.getIlmmcu()).getMcdl01());
+						if (tipo.equals("OV")) {
+							txtPlanta2.setValue(f4111.getIlmcu());
+							if (servicioF0006.buscar(f4111.getIlmcu()) != null)
+								lblPlanta2.setValue(servicioF0006.buscar(
+										f4111.getIlmcu()).getMcdl01());
+						}
 						txtExplicacion.setValue(f4111.getIltrex());
 						dtbFechaLm.setValue(transformarJulianaAGregoria(f4111
 								.getIltrdj()));
@@ -522,33 +507,33 @@ public class CF4111 extends CGenerico {
 
 							F4111 f4111 = new F4111();
 							// No selecciona items
-							if (lista.size() == 0) {
-								f4111 = new F4111();
-								f4111.setIlukid(id);
-								f4111.setIlmcu(txtPlanta1.getValue());
-								f4111.setIlmmcu(txtPlanta2.getValue());
-								Integer inte = spnCantidad.getValue();
-								if (!tipo.equals("OV")) {
-									if (!tipo.equalsIgnoreCase("IA"))
-										inte = inte * -1;
-								}
-								f4111.setIltrqt(inte.doubleValue());
-								f4111.setIldoc(txtDoc.getValue());
-								f4111.setIldoco(txtOrden.getValue());
-								f4111.setIltrdj(transformarGregorianoAJulia(dtbFechaLm
-										.getValue()));
-								f4111.setIlcrdj(transformarGregorianoAJulia(dtbFechaTransaccion
-										.getValue()));
-								f4111.setIluser(nombreUsuarioSesion());
-								f4111.setIlvpej(transformarGregorianoAJulia(fecha));
-								f4111.setIlicu(Double.valueOf(horaAuditoria));
-								f4111.setIldct(txtTipo.getValue());
-								f4111.setIltrex(txtExplicacion.getValue());
-								f4111.setIluncs((double) 0);
-								f4111.setIlpaid((double) (inte * 0));
-								f4111.setIllotn("");
-								servicioF4111.guardar(f4111);
-							}
+							// if (lista.size() == 0) {
+							// f4111 = new F4111();
+							// f4111.setIlukid(id);
+							// f4111.setIlmcu(txtPlanta1.getValue());
+							// f4111.setIlmmcu(txtPlanta2.getValue());
+							// Integer inte = spnCantidad.getValue();
+							// if (!tipo.equals("OV")) {
+							// if (!tipo.equalsIgnoreCase("IA"))
+							// inte = inte * -1;
+							// }
+							// f4111.setIltrqt(inte.doubleValue());
+							// f4111.setIldoc(txtDoc.getValue());
+							// f4111.setIldoco(txtOrden.getValue());
+							// f4111.setIltrdj(transformarGregorianoAJulia(dtbFechaLm
+							// .getValue()));
+							// f4111.setIlcrdj(transformarGregorianoAJulia(dtbFechaTransaccion
+							// .getValue()));
+							// f4111.setIluser(nombreUsuarioSesion());
+							// f4111.setIlvpej(transformarGregorianoAJulia(fecha));
+							// f4111.setIlicu(Double.valueOf(horaAuditoria));
+							// f4111.setIldct(txtTipo.getValue());
+							// f4111.setIltrex(txtExplicacion.getValue());
+							// f4111.setIluncs((double) 0);
+							// f4111.setIlpaid((double) (inte * 0));
+							// f4111.setIllotn("");
+							// servicioF4111.guardar(f4111);
+							// }
 							// Selecciona items
 							for (int i = 0; i < lista.size(); i++) {
 								Generico modelo = lista.get(i);
@@ -806,8 +791,7 @@ public class CF4111 extends CGenerico {
 					Mensaje.mensajeInformacion(Mensaje.guardado);
 					limpiar();
 
-				} else
-					Mensaje.mensajeError(Mensaje.camposVacios);
+				}
 			}
 
 			@Override
@@ -880,50 +864,61 @@ public class CF4111 extends CGenerico {
 	}
 
 	protected boolean validar() {
-		switch (tipo) {
-		case "OV":
-			if (txtDoc.getText().compareTo("") == 0
-					|| txtOrden.getText().compareTo("") == 0
-					|| txtF0101.getText().compareTo("") == 0
-					|| txtPlanta2.getText().compareTo("") == 0)
-				return false;
-			else
-				return true;
-		case "ET":
-			if (txtDoc.getText().compareTo("") == 0
-					|| txtPlanta1.getText().compareTo("") == 0
-					|| txtPlanta2.getText().compareTo("") == 0)
-				return false;
-			else
-				return true;
-		case "IT":
-			if (txtDoc.getText().compareTo("") == 0
-					|| txtPlanta1.getText().compareTo("") == 0)
-				return false;
-			else
-				return true;
-		case "IA":
-		case "I4":
-			if (txtDoc.getText().compareTo("") == 0
-					|| txtPlanta1.getText().compareTo("") == 0)
-				return false;
-			else
-				return true;
-		case "MC":
-		case "MK":
-			if (txtDoc.getText().compareTo("") == 0
-					|| txtPlanta1.getText().compareTo("") == 0
-					|| txtExplicacion.getText().compareTo("") == 0)
-				return false;
-			else
-				return true;
-		default:
-			if (txtDoc.getText().compareTo("") == 0
-					|| txtPlanta1.getText().compareTo("") == 0
-					|| txtF0101.getText().compareTo("") == 0)
-				return false;
-			else
-				return true;
+		if (lista.size() == 0) {
+			Mensaje.mensajeError("Debe agregar al menos un Item");
+			return false;
+		} else {
+			switch (tipo) {
+			case "OV":
+				if (txtDoc.getText().compareTo("") == 0
+						|| txtOrden.getText().compareTo("") == 0
+						|| txtF0101.getText().compareTo("") == 0
+						|| txtPlanta2.getText().compareTo("") == 0) {
+					Mensaje.mensajeError(Mensaje.camposVacios);
+					return false;
+				} else
+					return true;
+			case "ET":
+				if (txtDoc.getText().compareTo("") == 0
+						|| txtPlanta1.getText().compareTo("") == 0
+						|| txtPlanta2.getText().compareTo("") == 0) {
+					Mensaje.mensajeError(Mensaje.camposVacios);
+					return false;
+				} else
+					return true;
+			case "IT":
+				if (txtDoc.getText().compareTo("") == 0
+						|| txtPlanta1.getText().compareTo("") == 0) {
+					Mensaje.mensajeError(Mensaje.camposVacios);
+					return false;
+				} else
+					return true;
+			case "IA":
+			case "I4":
+				if (txtDoc.getText().compareTo("") == 0
+						|| txtPlanta1.getText().compareTo("") == 0) {
+					Mensaje.mensajeError(Mensaje.camposVacios);
+					return false;
+				} else
+					return true;
+			case "MC":
+			case "MK":
+				if (txtDoc.getText().compareTo("") == 0
+						|| txtPlanta1.getText().compareTo("") == 0
+						|| txtExplicacion.getText().compareTo("") == 0) {
+					Mensaje.mensajeError(Mensaje.camposVacios);
+					return false;
+				} else
+					return true;
+			default:
+				if (txtDoc.getText().compareTo("") == 0
+						|| txtPlanta1.getText().compareTo("") == 0
+						|| txtF0101.getText().compareTo("") == 0) {
+					Mensaje.mensajeError(Mensaje.camposVacios);
+					return false;
+				} else
+					return true;
+			}
 		}
 	}
 
@@ -962,7 +957,6 @@ public class CF4111 extends CGenerico {
 		botonera.getChildren().get(6).setVisible(false);
 		botonera.getChildren().get(8).setVisible(false);
 		botonera.getChildren().get(0).setVisible(bol);
-		// botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(!bol);
 	}
 
@@ -1102,66 +1096,63 @@ public class CF4111 extends CGenerico {
 
 	@Listen("onClick=#btnBuscarF4111P")
 	public void mostrarCatalogoEmergente() {
-		if (txtF0101.getText().compareTo("") != 0) {
-			Long l = txtF0101.getValue();
-			final List<F4111> unidades = servicioF4111
-					.buscarTodosOrdenadosPorProveedor("OV", l.doubleValue());
-			catalogoEmergente = new CatalogoGenerico<F4111>(
-					catalogoF4111Emergente, "Catalogo de Ordenes (F4111P)",
-					unidades, true, false, false, "Numero de Orden",
-					"Tipo doc", "Fecha LM", "Explicacion", "Sucursal/planta",
-					"Fecha transaccion") {
+		Long l = txtF0101.getValue();
+		if (l == null)
+			l = (long) 0;
+		final List<F4111> unidades = servicioF4111
+				.buscarTodosOrdenadosPorProveedor("OV", l.doubleValue());
+		catalogoEmergente = new CatalogoGenerico<F4111>(catalogoF4111Emergente,
+				"Catalogo de Ordenes (F4111P)", unidades, true, false, false,
+				"Numero de Orden", "Tipo doc", "Fecha LM", "Explicacion",
+				"Sucursal/planta", "Fecha transaccion") {
 
-				@Override
-				protected List<F4111> buscar(List<String> valores) {
+			@Override
+			protected List<F4111> buscar(List<String> valores) {
 
-					List<F4111> unidadnegocio = new ArrayList<F4111>();
+				List<F4111> unidadnegocio = new ArrayList<F4111>();
 
-					for (F4111 unidad : unidades) {
-						if (String.valueOf(unidad.getIldoc().longValue())
-								.toLowerCase()
-								.contains(valores.get(0).toLowerCase())
-								&& unidad.getIldct().toLowerCase()
-										.contains(valores.get(1).toLowerCase())
-								&& formatoFecha
-										.format(transformarJulianaAGregoria(unidad
-												.getIltrdj())).toLowerCase()
-										.contains(valores.get(2).toLowerCase())
-								&& unidad.getIltrex().toLowerCase()
-										.contains(valores.get(3).toLowerCase())
-								&& unidad.getIlmcu().toLowerCase()
-										.contains(valores.get(4).toLowerCase())
-								&& formatoFecha
-										.format(transformarJulianaAGregoria(unidad
-												.getIlcrdj())).toLowerCase()
-										.contains(valores.get(5))) {
-							unidadnegocio.add(unidad);
-						}
+				for (F4111 unidad : unidades) {
+					if (String.valueOf(unidad.getIldoc().longValue())
+							.toLowerCase()
+							.contains(valores.get(0).toLowerCase())
+							&& unidad.getIldct().toLowerCase()
+									.contains(valores.get(1).toLowerCase())
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(unidad
+											.getIltrdj())).toLowerCase()
+									.contains(valores.get(2).toLowerCase())
+							&& unidad.getIltrex().toLowerCase()
+									.contains(valores.get(3).toLowerCase())
+							&& unidad.getIlmcu().toLowerCase()
+									.contains(valores.get(4).toLowerCase())
+							&& formatoFecha
+									.format(transformarJulianaAGregoria(unidad
+											.getIlcrdj())).toLowerCase()
+									.contains(valores.get(5))) {
+						unidadnegocio.add(unidad);
 					}
-					return unidadnegocio;
 				}
+				return unidadnegocio;
+			}
 
-				@Override
-				protected String[] crearRegistros(F4111 negocio) {
-					String[] registros = new String[6];
-					registros[0] = String.valueOf(negocio.getIldoc()
-							.longValue());
-					registros[1] = negocio.getIldct();
-					registros[2] = formatoFecha
-							.format(transformarJulianaAGregoria(negocio
-									.getIltrdj()));
-					registros[3] = negocio.getIltrex();
-					registros[4] = negocio.getIlmcu();
-					registros[5] = formatoFecha
-							.format(transformarJulianaAGregoria(negocio
-									.getIlcrdj()));
-					return registros;
-				}
-			};
-			catalogoEmergente.setParent(catalogoF4111Emergente);
-			catalogoEmergente.doModal();
-		} else
-			Mensaje.mensajeAlerta(Mensaje.seleccionarProveedor);
+			@Override
+			protected String[] crearRegistros(F4111 negocio) {
+				String[] registros = new String[6];
+				registros[0] = String.valueOf(negocio.getIldoc().longValue());
+				registros[1] = negocio.getIldct();
+				registros[2] = formatoFecha
+						.format(transformarJulianaAGregoria(negocio.getIltrdj()));
+				registros[3] = negocio.getIltrex();
+				registros[4] = negocio.getIlmcu();
+				registros[5] = formatoFecha
+						.format(transformarJulianaAGregoria(negocio.getIlcrdj()));
+				return registros;
+			}
+		};
+		catalogoEmergente.setParent(catalogoF4111Emergente);
+		Listbox list = (Listbox) catalogoEmergente.getChildren().get(1);
+		list.setEmptyMessage("Debe seleccionar un Proveedor para visualizar las Ordenes");
+		catalogoEmergente.doModal();
 	}
 
 	@Listen("onSeleccion = #catalogoF4111Emergente")
@@ -1181,7 +1172,6 @@ public class CF4111 extends CGenerico {
 	public void mostrarCatalogoF4100(Event evento) {
 		Button boton = (Button) evento.getTarget();
 		idBotonF4100 = boton.getId();
-		// final List<F4100> listF4100 = servicioF4100.buscarTodosOrdenados();
 		List<F4100> listF4100 = new ArrayList<F4100>();
 		if (tipo.equalsIgnoreCase("OV"))
 			listF4100 = servicioF4100.buscarTodosOrdenadosPorMcu(mcu);
@@ -1921,14 +1911,16 @@ public class CF4111 extends CGenerico {
 
 	@Listen("onChange = #txtF0101; onOK = #txtF0101")
 	public void buscarNombre() {
-		F0101 f0101 = servicioF0101.buscar(txtF0101.getValue());
-		if (f0101 != null) {
-			setearValores(f0101);
-		} else {
-			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
-			txtF0101.setValue(null);
-			txtF0101.setFocus(true);
-			lblF0101.setValue("");
+		if (txtF0101.getValue() != null) {
+			F0101 f0101 = servicioF0101.buscar(txtF0101.getValue());
+			if (f0101 != null) {
+				setearValores(f0101);
+			} else {
+				Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
+				txtF0101.setValue(null);
+				txtF0101.setFocus(true);
+				lblF0101.setValue("");
+			}
 		}
 	}
 
