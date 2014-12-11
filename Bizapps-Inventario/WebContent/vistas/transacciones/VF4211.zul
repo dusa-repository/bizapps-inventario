@@ -47,7 +47,8 @@
 									<label value="*" style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtEmpresa1" hflex="1" maxlength="5" />
+								<textbox id="txtEmpresa1" hflex="1" maxlength="5"
+									tooltiptext="Ingrese la compañia desde la cual se realiza el pedido" />
 								<button autodisable="self" id="btnBuscarEmpresa1" class="btn"
 									tooltiptext="Seleccione la compañia desde la cual se realiza el pedido"
 									label="Buscar" image="/public/imagenes/botones/buscar.png" />
@@ -65,7 +66,8 @@
 									<label value="*" style="font-weight:bold;color:red">
 									</label>
 								</hbox>
-								<textbox id="txtEmpresa2" hflex="1" maxlength="5" />
+								<textbox id="txtEmpresa2" hflex="1" maxlength="5"
+									tooltiptext="Ingrese la compañia a la cual realiza el pedido" />
 								<button autodisable="self" id="btnBuscarEmpresa2" class="btn"
 									tooltiptext="Seleccione la compañia a la cual realiza el pedido"
 									label="Buscar" image="/public/imagenes/botones/buscar.png" />
@@ -140,7 +142,8 @@
 									</cell>
 									<hbox />
 									<button label="Agregar" id="btnAgregar" autodisable="self"
-										image="/public/imagenes/botones/annadir.png" class="btn" />
+										image="/public/imagenes/botones/annadir.png" class="btn"
+										tooltiptext="Presione para Agregar un Item" />
 								</row>
 								<row>
 									<label class="etiqueta" value="UM:" />
@@ -229,9 +232,11 @@
 								</listbox>
 								<vbox width="100%">
 									<button label="Editar" class="btn" id="btnVer"
-										autodisable="self" image="/public/imagenes/botones/generar.png" />
+										autodisable="self" image="/public/imagenes/botones/generar.png"
+										tooltiptext="Presione para Editar un Item" />
 									<button label="Remover" class="btn" id="btnRemover"
-										autodisable="self" image="/public/imagenes/botones/anular.png" />
+										autodisable="self" image="/public/imagenes/botones/anular.png"
+										tooltiptext="Presione para Remover un Item" />
 								</vbox>
 							</hbox>
 						</div>

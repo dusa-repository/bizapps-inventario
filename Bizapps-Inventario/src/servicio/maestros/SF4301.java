@@ -17,7 +17,6 @@ public class SF4301 {
 	private IF4301DAO iF4301DAO;
 
 	public void guardar(F4301 f4301) {
-		//System.out.println(f4301.toString());
 		iF4301DAO.save(f4301);
 	}
 

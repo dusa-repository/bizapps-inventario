@@ -143,7 +143,6 @@ public class CF01151 extends CGenerico {
 								"CF", f0115.getEaeclass()));
 						int ehier = (int) Math.floor(f0115.getEaehier());
 						String ehierMostrar = "0" + String.valueOf(ehier);
-						System.out.println(ehierMostrar);
 						buscadorEhier.settearModelo(servicioF0005.buscar("01",
 								"HI", ehierMostrar));
 						cmbEtpF01151.setFocus(true);
