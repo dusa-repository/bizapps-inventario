@@ -916,24 +916,15 @@ public class CF4101 extends CGenerico {
 
 						try {
 							if (clave == claveLong) {
-
-								System.out.println("Entre1");
-
 								double numero = servicioF00021
 										.Numero("4", "JE");
 								if (numero != 0) {
-
-									System.out.println("Entre2");
-
 									clave = numero + 1;
 									F00021 f021 = servicioF00021.buscar("4",
 											"JE");
 									f021.setNln001(clave);
 									servicioF00021.guardar(f021);
 								} else {
-
-									System.out.println("Entre3");
-
 									clave = 1;
 									F00021 f021 = new F00021();
 									F00021PK clave21 = new F00021PK();

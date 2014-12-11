@@ -601,7 +601,6 @@ public class CF4301 extends CGenerico {
 
 	public boolean validarSeleccionEncabezado() {
 		List<F4301> seleccionados = catalogo.obtenerSeleccionados();
-		System.out.println(catalogo.obtenerSeleccionados().size());
 		if (seleccionados == null) {
 			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
 			return false;
