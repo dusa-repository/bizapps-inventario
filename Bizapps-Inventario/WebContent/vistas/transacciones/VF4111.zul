@@ -97,10 +97,11 @@
 								</label>
 							</hbox>
 							<longbox readonly="true" id="txtF4111P" hflex="1"
-								maxlength="19"
-								tooltiptext="Seleccione la orden desde el catalogo" />
+								maxlength="19" tooltiptext="Seleccione la orden desde el catalogo" />
 							<button autodisable="self" id="btnBuscarF4111P" class="btn"
-								label="Buscar" tooltiptext="Debe seleccionar un proveedor para visualizar las ordenes" image="/public/imagenes/botones/buscar.png" />
+								label="Buscar"
+								tooltiptext="Debe seleccionar un proveedor para visualizar las ordenes"
+								image="/public/imagenes/botones/buscar.png" />
 							<label id="lblF4111P" />
 						</row>
 						<row id="rowPlanta1">
@@ -182,6 +183,14 @@
 										tooltiptext="Presione para Agregar un Item" />
 								</row>
 								<row>
+									<cell colspan="5">
+										<hbox />
+									</cell>
+									<label class="etiqueta" value="Disponibilidad:" />
+									<label id="lblDisponibilidad" />
+									<hbox />
+								</row>
+								<row>
 									<label class="etiqueta" value="UM:" />
 									<textbox disabled="true" id="txtUM" hflex="1"
 										maxlength="2" tooltiptext="Unidad de Medida del Item" />
@@ -232,15 +241,6 @@
 										image="/public/imagenes/botones/buscar.png" />
 									<label id="lblUbicacion2" />
 								</row>
-								<!-- <row> <label class="etiqueta" value="Nº lote inicial:" /> <textbox 
-									id="txtLote1" hflex="1" maxlength="3" tooltiptext="Ingrese la Sucursal de 
-									planta desde donde se realiza la operacion" /> <button id="btnBuscarLote1" 
-									class="btn" label="Buscar" tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" 
-									/> <label id="lblLote1" /> <label class="etiqueta" value="Nº lote final:" 
-									/> <textbox id="txtLote2" hflex="1" maxlength="3" tooltiptext="Ingrese la 
-									Sucursal de planta desde donde se realiza la operacion" /> <button id="btnBuscarLote2" 
-									class="btn" label="Buscar" tooltiptext="Catalogo Monedas" image="/public/imagenes/botones/buscar.png" 
-									/> <label id="lblLote2" /> </row> -->
 							</rows>
 						</grid>
 						<div width="93%">

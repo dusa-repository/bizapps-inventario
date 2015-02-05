@@ -160,6 +160,8 @@ public class CF4111 extends CGenerico {
 	@Wire
 	private Label lblNombreUbicacion2;
 	@Wire
+	private Label lblDisponibilidad;
+	@Wire
 	private Label lblNombreUbicacion;
 	@Wire
 	private Label lblCantidad;
@@ -1050,23 +1052,31 @@ public class CF4111 extends CGenerico {
 
 			@Override
 			protected List<F4111> buscar(List<String> valores) {
-
 				List<F4111> unidadnegocio = new ArrayList<F4111>();
 
 				for (F4111 unidad : listaGeneral) {
-					if (String.valueOf(unidad.getIldoc().longValue())
-							.toLowerCase()
+					String dct = "", iltrex = "", stringMcu = "";
+					if (unidad.getIldct() != null)
+						dct = unidad.getIldct();
+					if (unidad.getIltrex() != null)
+						iltrex = unidad.getIltrex();
+					if (unidad.getIlmcu() != null)
+						stringMcu = unidad.getIlmcu();
+					Double doc = (double) 0;
+					if (unidad.getIldoc() != null)
+						doc = unidad.getIldoc();
+					if (String.valueOf(doc.longValue()).toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& unidad.getIldct().toLowerCase()
-									.contains(valores.get(1).toLowerCase())
+							&& dct.toLowerCase().contains(
+									valores.get(1).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(unidad
 											.getIltrdj())).toLowerCase()
 									.contains(valores.get(2).toLowerCase())
-							&& unidad.getIltrex().toLowerCase()
-									.contains(valores.get(3).toLowerCase())
-							&& unidad.getIlmcu().toLowerCase()
-									.contains(valores.get(4).toLowerCase())
+							&& iltrex.toLowerCase().contains(
+									valores.get(3).toLowerCase())
+							&& stringMcu.toLowerCase().contains(
+									valores.get(4).toLowerCase())
 							&& formatoFecha
 									.format(transformarJulianaAGregoria(unidad
 											.getIlcrdj())).toLowerCase()
@@ -1334,39 +1344,41 @@ public class CF4111 extends CGenerico {
 		}
 		catalogoF4100.setParent(null);
 	}
-//
-//	@Listen("onChange = #txtUbicacion1; onOK=#txtUbicacion1; #txtUbicacion2; onOK=#txtUbicacion2")
-//	public void buscarNombreUbicacion(Event e) {
-//		Textbox boton = (Textbox) e.getTarget();
-//		String idText = boton.getId();
-//		String sucursal = mcu;
-//		F4100 f4100 = servicioF4100
-//				.buscarPorMcuYLoc(sucursal, boton.getValue());
-//		if (f4100 != null) {
-//			if (idText.equals("txtUbicacion2"))
-//				setearUbicacion(f4100, txtUbicacion2, lblUbicacion2);
-//			else
-//				setearUbicacion(f4100, txtUbicacion1, lblUbicacion1);
-//		} else {
-//			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
-//			if (idText.equals("txtUbicacion2")) {
-//				txtUbicacion2.setValue("");
-//				txtUbicacion2.setFocus(true);
-//				lblUbicacion2.setValue("");
-//
-//			} else {
-//				txtUbicacion1.setValue("");
-//				txtUbicacion1.setFocus(true);
-//				lblUbicacion1.setValue("");
-//			}
-//		}
-//	}
+
+	//
+	// @Listen("onChange = #txtUbicacion1; onOK=#txtUbicacion1; #txtUbicacion2; onOK=#txtUbicacion2")
+	// public void buscarNombreUbicacion(Event e) {
+	// Textbox boton = (Textbox) e.getTarget();
+	// String idText = boton.getId();
+	// String sucursal = mcu;
+	// F4100 f4100 = servicioF4100
+	// .buscarPorMcuYLoc(sucursal, boton.getValue());
+	// if (f4100 != null) {
+	// if (idText.equals("txtUbicacion2"))
+	// setearUbicacion(f4100, txtUbicacion2, lblUbicacion2);
+	// else
+	// setearUbicacion(f4100, txtUbicacion1, lblUbicacion1);
+	// } else {
+	// Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
+	// if (idText.equals("txtUbicacion2")) {
+	// txtUbicacion2.setValue("");
+	// txtUbicacion2.setFocus(true);
+	// lblUbicacion2.setValue("");
+	//
+	// } else {
+	// txtUbicacion1.setValue("");
+	// txtUbicacion1.setFocus(true);
+	// lblUbicacion1.setValue("");
+	// }
+	// }
+	// }
 
 	private void setearUbicacion(F4100 f4100, Textbox txtUbicacion22,
 			Label lblUbicacion22) {
 		loc = f4100.getId().getLmlocn();
 		txtUbicacion22.setValue(f4100.getId().getLmlocn());
 		lblUbicacion22.setValue(f4100.getId().getLmlocn());
+		calcularDisponibilidad(txtItem.getValue(), loc, txtPlanta1.getValue());
 
 	}
 
@@ -1825,6 +1837,24 @@ public class CF4111 extends CGenerico {
 			spnCosto.setValue(f.getIluncs());
 			spnCantidad.setValue(f.getIltrqt().intValue());
 		}
+		calcularDisponibilidad(txtItem.getValue(), loc, txtPlanta1.getValue());
+	}
+
+	private void calcularDisponibilidad(Double value, String loc2, String value2) {
+		if (tipo.equals("OV"))
+			value2 = txtPlanta2.getValue();
+		F41021PK clave = new F41021PK();
+		clave.setLiitm(value);
+		clave.setLilocn(loc2);
+		clave.setLimcu(value2);
+		clave.setLilotn("");
+		F41021 buscado = servicioF41021.buscar(clave);
+		if (buscado != null)
+			if (buscado.getLipqoh() != null)
+				lblDisponibilidad.setValue(String.valueOf(buscado.getLipqoh()
+						.intValue()));
+			else
+				lblDisponibilidad.setValue(String.valueOf(0));
 	}
 
 	@Listen("onClick = #btnBuscarF0101")
@@ -2109,7 +2139,6 @@ public class CF4111 extends CGenerico {
 				suma = f.getLipqoh();
 			if (suma - cantidad < 0) {
 				spnCantidad.setValue(Double.valueOf(suma).intValue());
-				spnCantidad.setFocus(true);
 				Mensaje.mensajeError(Mensaje.noPoseeExistencia);
 				return false;
 			} else
