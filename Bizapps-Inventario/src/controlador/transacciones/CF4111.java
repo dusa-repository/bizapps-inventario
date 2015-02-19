@@ -45,6 +45,7 @@ import org.zkoss.zul.Textbox;
 import componentes.Botonera;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
+import componentes.utils.Validador;
 import controlador.maestros.CGenerico;
 
 public class CF4111 extends CGenerico {
@@ -1867,7 +1868,7 @@ public class CF4111 extends CGenerico {
 			listF41011 = servicioF0101.buscarProveedorConOrden("OV");
 		final List<F0101> listF0101 = listF41011;
 		catalogoF0101 = new CatalogoGenerico<F0101>(catalogoDireccionF0101,
-				"Catalogo de Proveedores (F0013)", listF0101, true, false,
+				"Catalogo de Proveedores (F0101)", listF0101, true, false,
 				false, "Nº direccion", "Nombre alfabetico", "Direccion larga",
 				"Clasificacion industria", "Tipo bus", "ID fiscal") {
 
@@ -2197,4 +2198,30 @@ public class CF4111 extends CGenerico {
 		}
 	}
 
+	@Listen("onChange = #txtExplicacion; onOK = #txtExplicacion")
+	public void referenciaDoc() {
+		if (tipo.equals("MC")) {
+			if (txtExplicacion != null) {
+				if (txtExplicacion.getValue().compareTo("") != 0) {
+					if (Validador.validarNumero(txtExplicacion.getValue())) {
+						boolean sigue = true;
+						Integer cont = 0;
+						while (sigue) {
+							cont++;
+							List<F4111> lista2 = servicioF4111.buscarPorDoc(
+									Double.valueOf(txtExplicacion.getValue())
+											+ cont.doubleValue(), tipo);
+							if (lista2.isEmpty())
+								sigue = false;
+						}
+						txtDoc.setValue(Double.valueOf(txtExplicacion
+								.getValue()) + cont.doubleValue());
+						txtDoc.setTooltiptext("Se ha colocado un valor sugerido para el numero de documento, basandose en los datos del paciente que ha introducido");
+					} else
+						txtDoc.setValue(0);
+				} else
+					txtDoc.setValue(0);
+			}
+		}
+	}
 }
