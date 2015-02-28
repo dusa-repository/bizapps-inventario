@@ -34,4 +34,9 @@ public interface IF4211DAO extends JpaRepository<F4211, F4211PK> {
 	List<F4211> findBySddrqjBetweenAndSdspattnAndIdSddcto(BigDecimal desde,
 			BigDecimal hasta, String string, String tipo);
 
+	@Query("select fd from F4211 fd where fd.id.sdlnid = (select coalesce(min(f.id.sdlnid), '0') from F4211 f where "
+			+ "f.sdspattn='Enviada' and f.id.sddcto = ?1 and fd.id.sddoco = f.sddoco) "
+			+ "and fd.sdspattn='Enviada' and fd.id.sddcto = ?1")
+	List<F4211> findUniques(String et);
+
 }

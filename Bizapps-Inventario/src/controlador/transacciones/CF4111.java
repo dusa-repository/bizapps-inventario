@@ -1346,34 +1346,6 @@ public class CF4111 extends CGenerico {
 		catalogoF4100.setParent(null);
 	}
 
-	//
-	// @Listen("onChange = #txtUbicacion1; onOK=#txtUbicacion1; #txtUbicacion2; onOK=#txtUbicacion2")
-	// public void buscarNombreUbicacion(Event e) {
-	// Textbox boton = (Textbox) e.getTarget();
-	// String idText = boton.getId();
-	// String sucursal = mcu;
-	// F4100 f4100 = servicioF4100
-	// .buscarPorMcuYLoc(sucursal, boton.getValue());
-	// if (f4100 != null) {
-	// if (idText.equals("txtUbicacion2"))
-	// setearUbicacion(f4100, txtUbicacion2, lblUbicacion2);
-	// else
-	// setearUbicacion(f4100, txtUbicacion1, lblUbicacion1);
-	// } else {
-	// Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
-	// if (idText.equals("txtUbicacion2")) {
-	// txtUbicacion2.setValue("");
-	// txtUbicacion2.setFocus(true);
-	// lblUbicacion2.setValue("");
-	//
-	// } else {
-	// txtUbicacion1.setValue("");
-	// txtUbicacion1.setFocus(true);
-	// lblUbicacion1.setValue("");
-	// }
-	// }
-	// }
-
 	private void setearUbicacion(F4100 f4100, Textbox txtUbicacion22,
 			Label lblUbicacion22) {
 		loc = f4100.getId().getLmlocn();

@@ -44,12 +44,7 @@ public class SF4211 {
 	}
 
 	public List<F4211> buscarTodosOrdenadosUnicos(String et) {
-		List<Double> listaBuscada = f4211DAO.findDocoDistinct(et);
-		List<F4211> lista = new ArrayList<F4211>();
-		for (int i = 0; i < listaBuscada.size(); i++) {
-			lista.add(buscarPorDocoYDcto(listaBuscada.get(i), et).get(0));
-		}
-		return lista;
+		return f4211DAO.findUniques(et);
 	}
 
 	public F4211 buscarPorDocoEItem(Double value, Double imitm) {
