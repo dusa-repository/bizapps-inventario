@@ -18,6 +18,7 @@ import modelo.transacciones.F4211;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service("SF4101")
@@ -52,8 +53,18 @@ public class SF4101 {
 		return f4101DAO.findAllAndOrderByIMDSC1();
 	}
 
-	public List<F4101> buscarTodosOrdenadosPorDoc(String string, Double claveDoc, String loc) {
-		List<F4111> lista = f4111DAO.findByIldocAndIldctAndIllocn(claveDoc, string, loc);
+	public List<F4101> buscarTodosDiez() {
+		List<String> ordenar = new ArrayList<String>();
+		ordenar.add("imdsc1");
+		Sort o = new Sort(Sort.Direction.ASC, ordenar);
+		Pageable topTen = new PageRequest(0, 10, o);
+		return f4101DAO.findAll2(topTen);
+	}
+
+	public List<F4101> buscarTodosOrdenadosPorDoc(String string,
+			Double claveDoc, String loc) {
+		List<F4111> lista = f4111DAO.findByIldocAndIldctAndIllocn(claveDoc,
+				string, loc);
 		List<F4101> retorna = new ArrayList<F4101>();
 		for (int i = 0; i < lista.size(); i++) {
 			F4101 f = buscar(lista.get(i).getIlitm());
@@ -63,22 +74,31 @@ public class SF4101 {
 	}
 
 	public List<F4101> buscarTodosOrdenadosPorMcu(String value) {
-//		List<Double> lista = f41021DAO.buscarItemDistintos(value);
-//		List<F4101> buscados = new ArrayList<F4101>();
-////		for (Iterator<Double> iterator = lista.iterator(); iterator.hasNext();) {
-////			Double double1 = (Double) iterator.next();
-////			buscados.add(buscar(double1));
-////		}
-//		buscados = f4101DAO.findByImitmIn(lista);
-////		for (int i = 0; i < lista.size(); i++) {
-////			buscados.add(buscar(lista.get(i)));
-////		}
+		// List<Double> lista = f41021DAO.buscarItemDistintos(value);
+		// List<F4101> buscados = new ArrayList<F4101>();
+		// // for (Iterator<Double> iterator = lista.iterator();
+		// iterator.hasNext();) {
+		// // Double double1 = (Double) iterator.next();
+		// // buscados.add(buscar(double1));
+		// // }
+		// buscados = f4101DAO.findByImitmIn(lista);
+		// // for (int i = 0; i < lista.size(); i++) {
+		// // buscados.add(buscar(lista.get(i)));
+		// // }
 		return f4101DAO.buscarPorMcu(value);
+	}
+	public List<F4101> buscarPorMcuResumen(String mcu){
+		List<String> ordenar = new ArrayList<String>();
+		ordenar.add("imdsc1");
+		Sort o = new Sort(Sort.Direction.ASC, ordenar);
+		Pageable topTen = new PageRequest(0, 10, o);
+		return f4101DAO.buscarPorMcuPage(mcu, topTen);
 	}
 
 	public List<F4101> buscarTodosOrdenadosPorSolicitud(Double value, String et) {
 		List<F4211> listaF4211 = f4211DAO
-				.findByIdSddocoAndIdSddctoAndSdspattnOrderBySditmAsc(value, et,"Enviada");
+				.findByIdSddocoAndIdSddctoAndSdspattnOrderBySditmAsc(value, et,
+						"Enviada");
 		List<F4101> lista = new ArrayList<F4101>();
 		for (Iterator<F4211> iterator = listaF4211.iterator(); iterator
 				.hasNext();) {

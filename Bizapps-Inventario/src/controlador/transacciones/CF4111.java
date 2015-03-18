@@ -1617,6 +1617,8 @@ public class CF4111 extends CGenerico {
 	@Listen("onClick = #btnBuscarItem")
 	public void mostrarCatalogoF4101() {
 		List<F4101> listF41011 = new ArrayList<F4101>();
+		List<F4101> listF41012 = new ArrayList<F4101>();
+		Boolean todos = false;
 		if (versionCronica == null) {
 			if (tipo.equals("ET")) {
 				listF41011 = servicioF4101.buscarTodosOrdenadosPorSolicitud(
@@ -1628,12 +1630,18 @@ public class CF4111 extends CGenerico {
 									txtPedido.getValue(), "MK");
 				else {
 					if (!tipo.equals("DP"))
-						if (!tipo.equals("OV"))
+						if (!tipo.equals("OV")) {
+							todos = true;
 							listF41011 = servicioF4101
 									.buscarTodosOrdenadosPorMcu(txtPlanta1
 											.getValue());
-						else
+							listF41012 = servicioF4101
+									.buscarPorMcuResumen(txtPlanta1.getValue());
+						} else {
+							todos = true;
+							listF41012 = servicioF4101.buscarTodosDiez();
 							listF41011 = servicioF4101.buscarTodosOrdenados();
+						}
 					else
 						listF41011 = servicioF4101.buscarTodosOrdenadosPorDoc(
 								"OV", claveDoc, loc);
@@ -1642,7 +1650,10 @@ public class CF4111 extends CGenerico {
 		} else
 			listF41011 = servicioF4101.buscarTodosOrdenadosPorSolicitud(
 					txtPedido.getValue(), "MC");
-		final List<F4101> listF4101 = listF41011;
+		final List<F4101> listBusqueda = listF41011;
+		List<F4101> listCabecera = listF41011;
+		if (todos)
+			listCabecera = listF41012;
 		String descripcion = "";
 		if (tipo.equals("ET") || tipo.equals("MK") || versionCronica != null) {
 			descripcion = "Cantidad Solicitada";
@@ -1653,8 +1664,8 @@ public class CF4111 extends CGenerico {
 				descripcion = "Descripcion";
 		}
 		catalogoF4101 = new CatalogoGenerico<F4101>(catalogoItemF4101,
-				"Catalogo de Articulos (F4101)", listF4101, true, false, false,
-				"Número artículo", "Descripcion", descripcion,
+				"Catalogo de Articulos (F4101)", listCabecera, true, false,
+				false, "Número artículo", "Descripcion", descripcion,
 				"Texto búsqueda", "Tipo línea", "Tipo alm", "Código vta 1") {
 
 			@Override
@@ -1662,7 +1673,7 @@ public class CF4111 extends CGenerico {
 
 				List<F4101> lista = new ArrayList<F4101>();
 
-				for (F4101 f4101 : listF4101) {
+				for (F4101 f4101 : listBusqueda) {
 					F4211 f = new F4211();
 					F4111 v = new F4111();
 					String cantidad = "";
