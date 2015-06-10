@@ -3,9 +3,9 @@ package componentes.catalogos;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.zkoss.zk.ui.Component;
-
 import modelo.maestros.F40205;
+
+import org.zkoss.zk.ui.Component;
 
 public class CatalogoF40205 extends CatalogoGenerico<F40205> {
 

@@ -24,7 +24,6 @@ import org.zkoss.zul.Textbox;
 import componentes.Botonera;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
-import componentes.catalogos.CatalogoUDC;
 
 public class CF0005 extends CGenerico {
 

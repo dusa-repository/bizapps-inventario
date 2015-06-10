@@ -29,8 +29,8 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoGenerico;
 
 public class CF49041 extends CGenerico {

@@ -1,10 +1,13 @@
 package modelo.maestros;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-import modelo.pk.F4301PK;
 import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+
+import modelo.pk.F4301PK;
 
 /**
  * The persistent class for the F4301 database table.

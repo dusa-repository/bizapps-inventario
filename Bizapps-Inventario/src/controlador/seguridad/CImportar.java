@@ -32,16 +32,15 @@ import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.A;
-import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Label;
-import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Window;
 
 import componentes.Botonera;
 import componentes.Mensaje;
 import componentes.utils.Validador;
+
 import controlador.maestros.CGenerico;
 
 public class CImportar extends CGenerico {

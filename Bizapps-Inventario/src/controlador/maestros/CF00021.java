@@ -8,7 +8,6 @@ import java.util.List;
 import modelo.maestros.F00021;
 import modelo.maestros.F0005;
 import modelo.maestros.F0010;
-import modelo.maestros.F0101;
 import modelo.pk.F00021PK;
 
 import org.zkoss.zk.ui.Sessions;
@@ -24,10 +23,11 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
-import arbol.CArbol;
+import security.controlador.CArbol;
+
 import componentes.Botonera;
-import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoGenerico;
 
 public class CF00021 extends CGenerico {
@@ -69,7 +69,6 @@ public class CF00021 extends CGenerico {
 	protected List<F00021> listaGeneral = new ArrayList<F00021>();
 	Botonera botonera;
 	F00021PK clave = null;
-	CArbol arbol = new CArbol();
 	BuscadorUDC buscadorDCT, buscadorSMAS, buscadorINCRUS;
 
 	@Override
@@ -85,7 +84,6 @@ public class CF00021 extends CGenerico {
 				map = null;
 			}
 		}
-		arbol.booleanoApg();
 		txtKCOF00021.setFocus(true);
 		mostrarCatalogo();
 		List<F0005> listaF0005 = servicioF0005.buscarParaUDCOrdenados("00",
@@ -161,7 +159,6 @@ public class CF00021 extends CGenerico {
 			@Override
 			public void salir() {
 				cerrarVentana(divVF00021, titulo, tabs);
-				arbol.booleanoApg();
 
 			}
 

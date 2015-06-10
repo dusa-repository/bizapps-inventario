@@ -11,10 +11,8 @@ import modelo.maestros.F0010;
 import modelo.maestros.F4100;
 
 import org.zkoss.zk.ui.Sessions;
-import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
@@ -22,6 +20,7 @@ import org.zkoss.zul.Window;
 
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
+
 import controlador.maestros.CGenerico;
 
 public class CDetalleImport extends CGenerico {

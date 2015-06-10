@@ -2,11 +2,13 @@ package componentes.buscadores;
 
 import java.util.List;
 
+import modelo.maestros.F0005;
+
 import org.zkoss.zul.Textbox;
 
-import componentes.catalogos.CatalogoUDC;
 import servicio.maestros.SF0005;
-import modelo.maestros.F0005;
+
+import componentes.catalogos.CatalogoUDC;
 
 public class BuscadorUDC extends
 		BuscadorGenerico<F0005, String, SF0005, Textbox, CatalogoUDC> {

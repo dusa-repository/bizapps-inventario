@@ -1,11 +1,13 @@
 package modelo.maestros;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
 import modelo.pk.F49041PK;
-
-import java.math.BigDecimal;
 
 
 /**

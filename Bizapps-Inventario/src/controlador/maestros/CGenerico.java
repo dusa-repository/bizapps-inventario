@@ -36,6 +36,9 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 
+import security.servicio.SArbol;
+import security.servicio.SGrupo;
+import security.servicio.SUsuarioSeguridad;
 import servicio.maestros.SF00021;
 import servicio.maestros.SF0004;
 import servicio.maestros.SF0005;
@@ -64,9 +67,6 @@ import servicio.maestros.SF4311;
 import servicio.maestros.SF49041;
 import servicio.maestros.SF4930;
 import servicio.maestros.SF4931;
-import servicio.seguridad.SArbol;
-import servicio.seguridad.SGrupo;
-import servicio.seguridad.SUsuario;
 import servicio.transacciones.SF4111;
 import servicio.transacciones.SF4211;
 import componentes.Mensaje;
@@ -142,8 +142,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SF4931 servicioF4931;
 	@WireVariable("SGrupo")
 	protected SGrupo servicioGrupo;
-	@WireVariable("SUsuario")
-	protected SUsuario servicioUsuario;
+	@WireVariable("SUsuarioSeguridad")
+	protected SUsuarioSeguridad servicioUsuarioSeguridad;
 	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
 			"/META-INF/ConfiguracionAplicacion.xml");
 	protected static SimpleDateFormat formatoFecha = new SimpleDateFormat(
@@ -156,6 +156,14 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 
 	// Cambio en la hora borrados los :
 
+	public static SF0101 getServicioF0101() {
+		return applicationContext.getBean(SF0101.class);
+	}
+	
+	public static SF0004 getServicioF4() {
+		return applicationContext.getBean(SF0004.class);
+	}
+	
 	public static SF4101 getServicioF4101() {
 		return applicationContext.getBean(SF4101.class);
 	}

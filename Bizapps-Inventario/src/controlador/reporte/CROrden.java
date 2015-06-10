@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import modelo.maestros.F4100;
 import modelo.maestros.F4101;
 import modelo.transacciones.F4111;
 import modelo.transacciones.F4211;
@@ -33,10 +32,10 @@ import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
-import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
 import componentes.Mensaje;
+
 import controlador.maestros.CGenerico;
 
 public class CROrden extends CGenerico {

@@ -4,10 +4,10 @@ import java.util.List;
 
 import modelo.maestros.F0101;
 
-import org.zkoss.zul.Doublebox;
 import org.zkoss.zul.Longbox;
 
 import servicio.maestros.SF0101;
+
 import componentes.catalogos.CatalogoF0101;
 
 public class BuscadorF0101 extends

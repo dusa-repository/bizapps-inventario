@@ -1,18 +1,13 @@
 package servicio.maestros;
 
-import java.util.List;
-
 import interfacedao.maestros.IF00021DAO;
 
-import modelo.maestros.F00021;
-import modelo.maestros.F40203;
-import modelo.pk.F00021PK;
-import modelo.pk.F40203PK;
+import java.util.List;
 
+import modelo.maestros.F00021;
+import modelo.pk.F00021PK;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service("SF00021")

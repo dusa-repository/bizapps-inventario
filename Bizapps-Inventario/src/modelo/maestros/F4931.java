@@ -1,8 +1,11 @@
 package modelo.maestros;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * The persistent class for the F4931 database table.

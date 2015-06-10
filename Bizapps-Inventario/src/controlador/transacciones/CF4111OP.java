@@ -5,17 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import modelo.maestros.F00021;
-import modelo.maestros.F0005;
 import modelo.maestros.F4100;
 import modelo.maestros.F4101;
 import modelo.maestros.F4301;
 import modelo.maestros.F4311;
-import modelo.pk.F00021PK;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Datebox;
@@ -33,6 +29,7 @@ import org.zkoss.zul.Textbox;
 import componentes.Botonera;
 import componentes.buscadores.BuscadorF0101;
 import componentes.buscadores.BuscadorF4301;
+
 import controlador.maestros.CGenerico;
 
 public class CF4111OP extends CGenerico {

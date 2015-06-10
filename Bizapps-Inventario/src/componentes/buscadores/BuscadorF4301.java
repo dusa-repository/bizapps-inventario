@@ -2,14 +2,16 @@ package componentes.buscadores;
 
 import java.util.List;
 
+import modelo.maestros.F4301;
+import modelo.pk.F4301PK;
+
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Textbox;
 
-import modelo.maestros.F4301;
-import modelo.pk.F4301PK;
 import servicio.maestros.SF4301;
 import componentes.catalogos.CatalogoF4301;
+import controlador.maestros.CGenerico;
 
 public class BuscadorF4301 extends
 		BuscadorGenerico<F4301, String, SF4301, Textbox, CatalogoF4301> {
@@ -55,7 +57,7 @@ public class BuscadorF4301 extends
 
 	@Override
 	protected String valorAMostrarEnLabel(F4301 modelo) {
-		return getCatalogo().getServicioF0101().buscar(modelo.getPhan8())
+		return CGenerico.getServicioF0101().buscar(modelo.getPhan8())
 				.getAbalph();
 	}
 
