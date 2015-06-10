@@ -1,11 +1,11 @@
 package servicio.maestros;
 
+import interfacedao.maestros.IF4100DAO;
+import interfacedao.transacciones.IF4111DAO;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import interfacedao.maestros.IF4100DAO;
-import interfacedao.transacciones.IF4111DAO;
-import modelo.maestros.F0006;
 import modelo.maestros.F4100;
 import modelo.pk.F4100PK;
 import modelo.transacciones.F4111;

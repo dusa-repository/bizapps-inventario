@@ -2,23 +2,16 @@ package controlador.reporte;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import modelo.maestros.F0006;
-import modelo.maestros.F4101;
 import modelo.maestros.F4102;
 import modelo.maestros.F41021;
 import modelo.pk.F4102PK;
-import modelo.transacciones.F4111;
-import modelo.transacciones.F4211;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -43,7 +36,7 @@ import org.zkoss.zul.Textbox;
 import componentes.Botonera;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoF0006;
-import componentes.catalogos.CatalogoGenerico;
+
 import controlador.maestros.CGenerico;
 
 public class CRStock extends CGenerico {

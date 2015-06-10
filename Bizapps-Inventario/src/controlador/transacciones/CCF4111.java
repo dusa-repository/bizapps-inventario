@@ -3,7 +3,6 @@ package controlador.transacciones;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,12 +11,9 @@ import modelo.maestros.F0006;
 import modelo.maestros.F4008;
 import modelo.maestros.F4100;
 import modelo.maestros.F4101;
-import modelo.maestros.F41021;
 import modelo.transacciones.F4111;
-import modelo.transacciones.F4211;
 
 import org.zkoss.zk.ui.Sessions;
-import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Button;
@@ -27,7 +23,6 @@ import org.zkoss.zul.Doublebox;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
@@ -35,6 +30,7 @@ import componentes.Botonera;
 import componentes.Mensaje;
 import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoGenerico;
+
 import controlador.maestros.CGenerico;
 
 public class CCF4111 extends CGenerico {

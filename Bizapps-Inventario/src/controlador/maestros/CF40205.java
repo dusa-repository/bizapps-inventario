@@ -15,15 +15,13 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
-import org.zkoss.zul.Label;
-import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoGenerico;
 
 public class CF40205 extends CGenerico {

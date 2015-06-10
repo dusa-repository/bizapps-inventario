@@ -3,6 +3,9 @@ package componentes.catalogos;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.maestros.F0004;
+import modelo.maestros.F0005;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.zkoss.zk.ui.Component;
@@ -15,9 +18,8 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Vbox;
 import org.zkoss.zul.impl.XulElement;
 
+import controlador.maestros.CGenerico;
 import servicio.maestros.SF0004;
-import modelo.maestros.F0004;
-import modelo.maestros.F0005;
 
 public class CatalogoUDC extends CatalogoGenerico<F0005> {
 
@@ -25,13 +27,6 @@ public class CatalogoUDC extends CatalogoGenerico<F0005> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-			"/META-INF/ConfiguracionAplicacion.xml");
-
-	public static SF0004 getServicioF4() {
-		return applicationContext.getBean(SF0004.class);
-	}
 
 	private Label labelSYNombre;
 	private Label labelRTNombre;
@@ -77,7 +72,7 @@ public class CatalogoUDC extends CatalogoGenerico<F0005> {
 	}
 
 	private void settearCamposUdc(String valor1, String valor2) {
-		F0004 f004 = getServicioF4().buscar(valor1, valor2);
+		F0004 f004 = CGenerico.getServicioF4().buscar(valor1, valor2);
 		if (f004 != null) {
 			txtSY.setValue(f004.getId().getDtsy());
 			labelBuscado.setValue(f004.getDtdl01());

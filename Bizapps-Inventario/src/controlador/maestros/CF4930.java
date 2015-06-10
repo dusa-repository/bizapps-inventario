@@ -1,7 +1,6 @@
 package controlador.maestros;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,9 +9,6 @@ import java.util.List;
 
 import modelo.maestros.F0005;
 import modelo.maestros.F0006;
-import modelo.maestros.F0010;
-import modelo.maestros.F0013;
-import modelo.maestros.F0015;
 import modelo.maestros.F0101;
 import modelo.maestros.F49041;
 import modelo.maestros.F4930;
@@ -23,7 +19,6 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Button;
-import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
@@ -32,8 +27,8 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.buscadores.BuscadorUDC;
 import componentes.Mensaje;
+import componentes.buscadores.BuscadorUDC;
 import componentes.catalogos.CatalogoGenerico;
 
 public class CF4930 extends CGenerico {

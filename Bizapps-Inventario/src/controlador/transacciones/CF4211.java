@@ -1,13 +1,11 @@
 package controlador.transacciones;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import modelo.maestros.F00021;
-import modelo.maestros.F0005;
 import modelo.maestros.F0006;
 import modelo.maestros.F0010;
 import modelo.maestros.F4100;
@@ -16,7 +14,6 @@ import modelo.maestros.F4105;
 import modelo.pk.F00021PK;
 import modelo.pk.F4105PK;
 import modelo.pk.F4211PK;
-import modelo.transacciones.F4111;
 import modelo.transacciones.F4211;
 
 import org.zkoss.zk.ui.Sessions;
@@ -27,13 +24,11 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Doublebox;
-import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
-import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.Spinner;
@@ -41,9 +36,9 @@ import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componentes.Botonera;
-import componentes.BuscadorUDC;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
+
 import controlador.maestros.CGenerico;
 
 public class CF4211 extends CGenerico {

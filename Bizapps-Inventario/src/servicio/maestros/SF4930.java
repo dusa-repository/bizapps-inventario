@@ -1,13 +1,12 @@
 package servicio.maestros;
 
-import java.util.List;
 import interfacedao.maestros.IF4930DAO;
+
+import java.util.List;
 
 import modelo.maestros.F4930;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service("SF4930")

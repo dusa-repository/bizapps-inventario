@@ -1,7 +1,6 @@
 package controlador.transacciones;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +9,6 @@ import modelo.maestros.F0006;
 import modelo.maestros.F4101;
 import modelo.maestros.F41021;
 import modelo.pk.F41021PK;
-import modelo.transacciones.F4111;
-import modelo.transacciones.F4211;
 
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -31,6 +28,7 @@ import componentes.Mensaje;
 import componentes.catalogos.CatalogoF0006;
 import componentes.catalogos.CatalogoF4101;
 import componentes.catalogos.CatalogoGenerico;
+
 import controlador.maestros.CGenerico;
 
 public class CDisponibilidad extends CGenerico {

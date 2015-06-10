@@ -17,7 +17,6 @@ import modelo.maestros.F4101;
 import modelo.maestros.F41021;
 import modelo.maestros.F4105;
 import modelo.pk.F4105PK;
-import modelo.transacciones.F4111;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -40,6 +39,7 @@ import org.zkoss.zul.Tab;
 
 import componentes.Botonera;
 import componentes.Mensaje;
+
 import controlador.maestros.CGenerico;
 
 public class CRAlmacen extends CGenerico {

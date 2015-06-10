@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.zkoss.zk.ui.Component;
 
+import controlador.maestros.CGenerico;
 import servicio.maestros.SF0101;
 
 public class CatalogoF4301 extends CatalogoGenerico<F4301> {
@@ -17,13 +18,6 @@ public class CatalogoF4301 extends CatalogoGenerico<F4301> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-			"/META-INF/ConfiguracionAplicacion.xml");
-
-	public static SF0101 getServicioF0101() {
-		return applicationContext.getBean(SF0101.class);
-	}
 
 	public CatalogoF4301(Component div, String titulo, List<F4301> lista,
 			boolean emergente, String... campos) {
@@ -60,7 +54,7 @@ public class CatalogoF4301 extends CatalogoGenerico<F4301> {
 		registros[1] = f4301.getId().getPhdcto();
 		registros[2] = f4301.getId().getPhkcoo();
 		registros[3] = String.valueOf(f4301.getPhan8());
-		registros[4] = getServicioF0101().buscar(f4301.getPhan8()).getAbalph();
+		registros[4] = CGenerico.getServicioF0101().buscar(f4301.getPhan8()).getAbalph();
 		registros[5] = String.valueOf(f4301.getPhtrdj());
 		registros[6] = String.valueOf(f4301.getPhshan());
 		registros[7] = String.valueOf(f4301.getPhanby());

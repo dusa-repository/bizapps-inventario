@@ -6,7 +6,6 @@ import java.util.List;
 import modelo.pk.F4211PK;
 import modelo.transacciones.F4211;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

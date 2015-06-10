@@ -2,10 +2,12 @@ package componentes.buscadores;
 
 import java.util.List;
 
+import modelo.maestros.F0013;
+
 import org.zkoss.zul.Textbox;
 
-import modelo.maestros.F0013;
 import servicio.maestros.SF0013;
+
 import componentes.catalogos.CatalogoF0013;
 
 public class BuscadorF0013 extends

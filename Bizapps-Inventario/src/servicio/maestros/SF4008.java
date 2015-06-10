@@ -1,12 +1,11 @@
 package servicio.maestros;
 
+import interfacedao.maestros.IF4008DAO;
+
 import java.util.List;
 
-import interfacedao.maestros.IF4008DAO;
 import modelo.maestros.F4008;
-import modelo.maestros.F4105;
 import modelo.pk.F4008PK;
-import modelo.pk.F4105PK;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

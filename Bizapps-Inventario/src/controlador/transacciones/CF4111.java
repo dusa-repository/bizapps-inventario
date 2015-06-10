@@ -46,6 +46,7 @@ import componentes.Botonera;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 import componentes.utils.Validador;
+
 import controlador.maestros.CGenerico;
 
 public class CF4111 extends CGenerico {

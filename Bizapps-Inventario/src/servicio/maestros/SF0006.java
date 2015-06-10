@@ -1,23 +1,14 @@
 package servicio.maestros;
 
+import interfacedao.maestros.IF0006DAO;
+import interfacedao.transacciones.IF4111DAO;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import interfacedao.maestros.IF0006DAO;
-import interfacedao.transacciones.IF4111DAO;
-import modelo.maestros.F0004;
 import modelo.maestros.F0006;
-import modelo.maestros.F0010;
-import modelo.maestros.F4101;
-import modelo.pk.F0004PK;
-
-
-
-import modelo.transacciones.F4111;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service("SF0006")
