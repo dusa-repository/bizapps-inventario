@@ -46,7 +46,6 @@ import componentes.Botonera;
 import componentes.Mensaje;
 import componentes.catalogos.CatalogoGenerico;
 import componentes.utils.Validador;
-
 import controlador.maestros.CGenerico;
 
 public class CF4111 extends CGenerico {
@@ -218,6 +217,7 @@ public class CF4111 extends CGenerico {
 	private String versionCronica = null;
 	protected List<F4111> listaGeneral = new ArrayList<F4111>();
 	private String loc = "";
+	private Double orden = null;
 
 	public String getTitulo() {
 		return titulo;
@@ -562,6 +562,8 @@ public class CF4111 extends CGenerico {
 									f4111.setIldct(txtTipo.getValue());
 								else
 									f4111.setIldct("MC");
+								if (orden != null)
+									f4111.setIltrno(orden);
 								f4111.setIltrex(txtExplicacion.getValue());
 								f4111.setIllotn("");
 								String mcu = "";
@@ -927,6 +929,7 @@ public class CF4111 extends CGenerico {
 	}
 
 	protected void limpiarCampos() {
+		orden = null;
 		mcu = "";
 		mcu2 = "";
 		loc = "";
@@ -1608,6 +1611,7 @@ public class CF4111 extends CGenerico {
 			versionCronica = null;
 		txtExplicacion.setValue(f42.getSdzon());
 		txtPedido.setValue(f42.getId().getSddoco());
+		orden = f42.getSddoc();
 		lblPedido.setValue(f42.getSdco());
 		txtPlanta1.setValue(f42.getSdmcu());
 		mcu = f42.getSdmcu();
